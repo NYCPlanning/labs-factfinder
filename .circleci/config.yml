@@ -41,5 +41,5 @@ deployment:
   production:
     branch: develop
     commands:
-      - git remote add dokku root@192.241.253.21
+      - git remote add dokku dokku@192.241.253.21:nyc-factfinder
       - git push dokku develop:master -f
