@@ -37,7 +37,9 @@ jobs:
         
       # run tests!
       - run: npm test
-  deploy:
-    steps:
-      - run: git remote add dokku dokku@192.241.253.21:nyc-factfinder
-      - run: git push dokku develop:master -f
+      - run:
+          name: Avoid hosts unknown for github
+          command: ssh-keyscan 192.241.253.217 >> ~/.ssh/known_hosts
+      - deploy:
+          name: Deployment
+          command: git remote add dokku dokku@192.241.253.217:nyc-factfinder && git push dokku develop:master
