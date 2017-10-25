@@ -7,4 +7,5 @@ export default Ember.Controller.extend({
   sources,
   zoom: 12,
   center: [-73.916016, 40.697299],
+  mode: 'direct-select',
 });
