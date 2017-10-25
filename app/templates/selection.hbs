@@ -1,2 +1,13 @@
-Map here
+{{log center}}
+
+{{#jane-maps
+  id='map'
+  sources=sources
+  initOptions=(hash style='mapbox://styles/mapbox/light-v9'
+                    zoom=zoom
+                    center=center
+                    hash=true)
+  as |map|}}
+  {{map.layer-group config=layerGroups.subway visible=true}}
+{{/jane-maps}}
 {{outlet}}
