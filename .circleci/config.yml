@@ -37,9 +37,7 @@ jobs:
         
       # run tests!
       - run: npm test
-deployment:
-  production:
-    branch: develop
-    commands:
-      - git remote add dokku dokku@192.241.253.21:nyc-factfinder
-      - git push dokku develop:master -f
+  deploy:
+    steps:
+      - run: git remote add dokku dokku@192.241.253.21:nyc-factfinder
+      - run: git push dokku develop:master -f
