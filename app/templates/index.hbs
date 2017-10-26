@@ -45,7 +45,19 @@
     {{/map.source}}
   {{/if}}
 
+  {{#if mapMouseover.highlightedFeature}}
+    {{#map.source
+      sourceId='highlighted-feature'
+      options=mapMouseover.highlightedFeatureSource as |source|}}
+      {{source.layer
+        layer=highlightedFeature
+        before='waterway-label'}}
+    {{/map.source}}
+  {{/if}}
+
   {{map.on 'click' (action 'handleClick')}}
+  {{map.on 'mousemove' (action 'handleMousemove')}}
+
 
 {{/jane-maps}}
 

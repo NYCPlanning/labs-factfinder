@@ -13,6 +13,7 @@ export default {
           'fill-opacity': 0.01,
         },
       },
+      highlightable: true,
     },
     {
       layer: {
