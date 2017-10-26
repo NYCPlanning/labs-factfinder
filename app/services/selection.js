@@ -9,14 +9,14 @@ const current = {
 export default Ember.Service.extend({
   current,
 
-  handleSelectedFeature(features = [], identifier = 'boroct2010') {
+  handleSelectedFeature(features = []) {
     const selected = this.get('current');
 
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
 
       const inSelection = selected.features.find(
-        selectedFeature => selectedFeature.properties[identifier] === properties[identifier],
+        selectedFeature => selectedFeature.properties.geoid === properties.geoid,
       );
 
       if (inSelection === undefined) {
@@ -27,7 +27,7 @@ export default Ember.Service.extend({
         });
       } else {
         selected.features = selected.features.filter(
-          selectedFeature => selectedFeature.properties[identifier] !== properties[identifier],
+          selectedFeature => selectedFeature.properties.geoid !== properties.geoid,
         );
       }
     });

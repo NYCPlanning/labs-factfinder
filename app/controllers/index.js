@@ -35,7 +35,6 @@ export default Ember.Controller.extend({
       const summaryLevel = this.get('summaryLevel');
 
       const layers = [`census-${summaryLevel}-fill`];
-      const identifier = (summaryLevel === 'tracts') ? 'boroct2010' : 'bctcb2010';
 
       const [found] =
         event.target.queryRenderedFeatures(
@@ -44,7 +43,7 @@ export default Ember.Controller.extend({
         );
 
       if (found) {
-        selection.handleSelectedFeature([found], identifier);
+        selection.handleSelectedFeature([found]);
       }
     },
   },
