@@ -3,14 +3,14 @@
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text">Select by U.S. Census</li>
-        <li><a href="#">Tracts</a></li>
-        <li><a href="#">Blocks</a></li>
+        <li><a href="#" {{action (mut summaryLevel) 'tracts'}}>Tracts</a></li>
+        <li><a href="#" {{action (mut summaryLevel) 'blocks'}}>Blocks</a></li>
       </ul>
     </div>
   </div>
 
   <h1>{{selectionCount}}</h1>
-  {{selectionType}}
+  {{summaryLevel}}
 
   {{yield}}
 {{else}}
