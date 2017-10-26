@@ -16,7 +16,6 @@ export default Ember.Controller.extend({
   zoom: 12,
   center: [-73.916016, 40.697299],
   mode: 'direct-select',
-  summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
 
   selectedFillLayer,
   selectedLineLayer,
@@ -32,7 +31,7 @@ export default Ember.Controller.extend({
   actions: {
     handleClick(event) {
       const selection = this.get('selection');
-      const summaryLevel = this.get('summaryLevel');
+      const summaryLevel = selection.get('summaryLevel');
 
       const layers = [`census-${summaryLevel}-fill`];
 

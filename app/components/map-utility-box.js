@@ -10,13 +10,14 @@ export default Ember.Component.extend({
   classNames: ['map-utility-box'],
 
   selectionCount: alias('selection.selectedCount'),
-
-  summaryLevel: 'tracts',
   mode: 'direct-select',
 
   actions: {
     clearSelection() {
       this.get('selection').clearSelection();
+    },
+    handleSummaryLevelToggle(summaryLevel) {
+      this.get('selection').handleSummaryLevelToggle(summaryLevel);
     },
   },
 });
