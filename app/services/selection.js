@@ -27,7 +27,9 @@ export default Ember.Service.extend({
         });
       } else {
 
-        selected.features.filter(feature => feature.properties.boroct2010 !== properties.boroct2010)
+        selected.features.filter(
+          (feature) => feature.properties.boroct2010 !== properties.boroct2010,
+        );
 
       }
     });
