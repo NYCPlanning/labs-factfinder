@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object';
 
 const current = {
   type: 'FeatureCollection',
@@ -26,8 +25,7 @@ export default Ember.Service.extend({
           properties,
         });
       } else {
-
-        selected.features.filter(
+        selected.features = selected.features.filter(
           (feature) => feature.properties.boroct2010 !== properties.boroct2010,
         );
 
