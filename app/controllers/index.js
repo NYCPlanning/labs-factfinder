@@ -1,11 +1,10 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object';
+import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import layerGroups from '../layer-groups';
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 
 const selectedFillLayer = selectedFeatures.fill;
-const selectedLineLayer = selectedFeatures.line;
 
 const { service } = Ember.inject;
 
@@ -19,7 +18,6 @@ export default Ember.Controller.extend({
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
 
   selectedFillLayer,
-  selectedLineLayer,
 
   @computed('selection.current')
   selectedSource(current) {

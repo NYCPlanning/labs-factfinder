@@ -21,15 +21,16 @@
                     hash=true)
   as |map|}}
 
-  {{map-utility-box mode=mode summaryLevel=summaryLevel}}
-
   {{map.layer-group config=layerGroups.subway visible=true}}
+
+  {{map-utility-box mode=mode summaryLevel=summaryLevel}}
 
   {{map.layer-group config=layerGroups.censusBlocks visible=(eq summaryLevel 'blocks')}}
 
-  {{map.layer-group config=layerGroups.censusTracts visible=(eq summaryLevel 'tracts')}}
+  {{map.layer-group config=layerGroups.censusTracts visible=(or (eq summaryLevel 'tracts') (eq summaryLevel 'blocks'))}}
 
   {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+
 
   {{#if selection.current}}
     {{#map.source
