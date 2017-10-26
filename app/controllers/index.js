@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import computed from 'ember-decorators/object';
+import { computed } from 'ember-decorators/object';
 import layerGroups from '../layer-groups';
 import sources from '../sources';
 
@@ -15,16 +15,16 @@ export default Ember.Controller.extend({
   summaryLevel: 'tracts',
 
   @computed('selection.current')
-  selectedSource(selected) {
+  selectedSource(current) {
     return {
       type: 'geojson',
-      data: selected.get('geometry'),
+      data: current.get('geometry'),
     };
   },
 
   actions: {
     handleClick(event) {
-      console.log(event);
+      const selection = this.get('selection');
     },
   },
 });
