@@ -51,7 +51,6 @@ export default Ember.Controller.extend({
     },
 
     handleMousemove(e) {
-      console.log('mousemove')
       const mapMouseover = this.get('mapMouseover');
       mapMouseover.highlighter(e);
     },
