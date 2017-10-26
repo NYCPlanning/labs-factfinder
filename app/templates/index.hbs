@@ -1,29 +1,24 @@
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">SELECTION TOOLS: </li>
-      <li><a {{action (mut mode) 'map-polygon-utility'}} href="#">Polygon</a></li>
-      <li><a {{action (mut mode) 'map-point-radius-utility'}} href="#">Point / Radius</a></li>
-      <li><a {{action (mut mode) 'map-neighborhood-utility'}} href="#">Neighborhood</a></li>
-      <li><a {{action (mut mode) 'map-puma-utility'}} href="#">PUMA</a></li>
-      <li><a {{action (mut mode) 'map-borough-utility'}} href="#">Borough</a></li>
-      <li><a href="#">Advanced</a></li>
-    </ul>
-  </div>
+<ul class="menu menu--selector">
+  <li><a {{action (mut mode) 'map-census-block'}} href="#">Census Block</a></li>
+  <li><a {{action (mut mode) 'map-census-tract'}} href="#">Census Tract</a></li>
+  <li><a {{action (mut mode) 'map-neighborhood-utility'}} href="#">Neighborhood</a></li>
+  <li><a {{action (mut mode) 'map-puma-utility'}} href="#">PUMA</a></li>
+</ul>
+
+<div class="map-container">
+  {{#jane-maps
+    id='map'
+    sources=sources
+    initOptions=(hash style='mapbox://styles/mapbox/light-v9'
+                      zoom=zoom
+                      center=center
+                      hash=true)
+    as |map|}}
+
+    {{map.layer-group config=layerGroups.subway visible=true}}
+  {{/jane-maps}}
 </div>
 
-{{#jane-maps
-  id='map'
-  sources=sources
-  initOptions=(hash style='mapbox://styles/mapbox/light-v9'
-                    zoom=zoom
-                    center=center
-                    hash=true)
-  as |map|}}
-
-  {{map-utility-box mode=mode}}
-
-  {{map.layer-group config=layerGroups.subway visible=true}}
-{{/jane-maps}}
+{{map-utility-box mode=mode}}
 
 {{outlet}}
