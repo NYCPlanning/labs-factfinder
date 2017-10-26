@@ -5,6 +5,17 @@ export default {
   layers: [
     {
       layer: {
+        id: 'census-tracts-line-fill',
+        type: 'fill',
+        source: 'census-geoms',
+        'source-layer': 'census-geoms-tracts',
+        paint: {
+          'fill-opacity': 0.01,
+        },
+      },
+    },
+    {
+      layer: {
         id: 'census-tracts-line-glow',
         type: 'line',
         source: 'census-geoms',

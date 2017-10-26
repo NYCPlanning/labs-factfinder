@@ -5,6 +5,17 @@ export default {
   layers: [
     {
       layer: {
+        id: 'census-blocks-line-fill',
+        type: 'fill',
+        source: 'census-geoms',
+        'source-layer': 'census-geoms-blocks',
+        paint: {
+          'fill-opacity': 0.01,
+        },
+      },
+    },
+    {
+      layer: {
         id: 'census-blocks-line-glow',
         type: 'line',
         source: 'census-geoms',
