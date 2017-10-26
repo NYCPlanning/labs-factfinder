@@ -26,6 +26,8 @@
   {{map.layer-group config=layerGroups.subway visible=true}}
   {{map.layer-group config=layerGroups.censusBlocks visible=true}}
   {{map.layer-group config=layerGroups.censusTracts visible=true}}
+
+  {{map.on 'click' (action 'handleClick')}}
 {{/jane-maps}}
 
 {{outlet}}
