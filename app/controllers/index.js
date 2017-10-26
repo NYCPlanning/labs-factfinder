@@ -5,6 +5,8 @@ import sources from '../sources';
 
 const { service } = Ember.inject;
 
+const SUMMARY_LAYERS = ['census-blocks', 'census-tracts'];
+
 export default Ember.Controller.extend({
   selection: service(),
   layerGroups,
@@ -25,6 +27,16 @@ export default Ember.Controller.extend({
   actions: {
     handleClick(event) {
       const selection = this.get('selection');
+      const layers = SUMMARY_LAYERS;
+
+      const [ found ] = event.target.queryRenderedFeatures(
+        event.point,
+        { layers },
+      );
+
+      if (found) {
+        selection.addToSelect(found);
+      }
     },
   },
 });
