@@ -28,9 +28,9 @@ export default {
         source: 'admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
-        'line-color': '#444',
-        'line-opacity': 0.3,
-        'line-width': {
+          'line-color': '#444',
+          'line-opacity': 0.3,
+          'line-width': {
             stops: [
               [11, 1],
               [16, 3],
@@ -57,7 +57,7 @@ export default {
           'text-halo-blur': 2,
         },
         layout: {
-          'text-field': `{ntaname}`,
+          'text-field': '{ntaname}',
           'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
           'text-size': {
             stops: [
@@ -65,7 +65,7 @@ export default {
               [14, 16],
             ],
           },
-        }
+        },
       },
     },
   ],
