@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/NYCPlanning/labs-nyc-factfinder/tree/develop.svg?style=svg)](https://circleci.com/gh/NYCPlanning/labs-nyc-factfinder/tree/develop)
+
 # labs-nyc-factfinder
 
 This README outlines the details of collaborating on this Ember application.
