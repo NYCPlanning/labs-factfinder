@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { computed } from 'ember-decorators/object';
 
 const current = {
   type: 'FeatureCollection',
@@ -33,8 +34,13 @@ export default Ember.Service.extend({
     });
 
     this.set(
-      'current', 
+      'current',
       { type: 'FeatureCollection', features: selected.features },
     );
+  },
+
+  @computed('current')
+  selectedCount(current) {
+    return current.features.length
   },
 });
