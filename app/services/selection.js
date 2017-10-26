@@ -9,14 +9,14 @@ const current = {
 export default Ember.Service.extend({
   current,
 
-  handleSelectedFeature(features = []) {
+  handleSelectedFeature(features = [], identifier = 'boroct2010') {
     const selected = this.get('current');
 
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
 
       const inSelection = selected.features.find(
-        (feature) => feature.properties.boroct2010 === properties.boroct2010,
+        selectedFeature => selectedFeature.properties[identifier] === properties[identifier],
       );
 
       if (inSelection === undefined) {
@@ -27,9 +27,8 @@ export default Ember.Service.extend({
         });
       } else {
         selected.features = selected.features.filter(
-          (feature) => feature.properties.boroct2010 !== properties.boroct2010,
+          selectedFeature => selectedFeature.properties[identifier] !== properties[identifier],
         );
-
       }
     });
 
@@ -40,7 +39,7 @@ export default Ember.Service.extend({
   },
 
   @computed('current')
-  selectedCount(current) {
-    return current.features.length
+  selectedCount(currentSelected) {
+    return currentSelected.features.length;
   },
 });

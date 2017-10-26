@@ -9,8 +9,6 @@ const selectedLineLayer = selectedFeatures.line;
 
 const { service } = Ember.inject;
 
-const SUMMARY_LAYERS = ['census-tracts-fill', 'census-blocks-fill'];
-
 export default Ember.Controller.extend({
   selection: service(),
   layerGroups,
@@ -37,14 +35,16 @@ export default Ember.Controller.extend({
       const summaryLevel = this.get('summaryLevel');
 
       const layers = [`census-${summaryLevel}-fill`];
+      const identifier = (summaryLevel === 'tracts') ? 'boroct2010' : 'bctcb2010';
 
-      const [ found ] = event.target.queryRenderedFeatures(
-        event.point, 
-        { layers },
-      );
+      const [found] =
+        event.target.queryRenderedFeatures(
+          event.point,
+          { layers },
+        );
 
       if (found) {
-        selection.handleSelectedFeature([found]);
+        selection.handleSelectedFeature([found], identifier);
       }
     },
   },
