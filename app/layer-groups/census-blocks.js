@@ -5,7 +5,7 @@ export default {
   layers: [
     {
       layer: {
-        id: 'census-blocks-line-fill',
+        id: 'census-blocks-fill',
         type: 'fill',
         source: 'census-geoms',
         'source-layer': 'census-geoms-blocks',

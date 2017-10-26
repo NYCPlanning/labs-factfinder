@@ -5,7 +5,7 @@ export default {
   layers: [
     {
       layer: {
-        id: 'census-tracts-line-fill',
+        id: 'census-tracts-fill',
         type: 'fill',
         source: 'census-geoms',
         'source-layer': 'census-geoms-tracts',

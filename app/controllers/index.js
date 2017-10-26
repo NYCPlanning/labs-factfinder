@@ -2,10 +2,14 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 import layerGroups from '../layer-groups';
 import sources from '../sources';
+import selectedFeatures from '../layers/selected-features';
+
+const selectedFillLayer = selectedFeatures.fill;
+const selectedLineLayer = selectedFeatures.line;
 
 const { service } = Ember.inject;
 
-const SUMMARY_LAYERS = ['census-blocks', 'census-tracts'];
+const SUMMARY_LAYERS = ['census-tracts-fill', 'census-blocks-fill'];
 
 export default Ember.Controller.extend({
   selection: service(),
@@ -14,28 +18,33 @@ export default Ember.Controller.extend({
   zoom: 12,
   center: [-73.916016, 40.697299],
   mode: 'direct-select',
-  summaryLevel: 'tracts',
+  summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
+
+  selectedFillLayer,
+  selectedLineLayer,
 
   @computed('selection.current')
   selectedSource(current) {
     return {
       type: 'geojson',
-      data: current.get('geometry'),
+      data: current,
     };
   },
 
   actions: {
     handleClick(event) {
       const selection = this.get('selection');
-      const layers = SUMMARY_LAYERS;
+      const summaryLevel = this.get('summaryLevel');
+
+      const layers = [`census-${summaryLevel}-fill`];
 
       const [ found ] = event.target.queryRenderedFeatures(
-        event.point,
+        event.point, 
         { layers },
       );
 
       if (found) {
-        selection.addToSelect(found);
+        selection.handleSelectedFeature([found]);
       }
     },
   },
