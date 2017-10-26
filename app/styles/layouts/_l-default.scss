@@ -42,6 +42,10 @@ body {
   font-weight: $global-weight-bold;
   box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
 
+  li:not(:last-child) {
+    border-right: 1px solid rgba(0,0,0,0.1);
+  }
+
   @include breakpoint(large) {
     position: absolute;
     top: 20px;
