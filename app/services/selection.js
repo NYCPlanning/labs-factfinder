@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
-import { computed } from 'ember-decorators/object';
+import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
 const BLOCKS_SQL =
   `SELECT 
