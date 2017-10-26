@@ -14,24 +14,24 @@ export default {
         },
       },
     },
-    {
-      layer: {
-        id: 'census-blocks-line-glow',
-        type: 'line',
-        source: 'census-geoms',
-        'source-layer': 'census-geoms-blocks',
-        paint: {
-          'line-color': '#76CAF5',
-          'line-opacity': 0.2,
-          'line-width': {
-            stops: [
-              [11, 3],
-              [16, 6],
-            ],
-          },
-        },
-      },
-    },
+    // {
+    //   layer: {
+    //     id: 'census-blocks-line-glow',
+    //     type: 'line',
+    //     source: 'census-geoms',
+    //     'source-layer': 'census-geoms-blocks',
+    //     paint: {
+    //       'line-color': '#76CAF5',
+    //       'line-opacity': 0.2,
+    //       'line-width': {
+    //         stops: [
+    //           [11, 3],
+    //           [16, 6],
+    //         ],
+    //       },
+    //     },
+    //   },
+    // },
     {
       layer: {
         id: 'census-blocks-line',
@@ -39,12 +39,18 @@ export default {
         source: 'census-geoms',
         'source-layer': 'census-geoms-blocks',
         paint: {
-        'line-color': '#444',
-        'line-opacity': 0.3,
-        'line-width': {
+          'line-color': 'rgba(0, 0, 0, 1)',
+          'line-opacity': 0.3,
+          'line-width': {
             stops: [
-              [11, 1],
-              [16, 3],
+              [
+                11,
+                0.5,
+              ],
+              [
+                16,
+                1,
+              ],
             ],
           },
         },
@@ -60,23 +66,45 @@ export default {
         type: 'symbol',
         source: 'census-geoms',
         'source-layer': 'census-geoms-blocks',
-        minzoom: 11,
+        minzoom: 13,
+        layout: {
+          'text-field': '{cb2010}',
+          'text-font': [
+            'Open Sans Semibold',
+            'Arial Unicode MS Bold',
+          ],
+          'text-size': {
+            stops: [
+              [
+                13,
+                6,
+              ],
+              [
+                17,
+                16,
+              ],
+            ],
+          },
+
+        },
         paint: {
           'text-color': '#626262',
           'text-halo-color': '#FFFFFF',
           'text-halo-width': 2,
           'text-halo-blur': 2,
-        },
-        layout: {
-          'text-field': `{bctcb2010}`,
-          'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-          'text-size': {
+          'text-opacity': {
             stops: [
-              [11, 12],
-              [14, 16],
+              [
+                13,
+                0,
+              ],
+              [
+                14,
+                1,
+              ],
             ],
           },
-        }
+        },
       },
     },
   ],

@@ -4,11 +4,21 @@ export default {
   'source-layers': [
     {
       id: 'census-geoms-tracts',
-      sql: 'SELECT the_geom_webmercator, ct2010, boroct2010, boroct2010 AS geoid FROM nyc_census_tracts_2010',
+      sql: 'SELECT the_geom_webmercator, ct2010, ctlabel, boroct2010, boroct2010 AS geoid FROM nyc_census_tracts_2010',
     },
     {
       id: 'census-geoms-blocks',
-      sql: 'SELECT the_geom_webmercator, ct2010, bctcb2010, bctcb2010 AS geoid FROM nyc_census_blocks_2010',
+      sql: `
+        SELECT
+          the_geom_webmercator,
+          cb2010,
+          ct2010,
+          borocode,
+          borocode || ct2010 AS boroct2010,
+          bctcb2010 AS geoid,
+          (ct2010::float / 100)::text || ' - ' || cb2010 as cblabel
+        FROM nyc_census_blocks_2010
+      `,
     },
   ],
 };
