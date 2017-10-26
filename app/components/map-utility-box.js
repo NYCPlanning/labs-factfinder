@@ -13,4 +13,10 @@ export default Ember.Component.extend({
 
   summaryLevel: 'tracts',
   mode: 'direct-select',
+
+  actions: {
+    clearSelection() {
+      this.get('selection').clearSelection();
+    },
+  },
 });

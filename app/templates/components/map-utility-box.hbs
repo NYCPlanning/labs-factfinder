@@ -12,6 +12,8 @@
   <h1>{{selectionCount}}</h1>
   {{summaryLevel}}
 
+  <p {{action "clearSelection"}}>Clear Selection</p>
+
   {{yield}}
 {{else}}
   {{component mode}}

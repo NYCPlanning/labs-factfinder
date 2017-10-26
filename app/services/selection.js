@@ -42,4 +42,11 @@ export default Ember.Service.extend({
   selectedCount(currentSelected) {
     return currentSelected.features.length;
   },
+
+  clearSelection() {
+    this.set('current', {
+      type: 'FeatureCollection',
+      features: [],
+    });
+  },
 });
