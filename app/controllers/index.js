@@ -4,12 +4,16 @@ import layerGroups from '../layer-groups';
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 
+import highlightedFeature from '../layers/highlighted-feature';
+
 const selectedFillLayer = selectedFeatures.fill;
 
 const { service } = Ember.inject;
 
 export default Ember.Controller.extend({
   selection: service(),
+  mapMouseover: service(),
+
   layerGroups,
   sources,
   zoom: 12,
@@ -17,6 +21,7 @@ export default Ember.Controller.extend({
   mode: 'direct-select',
 
   selectedFillLayer,
+  highlightedFeature,
 
   @computed('selection.current')
   selectedSource(current) {
@@ -42,6 +47,11 @@ export default Ember.Controller.extend({
       if (found) {
         selection.handleSelectedFeature([found]);
       }
+    },
+
+    handleMousemove(e) {
+      const mapMouseover = this.get('mapMouseover');
+      mapMouseover.highlighter(e);
     },
   },
 });
