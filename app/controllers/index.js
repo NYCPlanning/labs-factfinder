@@ -54,12 +54,9 @@ export default Ember.Controller.extend({
       mapMouseover.highlighter(e);
     },
 
-    clearSelection() {
-      this.get('selection').clearSelection();
-    },
-
     handleSummaryLevelToggle(summaryLevel) {
       this.get('selection').handleSummaryLevelToggle(summaryLevel);
     },
+
   },
 });
