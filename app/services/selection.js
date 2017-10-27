@@ -29,7 +29,6 @@ const NTSA_SQL =
     ntacode AS geoid 
   FROM support_admin_ntaboundaries`;
 
-
 const EMPTY_GEOJSON = {
   type: 'FeatureCollection',
   features: [],
@@ -51,25 +50,11 @@ const findUniqueBy = function(collection, id) {
     .mapBy(`properties.${id}`);
 };
 
-export { SUMMARY_LEVELS };
+export { SUMMARY_LEVELS, BLOCKS_SQL, TRACTS_SQL, NTSA_SQL };
 
 export default Ember.Service.extend({
   current: EMPTY_GEOJSON,
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
-
-  @computed('current')
-  blockIds(currentSelected) {
-    return currentSelected.features
-      .uniqBy('properties.boroct2010')
-      .mapBy('properties.boroct2010');
-  },
-
-  @computed('current')
-  tractIdsFromBlocks(currentSelected) {
-    return currentSelected.features
-      .uniqBy('properties.boroct2010')
-      .mapBy('properties.boroct2010');
-  },
 
   @computed('current')
   selectedCount(currentSelected) {
