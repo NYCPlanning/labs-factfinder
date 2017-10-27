@@ -13,6 +13,7 @@
                       zoom=zoom
                       center=center
                       hash=true)
+    mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
     {{map.layer-group config=layerGroups.subway visible=true}}
@@ -49,7 +50,6 @@
 
     {{map.on 'click' (action 'handleClick')}}
     {{map.on 'mousemove' (action 'handleMousemove')}}
-
 
   {{/jane-maps}}
 </div>
