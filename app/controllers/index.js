@@ -43,7 +43,7 @@ export default Ember.Controller.extend({
 
       let layers = [];
 
-      switch (summaryLevel) {
+      switch (summaryLevel) { // eslint-disable-line
         case 'tracts':
           layers = ['census-tracts-fill'];
           break;
