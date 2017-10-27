@@ -16,8 +16,5 @@ export default Ember.Component.extend({
     clearSelection() {
       this.get('selection').clearSelection();
     },
-    handleSummaryLevelToggle(summaryLevel) {
-      this.get('selection').handleSummaryLevelToggle(summaryLevel);
-    },
   },
 });

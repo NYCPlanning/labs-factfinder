@@ -3,16 +3,16 @@ import carto from 'ember-jane-maps/utils/carto';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
 const BLOCKS_SQL =
-  `SELECT 
-      the_geom, 
-      ct2010, 
-      borocode || ct2010 AS boroct2010, 
-      bctcb2010, 
-      bctcb2010 AS geoid 
+  `SELECT
+      the_geom,
+      ct2010,
+      borocode || ct2010 AS boroct2010,
+      bctcb2010,
+      bctcb2010 AS geoid
     FROM nyc_census_blocks_2010`;
 
 const TRACTS_SQL =
-  `SELECT 
+  `SELECT
     the_geom,
     ct2010,
     boroct2010,
@@ -68,7 +68,6 @@ export default Ember.Service.extend({
   implode() {
     const tractIds = this.get('tractIdsFromBlocks').join("','");
     const sqlQuery = `SELECT * FROM (${TRACTS_SQL}) a WHERE boroct2010 IN ('${tractIds}')`;
-    console.log(sqlQuery);
     carto.SQL(sqlQuery, 'geojson')
       .then((json) => {
         this.clearSelection();

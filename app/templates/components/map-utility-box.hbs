@@ -1,14 +1,4 @@
 {{#if (eq mode 'direct-select')}}
-  <div class="top-bar">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text">Select by U.S. Census</li>
-        <li><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}>Tracts</a></li>
-        <li><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}>Blocks</a></li>
-      </ul>
-    </div>
-  </div>
-
   <h1>{{selectionCount}}</h1>
 
   <p {{action "clearSelection"}}>Clear Selection</p>

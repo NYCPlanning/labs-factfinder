@@ -1,64 +1,59 @@
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">SELECTION TOOLS: </li>
-      <li><a {{action (mut mode) 'map-polygon-utility'}} href="#">Polygon</a></li>
-      <li><a {{action (mut mode) 'map-point-radius-utility'}} href="#">Point / Radius</a></li>
-      <li><a {{action (mut mode) 'map-neighborhood-utility'}} href="#">Neighborhood</a></li>
-      <li><a {{action (mut mode) 'map-puma-utility'}} href="#">PUMA</a></li>
-      <li><a {{action (mut mode) 'map-borough-utility'}} href="#">Borough</a></li>
-      <li><a href="#">Advanced</a></li>
-    </ul>
-  </div>
+<ul class="menu menu--selector">
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}>Census Tracts</a></li>
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}>Census Blocks</a></li>
+  <li><a href="#">Neighborhood</a></li>
+  <li><a href="#">PUMA</a></li>
+</ul>
+
+<div class="map-container">
+  {{#jane-maps
+    id='map'
+    sources=sources
+    initOptions=(hash style='mapbox://styles/mapbox/light-v9'
+                      zoom=zoom
+                      center=center
+                      hash=true)
+    as |map|}}
+
+    {{map.layer-group config=layerGroups.subway visible=true}}
+
+    {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
+
+    {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
+
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+
+
+    {{#if selection.current}}
+      {{#map.source
+        sourceId='selected-features'
+        options=selectedSource as |source|}}
+        {{source.layer
+          layer=selectedFillLayer
+          before='waterway-label'}}
+        {{source.layer
+          layer=selectedLineLayer
+          before='waterway-label'}}
+      {{/map.source}}
+    {{/if}}
+
+    {{#if mapMouseover.highlightedFeature}}
+      {{#map.source
+        sourceId='highlighted-feature'
+        options=mapMouseover.highlightedFeatureSource as |source|}}
+        {{source.layer
+          layer=highlightedFeature
+          before='waterway-label'}}
+      {{/map.source}}
+    {{/if}}
+
+    {{map.on 'click' (action 'handleClick')}}
+    {{map.on 'mousemove' (action 'handleMousemove')}}
+
+
+  {{/jane-maps}}
 </div>
 
-{{#jane-maps
-  id='map'
-  sources=sources
-  initOptions=(hash style='mapbox://styles/mapbox/light-v9'
-                    zoom=zoom
-                    center=center
-                    hash=true)
-  as |map|}}
-
-  {{map.layer-group config=layerGroups.subway visible=true}}
-
-  {{map-utility-box mode=mode}}
-
-  {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
-
-  {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
-
-  {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
-
-
-  {{#if selection.current}}
-    {{#map.source
-      sourceId='selected-features'
-      options=selectedSource as |source|}}
-      {{source.layer
-        layer=selectedFillLayer
-        before='waterway-label'}}
-      {{source.layer
-        layer=selectedLineLayer
-        before='waterway-label'}}
-    {{/map.source}}
-  {{/if}}
-
-  {{#if mapMouseover.highlightedFeature}}
-    {{#map.source
-      sourceId='highlighted-feature'
-      options=mapMouseover.highlightedFeatureSource as |source|}}
-      {{source.layer
-        layer=highlightedFeature
-        before='waterway-label'}}
-    {{/map.source}}
-  {{/if}}
-
-  {{map.on 'click' (action 'handleClick')}}
-  {{map.on 'mousemove' (action 'handleMousemove')}}
-
-
-{{/jane-maps}}
+{{map-utility-box mode=mode}}
 
 {{outlet}}

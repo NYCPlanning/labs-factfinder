@@ -53,5 +53,10 @@ export default Ember.Controller.extend({
       const mapMouseover = this.get('mapMouseover');
       mapMouseover.highlighter(e);
     },
+
+    handleSummaryLevelToggle(summaryLevel) {
+      this.get('selection').handleSummaryLevelToggle(summaryLevel);
+    },
+
   },
 });
