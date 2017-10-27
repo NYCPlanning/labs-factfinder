@@ -22,10 +22,22 @@ body {
 
 .site-main {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: calc(100vh - 6rem);
 
+  a {
+    @include breakpoint(small only) {
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+    }
+  }
+
+  li:hover {
+    background-color: rgba(0,0,0,0.03);
+  }
+
   @include breakpoint(large) {
+    z-index: 1;
     overflow: hidden;
 
     .cell {
@@ -40,11 +52,7 @@ body {
   background-color: $white;
   font-size: rem-calc(12);
   font-weight: $global-weight-bold;
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-
-  li:not(:last-child) {
-    border-right: 1px solid rgba(0,0,0,0.1);
-  }
+  box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
 
   @include breakpoint(large) {
     position: absolute;
@@ -52,6 +60,11 @@ body {
     left: 60px;
     background-color: $light-gray;
     border-radius: 4px;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+
+    li:not(:last-child) {
+      border-right: 1px solid rgba(0,0,0,0.1);
+    }
   }
 }
 
