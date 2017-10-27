@@ -16,5 +16,11 @@ export default {
       id: 'boroughs',
       sql: 'SELECT the_geom_webmercator, boroname FROM support_admin_boroboundaries',
     },
+
+    {
+      id: 'nyc-puma',
+      sql: 'SELECT the_geom_webmercator, puma FROM nyc_puma',
+    },
+
   ],
 };
