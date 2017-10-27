@@ -42,4 +42,7 @@ jobs:
           command: ssh-keyscan 192.241.253.217 >> ~/.ssh/known_hosts
       - deploy:
           name: Deployment
-          command: git remote add dokku dokku@192.241.253.217:nyc-factfinder && git push dokku develop:master
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              git remote add dokku dokku@192.241.253.217:nyc-factfinder && git push dokku develop:master
+            fi

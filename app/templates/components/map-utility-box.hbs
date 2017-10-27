@@ -1,6 +1,7 @@
 {{#if (eq mode 'direct-select')}}
   <h1>{{selectionCount}}</h1>
-  {{selectionType}}
+
+  <p {{action "clearSelection"}}>Clear Selection</p>
 
   {{yield}}
 {{else}}

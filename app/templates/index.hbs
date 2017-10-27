@@ -1,8 +1,8 @@
 <ul class="menu menu--selector">
-  <li><a {{action (mut mode) 'map-census-block'}} href="#">Census Block</a></li>
-  <li><a {{action (mut mode) 'map-census-tract'}} href="#">Census Tract</a></li>
-  <li><a {{action (mut mode) 'map-neighborhood-utility'}} href="#">Neighborhood</a></li>
-  <li><a {{action (mut mode) 'map-puma-utility'}} href="#">PUMA</a></li>
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}>Census Tracts</a></li>
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}>Census Blocks</a></li>
+  <li><a href="#">Neighborhood</a></li>
+  <li><a href="#">PUMA</a></li>
 </ul>
 
 <div class="map-container">
@@ -16,6 +16,41 @@
     as |map|}}
 
     {{map.layer-group config=layerGroups.subway visible=true}}
+
+    {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
+
+    {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
+
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+
+
+    {{#if selection.current}}
+      {{#map.source
+        sourceId='selected-features'
+        options=selectedSource as |source|}}
+        {{source.layer
+          layer=selectedFillLayer
+          before='waterway-label'}}
+        {{source.layer
+          layer=selectedLineLayer
+          before='waterway-label'}}
+      {{/map.source}}
+    {{/if}}
+
+    {{#if mapMouseover.highlightedFeature}}
+      {{#map.source
+        sourceId='highlighted-feature'
+        options=mapMouseover.highlightedFeatureSource as |source|}}
+        {{source.layer
+          layer=highlightedFeature
+          before='waterway-label'}}
+      {{/map.source}}
+    {{/if}}
+
+    {{map.on 'click' (action 'handleClick')}}
+    {{map.on 'mousemove' (action 'handleMousemove')}}
+
+
   {{/jane-maps}}
 </div>
 
