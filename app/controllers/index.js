@@ -68,7 +68,6 @@ export default Ember.Controller.extend({
       if (found) {
         selection.handleSelectedFeature([found]);
       }
-
     },
 
     handleMousemove(e) {
