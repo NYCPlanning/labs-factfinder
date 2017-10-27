@@ -87,6 +87,7 @@ body {
 .map-utility-box {
   background-color: $white;
   padding: $global-margin;
+  position: relative;
 
   @include breakpoint(large) {
     position: absolute;
@@ -94,8 +95,28 @@ body {
     left: 60px;
     z-index: 2;
     margin-top: rem-calc(24);
-    min-width: rem-calc(300);
+    width: rem-calc(350);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  .button--clear-selection {
+    padding: 0.375rem;
+
+    @include breakpoint(large) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: $white;
+      margin-top: rem-calc(10);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+      font-size: rem-calc(12);
+      padding: 0.75em 0.875em;
+      border-radius: 4px;
+    }
   }
 }
 

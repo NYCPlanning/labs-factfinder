@@ -96,6 +96,10 @@ button {
   }
 }
 
+.button.text-orange {
+  color: $primary-color;
+}
+
 
 //
 // Badges
@@ -127,7 +131,6 @@ button {
 
 .text-small {
   font-size: rem-calc(13);
-  line-height: 1.7;
 }
 
 .text-tiny {
