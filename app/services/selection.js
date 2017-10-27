@@ -106,5 +106,6 @@ export default Ember.Service.extend({
 
   clearSelection() {
     this.set('current', EMPTY_GEOJSON);
+    this.set('current.features', []);
   },
 });

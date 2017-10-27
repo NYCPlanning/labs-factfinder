@@ -1,2 +1,29 @@
-Reports!
-{{outlet}}
+<div class="report-map-container">
+  {{#jane-maps
+    id='map'
+    sources=sources
+    initOptions=(hash style='mapbox://styles/mapbox/light-v9'
+                      zoom=zoom
+                      center=center
+                      hash=true)
+    mapLoaded=(action 'handleMapLoad')
+
+    as |map|}}
+
+    {{#if selection.current}}
+      {{#map.source
+        sourceId='selected-features'
+        options=selectedSource as |source|}}
+        {{source.layer
+          layer=selectedFillLayer
+          before='waterway-label'}}
+        {{source.layer
+          layer=selectedLineLayer
+          before='waterway-label'}}
+      {{/map.source}}
+    {{/if}}
+
+  {{/jane-maps}}
+
+  <h1>Your Census Report</h1>
+</div>
