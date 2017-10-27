@@ -24,6 +24,22 @@ const EMPTY_GEOJSON = {
   features: [],
 };
 
+// order sensitive
+const SUMMARY_LEVELS = ['blocks', 'tracts', 'ntas', 'pumas'];
+
+const SUM_LEVEL_DICT = {
+  blocks: 'boroct2010',
+  tracts: 'boroct2010',
+  ntas: 'something',
+  pumas: 'something_else',
+};
+
+const findPosition = function(sumLevel) {
+  return SUMMARY_LEVELS.findIndex(el => el === sumLevel);
+};
+
+export { SUMMARY_LEVELS };
+
 export default Ember.Service.extend({
   current: EMPTY_GEOJSON,
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
@@ -48,10 +64,18 @@ export default Ember.Service.extend({
   },
 
   // methods
-  handleSummaryLevelToggle(level) {
-    this.set('summaryLevel', level);
-    if (level === 'blocks') this.explode();
-    if (level === 'tracts') this.implode();
+  handleSummaryLevelToggle(toLevel) {
+    const fromLevel = this.get('summaryLevel');
+    const fromPosition = findPosition(fromLevel);
+    const toPosition = findPosition(toLevel);
+
+    this.set('summaryLevel', toLevel);
+
+    if (fromPosition > toPosition) {
+      this.explode(fromLevel, toLevel);
+    } else {
+      this.implode(fromLevel, toLevel);
+    }
   },
 
   explode() {
@@ -68,6 +92,7 @@ export default Ember.Service.extend({
   implode() {
     const tractIds = this.get('tractIdsFromBlocks').join("','");
     const sqlQuery = `SELECT * FROM (${TRACTS_SQL}) a WHERE boroct2010 IN ('${tractIds}')`;
+
     carto.SQL(sqlQuery, 'geojson')
       .then((json) => {
         this.clearSelection();
