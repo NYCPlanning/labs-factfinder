@@ -1,7 +1,7 @@
 <ul class="menu menu--selector">
   <li><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}>Census Tracts</a></li>
   <li><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}>Census Blocks</a></li>
-  <li><a href="#">Neighborhood</a></li>
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood</a></li>
   <li><a href="#">PUMA</a></li>
 </ul>
 
@@ -21,7 +21,7 @@
 
     {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
 
-    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=(eq selection.summaryLevel 'ntas')}}
 
 
     {{#if selection.current}}
