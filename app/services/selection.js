@@ -15,9 +15,20 @@ const TRACTS_SQL =
   `SELECT
     the_geom,
     ct2010,
+    ntacode,
     boroct2010,
     boroct2010 AS geoid
-    FROM nyc_census_tracts_2010`;
+  FROM nyc_census_tracts_2010`;
+
+const NTSA_SQL =
+  `SELECT 
+    the_geom, 
+    the_geom_webmercator, 
+    ntaname, 
+    ntacode, 
+    ntacode AS geoid 
+  FROM support_admin_ntaboundaries`;
+
 
 const EMPTY_GEOJSON = {
   type: 'FeatureCollection',
@@ -28,14 +39,16 @@ const EMPTY_GEOJSON = {
 const SUMMARY_LEVELS = ['blocks', 'tracts', 'ntas', 'pumas'];
 
 const SUM_LEVEL_DICT = {
-  blocks: 'boroct2010',
-  tracts: 'boroct2010',
-  ntas: 'something',
+  blocks: { sql: BLOCKS_SQL, tracts: 'boroct2010' },
+  tracts: { sql: TRACTS_SQL, ntas: 'ntacode', blocks: 'boroct2010' },
+  ntas: { sql: NTSA_SQL, tracts: 'ntacode' },
   pumas: 'something_else',
 };
 
-const findPosition = function(sumLevel) {
-  return SUMMARY_LEVELS.findIndex(el => el === sumLevel);
+const findUniqueBy = function(collection, id) {
+  return collection
+    .uniqBy(`properties.${id}`)
+    .mapBy(`properties.${id}`);
 };
 
 export { SUMMARY_LEVELS };
@@ -66,32 +79,21 @@ export default Ember.Service.extend({
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
-    const fromPosition = findPosition(fromLevel);
-    const toPosition = findPosition(toLevel);
 
     this.set('summaryLevel', toLevel);
 
-    if (fromPosition > toPosition) {
+    if (this.get('selectedCount')) {
       this.explode(fromLevel, toLevel);
-    } else {
-      this.implode(fromLevel, toLevel);
     }
   },
 
-  explode() {
-    const blockIds = this.get('blockIds').join("','");
-    const sqlQuery = `SELECT * FROM (${BLOCKS_SQL}) a WHERE boroct2010 IN ('${blockIds}')`;
+  // target table is the TO and filter ID is the FROM;
+  explode(fromLevel, to) {
+    const crossWalkFromColumn = SUM_LEVEL_DICT[to][fromLevel];
+    const crossWalkToTable = SUM_LEVEL_DICT[to].sql;
 
-    carto.SQL(sqlQuery, 'geojson')
-      .then((json) => {
-        this.clearSelection();
-        this.set('current', json);
-      });
-  },
-
-  implode() {
-    const tractIds = this.get('tractIdsFromBlocks').join("','");
-    const sqlQuery = `SELECT * FROM (${TRACTS_SQL}) a WHERE boroct2010 IN ('${tractIds}')`;
+    const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
+    const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
 
     carto.SQL(sqlQuery, 'geojson')
       .then((json) => {
