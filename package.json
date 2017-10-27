@@ -55,6 +55,7 @@
   },
   "private": true,
   "dependencies": {
-    "babel-eslint": "^8.0.1"
+    "babel-eslint": "^8.0.1",
+    "ember-jane-maps": "0.0.3"
   }
 }
