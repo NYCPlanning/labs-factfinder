@@ -48,6 +48,9 @@ export default Ember.Controller.extend({
         case 'ntas':
           layers = ['neighborhood-tabulation-areas-fill'];
           break;
+        case 'pumas':
+          layers = ['nyc-pumas-fill'];
+          break;
       }
 
       const [found] =

@@ -1,14 +1,14 @@
 export default {
-  id: 'nyc-puma',
+  id: 'nyc-pumas',
   title: 'NYC PUMA',
   visible: true,
   layers: [
     {
       layer: {
-        id: 'nyc-puma-fill',
+        id: 'nyc-pumas-fill',
         type: 'fill',
         source: 'admin-boundaries',
-        'source-layer': 'nyc-puma',
+        'source-layer': 'nyc-pumas',
         paint: {
           'fill-opacity': 0.01,
         },
@@ -17,10 +17,10 @@ export default {
     },
     {
       layer: {
-        id: 'nyc-puma-line-glow',
+        id: 'nyc-pumas-line-glow',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'nyc-puma',
+        'source-layer': 'nyc-pumas',
         paint: {
           'line-color': '#000000',
           'line-opacity': 0.2,
@@ -35,10 +35,10 @@ export default {
     },
     {
       layer: {
-        id: 'nyc-puma-line',
+        id: 'nyc-pumas-line',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'nyc-puma',
+        'source-layer': 'nyc-pumas',
         paint: {
           'line-color': '#444',
           'line-opacity': 0.3,
@@ -57,11 +57,11 @@ export default {
     },
     {
       layer: {
-        id: 'nyc-puma-label',
+        id: 'nyc-pumas-label',
         type: 'symbol',
         source: 'admin-boundaries',
-        'source-layer': 'nyc-puma',
-        minzoom: 11,
+        'source-layer': 'nyc-pumas-centroids',
+        minzoom: 9,
         paint: {
           'text-color': '#626262',
           'text-halo-color': '#FFFFFF',
@@ -70,11 +70,11 @@ export default {
           'text-opacity': {
             stops: [
               [
-                12,
+                9,
                 0,
               ],
               [
-                13,
+                10,
                 1,
               ],
             ],
@@ -86,8 +86,8 @@ export default {
           'text-size': {
             stops: [
               [
+                9,
                 11,
-                8,
               ],
               [
                 14,

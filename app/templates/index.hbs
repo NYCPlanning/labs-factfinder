@@ -1,8 +1,9 @@
 <ul class="menu menu--selector">
-  <li><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}>Census Tracts</a></li>
-  <li><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}>Census Blocks</a></li>
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}>Census Tract</a></li>
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}>Census Block</a></li>
   <li><a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood</a></li>
-  <li><a href="#">PUMA</a></li>
+  <li><a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a></li>
+
 </ul>
 
 <div class="map-container">
@@ -23,7 +24,7 @@
 
     {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=(eq selection.summaryLevel 'ntas')}}
 
-    {{map.layer-group config=layerGroups.nycPuma visible=true}}
+    {{map.layer-group config=layerGroups.nycPumas visible=(eq selection.summaryLevel 'pumas')}}
 
 
     {{#if selection.current}}

@@ -18,8 +18,13 @@ export default {
     },
 
     {
-      id: 'nyc-puma',
+      id: 'nyc-pumas',
       sql: 'SELECT the_geom_webmercator, puma, puma AS geoid FROM nyc_puma',
+    },
+
+    {
+      id: 'nyc-pumas-centroids',
+      sql: 'SELECT ST_Centroid(the_geom_webmercator) as the_geom_webmercator, puma FROM nyc_puma',
     },
 
   ],
