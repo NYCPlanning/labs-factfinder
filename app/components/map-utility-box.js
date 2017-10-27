@@ -12,6 +12,8 @@ export default Ember.Component.extend({
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
 
+  summaryLevel: alias('selection.summaryLevel'),
+
   actions: {
     clearSelection() {
       this.get('selection').clearSelection();
