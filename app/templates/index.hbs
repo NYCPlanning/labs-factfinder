@@ -22,7 +22,9 @@
 
     {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
 
-    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=(eq selection.summaryLevel 'ntas')}}
+
+    {{map.layer-group config=layerGroups.nycPumas visible=(eq selection.summaryLevel 'pumas')}}
 
 
     {{#if selection.current}}

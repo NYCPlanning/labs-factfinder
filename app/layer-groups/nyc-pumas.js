@@ -1,14 +1,14 @@
 export default {
-  id: 'neighborhood-tabulation-areas',
-  title: 'Neighborhood Tabulation Areas',
+  id: 'nyc-pumas',
+  title: 'NYC PUMA',
   visible: true,
   layers: [
     {
       layer: {
-        id: 'neighborhood-tabulation-areas-fill',
+        id: 'nyc-pumas-fill',
         type: 'fill',
         source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas',
+        'source-layer': 'nyc-pumas',
         paint: {
           'fill-opacity': 0.01,
         },
@@ -17,12 +17,12 @@ export default {
     },
     {
       layer: {
-        id: 'neighborhood-tabulation-areas-line-glow',
+        id: 'nyc-pumas-line-glow',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas',
+        'source-layer': 'nyc-pumas',
         paint: {
-          'line-color': 'red',
+          'line-color': '#000000',
           'line-opacity': 0.2,
           'line-width': {
             stops: [
@@ -35,10 +35,10 @@ export default {
     },
     {
       layer: {
-        id: 'neighborhood-tabulation-areas-line',
+        id: 'nyc-pumas-line',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas',
+        'source-layer': 'nyc-pumas',
         paint: {
           'line-color': '#444',
           'line-opacity': 0.3,
@@ -57,24 +57,42 @@ export default {
     },
     {
       layer: {
-        id: 'neighborhood-tabulation-areas-label',
+        id: 'nyc-pumas-label',
         type: 'symbol',
         source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas-centroids',
-        minzoom: 11,
+        'source-layer': 'nyc-pumas-centroids',
+        minzoom: 9,
         paint: {
           'text-color': '#626262',
           'text-halo-color': '#FFFFFF',
           'text-halo-width': 2,
           'text-halo-blur': 2,
+          'text-opacity': {
+            stops: [
+              [
+                9,
+                0,
+              ],
+              [
+                10,
+                1,
+              ],
+            ],
+          },
         },
         layout: {
-          'text-field': '{ntaname}',
+          'text-field': '{puma}',
           'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
           'text-size': {
             stops: [
-              [11, 12],
-              [14, 16],
+              [
+                9,
+                11,
+              ],
+              [
+                14,
+                16,
+              ],
             ],
           },
         },
