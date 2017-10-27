@@ -1,9 +1,37 @@
 {{#if (eq mode 'direct-select')}}
-  <h1>{{selectionCount}}</h1>
 
-  <p {{action "clearSelection"}}>Clear Selection</p>
+  <div class="search hide-for-print ember-view">
+    <input type="text" placeholder="Search..." id="ember438" class="map-search-input ember-text-field ember-view">
+    <span class="search-icon">{{fa-icon 'search'}}</span>
+  </div>
+
+  <div class="grid-x grid-margin-x align-middle">
+    <div class="cell medium-6 text-center">
+      <strong class="stat">
+        {{selectionCount}}
+      </strong>
+      <p class="dark-gray">
+        <strong>
+          {{if (eq summaryLevel 'tracts') 'Tracts'}}
+          {{if (eq summaryLevel 'blocks') 'Blocks'}}
+          {{if (eq summaryLevel 'ntas') 'Neighborhoods'}}
+          {{if (eq summaryLevel 'pumas') 'PUMAs'}}
+        </strong>
+      </p>
+      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray"><span class="lu-red">{{fa-icon 'times'}}</span>&nbsp;Clear Selection</button>
+    </div>
+    <div class="cell medium-6">
+      <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual census tracts to add them to the report.</p>
+    </div>
+  </div>
+
+  {{#link-to 'report' class=reportButtonClasses}}{{fa-icon 'file-text'}}&nbsp;View Report{{/link-to}}
+
+  <a href="#" class="button small expanded gray text-orange">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
+
 
   {{yield}}
+
 {{else}}
   {{component mode}}
 {{/if}}

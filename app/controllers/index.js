@@ -1,14 +1,17 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import mapboxgl from 'mapbox-gl';
+
 import layerGroups from '../layer-groups';
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
-
 import highlightedFeature from '../layers/highlighted-feature';
 
 const selectedFillLayer = selectedFeatures.fill;
 
 const { service } = Ember.inject;
+
+const { alias } = Ember.computed;
 
 export default Ember.Controller.extend({
   selection: service(),
@@ -22,6 +25,8 @@ export default Ember.Controller.extend({
 
   selectedFillLayer,
   highlightedFeature,
+
+  summaryLevel: alias('selection.summaryLevel'),
 
   @computed('selection.current')
   selectedSource(current) {
@@ -75,5 +80,19 @@ export default Ember.Controller.extend({
       this.get('selection').handleSummaryLevelToggle(summaryLevel);
     },
 
+    handleMapLoad(map) {
+      // setup controls
+      const navigationControl = new mapboxgl.NavigationControl();
+      const geoLocateControl = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      });
+
+      map.addControl(navigationControl, 'top-left');
+      map.addControl(new mapboxgl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
+      map.addControl(geoLocateControl, 'top-left');
+    },
   },
 });

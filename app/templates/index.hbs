@@ -1,9 +1,8 @@
-<ul class="menu menu--selector">
-  <li><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}>Census Tract</a></li>
-  <li><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}>Census Block</a></li>
-  <li><a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood</a></li>
-  <li><a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a></li>
-
+<ul class="menu align-center menu--selector">
+  <li class="{{if (eq summaryLevel 'tracts') 'active'}}"><a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tracts</a></li>
+  <li class="{{if (eq summaryLevel 'blocks') 'active'}}"><a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Blocks</a></li>
+  <li class="{{if (eq summaryLevel 'ntas') 'active'}}"><a href="#">Neighborhood</a></li>
+  <li class="{{if (eq summaryLevel 'pumas') 'active'}}"><a href="#">PUMA</a></li>
 </ul>
 
 <div class="map-container">
@@ -14,6 +13,7 @@
                       zoom=zoom
                       center=center
                       hash=true)
+    mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
     {{map.layer-group config=layerGroups.subway visible=true}}
@@ -52,7 +52,6 @@
 
     {{map.on 'click' (action 'handleClick')}}
     {{map.on 'mousemove' (action 'handleMousemove')}}
-
 
   {{/jane-maps}}
 </div>

@@ -12,6 +12,13 @@ export default Ember.Component.extend({
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
 
+  summaryLevel: alias('selection.summaryLevel'),
+
+  @computed('selection.selectedCount')
+  reportButtonClasses(count) {
+    return count > 0 ? 'button large expanded' : 'button large expanded disabled';
+  },
+
   actions: {
     clearSelection() {
       this.get('selection').clearSelection();
