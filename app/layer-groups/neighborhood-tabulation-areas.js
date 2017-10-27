@@ -5,6 +5,18 @@ export default {
   layers: [
     {
       layer: {
+        id: 'neighborhood-tabulation-areas-fill',
+        type: 'fill',
+        source: 'admin-boundaries',
+        'source-layer': 'neighborhood-tabulation-areas',
+        paint: {
+          'fill-opacity': 0.01,
+        },
+      },
+      highlightable: true,
+    },
+    {
+      layer: {
         id: 'neighborhood-tabulation-areas-line-glow',
         type: 'line',
         source: 'admin-boundaries',

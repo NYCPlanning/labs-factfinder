@@ -4,7 +4,7 @@ export default {
   'source-layers': [
     {
       id: 'neighborhood-tabulation-areas',
-      sql: 'SELECT the_geom_webmercator, ntaname FROM support_admin_ntaboundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
+      sql: 'SELECT the_geom_webmercator, ntaname, ntacode AS geoid FROM support_admin_ntaboundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
     },
 
     {
