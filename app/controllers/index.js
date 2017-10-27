@@ -10,6 +10,8 @@ const selectedFillLayer = selectedFeatures.fill;
 
 const { service } = Ember.inject;
 
+const { alias } = Ember.computed;
+
 export default Ember.Controller.extend({
   selection: service(),
   mapMouseover: service(),
@@ -22,6 +24,8 @@ export default Ember.Controller.extend({
 
   selectedFillLayer,
   highlightedFeature,
+
+  summaryLevel: alias('selection.summaryLevel'),
 
   @computed('selection.current')
   selectedSource(current) {
