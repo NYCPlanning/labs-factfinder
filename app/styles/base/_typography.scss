@@ -279,24 +279,22 @@ button {
 .menu.tabs {
   @include breakpoint(medium) {
     font-size: rem-calc(12);
+    margin-bottom: $global-margin;
 
     li {
-
-      &:not(.is-active) {
-        border-bottom: 1px solid $medium-gray;
+      &:hover {
+        background-color: transparent;
       }
-      &.is-active {
-        border: 1px solid $medium-gray;
-        border-bottom: 0;
 
-        a {
-          background-color: transparent;
-          color: $dark-gray;
+      a {
+        border: 1px solid transparent;
+        border-bottom: 1px solid $medium-gray;
+        background-color: transparent;
 
-        }
-
-        &:hover {
-          background-color: transparent;
+        &.active {
+          border: 1px solid $medium-gray;
+          border-bottom-color: transparent;
+          color: $body-font-color;
         }
       }
     }
