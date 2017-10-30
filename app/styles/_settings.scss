@@ -795,13 +795,13 @@ $table-stack-breakpoint: medium;
 // --------
 
 $tab-margin: 0;
-$tab-background: $white;
+$tab-background: transparent;
 $tab-color: $primary-color;
-$tab-background-active: $light-gray;
+$tab-background-active: transparent;
 $tab-active-color: $primary-color;
 $tab-item-font-size: rem-calc(12);
-$tab-item-background-hover: $white;
-$tab-item-padding: 1.25rem 1.5rem;
+$tab-item-background-hover: transparent;
+$tab-item-padding: 0.75rem 1.25rem;
 $tab-expand-max: 6;
 $tab-content-background: $white;
 $tab-content-border: $light-gray;
