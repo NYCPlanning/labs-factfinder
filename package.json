@@ -19,6 +19,7 @@
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-clean-css": "^1.1.0",
     "ember-ajax": "^3.0.0",
+    "ember-browserify": "^1.2.0",
     "ember-cli": "~2.14.0",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.3.0",
@@ -55,6 +56,7 @@
   },
   "private": true,
   "dependencies": {
+    "@turf/bbox": "^5.0.0",
     "babel-eslint": "^8.0.1",
     "ember-jane-maps": "0.0.3"
   }

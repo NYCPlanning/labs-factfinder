@@ -39,15 +39,31 @@ export default Ember.Controller.extend({
   actions: {
     handleClick(event) {
       const selection = this.get('selection');
-      const summaryLevel = selection.get('summaryLevel');
+      const summaryLevel = selection.summaryLevel;
 
-      const layers = [`census-${summaryLevel}-fill`];
+      let layers = [];
+
+      switch (summaryLevel) { // eslint-disable-line
+        case 'tracts':
+          layers = ['census-tracts-fill'];
+          break;
+        case 'blocks':
+          layers = ['census-blocks-fill'];
+          break;
+        case 'ntas':
+          layers = ['neighborhood-tabulation-areas-fill'];
+          break;
+        case 'pumas':
+          layers = ['nyc-pumas-fill'];
+          break;
+      }
 
       const [found] =
         event.target.queryRenderedFeatures(
           event.point,
           { layers },
         );
+
 
       if (found) {
         selection.handleSelectedFeature([found]);

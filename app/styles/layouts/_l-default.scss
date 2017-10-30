@@ -79,6 +79,12 @@ body {
   }
 }
 
+.report-map-container {
+  height: 60vh;
+  width: 100%;
+  border: 1px solid $medium-gray;
+}
+
 .map-utility-box {
   background-color: $white;
   padding: $global-margin;
