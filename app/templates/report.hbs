@@ -1,16 +1,21 @@
 <div class="grid-x grid-padding-x grid-padding-y">
   <div class="cell large-8">
-    <h1>Report: [geographies array]</h1>
 
-    <ul class="menu tabs vertical medium-horizontal expanded text-center" data-tabs>
-      <li>{{link-to 'Census' 'report.census'}}</li>
-      <li>{{link-to 'Demographic' 'report.demographic'}}</li>
-      <li>{{link-to 'Social' 'report.social'}}</li>
-      <li>{{link-to 'Economic' 'report.economic'}}</li>
-      <li>{{link-to 'Housing' 'report.housing'}}</li>
-    </ul>
-
-    {{outlet}}
+    <div class="overflow-y-grid">
+      <div class="cell shrink">
+        <h1>Report: [geographies array]</h1>
+        <ul class="menu tabs vertical medium-horizontal expanded text-center" data-tabs>
+          <li>{{link-to 'Census' 'report.census'}}</li>
+          <li>{{link-to 'Demographic' 'report.demographic'}}</li>
+          <li>{{link-to 'Social' 'report.social'}}</li>
+          <li>{{link-to 'Economic' 'report.economic'}}</li>
+          <li>{{link-to 'Housing' 'report.housing'}}</li>
+        </ul>
+      </div>
+      <div class="cell auto">
+        {{outlet}}
+      </div>
+    </div>
 
   </div>
   <div class="cell large-4">

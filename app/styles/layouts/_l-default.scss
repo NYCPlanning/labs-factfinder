@@ -121,6 +121,15 @@ body {
   }
 }
 
+.overflow-y-grid {
+
+  @include breakpoint(large) {
+    @include xy-grid(vertical, true);
+    height: calc(100vh - 7.25rem);
+    overflow: hidden;
+  }
+}
+
 // HACK: dot and pulse misalign without this.
 .mapboxgl-user-location-dot {
   box-sizing: initial;
