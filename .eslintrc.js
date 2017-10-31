@@ -3,14 +3,15 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   extends: 'airbnb',
   env: {
-    browser: true
+    browser: true,
   },
   globals:{
     '$': true,
+    d3: true,
   },
   rules: {
     'import/no-extraneous-dependencies': 0,
