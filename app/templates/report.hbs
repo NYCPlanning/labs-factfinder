@@ -5,8 +5,8 @@
       <div class="cell shrink">
         <h1 class="header-large no-margin">
           {{selectionCount}}
-          {{if (eq summaryLevel 'tracts') 'Tract'~}}
-          {{if (eq summaryLevel 'blocks') 'Block'~}}
+          {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
+          {{if (eq summaryLevel 'blocks') 'Census Block'~}}
           {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
           {{if (eq summaryLevel 'pumas') 'PUMA'~}}
           {{if (gt selectionCount 1) 's'~}}
