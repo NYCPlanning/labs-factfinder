@@ -80,7 +80,7 @@ body {
 }
 
 .report-map-container {
-  height: 60vh;
+  height: 50vh;
   width: 100%;
   border: 1px solid $medium-gray;
 }
@@ -118,6 +118,15 @@ body {
       padding: 0.75em 0.875em;
       border-radius: 4px;
     }
+  }
+}
+
+.overflow-y-grid {
+
+  @include breakpoint(large) {
+    @include xy-grid(vertical, true);
+    height: calc(100vh - 7.25rem);
+    overflow: hidden;
   }
 }
 

@@ -19,7 +19,7 @@
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
-    {{map.layer-group config=layerGroups.subway visible=true}}
+    {{map.layer-group config=layerGroups.subway visible=false}}
 
     {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
 

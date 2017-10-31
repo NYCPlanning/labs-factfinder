@@ -271,3 +271,37 @@ button {
 .ember-tooltip {
   font-size: rem-calc(10);
 }
+
+
+//
+// Tabs
+// --------------------------------------------------
+.menu.tabs {
+  @include breakpoint(medium) {
+    font-size: rem-calc(12);
+    margin-bottom: $global-margin;
+
+    li {
+      &:hover {
+        background-color: transparent;
+      }
+
+      a {
+        border: 1px solid transparent;
+        border-bottom-width: 0;
+        background-color: transparent;
+
+        &:not(.active) {
+          border-right-width: 0;
+          border-left-width: 0;
+          box-shadow: inset 0 -1px 0 0 $medium-gray;
+        }
+
+        &.active {
+          border-color: $medium-gray;
+          color: $body-font-color;
+        }
+      }
+    }
+  }
+}
