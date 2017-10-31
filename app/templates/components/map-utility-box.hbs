@@ -19,7 +19,9 @@
           {{if (eq selectionCount 0) 's'}}{{if (gt selectionCount 1) 's'}}
         </strong>
       </p>
-      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray"><span class="lu-red">{{fa-icon 'times'}}</span>&nbsp;Clear Selection</button>
+      {{#if (gt selectionCount 0)}}
+        <button {{action "clearSelection"}} class="button--clear-selection button tiny gray"><span class="lu-red">{{fa-icon 'times'}}</span>&nbsp;Clear Selection</button>
+      {{/if}}
     </div>
     <div class="cell medium-6">
       <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual census tracts to add them to the report.</p>
