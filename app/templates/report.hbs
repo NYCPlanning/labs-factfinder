@@ -3,7 +3,21 @@
 
     <div class="overflow-y-grid">
       <div class="cell shrink">
-        <h1>Report: [geographies array]</h1>
+        <h1 class="header-large no-margin">
+          {{selectionCount}}
+          {{if (eq summaryLevel 'tracts') 'Tract'~}}
+          {{if (eq summaryLevel 'blocks') 'Block'~}}
+          {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
+          {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+          {{if (gt selectionCount 1) 's'~}}
+        </h1>
+
+        <ul class="dark-gray text-small comma-separated-list">
+          {{#each selection.current.features as |feature|}}
+            <li>{{feature.properties.geoid}}</li>
+          {{/each}}
+        </ul>
+
         <ul class="menu tabs vertical medium-horizontal expanded text-center" data-tabs>
           <li>{{link-to 'Census' 'report.census'}}</li>
           <li>{{link-to 'Demographic' 'report.demographic'}}</li>
