@@ -171,7 +171,18 @@ button {
 .lu-silver { color: $lu-silver; }
 .lu-gray { color: $lu-gray; }
 
+.comma-separated-list {
+  list-style: none;
+  margin-left: 0;
 
+  li {
+    display: inline;
+
+    &:not(:last-of-type):after {
+      content: ',';
+    }
+  }
+}
 //
 // Lot Styles
 // --------------------------------------------------
