@@ -4,9 +4,7 @@ import { computed } from 'ember-decorators/object';
 export default Ember.Controller.extend({
   @computed('model')
   agePopDist(model) {
-
-    const d = {}
-
+    const d = {};
     model[0].values[4].values.forEach((item) => {
       const { variable, sum, m } = item;
       d[variable] = { sum, m };
@@ -38,8 +36,6 @@ export default Ember.Controller.extend({
       male: d[`M${variable}`].sum,
       female: d[`F${variable}`].sum,
     }));
-
-    console.log('computing agePopDist', popPyramidData);
 
     return popPyramidData;
   },
