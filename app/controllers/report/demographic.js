@@ -3,7 +3,15 @@ import { computed } from 'ember-decorators/object';
 
 export default Ember.Controller.extend({
   @computed('model')
-  agePopDist(d) {
+  agePopDist(model) {
+
+    const d = {}
+
+    model[0].values[4].values.forEach((item) => {
+      const { variable, sum, m } = item;
+      d[variable] = { sum, m };
+    });
+
     const variables = [
       'Pop0t5',
       'Pop5t9',
