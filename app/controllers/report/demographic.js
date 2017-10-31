@@ -1,6 +1,13 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 
+function getPopLabel(variable) {
+  if (variable === 'Pop0t5') return 'Under 5';
+  if (variable === 'Pop85pl') return '85 & Over';
+  const range = variable.split('Pop')[1].split('t');
+  return `${range[0]}-${range[1]}`;
+}
+
 export default Ember.Controller.extend({
   @computed('model')
   agePopDist(model) {
@@ -32,7 +39,7 @@ export default Ember.Controller.extend({
     ];
 
     const popPyramidData = variables.map(variable => ({
-      group: variable,
+      group: getPopLabel(variable),
       male: d[`M${variable}`].sum,
       female: d[`F${variable}`].sum,
     }));

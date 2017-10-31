@@ -1,8 +1,9 @@
 import { select } from 'd3-selection';
-import { sum } from 'd3-array';
+import { sum, max } from 'd3-array';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { axisRight, axisBottom } from 'd3-axis';
 import { transition } from 'd3-transition';
+import { format } from 'd3-format';
 
 
 import HorizontalBar from '../components/horizontal-bar';
@@ -70,8 +71,14 @@ export default HorizontalBar.extend({
     const svg = this.get('svg');
     const data = this.get('data');
 
-    const percentMale = sum(data, d => d.male);
-    const percentFemale = sum(data, d => d.female);
+    const totalMale = sum(data, d => d.male);
+    const totalFemale = sum(data, d => d.female);
+
+    const maxValue = max([max(data, d => d.male), max(data, d => d.female)]);
+
+    console.log('maxValue', maxValue);
+
+    const totalPop = totalMale + totalFemale;
 
     const el = this.$();
     const elWidth = el.width();
@@ -94,11 +101,13 @@ export default HorizontalBar.extend({
     svg.select('.padding-group')
       .attr('transform', translation(margin.left, margin.top));
 
-    // no bar will ever reflect more than 10% of pop in a CD
-    const maxValue = 1000;
-
     const xScale = scaleLinear()
       .domain([0, maxValue])
+      .range([0, regionWidth])
+      .nice();
+
+    const xScalePercent = scaleLinear()
+      .domain([0, (maxValue / totalPop)])
       .range([0, regionWidth])
       .nice();
 
@@ -113,14 +122,14 @@ export default HorizontalBar.extend({
       .tickFormat(tickFormat);
 
     const xAxisRight = axisBottom()
-      .scale(xScale)
+      .scale(xScalePercent)
       .ticks(4)
-      .tickFormat(d => `${d}`);
+      .tickFormat(format('.0%'));
 
     const xAxisLeft = axisBottom()
-      .scale(xScale.copy().range([pointA, 0]))
+      .scale(xScalePercent.copy().range([pointA, 0]))
       .ticks(4)
-      .tickFormat(d => `${d}`);
+      .tickFormat(format('.0%'));
 
     const leftBarGroup = svg.select('.male')
       .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
@@ -149,13 +158,13 @@ export default HorizontalBar.extend({
 
     // update top labels positioning
     svg.select('.label-male')
-      .text(`Male | ${percentMale.toFixed(1)}`)
+      .text(`Male | ${totalMale.toFixed(1)}`)
       .attr('text-anchor', 'end')
       .attr('x', (width / 2) - margin.middle)
       .attr('y', -8);
 
     svg.select('.label-female')
-      .text(`Female | ${percentFemale.toFixed(1)}`)
+      .text(`Female | ${totalFemale.toFixed(1)}`)
       .attr('text-anchor', 'start')
       .attr('x', (width / 2) + margin.middle)
       .attr('y', -8);
