@@ -8,8 +8,9 @@ const preserveType = function(array) {
   return `'${array.join("','")}'`;
 };
 
-const generateSQL = function(ids) {
+const aggregateGeos = function(ids) {
   const cleaned = preserveType(ids);
+
   return `SELECT 
             SUM(e), 
             SQRT(
@@ -17,11 +18,26 @@ const generateSQL = function(ids) {
                 POWER(m, 2)
               )
             ) AS m,
-            variable 
+            variable,
+            variable || 'E' as variablename
           FROM 
             support_fact_finder 
           WHERE geoid IN (${cleaned}) 
           GROUP BY variable`;
+};
+
+const generateSQL = function(ids) {
+  return `SELECT 
+            variable, 
+            profile, 
+            category,
+            type,
+            sum, 
+            m
+          FROM
+            (${aggregateGeos(ids)}) support_fact_finder
+          INNER JOIN support_fact_finder_meta 
+          ON support_fact_finder_meta.variablename = support_fact_finder.variablename`;
 };
 
 export default Ember.Route.extend({
