@@ -288,9 +288,21 @@ button {
 // Tabs
 // --------------------------------------------------
 .menu.tabs {
+  margin-bottom: $global-margin;
+
+  @include breakpoint(small only) {
+
+    a:not(.active) {
+      background-color: rgba(0,0,0,0.03);
+    }
+
+    a.active {
+      background-color: $medium-gray;
+      color: $body-font-color;
+    }
+  }
   @include breakpoint(medium) {
     font-size: rem-calc(12);
-    margin-bottom: $global-margin;
 
     li {
       &:hover {
