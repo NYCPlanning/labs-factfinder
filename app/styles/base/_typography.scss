@@ -183,6 +183,21 @@ button {
     }
   }
 }
+
+.report-header {
+  margin-bottom: rem-calc(6);
+}
+
+.report-geographies-list {
+  max-height: 6em;
+  overflow: auto;
+  color: $dark-gray;
+  font-size: rem-calc(11);
+  background-color: rgba(0,0,0,0.04);
+  padding: rem-calc(6);
+}
+
+
 //
 // Lot Styles
 // --------------------------------------------------

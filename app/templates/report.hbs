@@ -1,38 +1,24 @@
-<div class="grid-x grid-padding-x grid-padding-y">
-  <div class="cell large-8">
+<div class="grid-x grid-padding-y grid-padding-x">
+  <div class="cell large-4 xxlarge-3">
 
-    <div class="overflow-y-grid">
-      <div class="cell shrink">
-        <h1 class="header-large no-margin">
-          {{selectionCount}}
-          {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
-          {{if (eq summaryLevel 'blocks') 'Census Block'~}}
-          {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
-          {{if (eq summaryLevel 'pumas') 'PUMA'~}}
-          {{if (gt selectionCount 1) 's'~}}
-        </h1>
+    <input type="radio" name="report-mode" value="standard" id="report-mode--standard" checked><label for="report-mode--standard">Standard Report</label>
+    <input type="radio" name="report-mode" value="change" id="report-mode--change"><label for="report-mode--change">Chage Over Time</label>
 
-        <ul class="dark-gray text-small comma-separated-list">
-          {{#each selection.current.features as |feature|}}
-            <li>{{feature.properties.geoid}}</li>
-          {{/each}}
-        </ul>
+    <h1 class="report-header header-large">
+      {{selectionCount}}
+      {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
+      {{if (eq summaryLevel 'blocks') 'Census Block'~}}
+      {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
+      {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+      {{if (gt selectionCount 1) 's'~}}
+    </h1>
 
-        <ul class="menu tabs vertical medium-horizontal expanded text-center" data-tabs>
-          <li>{{link-to 'Census' 'report.census'}}</li>
-          <li>{{link-to 'Demographic' 'report.demographic'}}</li>
-          <li>{{link-to 'Social' 'report.social'}}</li>
-          <li>{{link-to 'Economic' 'report.economic'}}</li>
-          <li>{{link-to 'Housing' 'report.housing'}}</li>
-        </ul>
-      </div>
-      <div class="cell auto">
-        {{outlet}}
-      </div>
-    </div>
+    <ul class="report-geographies-list comma-separated-list">
+      {{#each selection.current.features as |feature|}}
+        <li>{{feature.properties.geoid}}</li>
+      {{/each}}
+    </ul>
 
-  </div>
-  <div class="cell large-4">
     <div class="report-map-container">
       {{#jane-maps
         id='map'
@@ -60,5 +46,26 @@
 
       {{/jane-maps}}
     </div>
+
+    {{link-to 'Edit Report Geographies' 'index' classNames='button small expanded hollow'}}
+
+  </div>
+  <div class="cell large-8 xxlarge-9">
+
+    <div class="overflow-y-grid">
+      <div class="cell shrink">
+        <ul class="menu tabs vertical medium-horizontal expanded text-center" data-tabs>
+          <li>{{link-to 'Census' 'report.census'}}</li>
+          <li>{{link-to 'Demographic' 'report.demographic'}}</li>
+          <li>{{link-to 'Social' 'report.social'}}</li>
+          <li>{{link-to 'Economic' 'report.economic'}}</li>
+          <li>{{link-to 'Housing' 'report.housing'}}</li>
+        </ul>
+      </div>
+      <div class="cell auto">
+        {{outlet}}
+      </div>
+    </div>
+
   </div>
 </div>
