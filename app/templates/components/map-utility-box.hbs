@@ -12,10 +12,11 @@
       </strong>
       <p class="dark-gray">
         <strong>
-          {{if (eq summaryLevel 'tracts') 'Tracts'}}
-          {{if (eq summaryLevel 'blocks') 'Blocks'}}
-          {{if (eq summaryLevel 'ntas') 'Neighborhoods'}}
-          {{if (eq summaryLevel 'pumas') 'PUMAs'}}
+          {{if (eq summaryLevel 'tracts') 'Tract'~}}
+          {{if (eq summaryLevel 'blocks') 'Block'~}}
+          {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
+          {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+          {{if (eq selectionCount 0) 's'}}{{if (gt selectionCount 1) 's'}}
         </strong>
       </p>
       <button {{action "clearSelection"}} class="button--clear-selection button tiny gray"><span class="lu-red">{{fa-icon 'times'}}</span>&nbsp;Clear Selection</button>
