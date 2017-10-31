@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
+import { nest } from 'd3-collection';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
@@ -54,6 +55,11 @@ export default Ember.Route.extend({
   model() {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
 
-    return carto.SQL(generateSQL(geoids));
+    return carto.SQL(generateSQL(geoids))
+      .then(data => nest()
+        .key(d => d.profile)
+        .key(d => d.category)
+        .entries(data),
+      );
   },
 });

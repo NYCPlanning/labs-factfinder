@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import bbox from 'npm:@turf/bbox';
-import { nest } from 'd3-collection';
 
 import layerGroups from '../layer-groups';
 import sources from '../sources';
@@ -26,14 +25,6 @@ export default Ember.Controller.extend({
       type: 'geojson',
       data: current,
     };
-  },
-
-  @computed('model')
-  nestedData(model) {
-    return nest()
-      .key(d => d.profile)
-      .key(d => d.category)
-      .entries(model);
   },
 
   selectedFillLayer,
