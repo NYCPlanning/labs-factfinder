@@ -171,6 +171,32 @@ button {
 .lu-silver { color: $lu-silver; }
 .lu-gray { color: $lu-gray; }
 
+.comma-separated-list {
+  list-style: none;
+  margin-left: 0;
+
+  li {
+    display: inline;
+
+    &:not(:last-of-type):after {
+      content: ',';
+    }
+  }
+}
+
+.report-header {
+  margin-bottom: rem-calc(6);
+}
+
+.report-geographies-list {
+  max-height: 6em;
+  overflow: auto;
+  color: $dark-gray;
+  font-size: rem-calc(11);
+  background-color: rgba(0,0,0,0.04);
+  padding: rem-calc(6);
+}
+
 
 //
 // Lot Styles
@@ -277,9 +303,21 @@ button {
 // Tabs
 // --------------------------------------------------
 .menu.tabs {
+  margin-bottom: $global-margin;
+
+  @include breakpoint(small only) {
+
+    a:not(.active) {
+      background-color: rgba(0,0,0,0.03);
+    }
+
+    a.active {
+      background-color: $medium-gray;
+      color: $body-font-color;
+    }
+  }
   @include breakpoint(medium) {
     font-size: rem-calc(12);
-    margin-bottom: $global-margin;
 
     li {
       &:hover {
