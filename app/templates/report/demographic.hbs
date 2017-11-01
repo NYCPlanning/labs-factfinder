@@ -430,7 +430,23 @@
 {{/if}}
 
 {{#if (eq report.mode 'change')}}
-  change
+<table class="text-small">
+  <thead>
+    <tr>
+      <th colspan="2">Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row-highlight">
+      <td>key</td>
+      <td class="cell-narrow">value</td>
+    </tr>
+    <tr>
+      <td>key</td>
+      <td>value</td>
+    </tr>
+  </tbody>
+</table>
 {{/if}}
 
 {{outlet}}
