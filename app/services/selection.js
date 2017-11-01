@@ -2,6 +2,8 @@ import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
+import config from '../config/environment';
+
 const BLOCKS_SQL =
   `SELECT
       the_geom,
@@ -29,10 +31,7 @@ const NTSA_SQL =
     ntacode AS geoid 
   FROM support_admin_ntaboundaries`;
 
-const EMPTY_GEOJSON = {
-  type: 'FeatureCollection',
-  features: [],
-};
+const EMPTY_GEOJSON = config.DEFAULT_SELECTION;
 
 // order sensitive
 const SUMMARY_LEVELS = ['blocks', 'tracts', 'ntas', 'pumas'];
