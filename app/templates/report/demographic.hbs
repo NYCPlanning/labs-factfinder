@@ -1,4 +1,9 @@
 {{#if (eq report.mode 'standard')}}
+
+  <div class="callout">
+    {{population-pyramid data=agePopDist}}
+  </div>
+
   <table class="text-small">
     <thead>
       <tr>
@@ -427,9 +432,11 @@
       </tr>
     </tbody>
   </table>
+
 {{/if}}
 
 {{#if (eq report.mode 'change')}}
+
 <table class="text-small">
   <thead>
     <tr>
@@ -447,6 +454,7 @@
     </tr>
   </tbody>
 </table>
+
 {{/if}}
 
 {{outlet}}
