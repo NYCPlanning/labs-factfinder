@@ -9,6 +9,7 @@ import selectedFeatures from '../layers/selected-features';
 const selectedFillLayer = selectedFeatures.fill;
 
 const { service } = Ember.inject;
+const { alias } = Ember.computed;
 
 export default Ember.Controller.extend({
   selection: service(),
@@ -26,6 +27,9 @@ export default Ember.Controller.extend({
       data: current,
     };
   },
+
+  selectionCount: alias('selection.selectedCount'),
+  summaryLevel: alias('selection.summaryLevel'),
 
   selectedFillLayer,
 
