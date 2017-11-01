@@ -87,7 +87,12 @@ export default HorizontalBar.extend({
     const totalMale = sum(data, d => d.male);
     const totalFemale = sum(data, d => d.female);
     const totalPop = totalMale + totalFemale;
-    const maxValue = max([max(data, d => d.male), max(data, d => d.female)]);
+
+    // get the largest value + moe
+    const maxValue = max([
+      max(data, d => d.male + d.malemoe),
+      max(data, d => d.female + d.femalemoe),
+    ]);
 
     const barLabel = d => `${numeral(d).format('0.0a')} (${numeral(d / totalPop).format('0.0%')})`;
 
@@ -161,7 +166,7 @@ export default HorizontalBar.extend({
       .data(data, d => d.group);
 
     const rightMOEs = svg.select('.female')
-      .selectAll('.moe.left')
+      .selectAll('.moe.right')
       .data(data, d => d.group);
 
     const leftBarLabels = svg.selectAll('.bar-label.left')
@@ -218,6 +223,8 @@ export default HorizontalBar.extend({
       .attr('width', function(d) { return xScale(d.male); })
       .attr('height', yScale.step() - 3);
 
+    leftBarGroup.exit().remove();
+
     rightBarGroup.enter()
       .append('rect')
       .attr('class', d => `bar right group${d.group}`)
@@ -238,12 +245,18 @@ export default HorizontalBar.extend({
       .attr('width', function(d) { return xScale(d.female); })
       .attr('height', yScale.step() - 3);
 
+    rightBarGroup.exit().remove();
+
     leftMOEs.enter()
       .append('rect')
       .attr('class', d => `moe left group${d.group}`)
       .attr('x', d => regionWidth - xScale(d.male) - xScale(d.malemoe))
       .attr('y', d => yScale(d.group) + 4)
       .attr('height', 3)
+      .attr('width', d => xScale(d.malemoe) * 2);
+
+    leftMOEs.transition().duration(300)
+      .attr('x', d => regionWidth - xScale(d.male) - xScale(d.malemoe))
       .attr('width', d => xScale(d.malemoe) * 2);
 
     rightMOEs.enter()
@@ -254,6 +267,9 @@ export default HorizontalBar.extend({
       .attr('height', 3)
       .attr('width', d => xScale(d.femalemoe) * 2);
 
+    rightMOEs.transition().duration(300)
+      .attr('x', d => xScale(d.female) - xScale(d.femalemoe))
+      .attr('width', d => xScale(d.femalemoe) * 2);
 
     leftBarLabels.enter()
       .append('text')
@@ -262,12 +278,13 @@ export default HorizontalBar.extend({
       .attr('opacity', '0')
       .attr('text-anchor', 'end')
       .attr('class', d => `bar-label left group${d.group}`)
-      .attr('x', d => regionWidth - xScale(d.male) - 2)
+      .attr('x', d => regionWidth - xScale(d.male + d.malemoe) - 2)
       .attr('y', d => yScale(d.group) + (yScale.step() / 2));
 
     leftBarLabels.transition().duration(300)
-      .attr('x', d => regionWidth - xScale(d.male) - 2)
-      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
+      .attr('x', d => regionWidth - xScale(d.male + d.malemoe) - 2)
+
+    leftBarLabels.exit().remove();
 
     rightBarLabels.enter()
       .append('text')
@@ -276,17 +293,12 @@ export default HorizontalBar.extend({
       .attr('opacity', 0)
       .attr('text-anchor', 'start')
       .attr('class', d => `bar-label right group${d.group}`)
-      .attr('x', d => xScale(d.female) + 2)
+      .attr('x', d => xScale(d.female + d.femalemoe) + 2)
       .attr('y', d => yScale(d.group) + (yScale.step() / 2));
 
     rightBarLabels.transition().duration(300)
-      .attr('x', d => xScale(d.female) + 2)
-      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
+      .attr('x', d => xScale(d.female + d.femalemoe) + 2)
 
-
-    leftBarGroup.exit().remove();
-    rightBarGroup.exit().remove();
-    leftBarLabels.exit().remove();
     rightBarLabels.exit().remove();
   },
 });
