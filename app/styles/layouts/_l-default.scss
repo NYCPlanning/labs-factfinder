@@ -144,10 +144,25 @@ body {
   }
 }
 
-.age-chart .bar.left {
-    fill: #FFBF00;
-}
+.age-chart {
+  .bar:hover {
+    cursor: pointer;
+  }
 
-.age-chart .bar.right {
+  .bar.left {
+    fill: #FFBF00;
+  }
+
+  .bar.right {
     fill: #78D271;
+  }
+
+  .axis line, .axis path {
+    stroke-width: 0;
+  }
+
+  .bar-label {
+    font-size: 0.6rem;
+    transition: opacity 0.1s linear;
+  }
 }

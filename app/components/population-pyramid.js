@@ -1,24 +1,21 @@
-import { select } from 'd3-selection';
+import { select, selectAll } from 'd3-selection';
 import { sum, max } from 'd3-array';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { axisRight, axisBottom } from 'd3-axis';
-import { transition } from 'd3-transition';
+import { transition } from 'd3-transition'; // eslint-disable-line
 import { format } from 'd3-format';
-
+import numeral from 'numeral';
 
 import HorizontalBar from '../components/horizontal-bar';
 
-
-const translation = function(x, y) {
-  return `translate(${x},${y})`;
-};
+const translation = (x, y) => `translate(${x},${y})`;
 
 export default HorizontalBar.extend({
   margin: {
     top: 25,
-    right: 12,
+    right: 24,
     bottom: 20,
-    left: 12,
+    left: 24,
     middle: 28,
   },
   height: 286,
@@ -67,18 +64,32 @@ export default HorizontalBar.extend({
     this.updateChart();
   },
 
+  handleMouseOver(d) {
+    selectAll(`.bar-label.group${d.group}`)
+      .attr('opacity', 1);
+
+    selectAll(`.bar.group${d.group}`)
+      .attr('stroke-width', 1);
+  },
+
+  handleMouseOut(d) {
+    selectAll('.bar-label')
+      .attr('opacity', 0);
+
+    selectAll(`.bar.group${d.group}`)
+      .attr('stroke-width', 0);
+  },
+
   updateChart() {
     const svg = this.get('svg');
     const data = this.get('data');
 
     const totalMale = sum(data, d => d.male);
     const totalFemale = sum(data, d => d.female);
-
+    const totalPop = totalMale + totalFemale;
     const maxValue = max([max(data, d => d.male), max(data, d => d.female)]);
 
-    console.log('maxValue', maxValue);
-
-    const totalPop = totalMale + totalFemale;
+    const barLabel = d => `${numeral(d).format('0.0a')} (${numeral(d / totalPop).format('0.0%')})`;
 
     const el = this.$();
     const elWidth = el.width();
@@ -92,7 +103,12 @@ export default HorizontalBar.extend({
     const pointA = regionWidth;
     const pointB = width - regionWidth;
 
-    const tickFormat = d => `${d.replace('_', '–').replace('under–', 'Under ').replace('–over', ' & over')}`;
+    const yAxisFormat = (variable) => {
+      if (variable === 'Pop0t5') return 'Under 5';
+      if (variable === 'Pop85pl') return '85 & Over';
+      const range = variable.split('Pop')[1].split('t');
+      return `${range[0]}-${range[1]}`;
+    };
 
     svg
       .attr('width', margin.left + width + margin.right)
@@ -103,7 +119,7 @@ export default HorizontalBar.extend({
 
     const xScale = scaleLinear()
       .domain([0, maxValue])
-      .range([0, regionWidth])
+      .range([0, regionWidth - margin.right])
       .nice();
 
     const xScalePercent = scaleLinear()
@@ -119,7 +135,7 @@ export default HorizontalBar.extend({
       .scale(yScale)
       .tickSize(4, 0)
       .tickPadding(margin.middle - 4)
-      .tickFormat(tickFormat);
+      .tickFormat(yAxisFormat);
 
     const xAxisRight = axisBottom()
       .scale(xScalePercent)
@@ -141,6 +157,13 @@ export default HorizontalBar.extend({
       .selectAll('.bar.right')
       .data(data, d => d.group);
 
+    const leftBarLabels = svg.selectAll('.bar-label.left')
+      .data(data, d => d.group);
+
+    const rightBarLabels = svg.select('.female')
+      .selectAll('.bar-label.right')
+      .data(data, d => d.group);
+
     // DRAW AXES
     svg.select('.y-axis-left')
       .attr('transform', translation(pointA, 0))
@@ -158,26 +181,30 @@ export default HorizontalBar.extend({
 
     // update top labels positioning
     svg.select('.label-male')
-      .text(`Male | ${totalMale.toFixed(1)}`)
+      .text(`Male | ${numeral(totalMale).format('0,0')}`)
       .attr('text-anchor', 'end')
       .attr('x', (width / 2) - margin.middle)
       .attr('y', -8);
 
     svg.select('.label-female')
-      .text(`Female | ${totalFemale.toFixed(1)}`)
+      .text(`Female | ${numeral(totalFemale).format('0,0')}`)
       .attr('text-anchor', 'start')
       .attr('x', (width / 2) + margin.middle)
       .attr('y', -8);
 
     leftBarGroup.enter()
       .append('rect')
-      .attr('class', 'bar left')
+      .attr('class', d => `bar left group${d.group}`)
       .attr('x', 0)
       .attr('y', function(d) { return yScale(d.group); })
       .attr('height', yScale.step() - 3)
       .attr('width', function(d) { return xScale(d.male); })
       .attr('rx', 2)
-      .attr('ry', 2);
+      .attr('ry', 2)
+      .attr('stroke', '#4f4f4f')
+      .attr('stroke-width', 0)
+      .on('mouseover', this.handleMouseOver)
+      .on('mouseout', this.handleMouseOut);
 
     leftBarGroup.transition().duration(300)
       .attr('y', function(d) { return yScale(d.group); })
@@ -186,20 +213,56 @@ export default HorizontalBar.extend({
 
     rightBarGroup.enter()
       .append('rect')
-      .attr('class', 'bar right')
+      .attr('class', d => `bar right group${d.group}`)
       .attr('x', 0)
       .attr('y', function(d) { return yScale(d.group); })
       .attr('width', function(d) { return xScale(d.female); })
       .attr('height', yScale.step() - 3)
       .attr('rx', 2)
-      .attr('ry', 2);
+      .attr('ry', 2)
+      .attr('stroke', '#4f4f4f')
+      .attr('stroke-width', 0)
+      .on('mouseover', this.handleMouseOver)
+      .on('mouseout', this.handleMouseOut);
+
 
     rightBarGroup.transition().duration(300)
       .attr('y', function(d) { return yScale(d.group); })
       .attr('width', function(d) { return xScale(d.female); })
       .attr('height', yScale.step() - 3);
 
+    leftBarLabels.enter()
+      .append('text')
+      .text(d => barLabel(d.male))
+      .attr('alignment-baseline', 'middle')
+      .attr('opacity', '0')
+      .attr('text-anchor', 'end')
+      .attr('class', d => `bar-label left group${d.group}`)
+      .attr('x', d => regionWidth - xScale(d.male) - 2)
+      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
+
+    leftBarLabels.transition().duration(300)
+      .attr('x', d => regionWidth - xScale(d.male) - 2)
+      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
+
+    rightBarLabels.enter()
+      .append('text')
+      .text(d => barLabel(d.female))
+      .attr('alignment-baseline', 'middle')
+      .attr('opacity', 0)
+      .attr('text-anchor', 'start')
+      .attr('class', d => `bar-label right group${d.group}`)
+      .attr('x', d => xScale(d.female) + 2)
+      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
+
+    rightBarLabels.transition().duration(300)
+      .attr('x', d => xScale(d.female) + 2)
+      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
+
+
     leftBarGroup.exit().remove();
     rightBarGroup.exit().remove();
+    leftBarLabels.exit().remove();
+    rightBarLabels.exit().remove();
   },
 });
