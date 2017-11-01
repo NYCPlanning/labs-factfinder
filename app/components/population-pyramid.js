@@ -157,6 +157,13 @@ export default HorizontalBar.extend({
       .selectAll('.bar.right')
       .data(data, d => d.group);
 
+    const leftMOEs = svg.selectAll('.moe.left')
+      .data(data, d => d.group);
+
+    const rightMOEs = svg.select('.female')
+      .selectAll('.moe.left')
+      .data(data, d => d.group);
+
     const leftBarLabels = svg.selectAll('.bar-label.left')
       .data(data, d => d.group);
 
@@ -230,6 +237,23 @@ export default HorizontalBar.extend({
       .attr('y', function(d) { return yScale(d.group); })
       .attr('width', function(d) { return xScale(d.female); })
       .attr('height', yScale.step() - 3);
+
+    leftMOEs.enter()
+      .append('rect')
+      .attr('class', d => `moe left group${d.group}`)
+      .attr('x', d => regionWidth - xScale(d.male) - xScale(d.malemoe))
+      .attr('y', d => yScale(d.group) + 4)
+      .attr('height', 3)
+      .attr('width', d => xScale(d.malemoe) * 2);
+
+    rightMOEs.enter()
+      .append('rect')
+      .attr('class', d => `moe right group${d.group}`)
+      .attr('x', d => xScale(d.female) - xScale(d.femalemoe))
+      .attr('y', d => yScale(d.group) + 4)
+      .attr('height', 3)
+      .attr('width', d => xScale(d.femalemoe) * 2);
+
 
     leftBarLabels.enter()
       .append('text')
