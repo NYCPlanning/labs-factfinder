@@ -1,5 +1,5 @@
-<div class="grid-x grid-padding-y grid-padding-x">
-  <div class="cell large-4 xxlarge-3">
+<div class="grid-x grid-padding-y">
+  <div class="cell large-4 xxlarge-3 report-sidebar">
 
 
     <input type='radio' name='report-mode' id='report-mode--standard' onchange={{action (mut mode) 'standard'}} value=mode checked={{if (eq mode 'standard') true}}><label for="report-mode--standard">Standard Report</label>
@@ -54,7 +54,7 @@
   </div>
   <div class="cell large-8 xxlarge-9">
 
-    <div class="overflow-y-grid">
+    <div class="overflow-y-grid report-content">
       <div class="cell shrink">
         <ul class="menu tabs vertical medium-horizontal expanded text-center" data-tabs>
           <li>{{link-to 'Census' 'report.census'}}</li>
