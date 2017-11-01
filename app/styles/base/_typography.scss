@@ -343,3 +343,48 @@ button {
     }
   }
 }
+
+
+//
+// Tables
+// --------------------------------------------------
+thead {
+  th {
+    font-size: 1.2em;
+  }
+}
+
+.row-highlight {
+  td {
+    background-color: transparentize($lu-peach, 0.5);
+    // font-weight: $global-weight-bold;
+  }
+}
+
+.row-divider {
+  td {
+    background-color: $body-background;
+    border-bottom: 1px solid $medium-gray;
+    height: 1.5rem;
+  }
+}
+
+.indented {
+  padding-left: rem-calc(21);
+
+  &-x2 {
+    padding-left: rem-calc(35);
+  }
+
+  &-x3 {
+    padding-left: rem-calc(49);
+  }
+
+  &-x4 {
+    padding-left: rem-calc(63);
+  }
+}
+
+.cell-narrow {
+  width: rem-calc(120);
+}
