@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { nest } from 'd3-collection';
+import { hash } from 'rsvp';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
@@ -41,6 +42,17 @@ const generateSQL = function(ids) {
           ON support_fact_finder_meta.variablename = support_fact_finder.variablename`;
 };
 
+const nestReport = function(data) {
+  return nest()
+    .key(d => d.profile)
+    .key(d => d.category)
+    .key(d => d.variable)
+    .rollup(d => d[0])
+    .object(data);
+};
+
+const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5];
+
 export default Ember.Route.extend({
   selection: service(),
 
@@ -54,14 +66,17 @@ export default Ember.Route.extend({
 
   model() {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
+    const selectionSQL = generateSQL(geoids);
+    const comparisonSQL = generateSQL(COMPARISON_GEOIDS);
 
-    return carto.SQL(generateSQL(geoids))
-      .then(data => nest()
-        .key(d => d.profile)
-        .key(d => d.category)
-        .key(d => d.variable)
-        .rollup(d => d[0])
-        .object(data),
-      );
+    return hash({
+      selection: carto.SQL(selectionSQL)
+        .then(data => nestReport(data),
+        ),
+      comparison: carto.SQL(comparisonSQL)
+        .then(data => nestReport(data),
+        ),
+      change: {},
+    });
   },
 });
