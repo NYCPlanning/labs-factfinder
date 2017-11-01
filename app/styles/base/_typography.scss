@@ -388,3 +388,19 @@ thead {
 .cell-narrow {
   width: rem-calc(120);
 }
+
+
+//
+// Callouts
+// --------------------------------------------------
+.callout {
+  margin-bottom: rem-calc(20);
+
+  @include breakpoint(medium) {
+    margin-bottom: rem-calc(30);
+  }
+
+  @include breakpoint(large) {
+    margin-bottom: rem-calc(40);
+  }
+}
