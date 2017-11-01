@@ -1,3 +1,4 @@
+{{log model}}
 <table class="text-small">
   <thead>
     <tr>
@@ -9,15 +10,15 @@
     </tr>
   </thead>
   <tbody>
-    {{#each model.[0].values.[0].values as |row|}}
+    {{#each-in model as |key value|}}
       <tr>
-        <td>{{row.variable}}</td>
+        <td>{{key}}</td>
         <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-        <td>{{row.sum}}</td>
-        <td>{{row.m}}</td>
-        <td>{{row.p}}</td>
+        <td></td>
+        <td></td>
+        <td>Test</td>
       </tr>
-    {{/each}}
+    {{/each-in}}
   </tbody>
 </table>
 
