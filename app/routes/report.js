@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { nest } from 'd3-collection';
-import { hash } from 'rsvp';
+import merge from 'lodash/merge';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
@@ -28,7 +28,7 @@ const aggregateGeos = function(ids) {
           GROUP BY variable`;
 };
 
-const generateSQL = function(ids) {
+const generateSelectionSQL = function(ids) {
   return `SELECT 
             regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable, 
             regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
@@ -51,8 +51,6 @@ const nestReport = function(data) {
     .object(data);
 };
 
-const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5];
-
 export default Ember.Route.extend({
   selection: service(),
 
@@ -64,19 +62,25 @@ export default Ember.Route.extend({
     }
   },
 
-  model() {
-    const geoids = this.get('selection.current.features').mapBy('properties.geoid');
-    const selectionSQL = generateSQL(geoids);
-    const comparisonSQL = generateSQL(COMPARISON_GEOIDS);
+  queryParams: {
+    comparator: {
+      refreshModel: true,
+    },
+  },
 
-    return hash({
-      selection: carto.SQL(selectionSQL)
-        .then(data => nestReport(data),
-        ),
-      comparison: carto.SQL(comparisonSQL)
-        .then(data => nestReport(data),
-        ),
-      change: {},
-    });
+  model({ comparator = '0' }) {
+    const geoids = this.get('selection.current.features').mapBy('properties.geoid');
+    const selectionSQL = generateSelectionSQL(geoids);
+    const comparisonSQL = ` SELECT 
+                              e as comparison_sum, m as comparision_m 
+                            FROM support_fact_finder 
+                            WHERE geoid = '${comparator}'`;
+
+    return carto.SQL(selectionSQL)
+      .then(nestedData =>
+        carto.SQL(comparisonSQL)
+          .then(final => merge(final, nestedData)),
+      )
+      .then(data => nestReport(data));
   },
 });
