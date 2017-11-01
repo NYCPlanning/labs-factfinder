@@ -6,7 +6,7 @@ const { isEmpty } = Ember;
 const { service } = Ember.inject;
 
 const preserveType = function(array) {
-  return `${array.join(",")}`;
+  return `'${array.join("','")}'`;
 };
 
 const aggregateGeos = function(ids) {
