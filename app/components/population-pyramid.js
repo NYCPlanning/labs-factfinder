@@ -104,9 +104,9 @@ export default HorizontalBar.extend({
     const pointB = width - regionWidth;
 
     const yAxisFormat = (variable) => {
-      if (variable === 'Pop0t5') return 'Under 5';
-      if (variable === 'Pop85pl') return '85 & Over';
-      const range = variable.split('Pop')[1].split('t');
+      if (variable === 'pop0t5') return 'Under 5';
+      if (variable === 'pop85pl') return '85 & Over';
+      const range = variable.split('pop')[1].split('t');
       return `${range[0]}-${range[1]}`;
     };
 
