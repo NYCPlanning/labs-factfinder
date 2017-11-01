@@ -12,6 +12,11 @@ const { service } = Ember.inject;
 const { alias } = Ember.computed;
 
 export default Ember.Controller.extend({
+  queryParams: ['mode'],
+
+  mode: 'standard',
+  checked: true,
+
   selection: service(),
   mapMouseover: service(),
 

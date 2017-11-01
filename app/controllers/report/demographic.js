@@ -1,7 +1,11 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
+const { inject } = Ember;
+
 export default Ember.Controller.extend({
+  report: inject.controller('report'),
+
   @computed('model')
   agePopDist(model) {
     const d = model.poppyramid_only;
