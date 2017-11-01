@@ -7,6 +7,9 @@ import { scaleBand, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 
 const HorizontalBar = Ember.Component.extend(ResizeAware, {
+  // necessary to get tests to pass https://github.com/mike-north/ember-resize/issues/43
+  resizeService: Ember.inject.service('resize'),
+
   classNameBindings: ['loading'],
   classNames: ['horizontal-bar'],
 
@@ -102,7 +105,9 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       barLabels.transition().duration(300)
         .attr('x', d => x(d.value) + 6)
         .attr('y', d => y(d.group) + (y.bandwidth() / 2) + -2)
-        .text(d => barLabel ? `${numeral(d.value).format('0,0')}` : '');
+        .text((d) => { // eslint-disable-line
+          return barLabel ? `${numeral(d.value).format('0,0')}` : '';
+        });
 
       barLabels.exit().remove();
 

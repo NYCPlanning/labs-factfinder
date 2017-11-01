@@ -12,14 +12,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{population-pyramid}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#population-pyramid}}
-      template block text
-    {{/population-pyramid}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), 'Male | 0Female | 0');
 });
