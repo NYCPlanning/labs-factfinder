@@ -348,10 +348,8 @@ button {
 //
 // Tables
 // --------------------------------------------------
-thead {
-  th {
-    font-size: 1.2em;
-  }
+.th-large {
+  font-size: 1.2em;
 }
 
 .row-highlight {
@@ -362,7 +360,7 @@ thead {
 }
 
 .row-divider {
-  td {
+  td, th {
     background-color: $body-background;
     border-bottom: 1px solid $medium-gray;
     height: 1.5rem;
@@ -387,6 +385,27 @@ thead {
 
 .cell-narrow {
   width: rem-calc(120);
+}
+
+.v-divider-before-7 {
+  td:nth-child(7) {
+    border-left: 1px solid $medium-gray;
+  }
+}
+
+.v-divider-before-2 {
+  td:nth-child(2) {
+    border-left: 1px solid $medium-gray;
+  }
+}
+
+th {
+  border-left: 1px solid $medium-gray;
+  vertical-align: bottom;
+}
+
+.cell-border-bottom {
+  border-bottom: 1px solid $medium-gray;
 }
 
 
