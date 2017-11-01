@@ -10,7 +10,7 @@ const preserveType = function(array) {
   return `'${array.join("','")}'`;
 };
 
-const aggregateGeos = function(ids) {
+const aggregateGeos = function(ids, year = 'Y2011-2015') {
   const cleaned = preserveType(ids);
 
   return `SELECT 
@@ -25,10 +25,11 @@ const aggregateGeos = function(ids) {
           FROM 
             support_fact_finder 
           WHERE geoid IN (${cleaned}) 
+            AND year = '${year}'
           GROUP BY variable`;
 };
 
-const generateSelectionSQL = function(ids) {
+const generateSelectionSQL = function(...args) {
   return `SELECT 
             regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable, 
             regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
@@ -37,9 +38,22 @@ const generateSelectionSQL = function(ids) {
             sum, 
             m
           FROM
-            (${aggregateGeos(ids)}) support_fact_finder
+            (${aggregateGeos(...args)}) support_fact_finder
           INNER JOIN support_fact_finder_meta 
           ON support_fact_finder_meta.variablename = support_fact_finder.variablename`;
+};
+
+const generateLongitudinalSQL = function(t1, t2) {
+  return `
+    SELECT *, 
+      (t2.t2_sum - t1.sum) as delta_sum,
+      (t2.t2_m - t1.m) as delta_m
+    FROM 
+      (${t1}) t1
+    INNER JOIN 
+      ( SELECT sum AS t2_sum, m AS t2_m, variable as t2_var 
+        FROM (${t2}) t ) t2
+    ON t2.t2_var = t1.variable`;
 };
 
 const nestReport = function(data) {
@@ -71,14 +85,16 @@ export default Ember.Route.extend({
   model({ comparator = '0' }) {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
     const selectionSQL = generateSelectionSQL(geoids);
-    const comparisonSQL = ` SELECT 
+    const historicalSQL = generateSelectionSQL(geoids, 'Y2006-2010');
+    const longitudinalSQL = generateLongitudinalSQL(selectionSQL, historicalSQL);
+    const geographicComparisonSQL = ` SELECT 
                               e as comparison_sum, m as comparision_m 
                             FROM support_fact_finder 
                             WHERE geoid = '${comparator}'`;
 
-    return carto.SQL(selectionSQL)
+    return carto.SQL(longitudinalSQL)
       .then(nestedData =>
-        carto.SQL(comparisonSQL)
+        carto.SQL(geographicComparisonSQL)
           .then(final => merge(final, nestedData)),
       )
       .then(data => nestReport(data));
