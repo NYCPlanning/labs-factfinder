@@ -29,9 +29,9 @@ const aggregateGeos = function(ids) {
 
 const generateSQL = function(ids) {
   return `SELECT 
-            variable, 
-            profile, 
-            category,
+            regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable, 
+            regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
+            regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') as category,
             type,
             sum, 
             m
@@ -59,7 +59,9 @@ export default Ember.Route.extend({
       .then(data => nest()
         .key(d => d.profile)
         .key(d => d.category)
-        .entries(data),
+        .key(d => d.variable)
+        .rollup(d => d[0])
+        .object(data),
       );
   },
 });
