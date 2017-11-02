@@ -15,15 +15,13 @@ const { alias } = Ember.computed;
 const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5]; // eslint-disable-line
 
 export default Ember.Controller.extend({
-  queryParams: ['mode'],
-
   mode: 'standard',
   checked: true,
 
   selection: service(),
   mapMouseover: service(),
 
-  queryParams: ['comparator'],
+  queryParams: ['mode', 'comparator'],
   comparator: '0',
 
   layerGroups,
