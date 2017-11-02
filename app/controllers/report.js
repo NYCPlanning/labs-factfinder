@@ -11,14 +11,18 @@ const selectedFillLayer = selectedFeatures.fill;
 const { service } = Ember.inject;
 const { alias } = Ember.computed;
 
-export default Ember.Controller.extend({
-  queryParams: ['mode'],
+// 0 = city; 1..5 = boro
+const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5]; // eslint-disable-line
 
+export default Ember.Controller.extend({
   mode: 'standard',
   checked: true,
 
   selection: service(),
   mapMouseover: service(),
+
+  queryParams: ['mode', 'comparator'],
+  comparator: '0',
 
   layerGroups,
   sources,
