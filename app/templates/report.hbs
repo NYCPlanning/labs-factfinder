@@ -28,7 +28,8 @@
         initOptions=(hash style='mapbox://styles/mapbox/light-v9'
                           zoom=zoom
                           center=center
-                          hash=true)
+                          hash=false
+                          interactive=false)
         mapLoaded=(action 'handleMapLoad')
 
         as |map|}}
@@ -45,6 +46,9 @@
               before='waterway-label'}}
           {{/map.source}}
         {{/if}}
+
+        {{map.on 'resize' (action 'handleResize')}}
+
 
       {{/jane-maps}}
     </div>
