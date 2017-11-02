@@ -38,12 +38,20 @@ export default Ember.Controller.extend({
 
   selectedFillLayer,
 
+  fitBounds(map) {
+    const FC = this.get('selection').current;
+    map.fitBounds(bbox(FC), {
+      padding: 40,
+    });
+  },
+
   actions: {
     handleMapLoad(map) {
-      const FC = this.get('selection').current;
-      map.fitBounds(bbox(FC), {
-        padding: 40,
-      });
+      this.fitBounds(map);
+    },
+
+    handleResize(e) {
+      this.fitBounds(e.target);
     },
   },
 
