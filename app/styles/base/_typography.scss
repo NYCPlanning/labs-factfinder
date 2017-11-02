@@ -348,6 +348,10 @@ button {
 //
 // Tables
 // --------------------------------------------------
+td:not(:first-child) {
+  text-align: right;
+}
+
 .th-large {
   font-size: 1.2em;
 }
