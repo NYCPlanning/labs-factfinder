@@ -149,12 +149,20 @@ body {
     cursor: pointer;
   }
 
-  .bar.left {
+  .bar.male {
     fill: #FFBF00;
+
+    &.highlight {
+      fill: #EFAF00;
+    }
   }
 
-  .bar.right {
+  .bar.female {
     fill: #78D271;
+
+    &.highlight {
+      fill: #68C261;
+    }
   }
 
   .axis line, .axis path {
@@ -171,4 +179,11 @@ body {
     rx: 1;
     rx: 2;
   }
+}
+
+.age-chart-tooltip {
+  position: relative;
+  background: #cdcdcd;
+  padding: 2px 10px;
+  border-radius: 7px;
 }

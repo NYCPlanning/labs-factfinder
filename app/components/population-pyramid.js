@@ -13,9 +13,9 @@ const translation = (x, y) => `translate(${x},${y})`;
 export default HorizontalBar.extend({
   margin: {
     top: 25,
-    right: 24,
+    right: 10,
     bottom: 20,
-    left: 24,
+    left: 10,
     middle: 28,
   },
   height: 286,
@@ -55,29 +55,12 @@ export default HorizontalBar.extend({
       svg.append('text')
         .attr('class', 'label-male');
 
-
       svg.append('text')
         .attr('class', 'label-female');
     }
 
     this.set('svg', svg);
     this.updateChart();
-  },
-
-  handleMouseOver(d) {
-    selectAll(`.bar-label.group${d.group}`)
-      .attr('opacity', 1);
-
-    selectAll(`.bar.group${d.group}`)
-      .attr('stroke-width', 1);
-  },
-
-  handleMouseOut(d) {
-    selectAll('.bar-label')
-      .attr('opacity', 0);
-
-    selectAll(`.bar.group${d.group}`)
-      .attr('stroke-width', 0);
   },
 
   updateChart() {
@@ -94,7 +77,43 @@ export default HorizontalBar.extend({
       max(data, d => d.female + d.femalemoe),
     ]);
 
-    const barLabel = d => `${numeral(d).format('0.0a')} (${numeral(d / totalPop).format('0.0%')})`;
+    const formatLabel = (value) => {
+      if (value < 1000) return parseInt(value, 10);
+      return numeral(value).format('0.0a');
+    };
+
+    const yAxisFormat = (variable) => {
+      if (variable === 'pop0t5') return 'Under 5';
+      if (variable === 'pop85pl') return '85 & Over';
+      const range = variable.split('pop')[1].split('t');
+      return `${range[0]}-${range[1]}`;
+    };
+
+    const toolTip = (d, type) => {
+      const estimate = d[type];
+      const moe = d[`${type}moe`];
+      return `
+        The ${type} population aged ${yAxisFormat(d.group)}
+        is estimated at ${numeral(estimate).format('0,0')} ±${formatLabel(moe)},
+        ${numeral(estimate / totalPop).format('0.0%')} of the total population
+      `;
+    };
+
+    const handleMouseOver = (d, type) => {
+      selectAll('.age-chart-tooltip')
+        .html(toolTip(d, type));
+
+      selectAll(`.bar.${type}.${d.group}`)
+        .classed('highlight', true);
+    };
+
+    const handleMouseOut = (d) => {
+      selectAll('.age-chart-tooltip')
+        .html('Hover over bars for details about each age cohort');
+
+      selectAll(`.bar.${d.group}`)
+        .classed('highlight', false);
+    };
 
     const el = this.$();
     const elWidth = el.width();
@@ -108,13 +127,6 @@ export default HorizontalBar.extend({
     const pointA = regionWidth;
     const pointB = width - regionWidth;
 
-    const yAxisFormat = (variable) => {
-      if (variable === 'pop0t5') return 'Under 5';
-      if (variable === 'pop85pl') return '85 & Over';
-      const range = variable.split('pop')[1].split('t');
-      return `${range[0]}-${range[1]}`;
-    };
-
     svg
       .attr('width', margin.left + width + margin.right)
       .attr('height', margin.top + height + margin.bottom);
@@ -124,7 +136,7 @@ export default HorizontalBar.extend({
 
     const xScale = scaleLinear()
       .domain([0, maxValue])
-      .range([0, regionWidth - margin.right])
+      .range([0, regionWidth])
       .nice();
 
     const xScalePercent = scaleLinear()
@@ -133,7 +145,7 @@ export default HorizontalBar.extend({
       .nice();
 
     const yScale = scaleBand()
-      .domain(data.map(function(d) { return d.group; }))
+      .domain(data.map(d => d.group))
       .range([height, 0], 0.1);
 
     const yAxisLeft = axisRight()
@@ -154,26 +166,20 @@ export default HorizontalBar.extend({
 
     const leftBarGroup = svg.select('.male')
       .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
-      .selectAll('.bar.left')
+      .selectAll('.bar.male')
       .data(data, d => d.group);
 
     const rightBarGroup = svg.select('.female')
       .attr('transform', translation(pointB, 0))
-      .selectAll('.bar.right')
+      .selectAll('.bar.female')
       .data(data, d => d.group);
 
-    const leftMOEs = svg.selectAll('.moe.left')
+    const leftMOEs = svg.select('.male')
+      .selectAll('.moe.left')
       .data(data, d => d.group);
 
     const rightMOEs = svg.select('.female')
       .selectAll('.moe.right')
-      .data(data, d => d.group);
-
-    const leftBarLabels = svg.selectAll('.bar-label.left')
-      .data(data, d => d.group);
-
-    const rightBarLabels = svg.select('.female')
-      .selectAll('.bar-label.right')
       .data(data, d => d.group);
 
     // DRAW AXES
@@ -206,62 +212,59 @@ export default HorizontalBar.extend({
 
     leftBarGroup.enter()
       .append('rect')
-      .attr('class', d => `bar left group${d.group}`)
+      .attr('class', d => `bar male ${d.group}`)
       .attr('x', 0)
-      .attr('y', function(d) { return yScale(d.group); })
+      .attr('y', d => yScale(d.group))
       .attr('height', yScale.step() - 3)
-      .attr('width', function(d) { return xScale(d.male); })
+      .attr('width', d => xScale(d.male))
       .attr('rx', 2)
       .attr('ry', 2)
-      .attr('stroke', '#4f4f4f')
-      .attr('stroke-width', 0)
-      .on('mouseover', this.handleMouseOver)
-      .on('mouseout', this.handleMouseOut);
+      .on('mouseover', (d) => {
+        handleMouseOver(d, 'male');
+      })
+      .on('mouseout', handleMouseOut);
 
     leftBarGroup.transition().duration(300)
-      .attr('y', function(d) { return yScale(d.group); })
-      .attr('width', function(d) { return xScale(d.male); })
+      .attr('width', d => xScale(d.male))
       .attr('height', yScale.step() - 3);
 
     leftBarGroup.exit().remove();
 
     rightBarGroup.enter()
       .append('rect')
-      .attr('class', d => `bar right group${d.group}`)
+      .attr('class', d => `bar female ${d.group}`)
       .attr('x', 0)
-      .attr('y', function(d) { return yScale(d.group); })
-      .attr('width', function(d) { return xScale(d.female); })
+      .attr('y', d => yScale(d.group))
+      .attr('width', d => xScale(d.female))
       .attr('height', yScale.step() - 3)
       .attr('rx', 2)
       .attr('ry', 2)
-      .attr('stroke', '#4f4f4f')
-      .attr('stroke-width', 0)
-      .on('mouseover', this.handleMouseOver)
-      .on('mouseout', this.handleMouseOut);
-
+      .on('mouseover', (d) => {
+        handleMouseOver(d, 'female');
+      })
+      .on('mouseout', handleMouseOut);
 
     rightBarGroup.transition().duration(300)
-      .attr('y', function(d) { return yScale(d.group); })
-      .attr('width', function(d) { return xScale(d.female); })
+      .attr('width', d => xScale(d.female))
       .attr('height', yScale.step() - 3);
 
     rightBarGroup.exit().remove();
 
     leftMOEs.enter()
       .append('rect')
-      .attr('class', d => `moe left group${d.group}`)
-      .attr('x', d => regionWidth - xScale(d.male) - xScale(d.malemoe))
+      .attr('class', d => `moe left ${d.group}`)
+      .attr('x', d => xScale(d.male) - xScale(d.malemoe))
       .attr('y', d => yScale(d.group) + 4)
       .attr('height', 3)
       .attr('width', d => xScale(d.malemoe) * 2);
 
     leftMOEs.transition().duration(300)
-      .attr('x', d => regionWidth - xScale(d.male) - xScale(d.malemoe))
+      .attr('x', d => xScale(d.male) - xScale(d.malemoe))
       .attr('width', d => xScale(d.malemoe) * 2);
 
     rightMOEs.enter()
       .append('rect')
-      .attr('class', d => `moe right group${d.group}`)
+      .attr('class', d => `moe right ${d.group}`)
       .attr('x', d => xScale(d.female) - xScale(d.femalemoe))
       .attr('y', d => yScale(d.group) + 4)
       .attr('height', 3)
@@ -270,35 +273,5 @@ export default HorizontalBar.extend({
     rightMOEs.transition().duration(300)
       .attr('x', d => xScale(d.female) - xScale(d.femalemoe))
       .attr('width', d => xScale(d.femalemoe) * 2);
-
-    leftBarLabels.enter()
-      .append('text')
-      .text(d => barLabel(d.male))
-      .attr('alignment-baseline', 'middle')
-      .attr('opacity', '0')
-      .attr('text-anchor', 'end')
-      .attr('class', d => `bar-label left group${d.group}`)
-      .attr('x', d => regionWidth - xScale(d.male + d.malemoe) - 2)
-      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
-
-    leftBarLabels.transition().duration(300)
-      .attr('x', d => regionWidth - xScale(d.male + d.malemoe) - 2)
-
-    leftBarLabels.exit().remove();
-
-    rightBarLabels.enter()
-      .append('text')
-      .text(d => barLabel(d.female))
-      .attr('alignment-baseline', 'middle')
-      .attr('opacity', 0)
-      .attr('text-anchor', 'start')
-      .attr('class', d => `bar-label right group${d.group}`)
-      .attr('x', d => xScale(d.female + d.femalemoe) + 2)
-      .attr('y', d => yScale(d.group) + (yScale.step() / 2));
-
-    rightBarLabels.transition().duration(300)
-      .attr('x', d => xScale(d.female + d.femalemoe) + 2)
-
-    rightBarLabels.exit().remove();
   },
 });
