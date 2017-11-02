@@ -1,7 +1,11 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
+const { inject } = Ember;
+
 export default Ember.Controller.extend({
+  report: inject.controller('report'),
+
   @computed('model')
   agePopDist(model) {
     const d = model.poppyramid_only;
@@ -29,7 +33,9 @@ export default Ember.Controller.extend({
     const popPyramidData = variables.map(variable => ({
       group: variable,
       male: d[`m${variable}`].sum,
+      malemoe: d[`m${variable}`].m,
       female: d[`f${variable}`].sum,
+      femalemoe: d[`f${variable}`].m,
     }));
 
     return popPyramidData;

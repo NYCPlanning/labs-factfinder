@@ -15,6 +15,11 @@ const { alias } = Ember.computed;
 const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5]; // eslint-disable-line
 
 export default Ember.Controller.extend({
+  queryParams: ['mode'],
+
+  mode: 'standard',
+  checked: true,
+
   selection: service(),
   mapMouseover: service(),
 
@@ -39,12 +44,20 @@ export default Ember.Controller.extend({
 
   selectedFillLayer,
 
+  fitBounds(map) {
+    const FC = this.get('selection').current;
+    map.fitBounds(bbox(FC), {
+      padding: 40,
+    });
+  },
+
   actions: {
     handleMapLoad(map) {
-      const FC = this.get('selection').current;
-      map.fitBounds(bbox(FC), {
-        padding: 40,
-      });
+      this.fitBounds(map);
+    },
+
+    handleResize(e) {
+      this.fitBounds(e.target);
     },
   },
 
