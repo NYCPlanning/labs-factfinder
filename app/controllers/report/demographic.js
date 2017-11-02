@@ -4,7 +4,7 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 export default Ember.Controller.extend({
   @computed('model')
   agePopDist(model) {
-    const d = model.poppyramid_only; console.log(d)
+    const d = model.poppyramid_only;
     const variables = [
       'pop0t5',
       'pop5t9',
