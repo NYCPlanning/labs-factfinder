@@ -23,12 +23,12 @@ const TRACTS_SQL =
   FROM nyc_census_tracts_2010`;
 
 const NTSA_SQL =
-  `SELECT 
-    the_geom, 
-    the_geom_webmercator, 
-    ntaname, 
-    ntacode, 
-    ntacode AS geoid 
+  `SELECT
+    the_geom,
+    the_geom_webmercator,
+    ntaname,
+    ntacode,
+    ntacode AS geoid
   FROM support_admin_ntaboundaries`;
 
 const EMPTY_GEOJSON = config.DEFAULT_SELECTION;
@@ -103,9 +103,11 @@ export default Ember.Service.extend({
           properties,
         });
       } else {
-        selected.features = selected.features.filter(
+        const newFeatures = selected.features.filter(
           selectedFeature => selectedFeature.properties.geoid !== properties.geoid,
         );
+
+        this.set('current.features', newFeatures);
       }
     });
 
