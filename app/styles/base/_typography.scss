@@ -397,6 +397,12 @@ td:not(:first-child) {
   }
 }
 
+.v-divider-before-6 {
+  td:nth-child(6) {
+    border-left: 1px solid $medium-gray;
+  }
+}
+
 .v-divider-before-2 {
   td:nth-child(2) {
     border-left: 1px solid $medium-gray;

@@ -1,1882 +1,3693 @@
 <h1>Demographic Report</h1>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
-{{#if (eq report.mode 'standard')}}
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
+  {{#if (eq report.mode 'standard')}}
 
-<div class="grid-x grid-margin-x large-up-2">
-  <div class="cell">
-    <div class="callout">
-      {{population-pyramid data=agePopDist}}
+  <div class="grid-x grid-margin-x large-up-2">
+    <div class="cell">
+      <div class="callout">
+        {{population-pyramid data=agePopDist}}
+      </div>
     </div>
   </div>
-</div>
 
-<table class="text-small">
-  <thead>
-    <tr>
-      <th class="th-large" colspan="2">Sex and Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Total population</td>
-      <td class="cell-narrow">{{numeral-format model.sex_and_age.pop_1.sum}}</td>
-    </tr>
-    <tr>
-      <td>Male</td>
-      <td>{{numeral-format model.sex_and_age.male.sum}}</td>
-    </tr>
-    <tr>
-      <td>Female</td>
-      <td>{{numeral-format model.sex_and_age.fem.sum}}</td>
-    </tr>
-    <tr class="row-divider"><td colspan="2"></td></tr>
-    <tr>
-      <td>Under 5 years</td>
-      <td>{{numeral-format model.sex_and_age.popu5.sum}}</td>
-    </tr>
-    <tr>
-      <td>5 to 9 years</td>
-      <td>{{numeral-format model.sex_and_age.pop5t9.sum}}</td>
-    </tr>
-    <tr>
-      <td>10 to 14 years</td>
-      <td>{{numeral-format model.sex_and_age.pop10t14.sum}}</td>
-    </tr>
-    <tr>
-      <td>15 to 19 years</td>
-      <td>{{numeral-format model.sex_and_age.pop15t19.sum}}</td>
-    </tr>
-    <tr>
-      <td>20 to 24 years</td>
-      <td>{{numeral-format model.sex_and_age.pop20t24.sum}}</td>
-    </tr>
-    <tr>
-      <td>25 to 29 years</td>
-      <td>{{numeral-format model.sex_and_age.pop25t29.sum}}</td>
-    </tr>
-    <tr>
-      <td>30 to 34 years</td>
-      <td>{{numeral-format model.sex_and_age.pop30t34.sum}}</td>
-    </tr>
-    <tr>
-      <td>35 to 39 years</td>
-      <td>{{numeral-format model.sex_and_age.pop35t39.sum}}</td>
-    </tr>
-    <tr>
-      <td>40 to 44 years</td>
-      <td>{{numeral-format model.sex_and_age.pop40t44.sum}}</td>
-    </tr>
-    <tr>
-      <td>45 to 49 years</td>
-      <td>{{numeral-format model.sex_and_age.pop45t49.sum}}</td>
-    </tr>
-    <tr>
-      <td>50 to 54 years</td>
-      <td>{{numeral-format model.sex_and_age.pop50t54.sum}}</td>
-    </tr>
-    <tr>
-      <td>55 to 59 years</td>
-      <td>{{numeral-format model.sex_and_age.pop55t59.sum}}</td>
-    </tr>
-    <tr>
-      <td>60 to 64 years</td>
-      <td>{{numeral-format model.sex_and_age.pop60t64.sum}}</td>
-    </tr>
-    <tr>
-      <td>65 to 69 years</td>
-      <td>{{numeral-format model.sex_and_age.pop65t69.sum}}</td>
-    </tr>
-    <tr>
-      <td>70 to 74 years</td>
-      <td>{{numeral-format model.sex_and_age.pop70t74.sum}}</td>
-    </tr>
-    <tr>
-      <td>75 to 79 years</td>
-      <td>{{numeral-format model.sex_and_age.pop75t79.sum}}</td>
-    </tr>
-    <tr>
-      <td>80 to 84 years</td>
-      <td>{{numeral-format model.sex_and_age.pop80t84.sum}}</td>
-    </tr>
-    <tr>
-      <td>85 years and over</td>
-      <td>{{numeral-format model.sex_and_age.pop85pl.sum}}</td>
-    </tr>
-    <tr class="row-divider"><td colspan="2"></td></tr>
-    <tr>
-      <td>Under 18 years</td>
-      <td>{{numeral-format model.sex_and_age.popu181.sum}}</td>
-    </tr>
-    <tr>
-      <td>65 years and over</td>
-      <td>{{numeral-format model.sex_and_age.pop65pl1.sum}}</td>
-    </tr>
-    <tr class="row-divider"><td colspan="2"></td></tr>
-    <tr>
-      <td>Median age (years)</td>
-      <td>{{numeral-format model.sex_and_age.mdage.sum}}</td>
-    </tr>
-    <tr class="row-divider"><td colspan="2"></td></tr>
-    <tr class="row-highlight">
-      <td>Under 18 years</td>
-      <td>{{numeral-format model.sex_and_age.popu18_2.sum}}</td>
-    </tr>
-    <tr>
-      <td>Male</td>
-      <td>{{numeral-format model.sex_and_age.popu18m.sum}}</td>
-    </tr>
-    <tr>
-      <td>Female</td>
-      <td>{{numeral-format model.sex_and_age.popu18f.sum}}</td>
-    </tr>
-    <tr class="row-divider"><td colspan="2"></td></tr>
-    <tr class="row-highlight">
-      <td>65 years and over</td>
-      <td>{{numeral-format model.sex_and_age.pop65pl2.sum}}</td>
-    </tr>
-    <tr>
-      <td>Male</td>
-      <td>{{numeral-format model.sex_and_age.pop65plm.sum}}</td>
-    </tr>
-    <tr>
-      <td>Female</td>
-      <td>{{numeral-format model.sex_and_age.pop65plf.sum}}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="text-small v-divider-before-7">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Sex and Age</th>
+        <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+      </tr>
+      <tr>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Number</th>
+        <th class="text-center cell-border-bottom">Pctg. Point</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Total population</td>
+        <td>{{numeral-format model.sex_and_age.pop_1.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Male</td>
+        <td>{{numeral-format model.sex_and_age.male.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Female</td>
+        <td>{{numeral-format model.sex_and_age.fem.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <td>Under 5 years</td>
+        <td>{{numeral-format model.sex_and_age.popu5.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>5 to 9 years</td>
+        <td>{{numeral-format model.sex_and_age.pop5t9.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>10 to 14 years</td>
+        <td>{{numeral-format model.sex_and_age.pop10t14.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>15 to 19 years</td>
+        <td>{{numeral-format model.sex_and_age.pop15t19.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>20 to 24 years</td>
+        <td>{{numeral-format model.sex_and_age.pop20t24.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>25 to 29 years</td>
+        <td>{{numeral-format model.sex_and_age.pop25t29.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>30 to 34 years</td>
+        <td>{{numeral-format model.sex_and_age.pop30t34.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>35 to 39 years</td>
+        <td>{{numeral-format model.sex_and_age.pop35t39.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>40 to 44 years</td>
+        <td>{{numeral-format model.sex_and_age.pop40t44.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>45 to 49 years</td>
+        <td>{{numeral-format model.sex_and_age.pop45t49.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>50 to 54 years</td>
+        <td>{{numeral-format model.sex_and_age.pop50t54.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>55 to 59 years</td>
+        <td>{{numeral-format model.sex_and_age.pop55t59.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>60 to 64 years</td>
+        <td>{{numeral-format model.sex_and_age.pop60t64.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>65 to 69 years</td>
+        <td>{{numeral-format model.sex_and_age.pop65t69.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>70 to 74 years</td>
+        <td>{{numeral-format model.sex_and_age.pop70t74.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>75 to 79 years</td>
+        <td>{{numeral-format model.sex_and_age.pop75t79.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>80 to 84 years</td>
+        <td>{{numeral-format model.sex_and_age.pop80t84.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>85 years and over</td>
+        <td>{{numeral-format model.sex_and_age.pop85pl.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <td>Under 18 years</td>
+        <td>{{numeral-format model.sex_and_age.popu181.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>65 years and over</td>
+        <td>{{numeral-format model.sex_and_age.pop65pl1.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <td>Median age (years)</td>
+        <td>{{numeral-format model.sex_and_age.mdage.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="row-highlight">
+        <td>Under 18 years</td>
+        <td>{{numeral-format model.sex_and_age.popu18_2.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Male</td>
+        <td>{{numeral-format model.sex_and_age.popu18m.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Female</td>
+        <td>{{numeral-format model.sex_and_age.popu18f.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="row-highlight">
+        <td>65 years and over</td>
+        <td>{{numeral-format model.sex_and_age.pop65pl2.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Male</td>
+        <td>{{numeral-format model.sex_and_age.pop65plm.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Female</td>
+        <td>{{numeral-format model.sex_and_age.pop65plf.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
 
-<table class="text-small">
-  <thead>
-    <tr>
-      <th class="th-large" colspan="2">Mutually Exclusive Race/Hispanic Origin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Total population</td>
-      <td class="cell-narrow">{{numeral-format model.mutually_exclusive_race_hispanic_origin.pop_2.sum}}</td>
-    </tr>
-    <tr>
-      <td>Hispanic/Latino (of any race)</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.hsp1.sum}}</td>
-    </tr>
-    <tr>
-      <td>Not Hispanic/Latino</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.nhsp.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">White alone</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.wtnh.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Black or African American alone</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.blnh.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">American Indian and Alaska Native alone</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.aiannh.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Asian alone</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.asnnh.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Native Hawaiian and Other Pacific Islander alone</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.nhpinh.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Some other race alone</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.othnh.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Two or more races</td>
-      <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.rc2plnh.sum}}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="text-small">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Mutually Exclusive Race/Hispanic Origin</th>
+        <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+      </tr>
+      <tr>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Number</th>
+        <th class="text-center cell-border-bottom">Pctg. Point</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Total population</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.pop_2.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Hispanic/Latino (of any race)</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.hsp1.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Not Hispanic/Latino</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.nhsp.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">White alone</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.wtnh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Black or African American alone</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.blnh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">American Indian and Alaska Native alone</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.aiannh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Asian alone</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.asnnh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Native Hawaiian and Other Pacific Islander alone</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.nhpinh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Some other race alone</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.othnh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Two or more races</td>
+        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.rc2plnh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
 
-<table class="text-small">
-  <thead>
-    <tr>
-      <th class="th-large" colspan="2">Hispanic Subgroup</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Hispanic/Latino</td>
-      <td class="cell-narrow">{{numeral-format model.hispanic_subgroup.hsp2.sum}}</td>
-    </tr>
-    <tr>
-      <td>Mexican</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspme.sum}}</td>
-    </tr>
-    <tr>
-      <td>Puerto Rican</td>
-      <td>{{numeral-format model.hispanic_subgroup.hsppr.sum}}</td>
-    </tr>
-    <tr>
-      <td>Cuban</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspcub.sum}}</td>
-    </tr>
-    <tr>
-      <td>Dominican (Dominican Republic)</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspdom.sum}}</td>
-    </tr>
-    <tr>
-      <td>Central American</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspcam.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Costa Rican</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspcr.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Guatemalan</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspguatm.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Honduran</td>
-      <td>{{numeral-format model.hispanic_subgroup.hsphnd.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Nicaraguan</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspnic.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Panamanian</td>
-      <td>{{numeral-format model.hispanic_subgroup.hsppan.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Salvadoran</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspsalv.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Other Central American</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspocam.sum}}</td>
-    </tr>
-    <tr>
-      <td>South American</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspsam.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Argentinean</td>
-      <td>{{numeral-format model.hispanic_subgroup.hsparg.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Bolivian</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspbol.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Chilean</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspchl.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Colombian</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspcol.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Ecuadorian</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspec.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Paraguayan</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspprg.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Peruvian</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspperu.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Uruguayan</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspurg.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Venezuelan</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspvnz.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Other South American</td>
-      <td>{{numeral-format model.hispanic_subgroup.hsposam.sum}}</td>
-    </tr>
-    <tr>
-      <td>Other Hispanic/Latino</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspoth.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Spaniard</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspspnrd.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Spanish</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspspnsh.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Spanish American</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspspam.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">All other Hispanic/Latino</td>
-      <td>{{numeral-format model.hispanic_subgroup.hspalloth.sum}}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="text-small">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Hispanic Subgroup</th>
+        <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+      </tr>
+      <tr>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Number</th>
+        <th class="text-center cell-border-bottom">Pctg. Point</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Hispanic/Latino</td>
+        <td>{{numeral-format model.hispanic_subgroup.hsp2.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Mexican</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspme.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Puerto Rican</td>
+        <td>{{numeral-format model.hispanic_subgroup.hsppr.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Cuban</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspcub.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Dominican (Dominican Republic)</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspdom.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Central American</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspcam.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Costa Rican</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspcr.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Guatemalan</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspguatm.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Honduran</td>
+        <td>{{numeral-format model.hispanic_subgroup.hsphnd.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Nicaraguan</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspnic.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Panamanian</td>
+        <td>{{numeral-format model.hispanic_subgroup.hsppan.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Salvadoran</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspsalv.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Other Central American</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspocam.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>South American</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspsam.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Argentinean</td>
+        <td>{{numeral-format model.hispanic_subgroup.hsparg.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Bolivian</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspbol.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Chilean</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspchl.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Colombian</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspcol.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Ecuadorian</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspec.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Paraguayan</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspprg.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Peruvian</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspperu.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Uruguayan</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspurg.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Venezuelan</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspvnz.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Other South American</td>
+        <td>{{numeral-format model.hispanic_subgroup.hsposam.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Other Hispanic/Latino</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspoth.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Spaniard</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspspnrd.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Spanish</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspspnsh.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Spanish American</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspspam.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">All other Hispanic/Latino</td>
+        <td>{{numeral-format model.hispanic_subgroup.hspalloth.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
 
-<table class="text-small">
-  <thead>
-    <tr>
-      <th class="th-large" colspan="2">Asian Subgroup</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Asian Alone</td>
-      <td class="cell-narrow">{{numeral-format model.asian_subgroup.asn1rc.sum}}</td>
-    </tr>
-    <tr>
-      <td>East Asian</td>
-      <td>{{numeral-format model.asian_subgroup.asneast.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Chinese, except Taiwanese</td>
-      <td>{{numeral-format model.asian_subgroup.asnchinot.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Japanese</td>
-      <td>{{numeral-format model.asian_subgroup.asnjpn.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Korean</td>
-      <td>{{numeral-format model.asian_subgroup.asnkor.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Mongolian</td>
-      <td>{{numeral-format model.asian_subgroup.asnmgol.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Okinawan</td>
-      <td>{{numeral-format model.asian_subgroup.asnokinw.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Taiwanese</td>
-      <td>{{numeral-format model.asian_subgroup.asntwn.sum}}</td>
-    </tr>
-    <tr>
-      <td>South Asian</td>
-      <td>{{numeral-format model.asian_subgroup.asnsouth.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Asian Indian</td>
-      <td>{{numeral-format model.asian_subgroup.asnind.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Bangladeshi</td>
-      <td>{{numeral-format model.asian_subgroup.asnbng.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Bhutanese</td>
-      <td>{{numeral-format model.asian_subgroup.asnbhutn.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Nepalese</td>
-      <td>{{numeral-format model.asian_subgroup.asnnepal.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Pakistani</td>
-      <td>{{numeral-format model.asian_subgroup.asnpak.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Sri Lankan</td>
-      <td>{{numeral-format model.asian_subgroup.asnsril.sum}}</td>
-    </tr>
-    <tr>
-      <td>Southeast Asian</td>
-      <td>{{numeral-format model.asian_subgroup.asnseast.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Burmese</td>
-      <td>{{numeral-format model.asian_subgroup.asnburm.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Cambodian</td>
-      <td>{{numeral-format model.asian_subgroup.asncmb.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Filipino</td>
-      <td>{{numeral-format model.asian_subgroup.asnflp.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Hmong</td>
-      <td>{{numeral-format model.asian_subgroup.asnhmng.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Indonesian</td>
-      <td>{{numeral-format model.asian_subgroup.asnindnsn.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Laotian</td>
-      <td>{{numeral-format model.asian_subgroup.asnlao.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Malaysian</td>
-      <td>{{numeral-format model.asian_subgroup.asnmalsn.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Thai</td>
-      <td>{{numeral-format model.asian_subgroup.asnthai.sum}}</td>
-    </tr>
-    <tr>
-      <td class="indented">Vietnamese</td>
-      <td>{{numeral-format model.asian_subgroup.asnvtn.sum}}</td>
-    </tr>
-    <tr>
-      <td>Other Asian</td>
-      <td>{{numeral-format model.asian_subgroup.asnoasn.sum}}</td>
-    </tr>
-    <tr>
-      <td>Two or more Asian</td>
-      <td>{{numeral-format model.asian_subgroup.asn2pl.sum}}</td>
-    </tr>
-  </tbody>
-</table>
-
-{{/if}}
-
-{{#if (eq report.mode 'change')}}
-
-<table class="text-small v-divider-before-2 v-divider-before-7">
-  <thead>
-    <tr>
-      <th class="th-large" rowspan="3">Sex and Age</th>
-      <th class="text-center cell-border-bottom" colspan="5">2006-2010</th>
-      <th class="text-center cell-border-bottom" colspan="5">2011-2015</th>
-    </tr>
-    <tr>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-    </tr>
-    <tr>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Total population</td>
-      <td>{{Pop_1}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Male</td>
-      <td>{{Male}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Female</td>
-      <td>{{Fem}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="row-divider">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Under 5 years</td>
-      <td>{{PopU5}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>5 to 9 years</td>
-      <td>{{Pop5t9}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>10 to 14 years</td>
-      <td>{{Pop10t14}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>15 to 19 years</td>
-      <td>{{Pop15t19}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>20 to 24 years</td>
-      <td>{{Pop20t24}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>25 to 29 years</td>
-      <td>{{Pop25t29}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>30 to 34 years</td>
-      <td>{{Pop30t34}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>35 to 39 years</td>
-      <td>{{Pop35t39}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>40 to 44 years</td>
-      <td>{{Pop40t44}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>45 to 49 years</td>
-      <td>{{Pop45t49}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>50 to 54 years</td>
-      <td>{{Pop50t54}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>55 to 59 years</td>
-      <td>{{Pop55t59}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>60 to 64 years</td>
-      <td>{{Pop60t64}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>65 to 69 years</td>
-      <td>{{Pop65t69}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>70 to 74 years</td>
-      <td>{{Pop70t74}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>75 to 79 years</td>
-      <td>{{Pop75t79}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>80 to 84 years</td>
-      <td>{{Pop80t84}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>85 years and over</td>
-      <td>{{Pop85pl}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="row-divider">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Under 18 years</td>
-      <td>{{PopU181}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>65 years and over</td>
-      <td>{{Pop65pl1}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="row-divider">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Median age (years)</td>
-      <td>{{MdAge}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="row-divider">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr class="row-highlight">
-      <td>Under 18 years</td>
-      <td>{{PopU18_2}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Male</td>
-      <td>{{PopU18M}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Female</td>
-      <td>{{PopU18F}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="row-divider">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr class="row-highlight">
-      <td>65 years and over</td>
-      <td>{{Pop65pl2}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Male</td>
-      <td>{{Pop65plM}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Female</td>
-      <td>{{Pop65plF}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="text-small v-divider-before-2 v-divider-before-7">
-  <thead>
-    <tr>
-      <th class="th-large" rowspan="3">Mutually Exclusive Race/Hispanic Origin</th>
-      <th class="text-center cell-border-bottom" colspan="5">2006-2010</th>
-      <th class="text-center cell-border-bottom" colspan="5">2011-2015</th>
-    </tr>
-    <tr>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-    </tr>
-    <tr>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Total population</td>
-      <td>{{Pop_2}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Hispanic/Latino (of any race)</td>
-      <td>{{Hsp1}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Not Hispanic/Latino</td>
-      <td>{{NHsp}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">White alone</td>
-      <td>{{WtNH}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Black or African American alone</td>
-      <td>{{BlNH}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">American Indian and Alaska Native alone</td>
-      <td>{{AIANNH}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Asian alone</td>
-      <td>{{AsnNH}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Native Hawaiian and Other Pacific Islander alone</td>
-      <td>{{NHPINH}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Some other race alone</td>
-      <td>{{OthNH}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Two or more races</td>
-      <td>{{Rc2plNH}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="text-small v-divider-before-2 v-divider-before-7">
-  <thead>
-    <tr>
-      <th class="th-large" rowspan="3">Hispanic Subgroup</th>
-      <th class="text-center cell-border-bottom" colspan="5">2006-2010</th>
-      <th class="text-center cell-border-bottom" colspan="5">2011-2015</th>
-    </tr>
-    <tr>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-    </tr>
-    <tr>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Hispanic/Latino</td>
-      <td>{{Hsp2}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Mexican</td>
-      <td>{{HspMe}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Puerto Rican</td>
-      <td>{{HspPR}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Cuban</td>
-      <td>{{HspCub}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Dominican (Dominican Republic)</td>
-      <td>{{HspDom}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Central American</td>
-      <td>{{HspCAm}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Costa Rican</td>
-      <td>{{HspCR}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Guatemalan</td>
-      <td>{{HspGuatm}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Honduran</td>
-      <td>{{HspHnd}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Nicaraguan</td>
-      <td>{{HspNic}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Panamanian</td>
-      <td>{{HspPan}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Salvadoran</td>
-      <td>{{HspSalv}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Other Central American</td>
-      <td>{{HspOCAm}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>South American</td>
-      <td>{{HspSAm}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Argentinean</td>
-      <td>{{HspArg}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Bolivian</td>
-      <td>{{HspBol}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Chilean</td>
-      <td>{{HspChl}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Colombian</td>
-      <td>{{HspCol}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Ecuadorian</td>
-      <td>{{HspEc}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Paraguayan</td>
-      <td>{{HspPrg}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Peruvian</td>
-      <td>{{HspPeru}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Uruguayan</td>
-      <td>{{HspUrg}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Venezuelan</td>
-      <td>{{HspVnz}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Other South American</td>
-      <td>{{HspOSAm}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Other Hispanic/Latino</td>
-      <td>{{HspOth}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Spaniard</td>
-      <td>{{HspSpnrd}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Spanish</td>
-      <td>{{HspSpnsh}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Spanish American</td>
-      <td>{{HspSpAm}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">All other Hispanic/Latino</td>
-      <td>{{HspAllOth}}</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="text-small v-divider-before-2 v-divider-before-7">
-  <thead>
-    <tr>
-      <th class="th-large" rowspan="3">Asian Subgroup</th>
-      <th class="text-center cell-border-bottom" colspan="5">2006-2010</th>
-      <th class="text-center cell-border-bottom" colspan="5">2011-2015</th>
-    </tr>
-    <tr>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-      <th class="text-center cell-border-bottom" colspan="3">Number</th>
-      <th class="text-center cell-border-bottom" colspan="2">Percent</th>
-    </tr>
-    <tr>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-      <th>CV*</th>
-      <th>Estimate</th>
-      <th>MOE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-highlight">
-      <td>Asian Alone</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>East Asian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Chinese, except Taiwanese</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Japanese</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Korean</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Mongolian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Okinawan</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Taiwanese</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>South Asian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Asian Indian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Bangladeshi</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Bhutanese</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Nepalese</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Pakistani</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Sri Lankan</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Southeast Asian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Burmese</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Cambodian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Filipino</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Hmong</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Indonesian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Laotian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Malaysian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Thai</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="indented">Vietnamese</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Other Asian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Two or more Asian</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>n/a</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="text-small">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Asian Subgroup</th>
+        <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="3" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+      </tr>
+      <tr>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-center cell-border-bottom">Number</th>
+        <th class="text-center cell-border-bottom">Pctg. Point</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Asian Alone</td>
+        <td>{{numeral-format model.asian_subgroup.asn1rc.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>East Asian</td>
+        <td>{{numeral-format model.asian_subgroup.asneast.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Chinese, except Taiwanese</td>
+        <td>{{numeral-format model.asian_subgroup.asnchinot.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Japanese</td>
+        <td>{{numeral-format model.asian_subgroup.asnjpn.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Korean</td>
+        <td>{{numeral-format model.asian_subgroup.asnkor.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Mongolian</td>
+        <td>{{numeral-format model.asian_subgroup.asnmgol.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Okinawan</td>
+        <td>{{numeral-format model.asian_subgroup.asnokinw.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Taiwanese</td>
+        <td>{{numeral-format model.asian_subgroup.asntwn.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>South Asian</td>
+        <td>{{numeral-format model.asian_subgroup.asnsouth.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Asian Indian</td>
+        <td>{{numeral-format model.asian_subgroup.asnind.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Bangladeshi</td>
+        <td>{{numeral-format model.asian_subgroup.asnbng.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Bhutanese</td>
+        <td>{{numeral-format model.asian_subgroup.asnbhutn.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Nepalese</td>
+        <td>{{numeral-format model.asian_subgroup.asnnepal.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Pakistani</td>
+        <td>{{numeral-format model.asian_subgroup.asnpak.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Sri Lankan</td>
+        <td>{{numeral-format model.asian_subgroup.asnsril.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Southeast Asian</td>
+        <td>{{numeral-format model.asian_subgroup.asnseast.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Burmese</td>
+        <td>{{numeral-format model.asian_subgroup.asnburm.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Cambodian</td>
+        <td>{{numeral-format model.asian_subgroup.asncmb.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Filipino</td>
+        <td>{{numeral-format model.asian_subgroup.asnflp.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Hmong</td>
+        <td>{{numeral-format model.asian_subgroup.asnhmng.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Indonesian</td>
+        <td>{{numeral-format model.asian_subgroup.asnindnsn.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Laotian</td>
+        <td>{{numeral-format model.asian_subgroup.asnlao.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Malaysian</td>
+        <td>{{numeral-format model.asian_subgroup.asnmalsn.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Thai</td>
+        <td>{{numeral-format model.asian_subgroup.asnthai.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Vietnamese</td>
+        <td>{{numeral-format model.asian_subgroup.asnvtn.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Other Asian</td>
+        <td>{{numeral-format model.asian_subgroup.asnoasn.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Two or more Asian</td>
+        <td>{{numeral-format model.asian_subgroup.asn2pl.sum}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
 
   {{/if}}
+
+  {{#if (eq report.mode 'change')}}
+
+  <table class="text-small v-divider-before-2 v-divider-before-6">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Sex and Age</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2006-2010</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2011-2015</th>
+        <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
+      </tr>
+      <tr>
+        <th colspan="4" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percentage Point</th>
+      </tr>
+      <tr>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Total population</td>
+        <td>{{Pop_1}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Male</td>
+        <td>{{Male}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Female</td>
+        <td>{{Fem}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Under 5 years</td>
+        <td>{{PopU5}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>5 to 9 years</td>
+        <td>{{Pop5t9}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>10 to 14 years</td>
+        <td>{{Pop10t14}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>15 to 19 years</td>
+        <td>{{Pop15t19}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>20 to 24 years</td>
+        <td>{{Pop20t24}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>25 to 29 years</td>
+        <td>{{Pop25t29}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>30 to 34 years</td>
+        <td>{{Pop30t34}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>35 to 39 years</td>
+        <td>{{Pop35t39}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>40 to 44 years</td>
+        <td>{{Pop40t44}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>45 to 49 years</td>
+        <td>{{Pop45t49}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>50 to 54 years</td>
+        <td>{{Pop50t54}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>55 to 59 years</td>
+        <td>{{Pop55t59}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>60 to 64 years</td>
+        <td>{{Pop60t64}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>65 to 69 years</td>
+        <td>{{Pop65t69}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>70 to 74 years</td>
+        <td>{{Pop70t74}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>75 to 79 years</td>
+        <td>{{Pop75t79}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>80 to 84 years</td>
+        <td>{{Pop80t84}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>85 years and over</td>
+        <td>{{Pop85pl}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Under 18 years</td>
+        <td>{{PopU181}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>65 years and over</td>
+        <td>{{Pop65pl1}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Median age (years)</td>
+        <td>{{MdAge}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="row-highlight">
+        <td>Under 18 years</td>
+        <td>{{PopU18_2}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Male</td>
+        <td>{{PopU18M}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Female</td>
+        <td>{{PopU18F}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr class="row-divider">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="row-highlight">
+        <td>65 years and over</td>
+        <td>{{Pop65pl2}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Male</td>
+        <td>{{Pop65plM}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Female</td>
+        <td>{{Pop65plF}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="text-small v-divider-before-2 v-divider-before-6">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Mutually Exclusive Race/Hispanic Origin</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2006-2010</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2011-2015</th>
+        <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
+      </tr>
+      <tr>
+        <th colspan="4" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percentage Point</th>
+      </tr>
+      <tr>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Total population</td>
+        <td>{{Pop_2}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Hispanic/Latino (of any race)</td>
+        <td>{{Hsp1}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Not Hispanic/Latino</td>
+        <td>{{NHsp}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">White alone</td>
+        <td>{{WtNH}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Black or African American alone</td>
+        <td>{{BlNH}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">American Indian and Alaska Native alone</td>
+        <td>{{AIANNH}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Asian alone</td>
+        <td>{{AsnNH}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Native Hawaiian and Other Pacific Islander alone</td>
+        <td>{{NHPINH}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Some other race alone</td>
+        <td>{{OthNH}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Two or more races</td>
+        <td>{{Rc2plNH}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="text-small v-divider-before-2 v-divider-before-6">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Hispanic Subgroup</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2006-2010</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2011-2015</th>
+        <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
+      </tr>
+      <tr>
+        <th colspan="4" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percentage Point</th>
+      </tr>
+      <tr>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Hispanic/Latino</td>
+        <td>{{Hsp2}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Mexican</td>
+        <td>{{HspMe}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Puerto Rican</td>
+        <td>{{HspPR}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Cuban</td>
+        <td>{{HspCub}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Dominican (Dominican Republic)</td>
+        <td>{{HspDom}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Central American</td>
+        <td>{{HspCAm}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Costa Rican</td>
+        <td>{{HspCR}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Guatemalan</td>
+        <td>{{HspGuatm}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Honduran</td>
+        <td>{{HspHnd}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Nicaraguan</td>
+        <td>{{HspNic}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Panamanian</td>
+        <td>{{HspPan}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Salvadoran</td>
+        <td>{{HspSalv}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Other Central American</td>
+        <td>{{HspOCAm}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>South American</td>
+        <td>{{HspSAm}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Argentinean</td>
+        <td>{{HspArg}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Bolivian</td>
+        <td>{{HspBol}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Chilean</td>
+        <td>{{HspChl}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Colombian</td>
+        <td>{{HspCol}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Ecuadorian</td>
+        <td>{{HspEc}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Paraguayan</td>
+        <td>{{HspPrg}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Peruvian</td>
+        <td>{{HspPeru}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Uruguayan</td>
+        <td>{{HspUrg}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Venezuelan</td>
+        <td>{{HspVnz}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Other South American</td>
+        <td>{{HspOSAm}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Other Hispanic/Latino</td>
+        <td>{{HspOth}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Spaniard</td>
+        <td>{{HspSpnrd}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Spanish</td>
+        <td>{{HspSpnsh}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">Spanish American</td>
+        <td>{{HspSpAm}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="indented">All other Hispanic/Latino</td>
+        <td>{{HspAllOth}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="text-small v-divider-before-2 v-divider-before-6">
+    <thead>
+      <tr>
+        <th class="th-large" rowspan="4">Asian Subgroup</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2006-2010</th>
+        <th colspan="2" rowspan="3" class="text-center cell-border-bottom">2011-2015</th>
+        <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
+      </tr>
+      <tr>
+        <th colspan="4" class="text-center cell-border-bottom">Selected Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="4" class="text-center cell-border-bottom">Difference</th>
+      </tr>
+      <tr>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+        <th colspan="2" class="text-center cell-border-bottom">Number</th>
+        <th colspan="2" class="text-center cell-border-bottom">Percentage Point</th>
+      </tr>
+      <tr>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Number</th>
+        <th>Percent</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+        <th>Estimate</th>
+        <th>MOE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight">
+        <td>Asian Alone</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>East Asian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Chinese, except Taiwanese</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Japanese</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Korean</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Mongolian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Okinawan</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Taiwanese</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>South Asian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Asian Indian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Bangladeshi</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Bhutanese</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Nepalese</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Pakistani</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Sri Lankan</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Southeast Asian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Burmese</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Cambodian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Filipino</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Hmong</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Indonesian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Laotian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Malaysian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Thai</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td class="indented">Vietnamese</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Other Asian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Two or more Asian</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+    </tbody>
+  </table>
+
+  {{/if}}
+
 
   {{outlet}}
