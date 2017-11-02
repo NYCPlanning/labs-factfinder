@@ -13,34 +13,36 @@ const preserveType = function(array) {
 const aggregateGeos = function(ids, year = 'Y2011-2015') {
   const cleaned = preserveType(ids);
 
-  return `SELECT
-            SUM(e),
-            SQRT(
-              SUM(
-                POWER(m, 2)
-              )
-            ) AS m,
-            variable,
-            variable || 'E' as variablename
-          FROM
-            support_fact_finder
-          WHERE geoid IN (${cleaned})
-            AND year = '${year}'
-          GROUP BY variable`;
+  return `
+    SELECT
+      SUM(e),
+      SQRT(
+        SUM(
+          POWER(m, 2)
+        )
+      ) AS m,
+      variable,
+      variable || 'E' as variablename
+    FROM
+      support_fact_finder
+    WHERE geoid IN (${cleaned})
+      AND year = '${year}'
+    GROUP BY variable`;
 };
 
 const generateSelectionSQL = function(...args) {
-  return `SELECT
-            regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable,
-            regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
-            regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') as category,
-            type,
-            sum,
-            m
-          FROM
-            (${aggregateGeos(...args)}) support_fact_finder
-          INNER JOIN support_fact_finder_meta
-          ON support_fact_finder_meta.variablename = support_fact_finder.variablename`;
+  return `
+    SELECT
+      regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable,
+      regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
+      regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') as category,
+      type,
+      sum,
+      m
+    FROM
+      (${aggregateGeos(...args)}) support_fact_finder
+    INNER JOIN support_fact_finder_meta
+    ON support_fact_finder_meta.variablename = support_fact_finder.variablename`;
 };
 
 const generateLongitudinalSQL = function(t1, t2) {
