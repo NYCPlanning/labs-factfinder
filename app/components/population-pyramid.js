@@ -24,14 +24,12 @@ export default HorizontalBar.extend({
     let svg = this.get('svg');
     const margin = this.get('margin');
     const el = this.$();
-    const elWidth = el.width();
     const height = this.get('height') - margin.top - margin.bottom;
-    const width = elWidth - margin.left - margin.right;
 
     if (!svg) {
       svg = select(el.get(0)).append('svg')
         .attr('class', 'age-chart')
-        .attr('width', margin.left + width + margin.right)
+        .attr('width', '100%')
         .attr('height', margin.top + height + margin.bottom)
         .append('g')
         .attr('class', 'padding-group')
