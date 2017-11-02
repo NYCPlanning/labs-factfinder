@@ -122,6 +122,11 @@ body {
   }
 }
 
+.report-content > .cell,
+.report-sidebar {
+  padding: 0 rem-calc(20);
+}
+
 .overflow-y-grid {
 
   @include breakpoint(large) {
