@@ -12,5 +12,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{population-pyramid}}`);
 
-  assert.equal(this.$().text().trim(), 'Male | 0Female | 0');
+  assert.equal(this.$().text().split('\n')[1], '  Hover over bars for details about each age cohort');
 });
