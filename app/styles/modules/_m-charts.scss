@@ -1,0 +1,55 @@
+// --------------------------------------------------
+// Module: Charts
+// --------------------------------------------------
+
+.age-chart {
+  .bar:hover {
+    cursor: pointer;
+  }
+
+  .bar.male {
+    fill: #FFBF00;
+
+    &.highlight {
+      fill: #EFAF00;
+    }
+  }
+
+  .bar.female {
+    fill: #78D271;
+
+    &.highlight {
+      fill: #68C261;
+    }
+  }
+
+  .axis line, .axis path {
+    stroke-width: 0;
+  }
+
+  .bar-label {
+    font-size: 0.6rem;
+    transition: opacity 0.1s linear;
+  }
+
+  .moe {
+    fill: rgba(144, 144, 144, 0.5);
+    rx: 1;
+    rx: 2;
+  }
+}
+
+.age-chart-tooltip {
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 42px;
+  padding: rem-calc(8);
+  background: $light-gray;
+  color: $black;
+  text-align: center;
+  font-size: rem-calc(12);
+  line-height: 1.2;
+}

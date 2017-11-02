@@ -14,11 +14,11 @@ export default HorizontalBar.extend({
   margin: {
     top: 25,
     right: 10,
-    bottom: 20,
+    bottom: 50,
     left: 10,
     middle: 28,
   },
-  height: 286,
+  height: 316,
 
   createChart: function createChart() {
     let svg = this.get('svg');
