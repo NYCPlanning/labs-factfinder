@@ -14,11 +14,11 @@ export default HorizontalBar.extend({
   margin: {
     top: 25,
     right: 10,
-    bottom: 20,
+    bottom: 50,
     left: 10,
     middle: 28,
   },
-  height: 286,
+  height: 316,
 
   createChart: function createChart() {
     let svg = this.get('svg');
@@ -97,7 +97,10 @@ export default HorizontalBar.extend({
       `;
     };
 
+    let timer;
+
     const handleMouseOver = (d, type) => {
+      clearTimeout(timer);
       selectAll('.age-chart-tooltip')
         .html(toolTip(d, type));
 
@@ -106,11 +109,12 @@ export default HorizontalBar.extend({
     };
 
     const handleMouseOut = (d) => {
-      selectAll('.age-chart-tooltip')
-        .html('Hover over bars for details about each age cohort');
-
       selectAll(`.bar.${d.group}`)
         .classed('highlight', false);
+      timer = setTimeout(() => {
+        selectAll('.age-chart-tooltip')
+          .html('Hover over bars for details about each age cohort');
+      }, 400);
     };
 
     const el = this.$();

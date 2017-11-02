@@ -81,7 +81,7 @@ export default {
           },
         },
         layout: {
-          'text-field': '{ctlabel}',
+          'text-field': '{geolabel}',
           'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
           'text-size': {
             stops: [
