@@ -18,17 +18,19 @@ const TRACTS_SQL =
   `SELECT
     the_geom,
     ct2010,
+    ctlabel as geolabel,
     ntacode,
     boroct2010,
     boroct2010 AS geoid
   FROM nyc_census_tracts_2010`;
 
-const NTSA_SQL =
+const NTA_SQL =
   `SELECT
     the_geom,
     the_geom_webmercator,
     ntaname,
     ntacode,
+    ntacode as geolabel,
     ntacode AS geoid
   FROM support_admin_ntaboundaries`;
 
@@ -41,7 +43,7 @@ const SUMMARY_LEVELS = ['blocks', 'tracts', 'ntas', 'pumas'];
 const SUM_LEVEL_DICT = {
   blocks: { sql: BLOCKS_SQL, tracts: 'boroct2010' },
   tracts: { sql: TRACTS_SQL, ntas: 'ntacode', blocks: 'boroct2010' },
-  ntas: { sql: NTSA_SQL, tracts: 'ntacode' },
+  ntas: { sql: NTA_SQL, tracts: 'ntacode' },
   pumas: 'something_else',
 };
 
@@ -51,7 +53,7 @@ const findUniqueBy = function(collection, id) {
     .mapBy(`properties.${id}`);
 };
 
-export { SUMMARY_LEVELS, BLOCKS_SQL, TRACTS_SQL, NTSA_SQL };
+export { SUMMARY_LEVELS, BLOCKS_SQL, TRACTS_SQL, NTA_SQL };
 
 export default Ember.Service.extend({
   current: DEFAULT_SELECTION,
@@ -65,11 +67,26 @@ export default Ember.Service.extend({
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
-
     this.set('summaryLevel', toLevel);
+
+    // sigh...
+    if (
+      (toLevel === 'pumas' && fromLevel === 'ntas')
+      || (toLevel === 'pumas' && fromLevel === 'tracts')
+      || (toLevel === 'ntas' && fromLevel === 'pumas')
+      || (toLevel === 'blocks' && fromLevel === 'ntas')
+      || (toLevel === 'blocks' && fromLevel === 'pumas')
+      || (toLevel === 'ntas' && fromLevel === 'blocks')
+      || (toLevel === 'pumas' && fromLevel === 'blocks')
+    ) {
+      this.clearSelection();
+      return;
+    }
 
     if (this.get('selectedCount')) {
       this.explode(fromLevel, toLevel);
+    } else {
+      this.clearSelection();
     }
   },
 

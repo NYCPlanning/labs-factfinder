@@ -62,7 +62,7 @@
   "dependencies": {
     "@turf/bbox": "^5.0.0",
     "babel-eslint": "^8.0.1",
-    "ember-jane-maps": "0.0.4",
+    "ember-jane-maps": "0.0.5",
     "numeral": "^2.0.6"
   }
 }
