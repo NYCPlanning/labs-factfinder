@@ -3,8 +3,11 @@
 // --------------------------------------------------
 
 .spinner {
-  color: $dark-gray;
-  margin: 100px auto 0;
+  position: fixed;
+  z-index: 9999;
+  top: 50vh;
+  left: 50vw;
+  height: 18px;
   width: 70px;
   text-align: center;
 }
