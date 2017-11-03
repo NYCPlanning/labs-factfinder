@@ -397,6 +397,11 @@ button {
 //
 // Tables
 // --------------------------------------------------
+table,
+.table-scroll {
+  clear: both;
+}
+
 td:not(:first-child) {
   text-align: right;
 }
