@@ -1,3 +1,4 @@
+{{log model}}
 <h1>Demographic Report</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
 
@@ -543,51 +544,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="row-highlight">
-        <td>Total population</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.pop_2.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Hispanic/Latino (of any race)</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.hsp1.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Not Hispanic/Latino</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.nhsp.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+      {{demographic-table-row title='Total population' classNames="row-highlight" data=model.mutually_exclusive_race_hispanic_origin.pop_2}}
+
+      {{demographic-table-row title="Hispanic/Latino (of any race)" data=model.mutually_exclusive_race_hispanic_origin.hsp1}}
+
+      {{demographic-table-row title="Not Hispanic/Latino" data=model.mutually_exclusive_race_hispanic_origin.nhsp}}
+
       <tr>
         <td class="indented">White alone</td>
         <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.wtnh.sum}}</td>

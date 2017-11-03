@@ -431,7 +431,7 @@ th:first-child {
   }
 }
 
-.indented {
+.row-indent td:first-child {
   padding-left: rem-calc(21);
 
   &-x2 {

@@ -1,0 +1,14 @@
+  <td>{{title}}</td>
+  <td>{{numeral-format data.sum}}</td>
+  <td>{{numeral-format data.m}}</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>{{numeral-format data.comparison_sum}}</td>
+  <td>{{numeral-format data.comparison_m}}</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>{{numeral-format (abs (sub data.comparison_sum data.sum))}}</td>
+  <td>{{numeral-format (div (max data.comparison_sum data.sum) (abs (sub data.comparison_sum data.sum))) '0.0%'}}</td>
+{{yield}}
