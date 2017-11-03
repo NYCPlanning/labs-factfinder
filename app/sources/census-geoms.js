@@ -11,7 +11,7 @@ export default {
           ctlabel as geolabel,
           boroct2010,
           ntacode,
-          boroct2010 AS geoid 
+          boroct2010 AS geoid
         FROM nyc_census_tracts_2010
       `,
     },

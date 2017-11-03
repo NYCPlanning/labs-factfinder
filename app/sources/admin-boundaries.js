@@ -19,7 +19,7 @@ export default {
 
     {
       id: 'nyc-pumas',
-      sql: 'SELECT the_geom_webmercator, puma, puma AS geoid FROM nyc_puma',
+      sql: 'SELECT the_geom_webmercator, puma AS geolabel, puma AS geoid FROM nyc_puma',
     },
 
     {
