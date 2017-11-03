@@ -92,9 +92,9 @@ export default Ember.Route.extend({
                             FROM support_fact_finder
                             WHERE geoid = '${comparator}'`;
 
-    return carto.SQL(longitudinalSQL)
+    return carto.SQL(longitudinalSQL, 'json', 'post')
       .then(nestedData =>
-        carto.SQL(geographicComparisonSQL)
+        carto.SQL(geographicComparisonSQL, 'json', 'post')
           .then(final => merge(final, nestedData)),
       )
       .then(data => nestReport(data));

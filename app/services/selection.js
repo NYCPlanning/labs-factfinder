@@ -10,7 +10,8 @@ const BLOCKS_SQL =
       ct2010,
       borocode || ct2010 AS boroct2010,
       bctcb2010,
-      bctcb2010 AS geoid
+      bctcb2010 AS geoid,
+      (ct2010::float / 100)::text || ' - ' || cb2010 as geolabel
     FROM nyc_census_blocks_2010`;
 
 const TRACTS_SQL =
