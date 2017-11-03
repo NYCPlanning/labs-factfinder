@@ -3,25 +3,26 @@
 
 {{#if (eq report.mode 'current')}}
 
-  <div class="grid-x grid-margin-x large-up-2">
-    <div class="cell">
-      <div class="callout">
-        {{population-pyramid data=agePopDist}}
-      </div>
+<div class="grid-x grid-margin-x large-up-2">
+  <div class="cell">
+    <div class="callout">
+      {{population-pyramid data=agePopDist}}
     </div>
   </div>
+</div>
 
-  <ul class="menu report-extras float-right">
-    <li><a>
-      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
-      Reliability Data
-    </a></li>
-    <li><a>
-      <span class="medium-gray">{{fa-icon 'square-o'}}</span>
-      Comparison
-    </a></li>
-  </ul>
+<ul class="menu report-extras float-right">
+  <li><a>
+    <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+    Reliability Data
+  </a></li>
+  <li><a>
+    <span class="medium-gray">{{fa-icon 'square-o'}}</span>
+    Comparison
+  </a></li>
+</ul>
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
@@ -509,7 +510,9 @@
       </tr>
     </tbody>
   </table>
+</div>
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
@@ -692,7 +695,9 @@
       </tr>
     </tbody>
   </table>
+</div>
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
@@ -1160,7 +1165,9 @@
       </tr>
     </tbody>
   </table>
+</div>
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
@@ -1598,11 +1605,13 @@
       </tr>
     </tbody>
   </table>
+</div>
 
-  {{/if}}
+{{/if}}
 
-  {{#if (eq report.mode 'change')}}
+{{#if (eq report.mode 'change')}}
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-2 v-divider-before-6 v-divider-before-10 v-divider-before-14">
     <thead>
       <tr>
@@ -2311,7 +2320,9 @@
       </tr>
     </tbody>
   </table>
+</div>
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-2 v-divider-before-6 v-divider-before-10 v-divider-before-14">
     <thead>
       <tr>
@@ -2545,7 +2556,9 @@
       </tr>
     </tbody>
   </table>
+</div>
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-2 v-divider-before-6 v-divider-before-10 v-divider-before-14">
     <thead>
       <tr>
@@ -3140,7 +3153,9 @@
       </tr>
     </tbody>
   </table>
+</div>
 
+<div class="table-scroll">
   <table class="text-small v-divider-before-2 v-divider-before-6 v-divider-before-10 v-divider-before-14">
     <thead>
       <tr>
@@ -3697,10 +3712,8 @@
       </tr>
     </tbody>
   </table>
+</div>
 
-{{/if}}
-
-{{#if (eq report.mode 'compare')}}
 {{/if}}
 
 {{outlet}}

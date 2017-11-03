@@ -401,6 +401,10 @@ td:not(:first-child) {
   text-align: right;
 }
 
+td:first-child {
+  width: rem-calc(160);
+}
+
 .th-large {
   font-size: 1.2em;
 }
