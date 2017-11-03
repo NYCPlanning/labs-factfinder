@@ -60,22 +60,8 @@
 
         <div class="report-menus">
           <ul class="menu report-mode">
-            <li><a {{action (mut mode) 'current'}}>
-              {{#if (eq mode 'current')}}
-                <span class="dcp-orange">{{fa-icon 'circle'}}</span>
-              {{else}}
-                <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
-              {{/if}}
-              Current
-            </a></li>
-            <li><a {{action (mut mode) 'change'}}>
-              {{#if (eq mode 'change')}}
-              <span class="dcp-orange">{{fa-icon 'circle'}}</span>
-              {{else}}
-              <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
-              {{/if}}
-              Change <span class="show-for-xlarge">Over Time</span>
-            </a></li>
+            <li class="{{if (eq mode 'current') 'active'}}"><a {{action (mut mode) 'current'}}>Current</a></li>
+            <li class="{{if (eq mode 'change') 'active'}}"><a {{action (mut mode) 'change'}}>Change <span class="show-for-xlarge">Over Time</span></a></li>
           </ul>
 
           <ul class="menu tabs vertical medium-horizontal expanded- text-center">
