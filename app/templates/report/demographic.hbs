@@ -27,7 +27,7 @@
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
-        <th class="th-large" rowspan="4">Sex and Age</th>
+        <th class="th-large" rowspan="3">Sex and Age</th>
         <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
         <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
@@ -97,7 +97,7 @@
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
-        <th class="th-large" rowspan="4">Mutually Exclusive Race/Hispanic Origin</th>
+        <th class="th-large" rowspan="3">Mutually Exclusive Race/Hispanic Origin</th>
         <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
         <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
@@ -152,7 +152,7 @@
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
-        <th class="th-large" rowspan="4">Hispanic Subgroup</th>
+        <th class="th-large" rowspan="3">Hispanic Subgroup</th>
         <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
         <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
@@ -245,7 +245,7 @@
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
       <tr>
-        <th class="th-large" rowspan="4">Asian Subgroup</th>
+        <th class="th-large" rowspan="3">Asian Subgroup</th>
         <th colspan="5" class="text-center cell-border-bottom">Selected Area</th>
         <th colspan="5" class="text-center cell-border-bottom">Comparison Area</th>
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">Difference</th>
@@ -272,411 +272,33 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="row-highlight">
-        <td>Asian Alone</td>
-        <td>{{numeral-format model.asian_subgroup.asn1rc.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>East Asian</td>
-        <td>{{numeral-format model.asian_subgroup.asneast.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Chinese, except Taiwanese</td>
-        <td>{{numeral-format model.asian_subgroup.asnchinot.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Japanese</td>
-        <td>{{numeral-format model.asian_subgroup.asnjpn.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Korean</td>
-        <td>{{numeral-format model.asian_subgroup.asnkor.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Mongolian</td>
-        <td>{{numeral-format model.asian_subgroup.asnmgol.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Okinawan</td>
-        <td>{{numeral-format model.asian_subgroup.asnokinw.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Taiwanese</td>
-        <td>{{numeral-format model.asian_subgroup.asntwn.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>South Asian</td>
-        <td>{{numeral-format model.asian_subgroup.asnsouth.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Asian Indian</td>
-        <td>{{numeral-format model.asian_subgroup.asnind.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Bangladeshi</td>
-        <td>{{numeral-format model.asian_subgroup.asnbng.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Bhutanese</td>
-        <td>{{numeral-format model.asian_subgroup.asnbhutn.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Nepalese</td>
-        <td>{{numeral-format model.asian_subgroup.asnnepal.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Pakistani</td>
-        <td>{{numeral-format model.asian_subgroup.asnpak.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Sri Lankan</td>
-        <td>{{numeral-format model.asian_subgroup.asnsril.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Southeast Asian</td>
-        <td>{{numeral-format model.asian_subgroup.asnseast.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Burmese</td>
-        <td>{{numeral-format model.asian_subgroup.asnburm.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Cambodian</td>
-        <td>{{numeral-format model.asian_subgroup.asncmb.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Filipino</td>
-        <td>{{numeral-format model.asian_subgroup.asnflp.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Hmong</td>
-        <td>{{numeral-format model.asian_subgroup.asnhmng.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Indonesian</td>
-        <td>{{numeral-format model.asian_subgroup.asnindnsn.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Laotian</td>
-        <td>{{numeral-format model.asian_subgroup.asnlao.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Malaysian</td>
-        <td>{{numeral-format model.asian_subgroup.asnmalsn.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Thai</td>
-        <td>{{numeral-format model.asian_subgroup.asnthai.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Vietnamese</td>
-        <td>{{numeral-format model.asian_subgroup.asnvtn.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Other Asian</td>
-        <td>{{numeral-format model.asian_subgroup.asnoasn.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Two or more Asian</td>
-        <td>{{numeral-format model.asian_subgroup.asn2pl.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+      {{demographic-table-row title="Asian Alone" classNames="row-highlight" data=model.asian_subgroup.asn1rc}}
+      {{demographic-table-row title="East Asian" data=model.asian_subgroup.asneast}}
+      {{demographic-table-row className="indented" title="Chinese, except Taiwanese" data=model.asian_subgroup.asnchinot}}
+      {{demographic-table-row className="indented" title="Japanese" data=model.asian_subgroup.asnjpn}}
+      {{demographic-table-row className="indented" title="Korean" data=model.asian_subgroup.asnkor}}
+      {{demographic-table-row className="indented" title="Mongolian" data=model.asian_subgroup.asnmgol}}
+      {{demographic-table-row className="indented" title="Okinawan" data=model.asian_subgroup.asnokinw}}
+      {{demographic-table-row className="indented" title="Taiwanese" data=model.asian_subgroup.asntwn}}
+      {{demographic-table-row title="South Asian" data=model.asian_subgroup.asnsouth}}
+      {{demographic-table-row className="indented" title="Asian Indian" data=model.asian_subgroup.asnind}}
+      {{demographic-table-row className="indented" title="Bangladeshi" data=model.asian_subgroup.asnbng}}
+      {{demographic-table-row className="indented" title="Bhutanese" data=model.asian_subgroup.asnbhutn}}
+      {{demographic-table-row className="indented" title="Nepalese" data=model.asian_subgroup.asnnepal}}
+      {{demographic-table-row className="indented" title="Pakistani" data=model.asian_subgroup.asnpak}}
+      {{demographic-table-row className="indented" title="Sri Lankan" data=model.asian_subgroup.asnsril}}
+      {{demographic-table-row title="Southeast Asian" data=model.asian_subgroup.asnseast}}
+      {{demographic-table-row className="indented" title="Burmese" data=model.asian_subgroup.asnburm}}
+      {{demographic-table-row className="indented" title="Cambodian" data=model.asian_subgroup.asncmb}}
+      {{demographic-table-row className="indented" title="Filipino" data=model.asian_subgroup.asnflp}}
+      {{demographic-table-row className="indented" title="Hmong" data=model.asian_subgroup.asnhmng}}
+      {{demographic-table-row className="indented" title="Indonesian" data=model.asian_subgroup.asnindnsn}}
+      {{demographic-table-row className="indented" title="Laotian" data=model.asian_subgroup.asnlao}}
+      {{demographic-table-row className="indented" title="Malaysian" data=model.asian_subgroup.asnmalsn}}
+      {{demographic-table-row className="indented" title="Thai" data=model.asian_subgroup.asnthai}}
+      {{demographic-table-row className="indented" title="Vietnamese" data=model.asian_subgroup.asnvtn}}
+      {{demographic-table-row title="Other Asian" data=model.asian_subgroup.asnoasn}}
+      {{demographic-table-row title="Two or more Asian" data=model.asian_subgroup.asn2pl}} 
     </tbody>
   </table>
 </div>
