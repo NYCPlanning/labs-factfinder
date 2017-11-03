@@ -1,7 +1,7 @@
 <h1>Demographic Report</h1>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
-  {{#if (eq report.mode 'standard')}}
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
+
+{{#if (eq report.mode 'current')}}
 
   <div class="grid-x grid-margin-x large-up-2">
     <div class="cell">
@@ -10,6 +10,17 @@
       </div>
     </div>
   </div>
+
+  <ul class="menu report-extras float-right">
+    <li><a>
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+      Reliability Data
+    </a></li>
+    <li><a>
+      <span class="medium-gray">{{fa-icon 'square-o'}}</span>
+      Comparison
+    </a></li>
+  </ul>
 
   <table class="text-small v-divider-before-7 v-divider-before-2 v-divider-before-12">
     <thead>
@@ -3687,7 +3698,9 @@
     </tbody>
   </table>
 
-  {{/if}}
+{{/if}}
 
+{{#if (eq report.mode 'compare')}}
+{{/if}}
 
-  {{outlet}}
+{{outlet}}

@@ -53,6 +53,7 @@ body {
   font-size: rem-calc(12);
   font-weight: $global-weight-bold;
   box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+  overflow: hidden;
 
   @include breakpoint(large) {
     position: absolute;
