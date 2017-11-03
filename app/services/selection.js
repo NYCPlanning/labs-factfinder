@@ -30,6 +30,7 @@ const NTA_SQL =
     the_geom_webmercator,
     ntaname,
     ntacode,
+    ntacode as geolabel,
     ntacode AS geoid
   FROM support_admin_ntaboundaries`;
 
