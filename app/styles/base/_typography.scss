@@ -401,7 +401,8 @@ td:not(:first-child) {
   text-align: right;
 }
 
-td:first-child {
+td:first-child,
+th:first-child {
   min-width: rem-calc(160);
   max-width: rem-calc(160);
 }
