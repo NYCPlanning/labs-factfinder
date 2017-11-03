@@ -130,111 +130,20 @@
 
       {{demographic-table-row title="Not Hispanic/Latino" data=model.mutually_exclusive_race_hispanic_origin.nhsp}}
 
-      <tr>
-        <td class="indented">White alone</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.wtnh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Black or African American alone</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.blnh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">American Indian and Alaska Native alone</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.aiannh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Asian alone</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.asnnh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Native Hawaiian and Other Pacific Islander alone</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.nhpinh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Some other race alone</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.othnh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Two or more races</td>
-        <td>{{numeral-format model.mutually_exclusive_race_hispanic_origin.rc2plnh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+      {{demographic-table-row title="White alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.wtnh}}
+
+      {{demographic-table-row title="Black or African American Alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.blnh}}
+
+      {{demographic-table-row title="American Indian and Alaska Native alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.aiannh}}
+
+      {{demographic-table-row title="Asian alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.asnnh}}
+
+      {{demographic-table-row title="Native Hawaiian and Other Pacific Islander alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.nhpinh}}
+
+      {{demographic-table-row title="Some other race alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.othnh}}
+
+      {{demographic-table-row title="Two or more races" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.rc2plnh}}
+
     </tbody>
   </table>
 </div>
@@ -270,441 +179,64 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="row-highlight">
-        <td>Hispanic/Latino</td>
-        <td>{{numeral-format model.hispanic_subgroup.hsp2.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Mexican</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspme.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Puerto Rican</td>
-        <td>{{numeral-format model.hispanic_subgroup.hsppr.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Cuban</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspcub.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Dominican (Dominican Republic)</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspdom.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Central American</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspcam.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Costa Rican</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspcr.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Guatemalan</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspguatm.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Honduran</td>
-        <td>{{numeral-format model.hispanic_subgroup.hsphnd.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Nicaraguan</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspnic.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Panamanian</td>
-        <td>{{numeral-format model.hispanic_subgroup.hsppan.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Salvadoran</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspsalv.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Other Central American</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspocam.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>South American</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspsam.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Argentinean</td>
-        <td>{{numeral-format model.hispanic_subgroup.hsparg.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Bolivian</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspbol.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Chilean</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspchl.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Colombian</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspcol.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Ecuadorian</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspec.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Paraguayan</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspprg.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Peruvian</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspperu.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Uruguayan</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspurg.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Venezuelan</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspvnz.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Other South American</td>
-        <td>{{numeral-format model.hispanic_subgroup.hsposam.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Other Hispanic/Latino</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspoth.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Spaniard</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspspnrd.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Spanish</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspspnsh.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">Spanish American</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspspam.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="indented">All other Hispanic/Latino</td>
-        <td>{{numeral-format model.hispanic_subgroup.hspalloth.sum}}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+
+      {{demographic-table-row title="Hispanic/Latino" classNames="row-highlight" data=model.hispanic_subgroup.hsp2}}
+
+      {{demographic-table-row title="Mexican" data=model.hispanic_subgroup.hspme}}
+
+      {{demographic-table-row title="Puerto Rican" data=model.hispanic_subgroup.hsppr}}
+
+      {{demographic-table-row title="Cuban" data=model.hispanic_subgroup.hspcub}}
+
+      {{demographic-table-row title="Dominican (Dominican Republic)" data=model.hispanic_subgroup.hspdom}}
+
+      {{demographic-table-row title="Central American" data=model.hispanic_subgroup.hspcam}}
+
+      {{demographic-table-row title="Costa Rican" classNames="row-indent" data=model.hispanic_subgroup.hspcr}}
+
+      {{demographic-table-row title="Guatemalan" classNames="row-indent" data=model.hispanic_subgroup.hspguatm}}
+
+      {{demographic-table-row title="Honduran" classNames="row-indent" data=model.hispanic_subgroup.hsphnd}}
+
+      {{demographic-table-row title="Nicaraguan" classNames="row-indent" data=model.hispanic_subgroup.hspnic}}
+
+      {{demographic-table-row title="Panamanian" classNames="row-indent" data=model.hispanic_subgroup.hsppan}}
+
+      {{demographic-table-row title="Salvadoran" classNames="row-indent" data=model.hispanic_subgroup.hspsalv}}
+
+      {{demographic-table-row title="Other Central American" classNames="row-indent" data=model.hispanic_subgroup.hspocam}}
+
+      {{demographic-table-row title="South American" data=model.hispanic_subgroup.hspsam}}
+
+      {{demographic-table-row title="Argentinean" classNames="row-indent" data=model.hispanic_subgroup.hsparg}}
+
+      {{demographic-table-row title="Bolivian" classNames="row-indent" data=model.hispanic_subgroup.hspbol}}
+
+      {{demographic-table-row title="Chilean" classNames="row-indent" data=model.hispanic_subgroup.hspchl}}
+
+      {{demographic-table-row title="Colombian" classNames="row-indent" data=model.hispanic_subgroup.hspcol}}
+
+      {{demographic-table-row title="Ecuadorian" classNames="row-indent" data=model.hispanic_subgroup.hspec}}
+
+      {{demographic-table-row title="Paraguayan" classNames="row-indent" data=model.hispanic_subgroup.hspprg}}
+
+      {{demographic-table-row title="Peruvian" classNames="row-indent" data=model.hispanic_subgroup.hspperu}}
+
+      {{demographic-table-row title="Uruguayan" classNames="row-indent" data=model.hispanic_subgroup.hspurg}}
+
+      {{demographic-table-row title="Venezuelan" classNames="row-indent" data=model.hispanic_subgroup.hspvnz}}
+
+      {{demographic-table-row title="Other South American" classNames="row-indent" data=model.hispanic_subgroup.hsposam}}
+
+      {{demographic-table-row title="Other Hispanic/Latino" data=model.hispanic_subgroup.hspoth}}
+
+      {{demographic-table-row title="Spaniard" classNames="row-indent" data=model.hispanic_subgroup.hspspnrd}}
+
+      {{demographic-table-row title="Spanish" classNames="row-indent" data=model.hispanic_subgroup.hspspnsh}}
+
+      {{demographic-table-row title="Spanish American" classNames="row-indent" data=model.hispanic_subgroup.hspspam}}
+
+      {{demographic-table-row title="All other Hispanic/Latino" data=model.hispanic_subgroup.hspalloth}}
     </tbody>
   </table>
 </div>
