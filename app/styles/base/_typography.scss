@@ -402,7 +402,8 @@ td:not(:first-child) {
 }
 
 td:first-child {
-  width: rem-calc(160);
+  min-width: rem-calc(160);
+  max-width: rem-calc(160);
 }
 
 .th-large {
@@ -441,7 +442,8 @@ td:first-child {
 }
 
 .cell-narrow {
-  width: rem-calc(120);
+  min-width: rem-calc(120);
+  max-width: rem-calc(120);
 }
 
 .v-divider-before-14 {
