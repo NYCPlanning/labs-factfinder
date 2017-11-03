@@ -33,7 +33,7 @@ const NTA_SQL =
     ntacode as geolabel,
     ntacode AS geoid
   FROM support_admin_ntaboundaries`;
-  
+
 const DEFAULT_SELECTION = config.DEFAULT_SELECTION;
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 
