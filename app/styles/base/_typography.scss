@@ -391,12 +391,29 @@ td:not(:first-child) {
   width: rem-calc(120);
 }
 
+.v-divider-before-14 {
+  td:nth-child(14) {
+    border-left: 1px solid $medium-gray;
+  }
+}
+
+.v-divider-before-12 {
+  td:nth-child(12) {
+    border-left: 1px solid $medium-gray;
+  }
+}
+
+.v-divider-before-10 {
+  td:nth-child(10) {
+    border-left: 1px solid $medium-gray;
+  }
+}
+
 .v-divider-before-7 {
   td:nth-child(7) {
     border-left: 1px solid $medium-gray;
   }
 }
-
 .v-divider-before-6 {
   td:nth-child(6) {
     border-left: 1px solid $medium-gray;
@@ -408,6 +425,8 @@ td:not(:first-child) {
     border-left: 1px solid $medium-gray;
   }
 }
+
+
 
 th {
   border-left: 1px solid $medium-gray;
