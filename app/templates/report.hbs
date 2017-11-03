@@ -1,25 +1,22 @@
 <div class="grid-x grid-padding-y">
   <div class="cell large-4 xxlarge-3 report-sidebar">
 
-
-    <input type='radio' name='report-mode' id='report-mode--standard' onchange={{action (mut mode) 'standard'}} value=mode checked={{if (eq mode 'standard') true}}><label for="report-mode--standard">Standard Report</label>
-    <input type='radio' name='report-mode' id='report-mode--change' onchange={{action (mut mode) 'change'}} value=mode checked={{if (eq mode 'change') true}}><label for="report-mode--change">Change Over Time</label>
-
-
-    <h1 class="report-header header-large">
-      {{selectionCount}}
-      {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
-      {{if (eq summaryLevel 'blocks') 'Census Block'~}}
-      {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
-      {{if (eq summaryLevel 'pumas') 'PUMA'~}}
-      {{if (gt selectionCount 1) 's'~}}
-    </h1>
-
-    <ul class="report-geographies-list comma-separated-list">
-      {{#each selection.current.features as |feature|}}
-        <li>{{feature.properties.geolabel}}</li>
-      {{/each}}
-    </ul>
+    <div class="report-geographies-list">
+      <h2 class="header-small no-margin">
+        Selected
+        {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
+        {{if (eq summaryLevel 'blocks') 'Census Block'~}}
+        {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
+        {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+        {{if (gt selectionCount 1) 's'}}
+        ({{selectionCount}})
+      </h2>
+      <ul class="comma-separated-list">
+        {{#each selection.current.features as |feature|}}
+          <li>{{feature.properties.geolabel}}</li>
+        {{/each}}
+      </ul>
+    </div>
 
     <div class="report-map-container">
       {{#jane-maps
@@ -60,13 +57,36 @@
 
     <div class="overflow-y-grid report-content">
       <div class="cell shrink">
-        <ul class="menu tabs vertical medium-horizontal expanded text-center" data-tabs>
-          <li>{{link-to 'Census' 'report.census'}}</li>
-          <li>{{link-to 'Demographic' 'report.demographic'}}</li>
-          <li>{{link-to 'Social' 'report.social'}}</li>
-          <li>{{link-to 'Economic' 'report.economic'}}</li>
-          <li>{{link-to 'Housing' 'report.housing'}}</li>
-        </ul>
+
+        <div class="report-menus">
+          <ul class="menu report-mode">
+            <li><a {{action (mut mode) 'current'}}>
+              {{#if (eq mode 'current')}}
+                <span class="dcp-orange">{{fa-icon 'circle'}}</span>
+              {{else}}
+                <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
+              {{/if}}
+              Current
+            </a></li>
+            <li><a {{action (mut mode) 'change'}}>
+              {{#if (eq mode 'change')}}
+              <span class="dcp-orange">{{fa-icon 'circle'}}</span>
+              {{else}}
+              <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
+              {{/if}}
+              Change <span class="show-for-xlarge">Over Time</span>
+            </a></li>
+          </ul>
+
+          <ul class="menu tabs vertical medium-horizontal expanded- text-center">
+            <li>{{link-to 'Census' 'report.census'}}</li>
+            <li>{{link-to 'Demographic' 'report.demographic'}}</li>
+            <li>{{link-to 'Social' 'report.social'}}</li>
+            <li>{{link-to 'Economic' 'report.economic'}}</li>
+            <li>{{link-to 'Housing' 'report.housing'}}</li>
+          </ul>
+        </div>
+
       </div>
       <div class="cell auto">
         {{outlet}}
