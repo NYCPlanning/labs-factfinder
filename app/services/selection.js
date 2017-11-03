@@ -33,15 +33,7 @@ const NTA_SQL =
     ntacode as geolabel,
     ntacode AS geoid
   FROM support_admin_ntaboundaries`;
-
-  const PUMA_SQL = `
-    SELECT
-        the_geom_webmercator,
-        puma AS geolabel,
-        puma AS geoid
-      FROM nyc_puma
-    `;
-
+  
 const DEFAULT_SELECTION = config.DEFAULT_SELECTION;
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 
