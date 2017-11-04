@@ -400,6 +400,7 @@ button {
 table,
 .table-scroll {
   clear: both;
+  min-width: 100%;
 }
 
 td:not(:first-child) {
@@ -445,11 +446,6 @@ th:first-child {
   &-x4 {
     padding-left: rem-calc(63);
   }
-}
-
-.cell-narrow {
-  min-width: rem-calc(120);
-  max-width: rem-calc(120);
 }
 
 .v-divider-before-14 {
