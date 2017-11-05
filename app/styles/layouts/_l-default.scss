@@ -53,6 +53,7 @@ body {
   font-size: rem-calc(12);
   font-weight: $global-weight-bold;
   box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+  overflow: hidden;
 
   @include breakpoint(large) {
     position: absolute;
@@ -84,6 +85,10 @@ body {
   height: 50vh;
   width: 100%;
   border: 1px solid $medium-gray;
+
+  @include breakpoint(large) {
+    height: calc(100vh - 22rem);
+  }
 }
 
 .map-utility-box {

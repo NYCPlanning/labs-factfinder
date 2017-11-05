@@ -15,8 +15,7 @@ const { alias } = Ember.computed;
 const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5]; // eslint-disable-line
 
 export default Ember.Controller.extend({
-  mode: 'standard',
-  checked: true,
+  mode: 'current',
 
   selection: service(),
   mapMouseover: service(),

@@ -4,7 +4,7 @@ export default {
   'source-layers': [
     {
       id: 'neighborhood-tabulation-areas',
-      sql: 'SELECT the_geom_webmercator, ntaname, ntacode, ntacode AS geoid FROM support_admin_ntaboundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
+      sql: 'SELECT the_geom_webmercator, ntaname, ntacode, ntacode AS geolabel, ntacode AS geoid FROM support_admin_ntaboundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
     },
 
     {
@@ -19,7 +19,7 @@ export default {
 
     {
       id: 'nyc-pumas',
-      sql: 'SELECT the_geom_webmercator, puma, puma AS geoid FROM nyc_puma',
+      sql: 'SELECT the_geom_webmercator, puma AS geolabel, puma AS geoid FROM nyc_puma',
     },
 
     {
