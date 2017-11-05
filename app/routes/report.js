@@ -21,8 +21,7 @@ const aggregateGeos = function(ids, year = 'Y2011-2015') {
           POWER(m, 2)
         )
       ) AS m,
-      variable,
-      variable || 'E' as variablename
+      variable
     FROM
       support_fact_finder
     WHERE geoid IN (${cleaned})
@@ -31,18 +30,47 @@ const aggregateGeos = function(ids, year = 'Y2011-2015') {
 };
 
 const generateSelectionSQL = function(...args) {
+  const [ids] = args;
+  const cleaned = preserveType(ids);
+
   return `
     SELECT
-      regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable,
-      regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
-      regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') as category,
-      type,
+      regexp_replace(lower(support_fact_finder.variable), '[^A-Za-z0-9]', '_', 'g') as variable,
+      regexp_replace(lower(support_fact_finder.profile), '[^A-Za-z0-9]', '_', 'g') as profile,
+      regexp_replace(lower(support_fact_finder.category), '[^A-Za-z0-9]', '_', 'g') as category,
       sum,
+      support_fact_finder.base,
+      base_sum,
       m
     FROM
-      (${aggregateGeos(...args)}) support_fact_finder
-    INNER JOIN support_fact_finder_meta
-    ON support_fact_finder_meta.variablename = support_fact_finder.variablename`;
+      ( 
+        SELECT * FROM (
+          ${aggregateGeos(...args)}
+        ) aggregated
+        INNER JOIN support_fact_finder_meta_update
+        ON support_fact_finder_meta_update.variablename = aggregated.variable
+      ) support_fact_finder
+    INNER JOIN support_fact_finder_meta_update
+    ON support_fact_finder_meta_update.variablename = support_fact_finder.variable
+    LEFT OUTER JOIN (
+      SELECT * FROM (
+        SELECT sum(e) as base_sum, variable 
+        FROM (
+          SELECT *
+          FROM support_fact_finder
+          INNER JOIN support_fact_finder_meta_update
+          ON support_fact_finder_meta_update.variablename = support_fact_finder.variable
+          WHERE geoid IN (${cleaned})
+            AND year = 'Y2011-2015'
+        ) window_sum
+        WHERE base = variable
+        GROUP BY variable
+      ) percentage
+      INNER JOIN support_fact_finder_meta_update
+      ON support_fact_finder_meta_update.variablename = percentage.variable
+    ) enriched_percentage
+    ON support_fact_finder.base = enriched_percentage.base
+  `;
 };
 
 const generateLongitudinalSQL = function(t1, t2) {
@@ -88,7 +116,7 @@ export default Ember.Route.extend({
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
     const selectionSQL = generateSelectionSQL(geoids);
     const historicalSQL = generateSelectionSQL(geoids, 'Y2006-2010');
-    const longitudinalSQL = generateLongitudinalSQL(selectionSQL, historicalSQL);
+    const longitudinalSQL = generateLongitudinalSQL(selectionSQL, historicalSQL, geoids);
     const geographicComparisonSQL = ` SELECT
                               e as comparison_sum, m as comparision_m
                             FROM support_fact_finder
