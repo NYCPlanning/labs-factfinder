@@ -403,6 +403,11 @@ table,
   min-width: 100%;
 }
 
+th {
+  border: 1px solid $medium-gray;
+  vertical-align: bottom;
+}
+
 td:not(:first-child) {
   text-align: right;
 }
@@ -481,17 +486,6 @@ th:first-child {
   td:nth-child(2) {
     border-left: 1px solid $medium-gray;
   }
-}
-
-
-
-th {
-  border-left: 1px solid $medium-gray;
-  vertical-align: bottom;
-}
-
-.cell-border-bottom {
-  border-bottom: 1px solid $medium-gray;
 }
 
 
