@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
   mode: 'current',
   reliability:true,
   comparison:true,
+  changeReliability:true,
+  changeComparison:false,
 
   selection: service(),
   mapMouseover: service(),

@@ -1,18 +1,67 @@
-  <td>{{title}}</td>
+{{#if subheader}}
+
+{{else}}
+  {{#if divider}}
   <td>&nbsp;</td>
   <td>&nbsp;</td>
   <td>&nbsp;</td>
   <td>&nbsp;</td>
   <td>&nbsp;</td>
   <td>&nbsp;</td>
+  {{#if reliability}}
   <td>&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
+  {{#if reliability}}
   <td>&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
+  {{#if reliability}}
   <td>&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
+  {{#if reliability}}
   <td>&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
+  {{#if reliability}}
   <td>&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
+  {{#if reliability}}
+  <td>&nbsp;</td>
+  {{/if}}
+
+{{else}}
+<td>{{title}}</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+{{#if reliability}}
+<td>&nbsp;</td>
+{{/if}}
+<td>&nbsp;</td>
+{{#if reliability}}
+<td>&nbsp;</td>
+{{/if}}
+<td>&nbsp;</td>
+{{#if reliability}}
+<td>&nbsp;</td>
+{{/if}}
+<td>&nbsp;</td>
+{{#if reliability}}
+<td>&nbsp;</td>
+{{/if}}
+<td>&nbsp;</td>
+{{#if reliability}}
+<td>&nbsp;</td>
+{{/if}}
+<td>&nbsp;</td>
+{{#if reliability}}
+<td>&nbsp;</td>
+{{/if}}
+{{/if}}
+{{/if}}
 {{yield}}
