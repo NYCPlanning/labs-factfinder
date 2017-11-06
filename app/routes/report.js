@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { nest } from 'd3-collection';
-import merge from 'lodash/merge';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
