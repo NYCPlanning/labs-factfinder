@@ -7,8 +7,13 @@ export default Ember.Controller.extend({
   report: inject.controller('report'),
 
   @computed('model')
-  agePopDist(model) {
-    const d = model.poppyramid_only;
+  currentData(model) {
+    return model.y2011_2015;
+  },
+
+  @computed('currentData')
+  agePopDist(currentData) {
+    const d = currentData.poppyramid_only;
     const variables = [
       'pop0t5',
       'pop5t9',
