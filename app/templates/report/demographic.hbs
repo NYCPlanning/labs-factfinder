@@ -21,8 +21,12 @@
     {{/if}}
     Reliability Data
   </a></li>
-  <li><a>
-    <span class="medium-gray">{{fa-icon 'square-o'}}</span>
+  <li><a {{action (mut report.comparison) (not report.comparison)}}>
+      {{#if report.comparison}}
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+      {{else}}
+      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+      {{/if}}
     Comparison
   </a></li>
 </ul>
@@ -31,152 +35,153 @@
   <table class="text-small">
     <thead>
       <tr>
-        <th rowspan="3">&nbsp;</th>
+        <th rowspan="2">&nbsp;</th>
         <th colspan="{{if report.reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
+        {{#if report.comparison}}
         <th colspan="{{if report.reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
         <th colspan="2" class="text-center cell-border-bottom">Difference</th>
+        {{/if}}
       </tr>
       <tr>
-        <th class="text-center cell-border-bottom">Estimate</th>
+        <th class="text-right cell-border-bottom">Estimate</th>
           {{#if report.reliability}}
-          <th class="text-center cell-border-bottom">MOE</th>
-        <th class="text-center cell-border-bottom">CV</th>
+          <th class="text-right cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">CV</th>
         {{/if}}
-        <th class="text-center cell-border-bottom">Pct. Estimate</th>
+        <th class="text-right cell-border-bottom">Pct. Estimate</th>
           {{#if report.reliability}}
-        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">MOE</th>
           {{/if}}
-        <th class="text-center cell-border-bottom">Estimate</th>
+       {{#if report.comparison}}
+          <th class="text-right cell-border-bottom">Estimate</th>
           {{#if report.reliability}}
-        <th class="text-center cell-border-bottom">MOE</th>
-        <th class="text-center cell-border-bottom">CV</th>
+        <th class="text-right cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">CV</th>
           {{/if}}
-        <th class="text-center cell-border-bottom">Pct. Estimate</th>
+        <th class="text-right cell-border-bottom">Pct. Estimate</th>
           {{#if report.reliability}}
-        <th class="text-center cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">MOE</th>
           {{/if}}
-        <th class="text-center cell-border-bottom">Number</th>
-        <th class="text-center cell-border-bottom">Pctg. Point</th>
+        <th class="text-right cell-border-bottom">Number</th>
+        <th class="text-right cell-border-bottom">Pctg. Point</th>
+      {{/if}}
       </tr>
 
     </thead>
     <tbody>
-      <tr>
-        <td colspan="{{if report.reliability "13" "7"}}" class="table-section-header">Sex and Age</td>
-      </tr>
-      {{demographic-table-row title="Total population" classNames="row-highlight" data=model.sex_and_age.pop_1 reliability=report.reliability}}
-      {{demographic-table-row title='Male' classNames="" data=model.sex_and_age.male reliability=report.reliability}}
-      {{demographic-table-row title='Female' classNames="" data=model.sex_and_age.fem reliability=report.reliability}}
-      {{demographic-table-row divider=true reliability=report.reliability}}
-      {{demographic-table-row title="Under 5 years" classNames="" data=model.sex_and_age.popu5 reliability=report.reliability}}
-      {{demographic-table-row title="5 to 9 years" classNames="" data=model.sex_and_age.pop5t9 reliability=report.reliability}}
-      {{demographic-table-row title="10 to 14 years" classNames="" data=model.sex_and_age.pop10t14 reliability=report.reliability}}
-      {{demographic-table-row title="15 to 19 years" classNames="" data=model.sex_and_age.pop15t19 reliability=report.reliability}}
-      {{demographic-table-row title="20 to 24 years" classNames="" data=model.sex_and_age.pop20t24 reliability=report.reliability}}
-      {{demographic-table-row title="25 to 29 years" classNames="" data=model.sex_and_age.pop25t29 reliability=report.reliability}}
-      {{demographic-table-row title="30 to 34 years" classNames="" data=model.sex_and_age.pop30t34 reliability=report.reliability}}
-      {{demographic-table-row title="35 to 39 years" classNames="" data=model.sex_and_age.pop35t39 reliability=report.reliability}}
-      {{demographic-table-row title="40 to 44 years" classNames="" data=model.sex_and_age.pop40t44 reliability=report.reliability}}
-      {{demographic-table-row title="45 to 49 years" classNames="" data=model.sex_and_age.pop45t49 reliability=report.reliability}}
-      {{demographic-table-row title="50 to 54 years" classNames="" data=model.sex_and_age.pop50t54 reliability=report.reliability}}
-      {{demographic-table-row title="55 to 59 years" classNames="" data=model.sex_and_age.pop55t59 reliability=report.reliability}}
-      {{demographic-table-row title="60 to 64 years" classNames="" data=model.sex_and_age.pop60t64 reliability=report.reliability}}
-      {{demographic-table-row title="65 to 69 years" classNames="" data=model.sex_and_age.pop65t69 reliability=report.reliability}}
-      {{demographic-table-row title="70 to 74 years" classNames="" data=model.sex_and_age.pop70t74 reliability=report.reliability}}
-      {{demographic-table-row title="75 to 79 years" classNames="" data=model.sex_and_age.pop75t79 reliability=report.reliability}}
-      {{demographic-table-row title="80 to 84 years" classNames="" data=model.sex_and_age.pop80t84 reliability=report.reliability}}
-      {{demographic-table-row title="85 years and over" classNames="" data=model.sex_and_age.pop85pl reliability=report.reliability}}
-      {{demographic-table-row divider=true reliability=report.reliability}}
-      {{demographic-table-row title="Under 18 years" classNames="" data=model.sex_and_age.popu181 reliability=report.reliability}}
-      {{demographic-table-row title="65 years and over" classNames="" data=model.sex_and_age.pop65pl1 reliability=report.reliability}}
-      {{demographic-table-row divider=true reliability=report.reliability}}
-      {{demographic-table-row title="Median age (years)" classNames="" data=model.sex_and_age.mdage reliability=report.reliability}}
-      {{demographic-table-row divider=true reliability=report.reliability}}
-      {{demographic-table-row title="Under 18 years" classNames="row-highlight" data=model.sex_and_age.popu18_2 reliability=report.reliability}}
-      {{demographic-table-row title="Male" classNames="" data=model.sex_and_age.popu18m reliability=report.reliability}}
-      {{demographic-table-row title="Female" classNames="" data=model.sex_and_age.popu18f reliability=report.reliability}}
-      {{demographic-table-row divider=true reliability=report.reliability}}
-      {{demographic-table-row title="65 years and over" classNames="row-highlight" data=model.sex_and_age.pop65pl2 reliability=report.reliability}}
-      {{demographic-table-row title="Male" classNames="" data=model.sex_and_age.pop65plm reliability=report.reliability}}
-      {{demographic-table-row title="Female" classNames="" data=model.sex_and_age.pop65plf reliability=report.reliability}}
 
-      <tr>
-        <td colspan="{{if report.reliability "13" "7"}}" class="table-section-header">Mutually Exclusive Race/Hispanic Origin</td>
-      </tr>
-      {{demographic-table-row title='Total population' classNames="row-highlight" data=model.mutually_exclusive_race_hispanic_origin.pop_2 reliability=report.reliability}}
-      {{demographic-table-row title="Hispanic/Latino (of any race)" data=model.mutually_exclusive_race_hispanic_origin.hsp1 reliability=report.reliability}}
-      {{demographic-table-row title="Not Hispanic/Latino" data=model.mutually_exclusive_race_hispanic_origin.nhsp reliability=report.reliability}}
-      {{demographic-table-row title="White alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.wtnh reliability=report.reliability}}
-      {{demographic-table-row title="Black or African American Alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.blnh reliability=report.reliability}}
-      {{demographic-table-row title="American Indian and Alaska Native alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.aiannh reliability=report.reliability}}
-      {{demographic-table-row title="Asian alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.asnnh reliability=report.reliability}}
-      {{demographic-table-row title="Native Hawaiian and Other Pacific Islander alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.nhpinh reliability=report.reliability}}
-      {{demographic-table-row title="Some other race alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.othnh reliability=report.reliability}}
-      {{demographic-table-row title="Two or more races" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.rc2plnh reliability=report.reliability}}
+      {{demographic-table-row title="Sex and Age" classNames="table-section-header" reliability=report.reliability  comparison=report.comparison subheader=true}}
 
-      <tr>
-        <td colspan="{{if report.reliability "13" "7"}}" class="table-section-header">Hispanic Subgroup</td>
-      </tr>
-      {{demographic-table-row title="Hispanic/Latino" classNames="row-highlight" data=model.hispanic_subgroup.hsp2 reliability=report.reliability}}
-      {{demographic-table-row title="Mexican" data=model.hispanic_subgroup.hspme reliability=report.reliability}}
-      {{demographic-table-row title="Puerto Rican" data=model.hispanic_subgroup.hsppr reliability=report.reliability}}
-      {{demographic-table-row title="Cuban" data=model.hispanic_subgroup.hspcub reliability=report.reliability}}
-      {{demographic-table-row title="Dominican (Dominican Republic)" data=model.hispanic_subgroup.hspdom reliability=report.reliability}}
-      {{demographic-table-row title="Central American" data=model.hispanic_subgroup.hspcam reliability=report.reliability}}
-      {{demographic-table-row title="Costa Rican" classNames="row-indent" data=model.hispanic_subgroup.hspcr reliability=report.reliability}}
-      {{demographic-table-row title="Guatemalan" classNames="row-indent" data=model.hispanic_subgroup.hspguatm reliability=report.reliability}}
-      {{demographic-table-row title="Honduran" classNames="row-indent" data=model.hispanic_subgroup.hsphnd reliability=report.reliability}}
-      {{demographic-table-row title="Nicaraguan" classNames="row-indent" data=model.hispanic_subgroup.hspnic reliability=report.reliability}}
-      {{demographic-table-row title="Panamanian" classNames="row-indent" data=model.hispanic_subgroup.hsppan reliability=report.reliability}}
-      {{demographic-table-row title="Salvadoran" classNames="row-indent" data=model.hispanic_subgroup.hspsalv reliability=report.reliability}}
-      {{demographic-table-row title="Other Central American" classNames="row-indent" data=model.hispanic_subgroup.hspocam reliability=report.reliability}}
-      {{demographic-table-row title="South American" data=model.hispanic_subgroup.hspsam reliability=report.reliability}}
-      {{demographic-table-row title="Argentinean" classNames="row-indent" data=model.hispanic_subgroup.hsparg reliability=report.reliability}}
-      {{demographic-table-row title="Bolivian" classNames="row-indent" data=model.hispanic_subgroup.hspbol reliability=report.reliability}}
-      {{demographic-table-row title="Chilean" classNames="row-indent" data=model.hispanic_subgroup.hspchl reliability=report.reliability}}
-      {{demographic-table-row title="Colombian" classNames="row-indent" data=model.hispanic_subgroup.hspcol reliability=report.reliability}}
-      {{demographic-table-row title="Ecuadorian" classNames="row-indent" data=model.hispanic_subgroup.hspec reliability=report.reliability}}
-      {{demographic-table-row title="Paraguayan" classNames="row-indent" data=model.hispanic_subgroup.hspprg reliability=report.reliability}}
-      {{demographic-table-row title="Peruvian" classNames="row-indent" data=model.hispanic_subgroup.hspperu reliability=report.reliability}}
-      {{demographic-table-row title="Uruguayan" classNames="row-indent" data=model.hispanic_subgroup.hspurg reliability=report.reliability}}
-      {{demographic-table-row title="Venezuelan" classNames="row-indent" data=model.hispanic_subgroup.hspvnz reliability=report.reliability}}
-      {{demographic-table-row title="Other South American" classNames="row-indent" data=model.hispanic_subgroup.hsposam reliability=report.reliability}}
-      {{demographic-table-row title="Other Hispanic/Latino" data=model.hispanic_subgroup.hspoth reliability=report.reliability}}
-      {{demographic-table-row title="Spaniard" classNames="row-indent" data=model.hispanic_subgroup.hspspnrd reliability=report.reliability}}
-      {{demographic-table-row title="Spanish" classNames="row-indent" data=model.hispanic_subgroup.hspspnsh reliability=report.reliability}}
-      {{demographic-table-row title="Spanish American" classNames="row-indent" data=model.hispanic_subgroup.hspspam reliability=report.reliability}}
-      {{demographic-table-row title="All other Hispanic/Latino" data=model.hispanic_subgroup.hspalloth reliability=report.reliability}}
+      {{demographic-table-row title="Total population" classNames="row-highlight" data=model.sex_and_age.pop_1 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title='Male' classNames="" data=model.sex_and_age.male reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title='Female' classNames="" data=model.sex_and_age.fem reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row divider=true reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Under 5 years" classNames="" data=model.sex_and_age.popu5 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="5 to 9 years" classNames="" data=model.sex_and_age.pop5t9 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="10 to 14 years" classNames="" data=model.sex_and_age.pop10t14 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="15 to 19 years" classNames="" data=model.sex_and_age.pop15t19 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="20 to 24 years" classNames="" data=model.sex_and_age.pop20t24 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="25 to 29 years" classNames="" data=model.sex_and_age.pop25t29 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="30 to 34 years" classNames="" data=model.sex_and_age.pop30t34 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="35 to 39 years" classNames="" data=model.sex_and_age.pop35t39 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="40 to 44 years" classNames="" data=model.sex_and_age.pop40t44 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="45 to 49 years" classNames="" data=model.sex_and_age.pop45t49 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="50 to 54 years" classNames="" data=model.sex_and_age.pop50t54 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="55 to 59 years" classNames="" data=model.sex_and_age.pop55t59 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="60 to 64 years" classNames="" data=model.sex_and_age.pop60t64 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="65 to 69 years" classNames="" data=model.sex_and_age.pop65t69 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="70 to 74 years" classNames="" data=model.sex_and_age.pop70t74 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="75 to 79 years" classNames="" data=model.sex_and_age.pop75t79 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="80 to 84 years" classNames="" data=model.sex_and_age.pop80t84 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="85 years and over" classNames="" data=model.sex_and_age.pop85pl reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row divider=true reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Under 18 years" classNames="" data=model.sex_and_age.popu181 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="65 years and over" classNames="" data=model.sex_and_age.pop65pl1 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row divider=true reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Median age (years)" classNames="" data=model.sex_and_age.mdage reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row divider=true reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Under 18 years" classNames="row-highlight" data=model.sex_and_age.popu18_2 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Male" classNames="" data=model.sex_and_age.popu18m reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Female" classNames="" data=model.sex_and_age.popu18f reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row divider=true reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="65 years and over" classNames="row-highlight" data=model.sex_and_age.pop65pl2 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Male" classNames="" data=model.sex_and_age.pop65plm reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Female" classNames="" data=model.sex_and_age.pop65plf reliability=report.reliability  comparison=report.comparison}}
 
-      <tr>
-        <td colspan="{{if report.reliability "13" "7"}}" class="table-section-header">Asian Subgroup</td>
-      </tr>
-      {{demographic-table-row title="Asian Alone" classNames="row-highlight" data=model.asian_subgroup.asn1rc reliability=report.reliability}}
-      {{demographic-table-row title="East Asian" data=model.asian_subgroup.asneast reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Chinese, except Taiwanese" data=model.asian_subgroup.asnchinot reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Japanese" data=model.asian_subgroup.asnjpn reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Korean" data=model.asian_subgroup.asnkor reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Mongolian" data=model.asian_subgroup.asnmgol reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Okinawan" data=model.asian_subgroup.asnokinw reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Taiwanese" data=model.asian_subgroup.asntwn reliability=report.reliability}}
-      {{demographic-table-row title="South Asian" data=model.asian_subgroup.asnsouth reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Asian Indian" data=model.asian_subgroup.asnind reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Bangladeshi" data=model.asian_subgroup.asnbng reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Bhutanese" data=model.asian_subgroup.asnbhutn reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Nepalese" data=model.asian_subgroup.asnnepal reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Pakistani" data=model.asian_subgroup.asnpak reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Sri Lankan" data=model.asian_subgroup.asnsril reliability=report.reliability}}
-      {{demographic-table-row title="Southeast Asian" data=model.asian_subgroup.asnseast reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Burmese" data=model.asian_subgroup.asnburm reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Cambodian" data=model.asian_subgroup.asncmb reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Filipino" data=model.asian_subgroup.asnflp reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Hmong" data=model.asian_subgroup.asnhmng reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Indonesian" data=model.asian_subgroup.asnindnsn reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Laotian" data=model.asian_subgroup.asnlao reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Malaysian" data=model.asian_subgroup.asnmalsn reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Thai" data=model.asian_subgroup.asnthai reliability=report.reliability}}
-      {{demographic-table-row className="indented" title="Vietnamese" data=model.asian_subgroup.asnvtn reliability=report.reliability}}
-      {{demographic-table-row title="Other Asian" data=model.asian_subgroup.asnoasn reliability=report.reliability}}
-      {{demographic-table-row title="Two or more Asian" data=model.asian_subgroup.asn2pl reliability=report.reliability}}
+      {{demographic-table-row title="Mutually Exclusive Race/Hispanic Origin" classNames="table-section-header" reliability=report.reliability  comparison=report.comparison subheader=true}}
+
+      {{demographic-table-row title='Total population' classNames="row-highlight" data=model.mutually_exclusive_race_hispanic_origin.pop_2 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Hispanic/Latino (of any race)" data=model.mutually_exclusive_race_hispanic_origin.hsp1 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Not Hispanic/Latino" data=model.mutually_exclusive_race_hispanic_origin.nhsp reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="White alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.wtnh reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Black or African American Alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.blnh reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="American Indian and Alaska Native alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.aiannh reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Asian alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.asnnh reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Native Hawaiian and Other Pacific Islander alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.nhpinh reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Some other race alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.othnh reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Two or more races" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.rc2plnh reliability=report.reliability  comparison=report.comparison}}
+
+      {{demographic-table-row title="Hispanic Subgroup" classNames="table-section-header" reliability=report.reliability  comparison=report.comparison subheader=true}}
+
+      {{demographic-table-row title="Hispanic/Latino" classNames="row-highlight" data=model.hispanic_subgroup.hsp2 reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Mexican" data=model.hispanic_subgroup.hspme reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Puerto Rican" data=model.hispanic_subgroup.hsppr reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Cuban" data=model.hispanic_subgroup.hspcub reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Dominican (Dominican Republic)" data=model.hispanic_subgroup.hspdom reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Central American" data=model.hispanic_subgroup.hspcam reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Costa Rican" classNames="row-indent" data=model.hispanic_subgroup.hspcr reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Guatemalan" classNames="row-indent" data=model.hispanic_subgroup.hspguatm reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Honduran" classNames="row-indent" data=model.hispanic_subgroup.hsphnd reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Nicaraguan" classNames="row-indent" data=model.hispanic_subgroup.hspnic reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Panamanian" classNames="row-indent" data=model.hispanic_subgroup.hsppan reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Salvadoran" classNames="row-indent" data=model.hispanic_subgroup.hspsalv reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Other Central American" classNames="row-indent" data=model.hispanic_subgroup.hspocam reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="South American" data=model.hispanic_subgroup.hspsam reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Argentinean" classNames="row-indent" data=model.hispanic_subgroup.hsparg reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Bolivian" classNames="row-indent" data=model.hispanic_subgroup.hspbol reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Chilean" classNames="row-indent" data=model.hispanic_subgroup.hspchl reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Colombian" classNames="row-indent" data=model.hispanic_subgroup.hspcol reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Ecuadorian" classNames="row-indent" data=model.hispanic_subgroup.hspec reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Paraguayan" classNames="row-indent" data=model.hispanic_subgroup.hspprg reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Peruvian" classNames="row-indent" data=model.hispanic_subgroup.hspperu reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Uruguayan" classNames="row-indent" data=model.hispanic_subgroup.hspurg reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Venezuelan" classNames="row-indent" data=model.hispanic_subgroup.hspvnz reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Other South American" classNames="row-indent" data=model.hispanic_subgroup.hsposam reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Other Hispanic/Latino" data=model.hispanic_subgroup.hspoth reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Spaniard" classNames="row-indent" data=model.hispanic_subgroup.hspspnrd reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Spanish" classNames="row-indent" data=model.hispanic_subgroup.hspspnsh reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Spanish American" classNames="row-indent" data=model.hispanic_subgroup.hspspam reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="All other Hispanic/Latino" data=model.hispanic_subgroup.hspalloth reliability=report.reliability  comparison=report.comparison}}
+
+      {{demographic-table-row title="Asian Subgroup" classNames="table-section-header" reliability=report.reliability  comparison=report.comparison subheader=true}}
+
+      {{demographic-table-row title="Asian Alone" classNames="row-highlight" data=model.asian_subgroup.asn1rc reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="East Asian" data=model.asian_subgroup.asneast reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Chinese, except Taiwanese" data=model.asian_subgroup.asnchinot reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Japanese" data=model.asian_subgroup.asnjpn reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Korean" data=model.asian_subgroup.asnkor reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Mongolian" data=model.asian_subgroup.asnmgol reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Okinawan" data=model.asian_subgroup.asnokinw reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Taiwanese" data=model.asian_subgroup.asntwn reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="South Asian" data=model.asian_subgroup.asnsouth reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Asian Indian" data=model.asian_subgroup.asnind reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Bangladeshi" data=model.asian_subgroup.asnbng reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Bhutanese" data=model.asian_subgroup.asnbhutn reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Nepalese" data=model.asian_subgroup.asnnepal reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Pakistani" data=model.asian_subgroup.asnpak reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Sri Lankan" data=model.asian_subgroup.asnsril reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Southeast Asian" data=model.asian_subgroup.asnseast reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Burmese" data=model.asian_subgroup.asnburm reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Cambodian" data=model.asian_subgroup.asncmb reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Filipino" data=model.asian_subgroup.asnflp reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Hmong" data=model.asian_subgroup.asnhmng reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Indonesian" data=model.asian_subgroup.asnindnsn reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Laotian" data=model.asian_subgroup.asnlao reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Malaysian" data=model.asian_subgroup.asnmalsn reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Thai" data=model.asian_subgroup.asnthai reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row className="indented" title="Vietnamese" data=model.asian_subgroup.asnvtn reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Other Asian" data=model.asian_subgroup.asnoasn reliability=report.reliability  comparison=report.comparison}}
+      {{demographic-table-row title="Two or more Asian" data=model.asian_subgroup.asn2pl reliability=report.reliability  comparison=report.comparison}}
     </tbody>
   </table>
 </div>

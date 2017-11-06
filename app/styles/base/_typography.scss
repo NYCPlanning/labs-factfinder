@@ -420,7 +420,7 @@ th:first-child {
   max-width: rem-calc(160);
 }
 
-td.table-section-header {
+.table-section-header td {
   background-color: lighten($medium-gray, 6%);
 
   font-weight: $global-weight-bold;
