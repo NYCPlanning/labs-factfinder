@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { nest } from 'd3-collection';
-import merge from 'lodash/merge';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
@@ -19,7 +18,7 @@ const generateSelectionSQL = function(geoids, comparator) {
        SELECT * 
        FROM   support_fact_finder 
        WHERE  geoid IN ( ${ids} ) ), 
-       
+
     base_numbers AS 
     ( 
        SELECT * 
