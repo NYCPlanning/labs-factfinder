@@ -48,6 +48,8 @@
     "ember-resize": "0.0.17",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.14.0",
+    "ember-tether": "^1.0.0-beta.0",
+    "ember-tooltips": "^2.9.2",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
