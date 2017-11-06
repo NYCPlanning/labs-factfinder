@@ -105,7 +105,7 @@ export default Ember.Service.extend({
       });
   },
 
-  handleSelectedFeature(features = []) {
+  handleSelectedFeatures(features = []) {
     const selected = this.get('current');
 
     features.forEach((feature) => {

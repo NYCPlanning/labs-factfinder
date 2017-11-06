@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
+import carto from 'ember-jane-maps/utils/carto';
 
 import layerGroups from '../layer-groups';
 import sources from '../sources';
@@ -155,7 +156,7 @@ export default Ember.Controller.extend({
   },
 
   actions: {
-    handleClick(event) {
+    handleClick(e) {
       if (!this.get('drawMode')) {
         const selection = this.get('selection');
         const summaryLevel = selection.summaryLevel;
@@ -178,21 +179,71 @@ export default Ember.Controller.extend({
         }
 
         const [found] =
-          event.target.queryRenderedFeatures(
-            event.point,
+          e.target.queryRenderedFeatures(
+            e.point,
             { layers },
           );
 
 
         if (found) {
-          selection.handleSelectedFeature([found]);
+          selection.handleSelectedFeatures([found]);
         }
       }
     },
 
     handleDrawCreate(e) {
-      console.log('created', e.features);
+      console.log('created', JSON.stringify(e.features[0].geometry));
       draw.deleteAll();
+
+      // get features from the selected layer that intersect with the polygon,
+      // pass them to selection.handleSelectedFeatures()
+
+      const selection = this.get('selection');
+      const summaryLevel = selection.summaryLevel;
+
+      let table = [];
+
+      switch (summaryLevel) { // eslint-disable-line
+        case 'tracts':
+          table = 'nyc_census_tracts_2010';
+          break;
+        // case 'blocks':
+        //   layers = ['census-blocks-fill'];
+        //   break;
+        // case 'ntas':
+        //   layers = ['neighborhood-tabulation-areas-fill'];
+        //   break;
+        // case 'pumas':
+        //   layers = ['nyc-pumas-fill'];
+        //   break;
+      }
+
+      const geometry = e.features[0].geometry;
+      geometry.crs = {
+        type: 'name',
+        properties: {
+          name: 'EPSG:4326',
+        },
+      };
+
+      const intersectionSQL = `
+        SELECT
+          the_geom,
+          ct2010,
+          ctlabel as geolabel,
+          boroct2010,
+          ntacode,
+          boroct2010 AS geoid
+        FROM ${table}
+        WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('${JSON.stringify(geometry)}'))`;
+
+      console.log(intersectionSQL);
+
+      carto.SQL(intersectionSQL, 'geojson', 'post')
+        .then((FC) => {
+          console.log('intersection', FC)
+          selection.handleSelectedFeatures(FC.features)
+        })
     },
 
     handleDrawModeChange(e) {
