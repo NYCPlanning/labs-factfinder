@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { nest } from 'd3-collection';
+import merge from 'lodash/merge';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
@@ -15,11 +16,9 @@ const generateSelectionSQL = function(geoids, comparator) {
   return `
     WITH filtered_selection AS 
     ( 
-       SELECT * 
-       FROM   support_fact_finder 
-       WHERE  geoid IN ( ${ids} ) ), 
-
-    base_numbers AS 
+           SELECT * 
+           FROM   support_fact_finder 
+           WHERE  geoid IN ( ${ids} ) ), base_numbers AS 
     ( 
        SELECT * 
        FROM   ( 
@@ -40,13 +39,13 @@ const generateSelectionSQL = function(geoids, comparator) {
       regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category, 
       regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') AS variable 
     FROM ( 
-         SELECT   sum(e) AS sum, 
+         SELECT   sum(e) filter (WHERE  geoid IN ( ${ids} )) AS sum, 
                   variable, 
-                  sqrt( sum( power(m, 2) ) )                                 AS m,
+                  sqrt( sum( power(m, 2) ) filter (WHERE  geoid IN ( ${ids} ))  )                                 AS m,
                   sum(e) filter (WHERE geoid IN ('${comparator}'))                       AS comparison_sum,
                   sqrt( sum( power(m, 2) ) filter (WHERE geoid IN ( '0' ) ) )AS comparison_m,
                   year 
-         FROM     filtered_selection 
+         FROM     support_fact_finder  
          GROUP BY variable, 
                   year 
          ORDER BY variable DESC) aggregated 
