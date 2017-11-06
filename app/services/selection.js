@@ -2,48 +2,16 @@ import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
+import summaryLevelQueries from '../queries/summary-levels';
 import config from '../config/environment';
-
-const BLOCKS_SQL =
-  `SELECT
-      the_geom,
-      ct2010,
-      borocode || ct2010 AS boroct2010,
-      bctcb2010,
-      bctcb2010 AS geoid,
-      (ct2010::float / 100)::text || ' - ' || cb2010 as geolabel
-    FROM nyc_census_blocks_2010`;
-
-const TRACTS_SQL =
-  `SELECT
-    the_geom,
-    ct2010,
-    ctlabel as geolabel,
-    ntacode,
-    boroct2010,
-    boroct2010 AS geoid
-  FROM nyc_census_tracts_2010`;
-
-const NTA_SQL =
-  `SELECT
-    the_geom,
-    the_geom_webmercator,
-    ntaname,
-    ntacode,
-    ntacode as geolabel,
-    ntacode AS geoid
-  FROM support_admin_ntaboundaries`;
 
 const DEFAULT_SELECTION = config.DEFAULT_SELECTION;
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 
-// order sensitive
-const SUMMARY_LEVELS = ['blocks', 'tracts', 'ntas', 'pumas'];
-
 const SUM_LEVEL_DICT = {
-  blocks: { sql: BLOCKS_SQL, tracts: 'boroct2010' },
-  tracts: { sql: TRACTS_SQL, ntas: 'ntacode', blocks: 'boroct2010' },
-  ntas: { sql: NTA_SQL, tracts: 'ntacode' },
+  blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2010' },
+  tracts: { sql: summaryLevelQueries.tracts(false), ntas: 'ntacode', blocks: 'boroct2010' },
+  ntas: { sql: summaryLevelQueries.ntas(false), tracts: 'ntacode' },
   pumas: 'something_else',
 };
 
@@ -52,8 +20,6 @@ const findUniqueBy = function(collection, id) {
     .uniqBy(`properties.${id}`)
     .mapBy(`properties.${id}`);
 };
-
-export { SUMMARY_LEVELS, BLOCKS_SQL, TRACTS_SQL, NTA_SQL };
 
 export default Ember.Service.extend({
   current: DEFAULT_SELECTION,

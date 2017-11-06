@@ -4,7 +4,9 @@ import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 import carto from 'ember-jane-maps/utils/carto';
 
+import generateIntersectionSQL from '../queries/intersection';
 import layerGroups from '../layer-groups';
+import drawStyles from '../layers/draw-styles';
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import highlightedFeature from '../layers/highlighted-feature';
@@ -22,112 +24,7 @@ const draw = new MapboxDraw({
     polygon: true,
     trash: false,
   },
-  styles: [
-    // ACTIVE (being drawn)
-    // line stroke
-    {
-      id: 'gl-draw-line',
-      type: 'line',
-      filter: ['all', ['==', '$type', 'LineString'], ['!=', 'mode', 'static']],
-      layout: {
-        'line-cap': 'round',
-        'line-join': 'round',
-      },
-      paint: {
-        'line-color': '#D96B27',
-        'line-dasharray': [0.2, 2],
-        'line-width': 4,
-      },
-    },
-    // polygon fill
-    {
-      id: 'gl-draw-polygon-fill',
-      type: 'fill',
-      filter: ['all', ['==', '$type', 'Polygon'], ['!=', 'mode', 'static']],
-      paint: {
-        'fill-color': '#D20C0C',
-        'fill-outline-color': '#D20C0C',
-        'fill-opacity': 0.1,
-      },
-    },
-    // polygon outline stroke
-    // This doesn't style the first edge of the polygon, which uses the line stroke styling instead
-    {
-      id: 'gl-draw-polygon-stroke-active',
-      type: 'line',
-      filter: ['all', ['==', '$type', 'Polygon'], ['!=', 'mode', 'static']],
-      layout: {
-        'line-cap': 'round',
-        'line-join': 'round',
-      },
-      paint: {
-        'line-color': '#D96B27',
-        'line-dasharray': [0.2, 2],
-        'line-width': 4,
-      },
-    },
-    // vertex point halos
-    {
-      id: 'gl-draw-polygon-and-line-vertex-halo-active',
-      type: 'circle',
-      filter: ['all', ['==', 'meta', 'vertex'], ['==', '$type', 'Point'], ['!=', 'mode', 'static']],
-      paint: {
-        'circle-radius': 7,
-        'circle-color': '#FFF',
-      },
-    },
-    // vertex points
-    {
-      id: 'gl-draw-polygon-and-line-vertex-active',
-      type: 'circle',
-      filter: ['all', ['==', 'meta', 'vertex'], ['==', '$type', 'Point'], ['!=', 'mode', 'static']],
-      paint: {
-        'circle-radius': 6,
-        'circle-color': '#D96B27',
-      },
-    },
-
-    // INACTIVE (static, already drawn)
-    // line stroke
-    {
-      id: 'gl-draw-line-static',
-      type: 'line',
-      filter: ['all', ['==', '$type', 'LineString'], ['==', 'mode', 'static']],
-      layout: {
-        'line-cap': 'round',
-        'line-join': 'round',
-      },
-      paint: {
-        'line-color': '#000',
-        'line-width': 3,
-      },
-    },
-    // polygon fill
-    {
-      id: 'gl-draw-polygon-fill-static',
-      type: 'fill',
-      filter: ['all', ['==', '$type', 'Polygon'], ['==', 'mode', 'static']],
-      paint: {
-        'fill-color': '#000',
-        'fill-outline-color': '#000',
-        'fill-opacity': 0.1,
-      },
-    },
-    // polygon outline
-    {
-      id: 'gl-draw-polygon-stroke-static',
-      type: 'line',
-      filter: ['all', ['==', '$type', 'Polygon'], ['==', 'mode', 'static']],
-      layout: {
-        'line-cap': 'round',
-        'line-join': 'round',
-      },
-      paint: {
-        'line-color': '#000',
-        'line-width': 3,
-      },
-    },
-  ],
+  styles: drawStyles,
 });
 
 export default Ember.Controller.extend({
@@ -192,31 +89,11 @@ export default Ember.Controller.extend({
     },
 
     handleDrawCreate(e) {
-      console.log('created', JSON.stringify(e.features[0].geometry));
+      // delete the drawn geometry
       draw.deleteAll();
-
-      // get features from the selected layer that intersect with the polygon,
-      // pass them to selection.handleSelectedFeatures()
 
       const selection = this.get('selection');
       const summaryLevel = selection.summaryLevel;
-
-      let table = [];
-
-      switch (summaryLevel) { // eslint-disable-line
-        case 'tracts':
-          table = 'nyc_census_tracts_2010';
-          break;
-        // case 'blocks':
-        //   layers = ['census-blocks-fill'];
-        //   break;
-        // case 'ntas':
-        //   layers = ['neighborhood-tabulation-areas-fill'];
-        //   break;
-        // case 'pumas':
-        //   layers = ['nyc-pumas-fill'];
-        //   break;
-      }
 
       const geometry = e.features[0].geometry;
       geometry.crs = {
@@ -226,29 +103,14 @@ export default Ember.Controller.extend({
         },
       };
 
-      const intersectionSQL = `
-        SELECT
-          the_geom,
-          ct2010,
-          ctlabel as geolabel,
-          boroct2010,
-          ntacode,
-          boroct2010 AS geoid
-        FROM ${table}
-        WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('${JSON.stringify(geometry)}'))`;
-
-      console.log(intersectionSQL);
-
+      const intersectionSQL = generateIntersectionSQL(summaryLevel, geometry);
       carto.SQL(intersectionSQL, 'geojson', 'post')
         .then((FC) => {
-          console.log('intersection', FC)
-          selection.handleSelectedFeatures(FC.features)
-        })
+          selection.handleSelectedFeatures(FC.features);
+        });
     },
 
     handleDrawModeChange(e) {
-      console.log('modechange', e);
-
       const drawMode = e.mode === 'draw_polygon';
       this.set('drawMode', drawMode);
     },
