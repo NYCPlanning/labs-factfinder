@@ -385,6 +385,11 @@ button {
       }
     }
   }
+
+  .disabled {
+    color: $medium-gray;
+    cursor: text;
+  }
 }
 
 .report-extras {

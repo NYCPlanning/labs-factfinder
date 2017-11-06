@@ -66,10 +66,17 @@
 
           <ul class="menu tabs vertical medium-horizontal expanded- text-center">
             <li>{{link-to 'Census' 'report.census'}}</li>
+            {{#if (eq summaryLevel 'blocks')}}
+            <li><a class="disabled">Demographic</a></li>
+            <li><a class="disabled">Social</a></li>
+            <li><a class="disabled">Economic</a></li>
+            <li><a class="disabled">Housing</a></li>
+            {{else}}
             <li>{{link-to 'Demographic' 'report.demographic'}}</li>
             <li>{{link-to 'Social' 'report.social'}}</li>
             <li>{{link-to 'Economic' 'report.economic'}}</li>
             <li>{{link-to 'Housing' 'report.housing'}}</li>
+            {{/if}}
           </ul>
         </div>
 
