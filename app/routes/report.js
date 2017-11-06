@@ -15,9 +15,9 @@ const generateSelectionSQL = function(geoids, comparator) {
   return `
     WITH filtered_selection AS 
     ( 
-           SELECT * 
-           FROM   support_fact_finder 
-           WHERE  geoid IN ( ${ids} ) ), base_numbers AS 
+      SELECT * 
+      FROM   support_fact_finder 
+      WHERE  geoid IN ( ${ids} ) ), base_numbers AS 
     ( 
        SELECT * 
        FROM   ( 
@@ -33,17 +33,19 @@ const generateSelectionSQL = function(geoids, comparator) {
            GROUP BY variable, 
                     "year" ) percentage ) 
     SELECT *, 
+      (((m / 1.645) / sum) * 100) as cv,
+      (((comparison_m / 1.645) / comparison_sum) * 100) as comparison_cv,
       regexp_replace(lower(year), '[^A-Za-z0-9]', '_', 'g')     AS year, 
       regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g')  AS profile, 
       regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category, 
       regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') AS variable 
     FROM ( 
          SELECT   sum(e) filter (WHERE  geoid IN ( ${ids} )) AS sum, 
-                  variable, 
-                  sqrt( sum( power(m, 2) ) filter (WHERE  geoid IN ( ${ids} ))  )                                 AS m,
-                  sum(e) filter (WHERE geoid IN ('${comparator}'))                       AS comparison_sum,
-                  sqrt( sum( power(m, 2) ) filter (WHERE geoid IN ( '0' ) ) )AS comparison_m,
-                  year 
+                  sqrt(sum(power(m, 2)) filter (WHERE geoid IN (${ids}))) AS m,
+                  sum(e) filter (WHERE geoid IN ('${comparator}')) AS comparison_sum,
+                  sqrt( sum( power(m, 2) ) filter (WHERE geoid IN ( '0' ) ) ) AS comparison_m,
+                  year,
+                  variable
          FROM     support_fact_finder  
          GROUP BY variable, 
                   year 
