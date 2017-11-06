@@ -20,8 +20,8 @@ const { alias } = Ember.computed;
 const draw = new MapboxDraw({
   displayControlsDefault: false,
   controls: {
-    rectangle: true,
-    polygon: true,
+    rectangle: false,
+    polygon: false,
     trash: false,
   },
   styles: drawStyles,
@@ -54,7 +54,6 @@ export default Ember.Controller.extend({
 
   actions: {
     handleClick(e) {
-      console.log('drawmode', this.get('drawMode'))
       if (!this.get('drawMode')) {
         const selection = this.get('selection');
         const summaryLevel = selection.summaryLevel;
@@ -86,6 +85,17 @@ export default Ember.Controller.extend({
         if (found) {
           selection.handleSelectedFeatures([found]);
         }
+      }
+    },
+
+    handleDrawButtonClick() {
+      const drawMode = this.get('drawMode');
+      if (drawMode) {
+        draw.trash();
+        this.set('drawMode', false);
+      } else {
+        draw.changeMode('draw_polygon');
+        this.set('drawMode', true);
       }
     },
 
