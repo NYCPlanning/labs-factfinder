@@ -10,95 +10,59 @@ const preserveType = function(array) {
   return `'${array.join("','")}'`;
 };
 
-// const aggregateGeos = function(ids, year = 'Y2011-2015') {
-//   const cleaned = preserveType(ids);
-
-//   return `
-//     SELECT
-//       SUM(e),
-//       SQRT(
-//         SUM(
-//           POWER(m, 2)
-//         )
-//       ) AS m,
-//       variable
-//     FROM
-//       support_fact_finder
-//     WHERE geoid IN (${cleaned})
-//       AND year = '${year}'
-//     GROUP BY variable`;
-// };
-
-// const generateSelectionSQL = function(...args) {
-//   const [ids] = args;
-//   const cleaned = preserveType(ids);
-
-//   return `
-//     SELECT
-      // regexp_replace(lower(support_fact_finder.variable), '[^A-Za-z0-9]', '_', 'g') as variable,
-      // regexp_replace(lower(support_fact_finder.profile), '[^A-Za-z0-9]', '_', 'g') as profile,
-      // regexp_replace(lower(support_fact_finder.category), '[^A-Za-z0-9]', '_', 'g') as category,
-//       sum,
-//       support_fact_finder.base,
-//       base_sum,
-//       m
-//     FROM
-//       ( 
-//         SELECT * FROM (
-//           ${aggregateGeos(...args)}
-//         ) aggregated
-//         INNER JOIN support_fact_finder_meta_update
-//         ON support_fact_finder_meta_update.variablename = aggregated.variable
-//       ) support_fact_finder
-//     INNER JOIN support_fact_finder_meta_update
-//     ON support_fact_finder_meta_update.variablename = support_fact_finder.variable
-//     LEFT OUTER JOIN (
-//       SELECT * FROM (
-//         SELECT sum(e) as base_sum, variable 
-//         FROM (
-//           SELECT *
-//           FROM support_fact_finder
-//           INNER JOIN support_fact_finder_meta_update
-//           ON support_fact_finder_meta_update.variablename = support_fact_finder.variable
-//           WHERE geoid IN (${cleaned})
-//             AND year = 'Y2011-2015'
-//         ) window_sum
-//         WHERE base = variable
-//         GROUP BY variable
-//       ) percentage
-//       INNER JOIN support_fact_finder_meta_update
-//       ON support_fact_finder_meta_update.variablename = percentage.variable
-//     ) enriched_percentage
-//     ON support_fact_finder.base = enriched_percentage.base
-//   `;
-// };
-
-const generateSelectionSQL = function(geoids) {
+const generateSelectionSQL = function(geoids, comparator) {
   const ids = preserveType(geoids);
 
   return `
-    SELECT *,
-      regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable,
-      regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
-      regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') as category
-    FROM (
-      SELECT   Sum(e) filter (WHERE geoid IN ( ${ids} ) ) AS sum, 
-               variable, 
-               sqrt( sum( power(m, 2) ) filter (WHERE geoid IN ( ${ids} ) ) )AS m, 
-               sum(e) filter (WHERE geoid IN ('0'))                          AS comparison_sum, 
-               sqrt( sum( power(m, 2) ) filter (WHERE geoid IN ( '0' ) ) )AS comparison_m, 
-               year 
-      FROM     support_fact_finder 
-      GROUP BY variable, 
-               year ) aggregated
-    INNER JOIN support_fact_finder_meta_update
-    ON support_fact_finder_meta_update.variablename = aggregated.variable
+    WITH filtered_selection AS 
+    ( 
+       SELECT * 
+       FROM   support_fact_finder 
+       WHERE  geoid IN ( ${ids} ) ), 
+       
+    base_numbers AS 
+    ( 
+       SELECT * 
+       FROM   ( 
+           SELECT   sum(e)    AS base_sum, 
+                    max(base) AS base_join, 
+                    max(year) AS base_year 
+           FROM     ( 
+                               SELECT     * 
+                               FROM       filtered_selection 
+                               INNER JOIN support_fact_finder_meta_update 
+                               ON         support_fact_finder_meta_update.variablename = filtered_selection.variable ) window_sum
+           WHERE    base = variable 
+           GROUP BY variable, 
+                    "year" ) percentage ) 
+    SELECT *, 
+      regexp_replace(lower(year), '[^A-Za-z0-9]', '_', 'g')     AS year, 
+      regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g')  AS profile, 
+      regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category, 
+      regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') AS variable 
+    FROM ( 
+         SELECT   sum(e) AS sum, 
+                  variable, 
+                  sqrt( sum( power(m, 2) ) )                                 AS m,
+                  sum(e) filter (WHERE geoid IN ('${comparator}'))                       AS comparison_sum,
+                  sqrt( sum( power(m, 2) ) filter (WHERE geoid IN ( '0' ) ) )AS comparison_m,
+                  year 
+         FROM     filtered_selection 
+         GROUP BY variable, 
+                  year 
+         ORDER BY variable DESC) aggregated 
+    INNER JOIN      support_fact_finder_meta_update 
+    ON              support_fact_finder_meta_update.variablename = aggregated.variable 
+    LEFT OUTER JOIN base_numbers 
+    ON              base = base_numbers.base_join 
+    AND             year = base_numbers.base_year
   `;
 };
 
 const nestReport = function(data) {
   return nest()
     .key(d => d.profile)
+    .key(d => d.year)
     .key(d => d.category)
     .key(d => d.variable)
     .rollup(d => d[0])
@@ -124,19 +88,9 @@ export default Ember.Route.extend({
 
   model({ comparator = '0' }) {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
-    const selectionSQL = generateSelectionSQL(geoids);
-    // const historicalSQL = generateSelectionSQL(geoids, 'Y2006-2010');
-    // const longitudinalSQL = generateSelectionSQL(selectionSQL, historicalSQL, geoids);
-    // const geographicComparisonSQL = ` SELECT
-    //                           e as comparison_sum, m as comparision_m
-    //                         FROM support_fact_finder
-    //                         WHERE geoid = '${comparator}'`;
+    const selectionSQL = generateSelectionSQL(geoids, comparator);
 
     return carto.SQL(selectionSQL, 'json', 'post')
-      // .then(nestedData =>
-      //   carto.SQL(geographicComparisonSQL, 'json', 'post')
-      //     .then(final => merge(final, nestedData)),
-      // )
       .then(data => nestReport(data));
   },
 });

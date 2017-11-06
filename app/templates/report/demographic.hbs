@@ -7,7 +7,7 @@
 <div class="grid-x grid-margin-x large-up-2">
   <div class="cell">
     <div class="callout">
-      {{!-- {{population-pyramid data=agePopDist}} --}}
+      {{population-pyramid data=agePopDist}}
     </div>
   </div>
 </div>
@@ -54,41 +54,41 @@
       </tr>
     </thead>
     <tbody>
-      {{demographic-table-row title="Total population" classNames="row-highlight" data=model.sex_and_age.pop_1}}
-      {{demographic-table-row title='Male' classNames="" data=model.sex_and_age.male}}
-      {{demographic-table-row title='Female' classNames="" data=model.sex_and_age.fem}}
+      {{demographic-table-row title="Total population" classNames="row-highlight" data=currentData.sex_and_age.pop_1}}
+      {{demographic-table-row title='Male' classNames="" data=currentData.sex_and_age.male}}
+      {{demographic-table-row title='Female' classNames="" data=currentData.sex_and_age.fem}}
       <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      {{demographic-table-row title="Under 5 years" classNames="" data=model.sex_and_age.popu5}}
-      {{demographic-table-row title="5 to 9 years" classNames="" data=model.sex_and_age.pop5t9}}
-      {{demographic-table-row title="10 to 14 years" classNames="" data=model.sex_and_age.pop10t14}}
-      {{demographic-table-row title="15 to 19 years" classNames="" data=model.sex_and_age.pop15t19}}
-      {{demographic-table-row title="20 to 24 years" classNames="" data=model.sex_and_age.pop20t24}}
-      {{demographic-table-row title="25 to 29 years" classNames="" data=model.sex_and_age.pop25t29}}
-      {{demographic-table-row title="30 to 34 years" classNames="" data=model.sex_and_age.pop30t34}}
-      {{demographic-table-row title="35 to 39 years" classNames="" data=model.sex_and_age.pop35t39}}
-      {{demographic-table-row title="40 to 44 years" classNames="" data=model.sex_and_age.pop40t44}}
-      {{demographic-table-row title="45 to 49 years" classNames="" data=model.sex_and_age.pop45t49}}
-      {{demographic-table-row title="50 to 54 years" classNames="" data=model.sex_and_age.pop50t54}}
-      {{demographic-table-row title="55 to 59 years" classNames="" data=model.sex_and_age.pop55t59}}
-      {{demographic-table-row title="60 to 64 years" classNames="" data=model.sex_and_age.pop60t64}}
-      {{demographic-table-row title="65 to 69 years" classNames="" data=model.sex_and_age.pop65t69}}
-      {{demographic-table-row title="70 to 74 years" classNames="" data=model.sex_and_age.pop70t74}}
-      {{demographic-table-row title="75 to 79 years" classNames="" data=model.sex_and_age.pop75t79}}
-      {{demographic-table-row title="80 to 84 years" classNames="" data=model.sex_and_age.pop80t84}}
-      {{demographic-table-row title="85 years and over" classNames="" data=model.sex_and_age.pop85pl}}
+      {{demographic-table-row title="Under 5 years" classNames="" data=currentData.sex_and_age.popu5}}
+      {{demographic-table-row title="5 to 9 years" classNames="" data=currentData.sex_and_age.pop5t9}}
+      {{demographic-table-row title="10 to 14 years" classNames="" data=currentData.sex_and_age.pop10t14}}
+      {{demographic-table-row title="15 to 19 years" classNames="" data=currentData.sex_and_age.pop15t19}}
+      {{demographic-table-row title="20 to 24 years" classNames="" data=currentData.sex_and_age.pop20t24}}
+      {{demographic-table-row title="25 to 29 years" classNames="" data=currentData.sex_and_age.pop25t29}}
+      {{demographic-table-row title="30 to 34 years" classNames="" data=currentData.sex_and_age.pop30t34}}
+      {{demographic-table-row title="35 to 39 years" classNames="" data=currentData.sex_and_age.pop35t39}}
+      {{demographic-table-row title="40 to 44 years" classNames="" data=currentData.sex_and_age.pop40t44}}
+      {{demographic-table-row title="45 to 49 years" classNames="" data=currentData.sex_and_age.pop45t49}}
+      {{demographic-table-row title="50 to 54 years" classNames="" data=currentData.sex_and_age.pop50t54}}
+      {{demographic-table-row title="55 to 59 years" classNames="" data=currentData.sex_and_age.pop55t59}}
+      {{demographic-table-row title="60 to 64 years" classNames="" data=currentData.sex_and_age.pop60t64}}
+      {{demographic-table-row title="65 to 69 years" classNames="" data=currentData.sex_and_age.pop65t69}}
+      {{demographic-table-row title="70 to 74 years" classNames="" data=currentData.sex_and_age.pop70t74}}
+      {{demographic-table-row title="75 to 79 years" classNames="" data=currentData.sex_and_age.pop75t79}}
+      {{demographic-table-row title="80 to 84 years" classNames="" data=currentData.sex_and_age.pop80t84}}
+      {{demographic-table-row title="85 years and over" classNames="" data=currentData.sex_and_age.pop85pl}}
       <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      {{demographic-table-row title="Under 18 years" classNames="" data=model.sex_and_age.popu181}}
-      {{demographic-table-row title="65 years and over" classNames="" data=model.sex_and_age.pop65pl1}}
+      {{demographic-table-row title="Under 18 years" classNames="" data=currentData.sex_and_age.popu181}}
+      {{demographic-table-row title="65 years and over" classNames="" data=currentData.sex_and_age.pop65pl1}}
       <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      {{demographic-table-row title="Median age (years)" classNames="" data=model.sex_and_age.mdage}}
+      {{demographic-table-row title="Median age (years)" classNames="" data=currentData.sex_and_age.mdage}}
       <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      {{demographic-table-row title="Under 18 years" classNames="row-highlight" data=model.sex_and_age.popu18_2}}
-      {{demographic-table-row title="Male" classNames="" data=model.sex_and_age.popu18m}}
-      {{demographic-table-row title="Female" classNames="" data=model.sex_and_age.popu18f}}
+      {{demographic-table-row title="Under 18 years" classNames="row-highlight" data=currentData.sex_and_age.popu18_2}}
+      {{demographic-table-row title="Male" classNames="" data=currentData.sex_and_age.popu18m}}
+      {{demographic-table-row title="Female" classNames="" data=currentData.sex_and_age.popu18f}}
       <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      {{demographic-table-row title="65 years and over" classNames="row-highlight" data=model.sex_and_age.pop65pl2}}
-      {{demographic-table-row title="Male" classNames="" data=model.sex_and_age.pop65plm}}
-      {{demographic-table-row title="Female" classNames="" data=model.sex_and_age.pop65plf}}
+      {{demographic-table-row title="65 years and over" classNames="row-highlight" data=currentData.sex_and_age.pop65pl2}}
+      {{demographic-table-row title="Male" classNames="" data=currentData.sex_and_age.pop65plm}}
+      {{demographic-table-row title="Female" classNames="" data=currentData.sex_and_age.pop65plf}}
     </tbody>
   </table>
 </div>
@@ -124,16 +124,16 @@
       </tr>
     </thead>
     <tbody>
-      {{demographic-table-row title='Total population' classNames="row-highlight" data=model.mutually_exclusive_race_hispanic_origin.pop_2}}
-      {{demographic-table-row title="Hispanic/Latino (of any race)" data=model.mutually_exclusive_race_hispanic_origin.hsp1}}
-      {{demographic-table-row title="Not Hispanic/Latino" data=model.mutually_exclusive_race_hispanic_origin.nhsp}}
-      {{demographic-table-row title="White alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.wtnh}}
-      {{demographic-table-row title="Black or African American Alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.blnh}}
-      {{demographic-table-row title="American Indian and Alaska Native alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.aiannh}}
-      {{demographic-table-row title="Asian alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.asnnh}}
-      {{demographic-table-row title="Native Hawaiian and Other Pacific Islander alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.nhpinh}}
-      {{demographic-table-row title="Some other race alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.othnh}}
-      {{demographic-table-row title="Two or more races" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.rc2plnh}}
+      {{demographic-table-row title='Total population' classNames="row-highlight" data=currentData.mutually_exclusive_race_hispanic_origin.pop_2}}
+      {{demographic-table-row title="Hispanic/Latino (of any race)" data=currentData.mutually_exclusive_race_hispanic_origin.hsp1}}
+      {{demographic-table-row title="Not Hispanic/Latino" data=currentData.mutually_exclusive_race_hispanic_origin.nhsp}}
+      {{demographic-table-row title="White alone" classNames="row-indent" data=currentData.mutually_exclusive_race_hispanic_origin.wtnh}}
+      {{demographic-table-row title="Black or African American Alone" classNames="row-indent" data=currentData.mutually_exclusive_race_hispanic_origin.blnh}}
+      {{demographic-table-row title="American Indian and Alaska Native alone" classNames="row-indent" data=currentData.mutually_exclusive_race_hispanic_origin.aiannh}}
+      {{demographic-table-row title="Asian alone" classNames="row-indent" data=currentData.mutually_exclusive_race_hispanic_origin.asnnh}}
+      {{demographic-table-row title="Native Hawaiian and Other Pacific Islander alone" classNames="row-indent" data=currentData.mutually_exclusive_race_hispanic_origin.nhpinh}}
+      {{demographic-table-row title="Some other race alone" classNames="row-indent" data=currentData.mutually_exclusive_race_hispanic_origin.othnh}}
+      {{demographic-table-row title="Two or more races" classNames="row-indent" data=currentData.mutually_exclusive_race_hispanic_origin.rc2plnh}}
 
     </tbody>
   </table>
@@ -170,35 +170,35 @@
       </tr>
     </thead>
     <tbody>
-      {{demographic-table-row title="Hispanic/Latino" classNames="row-highlight" data=model.hispanic_subgroup.hsp2}}
-      {{demographic-table-row title="Mexican" data=model.hispanic_subgroup.hspme}}
-      {{demographic-table-row title="Puerto Rican" data=model.hispanic_subgroup.hsppr}}
-      {{demographic-table-row title="Cuban" data=model.hispanic_subgroup.hspcub}}
-      {{demographic-table-row title="Dominican (Dominican Republic)" data=model.hispanic_subgroup.hspdom}}
-      {{demographic-table-row title="Central American" data=model.hispanic_subgroup.hspcam}}
-      {{demographic-table-row title="Costa Rican" classNames="row-indent" data=model.hispanic_subgroup.hspcr}}
-      {{demographic-table-row title="Guatemalan" classNames="row-indent" data=model.hispanic_subgroup.hspguatm}}
-      {{demographic-table-row title="Honduran" classNames="row-indent" data=model.hispanic_subgroup.hsphnd}}
-      {{demographic-table-row title="Nicaraguan" classNames="row-indent" data=model.hispanic_subgroup.hspnic}}
-      {{demographic-table-row title="Panamanian" classNames="row-indent" data=model.hispanic_subgroup.hsppan}}
-      {{demographic-table-row title="Salvadoran" classNames="row-indent" data=model.hispanic_subgroup.hspsalv}}
-      {{demographic-table-row title="Other Central American" classNames="row-indent" data=model.hispanic_subgroup.hspocam}}
-      {{demographic-table-row title="South American" data=model.hispanic_subgroup.hspsam}}
-      {{demographic-table-row title="Argentinean" classNames="row-indent" data=model.hispanic_subgroup.hsparg}}
-      {{demographic-table-row title="Bolivian" classNames="row-indent" data=model.hispanic_subgroup.hspbol}}
-      {{demographic-table-row title="Chilean" classNames="row-indent" data=model.hispanic_subgroup.hspchl}}
-      {{demographic-table-row title="Colombian" classNames="row-indent" data=model.hispanic_subgroup.hspcol}}
-      {{demographic-table-row title="Ecuadorian" classNames="row-indent" data=model.hispanic_subgroup.hspec}}
-      {{demographic-table-row title="Paraguayan" classNames="row-indent" data=model.hispanic_subgroup.hspprg}}
-      {{demographic-table-row title="Peruvian" classNames="row-indent" data=model.hispanic_subgroup.hspperu}}
-      {{demographic-table-row title="Uruguayan" classNames="row-indent" data=model.hispanic_subgroup.hspurg}}
-      {{demographic-table-row title="Venezuelan" classNames="row-indent" data=model.hispanic_subgroup.hspvnz}}
-      {{demographic-table-row title="Other South American" classNames="row-indent" data=model.hispanic_subgroup.hsposam}}
-      {{demographic-table-row title="Other Hispanic/Latino" data=model.hispanic_subgroup.hspoth}}
-      {{demographic-table-row title="Spaniard" classNames="row-indent" data=model.hispanic_subgroup.hspspnrd}}
-      {{demographic-table-row title="Spanish" classNames="row-indent" data=model.hispanic_subgroup.hspspnsh}}
-      {{demographic-table-row title="Spanish American" classNames="row-indent" data=model.hispanic_subgroup.hspspam}}
-      {{demographic-table-row title="All other Hispanic/Latino" data=model.hispanic_subgroup.hspalloth}}
+      {{demographic-table-row title="Hispanic/Latino" classNames="row-highlight" data=currentData.hispanic_subgroup.hsp2}}
+      {{demographic-table-row title="Mexican" data=currentData.hispanic_subgroup.hspme}}
+      {{demographic-table-row title="Puerto Rican" data=currentData.hispanic_subgroup.hsppr}}
+      {{demographic-table-row title="Cuban" data=currentData.hispanic_subgroup.hspcub}}
+      {{demographic-table-row title="Dominican (Dominican Republic)" data=currentData.hispanic_subgroup.hspdom}}
+      {{demographic-table-row title="Central American" data=currentData.hispanic_subgroup.hspcam}}
+      {{demographic-table-row title="Costa Rican" classNames="row-indent" data=currentData.hispanic_subgroup.hspcr}}
+      {{demographic-table-row title="Guatemalan" classNames="row-indent" data=currentData.hispanic_subgroup.hspguatm}}
+      {{demographic-table-row title="Honduran" classNames="row-indent" data=currentData.hispanic_subgroup.hsphnd}}
+      {{demographic-table-row title="Nicaraguan" classNames="row-indent" data=currentData.hispanic_subgroup.hspnic}}
+      {{demographic-table-row title="Panamanian" classNames="row-indent" data=currentData.hispanic_subgroup.hsppan}}
+      {{demographic-table-row title="Salvadoran" classNames="row-indent" data=currentData.hispanic_subgroup.hspsalv}}
+      {{demographic-table-row title="Other Central American" classNames="row-indent" data=currentData.hispanic_subgroup.hspocam}}
+      {{demographic-table-row title="South American" data=currentData.hispanic_subgroup.hspsam}}
+      {{demographic-table-row title="Argentinean" classNames="row-indent" data=currentData.hispanic_subgroup.hsparg}}
+      {{demographic-table-row title="Bolivian" classNames="row-indent" data=currentData.hispanic_subgroup.hspbol}}
+      {{demographic-table-row title="Chilean" classNames="row-indent" data=currentData.hispanic_subgroup.hspchl}}
+      {{demographic-table-row title="Colombian" classNames="row-indent" data=currentData.hispanic_subgroup.hspcol}}
+      {{demographic-table-row title="Ecuadorian" classNames="row-indent" data=currentData.hispanic_subgroup.hspec}}
+      {{demographic-table-row title="Paraguayan" classNames="row-indent" data=currentData.hispanic_subgroup.hspprg}}
+      {{demographic-table-row title="Peruvian" classNames="row-indent" data=currentData.hispanic_subgroup.hspperu}}
+      {{demographic-table-row title="Uruguayan" classNames="row-indent" data=currentData.hispanic_subgroup.hspurg}}
+      {{demographic-table-row title="Venezuelan" classNames="row-indent" data=currentData.hispanic_subgroup.hspvnz}}
+      {{demographic-table-row title="Other South American" classNames="row-indent" data=currentData.hispanic_subgroup.hsposam}}
+      {{demographic-table-row title="Other Hispanic/Latino" data=currentData.hispanic_subgroup.hspoth}}
+      {{demographic-table-row title="Spaniard" classNames="row-indent" data=currentData.hispanic_subgroup.hspspnrd}}
+      {{demographic-table-row title="Spanish" classNames="row-indent" data=currentData.hispanic_subgroup.hspspnsh}}
+      {{demographic-table-row title="Spanish American" classNames="row-indent" data=currentData.hispanic_subgroup.hspspam}}
+      {{demographic-table-row title="All other Hispanic/Latino" data=currentData.hispanic_subgroup.hspalloth}}
     </tbody>
   </table>
 </div>
@@ -234,33 +234,33 @@
       </tr>
     </thead>
     <tbody>
-      {{demographic-table-row title="Asian Alone" classNames="row-highlight" data=model.asian_subgroup.asn1rc}}
-      {{demographic-table-row title="East Asian" data=model.asian_subgroup.asneast}}
-      {{demographic-table-row className="indented" title="Chinese, except Taiwanese" data=model.asian_subgroup.asnchinot}}
-      {{demographic-table-row className="indented" title="Japanese" data=model.asian_subgroup.asnjpn}}
-      {{demographic-table-row className="indented" title="Korean" data=model.asian_subgroup.asnkor}}
-      {{demographic-table-row className="indented" title="Mongolian" data=model.asian_subgroup.asnmgol}}
-      {{demographic-table-row className="indented" title="Okinawan" data=model.asian_subgroup.asnokinw}}
-      {{demographic-table-row className="indented" title="Taiwanese" data=model.asian_subgroup.asntwn}}
-      {{demographic-table-row title="South Asian" data=model.asian_subgroup.asnsouth}}
-      {{demographic-table-row className="indented" title="Asian Indian" data=model.asian_subgroup.asnind}}
-      {{demographic-table-row className="indented" title="Bangladeshi" data=model.asian_subgroup.asnbng}}
-      {{demographic-table-row className="indented" title="Bhutanese" data=model.asian_subgroup.asnbhutn}}
-      {{demographic-table-row className="indented" title="Nepalese" data=model.asian_subgroup.asnnepal}}
-      {{demographic-table-row className="indented" title="Pakistani" data=model.asian_subgroup.asnpak}}
-      {{demographic-table-row className="indented" title="Sri Lankan" data=model.asian_subgroup.asnsril}}
-      {{demographic-table-row title="Southeast Asian" data=model.asian_subgroup.asnseast}}
-      {{demographic-table-row className="indented" title="Burmese" data=model.asian_subgroup.asnburm}}
-      {{demographic-table-row className="indented" title="Cambodian" data=model.asian_subgroup.asncmb}}
-      {{demographic-table-row className="indented" title="Filipino" data=model.asian_subgroup.asnflp}}
-      {{demographic-table-row className="indented" title="Hmong" data=model.asian_subgroup.asnhmng}}
-      {{demographic-table-row className="indented" title="Indonesian" data=model.asian_subgroup.asnindnsn}}
-      {{demographic-table-row className="indented" title="Laotian" data=model.asian_subgroup.asnlao}}
-      {{demographic-table-row className="indented" title="Malaysian" data=model.asian_subgroup.asnmalsn}}
-      {{demographic-table-row className="indented" title="Thai" data=model.asian_subgroup.asnthai}}
-      {{demographic-table-row className="indented" title="Vietnamese" data=model.asian_subgroup.asnvtn}}
-      {{demographic-table-row title="Other Asian" data=model.asian_subgroup.asnoasn}}
-      {{demographic-table-row title="Two or more Asian" data=model.asian_subgroup.asn2pl}}
+      {{demographic-table-row title="Asian Alone" classNames="row-highlight" data=currentData.asian_subgroup.asn1rc}}
+      {{demographic-table-row title="East Asian" data=currentData.asian_subgroup.asneast}}
+      {{demographic-table-row className="indented" title="Chinese, except Taiwanese" data=currentData.asian_subgroup.asnchinot}}
+      {{demographic-table-row className="indented" title="Japanese" data=currentData.asian_subgroup.asnjpn}}
+      {{demographic-table-row className="indented" title="Korean" data=currentData.asian_subgroup.asnkor}}
+      {{demographic-table-row className="indented" title="Mongolian" data=currentData.asian_subgroup.asnmgol}}
+      {{demographic-table-row className="indented" title="Okinawan" data=currentData.asian_subgroup.asnokinw}}
+      {{demographic-table-row className="indented" title="Taiwanese" data=currentData.asian_subgroup.asntwn}}
+      {{demographic-table-row title="South Asian" data=currentData.asian_subgroup.asnsouth}}
+      {{demographic-table-row className="indented" title="Asian Indian" data=currentData.asian_subgroup.asnind}}
+      {{demographic-table-row className="indented" title="Bangladeshi" data=currentData.asian_subgroup.asnbng}}
+      {{demographic-table-row className="indented" title="Bhutanese" data=currentData.asian_subgroup.asnbhutn}}
+      {{demographic-table-row className="indented" title="Nepalese" data=currentData.asian_subgroup.asnnepal}}
+      {{demographic-table-row className="indented" title="Pakistani" data=currentData.asian_subgroup.asnpak}}
+      {{demographic-table-row className="indented" title="Sri Lankan" data=currentData.asian_subgroup.asnsril}}
+      {{demographic-table-row title="Southeast Asian" data=currentData.asian_subgroup.asnseast}}
+      {{demographic-table-row className="indented" title="Burmese" data=currentData.asian_subgroup.asnburm}}
+      {{demographic-table-row className="indented" title="Cambodian" data=currentData.asian_subgroup.asncmb}}
+      {{demographic-table-row className="indented" title="Filipino" data=currentData.asian_subgroup.asnflp}}
+      {{demographic-table-row className="indented" title="Hmong" data=currentData.asian_subgroup.asnhmng}}
+      {{demographic-table-row className="indented" title="Indonesian" data=currentData.asian_subgroup.asnindnsn}}
+      {{demographic-table-row className="indented" title="Laotian" data=currentData.asian_subgroup.asnlao}}
+      {{demographic-table-row className="indented" title="Malaysian" data=currentData.asian_subgroup.asnmalsn}}
+      {{demographic-table-row className="indented" title="Thai" data=currentData.asian_subgroup.asnthai}}
+      {{demographic-table-row className="indented" title="Vietnamese" data=currentData.asian_subgroup.asnvtn}}
+      {{demographic-table-row title="Other Asian" data=currentData.asian_subgroup.asnoasn}}
+      {{demographic-table-row title="Two or more Asian" data=currentData.asian_subgroup.asn2pl}}
     </tbody>
   </table>
 </div>
