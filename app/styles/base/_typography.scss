@@ -310,19 +310,21 @@ button {
   margin-bottom: $global-margin;
 
   @include breakpoint(medium) {
-    padding-top: rem-calc(12);
     border-bottom: 1px solid $medium-gray;
+  }
+  @include breakpoint(large) {
+    padding-top: rem-calc(12);
   }
 }
 
 .report-mode {
   font-weight: $global-weight-bold;
-  font-size: rem-calc(10);
-  text-transform: uppercase;
   margin-bottom: $global-margin/2;
   background-color: $white;
 
   @include breakpoint(medium) {
+    font-size: rem-calc(10);
+    text-transform: uppercase;
     float: right;
     margin-top: rem-calc(-10);
     border-radius: 4px;
