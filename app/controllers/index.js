@@ -54,6 +54,7 @@ export default Ember.Controller.extend({
 
   actions: {
     handleClick(e) {
+      console.log('drawmode', this.get('drawMode'))
       if (!this.get('drawMode')) {
         const selection = this.get('selection');
         const summaryLevel = selection.summaryLevel;
@@ -112,7 +113,7 @@ export default Ember.Controller.extend({
 
     handleDrawModeChange(e) {
       const drawMode = e.mode === 'draw_polygon';
-      this.set('drawMode', drawMode);
+      setTimeout(() => { this.set('drawMode', drawMode); }, 200);
     },
 
     handleMousemove(e) {
