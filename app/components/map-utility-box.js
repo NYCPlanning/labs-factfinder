@@ -23,5 +23,8 @@ export default Ember.Component.extend({
     clearSelection() {
       this.get('selection').clearSelection();
     },
+    handleDrawButtonClick() {
+      this.sendAction('handleDrawButtonClick');
+    },
   },
 });

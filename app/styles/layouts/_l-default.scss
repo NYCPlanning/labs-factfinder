@@ -127,6 +127,39 @@ body {
   }
 }
 
+.selection-tools {
+
+  @include breakpoint(large) {
+    position: absolute;
+    top: 0;
+    right: auto;
+    left: calc(100% + 10px);
+    z-index: 2;
+  }
+
+  button {
+    @include button(false, $white, #f2f2f2, $primary-color, solid);
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: rem-calc(12);
+    padding: rem-calc(6) rem-calc(10) rem-calc(5) rem-calc(8);
+
+    @include breakpoint(large) {
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+    }
+
+    &.active {
+      @include button-style($primary-color, auto, $white);
+    }
+
+    .fa {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: rem-calc(19);
+    }
+  }
+}
+
 .report-content > .cell,
 .report-sidebar {
   padding: 0 rem-calc(20);
