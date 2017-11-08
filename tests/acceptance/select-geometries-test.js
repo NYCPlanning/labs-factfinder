@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import startApp from 'labs-nyc-factfinder/tests/helpers/start-app';
+import destroyApp from 'labs-nyc-factfinder/tests/helpers/destroy-app';
 import moduleForAcceptance from 'labs-nyc-factfinder/tests/helpers/module-for-acceptance';
 import config from 'labs-nyc-factfinder/config/environment';
 
@@ -13,6 +14,10 @@ moduleForAcceptance('Acceptance | select geometries', {
   beforeEach() {
     this.application = startApp();
     indexController = this.application.__container__.lookup('controller:index');
+  },
+  afterEach() {
+    run(() => { indexController.get('selection').clearSelection() });
+    destroyApp(this.application);
   },
 });
 
@@ -40,13 +45,3 @@ test('visiting /, adds tracts, counts number of tracts, explodes tracts to block
   assert.equal($(find('.map-utility-box .stat')).text().trim(), '113');
 });
 
-test('visiting /, adds tracts, run report', async function(assert) {
-  await visit('/');
-  await run(function() {
-    indexController.get('selection').handleSelectedFeatures(config.SAMPLE_SELECTION.features);
-  });
-
-  await click('.view-report-button');
-  await waitUntil(() => (currentURL() !== '/'));
-  assert.equal(currentURL(), '/report/demographic');
-});
