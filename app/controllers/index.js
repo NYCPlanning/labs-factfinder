@@ -152,6 +152,11 @@ export default Ember.Controller.extend({
       map.addControl(new mapboxgl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
       map.addControl(geoLocateControl, 'top-left');
       map.addControl(draw, 'top-left');
+
+      this.set('selection.currentMapInstance', map);
+      if (window) {
+        window.map = map;
+      }
     },
   },
 });
