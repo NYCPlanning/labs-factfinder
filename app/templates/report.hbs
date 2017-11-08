@@ -64,12 +64,19 @@
             <li class="{{if (eq mode 'change') 'active'}}"><a {{action (mut mode) 'change'}}>Change <span class="show-for-xlarge">Over Time</span></a></li>
           </ul>
 
-          <ul class="menu tabs vertical medium-horizontal expanded- text-center">
+          <ul class="menu tabs vertical medium-horizontal text-center">
             <li>{{link-to 'Census' 'report.census'}}</li>
-            <li>{{link-to 'Demographic' 'report.demographic'}}</li>
-            <li>{{link-to 'Social' 'report.social'}}</li>
-            <li>{{link-to 'Economic' 'report.economic'}}</li>
-            <li>{{link-to 'Housing' 'report.housing'}}</li>
+            {{#if (eq summaryLevel 'blocks')}}
+              <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+              <li><a class="disabled">Social <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+              <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+              <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+            {{else}}
+              <li>{{#link-to 'report.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}</li>
+              <li>{{#link-to 'report.social'}}Social  <small>(ACS)</small>{{/link-to}}</li>
+              <li>{{#link-to 'report.economic'}}Economic  <small>(ACS)</small>{{/link-to}}</li>
+              <li>{{#link-to 'report.housing'}}Housing  <small>(ACS)</small>{{/link-to}}</li>
+            {{/if}}
           </ul>
         </div>
 

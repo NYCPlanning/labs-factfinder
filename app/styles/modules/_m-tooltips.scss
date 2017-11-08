@@ -13,12 +13,16 @@
   }
 }
 
-.layer-warning .fa {
+.warning .fa {
   color: darken($dcp-yellow,25%);
 }
 
-.layer-info .fa {
+.info .fa {
   color: $a11y-orange;
+}
+
+.ember-tooltip-or-popover-target {
+  cursor: pointer;
 }
 
 .ember-tooltip {
