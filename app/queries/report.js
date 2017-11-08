@@ -27,7 +27,31 @@ const generateReportSQL = function(geoids, comparator) {
         ) window_sum
         WHERE base = VARIABLE
         GROUP BY VARIABLE, "year"
+      ),
+
+      comparison_selection AS (
+        SELECT *
+        FROM support_fact_finder
+        WHERE geoid IN ('${comparator}')
+      ),
+
+      comparison_base_numbers AS (
+        SELECT
+          sum(e) AS comparison_base_sum,
+          sqrt(sum(power(m, 2))) AS comparison_base_m,
+          max(base) AS comparison_base_join,
+          max(YEAR) AS comparison_base_year
+        FROM (
+          SELECT *
+          FROM comparison_selection
+          INNER JOIN support_fact_finder_meta_update
+            ON support_fact_finder_meta_update.variablename = comparison_selection.variable
+        ) window_sum
+        WHERE base = VARIABLE
+        GROUP BY VARIABLE, "year"
       )
+
+
 
     SELECT
       *,
@@ -38,7 +62,8 @@ const generateReportSQL = function(geoids, comparator) {
      regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
      regexp_replace(lower(VARIABLE), '[^A-Za-z0-9]', '_', 'g') AS VARIABLE,
      ROUND((SUM / base_sum)::numeric, 4) as percent,
-      (1 / base_sum) * SQRT(POWER(m, 2) %2B ABS(POWER(sum / base_sum, 2) * POWER(base_m, 2))) as percent_m
+      (1 / base_sum) * SQRT(POWER(m, 2) %2B ABS(POWER(sum / base_sum, 2) * POWER(base_m, 2))) as percent_m,
+      ROUND((comparison_sum / comparison_base_sum)::numeric, 4) as comparison_percent
     FROM (
       SELECT
         sum(e) filter (WHERE geoid IN (${ids})) AS sum,
@@ -55,7 +80,10 @@ const generateReportSQL = function(geoids, comparator) {
       ON support_fact_finder_meta_update.variablename = aggregated.variable
     LEFT OUTER JOIN base_numbers
       ON base = base_numbers.base_join
-    AND YEAR = base_numbers.base_year
+      AND YEAR = base_numbers.base_year
+    LEFT OUTER JOIN comparison_base_numbers
+      ON base = comparison_base_numbers.comparison_base_join
+      AND YEAR = comparison_base_numbers.comparison_base_year
   `;
 };
 
