@@ -70,7 +70,7 @@ export default HorizontalBar.extend({
     // get the largest value + moe
     const maxValue = max([
       max(data, d => d.male.percent + d.male.percent_m),
-      max(data, d => d.female.percent + d.female.percent),
+      max(data, d => d.female.percent + d.female.percent_m),
     ]);
 
     const formatLabel = (value) => {
@@ -145,7 +145,8 @@ export default HorizontalBar.extend({
 
     const yScale = scaleBand()
       .domain(data.map(d => d.group))
-      .range([height, 0], 0.1);
+      .range([height, 0])
+      .paddingInner(0.2);
 
     const yAxisLeft = axisRight()
       .scale(yScale)
@@ -180,6 +181,30 @@ export default HorizontalBar.extend({
     const rightMOEs = svg.select('.female')
       .selectAll('.moe.right')
       .data(data, d => d.group);
+
+    const leftComparisons = svg.select('.male')
+      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
+      .selectAll('.comparison.male')
+      .data(data, d => d.group);
+
+    const rightComparisons = svg.select('.female')
+      .selectAll('.comparison.female')
+      .data(data, d => d.group);
+
+    const leftComparisonMOEs = svg.select('.male')
+      .selectAll('.comparisonmoe.left')
+      .data(data, d => d.group);
+
+    // const rightComparisonMOEs = svg.select('.female')
+    //   .selectAll('.comparisonmoe.right')
+    //   .data(data, d => d.group);
+
+
+    // const rightComparison = svg.select('.female')
+    //   .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
+    //   .selectAll('.comparison.female')
+    //   .data(data, d => d.group);
+
 
     // DRAW AXES
     svg.select('.y-axis-left')
@@ -222,7 +247,7 @@ export default HorizontalBar.extend({
       .attr('class', d => `bar male ${d.group}`)
       .attr('x', 0)
       .attr('y', d => yScale(d.group))
-      .attr('height', yScale.step() - 3)
+      .attr('height', yScale.bandwidth())
       .attr('width', d => xScale(d.male.percent))
       .attr('rx', 2)
       .attr('ry', 2)
@@ -233,7 +258,6 @@ export default HorizontalBar.extend({
 
     leftBarGroup.transition().duration(300)
       .attr('width', d => xScale(d.male.percent))
-      .attr('height', yScale.step() - 3);
 
     leftBarGroup.exit().remove();
 
@@ -243,7 +267,7 @@ export default HorizontalBar.extend({
       .attr('x', 0)
       .attr('y', d => yScale(d.group))
       .attr('width', d => xScale(d.female.percent))
-      .attr('height', yScale.step() - 3)
+      .attr('height', yScale.bandwidth())
       .attr('rx', 2)
       .attr('ry', 2)
       .on('mouseover', (d) => {
@@ -253,15 +277,15 @@ export default HorizontalBar.extend({
 
     rightBarGroup.transition().duration(300)
       .attr('width', d => xScale(d.female.percent))
-      .attr('height', yScale.step() - 3);
 
     rightBarGroup.exit().remove();
 
     leftMOEs.enter()
       .append('rect')
+      .attr('alighnment-baseline', 'middle')
       .attr('class', d => `moe left ${d.group}`)
       .attr('x', d => xScale(d.male.percent) - xScale(d.male.percent_m))
-      .attr('y', d => yScale(d.group) + 4)
+      .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -1.5)
       .attr('height', 3)
       .attr('width', d => xScale(d.male.percent_m) * 2);
 
@@ -273,7 +297,7 @@ export default HorizontalBar.extend({
       .append('rect')
       .attr('class', d => `moe right ${d.group}`)
       .attr('x', d => xScale(d.female.percent) - xScale(d.female.percent_m))
-      .attr('y', d => yScale(d.group) + 4)
+      .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -1.5)
       .attr('height', 3)
       .attr('width', d => xScale(d.female.percent_m) * 2);
 
@@ -282,25 +306,40 @@ export default HorizontalBar.extend({
       .attr('width', d => xScale(d.female.percent_m) * 2);
 
 
-    leftComparison.enter()
+    leftComparisons.enter()
       .append('circle')
       .attr('class', d => `comparison male ${d.group}`)
-      .attr('x', 0)
-      .attr('y', d => yScale(d.group))
-      .attr('height', yScale.step() - 3)
-      .attr('width', d => xScale(d.male.comparison))
-      .attr('rx', 2)
-      .attr('ry', 2)
-      // .on('mouseover', (d) => {
-      //   handleMouseOver(d, 'male');
-      // })
-      // .on('mouseout', handleMouseOut);
+      .attr('cx', d => xScale(d.male.comparison_percent))
+      .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
+      .attr('r', 3)
 
-    leftComparison.transition().duration(300)
-      .attr('width', d => xScale(d.male.percent))
-      .attr('height', yScale.step() - 3);
+    leftComparisons.exit().remove();
 
-    leftComparison.exit().remove();
+    rightComparisons.enter()
+      .append('circle')
+      .attr('class', d => `comparison female ${d.group}`)
+      .attr('cx', d => xScale(d.female.comparison_percent))
+      .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
+      .attr('r', 3)
 
+    leftComparisons.exit().remove();
+
+    leftComparisonMOEs.enter()
+      .append('rect')
+      .attr('alighnment-baseline', 'middle')
+      .attr('class', d => `comparisonmoe left ${d.group}`)
+      .attr('x', d => xScale(d.male.comparison_percent) - xScale(d.male.comparison_percent_m))
+      .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -1.5)
+      .attr('height', 1)
+      .attr('width', d => xScale(d.male.comparison_percent_m) * 2);
+    //
+    // rightComparisonMOEs.enter()
+    //   .append('rect')
+    //   .attr('alighnment-baseline', 'middle')
+    //   .attr('class', d => `comparisonmoe left ${d.group}`)
+    //   .attr('x', d => xScale(d.female.comparison_percent) - xScale(d.female.comparison_percent_m))
+    //   .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -1.5)
+    //   .attr('height', 1)
+    //   .attr('width', d => xScale(d.female.comparison_percent_m) * 2);
   },
 });
