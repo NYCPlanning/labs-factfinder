@@ -8,12 +8,14 @@ export default Ember.Controller.extend({
 
   @computed('model')
   currentData(model) {
+    console.log(model)
     return model.y2011_2015;
   },
 
   @computed('currentData')
   agePopDist(currentData) {
     const d = currentData.poppyramid_only;
+    console.log(d)
     const variables = [
       'pop0t5',
       'pop5t9',
@@ -35,14 +37,28 @@ export default Ember.Controller.extend({
       'pop85pl',
     ];
 
-    const popPyramidData = variables.map(variable => ({
-      group: variable,
-      male: d[`m${variable}`].sum,
-      malemoe: d[`m${variable}`].m,
-      female: d[`f${variable}`].sum,
-      femalemoe: d[`f${variable}`].m,
-    }));
+    const pyramidData = variables.map((variable) => {
+      const male = d[`m${variable}`];
+      const female = d[`f${variable}`];
+      return {
+        group: variable,
+        male: male.sum,
+        malemoe: male.m,
+        malePercent: male.percent,
+        malePercentM: male.percent_m,
+        female: female.sum,
+        femalemoe: female.m,
+        femalePercent: female.percent,
+        femalePercentM: female.percent_m,
+      };
+    });
 
-    return popPyramidData;
+    return {
+      totals: {
+        male: currentData.sex_and_age.male,
+        female: currentData.sex_and_age.fem,
+      },
+      pyramidData,
+    };
   },
 });
