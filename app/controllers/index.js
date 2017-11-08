@@ -3,6 +3,7 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 import carto from 'ember-jane-maps/utils/carto';
+import bbox from 'npm:@turf/bbox';
 
 import generateIntersectionSQL from '../queries/intersection';
 import layerGroups from '../layer-groups';
@@ -50,6 +51,13 @@ export default Ember.Controller.extend({
       type: 'geojson',
       data: current,
     };
+  },
+
+  fitBounds(map) {
+    const FC = this.get('selection').current;
+    map.fitBounds(bbox(FC), {
+      padding: 40,
+    });
   },
 
   actions: {
@@ -152,6 +160,10 @@ export default Ember.Controller.extend({
       map.addControl(new mapboxgl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
       map.addControl(geoLocateControl, 'top-left');
       map.addControl(draw, 'top-left');
+
+      if (this.get('selection.selectedCount')) {
+        this.fitBounds(map);
+      }
     },
   },
 });
