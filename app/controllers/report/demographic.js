@@ -42,14 +42,8 @@ export default Ember.Controller.extend({
       const female = d[`f${variable}`];
       return {
         group: variable,
-        male: male.sum,
-        malemoe: male.m,
-        malePercent: male.percent,
-        malePercentM: male.percent_m,
-        female: female.sum,
-        femalemoe: female.m,
-        femalePercent: female.percent,
-        femalePercentM: female.percent_m,
+        male,
+        female,
       };
     });
 
