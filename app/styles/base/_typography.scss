@@ -416,6 +416,7 @@ td:not(:first-child) {
 
 td:first-child,
 th:first-child {
+  min-width: rem-calc(160);
   max-width: rem-calc(160);
 }
 
@@ -459,41 +460,6 @@ th:first-child {
     padding-left: rem-calc(63);
   }
 }
-
-// .v-divider-before-14 {
-//   td:nth-child(14) {
-//     border-left: 1px solid $medium-gray;
-//   }
-// }
-//
-// .v-divider-before-12 {
-//   td:nth-child(12) {
-//     border-left: 1px solid $medium-gray;
-//   }
-// }
-//
-// .v-divider-before-10 {
-//   td:nth-child(10) {
-//     border-left: 1px solid $medium-gray;
-//   }
-// }
-//
-// .v-divider-before-7 {
-//   td:nth-child(7) {
-//     border-left: 1px solid $medium-gray;
-//   }
-// }
-// .v-divider-before-6 {
-//   td:nth-child(6) {
-//     border-left: 1px solid $medium-gray;
-//   }
-// }
-//
-// .v-divider-before-2 {
-//   td:nth-child(2) {
-//     border-left: 1px solid $medium-gray;
-//   }
-// }
 
 .cell-border-left {
   border-left: 1px solid $medium-gray;
