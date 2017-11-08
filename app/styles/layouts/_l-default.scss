@@ -132,6 +132,13 @@ body {
   padding: 0 rem-calc(20);
 }
 
+.report-content > .cell {
+
+  @include breakpoint(large) {
+    padding-left: 0;
+  }
+}
+
 .overflow-y-grid {
 
   @include breakpoint(large) {
