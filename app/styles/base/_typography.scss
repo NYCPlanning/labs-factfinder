@@ -330,6 +330,7 @@ button {
     font-size: rem-calc(10);
     text-transform: uppercase;
     float: right;
+    white-space: nowrap;
     margin-top: rem-calc(-10);
     border-radius: 4px;
     overflow: hidden;
