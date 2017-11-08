@@ -1,6 +1,6 @@
 <div class="grid-x grid-padding-y">
   <div class="cell large-4 xxlarge-3 report-sidebar">
-
+    {{log model}}
     <div class="report-geographies-list">
       <h2 class="header-small no-margin">
         Selected
@@ -59,7 +59,7 @@
       <div class="cell shrink">
 
         <div class="report-menus">
-          <ul class="menu report-mode">
+          <ul class="menu report-mode expanded text-center">
             <li class="{{if (eq mode 'current') 'active'}}"><a {{action (mut mode) 'current'}}>Current</a></li>
             <li class="{{if (eq mode 'change') 'active'}}"><a {{action (mut mode) 'change'}}>Change <span class="show-for-xlarge">Over Time</span></a></li>
           </ul>

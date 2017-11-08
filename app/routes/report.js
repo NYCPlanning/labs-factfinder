@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import { nest } from 'd3-collection';
-import merge from 'lodash/merge';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
@@ -10,55 +9,59 @@ const preserveType = function(array) {
   return `'${array.join("','")}'`;
 };
 
-const aggregateGeos = function(ids, year = 'Y2011-2015') {
-  const cleaned = preserveType(ids);
+const generateSelectionSQL = function(geoids, comparator) {
+  const ids = preserveType(geoids);
 
-  return `SELECT
-            SUM(e),
-            SQRT(
-              SUM(
-                POWER(m, 2)
-              )
-            ) AS m,
-            variable,
-            variable || 'E' as variablename
-          FROM
-            support_fact_finder
-          WHERE geoid IN (${cleaned})
-            AND year = '${year}'
-          GROUP BY variable`;
-};
-
-const generateSelectionSQL = function(...args) {
-  return `SELECT
-            regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') as variable,
-            regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') as profile,
-            regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') as category,
-            type,
-            sum,
-            m
-          FROM
-            (${aggregateGeos(...args)}) support_fact_finder
-          INNER JOIN support_fact_finder_meta
-          ON support_fact_finder_meta.variablename = support_fact_finder.variablename`;
-};
-
-const generateLongitudinalSQL = function(t1, t2) {
   return `
+    WITH filtered_selection AS
+      (SELECT *
+       FROM support_fact_finder
+       WHERE geoid IN (${ids}) ),
+         base_numbers AS
+      (SELECT *
+       FROM
+         (SELECT sum(e) AS base_sum,
+                 max(base) AS base_join,
+                 max(YEAR) AS base_year
+          FROM
+            (SELECT *
+             FROM filtered_selection
+             INNER JOIN support_fact_finder_meta_update ON support_fact_finder_meta_update.variablename = filtered_selection.variable) window_sum
+          WHERE base = VARIABLE
+          GROUP BY VARIABLE,
+                   "year") percentage)
     SELECT *,
-      (t2.historic_comparison_sum - t1.sum) as delta_sum,
-      (t2.historic_comparison_m - t1.m) as delta_m
+           (((m / 1.645) / SUM) * 100) AS cv,
+           (((comparison_m / 1.645) / comparison_sum) * 100) AS comparison_cv,
+           regexp_replace(lower(YEAR), '[^A-Za-z0-9]', '_', 'g') AS YEAR,
+           regexp_replace(lower(PROFILE), '[^A-Za-z0-9]', '_', 'g') AS PROFILE,
+           regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
+           regexp_replace(lower(VARIABLE), '[^A-Za-z0-9]', '_', 'g') AS VARIABLE
     FROM
-      (${t1}) t1
-    INNER JOIN
-      ( SELECT sum AS historic_comparison_sum, m AS historic_comparison_m, variable as t2_var
-        FROM (${t2}) t ) t2
-    ON t2.t2_var = t1.variable`;
+      (SELECT sum(e) filter (
+                             WHERE geoid IN (${ids})) AS SUM,
+              sqrt(sum(power(m, 2)) filter (
+                                            WHERE geoid IN (${ids}))) AS m,
+              sum(e) filter (
+                             WHERE geoid IN ('${comparator}')) AS comparison_sum,
+              sqrt(sum(power(m, 2)) filter (
+                                            WHERE geoid IN ('0') )) AS comparison_m,
+              YEAR,
+              VARIABLE
+       FROM support_fact_finder
+       GROUP BY VARIABLE,
+                YEAR
+       ORDER BY VARIABLE DESC) aggregated
+    INNER JOIN support_fact_finder_meta_update ON support_fact_finder_meta_update.variablename = aggregated.variable
+    LEFT OUTER JOIN base_numbers ON base = base_numbers.base_join
+    AND YEAR = base_numbers.base_year
+  `;
 };
 
 const nestReport = function(data) {
   return nest()
     .key(d => d.profile)
+    .key(d => d.year)
     .key(d => d.category)
     .key(d => d.variable)
     .rollup(d => d[0])
@@ -84,19 +87,9 @@ export default Ember.Route.extend({
 
   model({ comparator = '0' }) {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
-    const selectionSQL = generateSelectionSQL(geoids);
-    const historicalSQL = generateSelectionSQL(geoids, 'Y2006-2010');
-    const longitudinalSQL = generateLongitudinalSQL(selectionSQL, historicalSQL);
-    const geographicComparisonSQL = ` SELECT
-                              e as comparison_sum, m as comparision_m
-                            FROM support_fact_finder
-                            WHERE geoid = '${comparator}'`;
+    const selectionSQL = generateSelectionSQL(geoids, comparator);
 
-    return carto.SQL(longitudinalSQL, 'json', 'post')
-      .then(nestedData =>
-        carto.SQL(geographicComparisonSQL, 'json', 'post')
-          .then(final => merge(final, nestedData)),
-      )
+    return carto.SQL(selectionSQL, 'json', 'post')
       .then(data => nestReport(data));
   },
 });

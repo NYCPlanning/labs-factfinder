@@ -44,6 +44,7 @@
     "ember-font-awesome": "^4.0.0-alpha.13",
     "ember-load-initializers": "^1.0.0",
     "ember-lodash": "^4.17.5",
+    "ember-mapbox-gl-draw": "^1.1.0",
     "ember-math-helpers": "^2.3.0",
     "ember-resize": "0.0.17",
     "ember-resolver": "^4.0.0",
@@ -65,7 +66,7 @@
   "dependencies": {
     "@turf/bbox": "^5.0.0",
     "babel-eslint": "^8.0.1",
-    "ember-jane-maps": "0.0.5",
+    "ember-jane-maps": "0.0.6",
     "numeral": "^2.0.6"
   }
 }

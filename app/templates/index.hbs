@@ -1,9 +1,9 @@
 <ul class="menu align-center menu--selector">
-  <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}}">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
-  </li>
   <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}}">
     <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>
+  </li>
+  <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}}">
+    <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
   </li>
   <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}}">
     <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood</a>
@@ -58,12 +58,14 @@
       {{/map.source}}
     {{/if}}
 
+    {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
+    {{map.on 'draw.create' (action 'handleDrawCreate')}}
     {{map.on 'click' (action 'handleClick')}}
     {{map.on 'mousemove' (action 'handleMousemove')}}
 
   {{/jane-maps}}
 </div>
 
-{{map-utility-box mode=mode}}
+{{map-utility-box mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
 
 {{outlet}}
