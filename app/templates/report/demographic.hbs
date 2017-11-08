@@ -1,7 +1,6 @@
-{{log model}}
 <h1>Demographic Report</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
-
+{{log model}}
 {{#if (eq report.mode 'current')}}
 
 <div class="grid-x grid-margin-x large-up-2">
@@ -213,7 +212,7 @@
   <table class="text-small">
     <thead>
       <tr>
-        <th class="th-large" rowspan="3">Sex and Age</th>
+        <th rowspan="3">&nbsp;</th>
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2006-2010</th>
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2011-2015</th>
         {{#if report.changeComparison}}
@@ -250,6 +249,7 @@
         {{#if report.changeReliability}}
           <th>MOE</th>
         {{/if}}
+        {{#if report.changeComparison}}
         <th>Estimate</th>
         {{#if report.changeReliability}}
           <th>MOE</th>
@@ -266,9 +266,12 @@
         {{#if report.changeReliability}}
           <th>MOE</th>
         {{/if}}
+        {{/if}}
       </tr>
     </thead>
     <tbody>
+      {{demographic-change-table-row title="Sex and Age" classNames="table-section-header" reliability=report.changeReliability  comparison=report.changeComparison subheader=true}}
+
       {{demographic-change-table-row title="Total population" classNames="row-highlight" data=model.sex_and_age.pop_1  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title='Male' classNames="" data=model.sex_and_age.male  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title='Female' classNames="" data=model.sex_and_age.fem  reliability=report.changeReliability  comparison=report.changeComparison}}
@@ -291,20 +294,21 @@
       {{demographic-change-table-row title="75 to 79 years" classNames="" data=model.sex_and_age.pop75t79  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="80 to 84 years" classNames="" data=model.sex_and_age.pop80t84  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="85 years and over" classNames="" data=model.sex_and_age.pop85pl  reliability=report.changeReliability  comparison=report.changeComparison}}
-      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      {{demographic-change-table-row divider=true  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Under 18 years" classNames="" data=model.sex_and_age.popu181  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="65 years and over" classNames="" data=model.sex_and_age.pop65pl1  reliability=report.changeReliability  comparison=report.changeComparison}}
-      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      {{demographic-change-table-row divider=true  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Median age (years)" classNames="" data=model.sex_and_age.mdage  reliability=report.changeReliability  comparison=report.changeComparison}}
-      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      {{demographic-change-table-row divider=true  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Under 18 years" classNames="row-highlight" data=model.sex_and_age.popu18_2  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Male" classNames="" data=model.sex_and_age.popu18m  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Female" classNames="" data=model.sex_and_age.popu18f  reliability=report.changeReliability  comparison=report.changeComparison}}
-      <tr class="row-divider"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      {{demographic-change-table-row divider=true  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="65 years and over" classNames="row-highlight" data=model.sex_and_age.pop65pl2  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Male" classNames="" data=model.sex_and_age.pop65plm  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Female" classNames="" data=model.sex_and_age.pop65plf  reliability=report.changeReliability  comparison=report.changeComparison}}
 
+      {{demographic-change-table-row title="Mutually Exclusive Race/Hispanic Origin" classNames="table-section-header" reliability=report.changeReliability  comparison=report.changeComparison subheader=true}}
 
       {{demographic-change-table-row title='Total population' classNames="row-highlight" data=model.mutually_exclusive_race_hispanic_origin.pop_2  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Hispanic/Latino (of any race)" data=model.mutually_exclusive_race_hispanic_origin.hsp1  reliability=report.changeReliability  comparison=report.changeComparison}}
@@ -317,6 +321,8 @@
       {{demographic-change-table-row title="Some other race alone" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.othnh  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Two or more races" classNames="row-indent" data=model.mutually_exclusive_race_hispanic_origin.rc2plnh  reliability=report.changeReliability  comparison=report.changeComparison}}
 
+
+      {{demographic-change-table-row title="Hispanic Subgroup" classNames="table-section-header" reliability=report.changeReliability  comparison=report.changeComparison subheader=true}}
 
       {{demographic-change-table-row title="Hispanic/Latino" classNames="row-highlight" data=model.hispanic_subgroup.hsp2  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="Mexican" data=model.hispanic_subgroup.hspme  reliability=report.changeReliability  comparison=report.changeComparison}}
@@ -348,7 +354,7 @@
       {{demographic-change-table-row title="Spanish American" classNames="row-indent" data=model.hispanic_subgroup.hspspam  reliability=report.changeReliability  comparison=report.changeComparison}}
       {{demographic-change-table-row title="All other Hispanic/Latino" data=model.hispanic_subgroup.hspalloth  reliability=report.changeReliability  comparison=report.changeComparison}}
 
-      <tr class="row-highlight">
+  <tr class="row-highlight">
         <td>Asian Alone</td>
         <td>n/a</td>
         <td>n/a</td>

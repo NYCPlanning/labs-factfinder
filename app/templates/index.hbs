@@ -58,12 +58,14 @@
       {{/map.source}}
     {{/if}}
 
+    {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
+    {{map.on 'draw.create' (action 'handleDrawCreate')}}
     {{map.on 'click' (action 'handleClick')}}
     {{map.on 'mousemove' (action 'handleMousemove')}}
 
   {{/jane-maps}}
 </div>
 
-{{map-utility-box mode=mode}}
+{{map-utility-box mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
 
 {{outlet}}

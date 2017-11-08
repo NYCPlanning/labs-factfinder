@@ -16,10 +16,10 @@ const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5]; // eslint-disable-line
 
 export default Ember.Controller.extend({
   mode: 'current',
-  reliability:true,
-  comparison:true,
-  changeReliability:true,
-  changeComparison:false,
+  reliability: true,
+  comparison: true,
+  changeReliability: true,
+  changeComparison: false,
 
   selection: service(),
   mapMouseover: service(),
