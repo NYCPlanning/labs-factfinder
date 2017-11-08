@@ -307,12 +307,16 @@ button {
 }
 
 .report-menus {
+  @include clearfix;
+  margin-top: -$global-margin;
   margin-bottom: $global-margin;
 
   @include breakpoint(medium) {
     border-bottom: 1px solid $medium-gray;
   }
+
   @include breakpoint(large) {
+    margin-top: 0;
     padding-top: rem-calc(12);
   }
 }
@@ -362,6 +366,8 @@ button {
   @include breakpoint(medium) {
     font-size: rem-calc(12);
     margin-bottom: -1px;
+    // flex-wrap: nowrap;
+    float: left;
 
     li {
       &:hover {
@@ -372,6 +378,7 @@ button {
         border: 1px solid transparent;
         border-bottom-width: 0;
         background-color: transparent;
+        white-space: nowrap;
 
         &:not(.active) {
           border-right-color: transparent;
@@ -386,6 +393,11 @@ button {
         }
       }
     }
+  }
+
+  .disabled {
+    color: $medium-gray;
+    cursor: text;
   }
 }
 
