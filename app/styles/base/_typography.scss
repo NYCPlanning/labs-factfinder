@@ -401,8 +401,26 @@ button {
 // --------------------------------------------------
 table,
 .table-scroll {
-  clear: both;
   min-width: 100%;
+}
+
+thead {
+  display: block;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+tbody {
+  display: block;
+  height: 40vh;
+  border-top: 0;
+}
+
+thead,
+tbody {
+  overflow-y: sroll;
+  overflow-x: hidden;
 }
 
 th {
@@ -414,10 +432,16 @@ td:not(:first-child) {
   text-align: right;
 }
 
-td:first-child,
-th:first-child {
+td, th {
+  min-width: rem-calc(90);
+  max-width: rem-calc(90);
+}
+
+thead tr:first-child th:first-child,
+tbody td:first-child {
   min-width: rem-calc(160);
   max-width: rem-calc(160);
+  border-left: 0;
 }
 
 .th-large {
