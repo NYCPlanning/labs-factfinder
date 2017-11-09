@@ -62,8 +62,16 @@ const generateReportSQL = function(geoids, comparator) {
       ROUND((SUM / base_sum)::numeric, 4) as percent,
       (1 / base_sum) * SQRT(POWER(m, 2) %2B ABS(POWER(sum / base_sum, 2) * POWER(base_m, 2))) as percent_m,
       ROUND((comparison_sum / comparison_base_sum)::numeric, 4) as comparison_percent,
-      (1 / comparison_base_sum) * SQRT(POWER(comparison_m, 2) %2B ABS(POWER(comparison_sum / comparison_base_sum, 2) * POWER(comparison_base_m, 2))) as comparison_percent_m
-
+      (1 / comparison_base_sum) * SQRT(POWER(comparison_m, 2) %2B ABS(POWER(comparison_sum / comparison_base_sum, 2) * POWER(comparison_base_m, 2))) as comparison_percent_m,
+      CASE
+        WHEN ABS(
+          SQRT(
+            POWER(m / 1.645, 2) %2B POWER(comparison_m / 1.645, 2)
+          ) * 1.645
+        ) > ABS(comparison_sum - sum)
+        THEN false
+        ELSE true
+      END AS significant
     FROM (
       SELECT
         sum(e) filter (WHERE geoid IN (${ids})) AS sum,
