@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
   @computed('selection.selectedCount')
   reportButtonClasses(count) {
-    return count > 0 ? 'button large expanded' : 'button large expanded disabled';
+    return count > 0 ? 'button large expanded view-report-button' : 'button large expanded disabled view-report-button';
   },
 
   actions: {
