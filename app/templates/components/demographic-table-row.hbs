@@ -77,8 +77,8 @@
       {{#if reliability}}
         <td>&nbsp;</td>
       {{/if}}
-      <td class="cell-border-left">{{numeral-format (abs (sub data.comparison_sum data.sum))}}</td>
-      <td>&nbsp;</td>
+      <td class="cell-border-left {{unless data.significant 'medium-gray'}}">{{numeral-format (abs (sub data.comparison_sum data.sum))}}</td>
+      <td class="{{unless data.percent_significant 'medium-gray'}}">&nbsp;</td>
     {{/if}}
 
   {{/if}}
