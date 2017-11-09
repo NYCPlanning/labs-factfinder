@@ -286,34 +286,6 @@ export default HorizontalBar.extend({
     handleMOEs(rightMOEs, 'female');
     // end margin of error bars
 
-    // comparison dots
-    const leftComparisons = svg.select('.male')
-      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
-      .selectAll('.comparison.male')
-      .data(data, d => d.group);
-
-    const rightComparisons = svg.select('.female')
-      .selectAll('.comparison.female')
-      .data(data, d => d.group);
-
-    const handleComparisons = (selection, type) => {
-      const cxFunction = d => xScale(d[type].comparison_percent);
-      selection.enter()
-        .append('circle')
-        .attr('class', d => `comparison ${type} ${d.group}`)
-        .attr('cx', cxFunction)
-        .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
-        .attr('r', 3);
-
-      selection.transition().duration(300)
-        .attr('cx', cxFunction);
-
-      selection.exit().remove();
-    };
-
-    handleComparisons(leftComparisons, 'male');
-    handleComparisons(rightComparisons, 'female');
-    // end comparison dots
 
     // comparison MOE bars
     const leftComparisonMOEs = svg.select('.male')
@@ -348,5 +320,34 @@ export default HorizontalBar.extend({
     handleComparisonMOEs(leftComparisonMOEs, 'male');
     handleComparisonMOEs(rightComparisonMOEs, 'female');
     // end comparison MOE bars
+
+    // comparison dots
+    const leftComparisons = svg.select('.male')
+      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
+      .selectAll('.comparison.male')
+      .data(data, d => d.group);
+
+    const rightComparisons = svg.select('.female')
+      .selectAll('.comparison.female')
+      .data(data, d => d.group);
+
+    const handleComparisons = (selection, type) => {
+      const cxFunction = d => xScale(d[type].comparison_percent);
+      selection.enter()
+        .append('circle')
+        .attr('class', d => `comparison ${type} ${d.group}`)
+        .attr('cx', cxFunction)
+        .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
+        .attr('r', 2.5);
+
+      selection.transition().duration(300)
+        .attr('cx', cxFunction);
+
+      selection.exit().remove();
+    };
+
+    handleComparisons(leftComparisons, 'male');
+    handleComparisons(rightComparisons, 'female');
+    // end comparison dots
   },
 });
