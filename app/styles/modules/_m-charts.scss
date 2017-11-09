@@ -7,19 +7,11 @@
     cursor: pointer;
   }
 
-  .bar.male {
-    fill: #f37648;
+  .bar {
+    fill: rgb(96, 172, 191);
 
     &.highlight {
-      fill: #e36638;
-    }
-  }
-
-  .bar.female {
-    fill: #fecc67;
-
-    &.highlight {
-      fill: #eebc57;
+      fill: rgb(162,76, 14);
     }
   }
 
@@ -37,12 +29,9 @@
     pointer-events: none;
   }
 
-  .moe.male {
-    fill: #ffb499;
-  }
-
-  .moe.female {
-    fill: #ffe8ba;
+  .moe {
+    fill: darken(rgb(96, 172, 191), 25%);
+    opacity: 0.4;
   }
 
   .comparison {
