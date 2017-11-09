@@ -77,8 +77,8 @@
       {{#if reliability}}
           <td>{{numeral-format data.comparison_percent_m '0.0%'}}</td>
       {{/if}}
-      <td class="cell-border-left">{{numeral-format (sub data.comparison_sum data.sum) '+0,0'}}</td>
-      <td class="cell-border-left">{{numeral-format (mult (sub data.comparison_percent data.percent)  100)'+0.0'}}</td>
+      <td class="cell-border-left {{unless data.significant 'medium-gray'}}">{{numeral-format (sub data.comparison_sum data.sum) '+0,0'}}</td>
+      <td class="{{unless data.percent_significant 'medium-gray'}}">{{numeral-format (mult (sub data.comparison_percent data.percent)  100)'+0.0'}}</td>
 
     {{/if}}
 
