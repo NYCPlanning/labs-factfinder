@@ -104,7 +104,15 @@
     {{/if}}
   </td>
   {{#if reliability}}
-  <td>&nbsp;</td>
+  <td>
+    {{#if data2.sum}}
+      {{numeral-format (sqrt (add (pow (div data2.m 1.645) 2) (pow (div data.m 1.645) 2))) '+0,0'}}
+    {{else if (eq data2.sum 0)}}
+      {{numeral-format (sqrt (add (pow (div data2.m 1.645) 2) (pow (div data.m 1.645) 2))) '+0,0'}}
+    {{else}}
+      n/a
+    {{/if}}
+  </td>
   {{/if}}
   <td>
     {{#if data2.percent}}
@@ -116,7 +124,16 @@
     {{/if}}
   </td>
   {{#if reliability}}
-  <td>&nbsp;</td>
+  <td>
+    {{#if data2.sum}}
+      {{numeral-format longitudinalPercentMOE '+0.0%'}}
+    {{else if (eq data2.sum 0)}}
+      {{numeral-format longitudinalPercentMOE '+0.0%'}}
+    {{else}}
+      n/a
+    {{/if}}
+
+  </td>
   {{/if}}
   {{#if comparison}}
   <td class="cell-border-left">
@@ -129,7 +146,15 @@
     {{/if}}
   </td>
   {{#if reliability}}
-  <td>&nbsp;</td>
+  <td>
+    {{#if data2.comparison_sum}}
+      {{numeral-format (sqrt (add (pow (div data2.comparison_m 1.645) 2) (pow (div data.comparison_m 1.645) 2))) '+0,0'}}
+    {{else if (eq data2.comparison_sum 0)}}
+      {{numeral-format (sqrt (add (pow (div data2.comparison_m 1.645) 2) (pow (div data.comparison_m 1.645) 2))) '+0,0'}}
+    {{else}}
+      n/a
+    {{/if}}
+  </td>
   {{/if}}
   <td>
     {{#if data2.comparison_percent}}
@@ -141,7 +166,15 @@
     {{/if}}
   </td>
   {{#if reliability}}
-  <td>&nbsp;</td>
+  <td>
+    {{#if data2.sum}}
+      {{numeral-format comparisonLongitudinalPercentMOE '+0.0%'}}
+    {{else if (eq data2.sum 0)}}
+      {{numeral-format comparisonLongitudinalPercentMOE '+0.0%'}}
+    {{else}}
+      n/a
+    {{/if}}
+  </td>
   {{/if}}
   <td class="cell-border-left">
     {{#if data2.sum}}
@@ -153,7 +186,15 @@
     {{/if}}
   </td>
   {{#if reliability}}
-  <td>&nbsp;</td>
+    <td>
+    {{#if data2.sum}}
+      {{numeral-format differenceMOE '+0,0'}}
+    {{else if (eq data2.sum 0)}}
+      {{numeral-format differenceMOE '+0,0'}}
+    {{else}}
+      n/a
+    {{/if}}
+    </td>
   {{/if}}
   <td>
     {{#if data2.percent}}
@@ -165,7 +206,15 @@
     {{/if}}
   </td>
   {{#if reliability}}
-  <td>&nbsp;</td>
+  <td>
+    {{#if data2.sum}}
+      {{numeral-format differencePercentMOE '+0.0%'}}
+    {{else if (eq data2.sum 0)}}
+      {{numeral-format differencePercentMOE '+0.0%'}}
+    {{else}}
+      n/a
+    {{/if}}
+  </td>
   {{/if}}
   {{/if}}
 
