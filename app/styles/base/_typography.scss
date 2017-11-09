@@ -306,6 +306,21 @@ button {
   }
 }
 
+.report-header {
+  margin-bottom: $global-margin;
+
+  h1, h2, p {
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    max-width: 35em;
+    @include breakpoint(large) {
+      margin-left: auto;
+    }
+  }
+}
+
 .report-menus {
   @include clearfix;
   margin-top: -$global-margin;

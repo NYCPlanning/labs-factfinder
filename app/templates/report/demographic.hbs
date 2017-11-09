@@ -1,11 +1,17 @@
-{{log model}}
-<h1>Demographic Report</h1>
-
-<p style="max-width:50rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
-{{log model}}
-
-
 {{#if (eq report.mode 'current')}}
+
+<div class="report-header grid-x grid-margin-x align-bottom">
+  <div class="cell large-7 xlarge-8">
+    <h1>Demographic Profile</h1>
+    <h2 class="header-small dark-gray">American Community Survey (ACS), 2011-2015 <sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."}}</sup></h2>
+  </div>
+  <div class="cell large-5 xlarge-4 large-text-right">
+    <p class="dark-gray text-tiny">
+      ACS data are derived from a survey and are subject to sampling variability.
+      Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
+    </p>
+  </div>
+</div>
 
 <ul class="menu report-extras">
   <li><a {{action (mut report.reliability) (not report.reliability)}}>
@@ -200,6 +206,19 @@
 {{/if}}{{! end report.mode = 'current' }}
 
 {{#if (eq report.mode 'change')}}
+
+<div class="report-header grid-x grid-margin-x align-bottom">
+  <div class="cell large-7 xlarge-8">
+    <h1>Demographic Profile of Change Over&nbsp;Time</h1>
+    <h2 class="header-small dark-gray">American Community Survey (ACS), 2006-2010 to 2011-2015 <sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."}}</sup></h2>
+  </div>
+  <div class="cell large-5 xlarge-4 large-text-right">
+    <p class="dark-gray text-tiny">
+      ACS data are derived from a survey and are subject to sampling variability.
+      Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
+    </p>
+  </div>
+</div>
 
 <ul class="menu report-extras">
   <li><a {{action (mut report.changeReliability) (not report.changeReliability)}}>
