@@ -243,11 +243,11 @@ export default HorizontalBar.extend({
 
     // margin of error bars
     const leftMOEs = svg.select('.male')
-      .selectAll('.moe.left')
+      .selectAll('.moe.male')
       .data(data, d => d.group);
 
     const rightMOEs = svg.select('.female')
-      .selectAll('.moe.right')
+      .selectAll('.moe.female')
       .data(data, d => d.group);
 
     const handleMOEs = (selection, type) => {
@@ -289,11 +289,11 @@ export default HorizontalBar.extend({
 
     // comparison MOE bars
     const leftComparisonMOEs = svg.select('.male')
-      .selectAll('.comparisonmoe.left')
+      .selectAll('.comparisonmoe.male')
       .data(data, d => d.group);
 
     const rightComparisonMOEs = svg.select('.female')
-      .selectAll('.comparisonmoe.right')
+      .selectAll('.comparisonmoe.female')
       .data(data, d => d.group);
 
     const handleComparisonMOEs = (selection, type) => {
