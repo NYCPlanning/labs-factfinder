@@ -8,18 +8,18 @@
   }
 
   .bar.male {
-    fill: #FFBF00;
+    fill: #f37648;
 
     &.highlight {
-      fill: #EFAF00;
+      fill: #e36638;
     }
   }
 
   .bar.female {
-    fill: #78D271;
+    fill: #fecc67;
 
     &.highlight {
-      fill: #68C261;
+      fill: #eebc57;
     }
   }
 
@@ -33,10 +33,21 @@
   }
 
   .moe {
-    fill: rgba(144, 144, 144, 0.5);
-    rx: 1;
     rx: 2;
     pointer-events: none;
+  }
+
+  .moe.left {
+    fill: #ffb499;
+  }
+
+  .moe.right {
+    fill: #ffe8ba;
+  }
+
+  .comparison {
+    fill: #fff;
+    stroke: #000;
   }
 }
 
