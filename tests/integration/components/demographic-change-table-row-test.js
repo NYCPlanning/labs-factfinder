@@ -12,6 +12,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{demographic-change-table-row}}`);
 
-  assert.equal(this.$().text().trim(), 'n/a');
-
+  assert.equal(this.$().text().trim().split('\n')[0], 'n/a');
 });
