@@ -7,7 +7,6 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() { // eslint-disable-line
-  this.route('selection');
   this.route('report', function() {
     this.route('census');
     this.route('demographic');
