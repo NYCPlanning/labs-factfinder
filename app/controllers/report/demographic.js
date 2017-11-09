@@ -8,14 +8,12 @@ export default Ember.Controller.extend({
 
   @computed('model')
   currentData(model) {
-    console.log(model)
     return model.y2011_2015;
   },
 
   @computed('currentData')
   agePopDist(currentData) {
     const d = currentData.poppyramid_only;
-    console.log(d)
     const variables = [
       'pop0t5',
       'pop5t9',
