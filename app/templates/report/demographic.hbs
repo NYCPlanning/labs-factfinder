@@ -1,17 +1,10 @@
 <h1>Demographic Report</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
+<p style="max-width:50rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet ullamcorper ex. Vestibulum eleifend faucibus purus, ut ultrices massa volutpat in. Nulla eget odio at quam pretium auctor ut sit amet ante. </p>
 {{log model}}
+
 {{#if (eq report.mode 'current')}}
 
-<div class="grid-x grid-margin-x large-up-2">
-  <div class="cell">
-    <div class="callout">
-      {{population-pyramid data=agePopDist}}
-    </div>
-  </div>
-</div>
-
-<ul class="menu report-extras float-right">
+<ul class="menu report-extras">
   <li><a {{action (mut report.reliability) (not report.reliability)}}>
     {{#if report.reliability}}
     <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
@@ -31,7 +24,7 @@
 </ul>
 
 <div class="table-scroll">
-  <table class="text-small">
+  <table class="text-small {{if report.scrollTable 'table-scroll-vert'}}">
     <thead>
       <tr>
         <th rowspan="2">&nbsp;</th>
@@ -184,12 +177,28 @@
     </tbody>
   </table>
 </div>
+<a class="button tiny hollow expanded" {{action (mut report.scrollTable) (not report.scrollTable)}}>
+  {{#if report.scrollTable}}
+    {{fa-icon 'chevron-down'}}
+  {{else}}
+    {{fa-icon 'chevron-up'}}
+  {{/if}}
+  View {{if report.scrollTable 'More' 'Less'}}
+</a>
 
-{{/if}}
+<div class="grid-x grid-margin-x large-up-2">
+  <div class="cell">
+    <div class="callout">
+      {{population-pyramid data=agePopDist}}
+    </div>
+  </div>
+</div>
+
+{{/if}}{{! end report.mode = 'current' }}
 
 {{#if (eq report.mode 'change')}}
 
-<ul class="menu report-extras float-right">
+<ul class="menu report-extras">
   <li><a {{action (mut report.changeReliability) (not report.changeReliability)}}>
     {{#if report.changeReliability}}
     <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
@@ -209,7 +218,7 @@
 </ul>
 
 <div class="table-scroll">
-  <table class="text-small">
+  <table class="text-small {{if report.scrollTable 'table-scroll-vert'}}">
     <thead>
       <tr>
         <th rowspan="3">&nbsp;</th>
@@ -387,7 +396,15 @@
     </tbody>
   </table>
 </div>
+<a class="button tiny hollow expanded" {{action (mut report.scrollTable) (not report.scrollTable)}}>
+  {{#if report.scrollTable}}
+    {{fa-icon 'chevron-down'}}
+  {{else}}
+    {{fa-icon 'chevron-up'}}
+  {{/if}}
+  View {{if report.scrollTable 'More' 'Less'}}
+</a>
 
-{{/if}}
+{{/if}}{{! end report.mode = 'change' }}
 
 {{outlet}}
