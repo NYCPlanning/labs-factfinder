@@ -35,14 +35,22 @@ export default Ember.Controller.extend({
       'pop85pl',
     ];
 
-    const popPyramidData = variables.map(variable => ({
-      group: variable,
-      male: d[`m${variable}`].sum,
-      malemoe: d[`m${variable}`].m,
-      female: d[`f${variable}`].sum,
-      femalemoe: d[`f${variable}`].m,
-    }));
+    const pyramidData = variables.map((variable) => {
+      const male = d[`m${variable}`];
+      const female = d[`f${variable}`];
+      return {
+        group: variable,
+        male,
+        female,
+      };
+    });
 
-    return popPyramidData;
+    return {
+      totals: {
+        male: currentData.sex_and_age.male,
+        female: currentData.sex_and_age.fem,
+      },
+      pyramidData,
+    };
   },
 });
