@@ -25,6 +25,8 @@ export default Ember.Service.extend({
   current: DEFAULT_SELECTION,
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
 
+  currentMapInstance: null,
+
   @computed('current')
   selectedCount(currentSelected) {
     return currentSelected.features.length;
