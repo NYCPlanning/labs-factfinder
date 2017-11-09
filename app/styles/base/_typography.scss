@@ -417,23 +417,31 @@ table,
   min-width: 100%;
 }
 
-thead {
-  display: block;
-  border-top: 0;
-  border-right: 0;
-  border-bottom: 0;
-}
+.table-scroll-vert {
 
-tbody {
-  display: block;
-  height: 40vh;
-  border-top: 0;
-}
+  thead,
+  tbody {
+    display: block;
+    float: left;
+    clear: left;
+  }
 
-thead,
-tbody {
-  overflow-y: sroll;
-  overflow-x: hidden;
+  thead {
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  tbody {
+    height: calc(60vh - 15rem);
+    border-top: 0;
+  }
+
+  thead,
+  tbody {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 }
 
 th {
@@ -446,8 +454,9 @@ td:not(:first-child) {
 }
 
 td, th {
-  min-width: rem-calc(90);
-  max-width: rem-calc(90);
+  // 82 allows for numbers up to 99,999,999
+  min-width: rem-calc(82);
+  max-width: rem-calc(82);
 }
 
 thead tr:first-child th:first-child,
