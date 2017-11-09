@@ -233,80 +233,108 @@ export default HorizontalBar.extend({
       .attr('y', -8);
 
     // draw main bars
-    leftBars.enter()
-      .append('rect')
-      .attr('class', d => `bar male ${d.group}`)
-      .attr('x', 0)
-      .attr('y', d => yScale(d.group))
-      .attr('height', yScale.bandwidth())
-      .attr('width', d => xScale(d.male.percent))
-      .attr('rx', 2)
-      .attr('ry', 2)
-      .on('mouseover', (d) => {
-        handleMouseOver(d, 'male');
-      })
-      .on('mouseout', handleMouseOut);
 
-    leftBars
-      .transition()
-      .duration(300)
-      .attr('width', d => xScale(d.male.percent));
+    const handleBars = (selection, type) => {
+      const widthFunction = d => xScale(d[type].percent);
 
-    leftBars.exit().remove();
+      selection.enter()
+        .append('rect')
+        .attr('class', d => `bar ${type} ${d.group}`)
+        .attr('x', 0)
+        .attr('y', d => yScale(d.group))
+        .attr('height', yScale.bandwidth())
+        .attr('width', widthFunction)
+        .attr('rx', 2)
+        .attr('ry', 2)
+        .on('mouseover', (d) => {
+          handleMouseOver(d, type);
+        })
+        .on('mouseout', handleMouseOut);
 
-    rightBars.enter()
-      .append('rect')
-      .attr('class', d => `bar female ${d.group}`)
-      .attr('x', 0)
-      .attr('y', d => yScale(d.group))
-      .attr('width', d => xScale(d.female.percent))
-      .attr('height', yScale.bandwidth())
-      .attr('rx', 2)
-      .attr('ry', 2)
-      .on('mouseover', (d) => {
-        handleMouseOver(d, 'female');
-      })
-      .on('mouseout', handleMouseOut);
+      selection.transition()
+        .duration(300)
+        .attr('width', widthFunction);
 
-    rightBars.transition().duration(300)
-      .attr('width', d => xScale(d.female.percent));
+      selection.exit().remove();
+    }
+    // leftBars.enter()
+    //   .append('rect')
+    //   .attr('class', d => `bar male ${d.group}`)
+    //   .attr('x', 0)
+    //   .attr('y', d => yScale(d.group))
+    //   .attr('height', yScale.bandwidth())
+    //   .attr('width', d => xScale(d.male.percent))
+    //   .attr('rx', 2)
+    //   .attr('ry', 2)
+    //   .on('mouseover', (d) => {
+    //     handleMouseOver(d, 'male');
+    //   })
+    //   .on('mouseout', handleMouseOut);
+    //
+    // leftBars
+    //   .transition()
+    //   .duration(300)
+    //   .attr('width', d => xScale(d.male.percent));
+    //
+    // leftBars.exit().remove();
+    //
+    // rightBars.enter()
+    //   .append('rect')
+    //   .attr('class', d => `bar female ${d.group}`)
+    //   .attr('x', 0)
+    //   .attr('y', d => yScale(d.group))
+    //   .attr('width', d => xScale(d.female.percent))
+    //   .attr('height', yScale.bandwidth())
+    //   .attr('rx', 2)
+    //   .attr('ry', 2)
+    //   .on('mouseover', (d) => {
+    //     handleMouseOver(d, 'female');
+    //   })
+    //   .on('mouseout', handleMouseOut);
+    //
+    // rightBars.transition().duration(300)
+    //   .attr('width', d => xScale(d.female.percent));
+    //
+    // rightBars.exit().remove();
 
-    rightBars.exit().remove();
+    handleBars(leftBars, 'male');
+    handleBars(rightBars, 'female');
 
-    leftMOEs.enter()
-      .append('rect')
-      .attr('alighnment-baseline', 'middle')
-      .attr('class', d => `moe left ${d.group}`)
-      .attr('x', (d) => {
-        if (d.male.percent_m > d.male.percent) return 0;
-        return xScale(d.male.percent) - xScale(d.male.percent_m)
-      })
-      .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -3)
-      .attr('height', 6)
-      .attr('width', (d) => {
-        const defaultWidth = xScale(d.male.percent_m) * 2;
-        if (d.male.percent_m > d.male.percent) {
-          const newWidth = (defaultWidth - (xScale(d.male.percent_m - d.male.percent)));
+
+    const handleMOEs = (selection, type) => {
+      const xFunction = (d) => {
+        if (d[type].percent_m > d[type].percent) return 0;
+        return xScale(d[type].percent) - xScale(d[type].percent_m);
+      };
+
+      const widthFunction = (d) => {
+        const defaultWidth = xScale(d[type].percent_m) * 2;
+        if (d[type].percent_m > d[type].percent) {
+          const newWidth = (defaultWidth - (xScale(d[type].percent_m - d[type].percent)));
           return newWidth;
         }
         return defaultWidth;
-      });
+      };
 
-    leftMOEs.transition().duration(300)
-      .attr('x', d => xScale(d.male.percent) - xScale(d.male.percent_m))
-      .attr('width', d => xScale(d.male.percent_m) * 2);
+      selection.enter()
+        .append('rect')
+        .attr('alighnment-baseline', 'middle')
+        .attr('class', d => `moe ${type} ${d.group}`)
+        .attr('x', xFunction)
+        .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -3)
+        .attr('height', 6)
+        .attr('width', widthFunction);
 
-    rightMOEs.enter()
-      .append('rect')
-      .attr('class', d => `moe right ${d.group}`)
-      .attr('x', d => xScale(d.female.percent) - xScale(d.female.percent_m))
-      .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -3)
-      .attr('height', 6)
-      .attr('width', d => xScale(d.female.percent_m) * 2);
+      selection.transition()
+        .duration(300)
+        .attr('x', xFunction)
+        .attr('width', widthFunction);
 
-    rightMOEs.transition().duration(300)
-      .attr('x', d => xScale(d.female.percent) - xScale(d.female.percent_m))
-      .attr('width', d => xScale(d.female.percent_m) * 2);
+      selection.exit().remove();
+    };
+
+    handleMOEs(leftMOEs, 'male');
+    handleMOEs(rightMOEs, 'female');
 
 
     leftComparisons.enter()
