@@ -12,14 +12,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{demographic-change-table-row}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'n/a');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#demographic-change-table-row}}
-      template block text
-    {{/demographic-change-table-row}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });

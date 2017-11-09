@@ -1,14 +1,14 @@
 <ul class="menu align-center menu--selector">
-  <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}}">
+  <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>
   </li>
-  <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}}">
+  <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}} explode-tract">
     <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
   </li>
-  <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}}">
+  <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}} explode-nta">
     <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood</a>
   </li>
-  <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}}">
+  <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}} explode-puma">
     <a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
   </li>
 </ul>
