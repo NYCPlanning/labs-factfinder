@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL,
 });
 
-Router.map(function() {
+Router.map(function() { // eslint-disable-line
   this.route('report', function() {
     this.route('census');
     this.route('demographic');
