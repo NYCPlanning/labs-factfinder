@@ -66,7 +66,7 @@ export default HorizontalBar.extend({
     const data = this.get('data.pyramidData');
     const totals = this.get('data.totals');
 
-    // get the largest percent + percent_moe
+    // get the largest of largest (percent + percent_moe)
     const maxValue = max([
       max([
         max(data, d => d.male.percent + d.male.percent_m),
@@ -85,6 +85,7 @@ export default HorizontalBar.extend({
       return `${range[0]}-${range[1]}`;
     };
 
+    // tooltip renderer
     const toolTip = (d, type) => {
       const percent = d[type].percent;
       const percentM = d[type].percent_m;
@@ -100,6 +101,7 @@ export default HorizontalBar.extend({
 
     let timer;
 
+    // mouse event handlers
     const handleMouseOver = (d, type) => {
       clearTimeout(timer);
       selectAll('.age-chart-tooltip')
@@ -137,6 +139,8 @@ export default HorizontalBar.extend({
     svg.select('.padding-group')
       .attr('transform', translation(margin.left, margin.top));
 
+    // set x and y scale
+
     const xScale = scaleLinear()
       .domain([0, maxValue])
       .range([0, regionWidth])
@@ -146,6 +150,8 @@ export default HorizontalBar.extend({
       .domain(data.map(d => d.group))
       .range([height, 0])
       .paddingInner(0.2);
+
+    // DRAW AXES
 
     const yAxisLeft = axisRight()
       .scale(yScale)
@@ -163,42 +169,6 @@ export default HorizontalBar.extend({
       .ticks(4)
       .tickFormat(format('.0%'));
 
-    const leftBars = svg.select('.male')
-      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
-      .selectAll('.bar.male')
-      .data(data, d => d.group);
-
-    const rightBars = svg.select('.female')
-      .attr('transform', translation(pointB, 0))
-      .selectAll('.bar.female')
-      .data(data, d => d.group);
-
-    const leftMOEs = svg.select('.male')
-      .selectAll('.moe.left')
-      .data(data, d => d.group);
-
-    const rightMOEs = svg.select('.female')
-      .selectAll('.moe.right')
-      .data(data, d => d.group);
-
-    const leftComparisons = svg.select('.male')
-      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
-      .selectAll('.comparison.male')
-      .data(data, d => d.group);
-
-    const rightComparisons = svg.select('.female')
-      .selectAll('.comparison.female')
-      .data(data, d => d.group);
-
-    const leftComparisonMOEs = svg.select('.male')
-      .selectAll('.comparisonmoe.left')
-      .data(data, d => d.group);
-
-    const rightComparisonMOEs = svg.select('.female')
-      .selectAll('.comparisonmoe.right')
-      .data(data, d => d.group);
-
-    // DRAW AXES
     svg.select('.y-axis-left')
       .attr('transform', translation(pointA, 0))
       .call(yAxisLeft)
@@ -213,7 +183,7 @@ export default HorizontalBar.extend({
       .attr('transform', translation(pointB, height))
       .call(xAxisRight);
 
-    // update top labels positioning
+    // update positioning and text of top-labels
 
     const totalMalePercent = totals.male.percent;
     const totalFemalePercent = totals.female.percent;
@@ -233,6 +203,15 @@ export default HorizontalBar.extend({
       .attr('y', -8);
 
     // draw main bars
+    const leftBars = svg.select('.male')
+      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
+      .selectAll('.bar.male')
+      .data(data, d => d.group);
+
+    const rightBars = svg.select('.female')
+      .attr('transform', translation(pointB, 0))
+      .selectAll('.bar.female')
+      .data(data, d => d.group);
 
     const handleBars = (selection, type) => {
       const widthFunction = d => xScale(d[type].percent);
@@ -256,50 +235,20 @@ export default HorizontalBar.extend({
         .attr('width', widthFunction);
 
       selection.exit().remove();
-    }
-    // leftBars.enter()
-    //   .append('rect')
-    //   .attr('class', d => `bar male ${d.group}`)
-    //   .attr('x', 0)
-    //   .attr('y', d => yScale(d.group))
-    //   .attr('height', yScale.bandwidth())
-    //   .attr('width', d => xScale(d.male.percent))
-    //   .attr('rx', 2)
-    //   .attr('ry', 2)
-    //   .on('mouseover', (d) => {
-    //     handleMouseOver(d, 'male');
-    //   })
-    //   .on('mouseout', handleMouseOut);
-    //
-    // leftBars
-    //   .transition()
-    //   .duration(300)
-    //   .attr('width', d => xScale(d.male.percent));
-    //
-    // leftBars.exit().remove();
-    //
-    // rightBars.enter()
-    //   .append('rect')
-    //   .attr('class', d => `bar female ${d.group}`)
-    //   .attr('x', 0)
-    //   .attr('y', d => yScale(d.group))
-    //   .attr('width', d => xScale(d.female.percent))
-    //   .attr('height', yScale.bandwidth())
-    //   .attr('rx', 2)
-    //   .attr('ry', 2)
-    //   .on('mouseover', (d) => {
-    //     handleMouseOver(d, 'female');
-    //   })
-    //   .on('mouseout', handleMouseOut);
-    //
-    // rightBars.transition().duration(300)
-    //   .attr('width', d => xScale(d.female.percent));
-    //
-    // rightBars.exit().remove();
+    };
 
     handleBars(leftBars, 'male');
     handleBars(rightBars, 'female');
+    // end draw main bars
 
+    // margin of error bars
+    const leftMOEs = svg.select('.male')
+      .selectAll('.moe.left')
+      .data(data, d => d.group);
+
+    const rightMOEs = svg.select('.female')
+      .selectAll('.moe.right')
+      .data(data, d => d.group);
 
     const handleMOEs = (selection, type) => {
       const xFunction = (d) => {
@@ -335,46 +284,69 @@ export default HorizontalBar.extend({
 
     handleMOEs(leftMOEs, 'male');
     handleMOEs(rightMOEs, 'female');
+    // end margin of error bars
 
+    // comparison dots
+    const leftComparisons = svg.select('.male')
+      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
+      .selectAll('.comparison.male')
+      .data(data, d => d.group);
 
-    leftComparisons.enter()
-      .append('circle')
-      .attr('class', d => `comparison male ${d.group}`)
-      .attr('cx', d => xScale(d.male.comparison_percent))
-      .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
-      .attr('r', 3);
+    const rightComparisons = svg.select('.female')
+      .selectAll('.comparison.female')
+      .data(data, d => d.group);
 
-    leftComparisons.transition().duration(300)
-      .attr('cx', d => xScale(d.male.comparison_percent));
+    const handleComparisons = (selection, type) => {
+      const cxFunction = d => xScale(d[type].comparison_percent);
+      selection.enter()
+        .append('circle')
+        .attr('class', d => `comparison ${type} ${d.group}`)
+        .attr('cx', cxFunction)
+        .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
+        .attr('r', 3);
 
-    leftComparisons.exit().remove();
+      selection.transition().duration(300)
+        .attr('cx', cxFunction);
 
-    rightComparisons.enter()
-      .append('circle')
-      .attr('class', d => `comparison female ${d.group}`)
-      .attr('cx', d => xScale(d.female.comparison_percent))
-      .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
-      .attr('r', 3);
+      selection.exit().remove();
+    };
 
-    rightComparisons.transition().duration(300)
-      .attr('cx', d => xScale(d.female.comparison_percent));
+    handleComparisons(leftComparisons, 'male');
+    handleComparisons(rightComparisons, 'female');
+    // end comparison dots
 
-    leftComparisons.exit().remove();
+    // comparison MOE bars
+    const leftComparisonMOEs = svg.select('.male')
+      .selectAll('.comparisonmoe.left')
+      .data(data, d => d.group);
 
-    rightComparisonMOEs.enter()
-      .append('rect')
-      .attr('class', d => `comparisonmoe right ${d.group}`)
-      .attr('x', d => xScale(d.female.comparison_percent) - xScale(d.female.comparison_percent_m))
-      .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -1.5)
-      .attr('height', 1)
-      .attr('width', d => xScale(d.female.comparison_percent_m) * 2);
+    const rightComparisonMOEs = svg.select('.female')
+      .selectAll('.comparisonmoe.right')
+      .data(data, d => d.group);
 
-    rightComparisonMOEs.transition().duration(300)
-      .attr('x', d => xScale(d.female.comparison_percent) - xScale(d.female.comparison_percent_m))
-      .attr('width', d => xScale(d.female.comparison_percent_m) * 2);
+    const handleComparisonMOEs = (selection, type) => {
+      const xFunction = (d) => { // eslint-disable-line
+        return xScale(d[type].comparison_percent) - xScale(d[type].comparison_percent_m);
+      };
+      const widthFunction = d => xScale(d[type].comparison_percent_m) * 2;
 
-    rightComparisonMOEs.exit().remove();
+      selection.enter()
+        .append('rect')
+        .attr('class', d => `comparisonmoe ${type} ${d.group}`)
+        .attr('x', xFunction)
+        .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -0.5)
+        .attr('height', 1)
+        .attr('width', widthFunction);
 
+      selection.transition().duration(300)
+        .attr('x', xFunction)
+        .attr('width', widthFunction);
 
+      selection.exit().remove();
+    };
+
+    handleComparisonMOEs(leftComparisonMOEs, 'male');
+    handleComparisonMOEs(rightComparisonMOEs, 'female');
+    // end comparison MOE bars
   },
 });
