@@ -19,7 +19,7 @@
     </div>
 
     <div class="report-map-container">
-      {{#jane-maps
+      {{#mapbox-gl
         id='map'
         sources=sources
         initOptions=(hash style='mapbox://styles/mapbox/light-v9'
@@ -45,9 +45,7 @@
         {{/if}}
 
         {{map.on 'resize' (action 'handleResize')}}
-
-
-      {{/jane-maps}}
+      {{/mapbox-gl}}
     </div>
 
     {{link-to 'Edit Report Geographies' 'index' classNames='button small expanded hollow'}}
