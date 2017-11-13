@@ -1,6 +1,5 @@
 <div class="grid-x grid-padding-y">
   <div class="cell large-4 xxlarge-3 report-sidebar">
-    {{log model}}
     <div class="report-geographies-list">
       <h2 class="header-small no-margin">
         Selected
@@ -49,6 +48,9 @@
     </div>
 
     {{link-to 'Edit Report Geographies' 'index' classNames='button small expanded hollow'}}
+    <a class='button small expanded hollow' {{action 'handleDownload'}}>
+      Download this Profile (csv)
+    </a>
 
   </div>
   <div class="cell large-8 xxlarge-9">
