@@ -116,9 +116,9 @@
   {{/if}}
   <td>
     {{#if data2.percent}}
-      {{numeral-format (sub data.percent data2.percent) '+0.0%'}}
+      {{numeral-format (div (sub data.sum data2.sum) data2.sum) '+0.0%'}}
     {{else if (eq data2.percent 0)}}
-      {{numeral-format (sub data.percent data2.percent) '+0.0%'}}
+      {{numeral-format (div (sub data.sum data2.sum) data2.sum) '+0.0%'}}
     {{else}}
       n/a
     {{/if}}
@@ -158,9 +158,9 @@
   {{/if}}
   <td>
     {{#if data2.comparison_percent}}
-      {{numeral-format (sub data.comparison_percent data2.comparison_percent) '+0.0%'}}
+      {{numeral-format (div (sub data.comparison_sum data2.comparison_sum) data2.comparison_sum) '+0.0%'}}
     {{else if (eq data2.comparison_percent 0)}}
-      {{numeral-format (sub data.comparison_percent data2.comparison_percent) '+0.0%'}}
+      {{numeral-format (div (sub data.comparison_sum data2.comparison_sum) data2.comparison_sum) '+0.0%'}}
     {{else}}
     n/a
     {{/if}}
@@ -198,9 +198,9 @@
   {{/if}}
   <td>
     {{#if data2.percent}}
-      {{numeral-format (sub (sub data.percent data2.percent) (sub data.comparison_percent data2.comparison_percent)) '+0.0%'}}
+      {{numeral-format (mult (sub (div (sub data.sum data2.sum) data2.sum) (div (sub data.comparison_sum data2.comparison_sum) data2.comparison_sum)) 100) '+0.0'}}
     {{else if (eq data2.percent 0)}}
-      {{numeral-format (sub (sub data.percent data2.percent) (sub data.comparison_percent data2.comparison_percent)) '+0.0%'}}
+      {{numeral-format (mult (sub (div (sub data.sum data2.sum) data2.sum) (div (sub data.comparison_sum data2.comparison_sum) data2.comparison_sum)) 100) '+0.0'}}
     {{else}}
       n/a
     {{/if}}
