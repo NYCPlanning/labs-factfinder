@@ -26,5 +26,8 @@ export default Ember.Component.extend({
     handleDrawButtonClick() {
       this.sendAction('handleDrawButtonClick');
     },
+    transitionTo() {
+      console.log('Transition to route!');
+    },
   },
 });

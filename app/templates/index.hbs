@@ -24,6 +24,12 @@
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
+    {{#if selection.currentAddress}}
+      {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
+        {{source.layer layer=selection.pointLayer}}
+      {{/map.source}}
+    {{/if}}
+
     {{map.layer-group config=layerGroups.subway visible=false}}
 
     {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}

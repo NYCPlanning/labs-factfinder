@@ -1,9 +1,11 @@
 {{#if (eq mode 'direct-select')}}
 
-  <div class="search hide-for-print ember-view">
+  {{!-- <div class="search hide-for-print ember-view">
     <input type="text" placeholder="Search..." id="ember438" class="map-search-input ember-text-field ember-view">
     <span class="search-icon">{{fa-icon 'search'}}</span>
-  </div>
+  </div> --}}
+
+  {{map-search transitionTo=(action 'transitionTo')}}
 
   <div class="grid-x grid-margin-x align-middle">
     <div class="cell medium-6 text-center">

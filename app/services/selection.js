@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
+import pointLayer from '../layers/point-layer';
+
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
 import summaryLevelQueries from '../queries/summary-levels';
@@ -31,6 +33,21 @@ export default Ember.Service.extend({
   selectedCount(currentSelected) {
     return currentSelected.features.length;
   },
+
+  pointLayer,
+  currentAddress: null,
+
+  @computed('currentAddress')
+  addressSource(currentAddress) {
+    return {
+      type: 'geojson',
+      data: {
+        type: 'Point',
+        coordinates: currentAddress,
+      },
+    };
+  },
+
 
   // methods
   handleSummaryLevelToggle(toLevel) {
