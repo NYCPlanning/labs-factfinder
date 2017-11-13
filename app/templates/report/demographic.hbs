@@ -36,7 +36,11 @@
   <table class="text-small {{if report.scrollTable 'table-scroll-vert'}}">
     <thead>
       <tr>
-        <th rowspan="2">&nbsp;</th>
+        <th rowspan="2">
+          <a class="button small expanded hollow" {{action 'handleCopy'}}>
+            Copy to Clipboard
+          </a>
+        </th>
         <th colspan="{{if report.reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
         {{#if report.comparison}}
         <th colspan="{{if report.reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
