@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import generateReportSQL from '../queries/report';
-import nestReport from '../utils/nest-report';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
