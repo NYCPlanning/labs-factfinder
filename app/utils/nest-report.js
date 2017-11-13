@@ -8,4 +8,4 @@ export default function nestReport(data) {
     .key(d => d.variable)
     .rollup(d => d[0])
     .object(data);
-};
+}
