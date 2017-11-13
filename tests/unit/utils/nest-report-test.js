@@ -5,6 +5,6 @@ module('Unit | Utility | nest report');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let result = nestReport();
+  let result = nestReport([]);
   assert.ok(result);
 });
