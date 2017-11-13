@@ -81,14 +81,9 @@ body {
 }
 
 .report-map-container {
-  margin-bottom: $global-margin;
-  height: 50vh;
+  height: 200px;
   width: 100%;
   border: 1px solid $medium-gray;
-
-  @include breakpoint(large) {
-    height: calc(100vh - 22rem);
-  }
 }
 
 .map-utility-box {

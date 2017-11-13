@@ -314,10 +314,10 @@ button {
   }
 
   p {
-    max-width: 35em;
-    @include breakpoint(large) {
-      margin-left: auto;
-    }
+    // max-width: 35em;
+    // @include breakpoint(large) {
+    //   margin-left: auto;
+    // }
   }
 }
 
