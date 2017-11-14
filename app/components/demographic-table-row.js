@@ -1,11 +1,5 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object'; 
-
-const { alias } = Ember.computed;
-
-// const getClassNames = (config) => {
-//   console.log(config);
-// };
+import { computed } from 'ember-decorators/object';
 
 export default Ember.Component.extend({
   tagName: 'tr',

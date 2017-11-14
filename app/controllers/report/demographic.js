@@ -6,7 +6,7 @@ import raceGroup from '../../table-config/demographic/race-group';
 import hispanicSubgroup from '../../table-config/demographic/hispanic-subgroup';
 import asianSubgroup from '../../table-config/demographic/asian-subgroup';
 
-const { inject } = Ember;
+const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
   sexAge,
@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
   hispanicSubgroup,
   asianSubgroup,
 
-  report: inject.controller('report'),
+  report: controller('report'),
 
   @computed('model')
   currentData(model) {

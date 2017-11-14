@@ -2,14 +2,14 @@ const preserveType = function(array) {
   return `'${array.join("','")}'`;
 };
 
-const generateReportSQL = function(geoids, comparator) {
+const generateReportSQL = function(geoids, comparator, profile = 'demographic') {
   const ids = preserveType(geoids);
 
   return `
     WITH
       filtered_selection AS (
         SELECT *
-        FROM demographic
+        FROM ${profile}
         WHERE geoid IN (${ids})
       ),
 
@@ -31,7 +31,7 @@ const generateReportSQL = function(geoids, comparator) {
 
       comparison_selection AS (
         SELECT *
-        FROM demographic
+        FROM ${profile}
         WHERE geoid IN ('${comparator}')
       ),
 
@@ -75,7 +75,7 @@ const generateReportSQL = function(geoids, comparator) {
           sqrt(sum(power(m, 2)) filter (WHERE geoid IN ('${comparator}') )) AS comparison_m,
           DATASET,
           VARIABLE
-         FROM demographic
+         FROM ${profile}
          GROUP BY VARIABLE, DATASET
          ORDER BY VARIABLE DESC
       ) aggregated
