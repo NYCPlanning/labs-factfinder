@@ -293,6 +293,10 @@ button {
 // --------------------------------------------------
 .report-geographies {
   margin-bottom: $global-margin;
+  max-width: rem-calc(630);
+  max-height: 6em;
+  overflow: auto;
+  line-height: 1.2;
 
   .report-geographies-header, .report-geographies-list {
     font-size: rem-calc(12);
@@ -300,22 +304,28 @@ button {
 
   .report-geographies-header {
     display: inline;
-    // font-weight: $global-weight-normal;
   }
 
   .report-geographies-list {
     display: inline;
-    max-height: 6em;
-    overflow: auto;
   }
 }
 
 .report-header {
   margin-bottom: $global-margin;
 
-  h1, h2, p {
+  h1 {
     margin-bottom: 0.25rem;
   }
+
+  h2 {
+    margin-bottom: $global-margin;
+  }
+
+  h1, h2, p, ul {
+    max-width: rem-calc(630);
+  }
+
 }
 
 .report-menus {
