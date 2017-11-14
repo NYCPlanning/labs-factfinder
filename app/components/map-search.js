@@ -2,7 +2,7 @@ import Ember from 'ember';
 import fetch from 'fetch';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { task, timeout } from 'ember-concurrency';
-
+import bbox from 'npm:@turf/bbox';
 
 const { service } = Ember.inject;
 
@@ -18,7 +18,8 @@ export default Ember.Component.extend({
 
   @computed('searchTerms')
   results(searchTerms) {
-    return this.get('debouncedResults').perform(searchTerms);
+    const rawResults = this.get('debouncedResults').perform(searchTerms);
+    return rawResults;
   },
 
   debouncedResults: task(function* (searchTerms) {
@@ -97,6 +98,13 @@ export default Ember.Component.extend({
     }
   },
 
+  fitBounds(map) {
+    const FC = this.get('selection').current;
+    map.fitBounds(bbox(FC), {
+      padding: 40,
+    });
+  },
+
   actions: {
     clear() {
       this.set('searchTerms', '');
@@ -104,6 +112,7 @@ export default Ember.Component.extend({
 
     // @trackEvent('Map Search', 'Clicked result', 'searchTerms')
     goTo(result) {
+      console.log('result', result)
 
       this.$('.map-search-input').blur();
 
@@ -115,21 +124,20 @@ export default Ember.Component.extend({
       const selection = this.get('selection');
       const map = selection.currentMapInstance;
 
-      // if (result.type === 'lot') {
-      //   const { boro, block, lot } = bblDemux(result.bbl);
-      //   this.set('searchTerms', result.bbl);
-      //   this.transitionTo('lot', boro, block, lot);
-      // }
+      if (result.type === 'tract') {
+        selection.handleSelectedFeatures([result.feature], true);
+        this.fitBounds(map);
+      }
+
+      if (result.type === 'block') {
+        selection.handleSelectedFeatures([result.feature], true);
+        this.fitBounds(map);
+      }
       //
-      // if (result.type === 'zma') {
-      //   this.set('searchTerms', result.label);
-      //   this.transitionTo('zma', result.ulurpno);
-      // }
-      //
-      // if (result.type === 'zoning-district') {
-      //   mainMap.set('shouldFitBounds', true);
-      //   this.transitionTo('zoning-district', result.label);
-      // }
+      if (result.type === 'nta') {
+        selection.handleSelectedFeatures([result.feature], true);
+        this.fitBounds(map);
+      }
       //
       // if (result.type === 'neighborhood') {
       //   this.set('searchTerms', result.neighbourhood);

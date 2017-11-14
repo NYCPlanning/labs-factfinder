@@ -16,31 +16,27 @@
   {{#if (is-fulfilled results)}}
   {{#each-in (group-by "type" results.value) as |type rows|}}
     <li>
-      {{#if (eq type 'lot')}}
-        <h4 class="header-small results-header">View Tax Lot Information</h4>
-      {{else if (eq type 'zma')}}
-        <h4 class="header-small results-header">View Zoning Change Information</h4>
-      {{else if (eq type 'neighborhood')}}
-        <h4 class="header-small results-header">Go to Neighborhood</h4>
-      {{else if (eq type 'zoning-district')}}
-        <h4 class="header-small results-header">View Zoning Districts</h4>
-      {{else if (eq type 'special-purpose-district')}}
-        <h4 class="header-small results-header">View Special Purpose District</h4>
+      {{#if (eq type 'block')}}
+        <h4 class="header-small results-header">2010 Census Blocks</h4>
+      {{else if (eq type 'tract')}}
+        <h4 class="header-small results-header">2010 Census Tracts</h4>
+      {{else if (eq type 'nta')}}
+        <h4 class="header-small results-header">Neighborhoods</h4>
+      {{else if (eq type 'puma')}}
+        <h4 class="header-small results-header">PUMAs</h4>
       {{else}}
         <h4 class="header-small results-header">Add Map Pin</h4>
       {{/if}}
     </li>
     {{#each rows as |result|}}
       <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
-        {{#if (eq type 'lot')}}
+        {{#if (eq type 'block')}}
            <span class="icon tax-lot"></span> {{result.bbl}} <span class="subdued">{{result.label}}</span>
-        {{else if (eq type 'zma')}}
+        {{else if (eq type 'tract')}}
           <span class="icon polygon"></span> {{result.ulurpno}} <span class="subdued">{{result.label}}</span>
-        {{else if (eq type 'neighborhood')}}
+        {{else if (eq type 'nta')}}
           {{fa-icon "home"}}{{fa-icon "building"}} {{result.label}}
-        {{else if (eq type 'zoning-district')}}
-          <span class="icon polygon"></span> {{result.label}}
-        {{else if (eq type 'special-purpose-district')}}
+        {{else if (eq type 'puma')}}
           <span class="icon polygon"></span> {{result.label}}
         {{else}}
           {{fa-icon "map-pin"}} {{result.label}}

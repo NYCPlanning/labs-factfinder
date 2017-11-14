@@ -90,7 +90,7 @@ export default Ember.Service.extend({
       });
   },
 
-  handleSelectedFeatures(features = []) {
+  handleSelectedFeatures(features = [], searchResult = false) {
     const selected = this.get('current');
 
     features.forEach((feature) => {
@@ -106,7 +106,7 @@ export default Ember.Service.extend({
           geometry,
           properties,
         });
-      } else {
+      } else if (!searchResult) {
         const newFeatures = selected.features.filter(
           selectedFeature => selectedFeature.properties.geoid !== properties.geoid,
         );
