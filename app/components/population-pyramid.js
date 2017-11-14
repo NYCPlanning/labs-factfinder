@@ -94,8 +94,8 @@ export default HorizontalBar.extend({
 
       return `
         The ${type} population aged ${yAxisFormat(d.group)}
-        is estimated at ${numeral(percent).format('0.0%')}±${numeral(percentM).format('0.0%')} of the total population,
-        or ${numeral(estimate).format('0,0')}±${numeral(moe).format('0,0')} people.
+        is estimated at ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small> of the total population,
+        or ${numeral(estimate).format('0,0')} <small>(±${numeral(moe).format('0,0')})</small> people.
       `;
     };
 
