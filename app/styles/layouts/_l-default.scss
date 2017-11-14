@@ -84,6 +84,10 @@ body {
   height: 200px;
   width: 100%;
   border: 1px solid $medium-gray;
+
+  @include breakpoint(large) {
+    height: 100%;
+  }
 }
 
 .map-utility-box {
