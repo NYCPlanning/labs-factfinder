@@ -1,20 +1,11 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
-import { nest } from 'd3-collection';
+import nestReport from '../utils/nest-report';
 import generateReportSQL from '../queries/report';
 
 const { isEmpty } = Ember;
 const { service } = Ember.inject;
 
-const nestReport = function(data) {
-  return nest()
-    .key(d => d.profile)
-    .key(d => d.year)
-    .key(d => d.category)
-    .key(d => d.variable)
-    .rollup(d => d[0])
-    .object(data);
-};
 
 export default Ember.Route.extend({
   selection: service(),
