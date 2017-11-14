@@ -1,0 +1,42 @@
+<div class="table-scroll">
+  <table class="text-small {{if scrollTable 'table-scroll-vert'}}">
+    <thead>
+      <tr>
+        <th rowspan="2">&nbsp;</th>
+        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
+        {{#if comparison}}
+        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="2" class="text-center cell-border-bottom">Difference</th>
+        {{/if}}
+      </tr>
+      <tr>
+        <th class="text-right cell-border-bottom">Estimate</th>
+          {{#if reliability}}
+          <th class="text-right cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">CV</th>
+        {{/if}}
+        <th class="text-right cell-border-bottom">Pct. Estimate</th>
+          {{#if reliability}}
+        <th class="text-right cell-border-bottom">MOE</th>
+          {{/if}}
+       {{#if comparison}}
+          <th class="text-right cell-border-bottom">Estimate</th>
+          {{#if reliability}}
+        <th class="text-right cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">CV</th>
+          {{/if}}
+        <th class="text-right cell-border-bottom">Pct. Estimate</th>
+          {{#if reliability}}
+        <th class="text-right cell-border-bottom">MOE</th>
+          {{/if}}
+        <th class="text-right cell-border-bottom">Number</th>
+        <th class="text-right cell-border-bottom">Pctg. Point</th>
+      {{/if}}
+      </tr>
+
+    </thead>
+    <tbody>
+      {{yield}}
+    </tbody>
+  </table>
+</div>
