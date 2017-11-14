@@ -1,0 +1,88 @@
+<div class="report-header grid-x grid-margin-x">
+  <div class="cell medium-9 large-shrink">
+
+    <h1>{{title}}</h1>
+    {{#if subtitle}}
+      <h2 class="header-small dark-gray">{{subtitle}}
+        {{#if subtitleInfo}}<sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text=subtitleInfo}}</sup>{{/if}}
+      </h2>
+    {{/if}}
+
+    <div class="report-geographies">
+      <h3 class="report-geographies-header">
+        {{selectionCount}}
+        {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
+        {{if (eq summaryLevel 'blocks') 'Census Block'~}}
+        {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
+        {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+        {{unless (eq selectionCount 1) 's'}}:
+      </h3>
+      <ul class="report-geographies-list comma-separated-list">
+        {{#each selection.current.features as |feature|}}
+          <li>{{feature.properties.geolabel}}</li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="grid-x grid-margin-x">
+      <div class="cell medium-auto">
+        <h5 class="stat-header">Population</h5>
+        <div class="callout text-center">
+          <span class="stat">19,598</span>
+          <small class="stat-footer">residents</small>
+        </div>
+      </div>
+      <div class="cell medium-auto">
+        <h5 class="stat-header">Area</h5>
+        <div class="callout text-center">
+          <span class="stat">3.2</span>
+          <small class="stat-footer">square miles</small>
+        </div>
+      </div>
+      <div class="cell medium-auto">
+        <h5 class="stat-header">Density</h5>
+        <div class="callout text-center">
+          <span class="stat">20,962</span>
+          <small class="stat-footer">persons per sq mi</small>
+        </div>
+      </div>
+    </div>
+
+    {{yield}}
+
+  </div>
+  <div class="cell medium-3 large-auto relative">
+
+    <div class="report-map-container">
+      {{#mapbox-gl
+        id='map'
+        sources=sources
+        initOptions=(hash style='mapbox://styles/mapbox/light-v9'
+                          zoom=zoom
+                          center=center
+                          hash=false
+                          interactive=false)
+        mapLoaded=(action 'handleMapLoad')
+
+        as |map|}}
+
+        {{#if selection.current}}
+          {{#map.source
+            sourceId='selected-features'
+            options=selectedSource as |source|}}
+            {{source.layer
+              layer=selectedFillLayer
+              before='waterway-label'}}
+            {{source.layer
+              layer=selectedLineLayer
+              before='waterway-label'}}
+          {{/map.source}}
+        {{/if}}
+
+        {{map.on 'resize' (action 'handleResize')}}
+      {{/mapbox-gl}}
+    </div>
+    {{#link-to 'index' classNames='edit-selection-button button tiny white text-orange'}}{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection{{/link-to}}
+
+  </div>
+</div>

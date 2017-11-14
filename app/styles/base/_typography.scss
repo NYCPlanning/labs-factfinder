@@ -291,18 +291,22 @@ button {
 //
 // Reports
 // --------------------------------------------------
-.report-geographies-list {
-  font-size: rem-calc(11);
-  background-color: rgba(0,0,0,0.03);
-  padding: rem-calc(10);
-  border: 1px solid $medium-gray;
-  border-bottom: none;
+.report-geographies {
+  margin-bottom: $global-margin;
 
-  ul {
-    color: $dark-gray;
+  .report-geographies-header, .report-geographies-list {
+    font-size: rem-calc(12);
+  }
+
+  .report-geographies-header {
+    display: inline;
+    // font-weight: $global-weight-normal;
+  }
+
+  .report-geographies-list {
+    display: inline;
     max-height: 6em;
     overflow: auto;
-    margin: 0;
   }
 }
 
@@ -312,18 +316,11 @@ button {
   h1, h2, p {
     margin-bottom: 0.25rem;
   }
-
-  p {
-    // max-width: 35em;
-    // @include breakpoint(large) {
-    //   margin-left: auto;
-    // }
-  }
 }
 
 .report-menus {
   @include clearfix;
-  margin-top: -$global-margin;
+  margin-top: $global-margin;
   margin-bottom: $global-margin;
 
   @include breakpoint(medium) {
@@ -331,7 +328,6 @@ button {
   }
 
   @include breakpoint(large) {
-    margin-top: 0;
     padding-top: rem-calc(12);
   }
 }
@@ -540,4 +536,25 @@ tbody td:first-child {
   @include breakpoint(large) {
     margin-bottom: rem-calc(40);
   }
+}
+
+.report-header .callout {
+
+  @include breakpoint(medium) {
+    margin-bottom: $global-margin;
+  }
+}
+
+
+//
+// Statistics
+// --------------------------------------------------
+.stat-header {
+  font-size: 1rem;
+  margin-bottom: rem-calc(5);
+}
+.stat-footer {
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
