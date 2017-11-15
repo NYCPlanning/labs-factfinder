@@ -8,7 +8,7 @@
     Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
   </em></p>
 {{/report-header}}
-
+{{log model}}
 <ul class="menu report-extras">
   <li><a {{action (mut report.reliability) (not report.reliability)}}>
     {{#if report.reliability}}

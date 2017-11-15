@@ -1,2 +1,250 @@
-<h1>Social Report</h1>
+{{#report-header
+  title=(if (eq report.mode 'current') "Social Profile" "Social Profile of Change Over Time")
+  subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
+  subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
+}}
+<p class="dark-gray- text-tiny"><em>
+  ACS data are derived from a survey and are subject to sampling variability.
+  Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
+</em></p>
+{{/report-header}}
+
+<ul class="menu report-extras">
+  <li><a {{action (mut report.reliability) (not report.reliability)}}>
+    {{#if report.reliability}}
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+    {{else}}
+      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+    {{/if}}
+    Reliability Data
+  </a></li>
+  <li><a {{action (mut report.comparison) (not report.comparison)}}>
+    {{#if report.comparison}}
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+    {{else}}
+      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+    {{/if}}
+    Comparison
+  </a></li>
+</ul>
+
+<h3>Household Type</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each householdType as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.household_type row.data)
+          data2=(get this.model.y2006_2010.household_type row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+
+<h3>Relationship To Head Of Household (Householder)</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each relationshipToHeadOfHousehold as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.relationship_to_head_of_household__householder_ row.data)
+          data2=(get this.model.y2006_2010.relationship_to_head_of_household__householder_ row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Grandparents</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each grandparents as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.grandparents row.data)
+          data2=(get this.model.y2006_2010.grandparents row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+
+<h3>School Enrollment</h3>
+
+<h3>Educational Attainment (Highest Grade Completed)</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each educationalAttainment as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.educational_attainment__highest_grade_completed_ row.data)
+          data2=(get this.model.y2006_2010.educational_attainment__highest_grade_completed_ row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Veteran Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each veteranStatus as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.veteran_status row.data)
+          data2=(get this.model.y2006_2010.veteran_status row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Disability Status Of The Civilian Noninstitutionalized Population</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each disabilityStatusOfCnp as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.disability_status_of_the_civilian_noninstitutionalized_population row.data)
+          data2=(get this.model.y2006_2010.disability_status_of_the_civilian_noninstitutionalized_population row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Residence 1 Year Ago</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each residence1YearAgo as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.residence_1_year_ago row.data)
+          data2=(get this.model.y2006_2010.residence_1_year_ago row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Place Of Birth</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each placeOfBirth as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.place_of_birth row.data)
+          data2=(get this.model.y2006_2010.place_of_birth row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>U.S. Citizenship Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each citizenshipStatus as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.u_s__citizenship_status row.data)
+          data2=(get this.model.y2006_2010.u_s__citizenship_status row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Year Of Entry</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each yearOfEntry as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.year_of_entry row.data)
+          data2=(get this.model.y2006_2010.year_of_entry row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Language Spoken At Home</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each languageSpokenAtHome as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.language_spoken_at_home row.data)
+          data2=(get this.model.y2006_2010.language_spoken_at_home row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Ancestry</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each ancestry as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.ancestry row.data)
+          data2=(get this.model.y2006_2010.ancestry row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+
+
+<a class="button tiny hollow expanded" {{action (mut report.scrollTable) (not report.scrollTable)}}>
+  {{#if report.scrollTable}}
+  {{fa-icon 'chevron-down'}}
+  {{else}}
+  {{fa-icon 'chevron-up'}}
+  {{/if}}
+  View {{if report.scrollTable 'More' 'Less'}}
+</a>
+
 {{outlet}}

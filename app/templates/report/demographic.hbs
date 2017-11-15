@@ -78,7 +78,7 @@
 {{/acs-table}}
 
 <h3>Asian Subgroup</h3>
-{{#acs-table reliability=report.reliability comparison=report.comparison scrollTable=report.scrollTable}}
+{{#acs-table options=report}}
   {{#each asianSubgroup as |row|}}
     {{acs-table-row
       rowconfig=row
