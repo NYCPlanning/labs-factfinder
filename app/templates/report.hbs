@@ -1,88 +1,32 @@
-<div class="grid-x grid-padding-y">
-  <div class="cell large-4 xxlarge-3 report-sidebar">
-    {{log model}}
-    <div class="report-geographies-list">
-      <h2 class="header-small no-margin">
-        Selected
-        {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
-        {{if (eq summaryLevel 'blocks') 'Census Block'~}}
-        {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
-        {{if (eq summaryLevel 'pumas') 'PUMA'~}}
-        {{if (gt selectionCount 1) 's'}}
-        ({{selectionCount}})
-      </h2>
-      <ul class="comma-separated-list">
-        {{#each selection.current.features as |feature|}}
-          <li>{{feature.properties.geolabel}}</li>
-        {{/each}}
+<div class="overflow-y-grid grid-padding-x">
+  <div class="cell shrink">
+
+    <div class="report-menus">
+      <ul class="menu report-mode expanded text-center">
+        <li class="{{if (eq mode 'current') 'active'}}"><a {{action (mut mode) 'current'}} {{action (mut scrollTable) true}}>Current</a></li>
+        <li class="{{if (eq mode 'change') 'active'}}"><a {{action (mut mode) 'change'}} {{action (mut scrollTable) true}}>Change <span class="show-for-xlarge">Over Time</span></a></li>
+      </ul>
+
+      <ul class="menu tabs vertical medium-horizontal text-center">
+        <li>{{link-to 'Census' 'report.census'}}</li>
+        {{#if (eq summaryLevel 'blocks')}}
+          <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+          <li><a class="disabled">Social <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+          <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+          <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+        {{else}}
+          <li>{{#link-to 'report.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}</li>
+          <li>{{#link-to 'report.social'}}Social  <small>(ACS)</small>{{/link-to}}</li>
+          <li>{{#link-to 'report.economic'}}Economic  <small>(ACS)</small>{{/link-to}}</li>
+          <li>{{#link-to 'report.housing'}}Housing  <small>(ACS)</small>{{/link-to}}</li>
+        {{/if}}
       </ul>
     </div>
 
-    <div class="report-map-container">
-      {{#mapbox-gl
-        id='map'
-        sources=sources
-        initOptions=(hash style='mapbox://styles/mapbox/light-v9'
-                          zoom=zoom
-                          center=center
-                          hash=false
-                          interactive=false)
-        mapLoaded=(action 'handleMapLoad')
-
-        as |map|}}
-
-        {{#if selection.current}}
-          {{#map.source
-            sourceId='selected-features'
-            options=selectedSource as |source|}}
-            {{source.layer
-              layer=selectedFillLayer
-              before='waterway-label'}}
-            {{source.layer
-              layer=selectedLineLayer
-              before='waterway-label'}}
-          {{/map.source}}
-        {{/if}}
-
-        {{map.on 'resize' (action 'handleResize')}}
-      {{/mapbox-gl}}
-    </div>
-
-    {{link-to 'Edit your Selection' 'index' classNames='button small expanded hollow'}}
-
   </div>
-  <div class="cell large-8 xxlarge-9">
+  <div class="cell auto">
 
-    <div class="overflow-y-grid report-content">
-      <div class="cell shrink">
-
-        <div class="report-menus">
-          <ul class="menu report-mode expanded text-center">
-            <li class="{{if (eq mode 'current') 'active'}}"><a {{action (mut mode) 'current'}} {{action (mut scrollTable) true}}>Current</a></li>
-            <li class="{{if (eq mode 'change') 'active'}}"><a {{action (mut mode) 'change'}} {{action (mut scrollTable) true}}>Change <span class="show-for-xlarge">Over Time</span></a></li>
-          </ul>
-
-          <ul class="menu tabs vertical medium-horizontal text-center">
-            <li>{{link-to 'Census' 'report.census'}}</li>
-            {{#if (eq summaryLevel 'blocks')}}
-              <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
-              <li><a class="disabled">Social <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
-              <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
-              <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
-            {{else}}
-              <li>{{#link-to 'report.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}</li>
-              <li>{{#link-to 'report.social'}}Social  <small>(ACS)</small>{{/link-to}}</li>
-              <li>{{#link-to 'report.economic'}}Economic  <small>(ACS)</small>{{/link-to}}</li>
-              <li>{{#link-to 'report.housing'}}Housing  <small>(ACS)</small>{{/link-to}}</li>
-            {{/if}}
-          </ul>
-        </div>
-
-      </div>
-      <div class="cell auto">
-        {{outlet}}
-      </div>
-    </div>
+    {{outlet}}
 
   </div>
 </div>
