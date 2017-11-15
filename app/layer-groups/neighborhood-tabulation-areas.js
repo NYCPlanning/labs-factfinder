@@ -22,8 +22,8 @@ export default {
         source: 'admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
-          'line-color': 'red',
-          'line-opacity': 0.2,
+          'line-color': '#D96B27',
+          'line-opacity': 0.05,
           'line-width': {
             stops: [
               [11, 3],
@@ -41,7 +41,7 @@ export default {
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'line-color': '#444',
-          'line-opacity': 0.3,
+          'line-opacity': 0.5,
           'line-width': {
             stops: [
               [11, 1],
