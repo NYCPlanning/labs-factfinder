@@ -1,17 +1,34 @@
 {{#if (eq report.mode 'current')}}
 
+  <div class="report-header grid-x grid-margin-x align-bottom">
+    <div class="cell large-7 xlarge-8">
+      <h1>Demographic Profile</h1>
+      <h2 class="header-small dark-gray">American Community Survey (ACS), 2011-2015 <sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."}}</sup></h2>
+    </div>
+    <div class="cell large-5 xlarge-4 large-text-right">
+      <p class="dark-gray text-tiny">
+        ACS data are derived from a survey and are subject to sampling variability.
+        Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
+      </p>
+    </div>
+  </div>
+
+{{else}}
+
 <div class="report-header grid-x grid-margin-x align-bottom">
   <div class="cell large-7 xlarge-8">
-    <h1>Demographic Profile</h1>
-    <h2 class="header-small dark-gray">American Community Survey (ACS), 2011-2015 <sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."}}</sup></h2>
+    <h1>Demographic Profile of Change Over&nbsp;Time</h1>
+    <h2 class="header-small dark-gray">American Community Survey (ACS), 2006-2010 to 2011-2015 <sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."}}</sup></h2>
   </div>
   <div class="cell large-5 xlarge-4 large-text-right">
     <p class="dark-gray text-tiny">
       ACS data are derived from a survey and are subject to sampling variability.
-      Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
+      Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
     </p>
   </div>
 </div>
+
+{{/if}}{{! end report.mode = 'current' }}
 
 <ul class="menu report-extras">
   <li><a {{action (mut report.reliability) (not report.reliability)}}>
@@ -35,9 +52,9 @@
     <h3>Age and Sex</h3>
     <div class="grid-x grid-margin-x">
       <div class="cell large-8">
-        {{#demographic-table reliability=report.reliability comparison=report.comparison scrollTable=report.scrollTable}}
+        {{#demographic-table options=report}}
           {{#each sexAge as |row|}}
-            {{demographic-table-row config=row data=(get this.model.y2011_2015.sex_and_age row.data) reliability=report.reliability comparison=report.comparison}}
+            {{demographic-table-row rowconfig=row options=report data=(get this.model.y2011_2015.sex_and_age row.data) data2=(get this.model.y2006_2010.sex_and_age row.data) }}
           {{/each}}
         {{/demographic-table}}
       </div>
@@ -50,23 +67,23 @@
     </div>
 
     <h3>Mutually Exclusive Race / Hispanic Origin</h3>
-    {{#demographic-table reliability=report.reliability comparison=report.comparison scrollTable=report.scrollTable}}
+    {{#demographic-table options=report}}
       {{#each raceGroup as |row|}}
-        {{demographic-table-row config=row data=(get this.model.y2011_2015.mutually_exclusive_race_hispanic_origin row.data) reliability=report.reliability comparison=report.comparison}}
+        {{demographic-table-row rowconfig=row options=report data=(get this.model.y2011_2015.mutually_exclusive_race_hispanic_origin row.data) data2=(get this.model.y2006_2010.mutually_exclusive_race_hispanic_origin row.data) }}
       {{/each}}
     {{/demographic-table}}
 
     <h3>Hispanic Subgroup</h3>
-    {{#demographic-table reliability=report.reliability comparison=report.comparison scrollTable=report.scrollTable}}
+    {{#demographic-table options=report}}
       {{#each hispanicSubgroup as |row|}}
-        {{demographic-table-row config=row data=(get this.model.y2011_2015.hispanic_subgroup row.data) reliability=report.reliability comparison=report.comparison}}
+        {{demographic-table-row rowconfig=row options=report data=(get this.model.y2011_2015.hispanic_subgroup row.data) data2=(get this.model.y2006_2010.hispanic_subgroup row.data) }}
       {{/each}}
     {{/demographic-table}}
 
     <h3>Asian Subgroup</h3>
     {{#demographic-table reliability=report.reliability comparison=report.comparison scrollTable=report.scrollTable}}
       {{#each asianSubgroup as |row|}}
-        {{demographic-table-row config=row data=(get this.model.y2011_2015.asian_subgroup row.data) reliability=report.reliability comparison=report.comparison}}
+        {{demographic-table-row rowconfig=row options=report data=(get this.model.y2011_2015.asian_subgroup row.data) data2=(get this.model.y2006_2010.asian_subgroup row.data)}}
       {{/each}}
     {{/demographic-table}}
 
@@ -81,30 +98,11 @@
   View {{if report.scrollTable 'More' 'Less'}}
 </a>
 
-<div class="grid-x grid-margin-x large-up-2">
-  <div class="cell">
-    <div class="callout">
-      {{population-pyramid data=agePopDist}}
-    </div>
-  </div>
-</div>
 
-{{/if}}{{! end report.mode = 'current' }}
 
-{{#if (eq report.mode 'change')}}
 
-<div class="report-header grid-x grid-margin-x align-bottom">
-  <div class="cell large-7 xlarge-8">
-    <h1>Demographic Profile of Change Over&nbsp;Time</h1>
-    <h2 class="header-small dark-gray">American Community Survey (ACS), 2006-2010 to 2011-2015 <sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."}}</sup></h2>
-  </div>
-  <div class="cell large-5 xlarge-4 large-text-right">
-    <p class="dark-gray text-tiny">
-      ACS data are derived from a survey and are subject to sampling variability.
-      Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
-    </p>
-  </div>
-</div>
+{{!-- {{#if (eq report.mode 'change')}}
+
 
 <ul class="menu report-extras">
   <li><a {{action (mut report.changeReliability) (not report.changeReliability)}}>
@@ -313,6 +311,6 @@
   View {{if report.scrollTable 'More' 'Less'}}
 </a>
 
-{{/if}}{{! end report.mode = 'change' }}
+{{/if}}{{! end report.mode = 'change' }} --}}
 
 {{outlet}}
