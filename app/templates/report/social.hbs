@@ -1,9 +1,7 @@
-{{#report-header
-  title=(if (eq report.mode 'current') "Social Profile" "Social Profile of Change Over Time")
-  subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
+{{#report-header title=(if (eq report.mode 'current') "Social Profile" "Social Profile of Change Over Time") subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
   subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
-}}
-<p class="dark-gray- text-tiny"><em>
+  }}
+  <p class="dark-gray- text-tiny"><em>
   ACS data are derived from a survey and are subject to sampling variability.
   Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
 </em></p>
@@ -87,8 +85,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each educationalAttainment as |row|}}
+    {{#acs-table options=report}}
+      {{#each educationalAttainment as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -104,8 +102,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each veteranStatus as |row|}}
+    {{#acs-table options=report}}
+      {{#each veteranStatus as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -121,8 +119,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each disabilityStatusOfCnp as |row|}}
+    {{#acs-table options=report}}
+      {{#each disabilityStatusOfCnp as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -138,8 +136,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each residence1YearAgo as |row|}}
+    {{#acs-table options=report}}
+      {{#each residence1YearAgo as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -155,8 +153,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each placeOfBirth as |row|}}
+    {{#acs-table options=report}}
+      {{#each placeOfBirth as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -172,8 +170,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each citizenshipStatus as |row|}}
+    {{#acs-table options=report}}
+      {{#each citizenshipStatus as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -189,8 +187,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each yearOfEntry as |row|}}
+    {{#acs-table options=report}}
+      {{#each yearOfEntry as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -206,8 +204,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each languageSpokenAtHome as |row|}}
+    {{#acs-table options=report}}
+      {{#each languageSpokenAtHome as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -223,8 +221,8 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
-      {{#acs-table options=report}}
-        {{#each ancestry as |row|}}
+    {{#acs-table options=report}}
+      {{#each ancestry as |row|}}
         {{acs-table-row
           rowconfig=row
           options=report
@@ -245,6 +243,4 @@
   {{fa-icon 'chevron-up'}}
   {{/if}}
   View {{if report.scrollTable 'More' 'Less'}}
-</a>
-
-{{outlet}}
+</a> {{outlet}}

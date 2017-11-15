@@ -1,5 +1,3 @@
-
-
 {{#report-header
   title=(if (eq report.mode 'current') "Demographic Profile" "Demographic Profile of Change Over Time")
   subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
@@ -53,42 +51,56 @@
   </div>
 </div>
 
+
 <h3>Mutually Exclusive Race / Hispanic Origin</h3>
-{{#acs-table options=report}}
-  {{#each raceGroup as |row|}}
-    {{acs-table-row
-      rowconfig=row
-      options=report
-      data=(get this.model.y2011_2015.mutually_exclusive_race_hispanic_origin row.data)
-      data2=(get this.model.y2006_2010.mutually_exclusive_race_hispanic_origin row.data)
-    }}
-  {{/each}}
-{{/acs-table}}
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each raceGroup as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.mutually_exclusive_race_hispanic_origin row.data)
+          data2=(get this.model.y2006_2010.mutually_exclusive_race_hispanic_origin row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
 
 <h3>Hispanic Subgroup</h3>
-{{#acs-table options=report}}
-  {{#each hispanicSubgroup as |row|}}
-    {{acs-table-row
-      rowconfig=row
-      options=report
-      data=(get this.model.y2011_2015.hispanic_subgroup row.data)
-      data2=(get this.model.y2006_2010.hispanic_subgroup row.data)
-    }}
-  {{/each}}
-{{/acs-table}}
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+<a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>    {{#acs-table options=report}}
+      {{#each hispanicSubgroup as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.hispanic_subgroup row.data)
+          data2=(get this.model.y2006_2010.hispanic_subgroup row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
 
 <h3>Asian Subgroup</h3>
-{{#acs-table options=report}}
-  {{#each asianSubgroup as |row|}}
-    {{acs-table-row
-      rowconfig=row
-      options=report
-      data=(get this.model.y2011_2015.asian_subgroup row.data)
-      data2=(get this.model.y2006_2010.asian_subgroup row.data)
-    }}
-  {{/each}}
-{{/acs-table}}
-
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+      {{#acs-table options=report}}
+        {{#each asianSubgroup as |row|}}
+          {{acs-table-row
+            rowconfig=row
+            options=report
+            data=(get this.model.y2011_2015.asian_subgroup row.data)
+            data2=(get this.model.y2006_2010.asian_subgroup row.data)
+          }}
+        {{/each}}
+      {{/acs-table}}
+  </div>
+</div>
 
 
 <a class="button tiny hollow expanded" {{action (mut report.scrollTable) (not report.scrollTable)}}>

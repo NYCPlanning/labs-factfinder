@@ -1,8 +1,6 @@
-{{#report-header
-  title=(if (eq report.mode 'current') "Economic Profile" "Economic Profile of Change Over Time")
-  subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
-  subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
-}}
+{{#report-header title=(if (eq report.mode 'current') "Economic Profile" "Economic Profile of Change Over Time") subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015"
+  "American Community Survey (ACS), 2006-2010 to 2011-2015") subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
+  }}
   <p class="dark-gray- text-tiny"><em>
     ACS data are derived from a survey and are subject to sampling variability.
     Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
@@ -31,6 +29,7 @@
 <h3>Employment Status</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each employmentStatus as |row|}}
         {{acs-table-row
@@ -47,6 +46,7 @@
 <h3>Commute to Work</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each commuteToWork as |row|}}
         {{acs-table-row
@@ -63,6 +63,7 @@
 <h3>Occupation</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each occupation as |row|}}
         {{acs-table-row
@@ -79,6 +80,7 @@
 <h3>Industry</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each industry as |row|}}
         {{acs-table-row
@@ -95,6 +97,7 @@
 <h3>Class of Worker</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each classOfWorker as |row|}}
         {{acs-table-row
@@ -111,6 +114,7 @@
 <h3>Income and Benefits</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each incomeAndBenefits as |row|}}
         {{acs-table-row
@@ -127,6 +131,7 @@
 <h3>Earnings</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each earnings as |row|}}
         {{acs-table-row
@@ -143,6 +148,7 @@
 <h3>Health Insurance Coverage</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each healthInsuranceCoverage as |row|}}
         {{acs-table-row
@@ -159,6 +165,7 @@
 <h3>Income in the Past 12 Months Below Poverty Level</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each incomePast12MonthsBelowPoverty as |row|}}
         {{acs-table-row
@@ -175,6 +182,7 @@
 <h3>Ratio of Income to Poverty Level</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each ratioOfIncomeToPovertyLevel as |row|}}
         {{acs-table-row

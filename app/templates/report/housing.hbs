@@ -1,8 +1,6 @@
-{{#report-header
-  title=(if (eq report.mode 'current') "Housing Profile" "Housing Profile of Change Over Time")
-  subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
-  subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
-}}
+{{#report-header title=(if (eq report.mode 'current') "Housing Profile" "Housing Profile of Change Over Time") subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015"
+  "American Community Survey (ACS), 2006-2010 to 2011-2015") subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
+  }}
   <p class="dark-gray- text-tiny"><em>
     ACS data are derived from a survey and are subject to sampling variability.
     Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
@@ -52,11 +50,7 @@
     {{#acs-table options=report}}
       {{#each unitsInStructure as |row|}}
         {{acs-table-row
-          rowconfig=row
-          options=report
-          data=(get this.model.y2011_2015.units_in_structure row.data)
-          data2=(get this.model.y2006_2010.units_in_structure row.data)
-        }}
+      rowconfig=row options=report data=(get this.model.y2011_2015.units_in_structure row.data) data2=(get this.model.y2006_2010.units_in_structure row.data) }}
       {{/each}}
     {{/acs-table}}
   </div>
