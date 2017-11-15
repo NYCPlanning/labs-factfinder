@@ -8,7 +8,8 @@ const { service } = Ember.inject;
 
 export default Ember.Route.extend({
   selection: service(),
-  model({ comparator = '0' }) {
+
+  model(params, { queryParams: { comparator = '0' } }) {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
     const selectionSQL = generateReportSQL(geoids, comparator, 'demographic');
 
