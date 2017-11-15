@@ -1,10 +1,14 @@
-{{#report-header title=(if (eq report.mode 'current') "Housing Profile" "Housing Profile of Change Over Time") subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015"
-  "American Community Survey (ACS), 2006-2010 to 2011-2015") subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
-  }}
-  <p class="dark-gray- text-tiny"><em>
+{{#report-header
+  report=report
+  title="Housing Profile"
+  mode=report.mode
+}}
+  <p class="text-tiny">
     ACS data are derived from a survey and are subject to sampling variability.
     Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
-  </em></p>
+
+    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+  </p>
 {{/report-header}}
 
 <ul class="menu report-extras">
