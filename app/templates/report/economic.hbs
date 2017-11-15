@@ -28,6 +28,8 @@
   </a></li>
 </ul>
 
+{{log this.model.y2011_2015}}
+
 <h3>Employment Status</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
@@ -59,5 +61,134 @@
     {{/acs-table}}
   </div>
 </div>
+
+<h3>Occupation</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each occupation as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.occupation row.data)
+          data2=(get this.model.y2006_2010.occupation row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Industry</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each industry as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.industry row.data)
+          data2=(get this.model.y2006_2010.industry row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Class of Worker</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each classOfWorker as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.class_of_worker row.data)
+          data2=(get this.model.y2006_2010.class_of_worker row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Income and Benefits</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each incomeAndBenefits as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.income_and_benefits row.data)
+          data2=(get this.model.y2006_2010.income_and_benefits row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Earnings</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each earnings as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.earnings row.data)
+          data2=(get this.model.y2006_2010.earnings row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Health Insurance Coverage</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each healthInsuranceCoverage as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.health_insurance_coverage row.data)
+          data2=(get this.model.y2006_2010.health_insurance_coverage row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Income in the Past 12 Months Below Poverty Level</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each incomePast12MonthsBelowPoverty as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.income_in_past_12_months_is_below_the_poverty_level row.data)
+          data2=(get this.model.y2006_2010.income_in_past_12_months_is_below_the_poverty_level row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Ratio of Income to Poverty Level</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each ratioOfIncomeToPovertyLevel as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.ratio_of_income_to_poverty_level row.data)
+          data2=(get this.model.y2006_2010.ratio_of_income_to_poverty_level row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
 
 {{outlet}}
