@@ -112,7 +112,6 @@ export default Ember.Component.extend({
 
     // @trackEvent('Map Search', 'Clicked result', 'searchTerms')
     goTo(result) {
-      console.log('result', result)
 
       this.$('.map-search-input').blur();
 
@@ -125,28 +124,16 @@ export default Ember.Component.extend({
       const map = selection.currentMapInstance;
 
       if (result.type === 'tract') {
-        selection.handleSelectedFeatures([result.feature], true);
-        this.fitBounds(map);
+        selection.set('searchResultFeature', result.feature);
       }
 
       if (result.type === 'block') {
-        selection.handleSelectedFeatures([result.feature], true);
-        this.fitBounds(map);
+        selection.set('searchResultFeature', result.feature);
       }
       //
       if (result.type === 'nta') {
-        selection.handleSelectedFeatures([result.feature], true);
-        this.fitBounds(map);
+        selection.set('searchResultFeature', result.feature);
       }
-      //
-      // if (result.type === 'neighborhood') {
-      //   this.set('searchTerms', result.neighbourhood);
-      //   const center = result.coordinates;
-      //   mapInstance.flyTo({
-      //     center,
-      //     zoom: 13,
-      //   });
-      // }
 
       if (result.type === 'address') {
         const center = result.coordinates;

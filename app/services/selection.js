@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import pointLayer from '../layers/point-layer';
+import searchResultLayer from '../layers/search-result-layer';
 
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
@@ -37,6 +38,9 @@ export default Ember.Service.extend({
   pointLayer,
   currentAddress: null,
 
+  searchResultFeature: null,
+  searchResultLayer,
+
   @computed('currentAddress')
   addressSource(currentAddress) {
     return {
@@ -48,6 +52,13 @@ export default Ember.Service.extend({
     };
   },
 
+  @computed('searchResultFeature')
+  searchResultSource(feature) {
+    return {
+      type: 'geojson',
+      data: feature,
+    };
+  },
 
   // methods
   handleSummaryLevelToggle(toLevel) {
@@ -90,7 +101,7 @@ export default Ember.Service.extend({
       });
   },
 
-  handleSelectedFeatures(features = [], searchResult = false) {
+  handleSelectedFeatures(features = []) {
     const selected = this.get('current');
 
     features.forEach((feature) => {
@@ -106,7 +117,7 @@ export default Ember.Service.extend({
           geometry,
           properties,
         });
-      } else if (!searchResult) {
+      } else {
         const newFeatures = selected.features.filter(
           selectedFeature => selectedFeature.properties.geoid !== properties.geoid,
         );

@@ -12,7 +12,7 @@
     <a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
   </li>
 </ul>
-
+{{log selection.searchResultSource}}
 <div class="map-container">
   {{#jane-maps
     id='map'
@@ -27,6 +27,12 @@
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
         {{source.layer layer=selection.pointLayer}}
+      {{/map.source}}
+    {{/if}}
+
+    {{#if selection.searchResultFeature}}
+      {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
+        {{source.layer layer=selection.searchResultLayer}}
       {{/map.source}}
     {{/if}}
 
