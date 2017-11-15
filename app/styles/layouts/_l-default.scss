@@ -15,6 +15,10 @@ body {
   }
 }
 
+.relative {
+  position: relative;
+}
+
 .site-header {
   position: relative;
   z-index: 2;
@@ -81,14 +85,22 @@ body {
 }
 
 .report-map-container {
-  margin-bottom: $global-margin;
-  height: 50vh;
+  height: 200px;
   width: 100%;
   border: 1px solid $medium-gray;
 
-  @include breakpoint(large) {
-    height: calc(100vh - 22rem);
+  @include breakpoint(medium) {
+    height: 100%;
   }
+}
+
+.edit-selection-button {
+  position: absolute;
+  z-index: 2;
+  top: rem-calc(10);
+  right: rem-calc(10);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  border-radius: 4px;
 }
 
 .map-utility-box {
