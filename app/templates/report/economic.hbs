@@ -1,2 +1,63 @@
-<h1>Economic Report</h1>
+{{#report-header
+  title=(if (eq report.mode 'current') "Economic Profile" "Economic Profile of Change Over Time")
+  subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
+  subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
+}}
+  <p class="dark-gray- text-tiny"><em>
+    ACS data are derived from a survey and are subject to sampling variability.
+    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
+  </em></p>
+{{/report-header}}
+
+<ul class="menu report-extras">
+  <li><a {{action (mut report.reliability) (not report.reliability)}}>
+    {{#if report.reliability}}
+    <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+    {{else}}
+    <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+    {{/if}}
+    Reliability Data
+  </a></li>
+  <li><a {{action (mut report.comparison) (not report.comparison)}}>
+      {{#if report.comparison}}
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+      {{else}}
+      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+      {{/if}}
+    Comparison
+  </a></li>
+</ul>
+
+<h3>Employment Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each employmentStatus as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.employment_status row.data)
+          data2=(get this.model.y2006_2010.employment_status row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<h3>Commute to Work</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each commuteToWork as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.commute_to_work row.data)
+          data2=(get this.model.y2006_2010.commute_to_work row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
 {{outlet}}
