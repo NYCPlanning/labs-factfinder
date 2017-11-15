@@ -1,30 +1,274 @@
-<div class="report-header grid-x grid-margin-x align-bottom">
-  <div class="cell large-7 xlarge-8">
-    <h1>Demographic and Housing Profile</h1>
-    <h2 class="header-small dark-gray">Decennial Census, 2010</h2>
-  </div>
-  <div class="cell large-5 xlarge-4 large-text-right">
-    <p class="dark-gray text-tiny">
-      <a href="https://www.census.gov/programs-surveys/decennial-census/guidance/2010.html" target="_blank">2010 Census, Summary File 1</a>
-    </p>
+{{#report-header
+  report=report
+  title="Housing Profile"
+  mode=report.mode
+}}
+  <p class="text-tiny">
+    ACS data are derived from a survey and are subject to sampling variability.
+    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
+
+    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+  </p>
+{{/report-header}}
+
+<ul class="menu report-extras">
+  <li><a {{action (mut report.reliability) (not report.reliability)}}>
+    {{#if report.reliability}}
+    <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+    {{else}}
+    <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+    {{/if}}
+    Reliability Data
+  </a></li>
+  <li><a {{action (mut report.comparison) (not report.comparison)}}>
+      {{#if report.comparison}}
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+      {{else}}
+      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+      {{/if}}
+    Comparison
+  </a></li>
+</ul>
+
+<hr>
+
+<h3 class="header-medium">Housing Occupancy</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each housingOccupancy as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.housing_occupancy row.data)
+          data2=(get this.model.y2006_2010.housing_occupancy row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
   </div>
 </div>
 
 <hr>
 
-<div class="report-header grid-x grid-margin-x align-bottom">
-  <div class="cell large-7 xlarge-8">
-    <h1>Demographic and Housing Profile of Change Over Time</h1>
-    <h2 class="header-small dark-gray">Decennial Census, 2000-2010</h2>
+<h3 class="header-medium">Units in Structure</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each unitsInStructure as |row|}}
+        {{acs-table-row
+      rowconfig=row options=report data=(get this.model.y2011_2015.units_in_structure row.data) data2=(get this.model.y2006_2010.units_in_structure row.data) }}
+      {{/each}}
+    {{/acs-table}}
   </div>
-  <div class="cell large-5 xlarge-4 large-text-right">
-    <p class="dark-gray text-tiny">
-      <a href="https://www.census.gov/programs-surveys/decennial-census/guidance/2010.html" target="_blank">
-        2000 Census, Summary File 1</a>
-      and
-      <a href="https://www.census.gov/programs-surveys/decennial-census/guidance/2000.html" target="_blank">2000 Census, Summary File 1</a>
-    </p>
+</div>
+<hr>
+
+<h3 class="header-medium">Year Structure Built</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each yearStructureBuilt as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.year_structure_built row.data)
+          data2=(get this.model.y2006_2010.year_structure_built row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
   </div>
 </div>
 
+<hr>
+
+<h3 class="header-medium">Rooms</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each rooms as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.rooms row.data)
+          data2=(get this.model.y2006_2010.rooms row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Housing Tenure</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each housingTenure as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.housing_tenure row.data)
+          data2=(get this.model.y2006_2010.housing_tenure row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Year Householder Moved Into Unit</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each yearHouseholderMovedIntoUnit as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.year_householder_moved_into_unit row.data)
+          data2=(get this.model.y2006_2010.year_householder_moved_into_unit row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Vehicles Available</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each vehiclesAvailable as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.vehicles_available row.data)
+          data2=(get this.model.y2006_2010.vehicles_available row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Occupants per Room</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each occupantsPerRoom as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.occupants_per_room row.data)
+          data2=(get this.model.y2006_2010.occupants_per_room row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Value</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each value as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.value row.data)
+          data2=(get this.model.y2006_2010.value row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Mortgage Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each mortgageStatus as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.mortgage_status row.data)
+          data2=(get this.model.y2006_2010.mortgage_status row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Selected Monthly Owner Costs as a Percentage of Household Income</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each selectedMonthlyOwnerSmocapi as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.selected_monthly_owner_costs_as_a_percentage_of_household_income__smocapi_ row.data)
+          data2=(get this.model.y2006_2010.selected_monthly_owner_costs_as_a_percentage_of_household_income__smocapi_ row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Gross Rent</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each grossRent as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.gross_rent row.data)
+          data2=(get this.model.y2006_2010.gross_rent row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Gross Rent as a Percentage of Household Income (GRAPI)</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+    {{#acs-table options=report}}
+      {{#each grossRentGrapi as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.gross_rent_as_a_percentage_of_household_income__grapi_ row.data)
+          data2=(get this.model.y2006_2010.gross_rent_as_a_percentage_of_household_income__grapi_ row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
 {{outlet}}
