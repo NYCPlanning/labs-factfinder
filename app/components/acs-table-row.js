@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 
