@@ -56,13 +56,13 @@ const generateReportSQL = function(geoids, comparator, profile = 'demographic') 
       CASE WHEN ABS(SQRT(POWER(percent_m / 1.645, 2) %2B POWER(comparison_percent_m / 1.645, 2)) * 1.645) > ABS(comparison_percent - percent) THEN false ELSE true END AS percent_significant
     FROM (
       SELECT
-        regexp_replace(lower(YEAR), '[^A-Za-z0-9]', '_', 'g') AS YEAR,
+         *,
+        (((m / 1.645) / SUM) * 100) AS cv,
+        (((comparison_m / 1.645) / comparison_sum) * 100) AS comparison_cv,
+        regexp_replace(lower(DATASET), '[^A-Za-z0-9]', '_', 'g') AS DATASET,
         regexp_replace(lower(PROFILE), '[^A-Za-z0-9]', '_', 'g') AS PROFILE,
         regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
         regexp_replace(lower(VARIABLE), '[^A-Za-z0-9]', '_', 'g') AS VARIABLE,
-        sum, m, comparison_sum, comparison_m,
-        (((m / 1.645) / SUM) * 100) AS cv,
-        (((comparison_m / 1.645) / comparison_sum) * 100) AS comparison_cv,
         ROUND((SUM / base_sum)::numeric, 4) as percent,
         (1 / base_sum) * SQRT(POWER(m, 2) %2B ABS(POWER(sum / base_sum, 2) * POWER(base_m, 2))) as percent_m,
         ROUND((comparison_sum / comparison_base_sum)::numeric, 4) as comparison_percent,
