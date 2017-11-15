@@ -1,12 +1,14 @@
 {{#report-header
-  title=(if (eq report.mode 'current') "Demographic Profile" "Demographic Profile of Change Over Time")
-  subtitle=(if (eq report.mode 'current') "American Community Survey (ACS), 2011-2015" "American Community Survey (ACS), 2006-2010 to 2011-2015")
-  subtitleInfo="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
+  report=report
+  title="Demographic Profile"
+  mode=report.mode
 }}
-  <p class="dark-gray- text-tiny"><em>
+  <p class="text-tiny">
     ACS data are derived from a survey and are subject to sampling variability.
     Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
-  </em></p>
+
+    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+  </p>
 {{/report-header}}
 
 <ul class="menu report-extras">
@@ -28,7 +30,9 @@
   </a></li>
 </ul>
 
-<h3>Age and Sex</h3>
+<hr>
+
+<h3 class="header-medium">Age and Sex</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
@@ -51,8 +55,9 @@
   </div>
 </div>
 
+<hr>
 
-<h3>Mutually Exclusive Race / Hispanic Origin</h3>
+<h3 class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
@@ -69,7 +74,9 @@
   </div>
 </div>
 
-<h3>Hispanic Subgroup</h3>
+<hr>
+
+<h3 class="header-medium">Hispanic Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
 <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>    {{#acs-table options=report}}
@@ -85,7 +92,9 @@
   </div>
 </div>
 
-<h3>Asian Subgroup</h3>
+<hr>
+
+<h3 class="header-medium">Asian Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
