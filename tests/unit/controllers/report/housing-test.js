@@ -1,8 +1,8 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:/report/housing', 'Unit | Controller | /report/housing', {
+moduleFor('controller:report', 'Unit | Controller | report/housing', {
   // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
+  needs: ['service:selection', 'service:mapMouseover']
 });
 
 // Replace this with your real tests.
