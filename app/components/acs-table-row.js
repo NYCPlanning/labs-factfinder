@@ -18,7 +18,7 @@ export default Ember.Component.extend({
       classes.push(`row-indent-x${rowconfig.indent}`);
     }
 
-    return classes.join(',');
+    return classes.join(' ');
   },
 
   @computed('data.sum', 'data2.sum', 'data.m', 'data2.m')
