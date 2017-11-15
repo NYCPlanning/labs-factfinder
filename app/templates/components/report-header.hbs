@@ -22,8 +22,15 @@
           <li>{{feature.properties.geolabel}}</li>
         {{/each}}
       </ul>
-      Compared to:
-      {{comparison-area-selector comparisonArea=report.comparator}}
+    </div>
+
+    <div class="grid-x align-middle">
+      <div class="cell shrink">
+        <h3 class="header-small no-margin">Compared to: &nbsp;</h3>
+      </div>
+      <div class="cell auto">
+        {{comparison-area-selector comparisonArea=report.comparator}}
+      </div>
     </div>
 
     <div class="grid-x grid-margin-x">
