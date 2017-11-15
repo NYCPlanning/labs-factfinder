@@ -22,8 +22,8 @@ const generateReportSQL = function(geoids, comparator, profile = 'demographic') 
         FROM (
           SELECT *
           FROM filtered_selection
-          INNER JOIN support_fact_finder_meta_update
-            ON support_fact_finder_meta_update.variablename = filtered_selection.variable
+          INNER JOIN support_fact_finder_meta_1
+            ON support_fact_finder_meta_1.variablename = filtered_selection.variable
         ) window_sum
         WHERE base = VARIABLE
         GROUP BY VARIABLE, "dataset"
@@ -44,8 +44,8 @@ const generateReportSQL = function(geoids, comparator, profile = 'demographic') 
         FROM (
           SELECT *
           FROM comparison_selection
-          INNER JOIN support_fact_finder_meta_update
-            ON support_fact_finder_meta_update.variablename = comparison_selection.variable
+          INNER JOIN support_fact_finder_meta_1
+            ON support_fact_finder_meta_1.variablename = comparison_selection.variable
         ) window_sum
         WHERE base = VARIABLE
         GROUP BY VARIABLE, "dataset"
@@ -79,8 +79,8 @@ const generateReportSQL = function(geoids, comparator, profile = 'demographic') 
          GROUP BY VARIABLE, DATASET
          ORDER BY VARIABLE DESC
       ) aggregated
-      INNER JOIN support_fact_finder_meta_update
-        ON support_fact_finder_meta_update.variablename = aggregated.variable
+      INNER JOIN support_fact_finder_meta_1
+        ON support_fact_finder_meta_1.variablename = aggregated.variable
       LEFT OUTER JOIN base_numbers
         ON base = base_numbers.base_join
         AND DATASET = base_numbers.base_year
