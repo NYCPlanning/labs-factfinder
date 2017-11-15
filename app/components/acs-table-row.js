@@ -1,10 +1,25 @@
+/* eslint-disable */
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
-
-/* eslint-disable no-restricted-properties */
+import { computed } from 'ember-decorators/object';
 
 export default Ember.Component.extend({
   tagName: 'tr',
+  classNameBindings: ['getClassNames'],
+
+  @computed('rowconfig')
+  getClassNames(rowconfig) {
+    const classes = [];
+
+    if (rowconfig.highlight) {
+      classes.push('row-highlight');
+    }
+
+    if (rowconfig.indent) {
+      classes.push(`row-indent-x${rowconfig.indent}`);
+    }
+
+    return classes.join(',');
+  },
 
   @computed('data.sum', 'data2.sum', 'data.m', 'data2.m')
   longitudinalPercentMOE(sum, sum2, m, m2) {
@@ -49,6 +64,5 @@ export default Ember.Component.extend({
 
     return moe;
   },
-
 
 });

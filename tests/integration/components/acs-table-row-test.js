@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('demographic-table-row', 'Integration | Component | demographic table row', {
+moduleForComponent('acs-table-row', 'Integration | Component | acs table row', {
   integration: true
 });
 

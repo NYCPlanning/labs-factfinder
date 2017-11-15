@@ -1,10 +1,20 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
-const { inject } = Ember;
+import sexAge from '../../table-config/demographic/sex-age';
+import raceGroup from '../../table-config/demographic/race-group';
+import hispanicSubgroup from '../../table-config/demographic/hispanic-subgroup';
+import asianSubgroup from '../../table-config/demographic/asian-subgroup';
+
+const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
-  report: inject.controller('report'),
+  sexAge,
+  raceGroup,
+  hispanicSubgroup,
+  asianSubgroup,
+
+  report: controller('report'),
 
   @computed('model')
   currentData(model) {
