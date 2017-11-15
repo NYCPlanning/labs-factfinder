@@ -33,6 +33,7 @@
 <h3>Age and Sex</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
+    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each sexAge as |row|}}
         {{acs-table-row
