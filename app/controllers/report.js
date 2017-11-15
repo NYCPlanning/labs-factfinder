@@ -11,8 +11,6 @@ const selectedFillLayer = selectedFeatures.fill;
 const { service } = Ember.inject;
 const { alias } = Ember.computed;
 
-const comparisonGeoids = ['0', '1', '2', '3', '4', '5']; // eslint-disable-line
-
 export default Ember.Controller.extend({
   mode: 'current',
   reliability: false,
@@ -39,8 +37,6 @@ export default Ember.Controller.extend({
       data: current,
     };
   },
-
-  comparisonGeoids,
 
   selectionCount: alias('selection.selectedCount'),
   summaryLevel: alias('selection.summaryLevel'),
