@@ -188,99 +188,6 @@ button {
 
 
 //
-// Lot Styles
-// --------------------------------------------------
-.lot-section-header {
-  margin: 1rem 0 rem-calc(6);
-}
-
-.lot-zoning-info {
-  font-size: rem-calc(13);
-}
-
-.lot-zoning-list {
-  margin: $paragraph-margin-bottom/2 0;
-  list-style: none;
-
-  li {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .menu-text {
-    font-weight: $global-weight-bold;
-    padding: rem-calc(4) 0;
-  }
-
-  .button {
-    font-size: rem-calc(13);
-    padding: rem-calc(4) rem-calc(6);
-    margin: 0;
-  }
-}
-
-
-//
-// Data Grid
-// --------------------------------------------------
-.data-grid {
-  @include xy-grid;
-  padding: rem-calc(3) 0;
-
-  &:hover {
-    background-color: $light-gray;
-  }
-
-  @include breakpoint(medium) {
-    @include xy-gutters(
-      $gutters: rem-calc(10),
-      $gutter-type: margin,
-      $gutter-position: right left,
-      $negative: true
-    );
-  }
-
-  .data-label {
-    @include xy-cell-static(full,false,0);
-    padding: rem-calc(2) rem-calc(4);
-    background-color: $light-gray;
-    color: $dark-gray;
-    font-size: rem-calc(10);
-    line-height: 1.2;
-
-    @include breakpoint(medium) {
-      @include xy-cell-static(
-        $size: 4,
-        $gutter-output: true,
-        $gutters: rem-calc(10),
-        $gutter-type: margin,
-        $breakpoint: null,
-        $vertical: false
-      );
-    }
-
-  }
-
-  .datum {
-    @include xy-cell-static(full,false,0);
-    font-size: rem-calc(13);
-    line-height: 1.2;
-
-    @include breakpoint(medium) {
-      @include xy-cell-static(
-        $size: 8,
-        $gutter-output: true,
-        $gutters: rem-calc(10),
-        $gutter-type: margin,
-        $breakpoint: null,
-        $vertical: false
-      );
-    }
-  }
-}
-
-
-//
 // Ember Tooltip
 // --------------------------------------------------
 .ember-tooltip {
@@ -294,20 +201,18 @@ button {
 .report-geographies {
   margin-bottom: $global-margin;
   max-width: rem-calc(630);
-  max-height: 6em;
+  max-height: 5.75em;
   overflow: auto;
-  line-height: 1.2;
-
-  .report-geographies-header, .report-geographies-list {
-    font-size: rem-calc(12);
-  }
+  font-size: rem-calc(12);
 
   .report-geographies-header {
     display: inline;
+    font-size: 1rem;
   }
 
   .report-geographies-list {
     display: inline;
+    font-size: rem-calc(12);
   }
 }
 
@@ -316,10 +221,6 @@ button {
 
   h1 {
     margin-bottom: 0.25rem;
-  }
-
-  h2 {
-    margin-bottom: $global-margin;
   }
 
   h1, h2, p, ul {
@@ -342,31 +243,13 @@ button {
 }
 
 .report-mode {
-  font-weight: $global-weight-bold;
-  margin-bottom: $global-margin/2;
-  background-color: $white;
 
-  @include breakpoint(medium) {
-    font-size: rem-calc(10);
-    text-transform: uppercase;
-    float: right;
-    white-space: nowrap;
-    margin-top: rem-calc(-10);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+  h2 + h2 {
+    margin-top: $global-margin*-0.75;
   }
 
-  .fa {
-  }
-
-  li.active {
-    a {
-      background-color: $primary-color;
-      color: $white;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
-
-    }
+  a {
+    color: inherit;
   }
 }
 
