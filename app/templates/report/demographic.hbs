@@ -1,3 +1,5 @@
+{{download-spreadsheet data=rawData}}
+
 {{#report-header
   report=report
   title="Demographic Profile"
@@ -35,7 +37,6 @@
 <h3 class="header-medium">Age and Sex</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
     {{#acs-table options=report}}
       {{#each sexAge as |row|}}
         {{acs-table-row
@@ -60,7 +61,7 @@
 <h3 class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+
     {{#acs-table options=report}}
       {{#each raceGroup as |row|}}
         {{acs-table-row
@@ -79,7 +80,7 @@
 <h3 class="header-medium">Hispanic Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-<a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>    {{#acs-table options=report}}
+    {{#acs-table options=report}}
       {{#each hispanicSubgroup as |row|}}
         {{acs-table-row
           rowconfig=row
@@ -97,10 +98,9 @@
 <h3 class="header-medium">Asian Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    <a class="button small expanded hollow" {{action 'handleCopy'}}>Copy to Clipboard</a>
+
       {{#acs-table options=report}}
-        {{#each asianSubgroup as |row|}}
-          {{acs-table-row
+        {{#each asianSubgroup as |row|}} {{acs-table-row
             rowconfig=row
             options=report
             data=(get this.model.y2011_2015.asian_subgroup row.data)
