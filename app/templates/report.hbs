@@ -1,12 +1,10 @@
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell shrink">
-
     <div class="report-menus">
       <ul class="menu report-mode expanded text-center">
         <li class="{{if (eq mode 'current') 'active'}}"><a {{action (mut mode) 'current'}} {{action (mut scrollTable) true}}>Current</a></li>
         <li class="{{if (eq mode 'change') 'active'}}"><a {{action (mut mode) 'change'}} {{action (mut scrollTable) true}}>Change <span class="show-for-xlarge">Over Time</span></a></li>
       </ul>
-
       <ul class="menu tabs vertical medium-horizontal text-center">
         <li>{{link-to 'Census' 'report.census'}}</li>
         {{#if (eq summaryLevel 'blocks')}}
@@ -22,7 +20,6 @@
         {{/if}}
       </ul>
     </div>
-
   </div>
   <div class="cell auto">
 
