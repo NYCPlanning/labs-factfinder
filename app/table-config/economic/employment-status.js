@@ -10,18 +10,22 @@ export default [
   },
   {
     title: 'Civilian labor force',
+    indent: 1,
     data: 'cvlf1',
   },
   {
     title: 'Employed',
+    indent: 2,
     data: 'cvem16pl1',
   },
   {
     title: 'Unemployed',
+    indent: 2,
     data: 'cvlfuem1',
   },
   {
     title: 'Armed Forces',
+    indent: 1,
     data: 'lfarmdf',
   },
   {
@@ -54,10 +58,12 @@ export default [
   },
   {
     title: 'Civilian labor force',
+    indent: 1,
     data: 'f16plcvlf',
   },
   {
     title: 'Employed',
+    indent: 2,
     data: 'f16plclfe',
   },
   {
