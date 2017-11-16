@@ -86,7 +86,7 @@ body {
   @include xy-cell-static(full,false,0);
   position: relative;
   z-index: 1;
-  height: calc(50vh);
+  height: 50vh;
 
   @include breakpoint(large) {
     height: 100%;
@@ -94,11 +94,11 @@ body {
 }
 
 .report-map-container {
-  height: 200px;
+  height: 30vh;
   width: 100%;
   border: 1px solid $medium-gray;
 
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     height: 100%;
   }
 }
