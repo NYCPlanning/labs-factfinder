@@ -108,11 +108,13 @@ export default Ember.Component.extend({
   actions: {
     clear() {
       this.set('searchTerms', '');
+
+      const selection = this.get('selection');
+      selection.set('searchResultFeature', null);
     },
 
     // @trackEvent('Map Search', 'Clicked result', 'searchTerms')
     goTo(result) {
-
       this.$('.map-search-input').blur();
 
       this.setProperties({
@@ -122,6 +124,8 @@ export default Ember.Component.extend({
 
       const selection = this.get('selection');
       const map = selection.currentMapInstance;
+
+      this.set('searchTerms', '');
 
       if (result.type === 'tract') {
         selection.set('searchResultFeature', result.feature);
