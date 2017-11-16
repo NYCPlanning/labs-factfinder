@@ -1,10 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  tagName: '',
   data: [],
+  filename: 'download',
   actions: {
     handleDownload(format = 'csv') {
-      const report = this.get('data').sortBy('year', 'profile', 'category').reverse();
+      const filename = this.get('filename');
+      const report = this.get('data').sortBy('dataset', 'profile', 'category').reverse();
       const columnNames = [Object.keys(report.get('firstObject'))];
       const matrixValues = report.map(
         row => Object.values(row),
@@ -17,11 +20,11 @@ export default Ember.Component.extend({
         );
 
       if (format === 'csv') {
-        this.get('csv').export(data, { fileName: 'download.csv', withSeparator: false });
+        this.get('csv').export(data, { fileName: `${filename}.csv`, withSeparator: false });
       }
 
       if (format === 'excel') {
-        this.get('excel').export(data, { sheetName: 'sheet1', fileName: 'download.xlsx' });
+        this.get('excel').export(data, { sheetName: 'sheet1', fileName: `${filename}.xlsx` });
       }
     },
   },

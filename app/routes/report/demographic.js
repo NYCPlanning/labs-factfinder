@@ -1,12 +1,11 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
 import generateReportSQL from '../../queries/report';
-
-import nestReport from '../../utils/nest-report';
+import Downloadable from '../../mixins/downloadable';
 
 const { service } = Ember.inject;
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(Downloadable, {
   selection: service(),
 
   model(params, { queryParams: { comparator = '0' } }) {
@@ -14,13 +13,5 @@ export default Ember.Route.extend({
     const selectionSQL = generateReportSQL(geoids, comparator, 'demographic');
 
     return carto.SQL(selectionSQL, 'json', 'post');
-  },
-
-  setupController(controller, model) {
-    this._super(controller, model);
-    controller.setProperties({
-      model: nestReport(model),
-      rawData: model,
-    });
   },
 });

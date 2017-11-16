@@ -1,6 +1,7 @@
 {{#report-header
   report=report
   title="Economic Profile"
+  data=rawData
   mode=report.mode
 }}
   <p class="text-tiny">
@@ -11,7 +12,6 @@
   </p>
 {{/report-header}}
 
-{{log model}}
 <ul class="menu report-extras">
   <li><a {{action (mut report.reliability) (not report.reliability)}}>
     {{#if report.reliability}}
