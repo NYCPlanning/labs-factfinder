@@ -41,7 +41,7 @@
           {{unless (eq selectionCount 1) 's'}}:
         </h3>
         <ul class="profile-geographies-list comma-separated-list">
-          {{#each selection.current.features as |feature|}}
+          {{#each selection.sortedLabels as |feature|}}
             <li>{{feature.properties.geolabel}}</li>
           {{/each}}
         </ul>
