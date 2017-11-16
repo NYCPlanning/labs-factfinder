@@ -424,6 +424,19 @@ tbody td:first-child {
   border-left: 1px solid $medium-gray;
 }
 
+.table-copy-ui {
+  position: relative;
+
+  a {
+    position: absolute;
+    right: $global-margin;
+    bottom: 0;
+    margin: 0;
+    border-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
 
 //
 // Callouts
