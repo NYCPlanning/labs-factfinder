@@ -204,52 +204,52 @@ button {
 
 
 //
-// Reports
+// Profiles
 // --------------------------------------------------
-.report-controls {
+.profile-controls {
   margin-bottom: $global-margin;
 }
 
-.report-geographies {
+.profile-geographies {
   max-height: 5.75em;
   overflow: auto;
   font-size: rem-calc(12);
   margin-bottom: $global-margin/2;
 
-  .report-geographies-header {
+  .profile-geographies-header {
     display: inline;
     font-size: rem-calc(14);
   }
 
-  .report-geographies-list {
+  .profile-geographies-list {
     display: inline;
     font-size: rem-calc(12);
   }
 }
 
-.report-comparison-controls {
+.profile-comparison-controls {
   font-size: rem-calc(14);
   margin-bottom: $global-margin/2;
 }
 
-.report-reliability-controls {
+.profile-reliability-controls {
   font-size: rem-calc(14);
 }
 
-.report-header {
+.profile-header {
 
   h1 {
     margin-bottom: 0.25rem;
   }
 
-  h1, h2, p, ul, .report-geographies {
+  h1, h2, p, ul, .profile-geographies {
     @include breakpoint(large) {
       max-width: rem-calc(660);
     }
   }
 }
 
-.report-menus {
+.profile-menus {
   @include clearfix;
   margin-top: $global-margin;
   margin-bottom: $global-margin;
@@ -263,7 +263,7 @@ button {
   }
 }
 
-.report-mode {
+.profile-mode {
 
   h2 + h2 {
     margin-top: $global-margin*-0.75;
@@ -462,7 +462,7 @@ tbody td:first-child {
   }
 }
 
-.report-header .callout {
+.profile-header .callout {
 
   @include breakpoint(medium) {
     margin-bottom: $global-margin;
