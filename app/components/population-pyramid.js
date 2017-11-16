@@ -61,7 +61,6 @@ export default HorizontalBar.extend({
   updateChart() {
     const svg = this.get('svg');
     const data = this.get('data.pyramidData');
-    const totals = this.get('data.totals');
 
     // get the largest of largest (percent + percent_moe)
     const maxValue = max([
