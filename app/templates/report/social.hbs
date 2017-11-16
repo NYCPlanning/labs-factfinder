@@ -234,13 +234,4 @@
   </div>
 </div>
 
-
-
-<a class="button tiny hollow expanded" {{action (mut report.scrollTable) (not report.scrollTable)}}>
-  {{#if report.scrollTable}}
-  {{fa-icon 'chevron-down'}}
-  {{else}}
-  {{fa-icon 'chevron-up'}}
-  {{/if}}
-  View {{if report.scrollTable 'More' 'Less'}}
-</a> {{outlet}}
+{{outlet}}
