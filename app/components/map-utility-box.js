@@ -26,5 +26,7 @@ export default Ember.Component.extend({
     handleDrawButtonClick() {
       this.sendAction('handleDrawButtonClick');
     },
+    transitionTo() {
+    },
   },
 });

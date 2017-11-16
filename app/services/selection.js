@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
+import pointLayer from '../layers/point-layer';
+import searchResultLayer from '../layers/search-result-layer';
+
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
 import summaryLevelQueries from '../queries/summary-levels';
@@ -30,6 +33,31 @@ export default Ember.Service.extend({
   @computed('current')
   selectedCount(currentSelected) {
     return currentSelected.features.length;
+  },
+
+  pointLayer,
+  currentAddress: null,
+
+  searchResultFeature: null,
+  searchResultLayer,
+
+  @computed('currentAddress')
+  addressSource(currentAddress) {
+    return {
+      type: 'geojson',
+      data: {
+        type: 'Point',
+        coordinates: currentAddress,
+      },
+    };
+  },
+
+  @computed('searchResultFeature')
+  searchResultSource(feature) {
+    return {
+      type: 'geojson',
+      data: feature,
+    };
   },
 
   // methods
