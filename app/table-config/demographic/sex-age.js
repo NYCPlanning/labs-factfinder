@@ -127,6 +127,7 @@ export default [
     title: 'Median age (years)',
     classNames: '',
     data: 'mdage',
+    aggregator: 'median',
   },
   {
     divider: true,
