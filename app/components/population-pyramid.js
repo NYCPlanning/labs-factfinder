@@ -12,7 +12,7 @@ const translation = (x, y) => `translate(${x},${y})`;
 
 export default HorizontalBar.extend({
   margin: {
-    top: 25,
+    top: 10,
     right: 10,
     bottom: 50,
     left: 10,
@@ -50,11 +50,11 @@ export default HorizontalBar.extend({
       svg.append('g')
         .attr('class', 'axis y-axis-left');
 
-      svg.append('text')
-        .attr('class', 'label-male');
-
-      svg.append('text')
-        .attr('class', 'label-female');
+      // svg.append('text')
+      //   .attr('class', 'label-male');
+      //
+      // svg.append('text')
+      //   .attr('class', 'label-female');
     }
 
     this.set('svg', svg);
@@ -190,17 +190,17 @@ export default HorizontalBar.extend({
     const totalMalePercentM = totals.male.percent_m;
     const totalFemalePercentM = totals.female.percent_m;
 
-    svg.select('.label-male')
-      .text(`Male | ${numeral(totalMalePercent).format('0.0%')}±${numeral(totalMalePercentM).format('0.0%')}`)
-      .attr('text-anchor', 'end')
-      .attr('x', (width / 2) - margin.middle)
-      .attr('y', -8);
-
-    svg.select('.label-female')
-      .text(`Female | ${numeral(totalFemalePercent).format('0.0%')}±${numeral(totalFemalePercentM).format('0.0%')}`)
-      .attr('text-anchor', 'start')
-      .attr('x', (width / 2) + margin.middle)
-      .attr('y', -8);
+    // svg.select('.label-male')
+    //   .text(`Male | ${numeral(totalMalePercent).format('0.0%')}±${numeral(totalMalePercentM).format('0.0%')}`)
+    //   .attr('text-anchor', 'end')
+    //   .attr('x', (width / 2) - margin.middle)
+    //   .attr('y', -8);
+    //
+    // svg.select('.label-female')
+    //   .text(`Female | ${numeral(totalFemalePercent).format('0.0%')}±${numeral(totalFemalePercentM).format('0.0%')}`)
+    //   .attr('text-anchor', 'start')
+    //   .attr('x', (width / 2) + margin.middle)
+    //   .attr('y', -8);
 
     // draw main bars
     const leftBars = svg.select('.male')
