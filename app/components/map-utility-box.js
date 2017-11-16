@@ -15,8 +15,8 @@ export default Ember.Component.extend({
   summaryLevel: alias('selection.summaryLevel'),
 
   @computed('selection.selectedCount')
-  reportButtonClasses(count) {
-    return count > 0 ? 'button large expanded view-report-button' : 'button large expanded disabled view-report-button';
+  profileButtonClasses(count) {
+    return count > 0 ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
   },
 
   actions: {
