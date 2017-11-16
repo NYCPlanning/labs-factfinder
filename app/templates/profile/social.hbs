@@ -51,6 +51,24 @@
 
 <hr>
 
+<h3 class="header-medium">Marital Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each maritalStatus as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.marital_status row.data)
+          data2=(get this.model.y2006_2010.marital_status row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
 <h3 class="header-medium">Grandparents</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
@@ -71,6 +89,20 @@
 <hr>
 
 <h3 class="header-medium">School Enrollment</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each schoolEnrollment as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.school_enrollment row.data)
+          data2=(get this.model.y2006_2010.school_enrollment row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
 
 <hr>
 
