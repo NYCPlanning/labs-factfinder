@@ -129,21 +129,25 @@ export default Ember.Component.extend({
 
       if (result.type === 'tract') {
         selection.set('searchResultFeature', result.feature);
+        this.set('searchTerms', result.feature.properties.fips);
         this.fitBounds(result.feature, 1.2);
       }
 
       if (result.type === 'block') {
         selection.set('searchResultFeature', result.feature);
+        this.set('searchTerms', result.feature.properties.fips);
         this.fitBounds(result.feature, 0.5);
       }
       //
       if (result.type === 'nta') {
         selection.set('searchResultFeature', result.feature);
+        this.set('searchTerms', result.feature.properties.ntacode);
         this.fitBounds(result.feature, 3);
       }
 
       if (result.type === 'puma') {
         selection.set('searchResultFeature', result.feature);
+        this.set('searchTerms', result.feature.properties.puma);
         this.fitBounds(result.feature, 3);
       }
 
