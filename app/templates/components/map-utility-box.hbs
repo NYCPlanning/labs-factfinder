@@ -26,14 +26,14 @@
       {{/if}}
     </div>
     <div class="cell medium-6">
-      <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual census tracts to add them to the report.</p>
+      <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual census tracts to add them to the profile.</p>
       <ul class="selection-tools no-bullet">
         <button class="selection-tool--draw {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>{{fa-icon "pencil-square-o"}} Draw</button>
       </ul>
     </div>
   </div>
 
-  {{#link-to 'report' class=reportButtonClasses}}{{fa-icon 'file-text'}}&nbsp;View Report{{/link-to}}
+  {{#link-to 'profile' class=profileButtonClasses}}{{fa-icon 'file-text'}}&nbsp;View Profile{{/link-to}}
 
   <a href="#" class="button small expanded gray text-orange">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
 
