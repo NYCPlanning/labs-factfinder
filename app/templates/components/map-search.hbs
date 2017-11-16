@@ -31,16 +31,17 @@
     {{#each rows as |result|}}
       <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
         {{#if (eq type 'block')}}
-           <span class="icon tax-lot"></span> {{result.bbl}} <span class="subdued">{{result.label}}</span>
+          <span class="icon polygon small"></span>
         {{else if (eq type 'tract')}}
-          <span class="icon polygon"></span> {{result.ulurpno}} <span class="subdued">{{result.label}}</span>
+          <span class="icon polygon"></span>
         {{else if (eq type 'nta')}}
-          {{fa-icon "home"}}{{fa-icon "building"}} {{result.label}}
+          <span class="icon polygon large"></span>
         {{else if (eq type 'puma')}}
-          <span class="icon polygon"></span> {{result.label}}
+          <span class="icon polygon large"></span>
         {{else}}
-          {{fa-icon "map-pin"}} {{result.label}}
+          {{fa-icon "map-pin"}}
         {{/if}}
+        {{result.label}}
       </li>
     {{/each}}
   {{/each-in}}
