@@ -23,12 +23,16 @@
                       hash=true)
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
+    {{log 'pointLayer' selection.pointLayer}}
 
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
         {{source.layer layer=selection.pointLayer}}
       {{/map.source}}
     {{/if}}
+
+    {{log 'searchResultLayer' selection.searchResultLayer}}
+
 
     {{#if selection.searchResultFeature}}
       {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}

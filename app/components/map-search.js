@@ -3,6 +3,7 @@ import fetch from 'fetch';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { task, timeout } from 'ember-concurrency';
 import bbox from 'npm:@turf/bbox';
+import getBuffer from 'npm:@turf/buffer';
 
 const { service } = Ember.inject;
 
@@ -98,11 +99,10 @@ export default Ember.Component.extend({
     }
   },
 
-  fitBounds(map) {
-    const FC = this.get('selection').current;
-    map.fitBounds(bbox(FC), {
-      padding: 40,
-    });
+  // adds a buffer to the geojson feature you pass in, then fits bounds to it
+  fitBounds(feature, buffer = 0) {
+    const map = this.get('selection').currentMapInstance;
+    map.fitBounds(bbox(getBuffer(feature, buffer, { units: 'kilometers' })));
   },
 
   actions: {
@@ -125,14 +125,22 @@ export default Ember.Component.extend({
 
       if (result.type === 'tract') {
         selection.set('searchResultFeature', result.feature);
+        this.fitBounds(result.feature, 1.2);
       }
 
       if (result.type === 'block') {
         selection.set('searchResultFeature', result.feature);
+        this.fitBounds(result.feature, 0.5);
       }
       //
       if (result.type === 'nta') {
         selection.set('searchResultFeature', result.feature);
+        this.fitBounds(result.feature, 3);
+      }
+
+      if (result.type === 'puma') {
+        selection.set('searchResultFeature', result.feature);
+        this.fitBounds(result.feature, 3);
       }
 
       if (result.type === 'address') {
