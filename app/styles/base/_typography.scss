@@ -138,6 +138,13 @@ button {
   line-height: 1.5;
 }
 
+.text-weight-normal {
+  font-weight: $global-weight-normal;
+}
+.text-weight-bold {
+  font-weight: $global-weight-bold;
+}
+
 .pipe {
   opacity: 0.25;
   margin-right: 0.25em;
