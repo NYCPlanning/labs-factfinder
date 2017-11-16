@@ -12,25 +12,6 @@
   </p>
 {{/report-header}}
 
-<ul class="menu report-extras">
-  <li><a {{action (mut report.reliability) (not report.reliability)}}>
-    {{#if report.reliability}}
-    <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
-    {{else}}
-    <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
-    {{/if}}
-    Reliability Data
-  </a></li>
-  <li><a {{action (mut report.comparison) (not report.comparison)}}>
-      {{#if report.comparison}}
-      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
-      {{else}}
-      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
-      {{/if}}
-    Comparison
-  </a></li>
-</ul>
-
 <hr>
 
 <h3 class="header-medium">Age and Sex</h3>
@@ -109,15 +90,5 @@
       {{/acs-table}}
   </div>
 </div>
-
-
-<a class="button tiny hollow expanded" {{action (mut report.scrollTable) (not report.scrollTable)}}>
-  {{#if report.scrollTable}}
-    {{fa-icon 'chevron-down'}}
-  {{else}}
-    {{fa-icon 'chevron-up'}}
-  {{/if}}
-  View {{if report.scrollTable 'More' 'Less'}}
-</a>
 
 {{outlet}}

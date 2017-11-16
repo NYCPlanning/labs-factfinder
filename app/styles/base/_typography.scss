@@ -156,6 +156,7 @@ button {
 .light-gray { color: $light-gray; }
 .medium-gray { color: $medium-gray; }
 .dark-gray { color: $dark-gray; }
+.black { color: $black; }
 .dcp-orange { color: $dcp-orange; }
 .dcp-yellow { color: $dcp-yellow; }
 .a11y-yellow { color: $a11y-yellow; }
@@ -198,16 +199,19 @@ button {
 //
 // Reports
 // --------------------------------------------------
-.report-geographies {
+.report-controls {
   margin-bottom: $global-margin;
-  max-width: rem-calc(630);
+}
+
+.report-geographies {
   max-height: 5.75em;
   overflow: auto;
   font-size: rem-calc(12);
+  margin-bottom: $global-margin/2;
 
   .report-geographies-header {
     display: inline;
-    font-size: 1rem;
+    font-size: rem-calc(14);
   }
 
   .report-geographies-list {
@@ -217,18 +221,24 @@ button {
 }
 
 .report-comparison-controls {
-  margin-bottom: $global-margin;
+  font-size: rem-calc(14);
+  margin-bottom: $global-margin/2;
+}
+
+.report-reliability-controls {
+  font-size: rem-calc(14);
 }
 
 .report-header {
-  margin-bottom: $global-margin;
 
   h1 {
     margin-bottom: 0.25rem;
   }
 
-  h1, h2, p, ul {
-    max-width: rem-calc(630);
+  h1, h2, p, ul, .report-geographies {
+    @include breakpoint(large) {
+      max-width: rem-calc(660);
+    }
   }
 }
 
@@ -307,12 +317,6 @@ button {
     color: $medium-gray;
     cursor: text;
   }
-}
-
-.report-extras {
-  font-size: rem-calc(10);
-  text-transform: uppercase;
-  margin-bottom: $global-margin/2;
 }
 
 
@@ -420,6 +424,19 @@ tbody td:first-child {
   border-left: 1px solid $medium-gray;
 }
 
+.table-copy-ui {
+  position: relative;
+
+  a {
+    position: absolute;
+    right: $global-margin;
+    bottom: 0;
+    margin: 0;
+    border-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
 
 //
 // Callouts

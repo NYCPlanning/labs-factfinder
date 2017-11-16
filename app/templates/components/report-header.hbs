@@ -1,5 +1,5 @@
-<div class="report-header grid-x grid-margin-x">
-  <div class="cell medium-9 large-shrink">
+<div class="report-header grid-x grid-padding-x">
+  <div class="cell large-8 xlarge-shrink">
 
     <h1>
       {{title}}
@@ -29,29 +29,51 @@
       </h2>
     </div>
 
-    <div class="report-geographies">
-      <h3 class="report-geographies-header">
-        {{selectionCount}}
-        {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
-        {{if (eq summaryLevel 'blocks') 'Census Block'~}}
-        {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
-        {{if (eq summaryLevel 'pumas') 'PUMA'~}}
-        {{unless (eq selectionCount 1) 's'}}:
-      </h3>
-      <ul class="report-geographies-list comma-separated-list">
-        {{#each selection.current.features as |feature|}}
-          <li>{{feature.properties.geolabel}}</li>
-        {{/each}}
-      </ul>
-    </div>
+    <div class="report-controls">
 
-    <div class="report-comparison-controls grid-x align-middle">
-      <div class="cell shrink">
-        <h3 class="header-small no-margin">Compared to: &nbsp;</h3>
+      <div class="report-geographies">
+        <h3 class="report-geographies-header">
+          {{selectionCount}}
+          {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
+          {{if (eq summaryLevel 'blocks') 'Census Block'~}}
+          {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
+          {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+          {{unless (eq selectionCount 1) 's'}}:
+        </h3>
+        <ul class="report-geographies-list comma-separated-list">
+          {{#each selection.current.features as |feature|}}
+            <li>{{feature.properties.geolabel}}</li>
+          {{/each}}
+        </ul>
       </div>
-      <div class="cell auto">
-        {{comparison-area-selector comparisonArea=report.comparator}}
+
+      <div class="report-comparison-controls grid-x align-middle">
+        <div class="cell shrink">
+          <a {{action (mut report.comparison) (not report.comparison)}}>
+            {{#if report.comparison}}
+              <span>{{fa-icon 'check-square-o'}}</span>
+            {{else}}
+              <span>{{fa-icon 'square-o'}}</span>
+            {{/if}}
+            Compare to &nbsp;
+          </a>
+        </div>
+        <div class="cell auto">
+          {{comparison-area-selector comparisonArea=report.comparator}}
+        </div>
       </div>
+
+      <div class="report-reliability-controls">
+        <a {{action (mut report.reliability) (not report.reliability)}}>
+          {{#if report.reliability}}
+            <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+          {{else}}
+            <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+          {{/if}}
+          Show Data Reliability
+        </a>
+      </div>
+
     </div>
 
     <div class="grid-x grid-margin-x">
@@ -81,9 +103,9 @@
     {{yield}}
 
   </div>
-  <div class="cell medium-3 large-auto relative">
+  <div class="cell large-4 xlarge-auto">
 
-    <div class="report-map-container">
+    <div class="report-map-container relative">
       {{#mapbox-gl
         id='map'
         sources=sources
@@ -110,8 +132,8 @@
 
         {{map.on 'resize' (action 'handleResize')}}
       {{/mapbox-gl}}
+      {{#link-to 'index' classNames='edit-selection-button button tiny white text-orange'}}{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection{{/link-to}}
     </div>
-    {{#link-to 'index' classNames='edit-selection-button button tiny white text-orange'}}{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection{{/link-to}}
 
-  </div>
+ </div>
 </div>
