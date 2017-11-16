@@ -101,16 +101,20 @@
     </thead>
     <tbody>
       {{#each config as |row|}} 
-        {{acs-table-row
-          scrollTable=report.scrollTable
-          mode=report.mode
-          reliability=report.reliability
-          comparison=report.comparison
-          rowconfig=row
-          options=report
-          data=(get this.t1 row.data)
-          data2=(get this.t2 row.data)
-        }}
+        {{#if hasBlock}}
+          {{yield}}
+        {{else}}
+          {{acs-table-row
+            scrollTable=report.scrollTable
+            mode=report.mode
+            reliability=report.reliability
+            comparison=report.comparison
+            rowconfig=row
+            options=report
+            data=(get this.t1 row.data)
+            data2=(get this.t2 row.data)
+          }}
+        {{/if}}
       {{/each}}
     </tbody>
   </table>
