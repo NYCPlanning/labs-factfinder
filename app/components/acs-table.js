@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
     handleCopy() {
-      const el = this.get('element');
+      const el = this.get('element').getElementsByTagName('table')[0];
       const body = document.body;
       let range;
       let sel;
