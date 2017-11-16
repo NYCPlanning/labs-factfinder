@@ -11,9 +11,6 @@ const selectedFillLayer = selectedFeatures.fill;
 const { service } = Ember.inject;
 const { alias } = Ember.computed;
 
-// 0 = city; 1..5 = boro
-const COMPARISON_GEOIDS = [0, 1, 2, 3, 4, 5]; // eslint-disable-line
-
 export default Ember.Controller.extend({
   mode: 'current',
   reliability: false,

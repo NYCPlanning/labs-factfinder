@@ -1,2 +1,265 @@
-<h1>Social Report</h1>
-{{outlet}}
+{{#report-header
+  report=report
+  title="Social Profile"
+  mode=report.mode
+  data=rawData
+}}
+  <p class="text-tiny">
+    ACS data are derived from a survey and are subject to sampling variability.
+    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
+
+    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+  </p>
+{{/report-header}}
+
+<ul class="menu report-extras">
+  <li><a {{action (mut report.reliability) (not report.reliability)}}>
+    {{#if report.reliability}}
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+    {{else}}
+      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+    {{/if}}
+    Reliability Data
+  </a></li>
+  <li><a {{action (mut report.comparison) (not report.comparison)}}>
+    {{#if report.comparison}}
+      <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+    {{else}}
+      <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+    {{/if}}
+    Comparison
+  </a></li>
+</ul>
+
+<hr>
+
+<h3 class="header-medium">Household Type</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each householdType as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.household_type row.data)
+          data2=(get this.model.y2006_2010.household_type row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+
+<hr>
+
+<h3 class="header-medium">Relationship To Head Of Household (Householder)</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each relationshipToHeadOfHousehold as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.relationship_to_head_of_household__householder_ row.data)
+          data2=(get this.model.y2006_2010.relationship_to_head_of_household__householder_ row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Grandparents</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each grandparents as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.grandparents row.data)
+          data2=(get this.model.y2006_2010.grandparents row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+
+<hr>
+
+<h3 class="header-medium">School Enrollment</h3>
+
+<hr>
+
+<h3 class="header-medium">Educational Attainment (Highest Grade Completed)</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each educationalAttainment as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.educational_attainment__highest_grade_completed_ row.data)
+          data2=(get this.model.y2006_2010.educational_attainment__highest_grade_completed_ row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Veteran Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each veteranStatus as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.veteran_status row.data)
+          data2=(get this.model.y2006_2010.veteran_status row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Disability Status Of The Civilian Noninstitutionalized Population</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each disabilityStatusOfCnp as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.disability_status_of_the_civilian_noninstitutionalized_population row.data)
+          data2=(get this.model.y2006_2010.disability_status_of_the_civilian_noninstitutionalized_population row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Residence 1 Year Ago</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each residence1YearAgo as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.residence_1_year_ago row.data)
+          data2=(get this.model.y2006_2010.residence_1_year_ago row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Place Of Birth</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each placeOfBirth as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.place_of_birth row.data)
+          data2=(get this.model.y2006_2010.place_of_birth row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">U.S. Citizenship Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each citizenshipStatus as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.u_s__citizenship_status row.data)
+          data2=(get this.model.y2006_2010.u_s__citizenship_status row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Year Of Entry</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each yearOfEntry as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.year_of_entry row.data)
+          data2=(get this.model.y2006_2010.year_of_entry row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Language Spoken At Home</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each languageSpokenAtHome as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.language_spoken_at_home row.data)
+          data2=(get this.model.y2006_2010.language_spoken_at_home row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Ancestry</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=report}}
+      {{#each ancestry as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=report
+          data=(get this.model.y2011_2015.ancestry row.data)
+          data2=(get this.model.y2006_2010.ancestry row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+
+
+<a class="button tiny hollow expanded" {{action (mut report.scrollTable) (not report.scrollTable)}}>
+  {{#if report.scrollTable}}
+  {{fa-icon 'chevron-down'}}
+  {{else}}
+  {{fa-icon 'chevron-up'}}
+  {{/if}}
+  View {{if report.scrollTable 'More' 'Less'}}
+</a> {{outlet}}

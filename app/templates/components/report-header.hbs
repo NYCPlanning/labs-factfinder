@@ -1,12 +1,33 @@
 <div class="report-header grid-x grid-margin-x">
   <div class="cell medium-9 large-shrink">
 
-    <h1>{{title}}</h1>
-    {{#if subtitle}}
-      <h2 class="header-small dark-gray">{{subtitle}}
-        {{#if subtitleInfo}}<sup>{{fa-icon 'info-circle'}}{{tooltip-on-element text=subtitleInfo}}</sup>{{/if}}
+    <h1>
+      {{title}}
+      {{download-spreadsheet data=data}}
+    </h1>
+
+    <div class="report-mode">
+      <h2 class="header-medium" class="{{if (eq mode 'change') 'dark-gray'}}">
+        <a {{action (mut mode) 'current'}}>
+          {{#if (eq mode 'current')}}
+            {{fa-icon 'dot-circle-o'}}
+          {{else}}
+            <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
+          {{/if}}
+          2011-2015 American Community Survey <small>(ACS)</small>
+        </a>
       </h2>
-    {{/if}}
+      <h2 class="header-medium" class="{{if (eq mode 'current') 'dark-gray'}}">
+        <a {{action (mut mode) 'change'}}>
+          {{#if (eq mode 'change')}}
+            {{fa-icon 'dot-circle-o'}}
+          {{else}}
+            <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
+          {{/if}}
+          Change Over Time <small>(2006-2010 vs 2011-2015)</small>
+        </a>
+      </h2>
+    </div>
 
     <div class="report-geographies">
       <h3 class="report-geographies-header">
@@ -22,6 +43,15 @@
           <li>{{feature.properties.geolabel}}</li>
         {{/each}}
       </ul>
+    </div>
+
+    <div class="report-comparison-controls grid-x align-middle">
+      <div class="cell shrink">
+        <h3 class="header-small no-margin">Compared to: &nbsp;</h3>
+      </div>
+      <div class="cell auto">
+        {{comparison-area-selector comparisonArea=report.comparator}}
+      </div>
     </div>
 
     <div class="grid-x grid-margin-x">

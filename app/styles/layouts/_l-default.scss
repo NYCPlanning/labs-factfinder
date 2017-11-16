@@ -43,9 +43,18 @@ body {
   @include breakpoint(large) {
     z-index: 1;
     overflow: hidden;
+  }
 
-    .cell {
-      @include xy-cell-block($vertical:true);
+  .overflow-y-grid {
+
+    @include breakpoint(large) {
+      @include xy-grid(vertical, true);
+      height: calc(100vh - 7.25rem);
+      overflow: hidden;
+
+      > .cell {
+        @include xy-cell-block($vertical:true);
+      }
     }
   }
 }
@@ -181,15 +190,6 @@ body {
 
   @include breakpoint(large) {
     padding-left: 0;
-  }
-}
-
-.overflow-y-grid {
-
-  @include breakpoint(large) {
-    @include xy-grid(vertical, true);
-    height: calc(100vh - 7.25rem);
-    overflow: hidden;
   }
 }
 
