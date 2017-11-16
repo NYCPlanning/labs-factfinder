@@ -7,12 +7,12 @@ export default {
   },
   paint: {
     'line-opacity': 0.9,
-    'line-color': '#ad5620',
+    'line-color': 'rgba(203, 88, 13, 1)',
     'line-width': {
       stops: [
         [
           13,
-          1.5,
+          4.5,
         ],
         [
           15,
