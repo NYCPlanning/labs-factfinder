@@ -6,7 +6,7 @@
     <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
   </li>
   <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}} explode-nta">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood</a>
+    <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
   </li>
   <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}} explode-puma">
     <a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
