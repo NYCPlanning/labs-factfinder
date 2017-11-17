@@ -93,9 +93,11 @@ export default [
     title: 'Households with Food Stamp/SNAP benefits in the past 12 months',
     data: 'inc_snap',
   },
-
   {
-    title: 'Family Households',
+    divider: true,
+  },
+  {
+    title: 'Family households',
     highlight: true,
     data: 'fam2',
   },
