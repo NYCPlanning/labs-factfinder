@@ -64,10 +64,8 @@ export default Ember.Component.extend({
       * Math.sqrt((Math.pow((comparisonM / 1.645), 2) / Math.pow(comparisonSum, 2))
       + (Math.pow((comparisonM2 / 1.645), 2) / Math.pow(comparisonSum2, 2))) * 1.645;
 
-
     const moe = Math.sqrt((Math.pow((bg / 1.645), 2)) + (Math.pow((bn / 1.645), 2)));
 
     return moe;
   },
-
 });

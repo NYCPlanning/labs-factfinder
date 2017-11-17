@@ -104,14 +104,17 @@
         {{#if hasBlock}}
           {{yield}}
         {{else}}
+          {{#if row.special}}
+          {{else}}
+          {{/if}}
           {{acs-table-row
-            scrollTable=report.scrollTable
-            mode=report.mode
-            reliability=report.reliability
-            comparison=report.comparison
+            scrollTable=scrollTable
+            mode=mode
+            reliability=reliability
+            comparison=comparison
             rowconfig=row
             options=report
-            data=(get this.t1 row.data)
+            data=(unless row.special (get this.t1 row.data) (aggregate-special-variable rowConfig=row data=t1))
             data2=(get this.t2 row.data)
           }}
         {{/if}}
