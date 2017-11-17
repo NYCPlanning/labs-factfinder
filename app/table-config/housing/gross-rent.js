@@ -1,3 +1,5 @@
+import interpolate from '../../utils/interpolate';
+
 export default [
   {
     title: 'Occupied units paying rent',
@@ -35,6 +37,19 @@ export default [
   {
     title: 'Median (dollars)',
     data: 'mdgr',
+    special: true,
+    aggregator: interpolate,
+    options: {
+      bins: [
+        ['gru500', [0, 500]],
+        ['gr500t999', [500, 999]],
+        ['gr1kt14k', [1000, 1499]],
+        ['gr15kt19k', [1500, 1999]],
+        ['gr20kt24k', [2000, 2499]],
+        ['gr25kt29k', [2500, 2999]],
+        ['gr3kpl', [3000, 35000]],
+      ],
+    },
   },
   {
     divider: true,
