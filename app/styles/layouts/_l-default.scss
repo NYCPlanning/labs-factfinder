@@ -93,7 +93,7 @@ body {
   }
 }
 
-.report-map-container {
+.profile-map-container {
   height: 30vh;
   width: 100%;
   border: 1px solid $medium-gray;
@@ -181,12 +181,12 @@ body {
   }
 }
 
-.report-content > .cell,
-.report-sidebar {
+.profile-content > .cell,
+.profile-sidebar {
   padding: 0 rem-calc(20);
 }
 
-.report-content > .cell {
+.profile-content > .cell {
 
   @include breakpoint(large) {
     padding-left: 0;

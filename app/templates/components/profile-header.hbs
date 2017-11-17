@@ -1,4 +1,4 @@
-<div class="report-header grid-x grid-padding-x">
+<div class="profile-header grid-x grid-padding-x">
   <div class="cell large-8 xlarge-shrink">
 
     <h1>
@@ -6,7 +6,7 @@
       {{download-spreadsheet data=data}}
     </h1>
 
-    <div class="report-mode">
+    <div class="profile-mode">
       <h2 class="header-medium" class="{{if (eq mode 'change') 'dark-gray'}}">
         <a {{action (mut mode) 'current'}}>
           {{#if (eq mode 'current')}}
@@ -29,10 +29,10 @@
       </h2>
     </div>
 
-    <div class="report-controls">
+    <div class="profile-controls">
 
-      <div class="report-geographies">
-        <h3 class="report-geographies-header">
+      <div class="profile-geographies">
+        <h3 class="profile-geographies-header">
           {{selectionCount}}
           {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
           {{if (eq summaryLevel 'blocks') 'Census Block'~}}
@@ -40,17 +40,17 @@
           {{if (eq summaryLevel 'pumas') 'PUMA'~}}
           {{unless (eq selectionCount 1) 's'}}:
         </h3>
-        <ul class="report-geographies-list comma-separated-list">
-          {{#each selection.current.features as |feature|}}
+        <ul class="profile-geographies-list comma-separated-list">
+          {{#each selection.sortedLabels as |feature|}}
             <li>{{feature.properties.geolabel}}</li>
           {{/each}}
         </ul>
       </div>
 
-      <div class="report-comparison-controls grid-x align-middle">
+      <div class="profile-comparison-controls grid-x align-middle">
         <div class="cell shrink">
-          <a {{action (mut report.comparison) (not report.comparison)}}>
-            {{#if report.comparison}}
+          <a {{action (mut profile.comparison) (not profile.comparison)}}>
+            {{#if profile.comparison}}
               <span>{{fa-icon 'check-square-o'}}</span>
             {{else}}
               <span>{{fa-icon 'square-o'}}</span>
@@ -59,13 +59,13 @@
           </a>
         </div>
         <div class="cell auto">
-          {{comparison-area-selector comparisonArea=report.comparator}}
+          {{comparison-area-selector comparisonArea=profile.comparator}}
         </div>
       </div>
 
-      <div class="report-reliability-controls">
-        <a {{action (mut report.reliability) (not report.reliability)}}>
-          {{#if report.reliability}}
+      <div class="profile-reliability-controls">
+        <a {{action (mut profile.reliability) (not profile.reliability)}}>
+          {{#if profile.reliability}}
             <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
           {{else}}
             <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
@@ -105,7 +105,7 @@
   </div>
   <div class="cell large-4 xlarge-auto">
 
-    <div class="report-map-container relative">
+    <div class="profile-map-container relative">
       {{#mapbox-gl
         id='map'
         sources=sources

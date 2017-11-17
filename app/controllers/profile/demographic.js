@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
   hispanicSubgroup,
   asianSubgroup,
 
-  report: controller('report'),
+  profile: controller('profile'),
 
   @computed('model')
   currentData(model) {

@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('report-header', 'Integration | Component | report header', {
+moduleForComponent('profile-header', 'Integration | Component | profile header', {
   integration: true
 });
 

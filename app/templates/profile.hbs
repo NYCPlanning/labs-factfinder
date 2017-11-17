@@ -1,18 +1,18 @@
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell shrink">
-    <div class="report-menus">
+    <div class="profile-menus">
       <ul class="menu tabs vertical medium-horizontal text-center">
-        <li>{{link-to 'Census' 'report.census'}}</li>
+        <li>{{link-to 'Census' 'profile.census'}}</li>
         {{#if (eq summaryLevel 'blocks')}}
           <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Social <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
         {{else}}
-          <li>{{#link-to 'report.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}</li>
-          <li>{{#link-to 'report.social'}}Social  <small>(ACS)</small>{{/link-to}}</li>
-          <li>{{#link-to 'report.economic'}}Economic  <small>(ACS)</small>{{/link-to}}</li>
-          <li>{{#link-to 'report.housing'}}Housing  <small>(ACS)</small>{{/link-to}}</li>
+          <li>{{#link-to 'profile.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}</li>
+          <li>{{#link-to 'profile.social'}}Social  <small>(ACS)</small>{{/link-to}}</li>
+          <li>{{#link-to 'profile.economic'}}Economic  <small>(ACS)</small>{{/link-to}}</li>
+          <li>{{#link-to 'profile.housing'}}Housing  <small>(ACS)</small>{{/link-to}}</li>
         {{/if}}
       </ul>
     </div>

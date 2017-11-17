@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
   languageSpokenAtHome,
   ancestry,
 
-  report: controller('report'),
+  profile: controller('profile'),
 
   @computed('model')
   currentData(model) {

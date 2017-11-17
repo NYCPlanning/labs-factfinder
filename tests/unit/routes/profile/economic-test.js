@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:report/housing', 'Unit | Route | report/housing', {
+moduleFor('route:profile/economic', 'Unit | Route | profile/economic', {
   // Specify the other units that are required for this test.
   needs: ['service:selection'],
 });

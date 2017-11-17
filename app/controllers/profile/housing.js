@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
   yearStructureBuilt,
   rooms,
 
-  report: controller('report'),
+  profile: controller('profile'),
 
   @computed('model')
   currentData(model) {

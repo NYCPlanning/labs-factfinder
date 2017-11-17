@@ -1,8 +1,8 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:report/social', 'Unit | Route | report/social', {
+moduleFor('route:profile/census', 'Unit | Route | profile/census', {
   // Specify the other units that are required for this test.
-  needs: ['service:selection'],
+  // needs: ['controller:foo']
 });
 
 test('it exists', function(assert) {

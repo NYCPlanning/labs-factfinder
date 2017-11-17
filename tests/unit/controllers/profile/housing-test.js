@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:report', 'Unit | Controller | report/economic', {
+moduleFor('controller:profile', 'Unit | Controller | profile/housing', {
   // Specify the other units that are required for this test.
   needs: ['service:selection', 'service:mapMouseover']
 });

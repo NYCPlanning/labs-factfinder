@@ -1,10 +1,10 @@
-import nestReport from 'labs-nyc-factfinder/utils/nest-report';
+import nestProfile from 'labs-nyc-factfinder/utils/nest-profile';
 import { module, test } from 'qunit';
 
-module('Unit | Utility | nest report');
+module('Unit | Utility | nest profile');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let result = nestReport([]);
+  let result = nestProfile([]);
   assert.ok(result);
 });

@@ -1,16 +1,16 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
+import generateProfileSQL from '../../queries/profile';
 import Downloadable from '../../mixins/downloadable';
-import generateReportSQL from '../../queries/report';
 
 const { service } = Ember.inject;
 
 export default Ember.Route.extend(Downloadable, {
   selection: service(),
 
-  model({ comparator = '0' }) {
+  model(params, { queryParams: { comparator = '0' } }) {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
-    const selectionSQL = generateReportSQL(geoids, comparator, 'social');
+    const selectionSQL = generateProfileSQL(geoids, comparator, 'demographic');
 
     return carto.SQL(selectionSQL, 'json', 'post');
   },
