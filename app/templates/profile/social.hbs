@@ -1,7 +1,7 @@
-{{#report-header
-  report=report
+{{#profile-header
+  profile=profile
   title="Social Profile"
-  mode=report.mode
+  mode=profile.mode
   data=rawData
 }}
   <p class="text-tiny">
@@ -10,7 +10,7 @@
 
     Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
   </p>
-{{/report-header}}
+{{/profile-header}}
 
 <hr>
 
@@ -18,11 +18,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=householdType
       t1=model.y2011_2015.household_type
       t2=model.y2006_2010.household_type
@@ -37,11 +37,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=relationshipToHeadOfHousehold
       t1=model.y2011_2015.relationship_to_head_of_household__householder_
       t2=model.y2006_2010.relationship_to_head_of_household__householder_
@@ -55,11 +55,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=grandparents
       t1=model.y2011_2015.grandparents
       t2=model.y2006_2010.grandparents
@@ -78,11 +78,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=educationalAttainment
       t1=model.y2011_2015.educational_attainment__highest_grade_completed_
       t2=model.y2006_2010.educational_attainment__highest_grade_completed_
@@ -96,11 +96,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=veteranStatus
       t1=model.y2011_2015.veteran_status
       t2=model.y2006_2010.veteran_status
@@ -114,11 +114,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=sexAge
       t1=model.disabilityStatusOfCnp.disability_status_of_the_civilian_noninstitutionalized_population
       t2=model.y2006_2010.disability_status_of_the_civilian_noninstitutionalized_population
@@ -132,11 +132,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=residence1YearAgo
       t1=model.y2011_2015.residence_1_year_ago
       t2=model.y2006_2010.residence_1_year_ago
@@ -150,11 +150,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=placeOfBirth
       t1=model.y2011_2015.place_of_birth
       t2=model.y2006_2010.place_of_birth
@@ -168,11 +168,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=citizenshipStatus
       t1=model.y2011_2015.u_s__citizenship_status
       t2=model.y2006_2010.u_s__citizenship_status
@@ -186,11 +186,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=yearOfEntry
       t1=model.y2011_2015.year_of_entry
       t2=model.y2006_2010.year_of_entry
@@ -204,11 +204,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=languageSpokenAtHome
       t1=model.y2011_2015.language_spoken_at_home
       t2=model.y2006_2010.language_spoken_at_home
@@ -222,11 +222,11 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
         {{acs-table 
-      options=report
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=ancestry
       t1=model.y2011_2015.ancestry
       t2=model.y2006_2010.ancestry

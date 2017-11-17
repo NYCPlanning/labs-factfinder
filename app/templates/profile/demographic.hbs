@@ -1,7 +1,7 @@
-{{#report-header
-  report=report
+{{#profile-header
+  profile=profile
   title="Demographic Profile"
-  mode=report.mode
+  mode=profile.mode
   data=rawData
 }}
   <p class="text-tiny">
@@ -10,7 +10,7 @@
 
     Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
   </p>
-{{/report-header}}
+{{/profile-header}}
 
 <hr>
 
@@ -18,10 +18,10 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     {{acs-table 
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=sexAge
       t1=model.y2011_2015.sex_and_age
       t2=model.y2006_2010.sex_and_age
@@ -42,10 +42,10 @@
   <div class="cell large-8">
 
     {{acs-table 
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=raceGroup
       t1=model.y2011_2015.mutually_exclusive_race_hispanic_origin
       t2=model.y2006_2010.mutually_exclusive_race_hispanic_origin
@@ -59,10 +59,10 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     {{acs-table 
-      scrollTable=report.scrollTable
-      mode=report.mode
-      reliability=report.reliability
-      comparison=report.comparison
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
       config=hispanicSubgroup
       t1=model.y2011_2015.hispanic_subgroup
       t2=model.y2006_2010.hispanic_subgroup
@@ -77,10 +77,10 @@
   <div class="cell large-8">
 
       {{acs-table 
-        scrollTable=report.scrollTable
-        mode=report.mode
-        reliability=report.reliability
-        comparison=report.comparison
+        scrollTable=profile.scrollTable
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
         config=asianSubgroup
         t1=model.y2011_2015.asian_subgroup
         t2=model.y2006_2010.asian_subgroup
