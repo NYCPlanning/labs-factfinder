@@ -2,7 +2,12 @@
 // Module: Charts
 // --------------------------------------------------
 
-.age-chart {
+.horizontal-bar {
+  position: relative;
+}
+
+.age-chart,
+.age-chart-key {
   .bar:hover {
     cursor: pointer;
   }
@@ -38,6 +43,7 @@
     fill: #fff;
     stroke: #000;
   }
+
 }
 
 .age-chart-tooltip {
@@ -46,11 +52,31 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: 42px;
+  height: 58px;
   padding: rem-calc(8);
-  background: $light-gray;
+  border-top: 1px solid $medium-gray;
   color: $black;
   text-align: center;
   font-size: rem-calc(12);
   line-height: 1.2;
+}
+
+.age-chart-key {
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: 58px;
+  left: 0;
+  height: 45px;
+  border-top: 1px solid $medium-gray;
+  // background-color: rgba(255,255,0,0.1);
+
+  text {
+    font-size: 10px;
+  }
+
+  .bar {}
+  .bar-moe {}
+  .comparison {}
+  .comparison-moe {}
 }

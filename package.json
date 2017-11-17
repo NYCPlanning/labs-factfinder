@@ -37,6 +37,8 @@
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
+    "ember-composable-helpers": "^2.0.3",
+    "ember-concurrency": "^0.8.12",
     "ember-d3": "^0.3.4",
     "ember-data": "~2.14.3",
     "ember-decorators": "^1.3.1",
@@ -69,6 +71,7 @@
   "private": true,
   "dependencies": {
     "@turf/bbox": "^5.0.0",
+    "@turf/buffer": "^5.0.4",
     "babel-eslint": "^8.0.1",
     "ember-jane-maps": "0.0.7",
     "numeral": "^2.0.6"

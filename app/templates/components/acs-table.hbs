@@ -1,6 +1,9 @@
-
+<div class="table-copy-ui show-for-large">
+  <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
+</div>
 <div class="table-scroll">
-  <table class="text-small {{if options.scrollTable 'table-scroll-vert'}}">
+  {{!-- <table class="text-small {{if options.scrollTable 'table-scroll-vert'}}"> --}}
+  <table class="text-small">
     <thead>
       {{#if (eq options.mode 'current')}} {{! current header}}
       <tr>

@@ -138,6 +138,13 @@ button {
   line-height: 1.5;
 }
 
+.text-weight-normal {
+  font-weight: $global-weight-normal;
+}
+.text-weight-bold {
+  font-weight: $global-weight-bold;
+}
+
 .pipe {
   opacity: 0.25;
   margin-right: 0.25em;
@@ -156,6 +163,7 @@ button {
 .light-gray { color: $light-gray; }
 .medium-gray { color: $medium-gray; }
 .dark-gray { color: $dark-gray; }
+.black { color: $black; }
 .dcp-orange { color: $dcp-orange; }
 .dcp-yellow { color: $dcp-yellow; }
 .a11y-yellow { color: $a11y-yellow; }
@@ -196,43 +204,52 @@ button {
 
 
 //
-// Reports
+// Profiles
 // --------------------------------------------------
-.report-geographies {
+.profile-controls {
   margin-bottom: $global-margin;
-  max-width: rem-calc(630);
+}
+
+.profile-geographies {
   max-height: 5.75em;
   overflow: auto;
   font-size: rem-calc(12);
+  margin-bottom: $global-margin/2;
 
-  .report-geographies-header {
+  .profile-geographies-header {
     display: inline;
-    font-size: 1rem;
+    font-size: rem-calc(14);
   }
 
-  .report-geographies-list {
+  .profile-geographies-list {
     display: inline;
     font-size: rem-calc(12);
   }
 }
 
-.report-comparison-controls {
-  margin-bottom: $global-margin;
+.profile-comparison-controls {
+  font-size: rem-calc(14);
+  margin-bottom: $global-margin/2;
 }
 
-.report-header {
-  margin-bottom: $global-margin;
+.profile-reliability-controls {
+  font-size: rem-calc(14);
+}
+
+.profile-header {
 
   h1 {
     margin-bottom: 0.25rem;
   }
 
-  h1, h2, p, ul {
-    max-width: rem-calc(630);
+  h1, h2, p, ul, .profile-geographies {
+    @include breakpoint(large) {
+      max-width: rem-calc(660);
+    }
   }
 }
 
-.report-menus {
+.profile-menus {
   @include clearfix;
   margin-top: $global-margin;
   margin-bottom: $global-margin;
@@ -246,7 +263,7 @@ button {
   }
 }
 
-.report-mode {
+.profile-mode {
 
   h2 + h2 {
     margin-top: $global-margin*-0.75;
@@ -309,19 +326,15 @@ button {
   }
 }
 
-.report-extras {
-  font-size: rem-calc(10);
-  text-transform: uppercase;
-  margin-bottom: $global-margin/2;
-}
-
 
 //
 // Tables
 // --------------------------------------------------
-table,
+.table-scroll table,
 .table-scroll {
   min-width: 100%;
+  transform:rotateX(180deg);
+  margin: 0;
 }
 
 .table-scroll-vert {
@@ -420,6 +433,19 @@ tbody td:first-child {
   border-left: 1px solid $medium-gray;
 }
 
+.table-copy-ui {
+  position: relative;
+
+  a {
+    position: absolute;
+    right: $global-margin;
+    bottom: 0;
+    margin: 0;
+    border-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
 
 //
 // Callouts
@@ -436,7 +462,7 @@ tbody td:first-child {
   }
 }
 
-.report-header .callout {
+.profile-header .callout {
 
   @include breakpoint(medium) {
     margin-bottom: $global-margin;
