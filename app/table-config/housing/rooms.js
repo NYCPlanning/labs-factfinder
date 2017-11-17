@@ -1,3 +1,5 @@
+import interpolate from '../../utils/interpolate';
+
 export default [
   {
     title: 'Total housing units',
@@ -43,6 +45,21 @@ export default [
   {
     title: 'Median rooms',
     data: 'mdrms',
+    special: true,
+    aggregator: interpolate,
+    options: {
+      bins: [
+        ['rms1', [1, 1]],
+        ['rms2', [2, 2]],
+        ['rms3', [3, 3]],
+        ['rms4', [4, 4]],
+        ['rms5', [5, 5]],
+        ['rms6', [6, 6]],
+        ['rms7', [7, 7]],
+        ['rms8', [8, 8]],
+        ['rms9pl', [9, 9]],
+      ],
+    },
   },
 ];
 

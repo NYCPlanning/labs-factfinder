@@ -17,27 +17,19 @@
 <h3 class="header-medium">Age and Sex</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#acs-table options=profile}}
-      {{#each sexAge as |row|}}
-        {{acs-table-row
-          rowconfig=row
-          options=profile
-          data=(get this.model.y2011_2015.sex_and_age row.data)
-          data2=(get this.model.y2006_2010.sex_and_age row.data)
-        }}
-      {{/each}}
-    {{/acs-table}}
+    {{acs-table 
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=sexAge
+      t1=model.y2011_2015.sex_and_age
+      t2=model.y2006_2010.sex_and_age
+    }}
   </div>
+
   <div class="cell large-4">
     <div class="callout">
-      <h4 class="header-small no-margin grid-x grid-margin-x">
-        <span class="cell small-6 text-right">
-          Male <br>{{numeral-format model.y2011_2015.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.male.percent_m '0.0%'}})</span>
-        </span>
-        <span class="cell small-6">
-          Female <br>{{numeral-format model.y2011_2015.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.fem.percent_m '0.0%'}})</span>
-        </span>
-      </h4>
       {{population-pyramid data=agePopDist}}
     </div>
   </div>
@@ -49,16 +41,15 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
 
-    {{#acs-table options=profile}}
-      {{#each raceGroup as |row|}}
-        {{acs-table-row
-          rowconfig=row
-          options=profile
-          data=(get this.model.y2011_2015.mutually_exclusive_race_hispanic_origin row.data)
-          data2=(get this.model.y2006_2010.mutually_exclusive_race_hispanic_origin row.data)
-        }}
-      {{/each}}
-    {{/acs-table}}
+    {{acs-table 
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=raceGroup
+      t1=model.y2011_2015.mutually_exclusive_race_hispanic_origin
+      t2=model.y2006_2010.mutually_exclusive_race_hispanic_origin
+    }}
   </div>
 </div>
 
@@ -67,16 +58,15 @@
 <h3 class="header-medium">Hispanic Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#acs-table options=profile}}
-      {{#each hispanicSubgroup as |row|}}
-        {{acs-table-row
-          rowconfig=row
-          options=profile
-          data=(get this.model.y2011_2015.hispanic_subgroup row.data)
-          data2=(get this.model.y2006_2010.hispanic_subgroup row.data)
-        }}
-      {{/each}}
-    {{/acs-table}}
+    {{acs-table 
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=hispanicSubgroup
+      t1=model.y2011_2015.hispanic_subgroup
+      t2=model.y2006_2010.hispanic_subgroup
+    }}
   </div>
 </div>
 
@@ -86,16 +76,15 @@
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
 
-      {{#acs-table options=profile}}
-        {{#each asianSubgroup as |row|}} {{acs-table-row
-            rowconfig=row
-            options=profile
-            data=(get this.model.y2011_2015.asian_subgroup row.data)
-            data2=(get this.model.y2006_2010.asian_subgroup row.data)
-          }}
-        {{/each}}
-      {{/acs-table}}
+      {{acs-table 
+        scrollTable=profile.scrollTable
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=asianSubgroup
+        t1=model.y2011_2015.asian_subgroup
+        t2=model.y2006_2010.asian_subgroup
+      }}
   </div>
 </div>
-
 {{outlet}}

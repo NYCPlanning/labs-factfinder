@@ -1,3 +1,5 @@
+import interpolate from '../../utils/interpolate';
+
 export default [
   {
     title: 'Total households',
@@ -47,6 +49,22 @@ export default [
   {
     title: 'Median household income (dollars)',
     data: 'mdhhinc',
+    special: true,
+    aggregator: interpolate,
+    options: {
+      bins: [
+        ['hhiu10', [0, 9999]],
+        ['hhi10t14', [10000, 14000]],
+        ['hhi15t24', [15000, 24000]],
+        ['hhi25t34', [25000, 34000]],
+        ['hhi35t49', [35000, 49000]],
+        ['hhi50t74', [50000, 74000]],
+        ['hhi75t99', [75000, 99000]],
+        ['hi100t149', [100000, 149000]],
+        ['hi150t199', [150000, 199000]],
+        ['hhi200pl', [0, 250000]],
+      ],
+    },
   },
   {
     title: 'Mean household income (dollars)',
@@ -126,6 +144,22 @@ export default [
   {
     title: 'Median family income (dollars)',
     data: 'mdfaminc',
+    special: true,
+    aggregator: interpolate,
+    options: {
+      bins: [
+        ['famiu10', [0, 9999]],
+        ['fami10t14', [10000, 14000]],
+        ['fami15t24', [15000, 24000]],
+        ['fami25t34', [25000, 34000]],
+        ['fami35t49', [35000, 49000]],
+        ['fami50t74', [50000, 74000]],
+        ['fami75t99', [75000, 99000]],
+        ['fi100t149', [100000, 149000]],
+        ['fi150t199', [150000, 199000]],
+        ['fami200pl', [0, 250000]],
+      ],
+    },
   },
   {
     divider: true,
