@@ -7,9 +7,9 @@ export default Ember.Component.extend({
   actions: {
     handleDownload(format = 'csv') {
       const filename = this.get('filename');
-      const report = this.get('data').sortBy('dataset', 'profile', 'category').reverse();
-      const columnNames = [Object.keys(report.get('firstObject'))];
-      const matrixValues = report.map(
+      const profile = this.get('data').sortBy('dataset', 'profile', 'category').reverse();
+      const columnNames = [Object.keys(profile.get('firstObject'))];
+      const matrixValues = profile.map(
         row => Object.values(row),
       );
 

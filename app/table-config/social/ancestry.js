@@ -469,7 +469,7 @@ export default [
     data: 'othr',
   },
   {
-    title: 'Unclassified or not reported',
+    title: 'Unclassified or not profileed',
     data: 'unclsnr',
   },
 ];

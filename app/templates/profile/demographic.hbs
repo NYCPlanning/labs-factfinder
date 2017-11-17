@@ -1,0 +1,101 @@
+{{#profile-header
+  profile=profile
+  title="Demographic Profile"
+  mode=profile.mode
+  data=rawData
+}}
+  <p class="text-tiny">
+    ACS data are derived from a survey and are subject to sampling variability.
+    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance for ACS data</a>).
+
+    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+  </p>
+{{/profile-header}}
+
+<hr>
+
+<h3 class="header-medium">Age and Sex</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=profile}}
+      {{#each sexAge as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=profile
+          data=(get this.model.y2011_2015.sex_and_age row.data)
+          data2=(get this.model.y2006_2010.sex_and_age row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      <h4 class="header-small no-margin grid-x grid-margin-x">
+        <span class="cell small-6 text-right">
+          Male <br>{{numeral-format model.y2011_2015.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.male.percent_m '0.0%'}})</span>
+        </span>
+        <span class="cell small-6">
+          Female <br>{{numeral-format model.y2011_2015.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.fem.percent_m '0.0%'}})</span>
+        </span>
+      </h4>
+      {{population-pyramid data=agePopDist}}
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+
+    {{#acs-table options=profile}}
+      {{#each raceGroup as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=profile
+          data=(get this.model.y2011_2015.mutually_exclusive_race_hispanic_origin row.data)
+          data2=(get this.model.y2006_2010.mutually_exclusive_race_hispanic_origin row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Hispanic Subgroup</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#acs-table options=profile}}
+      {{#each hispanicSubgroup as |row|}}
+        {{acs-table-row
+          rowconfig=row
+          options=profile
+          data=(get this.model.y2011_2015.hispanic_subgroup row.data)
+          data2=(get this.model.y2006_2010.hispanic_subgroup row.data)
+        }}
+      {{/each}}
+    {{/acs-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Asian Subgroup</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+
+      {{#acs-table options=profile}}
+        {{#each asianSubgroup as |row|}} {{acs-table-row
+            rowconfig=row
+            options=profile
+            data=(get this.model.y2011_2015.asian_subgroup row.data)
+            data2=(get this.model.y2006_2010.asian_subgroup row.data)
+          }}
+        {{/each}}
+      {{/acs-table}}
+  </div>
+</div>
+
+{{outlet}}
