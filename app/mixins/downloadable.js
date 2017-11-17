@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import nestReport from '../utils/nest-report';
+import nestProfile from '../utils/nest-profile';
 
 export default Ember.Mixin.create({
   setupController(controller, model) {
     this._super(controller, model);
     controller.setProperties({
-      model: nestReport(model),
+      model: nestProfile(model),
       rawData: model,
     });
   },

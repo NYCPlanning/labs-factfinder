@@ -34,8 +34,8 @@ export default Ember.Controller.extend({
 
   layerGroups,
   sources,
-  zoom: 12,
-  center: [-73.916016, 40.697299],
+  zoom: 12.25,
+  center: [-73.9868, 40.724],
   mode: 'direct-select',
 
   drawMode: false,

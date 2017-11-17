@@ -62,6 +62,14 @@
       transform: skew(-25deg);
       transform-origin: 100% 0;
     }
+
+    &.small {
+      transform: skew(20deg,-10deg) scale(0.6);
+    }
+
+    &.large {
+      transform: skew(20deg,-10deg) scale(1.25);
+    }
   }
 }
 
