@@ -31,7 +31,7 @@ export default [
     title: 'Not computed',
     data: 'smpntc',
   },
- {
+  {
     divider: true,
   },
   {
