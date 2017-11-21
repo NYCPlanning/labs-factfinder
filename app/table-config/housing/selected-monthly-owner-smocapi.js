@@ -31,7 +31,9 @@ export default [
     title: 'Not computed',
     data: 'smpntc',
   },
-
+ {
+    divider: true,
+  },
   {
     title: 'Housing unit without a mortgage (excluding units where SMOCAPI cannot be computed)',
     highlight: true,
