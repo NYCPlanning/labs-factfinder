@@ -5,8 +5,8 @@
         <li class="{{if (eq tab 'profile.census') 'has-dropdown'}}">
           {{link-to 'Census' 'profile.census'}}
           {{#if (eq tab 'profile.census')}}
-            {{#tab-dropdown}}
-              <li><a href="#section">Section</a></li>
+            {{#tab-dropdown as |context| }}
+              <li>{{#scroll-to href='#' afterScroll=context.closeTabDropdown}}Section{{/scroll-to}}</li>
             {{/tab-dropdown}}
           {{/if}}
         </li>
@@ -50,16 +50,25 @@
           <li class="{{if (eq tab 'profile.economic') 'has-dropdown'}}">
             {{#link-to 'profile.economic'}}Economic  <small>(ACS)</small>{{/link-to}}
             {{#if (eq tab 'profile.economic')}}
-              {{#tab-dropdown}}
-                <li><a href="#section">Section</a></li>
+              {{#tab-dropdown as |context| }}
+                <li>{{#scroll-to href='#employment-status' afterScroll=context.closeTabDropdown}}Employment Status{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#commute-to-work' afterScroll=context.closeTabDropdown}}Commute to Work{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#occupation' afterScroll=context.closeTabDropdown}}Occupation{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#industry' afterScroll=context.closeTabDropdown}}Industry{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#class-of-worker' afterScroll=context.closeTabDropdown}}Class of Worker{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#income-and-benefits' afterScroll=context.closeTabDropdown}}Income and Benefits{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#earnings' afterScroll=context.closeTabDropdown}}Earnings{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#health-insurance-coverage' afterScroll=context.closeTabDropdown}}Health Insurance Coverage{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#income-in-the-past-12-months-below-poverty-level' afterScroll=context.closeTabDropdown}}Income in the Past 12 Months Below Poverty Level{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#ratio-of-income-to-poverty-level' afterScroll=context.closeTabDropdown}}Ratio of Income to Poverty Level{{/scroll-to}}</li>
               {{/tab-dropdown}}
             {{/if}}
           </li>
           <li class="{{if (eq tab 'profile.housing') 'has-dropdown'}}">
             {{#link-to 'profile.housing'}}Housing  <small>(ACS)</small>{{/link-to}}
             {{#if (eq tab 'profile.housing')}}
-              {{#tab-dropdown}}
-                <li><a href="#section">Section</a></li>
+              {{#tab-dropdown as |context| }}
+                <li>{{#scroll-to href='#' afterScroll=context.closeTabDropdown}}Section{{/scroll-to}}</li>
               {{/tab-dropdown}}
             {{/if}}
           </li>
