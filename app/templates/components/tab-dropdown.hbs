@@ -1,4 +1,4 @@
 <span {{action (mut isOpen) (not isOpen)}}>{{fa-icon 'caret-down' class=(if (eq isOpen true) 'flip')}}</span>
 <ul class="tab-dropdown menu vertical {{if (eq isOpen false) 'hide'}}">
-  {{yield}}
+  {{yield (hash closeTabDropdown=(action 'closeTabDropdown'))}}
 </ul>

@@ -2,11 +2,13 @@
   <div class="cell shrink">
     <div class="profile-menus">
       <ul class="menu tabs vertical medium-horizontal text-center">
-        <li class="has-dropdown">
+        <li class="{{if (eq tab 'profile.census') 'has-dropdown'}}">
           {{link-to 'Census' 'profile.census'}}
-          {{#tab-dropdown}}
-            <li><a href="#section">Section</a></li>
-          {{/tab-dropdown}}
+          {{#if (eq tab 'profile.census')}}
+            {{#tab-dropdown}}
+              <li><a href="#section">Section</a></li>
+            {{/tab-dropdown}}
+          {{/if}}
         </li>
         {{#if (eq summaryLevel 'blocks')}}
           <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
@@ -14,39 +16,47 @@
           <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
         {{else}}
-          <li class="has-dropdown">
+          <li class="{{if (eq tab 'profile.demographic') 'has-dropdown'}}">
             {{#link-to 'profile.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}
-            {{#tab-dropdown}}
-              <li><a href="#age-and-sex">Age and Sex</a></li>
-              <li><a href="#mutually-exclusive-race-hispanic-origin">Mutually Exclusive Race / Hispanic Origin</a></li>
-              <li><a href="#hispanic-subgroup">Hispanic Subgroup</a></li>
-              <li><a href="#asian-subgroup">Asian Subgroup</a></li>
-            {{/tab-dropdown}}
+            {{#if (eq tab 'profile.demographic')}}
+              {{#tab-dropdown as |context| }}
+                <li>{{#scroll-to href='#age-and-sex' afterScroll=context.closeTabDropdown}}Age and Sex{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#mutually-exclusive-race-hispanic-origin' afterScroll=context.closeTabDropdown}}Mutually Exclusive Race / Hispanic Origin{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#hispanic-subgroup' afterScroll=context.closeTabDropdown}}Hispanic Subgroup{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#asian-subgroup' afterScroll=context.closeTabDropdown}}Asian Subgroup{{/scroll-to}}</li>
+              {{/tab-dropdown}}
+            {{/if}}
           </li>
-          <li class="has-dropdown">
+          <li class="{{if (eq tab 'profile.social') 'has-dropdown'}}">
             {{#link-to 'profile.social'}}Social  <small>(ACS)</small>{{/link-to}}
-            {{#tab-dropdown}}
-              <li><a href="#section">Section</a></li>
-            {{/tab-dropdown}}
+            {{#if (eq tab 'profile.social')}}
+              {{#tab-dropdown}}
+                <li><a href="#section">Section</a></li>
+              {{/tab-dropdown}}
+            {{/if}}
           </li>
-          <li class="has-dropdown">
+          <li class="{{if (eq tab 'profile.economic') 'has-dropdown'}}">
             {{#link-to 'profile.economic'}}Economic  <small>(ACS)</small>{{/link-to}}
-            {{#tab-dropdown}}
-              <li><a href="#section">Section</a></li>
-            {{/tab-dropdown}}
+            {{#if (eq tab 'profile.economic')}}
+              {{#tab-dropdown}}
+                <li><a href="#section">Section</a></li>
+              {{/tab-dropdown}}
+            {{/if}}
           </li>
-          <li class="has-dropdown">
+          <li class="{{if (eq tab 'profile.housing') 'has-dropdown'}}">
             {{#link-to 'profile.housing'}}Housing  <small>(ACS)</small>{{/link-to}}
-            {{#tab-dropdown}}
-              <li><a href="#section">Section</a></li>
-            {{/tab-dropdown}}
+            {{#if (eq tab 'profile.housing')}}
+              {{#tab-dropdown}}
+                <li><a href="#section">Section</a></li>
+              {{/tab-dropdown}}
+            {{/if}}
           </li>
         {{/if}}
       </ul>
     </div>
 
   </div>
-  <div class="cell auto">
+  <div class="cell auto" id="profile-content">
     {{outlet}}
   </div>
 </div>
