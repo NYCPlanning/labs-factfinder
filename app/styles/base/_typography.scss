@@ -358,10 +358,14 @@ button {
     @include breakpoint(medium) {
       position: absolute;
       top: 100%;
-      right: 1px;
+      right: auto;
       left: 1px;
+      z-index: 2;
+      width: rem-calc(240);
+      max-width: 90vw;
       margin-top: -1px;
       box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
+      text-align: left;
     }
 
     li {

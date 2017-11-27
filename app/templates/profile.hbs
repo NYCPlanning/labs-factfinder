@@ -30,8 +30,20 @@
           <li class="{{if (eq tab 'profile.social') 'has-dropdown'}}">
             {{#link-to 'profile.social'}}Social  <small>(ACS)</small>{{/link-to}}
             {{#if (eq tab 'profile.social')}}
-              {{#tab-dropdown}}
-                <li><a href="#section">Section</a></li>
+              {{#tab-dropdown as |context| }}
+                <li>{{#scroll-to href='#household-type' afterScroll=context.closeTabDropdown}}Household Type{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#relationship-to-head-of-household' afterScroll=context.closeTabDropdown}}Relationship To Head Of Household (Householder{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#grandparents' afterScroll=context.closeTabDropdown}}Grandparents{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#school-enrollment' afterScroll=context.closeTabDropdown}}School Enrollment{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#educational-attainment' afterScroll=context.closeTabDropdown}}Educational Attainment (Highest Grade Completed{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#veteran-status' afterScroll=context.closeTabDropdown}}Veteran Status{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#disability-status-of-the-civilian-noninstitutionalized-population' afterScroll=context.closeTabDropdown}}Disability Status Of The Civilian Noninstitutionalized Population{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#residence-1-year-ago' afterScroll=context.closeTabDropdown}}Residence 1 Year Ago{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#place-of-birth' afterScroll=context.closeTabDropdown}}Place Of Birth{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#us-citizenship-status' afterScroll=context.closeTabDropdown}}U.S. Citizenship Status{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#year-of-entry' afterScroll=context.closeTabDropdown}}Year Of Entry{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#language-spoken-at-home' afterScroll=context.closeTabDropdown}}Language Spoken At Home{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#ancestry' afterScroll=context.closeTabDropdown}}Ancestry{{/scroll-to}}</li>
               {{/tab-dropdown}}
             {{/if}}
           </li>
