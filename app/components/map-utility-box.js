@@ -30,10 +30,27 @@ export default Ember.Component.extend({
     },
     transitionTo() {},
     generateProfileId() {
-      const ids = this.get('selection.current.features')
+      const type = this.get('summaryLevel');
+      const geoids = this.get('selection.current.features')
         .mapBy('properties.geoid');
-      
-      // fetch()
+
+      const postBody = {
+        type,
+        geoids,
+      };
+
+      fetch('http://localhost:4000/selection', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(postBody),
+      })
+        .then(d => d.json())
+        .then(({ id }) => {
+          this.get('router')
+            .transitionTo('profile', id, { queryParams: { mode: 'current', comparator: '0' } });
+        });
     },
   },
 });

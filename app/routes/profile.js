@@ -26,6 +26,7 @@ export default Ember.Route.extend({
   // },
 
   model({ id }) {
+    console.log(id);
     const selection = this.get('selection');
 
     return fetch(SELECTION_API_URL(id))
