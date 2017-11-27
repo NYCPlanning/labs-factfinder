@@ -282,6 +282,10 @@ button {
 
   @include breakpoint(small only) {
 
+    li {
+      border-top: 1px solid $medium-gray;
+    }
+
     a:not(.active) {
       background-color: rgba(0,0,0,0.03);
     }
@@ -333,9 +337,8 @@ button {
 
   .fa-caret-down {
     position: absolute;
-    top: 50%;
+    top: 0;
     right: 0;
-    transform: translateY(-50%);
     color: $medium-gray;
     padding: 0.7rem 0.8rem 0.7rem 0.6rem;
 
@@ -345,21 +348,25 @@ button {
     }
 
     &.flip {
-      transform: translateY(-50%) scaleY(-1);
+      transform: scaleY(-1);
     }
   }
 
   .tab-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 1px;
-    left: 1px;
-    margin-top: -1px;
-    background-color: $white;
-    box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
+    font-size: rem-calc(12);
+
+    @include breakpoint(medium) {
+      position: absolute;
+      top: 100%;
+      right: 1px;
+      left: 1px;
+      margin-top: -1px;
+      box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
+    }
 
     li {
       border-top: 1px solid #eee;
+      background-color: $white;
 
       a {
         line-height: 1.2;
