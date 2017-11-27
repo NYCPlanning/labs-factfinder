@@ -67,10 +67,35 @@ export default Ember.Controller.extend({
   racialProfile: Ember.computed('model', function() {
     const d = this.get('model.y2011_2015.mutually_exclusive_race_hispanic_origin');
     console.log('d', d);
-    const profile = [
-      { value_pct: d.pop_2 / 100, value: d.pop_2.percent, color: '#1f4064', group: 'Total population' },
-      { value_pct: d.hsp1 / 100, value: d.hsp1.percent, color: '#fdc010', group: 'Hispanic/Latino (of any race)' },
-      { value_pct: d.nhsp / 100, value: d.nhsp.percent, color: '#cd594a', group: 'Not Hispanic/Latino' }];
+    const config = [
+      {
+        property: 'hsp1',
+        label: 'Hispanic',
+      },
+      {
+        property: 'wtnh',
+        label: 'White nonhispanic',
+      },
+      {
+        property: 'blnh',
+        label: 'Black nonhispanic',
+      },
+      {
+        property: 'asnnh',
+        label: 'Asian nonhispanic',
+      },
+    ];
+
+
+    const profile = config.map(({ property, label }) => ({
+      percent: d[property].percent,
+      sum: d[property].sum,
+      moe: d[property].m,
+      percent_moe: d[property].percent_m,
+      group: label,
+      classValue: label.replace(/\s+/g, ''),
+    }));
+
     return profile;
   }),
 });
