@@ -68,7 +68,19 @@
             {{#link-to 'profile.housing'}}Housing  <small>(ACS)</small>{{/link-to}}
             {{#if (eq tab 'profile.housing')}}
               {{#tab-dropdown as |context| }}
-                <li>{{#scroll-to href='#' afterScroll=context.closeTabDropdown}}Section{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#housing-occupancy' afterScroll=context.closeTabDropdown}}Housing Occupancy{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#units-in-structure' afterScroll=context.closeTabDropdown}}Units in Structure{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#year-structure-built' afterScroll=context.closeTabDropdown}}Year Structure Built{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#rooms' afterScroll=context.closeTabDropdown}}Rooms{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#housing-tenure' afterScroll=context.closeTabDropdown}}Housing Tenure{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#year-householder-moved-into-unit' afterScroll=context.closeTabDropdown}}Year Householder Moved Into Unit{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#vehicles-available' afterScroll=context.closeTabDropdown}}Vehicles Available{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#occupants-per-room' afterScroll=context.closeTabDropdown}}Occupants per Room{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#value' afterScroll=context.closeTabDropdown}}Value{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#mortgage-status' afterScroll=context.closeTabDropdown}}Mortgage Status{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#selected-monthly-owner-costs-as-a-percentage-of-household-income' afterScroll=context.closeTabDropdown}}Selected Monthly Owner Costs as a Percentage of Household Income{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#gross-rent' afterScroll=context.closeTabDropdown}}Gross Rent{{/scroll-to}}</li>
+                <li>{{#scroll-to href='#gross-rent-as-a-percentage-of-household-income' afterScroll=context.closeTabDropdown}}Gross Rent as a Percentage of Household Income (GRAPI){{/scroll-to}}</li>
               {{/tab-dropdown}}
             {{/if}}
           </li>
