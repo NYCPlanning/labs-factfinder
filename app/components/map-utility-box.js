@@ -1,11 +1,13 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import fetch from 'fetch';
 
 const { service } = Ember.inject;
 const { alias } = Ember.computed;
 
 export default Ember.Component.extend({
   selection: service(),
+  router: service(),
 
   classNames: ['map-utility-box'],
 
@@ -26,7 +28,12 @@ export default Ember.Component.extend({
     handleDrawButtonClick() {
       this.sendAction('handleDrawButtonClick');
     },
-    transitionTo() {
+    transitionTo() {},
+    generateProfileId() {
+      const ids = this.get('selection.current.features')
+        .mapBy('properties.geoid');
+      
+      // fetch()
     },
   },
 });

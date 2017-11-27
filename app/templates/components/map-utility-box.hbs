@@ -32,9 +32,9 @@
       </ul>
     </div>
   </div>
-
-  {{#link-to 'profile' class=profileButtonClasses}}{{fa-icon 'file-text'}}&nbsp;View Profile{{/link-to}}
-
+  <div class={{profileButtonClasses}} onClick={{action 'generateProfileId'}}>
+    {{fa-icon 'file-text'}} View Profile
+  </div>
   <a href="#" class="button small expanded gray text-orange">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
 
 
