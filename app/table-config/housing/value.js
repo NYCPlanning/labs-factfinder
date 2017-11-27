@@ -1,3 +1,5 @@
+import interpolate from '../../utils/interpolate';
+
 export default [
   {
     title: 'Owner-occupied units',
@@ -39,5 +41,19 @@ export default [
   {
     title: 'Median (dollars)',
     data: 'mdvl',
+    special: true,
+    aggregator: interpolate,
+    options: {
+      bins: [
+        ['vlu50', [0, 50000]],
+        ['vl50t99', [50000, 99000]],
+        ['vl100t149', [100000, 149000]],
+        ['vl150t199', [150000, 199000]],
+        ['vl200t299', [200000, 299000]],
+        ['vl300t499', [300000, 499000]],
+        ['vl500t999', [500000, 999000]],
+        ['vl1milpl', [1000000, 2000000]],
+      ],
+    },
   },
 ];

@@ -35,6 +35,11 @@ export default Ember.Service.extend({
     return currentSelected.features.length;
   },
 
+  @computed('current')
+  sortedLabels(currentSelected) {
+    return currentSelected.features.sort((a, b) => (a.properties.geolabel - b.properties.geolabel));
+  },
+
   pointLayer,
   currentAddress: null,
 

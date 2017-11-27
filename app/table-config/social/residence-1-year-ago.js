@@ -47,8 +47,4 @@ export default [{
   title: 'Abroad',
   data: 'abroad',
 },
-{
-  title: 'Abroad',
-  data: 'abroad',
-},
 ];
