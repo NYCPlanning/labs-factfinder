@@ -15,10 +15,6 @@ export default Ember.Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  povertyHelperOptions: {
-    start: [25, 50],
-  },
-
   @computed('selection.selectedCount')
   profileButtonClasses(count) {
     return count > 0 ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
@@ -38,7 +34,8 @@ export default Ember.Component.extend({
       this.get('selectionHelper').toggleSelectionHelper();
     },
 
-    handlePovertySliderChange(sliderValue) {
+    handleSliderChange(sliderValue, b) {
+      console.log(sliderValue, b)
       this.set('selectionHelper.povertyPercent', sliderValue);
     },
 

@@ -39,17 +39,18 @@
 
   <button  {{action "toggleSelectionHelper"}}>Show Selection Helpers</button>
   {{#if selectionHelper.show}}
-    {{range-slider
-      start=povertyHelperOptions.start
-      min=0
-      max=100
-      step=1
-      connect=true
-      behaviour="drag"
-      on-change="handlePovertySliderChange"
-    }}
-    Highlighting tracts where % of families living below the poverty line is {{selection.povertyPercent}}% or higher.
-
+    {{#each selectionHelper.configs as |config|}}
+      {{range-slider
+        start=config.range
+        min=0
+        max=100
+        step=1
+        connect=true
+        behaviour="drag"
+        on-change="handleSliderChange"
+      }}
+      Highlighting tracts where {{config.label}} is between {{config.range.[0]}}% and {{config.range.[1]}}%.
+    {{/each}}
     <button  {{action "addHighlightedToSelection"}}>Add all to my selection</button>
 
   {{/if}}

@@ -37,7 +37,7 @@
       {{/map.source}}
     {{/if}}
 
-    {{#if selectionHelper.show}}
+    {{#if selectionHelper.ready}}
         {{log 'showing' layer}}
         {{map.layer layer=selectionHelper.layer}}
     {{/if}}
