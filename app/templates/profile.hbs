@@ -2,12 +2,16 @@
   <div class="cell shrink">
     <div class="profile-menus">
       <ul class="menu tabs vertical medium-horizontal text-center">
-        <li class="{{if (eq tab 'profile.census') 'has-dropdown'}}">
-          {{link-to 'Census' 'profile.census'}}
+        <li>
           {{#if (eq tab 'profile.census')}}
-            {{#tab-dropdown as |context| }}
+            {{#tab-dropdown
+              tabName='Census'
+              tabNameSmall=''
+              as |context| }}
               <li>{{#scroll-to href='#' afterScroll=context.closeTabDropdown}}Section{{/scroll-to}}</li>
             {{/tab-dropdown}}
+          {{else}}
+            {{link-to 'Census' 'profile.census'}}
           {{/if}}
         </li>
         {{#if (eq summaryLevel 'blocks')}}
@@ -16,21 +20,27 @@
           <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
         {{else}}
-          <li class="{{if (eq tab 'profile.demographic') 'has-dropdown'}}">
-            {{#link-to 'profile.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}
+          <li>
             {{#if (eq tab 'profile.demographic')}}
-              {{#tab-dropdown as |context| }}
+              {{#tab-dropdown
+                tabName='Demographic'
+                tabNameSmall='(ACS)'
+                as |context| }}
                 <li>{{#scroll-to href='#age-and-sex' afterScroll=context.closeTabDropdown}}Age and Sex{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#mutually-exclusive-race-hispanic-origin' afterScroll=context.closeTabDropdown}}Mutually Exclusive Race / Hispanic Origin{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#hispanic-subgroup' afterScroll=context.closeTabDropdown}}Hispanic Subgroup{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#asian-subgroup' afterScroll=context.closeTabDropdown}}Asian Subgroup{{/scroll-to}}</li>
               {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.demographic'}}Demographic <small>(ACS)</small>{{/link-to}}
             {{/if}}
           </li>
-          <li class="{{if (eq tab 'profile.social') 'has-dropdown'}}">
-            {{#link-to 'profile.social'}}Social  <small>(ACS)</small>{{/link-to}}
+          <li>
             {{#if (eq tab 'profile.social')}}
-              {{#tab-dropdown as |context| }}
+              {{#tab-dropdown
+                tabName='Social'
+                tabNameSmall='(ACS)'
+                as |context| }}
                 <li>{{#scroll-to href='#household-type' afterScroll=context.closeTabDropdown}}Household Type{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#relationship-to-head-of-household' afterScroll=context.closeTabDropdown}}Relationship To Head Of Household (Householder{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#grandparents' afterScroll=context.closeTabDropdown}}Grandparents{{/scroll-to}}</li>
@@ -45,12 +55,16 @@
                 <li>{{#scroll-to href='#language-spoken-at-home' afterScroll=context.closeTabDropdown}}Language Spoken At Home{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#ancestry' afterScroll=context.closeTabDropdown}}Ancestry{{/scroll-to}}</li>
               {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.social'}}Social <small>(ACS)</small>{{/link-to}}
             {{/if}}
           </li>
-          <li class="{{if (eq tab 'profile.economic') 'has-dropdown'}}">
-            {{#link-to 'profile.economic'}}Economic  <small>(ACS)</small>{{/link-to}}
+          <li>
             {{#if (eq tab 'profile.economic')}}
-              {{#tab-dropdown as |context| }}
+              {{#tab-dropdown
+                tabName='Economic'
+                tabNameSmall='(ACS)'
+                as |context| }}
                 <li>{{#scroll-to href='#employment-status' afterScroll=context.closeTabDropdown}}Employment Status{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#commute-to-work' afterScroll=context.closeTabDropdown}}Commute to Work{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#occupation' afterScroll=context.closeTabDropdown}}Occupation{{/scroll-to}}</li>
@@ -62,12 +76,16 @@
                 <li>{{#scroll-to href='#income-in-the-past-12-months-below-poverty-level' afterScroll=context.closeTabDropdown}}Income in the Past 12 Months Below Poverty Level{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#ratio-of-income-to-poverty-level' afterScroll=context.closeTabDropdown}}Ratio of Income to Poverty Level{{/scroll-to}}</li>
               {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.economic'}}Economic <small>(ACS)</small>{{/link-to}}
             {{/if}}
           </li>
-          <li class="{{if (eq tab 'profile.housing') 'has-dropdown'}}">
-            {{#link-to 'profile.housing'}}Housing  <small>(ACS)</small>{{/link-to}}
+          <li>
             {{#if (eq tab 'profile.housing')}}
-              {{#tab-dropdown as |context| }}
+              {{#tab-dropdown
+                tabName='Housing'
+                tabNameSmall='(ACS)'
+                as |context| }}
                 <li>{{#scroll-to href='#housing-occupancy' afterScroll=context.closeTabDropdown}}Housing Occupancy{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#units-in-structure' afterScroll=context.closeTabDropdown}}Units in Structure{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#year-structure-built' afterScroll=context.closeTabDropdown}}Year Structure Built{{/scroll-to}}</li>
@@ -82,6 +100,8 @@
                 <li>{{#scroll-to href='#gross-rent' afterScroll=context.closeTabDropdown}}Gross Rent{{/scroll-to}}</li>
                 <li>{{#scroll-to href='#gross-rent-as-a-percentage-of-household-income' afterScroll=context.closeTabDropdown}}Gross Rent as a Percentage of Household Income (GRAPI){{/scroll-to}}</li>
               {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.housing'}}Housing <small>(ACS)</small>{{/link-to}}
             {{/if}}
           </li>
         {{/if}}
