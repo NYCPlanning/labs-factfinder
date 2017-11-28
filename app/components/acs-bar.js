@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
-import numeral from 'numeral';
-
 import { select, selectAll } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
+import { transition } from 'd3-transition'; // eslint-disable-line
+
 
 const HorizontalBar = Ember.Component.extend(ResizeAware, {
   // necessary to get tests to pass https://github.com/mike-north/ember-resize/issues/43
@@ -13,12 +13,17 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
   classNameBindings: ['loading'],
   classNames: ['horizontal-bar'],
 
-  height: 400,
+  margin: {
+    top: 10,
+    right: 10,
+    bottom: 100,
+    left: 10,
+  },
+  height: 800,
   xMax: null,
   resizeWidthSensitive: true,
   resizeHeightSensitive: true,
   loading: false,
-  barLabel: true,
 
   data: [],
 
@@ -47,8 +52,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
   updateChart: function updateChart() {
     const svg = this.get('svg');
     const data = this.get('data');
-    const barLabel = this.get('barLabel');
-
 
     let timer;
 
@@ -57,8 +60,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       clearTimeout(timer);
       // selectAll('.age-chart-tooltip')
       //   .html(toolTip(d));
-
-      console.log(d);
 
       selectAll(`.${d.classValue}`)
         .classed('highlight', true);
@@ -77,12 +78,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const el = this.$();
     const elWidth = el.width();
 
-    const margin = {
-      top: 0,
-      right: barLabel ? 50 : 0,
-      bottom: 0,
-      left: 0,
-    };
+    const margin = this.get('margin');
     const height = this.get('height') - margin.top - margin.bottom;
     const width = elWidth - margin.left - margin.right;
 
@@ -119,23 +115,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
       groupLabels.exit().remove();
 
-      const barLabels = svg.selectAll('.barlabel')
-        .data(rawData, d => d.group);
-
-      barLabels.enter().append('text')
-        .attr('class', 'label barlabel')
-        .attr('text-anchor', 'left')
-        .attr('alignment-baseline', 'top');
-
-      barLabels.transition().duration(300)
-        .attr('x', d => x(d.sum) + 6)
-        .attr('y', d => y(d.group) + (y.bandwidth() / 2) + -2)
-        .text((d) => { // eslint-disable-line
-          return barLabel ? `${numeral(d.sum).format('0,0')}` : '';
-        });
-
-      barLabels.exit().remove();
-
       // draw bars
 
       const bars = svg.selectAll('.buildingsbar')
@@ -154,7 +133,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
         .attr('height', y.bandwidth() - 14)
 
 
-
         .attr('rx', 2)
         .attr('ry', 2)
         .on('mouseover', (d) => {
@@ -164,35 +142,102 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
 
       bars.transition().duration(300)
-        .attr('width', d => x(d.percent))
+        .attr('width', d => x(d.percent));
 
       bars.exit().remove();
 
       // draw MOE
 
-      // const moebars = svg.selectAll('.moebar')
-      //   .data(rawData, d => d.group);
-      //
-      // moebars.enter()
-      //   .append('rect')
-      //   .attr('class', d => `.moebars ${d.classValue}`)
-      //   .attr('fill', (d) => {
-      //     if (d.color) return d.color;
-      //     return '#60acbf';
-      //   })
-      //   .attr('x', 0)
-      //   .attr('width', d => x(d.sum))
-      //   .attr('y', d => y(d.group))
-      //   .attr('height', y.bandwidth() - 14)
-      //   .attr('rx', 2)
-      //   .attr('ry', 2);
-      //
-      //
-      // moebars.transition().duration(300)
-      //   .attr('width', d => x(d.sum));
-      //
-      // moebars.exit().remove();
+      const moebars = svg.selectAll('.moebar')
+        .data(rawData, d => d.group);
 
+
+      const xFunctionMOE = (d) => {
+        if (d.percent_m > d.percent) return 0;
+        return x(d.percent) - x(d.percent_m);
+      };
+
+      const widthFunctionMOE = (d) => {
+        const defaultWidth = x(d.percent_m) * 2;
+        if (d.percent_m > d.percent) {
+          const newWidth = (defaultWidth - (x(d.percent_m - d.percent)));
+          return newWidth;
+        }
+        return defaultWidth;
+      };
+
+
+      moebars.enter()
+        .append('rect')
+        .attr('class', d => `moebar ${d.classValue}`)
+        .attr('fill', (d) => {
+          if (d.color) return d.color;
+          return '#2e6472';
+        })
+        .attr('opacity', 0.4)
+        .attr('x', xFunctionMOE)
+        .attr('y', d => y(d.group) + (y.bandwidth() / 2) + -10)
+        .attr('height', 6)
+        .attr('width', widthFunctionMOE);
+
+      moebars.transition().duration(300)
+        .attr('width', widthFunctionMOE);
+
+      moebars.exit().remove();
+
+
+      // draw Comparison MOE
+
+      const comparisonMOEbars = svg.selectAll('.comparisonMoebar')
+        .data(rawData, d => d.group);
+
+
+      const xFunctionComparisonMOE = d => x(d.comparison_percent) - x(d.comparison_percent_m);
+
+      const widthFunctionComparisonMOE = d => x(d.comparison_percent_m) * 2;
+      comparisonMOEbars.enter()
+        .append('rect')
+        .attr('class', d => `comparisonMoebar ${d.classValue}`)
+        .attr('fill', (d) => {
+          if (d.color) return d.color;
+          return '#000000';
+        })
+        .attr('opacity', 1)
+        .attr('x', xFunctionComparisonMOE)
+        .attr('y', d => y(d.group) + (y.bandwidth() / 2) + -7)
+        .attr('height', 1)
+        .attr('width', widthFunctionComparisonMOE);
+
+
+      comparisonMOEbars.transition().duration(300)
+        .attr('x', xFunctionComparisonMOE)
+        .attr('width', widthFunctionComparisonMOE);
+
+
+      comparisonMOEbars.exit().remove();
+
+
+      // draw comparison dots
+
+
+      const comparisonBars = svg.selectAll('.comparisonbar')
+        .data(rawData, d => d.group);
+
+
+      const cxFunction = d => x(d.comparison_percent);
+      comparisonBars.enter()
+        .append('circle')
+        .attr('fill', '#FFF')
+        .attr('stroke', '#000')
+        .attr('class', d => `comparisonbar ${d.classValue}`)
+        .attr('cx', cxFunction)
+        .attr('cy', d => y(d.group) + (y.bandwidth() / 2) + -6.5)// yScale.step()
+        .attr('r', 2.5);
+
+      comparisonBars.transition().duration(300)
+        .attr('cx', cxFunction);
+
+      comparisonBars.exit().remove();
     });
   },
 });

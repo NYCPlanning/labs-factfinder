@@ -81,10 +81,15 @@
   .comparison-moe {}
 }
 
-.callout .chart .highlight {
+.callout .chart .buildingsbar.highlight {
   fill: rgb(162,76, 14);
 }
 
 .buildingsbar:hover {
   cursor: pointer;
 }
+
+.moebar {
+    rx: 2;
+    pointer-events: none;
+  }

@@ -7,4 +7,21 @@
     </div>
   </div>
 {{/if}}
+
+<div class="age-chart-tooltip">
+  Hover over bars for more details
+</div>
+<svg class="age-chart-key" width="100%" height="100%">
+  <g>
+
+    <rect x="0" y="9" height="11" width="40" rx="2" ry="2" class="bar"></rect>
+    <rect alighnment-baseline="middle" x="30" y="11.5" height="6" width="20" class="moe"></rect>
+    <text fill="#000" x="55" dy="18" style="text-anchor: start;">Population with Margin of Error</text>
+
+    <rect x="0" y="29.5" height="1" width="20" class="comparisonmoe"></rect>
+    <circle cx="10" cy="30" r="2.5" class="comparison"></circle>
+    <text fill="#000" x="25" dy="33" style="text-anchor: start;">Comparison Area with Margin of Error</text>
+
+  </g>
+</svg>
 {{yield}}

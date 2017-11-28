@@ -64,9 +64,8 @@ export default Ember.Controller.extend({
     };
   },
 
-  racialProfile: Ember.computed('model', function() {
+  raceGroupProfile: Ember.computed('model', function() {
     const d = this.get('model.y2011_2015.mutually_exclusive_race_hispanic_origin');
-    console.log('d', d);
     const config = [
       {
         property: 'hsp1',
@@ -91,11 +90,16 @@ export default Ember.Controller.extend({
       percent: d[property].percent,
       sum: d[property].sum,
       moe: d[property].m,
-      percent_moe: d[property].percent_m,
+      percent_m: d[property].percent_m,
+      comparison_percent: d[property].comparison_percent,
+      comparison_percent_m: d[property].comparison_percent_m,
       group: label,
-      classValue: label.replace(/\s+/g, ''),
+      classValue: property,
+      // classValue: label.replace(/\s+/g, ''),
     }));
 
     return profile;
   }),
+
+
 });

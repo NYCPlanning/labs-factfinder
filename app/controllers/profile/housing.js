@@ -40,4 +40,35 @@ export default Ember.Controller.extend({
   currentData(model) {
     return model.y2011_2015;
   },
+
+
+  housingTenureProfile: Ember.computed('model', function() {
+    const d = this.get('model.y2011_2015.housing_tenure');
+
+    const config = [
+      {
+        property: 'oochu1',
+        label: 'Owner-occupied',
+      },
+      {
+        property: 'rochu',
+        label: 'Renter-occupied',
+      },
+    ];
+
+
+    const profile = config.map(({ property, label }) => ({
+      percent: d[property].percent,
+      sum: d[property].sum,
+      moe: d[property].m,
+      percent_m: d[property].percent_m,
+      comparison_percent: d[property].comparison_percent,
+      comparison_percent_m: d[property].comparison_percent_m,
+      group: label,
+      classValue: property,
+    }));
+
+    return profile;
+  }),
+
 });
