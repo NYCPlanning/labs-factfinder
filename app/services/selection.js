@@ -29,6 +29,8 @@ export default Ember.Service.extend({
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
 
   currentMapInstance: null,
+  overlayMetric: null,
+  overlayData: null,
 
   @computed('current')
   selectedCount(currentSelected) {
@@ -141,5 +143,63 @@ export default Ember.Service.extend({
     // not sure why we have to do both of these lines, but it works
     this.set('current', EMPTY_GEOJSON);
     this.set('current.features', []);
+  },
+
+  showMetricOverlay() {
+    // get the data for this indicator and geometry type
+
+    const SQL = 'SELECT geoid, c, e, m, p, z FROM economic WHERE variable ILIKE \'fambwpv\' AND geotype = \'CT2010\'';
+    carto.SQL(SQL)
+      .then((data) => {
+        console.log(data);
+        this.set('overlayData', data);
+        this.set('overlayMetric', 'poverty');
+      });
+  },
+
+  @computed('overlayMetric')
+  overlayLayer() {
+    // get geoids where greater than 10% of the population lives in poverty
+    const filter = this.get('overlayData').filter(d => d.p > 10).map(d => d.geoid);
+
+    filter.unshift('geoid');
+    filter.unshift('in');
+
+    return {
+      id: 'overlay-line',
+      type: 'line',
+      source: 'census-geoms',
+      'source-layer': 'census-geoms-tracts',
+      paint: {
+        'line-color': 'rgba(158, 226, 64, 1)',
+        'line-width': {
+          stops: [
+            [
+              10,
+              1,
+            ],
+            [
+              15,
+              8,
+            ],
+          ],
+        },
+        'line-blur': {
+          stops: [
+            [
+              10,
+              1,
+            ],
+            [
+              15,
+              8,
+            ],
+          ],
+        },
+        'line-offset': 3,
+        'line-opacity': 1,
+      },
+      filter,
+    };
   },
 });

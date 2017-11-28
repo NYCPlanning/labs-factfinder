@@ -28,5 +28,9 @@ export default Ember.Component.extend({
     },
     transitionTo() {
     },
+
+    showMetricOverlay() {
+      this.get('selection').showMetricOverlay();
+    },
   },
 });

@@ -37,6 +37,10 @@
       {{/map.source}}
     {{/if}}
 
+    {{#if selection.overlayMetric}}
+        {{map.layer layer=selection.overlayLayer}}
+    {{/if}}
+
     {{map.layer-group config=layerGroups.subway visible=false}}
 
     {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
