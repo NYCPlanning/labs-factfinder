@@ -37,8 +37,9 @@
       {{/map.source}}
     {{/if}}
 
-    {{#if selection.overlayMetric}}
-        {{map.layer layer=selection.overlayLayer}}
+    {{#if selectionHelper.show}}
+        {{log 'showing' layer}}
+        {{map.layer layer=selectionHelper.layer}}
     {{/if}}
 
     {{map.layer-group config=layerGroups.subway visible=false}}

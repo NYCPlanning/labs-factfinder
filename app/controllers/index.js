@@ -30,6 +30,7 @@ const draw = new MapboxDraw({
 
 export default Ember.Controller.extend({
   selection: service(),
+  selectionHelper: service(),
   mapMouseover: service(),
 
   layerGroups,

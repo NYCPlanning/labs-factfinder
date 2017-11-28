@@ -6,6 +6,7 @@ const { alias } = Ember.computed;
 
 export default Ember.Component.extend({
   selection: service(),
+  selectionHelper: service(),
 
   classNames: ['map-utility-box'],
 
@@ -13,6 +14,10 @@ export default Ember.Component.extend({
   mode: 'direct-select',
 
   summaryLevel: alias('selection.summaryLevel'),
+
+  povertyHelperOptions: {
+    start: [25, 50],
+  },
 
   @computed('selection.selectedCount')
   profileButtonClasses(count) {
@@ -29,8 +34,12 @@ export default Ember.Component.extend({
     transitionTo() {
     },
 
-    showMetricOverlay() {
-      this.get('selection').showMetricOverlay();
+    toggleSelectionHelper() {
+      this.get('selectionHelper').toggleSelectionHelper();
+    },
+
+    handlePovertySliderChange(sliderValue) {
+      this.set('selectionHelper.povertyPercent', sliderValue);
     },
   },
 });

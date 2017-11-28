@@ -32,6 +32,8 @@ export default Ember.Service.extend({
   overlayMetric: null,
   overlayData: null,
 
+  povertyPercent: 25,
+
   @computed('current')
   selectedCount(currentSelected) {
     return currentSelected.features.length;
@@ -157,10 +159,12 @@ export default Ember.Service.extend({
       });
   },
 
-  @computed('overlayMetric')
-  overlayLayer() {
+  @computed('overlayMetric', 'povertyPercent')
+  overlayLayer(metric, percentage) {
     // get geoids where greater than 10% of the population lives in poverty
-    const filter = this.get('overlayData').filter(d => d.p > 10).map(d => d.geoid);
+    const filter = this.get('overlayData').filter(d => d.p > parseInt(percentage)).map(d => d.geoid);
+
+    console.log(filter)
 
     filter.unshift('geoid');
     filter.unshift('in');
@@ -171,7 +175,7 @@ export default Ember.Service.extend({
       source: 'census-geoms',
       'source-layer': 'census-geoms-tracts',
       paint: {
-        'line-color': 'rgba(158, 226, 64, 1)',
+        'line-color': 'rgba(79, 220, 79, 1)',
         'line-width': {
           stops: [
             [

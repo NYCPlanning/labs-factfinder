@@ -31,6 +31,7 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^0.4.3",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-nouislider": "^0.14.1",
     "ember-cli-numeral": "^1.0.0",
     "ember-cli-qunit": "^4.0.0",
     "ember-cli-sass": "^6.2.0",
