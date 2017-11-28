@@ -21,7 +21,12 @@
       {{/if}}
     </div>
     <div class="cell medium-6">
-      <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual census tracts to add them to the profile.</p>
+      <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual 
+        {{if (eq summaryLevel 'tracts') 'census tracts'}}
+        {{if (eq summaryLevel 'blocks') 'census blocks'}}
+        {{if (eq summaryLevel 'ntas') 'NTAs'}}
+        {{if (eq summaryLevel 'pumas') 'PUMAs'}}
+        to add them to the profile.</p>
       <ul class="selection-tools no-bullet">
         <button class="selection-tool--draw {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>{{fa-icon "pencil-square-o"}} Draw</button>
       </ul>
