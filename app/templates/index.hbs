@@ -6,13 +6,12 @@
     <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
   </li>
   <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}} explode-nta">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood</a>
+    <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
   </li>
   <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}} explode-puma">
     <a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
   </li>
 </ul>
-
 <div class="map-container">
   {{#jane-maps
     id='map'
@@ -23,6 +22,20 @@
                       hash=true)
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
+
+    {{#if selection.currentAddress}}
+      {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
+        {{source.layer layer=selection.pointLayer}}
+      {{/map.source}}
+    {{/if}}
+
+
+
+    {{#if selection.searchResultFeature}}
+      {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
+        {{source.layer layer=selection.searchResultLayer}}
+      {{/map.source}}
+    {{/if}}
 
     {{map.layer-group config=layerGroups.subway visible=false}}
 

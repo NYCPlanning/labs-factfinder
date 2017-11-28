@@ -1,34 +1,37 @@
-
+<div class="table-copy-ui show-for-large">
+  <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
+</div>
 <div class="table-scroll">
-  <table class="text-small {{if options.scrollTable 'table-scroll-vert'}}">
+  {{!-- <table class="text-small {{if scrollTable 'table-scroll-vert'}}"> --}}
+  <table class="text-small">
     <thead>
-      {{#if (eq options.mode 'current')}} {{! current header}}
+      {{#if (eq mode 'current')}} {{! current header}}
       <tr>
         <th rowspan="2">&nbsp;</th>
-        <th colspan="{{if options.reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
-        {{#if options.comparison}}
-        <th colspan="{{if options.reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
+        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
+        {{#if comparison}}
+        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
         <th colspan="2" class="text-center cell-border-bottom">Difference</th>
         {{/if}}
       </tr>
       <tr>
         <th class="text-right cell-border-bottom">Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
           <th class="text-right cell-border-bottom">MOE</th>
         <th class="text-right cell-border-bottom">CV</th>
         {{/if}}
         <th class="text-right cell-border-bottom">Pct. Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
         <th class="text-right cell-border-bottom">MOE</th>
           {{/if}}
-       {{#if options.comparison}}
+       {{#if comparison}}
           <th class="text-right cell-border-bottom">Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
         <th class="text-right cell-border-bottom">MOE</th>
         <th class="text-right cell-border-bottom">CV</th>
           {{/if}}
         <th class="text-right cell-border-bottom">Pct. Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
         <th class="text-right cell-border-bottom">MOE</th>
           {{/if}}
         <th class="text-right cell-border-bottom">Number</th>
@@ -40,14 +43,14 @@
           <th rowspan="3">&nbsp;</th>
           <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2006-2010</th>
           <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2011-2015</th>
-          {{#if options.comparison}}
-            {{#if options.reliability}}
+          {{#if comparison}}
+            {{#if reliability}}
               <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
             {{else}}
               <th colspan="6" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
             {{/if}}
           {{else}}
-            {{#if options.reliability}}
+            {{#if reliability}}
               <th colspan="4" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
             {{else}}
               <th colspan="2" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
@@ -55,10 +58,10 @@
           {{/if}}
         </tr>
         <tr>
-          <th colspan="{{if options.reliability "4" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
-          {{#if options.comparison}}
-          <th colspan="{{if options.reliability "4" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
-          <th colspan="{{if options.reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
+          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
+          {{#if comparison}}
+          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
+          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
           {{/if}}
         </tr>
         <tr>
@@ -67,28 +70,28 @@
           <th>Number</th>
           <th>Percent</th>
           <th>Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
             <th>MOE</th>
           {{/if}}
           <th>Pct. Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
             <th>MOE</th>
           {{/if}}
-          {{#if options.comparison}}
+          {{#if comparison}}
           <th>Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
             <th>MOE</th>
           {{/if}}
           <th>Pct. Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
             <th>MOE</th>
           {{/if}}
           <th>Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
             <th>MOE</th>
           {{/if}}
           <th>Pctg. Estimate</th>
-          {{#if options.reliability}}
+          {{#if reliability}}
             <th>MOE</th>
           {{/if}}
           {{/if}}
@@ -97,7 +100,22 @@
       {{/if}}
     </thead>
     <tbody>
-      {{yield}}
+      {{#each config as |row|}} 
+        {{#if hasBlock}}
+          {{yield}}
+        {{else}}
+          {{acs-table-row
+            scrollTable=scrollTable
+            mode=mode
+            reliability=reliability
+            comparison=comparison
+            rowconfig=row
+            options=profile
+            data=(unless row.special (get this.t1 row.data) (aggregate-special-variable rowConfig=row data=t1))
+            data2=(unless row.special (get this.t2 row.data) (aggregate-special-variable rowConfig=row data=t2))
+          }}
+        {{/if}}
+      {{/each}}
     </tbody>
   </table>
 </div>
