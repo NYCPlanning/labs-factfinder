@@ -70,8 +70,8 @@ body {
 
   @include breakpoint(large) {
     position: absolute;
-    top: 20px;
-    left: 60px;
+    top: rem-calc(58);
+    left: 50px;
     background-color: $light-gray;
     border-radius: 4px;
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
@@ -119,10 +119,10 @@ body {
 
   @include breakpoint(large) {
     position: absolute;
-    top: 40px;
-    left: 60px;
-    z-index: 2;
-    margin-top: rem-calc(24);
+    top: 10px;
+    left: 50px;
+    z-index: 4;
+    margin-top: rem-calc(92);
     width: rem-calc(350);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
   }
@@ -145,6 +145,29 @@ body {
       padding: 0.75em 0.875em;
       border-radius: 4px;
     }
+  }
+}
+
+.search {
+  position: relative;
+  bottom: 50vh;
+  left: -$global-margin;
+  z-index: 1;
+  margin-left: 50px;
+
+  @include breakpoint(large) {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    left: 0;
+    width: rem-calc(300);
+    margin-left: 0;
+    margin-top: rem-calc(-92);
+
+    input {
+      margin-bottom: 0;
+    }
+
   }
 }
 
