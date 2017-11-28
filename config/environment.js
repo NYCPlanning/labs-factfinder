@@ -27,6 +27,8 @@ module.exports = function(environment) {
     },
 
     SAMPLE_SELECTION,
+
+    SupportServiceHost: 'http://localhost:4000',
   };
 
   ENV.DEFAULT_SELECTION = {
@@ -58,7 +60,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.SupportServiceHost = 'https://factfinder-api.planninglabs.nyc';
   }
 
   return ENV;

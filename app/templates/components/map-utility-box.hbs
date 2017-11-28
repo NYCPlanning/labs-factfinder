@@ -33,7 +33,8 @@
     </div>
   </div>
   <div class={{profileButtonClasses}} onClick={{action 'generateProfileId'}}>
-    {{fa-icon 'file-text'}} View Profile
+    {{fa-icon 'file-text'}} View Profile 
+      {{#if generateProfileId.isRunning}} {{fa-icon 'spinner' class='fa-pulse'}} {{/if}}
   </div>
   <a href="#" class="button small expanded gray text-orange">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
 
