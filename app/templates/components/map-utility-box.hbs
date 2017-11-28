@@ -49,7 +49,12 @@
       on-change="handlePovertySliderChange"
     }}
     Highlighting tracts where % of families living below the poverty line is {{selection.povertyPercent}}% or higher.
+
+    <button  {{action "addHighlightedToSelection"}}>Add all to my selection</button>
+
   {{/if}}
+
+
   {{yield}}
 
 {{else}}

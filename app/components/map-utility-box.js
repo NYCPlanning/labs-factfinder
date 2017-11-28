@@ -41,5 +41,9 @@ export default Ember.Component.extend({
     handlePovertySliderChange(sliderValue) {
       this.set('selectionHelper.povertyPercent', sliderValue);
     },
+
+    addHighlightedToSelection() {
+      this.get('selectionHelper').addHighlightedToSelection();
+    },
   },
 });

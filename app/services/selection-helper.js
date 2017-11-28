@@ -2,7 +2,14 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 import carto from 'ember-jane-maps/utils/carto';
 
+import summaryLevels from '../queries/summary-levels'
+
+const { service } = Ember.inject;
+
+
+
 export default Ember.Service.extend({
+  selection: service(),
   show: false,
   data: {
     poverty: null,
@@ -31,6 +38,26 @@ export default Ember.Service.extend({
     if (show) this.set('show', false);
   },
 
+  addHighlightedToSelection() {
+    const data = this.get('data');
+    const range = this.get('povertyPercent');
+
+    const [min, max] = range;
+    const geoids = data.poverty.filter(d => d.p > min && d.p < max).map(d => d.geoid);
+
+    const geoidQuotedStrings = geoids.map(d => `'${d}'`)
+
+    const SQL = `
+      SELECT * FROM (${summaryLevels.tracts(false)}) a WHERE geoid IN (${geoidQuotedStrings});
+    `;
+
+    console.log(SQL)
+    carto.SQL(SQL, 'geojson', 'post')
+      .then(({ features }) => {
+        this.get('selection').handleSelectedFeatures(features);
+      });
+  },
+
   @computed('data', 'povertyPercent')
   filter(data, range) {
     console.log('calculating filter', data);
@@ -50,7 +77,7 @@ export default Ember.Service.extend({
   @computed('filter')
   layer(filter) {
     return {
-      id: 'overlay-line',
+      id: 'helper-line',
       type: 'line',
       source: 'census-geoms',
       'source-layer': 'census-geoms-tracts',

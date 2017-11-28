@@ -29,10 +29,6 @@ export default Ember.Service.extend({
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
 
   currentMapInstance: null,
-  overlayMetric: null,
-  overlayData: null,
-
-  povertyPercent: 25,
 
   @computed('current')
   selectedCount(currentSelected) {
@@ -111,10 +107,13 @@ export default Ember.Service.extend({
   },
 
   handleSelectedFeatures(features = []) {
+    console.log(features)
     const selected = this.get('current');
 
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
+
+      console.log(type, geometry, properties)
 
       const inSelection = selected.features.find(
         selectedFeature => selectedFeature.properties.geoid === properties.geoid,
@@ -145,65 +144,5 @@ export default Ember.Service.extend({
     // not sure why we have to do both of these lines, but it works
     this.set('current', EMPTY_GEOJSON);
     this.set('current.features', []);
-  },
-
-  showMetricOverlay() {
-    // get the data for this indicator and geometry type
-
-    const SQL = 'SELECT geoid, c, e, m, p, z FROM economic WHERE variable ILIKE \'fambwpv\' AND geotype = \'CT2010\'';
-    carto.SQL(SQL)
-      .then((data) => {
-        console.log(data);
-        this.set('overlayData', data);
-        this.set('overlayMetric', 'poverty');
-      });
-  },
-
-  @computed('overlayMetric', 'povertyPercent')
-  overlayLayer(metric, percentage) {
-    // get geoids where greater than 10% of the population lives in poverty
-    const filter = this.get('overlayData').filter(d => d.p > parseInt(percentage)).map(d => d.geoid);
-
-    console.log(filter)
-
-    filter.unshift('geoid');
-    filter.unshift('in');
-
-    return {
-      id: 'overlay-line',
-      type: 'line',
-      source: 'census-geoms',
-      'source-layer': 'census-geoms-tracts',
-      paint: {
-        'line-color': 'rgba(79, 220, 79, 1)',
-        'line-width': {
-          stops: [
-            [
-              10,
-              1,
-            ],
-            [
-              15,
-              8,
-            ],
-          ],
-        },
-        'line-blur': {
-          stops: [
-            [
-              10,
-              1,
-            ],
-            [
-              15,
-              8,
-            ],
-          ],
-        },
-        'line-offset': 3,
-        'line-opacity': 1,
-      },
-      filter,
-    };
   },
 });
