@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  scrollTable: null,
+  mode: 'current',
+  reliability: false,
+  comparison: true,
   actions: {
     handleCopy() {
       const el = this.get('element').getElementsByTagName('table')[0];

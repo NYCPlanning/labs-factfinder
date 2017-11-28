@@ -98,10 +98,12 @@ export default Ember.Controller.extend({
 
     handleDrawButtonClick() {
       const drawMode = this.get('drawMode');
+      const map = this.get('selection').currentMapInstance;
       if (drawMode) {
         draw.trash();
         this.set('drawMode', false);
       } else {
+        map.addControl(draw, 'top-left');
         draw.changeMode('draw_polygon');
         this.set('drawMode', true);
       }
@@ -132,7 +134,13 @@ export default Ember.Controller.extend({
     handleDrawModeChange(e) {
       const drawMode = e.mode === 'draw_polygon';
       // delay setting drawMode boolean so that polygon-closing click won't be handled
-      setTimeout(() => { this.set('drawMode', drawMode); }, 200);
+      setTimeout(() => {
+        this.set('drawMode', drawMode);
+        if (!drawMode) {
+          const map = this.get('selection').currentMapInstance;
+          map.removeControl(draw);
+        }
+      }, 200);
     },
 
     handleMousemove(e) {
@@ -159,7 +167,6 @@ export default Ember.Controller.extend({
       map.addControl(navigationControl, 'top-left');
       map.addControl(new mapboxgl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
       map.addControl(geoLocateControl, 'top-left');
-      map.addControl(draw, 'top-left');
 
       this.set('selection.currentMapInstance', map);
       if (window) {
