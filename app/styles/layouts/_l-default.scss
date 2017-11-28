@@ -123,7 +123,7 @@ body {
     left: 50px;
     z-index: 4;
     margin-top: rem-calc(92);
-    width: rem-calc(350);
+    width: rem-calc(320);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
   }
 
@@ -152,7 +152,7 @@ body {
   position: relative;
   bottom: 50vh;
   left: -$global-margin;
-  z-index: 1;
+  z-index: 100;
   margin-left: 50px;
 
   @include breakpoint(large) {
@@ -163,22 +163,19 @@ body {
     width: rem-calc(300);
     margin-left: 0;
     margin-top: rem-calc(-92);
-
-    input {
-      margin-bottom: 0;
-    }
-
   }
 }
 
 .selection-tools {
+  margin: 0;
+  padding: 0 0 0 1rem;
 
   @include breakpoint(large) {
-    position: absolute;
-    top: 0;
-    right: auto;
-    left: calc(100% + 10px);
-    z-index: 2;
+    // position: absolute;
+    // top: 0;
+    // right: auto;
+    // left: calc(100% + 10px);
+    // z-index: 2;
   }
 
   button {

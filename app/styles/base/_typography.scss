@@ -96,6 +96,17 @@ button {
   }
 }
 
+.view-profile-button {
+  font-size: rem-calc(24) !important;
+  padding: rem-calc(10);
+  line-height: 1.2;
+
+  small {
+    display: block;
+    color: $a11y-yellow;
+  }
+}
+
 .button.text-orange {
   color: $primary-color;
 }

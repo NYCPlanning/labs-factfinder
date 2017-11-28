@@ -4,8 +4,14 @@
 
 .search {
 
+  input {
+    margin-bottom: 0;
+    padding-right: 2.2rem;
+  }
+
   .close-button {
-    margin-top: rem-calc(-7);
+    margin-top: rem-calc(-6);
+    right: rem-calc(10);
   }
 
   .search-icon {
