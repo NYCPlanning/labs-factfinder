@@ -1,0 +1,248 @@
+{{#profile-header
+  profile=profile
+  title="Housing Profile"
+  mode=profile.mode
+  data=rawData
+}}
+  <p class="text-tiny">
+    ACS data are derived from a survey and are subject to sampling variability.
+    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
+
+    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+  </p>
+{{/profile-header}}
+
+<hr>
+
+<h3 class="header-medium">Housing Occupancy</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=housingOccupancy
+      t1=model.y2011_2015.housing_occupancy
+      t2=model.y2006_2010.housing_occupancy
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Units in Structure</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=unitsInStructure
+      t1=model.y2011_2015.units_in_structure
+      t2=model.y2006_2010.units_in_structure
+    }}
+  </div>
+</div>
+<hr>
+
+<h3 class="header-medium">Year Structure Built</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=yearStructureBuilt
+      t1=model.y2011_2015.year_structure_built
+      t2=model.y2006_2010.year_structure_built
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Rooms</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=rooms
+      t1=model.y2011_2015.rooms
+      t2=model.y2006_2010.rooms
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Housing Tenure</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=housingTenure
+      t1=model.y2011_2015.housing_tenure
+      t2=model.y2006_2010.housing_tenure
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Year Householder Moved Into Unit</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=yearHouseholderMovedIntoUnit
+      t1=model.y2011_2015.year_householder_moved_into_unit
+      t2=model.y2006_2010.year_householder_moved_into_unit
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Vehicles Available</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=vehiclesAvailable
+      t1=model.y2011_2015.vehicles_available
+      t2=model.y2006_2010.vehicles_available
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Occupants per Room</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=occupantsPerRoom
+      t1=model.y2011_2015.occupants_per_room
+      t2=model.y2006_2010.occupants_per_room
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Value</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=value
+      t1=model.y2011_2015.value
+      t2=model.y2006_2010.value
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Mortgage Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=mortgageStatus
+      t1=model.y2011_2015.mortgage_status
+      t2=model.y2006_2010.mortgage_status
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Selected Monthly Owner Costs as a Percentage of Household Income</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=selectedMonthlyOwnerSmocapi
+      t1=model.y2011_2015.selected_monthly_owner_costs_as_a_percentage_of_household_income__smocapi_
+      t2=model.y2006_2010.selected_monthly_owner_costs_as_a_percentage_of_household_income__smocapi_
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Gross Rent</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=grossRent
+      t1=model.y2011_2015.gross_rent
+      t2=model.y2006_2010.gross_rent
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Gross Rent as a Percentage of Household Income (GRAPI)</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=grossRentGrapi
+      t1=model.y2011_2015.gross_rent_as_a_percentage_of_household_income__grapi_
+      t2=model.y2006_2010.gross_rent_as_a_percentage_of_household_income__grapi_
+    }}
+  </div>
+</div>
+
+{{outlet}}

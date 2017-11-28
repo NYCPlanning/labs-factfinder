@@ -15,6 +15,10 @@ body {
   }
 }
 
+.relative {
+  position: relative;
+}
+
 .site-header {
   position: relative;
   z-index: 2;
@@ -39,9 +43,18 @@ body {
   @include breakpoint(large) {
     z-index: 1;
     overflow: hidden;
+  }
 
-    .cell {
-      @include xy-cell-block($vertical:true);
+  .overflow-y-grid {
+
+    @include breakpoint(large) {
+      @include xy-grid(vertical, true);
+      height: calc(100vh - 7.25rem);
+      overflow: hidden;
+
+      > .cell {
+        @include xy-cell-block($vertical:true);
+      }
     }
   }
 }
@@ -73,22 +86,30 @@ body {
   @include xy-cell-static(full,false,0);
   position: relative;
   z-index: 1;
-  height: calc(50vh);
+  height: 50vh;
 
   @include breakpoint(large) {
     height: 100%;
   }
 }
 
-.report-map-container {
-  margin-bottom: $global-margin;
-  height: 50vh;
+.profile-map-container {
+  height: 30vh;
   width: 100%;
   border: 1px solid $medium-gray;
 
   @include breakpoint(large) {
-    height: calc(100vh - 22rem);
+    height: 100%;
   }
+}
+
+.edit-selection-button {
+  position: absolute;
+  z-index: 2;
+  top: rem-calc(10);
+  right: rem-calc(10);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  border-radius: 4px;
 }
 
 .map-utility-box {
@@ -160,24 +181,15 @@ body {
   }
 }
 
-.report-content > .cell,
-.report-sidebar {
+.profile-content > .cell,
+.profile-sidebar {
   padding: 0 rem-calc(20);
 }
 
-.report-content > .cell {
+.profile-content > .cell {
 
   @include breakpoint(large) {
     padding-left: 0;
-  }
-}
-
-.overflow-y-grid {
-
-  @include breakpoint(large) {
-    @include xy-grid(vertical, true);
-    height: calc(100vh - 7.25rem);
-    overflow: hidden;
   }
 }
 

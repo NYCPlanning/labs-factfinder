@@ -40,8 +40,8 @@ export default {
         source: 'census-geoms',
         'source-layer': 'census-geoms-blocks',
         paint: {
-          'line-color': 'rgba(0, 0, 0, 1)',
-          'line-opacity': 0.3,
+          'line-color': '#444',
+          'line-opacity': 0.5,
           'line-width': {
             stops: [
               [

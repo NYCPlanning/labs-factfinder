@@ -1,0 +1,195 @@
+{{#profile-header
+  profile=profile
+  title="Economic Profile"
+  data=rawData
+  mode=profile.mode
+}}
+  <p class="text-tiny">
+    ACS data are derived from a survey and are subject to sampling variability.
+    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
+
+    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+  </p>
+{{/profile-header}}
+
+<hr>
+
+<h3 class="header-medium">Employment Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=employmentStatus
+      t1=model.y2011_2015.employment_status
+      t2=model.y2006_2010.employment_status
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Commute to Work</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=commuteToWork
+      t1=model.y2011_2015.commute_to_work
+      t2=model.y2006_2010.commute_to_work
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Occupation</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=occupation
+      t1=model.y2011_2015.occupation
+      t2=model.y2006_2010.occupatione
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Industry</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=industry
+      t1=model.y2011_2015.industry
+      t2=model.y2006_2010.industryage
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Class of Worker</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=classOfWorker
+      t1=model.y2011_2015.class_of_worker
+      t2=model.y2006_2010.class_of_worker
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Income and Benefits</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=incomeAndBenefits
+      t1=model.y2011_2015.income_and_benefits
+      t2=model.y2006_2010.income_and_benefits
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Earnings</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=earnings
+      t1=model.y2011_2015.earnings
+      t2=model.y2006_2010.earningsage
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Health Insurance Coverage</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=healthInsuranceCoverage
+      t1=model.y2011_2015.health_insurance_coverage
+      t2=model.y2006_2010.health_insurance_coverage
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Income in the Past 12 Months Below Poverty Level</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=incomePast12MonthsBelowPoverty
+      t1=model.y2011_2015.income_in_past_12_months_is_below_the_poverty_level
+      t2=model.y2006_2010.income_in_past_12_months_is_below_the_poverty_level
+    }}
+  </div>
+</div>
+
+<hr>
+
+<h3 class="header-medium">Ratio of Income to Poverty Level</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{acs-table 
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=ratioOfIncomeToPovertyLevel
+      t1=model.y2011_2015.ratio_of_income_to_poverty_level
+      t2=model.y2006_2010.ratio_of_income_to_poverty_level
+    }}
+  </div>
+</div>
+
+{{outlet}}

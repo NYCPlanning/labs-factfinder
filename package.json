@@ -24,6 +24,7 @@
     "ember-cli": "~2.14.0",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.3.0",
+    "ember-cli-data-export": "^0.1.29",
     "ember-cli-dependency-checker": "^1.3.0",
     "ember-cli-eslint": "^4.2.2",
     "ember-cli-foundation-6-sass": "0.0.24",
@@ -36,6 +37,8 @@
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
+    "ember-composable-helpers": "^2.0.3",
+    "ember-concurrency": "^0.8.12",
     "ember-d3": "^0.3.4",
     "ember-data": "~2.14.3",
     "ember-decorators": "^1.3.1",
@@ -46,6 +49,8 @@
     "ember-mapbox-gl-draw": "^1.1.0",
     "ember-math-helpers": "^2.3.0",
     "ember-native-dom-helpers": "^0.5.4",
+    "ember-power-select": "^1.10.1",
+    "ember-promise-helpers": "^1.0.3",
     "ember-resize": "0.0.17",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.14.0",
@@ -66,6 +71,7 @@
   "private": true,
   "dependencies": {
     "@turf/bbox": "^5.0.0",
+    "@turf/buffer": "^5.0.4",
     "babel-eslint": "^8.0.1",
     "ember-jane-maps": "0.0.7",
     "numeral": "^2.0.6"

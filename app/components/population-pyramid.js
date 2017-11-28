@@ -11,14 +11,17 @@ import HorizontalBar from '../components/horizontal-bar';
 const translation = (x, y) => `translate(${x},${y})`;
 
 export default HorizontalBar.extend({
+
+  classNames: ['population-pyramid'],
+
   margin: {
-    top: 25,
+    top: 10,
     right: 10,
-    bottom: 50,
+    bottom: 123,
     left: 10,
     middle: 28,
   },
-  height: 316,
+  height: 375,
 
   createChart: function createChart() {
     let svg = this.get('svg');
@@ -49,12 +52,6 @@ export default HorizontalBar.extend({
 
       svg.append('g')
         .attr('class', 'axis y-axis-left');
-
-      svg.append('text')
-        .attr('class', 'label-male');
-
-      svg.append('text')
-        .attr('class', 'label-female');
     }
 
     this.set('svg', svg);
@@ -64,7 +61,6 @@ export default HorizontalBar.extend({
   updateChart() {
     const svg = this.get('svg');
     const data = this.get('data.pyramidData');
-    const totals = this.get('data.totals');
 
     // get the largest of largest (percent + percent_moe)
     const maxValue = max([
@@ -94,8 +90,8 @@ export default HorizontalBar.extend({
 
       return `
         The ${type} population aged ${yAxisFormat(d.group)}
-        is estimated at ${numeral(percent).format('0.0%')}±${numeral(percentM).format('0.0%')} of the total population,
-        or ${numeral(estimate).format('0,0')}±${numeral(moe).format('0,0')} people.
+        is estimated at ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small> of the total population,
+        or ${numeral(estimate).format('0,0')} <small>(±${numeral(moe).format('0,0')})</small> people.
       `;
     };
 
@@ -184,23 +180,6 @@ export default HorizontalBar.extend({
       .call(xAxisRight);
 
     // update positioning and text of top-labels
-
-    const totalMalePercent = totals.male.percent;
-    const totalFemalePercent = totals.female.percent;
-    const totalMalePercentM = totals.male.percent_m;
-    const totalFemalePercentM = totals.female.percent_m;
-
-    svg.select('.label-male')
-      .text(`Male | ${numeral(totalMalePercent).format('0.0%')}±${numeral(totalMalePercentM).format('0.0%')}`)
-      .attr('text-anchor', 'end')
-      .attr('x', (width / 2) - margin.middle)
-      .attr('y', -8);
-
-    svg.select('.label-female')
-      .text(`Female | ${numeral(totalFemalePercent).format('0.0%')}±${numeral(totalFemalePercentM).format('0.0%')}`)
-      .attr('text-anchor', 'start')
-      .attr('x', (width / 2) + margin.middle)
-      .attr('y', -8);
 
     // draw main bars
     const leftBars = svg.select('.male')

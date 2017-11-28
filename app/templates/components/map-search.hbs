@@ -1,0 +1,58 @@
+{{input type='text'
+  placeholder='Search...'
+  class='map-search-input'
+  value=searchTerms
+  focus-in=(action 'handleFocusIn')
+  focus-out=(action 'handleFocusOut')}}
+
+{{#if searchTerms}}
+  <button class="close-button" aria-label="Clear Search" type="button" {{action 'clear'}}>
+    <span aria-hidden="true">&times;</span>
+  </button>
+{{else}}
+  <span class="search-icon">{{fa-icon "search"}}</span>
+{{/if}}
+<ul class="search-results no-bullet{{if resultsCount ' has-results'}}{{if focused ' focused'}}">
+  {{#if (is-fulfilled results)}}
+  {{#each-in (group-by "type" results.value) as |type rows|}}
+    <li>
+      {{#if (eq type 'block')}}
+        <h4 class="header-small results-header">2010 Census Blocks</h4>
+      {{else if (eq type 'tract')}}
+        <h4 class="header-small results-header">2010 Census Tracts</h4>
+      {{else if (eq type 'nta')}}
+        <h4 class="header-small results-header">Neighborhoods</h4>
+      {{else if (eq type 'puma')}}
+        <h4 class="header-small results-header">PUMAs</h4>
+      {{else}}
+        <h4 class="header-small results-header">Add Map Pin</h4>
+      {{/if}}
+    </li>
+    {{#each rows as |result|}}
+      <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
+        {{#if (eq type 'block')}}
+          <span class="icon polygon small"></span>
+        {{else if (eq type 'tract')}}
+          <span class="icon polygon"></span>
+        {{else if (eq type 'nta')}}
+          <span class="icon polygon large"></span>
+        {{else if (eq type 'puma')}}
+          <span class="icon polygon large"></span>
+        {{else}}
+          {{fa-icon "map-pin"}}
+        {{/if}}
+        {{result.label}}
+      </li>
+    {{/each}}
+  {{/each-in}}
+{{/if}}
+
+</ul>
+{{#if (is-pending results)}}
+  <div class="search-results--loading">Loading...</div>
+{{/if}}
+
+{{#if (and searchTerms (not resultsCount) (is-fulfilled results))}}
+  <div class="search-results--loading">No Results Found</div>
+{{/if}}
+{{yield}}

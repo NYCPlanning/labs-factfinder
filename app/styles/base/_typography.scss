@@ -138,6 +138,13 @@ button {
   line-height: 1.5;
 }
 
+.text-weight-normal {
+  font-weight: $global-weight-normal;
+}
+.text-weight-bold {
+  font-weight: $global-weight-bold;
+}
+
 .pipe {
   opacity: 0.25;
   margin-right: 0.25em;
@@ -156,6 +163,7 @@ button {
 .light-gray { color: $light-gray; }
 .medium-gray { color: $medium-gray; }
 .dark-gray { color: $dark-gray; }
+.black { color: $black; }
 .dcp-orange { color: $dcp-orange; }
 .dcp-yellow { color: $dcp-yellow; }
 .a11y-yellow { color: $a11y-yellow; }
@@ -188,99 +196,6 @@ button {
 
 
 //
-// Lot Styles
-// --------------------------------------------------
-.lot-section-header {
-  margin: 1rem 0 rem-calc(6);
-}
-
-.lot-zoning-info {
-  font-size: rem-calc(13);
-}
-
-.lot-zoning-list {
-  margin: $paragraph-margin-bottom/2 0;
-  list-style: none;
-
-  li {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .menu-text {
-    font-weight: $global-weight-bold;
-    padding: rem-calc(4) 0;
-  }
-
-  .button {
-    font-size: rem-calc(13);
-    padding: rem-calc(4) rem-calc(6);
-    margin: 0;
-  }
-}
-
-
-//
-// Data Grid
-// --------------------------------------------------
-.data-grid {
-  @include xy-grid;
-  padding: rem-calc(3) 0;
-
-  &:hover {
-    background-color: $light-gray;
-  }
-
-  @include breakpoint(medium) {
-    @include xy-gutters(
-      $gutters: rem-calc(10),
-      $gutter-type: margin,
-      $gutter-position: right left,
-      $negative: true
-    );
-  }
-
-  .data-label {
-    @include xy-cell-static(full,false,0);
-    padding: rem-calc(2) rem-calc(4);
-    background-color: $light-gray;
-    color: $dark-gray;
-    font-size: rem-calc(10);
-    line-height: 1.2;
-
-    @include breakpoint(medium) {
-      @include xy-cell-static(
-        $size: 4,
-        $gutter-output: true,
-        $gutters: rem-calc(10),
-        $gutter-type: margin,
-        $breakpoint: null,
-        $vertical: false
-      );
-    }
-
-  }
-
-  .datum {
-    @include xy-cell-static(full,false,0);
-    font-size: rem-calc(13);
-    line-height: 1.2;
-
-    @include breakpoint(medium) {
-      @include xy-cell-static(
-        $size: 8,
-        $gutter-output: true,
-        $gutters: rem-calc(10),
-        $gutter-type: margin,
-        $breakpoint: null,
-        $vertical: false
-      );
-    }
-  }
-}
-
-
-//
 // Ember Tooltip
 // --------------------------------------------------
 .ember-tooltip {
@@ -289,41 +204,54 @@ button {
 
 
 //
-// Reports
+// Profiles
 // --------------------------------------------------
-.report-geographies-list {
-  font-size: rem-calc(11);
-  background-color: rgba(0,0,0,0.03);
-  padding: rem-calc(10);
-  border: 1px solid $medium-gray;
-  border-bottom: none;
+.profile-controls {
+  margin-bottom: $global-margin;
+}
 
-  ul {
-    color: $dark-gray;
-    max-height: 6em;
-    overflow: auto;
-    margin: 0;
+.profile-geographies {
+  max-height: 5.75em;
+  overflow: auto;
+  font-size: rem-calc(12);
+  margin-bottom: $global-margin/2;
+
+  .profile-geographies-header {
+    display: inline;
+    font-size: rem-calc(14);
+  }
+
+  .profile-geographies-list {
+    display: inline;
+    font-size: rem-calc(12);
   }
 }
 
-.report-header {
-  margin-bottom: $global-margin;
+.profile-comparison-controls {
+  font-size: rem-calc(14);
+  margin-bottom: $global-margin/2;
+}
 
-  h1, h2, p {
+.profile-reliability-controls {
+  font-size: rem-calc(14);
+}
+
+.profile-header {
+
+  h1 {
     margin-bottom: 0.25rem;
   }
 
-  p {
-    max-width: 35em;
+  h1, h2, p, ul, .profile-geographies {
     @include breakpoint(large) {
-      margin-left: auto;
+      max-width: rem-calc(660);
     }
   }
 }
 
-.report-menus {
+.profile-menus {
   @include clearfix;
-  margin-top: -$global-margin;
+  margin-top: $global-margin;
   margin-bottom: $global-margin;
 
   @include breakpoint(medium) {
@@ -331,37 +259,18 @@ button {
   }
 
   @include breakpoint(large) {
-    margin-top: 0;
     padding-top: rem-calc(12);
   }
 }
 
-.report-mode {
-  font-weight: $global-weight-bold;
-  margin-bottom: $global-margin/2;
-  background-color: $white;
+.profile-mode {
 
-  @include breakpoint(medium) {
-    font-size: rem-calc(10);
-    text-transform: uppercase;
-    float: right;
-    white-space: nowrap;
-    margin-top: rem-calc(-10);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+  h2 + h2 {
+    margin-top: $global-margin*-0.75;
   }
 
-  .fa {
-  }
-
-  li.active {
-    a {
-      background-color: $primary-color;
-      color: $white;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
-
-    }
+  a {
+    color: inherit;
   }
 }
 
@@ -417,19 +326,15 @@ button {
   }
 }
 
-.report-extras {
-  font-size: rem-calc(10);
-  text-transform: uppercase;
-  margin-bottom: $global-margin/2;
-}
-
 
 //
 // Tables
 // --------------------------------------------------
-table,
+.table-scroll table,
 .table-scroll {
   min-width: 100%;
+  transform:rotateX(180deg);
+  margin: 0;
 }
 
 .table-scroll-vert {
@@ -493,7 +398,7 @@ tbody td:first-child {
 
 .row-highlight {
   td {
-    background-color: transparentize($lu-peach, 0.5);
+    background-color: transparentize($lu-peach, 0.7);
     // font-weight: $global-weight-bold;
   }
 }
@@ -506,18 +411,20 @@ tbody td:first-child {
   }
 }
 
-.row-indent td:first-child {
-  padding-left: rem-calc(21);
+.row-indent {
+  &-x1 td:first-child {
+    padding-left: rem-calc(21);
+  }
 
-  &-x2 {
+  &-x2 td:first-child {
     padding-left: rem-calc(35);
   }
 
-  &-x3 {
+  &-x3 td:first-child {
     padding-left: rem-calc(49);
   }
 
-  &-x4 {
+  &-x4 td:first-child {
     padding-left: rem-calc(63);
   }
 }
@@ -526,6 +433,19 @@ tbody td:first-child {
   border-left: 1px solid $medium-gray;
 }
 
+.table-copy-ui {
+  position: relative;
+
+  a {
+    position: absolute;
+    right: $global-margin;
+    bottom: 0;
+    margin: 0;
+    border-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
 
 //
 // Callouts
@@ -540,4 +460,25 @@ tbody td:first-child {
   @include breakpoint(large) {
     margin-bottom: rem-calc(40);
   }
+}
+
+.profile-header .callout {
+
+  @include breakpoint(medium) {
+    margin-bottom: $global-margin;
+  }
+}
+
+
+//
+// Statistics
+// --------------------------------------------------
+.stat-header {
+  font-size: 1rem;
+  margin-bottom: rem-calc(5);
+}
+.stat-footer {
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
