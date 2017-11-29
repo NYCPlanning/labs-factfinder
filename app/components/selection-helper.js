@@ -8,7 +8,7 @@ export default Ember.Component.extend({
       const variable = this.get('variable');
       this.sendAction('sliderChange', value, variable);
     },
-    toggleVisibility() {
+    toggleEnabled() {
       const variable = this.get('variable');
       this.sendAction('toggleEnabled', variable);
     },
