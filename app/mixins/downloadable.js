@@ -9,4 +9,10 @@ export default Ember.Mixin.create({
       rawData: model,
     });
   },
+
+  afterModel(model, transition) {
+    const { targetName } = transition;
+    this._super(model, transition);
+    this.controllerFor('profile').set('tab', targetName);
+  },
 });

@@ -2,23 +2,114 @@
   <div class="cell shrink">
     <div class="profile-menus">
       <ul class="menu tabs vertical medium-horizontal text-center">
-        <li>{{link-to 'Census' 'profile.census'}}</li>
+        <li>
+          {{#if (eq tab 'profile.census')}}
+            {{#tab-dropdown
+              tabName='Census'
+              tabNameSmall=''
+              as |item| }}
+              <li>{{#item.scroll-to href='#'}}Section{{/item.scroll-to}}</li>
+            {{/tab-dropdown}}
+          {{else}}
+            {{link-to 'Census' 'profile.census'}}
+          {{/if}}
+        </li>
         {{#if (eq summaryLevel 'blocks')}}
           <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Social <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
           <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
         {{else}}
-          <li>{{#link-to 'profile.demographic'}}Demographic  <small>(ACS)</small>{{/link-to}}</li>
-          <li>{{#link-to 'profile.social'}}Social  <small>(ACS)</small>{{/link-to}}</li>
-          <li>{{#link-to 'profile.economic'}}Economic  <small>(ACS)</small>{{/link-to}}</li>
-          <li>{{#link-to 'profile.housing'}}Housing  <small>(ACS)</small>{{/link-to}}</li>
+          <li>
+            {{#if (eq tab 'profile.demographic')}}
+              {{#tab-dropdown
+                tabName='Demographic'
+                tabNameSmall='(ACS)'
+                as |item| }}
+                <li>{{#item.scroll-to href='#sex-and-age'}}Age and Sex{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#mutually-exclusive-race-hispanic-origin'}}Mutually Exclusive Race / Hispanic Origin{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#hispanic-subgroup'}}Hispanic Subgroup{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#asian-subgroup'}}Asian Subgroup{{/item.scroll-to}}</li>
+              {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.demographic'}}Demographic <small>(ACS)</small>{{/link-to}}
+            {{/if}}
+          </li>
+          <li>
+            {{#if (eq tab 'profile.social')}}
+              {{#tab-dropdown
+                tabName='Social'
+                tabNameSmall='(ACS)'
+                as |item| }}
+                <li>{{#item.scroll-to href='#household-type'}}Household Type{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#relationship-to-head-of-household'}}Relationship To Head Of Household (Householder{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#grandparents'}}Grandparents{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#school-enrollment'}}School Enrollment{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#educational-attainment'}}Educational Attainment (Highest Grade Completed{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#veteran-status'}}Veteran Status{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#disability-status-of-the-civilian-noninstitutionalized-population'}}Disability Status Of The Civilian Noninstitutionalized Population{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#residence-1-year-ago'}}Residence 1 Year Ago{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#place-of-birth'}}Place Of Birth{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#us-citizenship-status'}}U.S. Citizenship Status{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#year-of-entry'}}Year Of Entry{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#language-spoken-at-home'}}Language Spoken At Home{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#ancestry'}}Ancestry{{/item.scroll-to}}</li>
+              {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.social'}}Social <small>(ACS)</small>{{/link-to}}
+            {{/if}}
+          </li>
+          <li>
+            {{#if (eq tab 'profile.economic')}}
+              {{#tab-dropdown
+                tabName='Economic'
+                tabNameSmall='(ACS)'
+                as |item| }}
+                <li>{{#item.scroll-to href='#employment-status'}}Employment Status{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#commute-to-work'}}Commute to Work{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#occupation'}}Occupation{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#industry'}}Industry{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#class-of-worker'}}Class of Worker{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#income-and-benefits'}}Income and Benefits{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#earnings'}}Earnings{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#health-insurance-coverage'}}Health Insurance Coverage{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#income-in-the-past-12-months-below-poverty-level'}}Income in the Past 12 Months Below Poverty Level{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#ratio-of-income-to-poverty-level'}}Ratio of Income to Poverty Level{{/item.scroll-to}}</li>
+              {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.economic'}}Economic <small>(ACS)</small>{{/link-to}}
+            {{/if}}
+          </li>
+          <li>
+            {{#if (eq tab 'profile.housing')}}
+              {{#tab-dropdown
+                tabName='Housing'
+                tabNameSmall='(ACS)'
+                as |item| }}
+                <li>{{#item.scroll-to href='#housing-occupancy'}}Housing Occupancy{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#units-in-structure'}}Units in Structure{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#year-structure-built'}}Year Structure Built{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#rooms'}}Rooms{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#housing-tenure'}}Housing Tenure{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#year-householder-moved-into-unit'}}Year Householder Moved Into Unit{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#vehicles-available'}}Vehicles Available{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#occupants-per-room'}}Occupants per Room{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#value'}}Value{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#mortgage-status'}}Mortgage Status{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#selected-monthly-owner-costs-as-a-percentage-of-household-income'}}Selected Monthly Owner Costs as a Percentage of Household Income{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#gross-rent'}}Gross Rent{{/item.scroll-to}}</li>
+                <li>{{#item.scroll-to href='#gross-rent-as-a-percentage-of-household-income'}}Gross Rent as a Percentage of Household Income (GRAPI){{/item.scroll-to}}</li>
+              {{/tab-dropdown}}
+            {{else}}
+              {{#link-to 'profile.housing'}}Housing <small>(ACS)</small>{{/link-to}}
+            {{/if}}
+          </li>
         {{/if}}
       </ul>
     </div>
 
   </div>
-  <div class="cell auto">
+  <div class="cell auto" id="profile-content">
     {{outlet}}
   </div>
 </div>

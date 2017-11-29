@@ -276,7 +276,15 @@ button {
 
 .menu.tabs {
 
+  li {
+    position: relative;
+  }
+
   @include breakpoint(small only) {
+
+    li {
+      border-top: 1px solid $medium-gray;
+    }
 
     a:not(.active) {
       background-color: rgba(0,0,0,0.03);
@@ -291,7 +299,6 @@ button {
   @include breakpoint(medium) {
     font-size: rem-calc(12);
     margin-bottom: -1px;
-    // flex-wrap: nowrap;
     float: left;
 
     li {
@@ -303,7 +310,6 @@ button {
         border: 1px solid transparent;
         border-bottom-width: 0;
         background-color: transparent;
-        white-space: nowrap;
 
         &:not(.active) {
           border-right-color: transparent;
@@ -323,6 +329,56 @@ button {
   .disabled {
     color: $medium-gray;
     cursor: text;
+  }
+
+  .has-dropdown {
+    padding-right: 2rem;
+  }
+
+  .fa-caret-down {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $medium-gray;
+    padding: 0.7rem 0.8rem 0.7rem 0.6rem;
+
+    &:hover {
+      color: $dark-gray;
+      cursor: pointer;
+    }
+
+    &.flip {
+      transform: scaleY(-1);
+    }
+  }
+
+  .tab-dropdown {
+    font-size: rem-calc(12);
+
+    @include breakpoint(medium) {
+      position: absolute;
+      top: 100%;
+      right: auto;
+      left: 1px;
+      z-index: 2;
+      width: rem-calc(240);
+      max-width: 90vw;
+      margin-top: -1px;
+      box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    li {
+      border-top: 1px solid #eee;
+      background-color: $white;
+
+      a {
+        line-height: 1.2;
+        box-shadow: none;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+    }
   }
 }
 
