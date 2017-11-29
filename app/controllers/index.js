@@ -128,7 +128,7 @@ export default Ember.Controller.extend({
       const intersectionSQL = generateIntersectionSQL(summaryLevel, geometry);
       carto.SQL(intersectionSQL, 'geojson', 'post')
         .then((FC) => {
-          selection.handleSelectedFeatures(FC.features);
+          selection.handleSelectedFeatures(FC.features, false);
         });
     },
 

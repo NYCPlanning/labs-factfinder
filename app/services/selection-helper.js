@@ -49,7 +49,7 @@ export default Ember.Service.extend({
 
     carto.SQL(SQL, 'geojson', 'post')
       .then(({ features }) => {
-        this.get('selection').handleSelectedFeatures(features);
+        this.get('selection').handleSelectedFeatures(features, false);
       });
   },
 
@@ -150,16 +150,16 @@ export default Ember.Service.extend({
       source,
       'source-layer': sourceLayer,
       paint: {
-        'line-color': 'rgba(79, 220, 79, 1)',
+        'line-color': 'rgba(38, 91, 217, 1)',
         'line-width': {
           stops: [
             [
               10,
-              1,
+              2,
             ],
             [
               15,
-              8,
+              20,
             ],
           ],
         },
@@ -171,11 +171,22 @@ export default Ember.Service.extend({
             ],
             [
               15,
-              8,
+              15,
             ],
           ],
         },
-        'line-offset': 3,
+        'line-offset': {
+          stops: [
+            [
+              10,
+              1,
+            ],
+            [
+              15,
+              3,
+            ],
+          ],
+        },
         'line-opacity': 1,
       },
       filter,
