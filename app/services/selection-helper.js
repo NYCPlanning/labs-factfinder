@@ -9,6 +9,8 @@ const { service } = Ember.inject;
 
 const configs = [
   {
+    title: 'Families living below poverty line',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     type: 'percentage',
     variable: 'fambwpv',
     table: 'economic',
@@ -18,6 +20,8 @@ const configs = [
     enabled: false,
   },
   {
+    title: 'Population under age 18',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     type: 'percentage',
     variable: 'popu181',
     table: 'demographic',
@@ -31,7 +35,6 @@ const configs = [
 
 export default Ember.Service.extend({
   selection: service(),
-  show: true,
   configs,
   summaryLevel: 'tracts',
 
@@ -56,6 +59,13 @@ export default Ember.Service.extend({
     const allConfigs = this.get('configs');
     const index = allConfigs.map(d => d.variable).indexOf(variable);
     Ember.set(this.get('configs').objectAt(index), 'range', range);
+  },
+
+  toggleEnabled(variable) {
+    const allConfigs = this.get('configs');
+    const index = allConfigs.map(d => d.variable).indexOf(variable);
+    const enabled = this.get('configs').objectAt(index).enabled;
+    Ember.set(this.get('configs').objectAt(index), 'enabled', !enabled);
   },
 
   getData({ variable, table }) {

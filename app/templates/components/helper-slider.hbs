@@ -1,10 +1,36 @@
-{{range-slider
-  start=start
-  min=min
-  max=max
-  step=step
-  connect=connect
-  behaviour=behaviour
-  on-change="handleSliderChange"
-}}
-{{yield}}
+<div class="layer-menu-item" {{action 'toggleVisibility'}}>
+  {{!-- {{#if (or warning titleTooltip)}}
+    <span class="layer-tooltips-container">
+      {{#if warning}}
+        {{info-tooltip
+          iconName='warning'
+          tip='Some information may not visible at this zoom level.'
+          classNames='layer-warning'
+          tooltipClass='tooltip--layer-warning'
+        }}
+      {{/if}}
+      {{#if titleTooltip}}
+        {{info-tooltip
+          tip=titleTooltip
+          classNames='layer-info'
+          tooltipClass='tooltip--layer-info'
+        }}
+      {{/if}}
+    </span>
+  {{/if}} --}}
+  {{switch-toggle checked=enabled}}
+  {{title}}
+</div>
+
+{{#if enabled}}
+  {{range-slider
+    start=start
+    min=min
+    max=max
+    step=step
+    connect=connect
+    behaviour=behaviour
+    on-change="handleSliderChange"
+  }}
+  {{yield}}
+{{/if}}

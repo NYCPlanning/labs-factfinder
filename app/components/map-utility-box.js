@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
-  advanced: false,
+  advanced: true,
 
   summaryLevel: alias('selection.summaryLevel'),
 
@@ -37,6 +37,11 @@ export default Ember.Component.extend({
 
     handleSliderChange(sliderValue, variable) {
       this.get('selectionHelper').updateHelperRange(variable, sliderValue);
+    },
+
+    toggleEnabled(variable) {
+      console.log('toggleEnabled')
+      this.get('selectionHelper').toggleEnabled(variable);
     },
 
     addHighlightedToSelection() {

@@ -1,0 +1,13 @@
+// --------------------------------------------------
+// Module: Selection Helpers
+// --------------------------------------------------
+
+.selection-helpers {
+  margin-right: -$global-margin;
+  margin-left: -$global-margin;
+}
+
+.selection-helper {
+  padding: $global-margin;
+  border-top: 1px solid $medium-gray;
+}
