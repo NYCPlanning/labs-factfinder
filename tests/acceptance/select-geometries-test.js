@@ -29,7 +29,7 @@ test('visiting /', async function(assert) {
 test('visiting /, see no tracks selected', async function(assert) {
   await visit('/');
 
-  assert.equal($(find('.map-utility-box .stat')).text().trim(), '0');
+  assert.equal($(find('.map-utility-box .count')).text().trim(), '0');
 });
 
 test('visiting /, adds tracts, counts number of tracts, explodes tracts to blocks', async function(assert) {
@@ -38,10 +38,9 @@ test('visiting /, adds tracts, counts number of tracts, explodes tracts to block
     indexController.get('selection').handleSelectedFeatures(config.SAMPLE_SELECTION.features);
   });
 
-  assert.equal($(find('.map-utility-box .stat')).text().trim(), '5');
+  assert.equal($(find('.map-utility-box .count')).text().trim(), '5');
 
   await click('.explode-block a');
-  await waitUntil(() => ($(find('.map-utility-box .stat')).text().trim()) !== '5', { timeout: 5000 });
-  assert.equal($(find('.map-utility-box .stat')).text().trim(), '113');
+  await waitUntil(() => ($(find('.map-utility-box .count')).text().trim()) !== '5', { timeout: 5000 });
+  assert.equal($(find('.map-utility-box .count')).text().trim(), '113');
 });
-

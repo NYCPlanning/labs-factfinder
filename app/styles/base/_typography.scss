@@ -96,6 +96,17 @@ button {
   }
 }
 
+.view-profile-button {
+  font-size: rem-calc(24) !important;
+  padding: rem-calc(10);
+  line-height: 1.2;
+
+  small {
+    display: block;
+    color: $a11y-yellow;
+  }
+}
+
 .button.text-orange {
   color: $primary-color;
 }
@@ -537,4 +548,28 @@ tbody td:first-child {
   display: block;
   line-height: 1.2;
   margin-bottom: 0.5rem;
+}
+
+
+//
+// Draw Tool
+// --------------------------------------------------
+.selection-tool--draw {
+  margin: $global-margin 0 0;
+
+  @include breakpoint(medium) {
+    margin-top: 0;
+  }
+
+  &.active, &.button:focus {
+    // @include button-style($primary-color, auto, $white);
+    color: $white;
+    background-color: $primary-color;
+  }
+
+  .fa {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: rem-calc(19);
+  }
 }

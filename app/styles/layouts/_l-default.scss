@@ -28,17 +28,7 @@ body {
   position: relative;
   z-index: 2;
   height: calc(100vh - 6rem);
-
-  a {
-    @include breakpoint(small only) {
-      padding-right: 0.75rem;
-      padding-left: 0.75rem;
-    }
-  }
-
-  li:hover {
-    background-color: rgba(0,0,0,0.03);
-  }
+  background-color: $white;
 
   @include breakpoint(large) {
     z-index: 1;
@@ -75,8 +65,8 @@ body {
 
   @include breakpoint(large) {
     position: absolute;
-    top: 20px;
-    left: 60px;
+    top: rem-calc(58);
+    left: 50px;
     background-color: $light-gray;
     border-radius: 4px;
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
@@ -84,6 +74,17 @@ body {
     li:not(:last-child) {
       border-right: 1px solid rgba(0,0,0,0.1);
     }
+  }
+
+  a {
+    @include breakpoint(small only) {
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+    }
+  }
+
+  li:hover {
+    background-color: rgba(0,0,0,0.03);
   }
 }
 
@@ -124,11 +125,11 @@ body {
 
   @include breakpoint(large) {
     position: absolute;
-    top: 40px;
-    left: 60px;
-    z-index: 2;
-    margin-top: rem-calc(24);
-    width: rem-calc(350);
+    top: 10px;
+    left: 50px;
+    z-index: 4;
+    margin-top: rem-calc(92);
+    width: rem-calc(320);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
   }
 
@@ -137,51 +138,55 @@ body {
   }
 
   .button--clear-selection {
-    padding: 0.375rem;
-
-    @include breakpoint(large) {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: $white;
-      margin-top: rem-calc(10);
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-      font-size: rem-calc(12);
-      padding: 0.75em 0.875em;
-      border-radius: 4px;
-    }
+    margin: 0 0 0 $global-margin;
   }
 }
 
-.selection-tools {
+.search {
+  position: relative;
+  bottom: 50vh;
+  left: -$global-margin;
+  z-index: 100;
+  margin-left: 50px;
+  margin-bottom: rem-calc(-40);
 
   @include breakpoint(large) {
     position: absolute;
     top: 0;
-    right: auto;
-    left: calc(100% + 10px);
-    z-index: 2;
+    bottom: auto;
+    left: 0;
+    width: rem-calc(300);
+    margin-left: 0;
+    margin-top: rem-calc(-92);
+  }
+}
+
+.call-to-action {
+  margin-bottom: $global-margin;
+
+  .medium-shrink {
+    @include breakpoint(medium) {
+      padding-left: rem-calc(10);
+    }
+  }
+}
+
+.selection-helpers {
+  transition: all 0.2s;
+
+  &.closed {
+    display: none;
   }
 
-  button {
-    @include button(false, $white, #f2f2f2, $primary-color, solid);
-    border-radius: 4px;
-    white-space: nowrap;
-    font-size: rem-calc(12);
-    padding: rem-calc(6) rem-calc(10) rem-calc(5) rem-calc(8);
+  @include breakpoint(large) {
+    height: calc(100vh - #{rem-calc(472)});
+    min-height: rem-calc(200);
+    overflow: auto;
 
-    @include breakpoint(large) {
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-    }
-
-    &.active {
-      @include button-style($primary-color, auto, $white);
-    }
-
-    .fa {
-      display: inline-block;
-      vertical-align: middle;
-      font-size: rem-calc(19);
+    &.closed {
+      display: block;
+      height: 0;
+      min-height: 0;
     }
   }
 }
