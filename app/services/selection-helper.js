@@ -33,13 +33,17 @@ export default Ember.Service.extend({
   selection: service(),
   show: true,
   configs,
+  summaryLevel: 'tracts',
 
   addHighlightedToSelection() {
     const geoids = this.get('filteredGeoids');
     const geoidQuotedStrings = geoids.map(d => `'${d}'`);
 
+    const summaryLevel = this.get('selection.summaryLevel');
+    const subQuery = summaryLevels[summaryLevel](false);
+
     const SQL = `
-      SELECT * FROM (${summaryLevels.tracts(false)}) a WHERE geoid IN (${geoidQuotedStrings});
+      SELECT * FROM (${subQuery}) a WHERE geoid IN (${geoidQuotedStrings});
     `;
 
     carto.SQL(SQL, 'geojson', 'post')
@@ -55,7 +59,7 @@ export default Ember.Service.extend({
   },
 
   getData({ variable, table }) {
-    const SQL = `SELECT geoid, c, e, m, p, z FROM ${table} WHERE variable ILIKE '${variable}' AND geotype = 'CT2010'`;
+    const SQL = `SELECT geoid, c, e, m, p, z FROM ${table} WHERE LOWER(variable) = LOWER('${variable}')`;
     return carto.SQL(SQL);
   },
 
@@ -93,7 +97,8 @@ export default Ember.Service.extend({
     });
 
     // keep only geoids that are present in all arrays in matchesByConfig
-    return matchesByConfig.reduce((agg, curr) => agg.filter(d => curr.includes(d)));
+    const filteredGeoids = matchesByConfig.reduce((agg, curr) => agg.filter(d => curr.includes(d)));
+    return filteredGeoids;
   },
 
   // returns a mapboxGL filter object based on filteredGeoids
@@ -106,13 +111,36 @@ export default Ember.Service.extend({
     return geoids;
   },
 
-  @computed('filter')
-  layer(filter) {
+  @computed('filter', 'selection.summaryLevel')
+  layer(filter, summaryLevel) {
+    let source;
+    let sourceLayer;
+
+    switch (summaryLevel) {
+      case 'tracts':
+        source = 'census-geoms';
+        sourceLayer = 'census-geoms-tracts';
+        break;
+
+      case 'ntas':
+        source = 'admin-boundaries';
+        sourceLayer = 'neighborhood-tabulation-areas';
+        break;
+
+      case 'pumas':
+        source = 'admin-boundaries';
+        sourceLayer = 'nyc-pumas';
+        break;
+
+      default:
+    }
+
+
     return {
-      id: 'helper-line',
+      id: `helper-line-${sourceLayer}`,
       type: 'line',
-      source: 'census-geoms',
-      'source-layer': 'census-geoms-tracts',
+      source,
+      'source-layer': sourceLayer,
       paint: {
         'line-color': 'rgba(79, 220, 79, 1)',
         'line-width': {

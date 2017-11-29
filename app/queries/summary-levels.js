@@ -32,4 +32,12 @@ export default {
       ntacode AS geoid
     FROM support_admin_ntaboundaries
   `,
+
+  pumas: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      puma AS geolabel,
+      puma AS geoid
+    FROM nyc_puma
+  `,
 };

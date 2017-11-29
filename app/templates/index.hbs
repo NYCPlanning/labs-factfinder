@@ -38,7 +38,16 @@
     {{/if}}
 
     {{#if selectionHelper.ready}}
-        {{map.layer layer=selectionHelper.layer}}
+        {{!-- even though they are the same layer, need 3 ifs so they are removed and added again when summarylevel changes --}}
+        {{#if (eq selection.summaryLevel 'tracts')}}
+          {{map.layer layer=selectionHelper.layer}}
+        {{/if}}
+        {{#if (eq selection.summaryLevel 'ntas')}}
+          {{map.layer layer=selectionHelper.layer}}
+        {{/if}}
+        {{#if (eq selection.summaryLevel 'pumas')}}
+          {{map.layer layer=selectionHelper.layer}}
+        {{/if}}
     {{/if}}
 
     {{map.layer-group config=layerGroups.subway visible=false}}
