@@ -40,14 +40,15 @@
   <button  {{action "toggleSelectionHelper"}}>Show Selection Helpers</button>
   {{#if selectionHelper.show}}
     {{#each selectionHelper.configs as |config|}}
-      {{range-slider
+      {{helper-slider
         start=config.range
         min=0
         max=100
         step=1
         connect=true
         behaviour="drag"
-        on-change="handleSliderChange"
+        action="handleSliderChange"
+        variable=config.variable
       }}
       Highlighting tracts where {{config.label}} is between {{config.range.[0]}}% and {{config.range.[1]}}%.
     {{/each}}
