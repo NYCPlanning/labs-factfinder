@@ -54,6 +54,11 @@ body {
 
       > .cell {
         @include xy-cell-block($vertical:true);
+
+        &.shrink {
+          overflow: visible;
+          z-index: 2;
+        }
       }
     }
   }
