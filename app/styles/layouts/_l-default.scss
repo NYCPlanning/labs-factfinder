@@ -28,17 +28,7 @@ body {
   position: relative;
   z-index: 2;
   height: calc(100vh - 6rem);
-
-  a {
-    @include breakpoint(small only) {
-      padding-right: 0.75rem;
-      padding-left: 0.75rem;
-    }
-  }
-
-  li:hover {
-    background-color: rgba(0,0,0,0.03);
-  }
+  background-color: $white;
 
   @include breakpoint(large) {
     z-index: 1;
@@ -84,6 +74,17 @@ body {
     li:not(:last-child) {
       border-right: 1px solid rgba(0,0,0,0.1);
     }
+  }
+
+  a {
+    @include breakpoint(small only) {
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+    }
+  }
+
+  li:hover {
+    background-color: rgba(0,0,0,0.03);
   }
 }
 
@@ -166,6 +167,26 @@ body {
   .medium-shrink {
     @include breakpoint(medium) {
       padding-left: rem-calc(10);
+    }
+  }
+}
+
+.selection-helpers {
+  transition: all 0.2s;
+
+  &.closed {
+    display: none;
+  }
+
+  @include breakpoint(large) {
+    height: calc(100vh - #{rem-calc(472)});
+    min-height: rem-calc(200);
+    overflow: auto;
+
+    &.closed {
+      display: block;
+      height: 0;
+      min-height: 0;
     }
   }
 }
