@@ -28,6 +28,28 @@ const configs = [
     data: null,
     enabled: false,
   },
+  {
+    title: 'Population 65 and over',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    type: 'percentage',
+    variable: 'pop65pl1',
+    table: 'demographic',
+    range: [0, 100],
+    label: 'percentage of the population 65 and over',
+    data: null,
+    enabled: false,
+  },
+  {
+    title: 'Population renting home',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    type: 'percentage',
+    variable: 'rochu',
+    table: 'housing',
+    range: [0, 100],
+    label: 'percentage of the population that rent their home',
+    data: null,
+    enabled: false,
+  },
 ];
 
 
@@ -71,16 +93,24 @@ export default Ember.Service.extend({
     return carto.SQL(SQL);
   },
 
-  @computed('configs.@each.data')
+  @computed('configs.@each.data', 'configs.@each.enabled')
   ready() {
+    console.log('checking ready')
     // check if all active configs have data
     const allConfigs = this.get('configs');
-    const allHaveData = allConfigs.reduce((acc, curr) => (!!(curr.data && acc)));
+    const enabledHelpers = allConfigs.filter(d => d.enabled);
+    if (enabledHelpers.length === 0) return false;
+
+    console.log('enabledHelpers', enabledHelpers)
+
+    const allHaveData = enabledHelpers.reduce((acc, config) => config.data && acc, true);
+
+    console.log('allHaveData', allHaveData)
 
     if (allHaveData) {
       return true;
     }
-    const promises = allConfigs.map(config => this.getData(config));
+    const promises = enabledHelpers.map(config => this.getData(config));
 
     Promise.all(promises)
       .then((promiseResults) => {
@@ -94,14 +124,17 @@ export default Ember.Service.extend({
   },
 
   // returns an array of geoids that match the current helper filters
-  @computed('configs.@each.range')
+  @computed('configs.@each.range', 'configs.@each.enabled')
   filteredGeoids() {
     const allConfigs = this.get('configs');
+    const enabledHelpers = allConfigs.filter(d => d.enabled);
+
+    console.log('filtering', enabledHelpers)
 
     // map configs into array of geoids where variable falls within the range
-    const matchesByConfig = allConfigs.map((config) => {
+    const matchesByConfig = enabledHelpers.map((config) => {
       const [min, max] = config.range;
-      return config.data.filter(d => d.p > min && d.p < max).map(d => d.geoid);
+      return config.data ? config.data.filter(d => d.p >= min && d.p <= max).map(d => d.geoid) : [];
     });
 
     // keep only geoids that are present in all arrays in matchesByConfig
@@ -121,6 +154,7 @@ export default Ember.Service.extend({
 
   @computed('filter', 'selection.summaryLevel')
   layer(filter, summaryLevel) {
+    console.log('generating layer')
     let source;
     let sourceLayer;
 
