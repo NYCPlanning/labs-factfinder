@@ -29,8 +29,6 @@
       {{/map.source}}
     {{/if}}
 
-
-
     {{#if selection.searchResultFeature}}
       {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
         {{source.layer layer=selection.searchResultLayer}}
@@ -46,7 +44,6 @@
     {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=(eq selection.summaryLevel 'ntas')}}
 
     {{map.layer-group config=layerGroups.nycPumas visible=(eq selection.summaryLevel 'pumas')}}
-
 
     {{#if selection.current}}
       {{#map.source

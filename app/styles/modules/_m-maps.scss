@@ -37,6 +37,10 @@
   }
 }
 
+.mapboxgl-ctrl-group > button {
+  border-radius: 0;
+}
+
 .find-me {
   position: absolute;
   top: 108px;
