@@ -493,3 +493,27 @@ tbody td:first-child {
   line-height: 1.2;
   margin-bottom: 0.5rem;
 }
+
+
+//
+// Draw Tool
+// --------------------------------------------------
+.selection-tool--draw {
+  margin: $global-margin 0 0;
+
+  @include breakpoint(medium) {
+    margin-top: 0;
+  }
+
+  &.active, &.button:focus {
+    // @include button-style($primary-color, auto, $white);
+    color: $white;
+    background-color: $primary-color;
+  }
+
+  .fa {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: rem-calc(19);
+  }
+}

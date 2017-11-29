@@ -2,9 +2,9 @@
 
   {{map-search transitionTo=(action 'transitionTo')}}
 
-  <div class="grid-x align-middle text-center medium-text-left">
+  <div class="call-to-action grid-x align-middle text-center medium-text-left">
     <div class="cell medium-auto">
-      <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual
+      <p class="text-small dark-gray no-margin">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual
         {{if (eq summaryLevel 'tracts') 'census tracts'}}
         {{if (eq summaryLevel 'blocks') 'census blocks'}}
         {{if (eq summaryLevel 'ntas') 'NTAs'}}
@@ -12,15 +12,9 @@
         to add them to the profile.</p>
     </div>
     <div class="cell medium-shrink">
-      <ul class="selection-tools no-bullet">
-        <button class="selection-tool--draw {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>{{fa-icon "pencil-square-o"}} Draw</button>
-      </ul>
+      <button class="selection-tool--draw button small gray text-orange {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>{{fa-icon "pencil-square-o"}} Draw</button>
     </div>
   </div>
-
-  {{#if (gt selectionCount 0)}}
-    <button {{action "clearSelection"}} class="button--clear-selection button tiny gray"><span class="lu-red">{{fa-icon 'times'}}</span>&nbsp;Clear Selection</button>
-  {{/if}}
 
   {{#link-to 'profile' class=profileButtonClasses}}
     <span class="fa-stack fa-pull-right">
@@ -38,7 +32,11 @@
     </strong>
   {{/link-to}}
 
-  <a href="#" class="button small expanded gray text-orange">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
+  {{#if (gt selectionCount 0)}}
+    <button {{action "clearSelection"}} class="button--clear-selection button small gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span>&nbsp;Clear</button>
+  {{/if}}
+
+  <a class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
 
   {{yield}}
 
