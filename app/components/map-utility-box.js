@@ -16,6 +16,7 @@ export default Ember.Component.extend({
 
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
+  advanced: false,
 
   summaryLevel: alias('selection.summaryLevel'),
 

@@ -1,43 +1,54 @@
 {{#if (eq mode 'direct-select')}}
 
-  {{!-- <div class="search hide-for-print ember-view">
-    <input type="text" placeholder="Search..." id="ember438" class="map-search-input ember-text-field ember-view">
-    <span class="search-icon">{{fa-icon 'search'}}</span>
-  </div> --}}
-
   {{map-search transitionTo=(action 'transitionTo')}}
 
-  <div class="grid-x grid-margin-x align-middle">
-    <div class="cell medium-6 text-center">
-      <strong class="stat">
-        {{selectionCount}}
-      </strong>
-      <p class="dark-gray">
-        <strong>
-          {{if (eq summaryLevel 'tracts') 'Tract'~}}
-          {{if (eq summaryLevel 'blocks') 'Block'~}}
-          {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
-          {{if (eq summaryLevel 'pumas') 'PUMA'~}}
-          {{if (eq selectionCount 0) 's'}}{{if (gt selectionCount 1) 's'}}
-        </strong>
-      </p>
-      {{#if (gt selectionCount 0)}}
-        <button {{action "clearSelection"}} class="button--clear-selection button tiny gray"><span class="lu-red">{{fa-icon 'times'}}</span>&nbsp;Clear Selection</button>
-      {{/if}}
+  <div class="call-to-action grid-x align-middle text-center medium-text-left">
+    <div class="cell medium-auto">
+      <p class="text-small dark-gray no-margin">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual
+        {{if (eq summaryLevel 'tracts') 'census tracts'}}
+        {{if (eq summaryLevel 'blocks') 'census blocks'}}
+        {{if (eq summaryLevel 'ntas') 'NTAs'}}
+        {{if (eq summaryLevel 'pumas') 'PUMAs'}}
+        to add them to the profile.</p>
     </div>
-    <div class="cell medium-6">
-      <p class="text-small dark-gray">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual census tracts to add them to the profile.</p>
-      <ul class="selection-tools no-bullet">
-        <button class="selection-tool--draw {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>{{fa-icon "pencil-square-o"}} Draw</button>
-      </ul>
+    <div class="cell medium-shrink">
+      <button class="selection-tool--draw button small gray text-orange {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>{{fa-icon "pencil-square-o"}} Draw</button>
     </div>
   </div>
+
   <div class={{profileButtonClasses}} onClick={{action 'generateProfileId'}}>
-    {{fa-icon 'file-text'}} View Profile 
+    <span class="fa-stack fa-pull-right">
+      {{fa-icon 'file' class='fa-stack-2x'}}
+      {{fa-icon 'arrow-right' class='fa-stack-1x dcp-yellow'}}
+    </span>
+    View Profile
+    <small><strong>
+      <span class="count">{{selectionCount}}</span>
+      {{if (eq summaryLevel 'tracts') 'Tract'~}}
+      {{if (eq summaryLevel 'blocks') 'Block'~}}
+      {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
+      {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+      {{if (eq selectionCount 0) 's'}}{{if (gt selectionCount 1) 's'}}
+    </strong></small>
       {{#if generateProfileId.isRunning}} {{fa-icon 'spinner' class='fa-pulse'}} {{/if}}
   </div>
+
+
   <a href="#" class="button small expanded gray text-orange">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
 
+  <div class="selection-helpers {{unless advanced 'closed'}}">
+    <p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p>
+    <p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p>
+    <p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p>
+  </div>
+
+  <div class="clearfix">
+    {{#if (gt selectionCount 0)}}
+      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
+    {{/if}}
+
+    <a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
+  </div>
 
   {{yield}}
 
