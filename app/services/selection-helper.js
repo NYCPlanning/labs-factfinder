@@ -15,6 +15,7 @@ const configs = [
     range: [25, 75],
     label: 'percentage of families living in poverty',
     data: null,
+    enabled: false,
   },
   {
     type: 'percentage',
@@ -23,6 +24,7 @@ const configs = [
     range: [25, 75],
     label: 'percentage of the population under age 18',
     data: null,
+    enabled: false,
   },
 ];
 
@@ -88,11 +90,18 @@ export default Ember.Service.extend({
   // returns a mapboxGL filter object based on the current selections
   @computed('configs.@each.range')
   filter() {
-    const config = this.get('configs')[0];
-    const [min, max] = config.range;
-    // get geoids where greater than 10% of the population lives in poverty
-    const filter = config.data.filter(d => d.p > min && d.p < max).map(d => d.geoid);
+    const allConfigs = this.get('configs');
 
+    // map configs into array of geoids where variable falls within the range
+    const matchesByConfig = allConfigs.map((config) => {
+      const [min, max] = config.range;
+      return config.data.filter(d => d.p > min && d.p < max).map(d => d.geoid);
+    });
+
+    // keep only geoids that are present in all arrays in matchesByConfig
+    const filter = matchesByConfig.reduce((agg, curr) => agg.filter(d => curr.includes(d)));
+
+    // prepend ['in', 'geoid'...
     filter.unshift('geoid');
     filter.unshift('in');
 
