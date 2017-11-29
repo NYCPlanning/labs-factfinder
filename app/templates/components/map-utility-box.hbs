@@ -32,40 +32,39 @@
     </strong></small>
   {{/link-to}}
 
-  <div class="clearfix" style="padding-bottom:1rem;">
+  <div class="clearfix" style="padding-bottom:1px;">
     {{#if (gt selectionCount 0)}}
       <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
     {{/if}}
 
-    <a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
+    <p><a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a></p>
   </div>
 
-  {{#if advanced}}
-    <h3 class="header-small">Selection Helpers</h3>
-    <button class="button small gray text-orange expanded" {{action "addHighlightedToSelection"}}>Add all to my selection</button>
-  {{/if}}
-
   <div class="selection-helpers text-small {{unless advanced 'closed'}}">
+
+    <div class="selection-helpers-header">
+      <h3 class="header-small">Selection Helpers</h3>
+      <button class="button small gray text-orange expanded" {{action "addHighlightedToSelection"}}>Add Highlighted to Selection</button>
+    </div>
+
     {{#each selectionHelper.configs as |config|}}
 
-      <div class="selection-helper" {{action}}>
-        {{helper-slider
-          title=config.title
-          tooltip=config.tooltip
-          start=config.range
-          min=0
-          max=100
-          step=1
-          connect=true
-          behaviour="drag"
-          sliderChange="handleSliderChange"
-          toggleEnabled="toggleEnabled"
-          variable=config.variable
-          enabled=config.enabled
-        }}
-        Highlighting tracts where {{config.label}} is between {{config.range.[0]}}% and {{config.range.[1]}}%.
-      </div>
+      {{helper-slider
+        title=config.title
+        tooltip=config.tooltip
+        start=config.range
+        min=0
+        max=100
+        step=1
+        connect=true
+        behaviour="drag"
+        sliderChange="handleSliderChange"
+        toggleEnabled="toggleEnabled"
+        variable=config.variable
+        enabled=config.enabled
+      }}
     {{/each}}
+
   </div>
 
   {{yield}}

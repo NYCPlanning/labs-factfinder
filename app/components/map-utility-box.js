@@ -40,7 +40,6 @@ export default Ember.Component.extend({
     },
 
     toggleEnabled(variable) {
-      console.log('toggleEnabled')
       this.get('selectionHelper').toggleEnabled(variable);
     },
 

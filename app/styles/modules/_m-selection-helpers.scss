@@ -2,12 +2,69 @@
 // Module: Selection Helpers
 // --------------------------------------------------
 
+$selection-helper-margin: rem-calc(6);
+$selection-helper-hover-color: rgba($dark-gray,0.08);
+
 .selection-helpers {
+  background-color: $light-gray;
   margin-right: -$global-margin;
   margin-left: -$global-margin;
+  font-size: rem-calc(12);
+}
+
+.selection-helpers-header {
+  padding: $selection-helper-margin $global-margin;
+  border-top: 1px solid $medium-gray;
+
+  h3,
+  .button {
+    margin-bottom: $selection-helper-margin;
+  }
 }
 
 .selection-helper {
-  padding: $global-margin;
   border-top: 1px solid $medium-gray;
+
+  &:hover {
+    background-color: $selection-helper-hover-color;
+  }
+}
+
+//
+// Helper Toggle/Switch
+// --------------------------------------------------
+.selection-helper-toggle {
+  padding: $selection-helper-margin;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $selection-helper-hover-color;
+  }
+
+  .switch {
+    margin: 0 $selection-helper-margin 0 0;
+
+    .switch-paddle, .switch-paddle:after {
+      border-radius: 0;
+    }
+
+    &.tiny .switch-paddle {
+      width: 1.25rem;
+    }
+
+    &.tiny .switch-paddle::after {
+      width: 0.5rem;
+    }
+
+    &.tiny input:checked ~ .switch-paddle::after {
+      left: 0.625rem;
+    }
+  }
+}
+
+//
+// Helper Content
+// --------------------------------------------------
+.selection-helper-content {
+  padding: $selection-helper-margin;
 }

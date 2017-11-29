@@ -1,5 +1,5 @@
-<div class="layer-menu-item" {{action 'toggleVisibility'}}>
-  {{!-- {{#if (or warning titleTooltip)}}
+<div class="selection-helper-toggle" {{action 'toggleVisibility'}}>
+  {{#if tooltip}}
     <span class="layer-tooltips-container">
       {{#if warning}}
         {{info-tooltip
@@ -17,20 +17,22 @@
         }}
       {{/if}}
     </span>
-  {{/if}} --}}
+  {{/if}}
   {{switch-toggle checked=enabled}}
   {{title}}
 </div>
-
 {{#if enabled}}
-  {{range-slider
-    start=start
-    min=min
-    max=max
-    step=step
-    connect=connect
-    behaviour=behaviour
-    on-change="handleSliderChange"
-  }}
-  {{yield}}
+  <div class="selection-helper-content">
+    {{range-slider
+      start=start
+      min=min
+      max=max
+      step=step
+      connect=connect
+      behaviour=behaviour
+      on-change="handleSliderChange"
+    }}
+    Highlighting tracts where {{config.label}} is between {{config.range.[0]}}% and {{config.range.[1]}}%.
+  </div>
 {{/if}}
+{{yield}}
