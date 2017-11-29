@@ -71,7 +71,7 @@ export default Ember.Service.extend({
 
     carto.SQL(SQL, 'geojson', 'post')
       .then(({ features }) => {
-        this.get('selection').handleSelectedFeatures(features, false);
+        this.get('selection').handleSelectedFeatures(features);
       });
   },
 
@@ -95,17 +95,14 @@ export default Ember.Service.extend({
 
   @computed('configs.@each.data', 'configs.@each.enabled')
   ready() {
-    console.log('checking ready')
     // check if all active configs have data
     const allConfigs = this.get('configs');
     const enabledHelpers = allConfigs.filter(d => d.enabled);
     if (enabledHelpers.length === 0) return false;
 
-    console.log('enabledHelpers', enabledHelpers)
 
     const allHaveData = enabledHelpers.reduce((acc, config) => config.data && acc, true);
 
-    console.log('allHaveData', allHaveData)
 
     if (allHaveData) {
       return true;
@@ -115,7 +112,7 @@ export default Ember.Service.extend({
     Promise.all(promises)
       .then((promiseResults) => {
         promiseResults.forEach((data, i) => {
-          const config = this.get('configs').objectAt(i);
+          const config = enabledHelpers.objectAt(i);
           Ember.set(config, 'data', data);
         });
       });
@@ -129,7 +126,6 @@ export default Ember.Service.extend({
     const allConfigs = this.get('configs');
     const enabledHelpers = allConfigs.filter(d => d.enabled);
 
-    console.log('filtering', enabledHelpers)
 
     // map configs into array of geoids where variable falls within the range
     const matchesByConfig = enabledHelpers.map((config) => {
@@ -154,7 +150,6 @@ export default Ember.Service.extend({
 
   @computed('filter', 'selection.summaryLevel')
   layer(filter, summaryLevel) {
-    console.log('generating layer')
     let source;
     let sourceLayer;
 
@@ -184,16 +179,16 @@ export default Ember.Service.extend({
       source,
       'source-layer': sourceLayer,
       paint: {
-        'line-color': 'rgba(38, 91, 217, 1)',
+        'line-color': 'rgba(79, 220, 79, 1)',
         'line-width': {
           stops: [
             [
               10,
-              2,
+              1,
             ],
             [
               15,
-              20,
+              8,
             ],
           ],
         },
@@ -205,22 +200,11 @@ export default Ember.Service.extend({
             ],
             [
               15,
-              15,
+              8,
             ],
           ],
         },
-        'line-offset': {
-          stops: [
-            [
-              10,
-              1,
-            ],
-            [
-              15,
-              3,
-            ],
-          ],
-        },
+        'line-offset': 3,
         'line-opacity': 1,
       },
       filter,

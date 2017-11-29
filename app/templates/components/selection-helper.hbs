@@ -14,7 +14,7 @@
 {{#if enabled}}
   <div class="selection-helper-content">
     {{range-slider
-      start=start
+      start=range
       min=min
       max=max
       step=step
@@ -22,7 +22,7 @@
       behaviour=behaviour
       on-change="handleSliderChange"
     }}
-    Highlighting tracts where {{config.label}} is between {{config.range.[0]}}% and {{config.range.[1]}}%.
+    between {{range.[0]}}% and {{range.[1]}}%.
   </div>
 {{/if}}
 {{yield}}
