@@ -107,13 +107,10 @@ export default Ember.Service.extend({
   },
 
   handleSelectedFeatures(features = []) {
-    console.log(features)
     const selected = this.get('current');
 
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
-
-      console.log(type, geometry, properties)
 
       const inSelection = selected.features.find(
         selectedFeature => selectedFeature.properties.geoid === properties.geoid,

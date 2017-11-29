@@ -35,13 +35,7 @@ export default Ember.Service.extend({
   configs,
 
   addHighlightedToSelection() {
-    const data = this.get('data');
-    const range = this.get('populationBelowPovertyPercent');
-
-    const [min, max] = range;
-    const geoids = data.populationBelowPoverty
-      .filter(d => d.p > min && d.p < max).map(d => d.geoid);
-
+    const geoids = this.get('filteredGeoids');
     const geoidQuotedStrings = geoids.map(d => `'${d}'`);
 
     const SQL = `
@@ -87,9 +81,9 @@ export default Ember.Service.extend({
     return false;
   },
 
-  // returns a mapboxGL filter object based on the current selections
+  // returns an array of geoids that match the current helper filters
   @computed('configs.@each.range')
-  filter() {
+  filteredGeoids() {
     const allConfigs = this.get('configs');
 
     // map configs into array of geoids where variable falls within the range
@@ -99,13 +93,17 @@ export default Ember.Service.extend({
     });
 
     // keep only geoids that are present in all arrays in matchesByConfig
-    const filter = matchesByConfig.reduce((agg, curr) => agg.filter(d => curr.includes(d)));
+    return matchesByConfig.reduce((agg, curr) => agg.filter(d => curr.includes(d)));
+  },
 
+  // returns a mapboxGL filter object based on filteredGeoids
+  @computed('filteredGeoids')
+  filter(geoids) {
     // prepend ['in', 'geoid'...
-    filter.unshift('geoid');
-    filter.unshift('in');
+    geoids.unshift('geoid');
+    geoids.unshift('in');
 
-    return filter;
+    return geoids;
   },
 
   @computed('filter')
