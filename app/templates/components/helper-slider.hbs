@@ -1,21 +1,11 @@
 <div class="selection-helper-toggle" {{action 'toggleVisibility'}}>
   {{#if tooltip}}
     <span class="layer-tooltips-container">
-      {{#if warning}}
-        {{info-tooltip
-          iconName='warning'
-          tip='Some information may not visible at this zoom level.'
-          classNames='layer-warning'
-          tooltipClass='tooltip--layer-warning'
-        }}
-      {{/if}}
-      {{#if titleTooltip}}
-        {{info-tooltip
-          tip=titleTooltip
-          classNames='layer-info'
-          tooltipClass='tooltip--layer-info'
-        }}
-      {{/if}}
+      {{info-tooltip
+        tip=tooltip
+        classNames='layer-info'
+        tooltipClass='tooltip--layer-info'
+      }}
     </span>
   {{/if}}
   {{switch-toggle checked=enabled}}

@@ -15,6 +15,7 @@ $selection-helper-hover-color: rgba($dark-gray,0.08);
 .selection-helpers-header {
   padding: $selection-helper-margin $global-margin;
   border-top: 1px solid $medium-gray;
+  border-bottom: 1px solid $medium-gray;
 
   h3,
   .button {
@@ -23,7 +24,7 @@ $selection-helper-hover-color: rgba($dark-gray,0.08);
 }
 
 .selection-helper {
-  border-top: 1px solid $medium-gray;
+  border-bottom: 1px solid $medium-gray;
 
   &:hover {
     background-color: $selection-helper-hover-color;
@@ -59,6 +60,10 @@ $selection-helper-hover-color: rgba($dark-gray,0.08);
     &.tiny input:checked ~ .switch-paddle::after {
       left: 0.625rem;
     }
+  }
+
+  .fa {
+    color: $primary-color;
   }
 }
 
