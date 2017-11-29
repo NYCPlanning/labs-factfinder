@@ -27,6 +27,8 @@ module.exports = function(environment) {
     },
 
     SAMPLE_SELECTION,
+
+    SupportServiceHost: 'https://factfinder-api.planninglabs.nyc',
   };
 
   ENV.DEFAULT_SELECTION = {
@@ -38,7 +40,7 @@ module.exports = function(environment) {
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
   }
 
-  if (environment === 'development') {    
+  if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -58,7 +60,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.SupportServiceHost = 'https://factfinder-api.planninglabs.nyc';
   }
 
   return ENV;
