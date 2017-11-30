@@ -13,7 +13,7 @@ export default Ember.Service.extend({
 
   configs,
 
-  summaryLevel: 'tracts',
+  previousSummaryLevel: 'tracts',
 
   addHighlightedToSelection() {
     const geoids = this.get('filteredGeoids');
@@ -64,16 +64,33 @@ export default Ember.Service.extend({
     return carto.SQL(SQL);
   },
 
-  @computed('configs.@each.data', 'configs.@each.enabled')
-  ready() {
-    // check if all active configs have data
+  resetData() {
+    // reset all data if summary level changed
     const allConfigs = this.get('configs');
+    allConfigs.forEach((config) => {
+      Ember.set(config, 'data', null);
+    });
+
+    return null;
+  },
+
+  @computed('configs.@each.data', 'configs.@each.enabled', 'selection.summaryLevel')
+  ready() {
+    const allConfigs = this.get('configs');
+
+    const summaryLevel = this.get('selection.summaryLevel');
+    if (summaryLevel !== this.get('previousSummaryLevel')) {
+      this.set('previousSummaryLevel', summaryLevel);
+      allConfigs.forEach((config) => {
+        Ember.set(config, 'data', null);
+      });
+    }
+
+    // check if all enabled configs have data
     const enabledHelpers = allConfigs.filter(d => d.enabled);
     if (enabledHelpers.length === 0) return false;
 
-
     const allHaveData = enabledHelpers.reduce((acc, config) => config.data && acc, true);
-
 
     if (allHaveData) {
       return true;

@@ -1,10 +1,9 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
+import { computed } from 'ember-decorators/object';
+
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
-
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
-
 import summaryLevelQueries from '../queries/summary-levels';
 import config from '../config/environment';
 
