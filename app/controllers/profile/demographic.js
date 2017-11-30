@@ -6,6 +6,8 @@ import raceGroup from '../../table-config/demographic/race-group';
 import hispanicSubgroup from '../../table-config/demographic/hispanic-subgroup';
 import asianSubgroup from '../../table-config/demographic/asian-subgroup';
 
+import raceGroupChartConfig from '../../chart-config/demographic/race-group';
+
 const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
@@ -13,6 +15,8 @@ export default Ember.Controller.extend({
   raceGroup,
   hispanicSubgroup,
   asianSubgroup,
+
+  raceGroupChartConfig,
 
   profile: controller('profile'),
 
@@ -64,42 +68,27 @@ export default Ember.Controller.extend({
     };
   },
 
-  raceGroupProfile: Ember.computed('model', function() {
-    const d = this.get('model.y2011_2015.mutually_exclusive_race_hispanic_origin');
-    const config = [
-      {
-        property: 'hsp1',
-        label: 'Hispanic',
-      },
-      {
-        property: 'wtnh',
-        label: 'White nonhispanic',
-      },
-      {
-        property: 'blnh',
-        label: 'Black nonhispanic',
-      },
-      {
-        property: 'asnnh',
-        label: 'Asian nonhispanic',
-      },
-    ];
+  // getBarChartData(d, config) {
+  //   return config.map(({ property, label }) => ({
+  //     percent: d[property].percent,
+  //     sum: d[property].sum,
+  //     moe: d[property].m,
+  //     percent_m: d[property].percent_m,
+  //     comparison_percent: d[property].comparison_percent,
+  //     comparison_percent_m: d[property].comparison_percent_m,
+  //     group: label,
+  //     classValue: property,
+  //   }));
+  // },
 
-
-    const profile = config.map(({ property, label }) => ({
-      percent: d[property].percent,
-      sum: d[property].sum,
-      moe: d[property].m,
-      percent_m: d[property].percent_m,
-      comparison_percent: d[property].comparison_percent,
-      comparison_percent_m: d[property].comparison_percent_m,
-      group: label,
-      classValue: property,
-      // classValue: label.replace(/\s+/g, ''),
-    }));
-
-    return profile;
-  }),
+  // raceGroupProfile: Ember.computed('model', function() {
+  //   const data = this.get('model.y2011_2015.mutually_exclusive_race_hispanic_origin');
+  //   const config = raceGroupChart;
+  //
+  //   const profile = this.getBarChartData(data, config)
+  //
+  //   return profile;
+  // }),
 
 
 });
