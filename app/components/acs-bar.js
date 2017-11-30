@@ -87,7 +87,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     // mouse event handlers
     const handleMouseOver = (d) => {
       clearTimeout(timer);
-      selectAll('.age-chart-tooltip')
+      selectAll(`#${this.elementId} .age-chart-tooltip`)
         .html(toolTip(d));
 
       selectAll(`.${d.classValue}`)
@@ -98,7 +98,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       selectAll(`.${d.classValue}`)
         .classed('highlight', false);
       timer = setTimeout(() => {
-        selectAll('.age-chart-tooltip')
+        selectAll(`#${this.elementId} .age-chart-tooltip`)
           .html('Hover over bars for more detail');
       }, 400);
     };
