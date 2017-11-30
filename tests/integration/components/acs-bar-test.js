@@ -12,7 +12,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{acs-bar}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim().substring(0,5), 'Hover');
 
   // Template block usage:
   this.render(hbs`
@@ -21,5 +21,5 @@ test('it renders', function(assert) {
     {{/acs-bar}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim().substring(0,5), 'Hover');
 });
