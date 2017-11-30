@@ -1,3 +1,34 @@
 <h1>Census Profile</h1>
 
+{{!-- {{#decennial-table category='decennial_sex_age' as |table|}}
+  {{log table.categoryData.value}}
+{{/decennial-table}} --}}
+
+{{#each tablesForCategories as |category|}}
+  {{#decennial-table category=category as |table|}}
+    {{log table.categoryData.value}}
+    {{!-- {{acs-table}} --}}
+  {{/decennial-table}}
+{{/each}}
+
+{{!-- Tables --}}
+
+{{!-- 
+  decennial_median_age_for_blocks_only
+  decennial_dictionary
+  decennial_hispanic_subgroup
+  decennial_median_age_exl_blocks
+  decennial_sex_age
+  decennial_mutually_exclusive_race
+  decennial_population_density
+  decennial_asian_subgroup
+  decennial_relationship_head_householder
+  decennial_household_type
+  decennial_housing_occupancy
+  decennial_housing_tenure
+  decennial_tenure_by_age
+  decennial_household_size
+  decennial_poppyramid_only 
+--}}
+
 {{outlet}}

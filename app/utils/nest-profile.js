@@ -1,10 +1,11 @@
 import { nest } from 'd3-collection';
 
-export default function nestProfile(data) {
-  return nest()
-    .key(d => d.dataset)
-    .key(d => d.category)
-    .key(d => d.variable)
+export default function nestProfile(data, ...keys) {
+  return keys
+    .reduce(
+      (nesting, currentKey) => nesting.key(d => d[currentKey]),
+      nest(),
+    )
     .rollup(d => d[0])
     .object(data);
 }
