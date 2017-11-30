@@ -73,7 +73,6 @@ export default Ember.Service.extend({
 
 
     const allHaveData = enabledHelpers.reduce((acc, config) => config.data && acc, true);
-    console.log('allHaveData', allHaveData)
 
 
     if (allHaveData) {
@@ -87,7 +86,6 @@ export default Ember.Service.extend({
       .then((promiseResults) => {
         promiseResults.forEach((data, i) => {
           const config = enabledHelpersWithoutData.objectAt(i);
-          console.log('getting range')
           Ember.set(config, 'data', data);
           Ember.set(config, 'defaultRange', this.getRange(config));
         });
@@ -97,7 +95,6 @@ export default Ember.Service.extend({
   },
 
   getRange({ type, variable, data }) {
-    console.log('getRange', type, variable, data)
     const property = (type === 'percentage') ? 'p' : 'e';
     const defaultValue = {};
     defaultValue[property] = 0;
@@ -106,7 +103,6 @@ export default Ember.Service.extend({
     const minValue = min(data, d => d[property]);
 
     const range = [minValue, maxValue];
-    console.log(range)
 
     this.updateHelperRange(variable, range);
 
@@ -122,18 +118,16 @@ export default Ember.Service.extend({
 
     // map configs into array of geoids where variable falls within the range
     const matchesByConfig = enabledHelpers.map((config) => {
-      console.log(config)
+      const [minValue, maxValue] = config.range;
 
-      const [min, max] = config.range;
-      console.log('getting matches', min, max)
+      const property = (config.type === 'percentage') ? 'p' : 'e';
 
-      // handle percentage type
-      if (config.type === 'percentage') {
-        return config.data ? config.data.filter(d => d.p >= min && d.p <= max).map(d => d.geoid) : [];
-      }
 
-      // handle number type
-      return config.data ? config.data.filter(d => d.e >= min && d.e <= max).map(d => d.geoid) : [];
+      const filteredGeoids = config.data
+        .filter(d => d[property] >= minValue && d[property] <= maxValue)
+        .map(d => d.geoid);
+
+      return (config.data) ? filteredGeoids : [];
     });
 
     // keep only geoids that are present in all arrays in matchesByConfig
