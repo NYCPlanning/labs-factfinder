@@ -40,31 +40,46 @@
     <p><a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a></p>
   </div>
 
-  <div class="selection-helpers text-small {{unless advanced 'closed'}}">
+  <div class="advanced-options text-small {{unless advanced 'closed'}}">
 
-    <div class="selection-helpers-header">
-      <h3 class="header-small">Selection Helpers</h3>
-      <button class="button small gray text-orange expanded" {{action "addHighlightedToSelection"}}>Add Highlighted to Selection</button>
+    <div class="selection-helpers">
+      <div class="selection-helpers-header">
+        <div class="grid-x">
+          <div class="cell small-8">
+            <h3 class="header-small">Selection Helper Filters</h3>
+            <p class="text-tiny dark-gray">Adjust the filters to highlight
+              {{if (eq summaryLe vel 'tracts') 'census tracts,'}}
+              {{if (eq summaryLevel 'blocks') 'census blocks,'}}
+              {{if (eq summaryLevel 'ntas') 'NTAs,'}}
+              {{if (eq summaryLevel 'pumas') 'PUMAs,'}}
+              then add them to the selection.
+            </p>
+          </div>
+          <div class="cell small-4">
+            <button class="button tiny gray text-orange expanded" {{action "addHighlightedToSelection"}}>
+              {{fa-icon 'plus'}}
+              Add all highlighted
+              {{if (eq summaryLevel 'tracts') 'census tracts'}}
+              {{if (eq summaryLevel 'blocks') 'census blocks'}}
+              {{if (eq summaryLevel 'ntas') 'NTAs'}}
+              {{if (eq summaryLevel 'pumas') 'PUMAs'}}
+              to selection
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="selection-helpers-list">
+        {{#each selectionHelper.configs as |config|}}
+          {{selection-helper
+            config=config
+            sliderChange="handleSliderChange"
+            toggleEnabled="toggleEnabled"
+          }}
+        {{/each}}
+      </div>
     </div>
 
-    {{#each selectionHelper.configs as |config|}}
-      {{selection-helper
-        config=config
-        sliderChange="handleSliderChange"
-        toggleEnabled="toggleEnabled"
-      }}
-    {{/each}}
-
   </div>
-
-  <div class="clearfix">
-    {{#if (gt selectionCount 0)}}
-      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
-    {{/if}}
-
-    <a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
-  </div>
-
   {{yield}}
 
 {{else}}
