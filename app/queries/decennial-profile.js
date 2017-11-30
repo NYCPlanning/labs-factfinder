@@ -73,6 +73,9 @@ const generateDecennialProfile = function(geoids, profile = 'decennial_sex_age',
       )
 
     SELECT *,
+      regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') AS variable,
+      regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
+      'y' || year as year,
       ROUND((sum / NULLIF(base_sum,0))::numeric, 4) as percent,
       ROUND((comparison_sum / NULLIF(comparison_base_sum,0))::numeric, 4) as comparison_percent
     FROM main_numbers

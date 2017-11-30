@@ -1,20 +1,12 @@
 import Ember from 'ember';
+import sexAge from '../../table-config/decennial/sex-age';
+import raceGroup from '../../table-config/demographic/race-group';
+import hispanicSubgroup from '../../table-config/demographic/hispanic-subgroup';
+import asianSubgroup from '../../table-config/demographic/asian-subgroup';
 
 export default Ember.Controller.extend({
-  tablesForCategories: [
-    // 'decennial_median_age_for_blocks_only',
-    // 'decennial_hispanic_subgroup',
-    // 'decennial_median_age_exl_blocks',
-    'decennial_sex_age',
-    // 'decennial_mutually_exclusive_race',
-    // 'decennial_population_density',
-    // 'decennial_asian_subgroup',
-    // 'decennial_relationship_head_householder',
-    // 'decennial_household_type',
-    // 'decennial_housing_occupancy',
-    // 'decennial_housing_tenure',
-    // 'decennial_tenure_by_age',
-    // 'decennial_household_size',
-    // 'decennial_poppyramid_only',
-  ],
+  sexAge,
+  raceGroup,
+  hispanicSubgroup,
+  asianSubgroup,
 });

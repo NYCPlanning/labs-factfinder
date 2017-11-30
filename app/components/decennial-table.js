@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
   generateDataTask: task(function* (query) {
     const profileData = yield carto.SQL(query, 'json', 'post')
-      .then(rows => nestProfile(rows, 'year', 'category', 'variable'));
+      .then(rows => nestProfile(rows, 'year', 'variable'));
     return profileData;
   }).restartable(),
 
