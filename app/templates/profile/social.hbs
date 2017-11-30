@@ -56,6 +56,24 @@
 
 <hr>
 
+<h3 class="header-medium" id="grandparents">Marital Status</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=maritalStatus
+      t1=model.y2011_2015.marital_status
+      t2=model.y2006_2010.marital_status
+    }}
+  </div>
+</div>
+
+
+<hr>
 <h3 class="header-medium" id="grandparents">Grandparents</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
