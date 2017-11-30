@@ -1,28 +1,30 @@
-<div class="selection-helper-toggle" {{action 'toggleEnabled' variable}}>
-  {{#if tooltip}}
+<div class="selection-helper-toggle" {{action 'toggleEnabled' config.variable}}>
+  {{#if config.tooltip}}
     <span class="layer-tooltips-container">
       {{info-tooltip
-        tip=tooltip
+        tip=config.tooltip
         classNames='layer-info'
         tooltipClass='tooltip--layer-info'
       }}
     </span>
   {{/if}}
-  {{switch-toggle checked=enabled}}
-  {{title}}
+  {{switch-toggle checked=config.enabled}}
+  {{config.title}}
 </div>
-{{#if enabled}}
+{{#if config.enabled}}
   <div class="selection-helper-content">
-    {{range-slider
-      start=range
-      min=min
-      max=max
-      step=step
-      connect=connect
-      behaviour=behaviour
-      on-change="handleSliderChange"
-    }}
-    between {{range.[0]}}% and {{range.[1]}}%.
+    {{#if config.defaultRange}}
+      {{range-slider
+        start=config.range
+        min=config.defaultRange.[0]
+        max=config.defaultRange.[1]
+        step=1
+        connect=true
+        behaviour="drag"
+        on-change="handleSliderChange"
+      }}
+    {{/if}}
+    between {{config.range.[0]}} and {{config.range.[1]}}.
   </div>
 {{/if}}
 {{yield}}

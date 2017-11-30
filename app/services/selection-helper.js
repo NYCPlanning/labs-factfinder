@@ -1,61 +1,18 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 import carto from 'ember-jane-maps/utils/carto';
+import { min, max } from 'd3-array';
 
+import configs from '../selection-helpers';
 import summaryLevels from '../queries/summary-levels';
 
 const { service } = Ember.inject;
 
-
-const configs = [
-  {
-    title: 'Families living below poverty line',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    type: 'percentage',
-    variable: 'fambwpv',
-    table: 'economic',
-    range: [25, 75],
-    data: null,
-    enabled: false,
-  },
-  {
-    title: 'Population under age 18',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    type: 'percentage',
-    variable: 'popu181',
-    table: 'demographic',
-    range: [25, 75],
-    data: null,
-    enabled: false,
-  },
-  {
-    title: 'Population 65 and over',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    type: 'percentage',
-    variable: 'pop65pl1',
-    table: 'demographic',
-    range: [0, 100],
-    label: 'percentage of the population 65 and over',
-    data: null,
-    enabled: false,
-  },
-  {
-    title: 'Population renting home',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    type: 'percentage',
-    variable: 'rochu',
-    table: 'housing',
-    range: [0, 100],
-    label: 'percentage of the population that rent their home',
-    data: null,
-    enabled: false,
-  },
-];
-
-
 export default Ember.Service.extend({
   selection: service(),
+
   configs,
+
   summaryLevel: 'tracts',
 
   addHighlightedToSelection() {
@@ -89,7 +46,21 @@ export default Ember.Service.extend({
   },
 
   getData({ variable, table }) {
-    const SQL = `SELECT geoid, c, e, m, p, z FROM ${table} WHERE LOWER(variable) = LOWER('${variable}')`;
+    const summaryLevel = this.get('selection.summaryLevel');
+
+    let geotype;
+    switch (summaryLevel) {
+      case 'ntas':
+        geotype = 'NTA2010';
+        break;
+      case 'pumas':
+        geotype = 'PUMA2010';
+        break;
+      default:
+        geotype = 'CT2010';
+    }
+
+    const SQL = `SELECT geoid, c, e, m, p, z FROM ${table} WHERE LOWER(variable) = LOWER('${variable}') AND geotype = '${geotype}'`;
     return carto.SQL(SQL);
   },
 
@@ -113,11 +84,30 @@ export default Ember.Service.extend({
       .then((promiseResults) => {
         promiseResults.forEach((data, i) => {
           const config = enabledHelpers.objectAt(i);
+          console.log('getting range')
           Ember.set(config, 'data', data);
+          Ember.set(config, 'defaultRange', this.getRange(config));
         });
       });
 
     return false;
+  },
+
+  getRange({ type, variable, data }) {
+    console.log('getRange', type, variable, data)
+    const property = (type === 'percentage') ? 'p' : 'e';
+    const defaultValue = {};
+    defaultValue[property] = 0;
+
+    const maxValue = max(data, d => d[property]);
+    const minValue = min(data, d => d[property]);
+
+    const range = [minValue, maxValue];
+    console.log(range)
+
+    this.updateHelperRange(variable, range);
+
+    return range;
   },
 
   // returns an array of geoids that match the current helper filters
@@ -129,8 +119,18 @@ export default Ember.Service.extend({
 
     // map configs into array of geoids where variable falls within the range
     const matchesByConfig = enabledHelpers.map((config) => {
+      console.log(config)
+
       const [min, max] = config.range;
-      return config.data ? config.data.filter(d => d.p >= min && d.p <= max).map(d => d.geoid) : [];
+      console.log('getting matches', min, max)
+
+      // handle percentage type
+      if (config.type === 'percentage') {
+        return config.data ? config.data.filter(d => d.p >= min && d.p <= max).map(d => d.geoid) : [];
+      }
+
+      // handle number type
+      return config.data ? config.data.filter(d => d.e >= min && d.e <= max).map(d => d.geoid) : [];
     });
 
     // keep only geoids that are present in all arrays in matchesByConfig

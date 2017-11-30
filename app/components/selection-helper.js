@@ -5,11 +5,11 @@ export default Ember.Component.extend({
 
   actions: {
     handleSliderChange(value) {
-      const variable = this.get('variable');
+      const variable = this.get('config.variable');
       this.sendAction('sliderChange', value, variable);
     },
     toggleEnabled() {
-      const variable = this.get('variable');
+      const variable = this.get('config.variable');
       this.sendAction('toggleEnabled', variable);
     },
   },
