@@ -73,17 +73,20 @@ export default Ember.Service.extend({
 
 
     const allHaveData = enabledHelpers.reduce((acc, config) => config.data && acc, true);
+    console.log('allHaveData', allHaveData)
 
 
     if (allHaveData) {
       return true;
     }
-    const promises = enabledHelpers.map(config => this.getData(config));
+
+    const enabledHelpersWithoutData = enabledHelpers.filter(d => !d.data);
+    const promises = enabledHelpersWithoutData.map(config => this.getData(config));
 
     Promise.all(promises)
       .then((promiseResults) => {
         promiseResults.forEach((data, i) => {
-          const config = enabledHelpers.objectAt(i);
+          const config = enabledHelpersWithoutData.objectAt(i);
           console.log('getting range')
           Ember.set(config, 'data', data);
           Ember.set(config, 'defaultRange', this.getRange(config));
