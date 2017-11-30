@@ -1,7 +1,11 @@
 import Ember from 'ember';
+import fetch from 'fetch';
+import Environment from '../config/environment';
 
-const { isEmpty } = Ember;
 const { service } = Ember.inject;
+const { SupportServiceHost } = Environment;
+
+const SELECTION_API_URL = id => `${SupportServiceHost}/selection/${id}`;
 
 export default Ember.Route.extend({
   selection: service(),
@@ -12,11 +16,14 @@ export default Ember.Route.extend({
     },
   },
 
-  beforeModel() {
-    const current = this.get('selection.current');
+  model({ id }) {
+    const selection = this.get('selection');
 
-    if (isEmpty(current.features)) {
-      this.transitionTo('index');
-    }
+    return fetch(SELECTION_API_URL(id))
+      .then(response => response.json())
+      .then(({ features }) => {
+        selection.set('current', { type: 'FeatureCollection', features });
+        return true;
+      });
   },
 });

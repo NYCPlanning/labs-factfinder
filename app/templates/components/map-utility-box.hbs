@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  {{#link-to 'profile' class=profileButtonClasses}}
+  <div class={{profileButtonClasses}} onClick={{action 'generateProfileId'}}>
     <span class="fa-stack fa-pull-right">
       {{fa-icon 'file' class='fa-stack-2x'}}
       {{fa-icon 'arrow-right' class='fa-stack-1x dcp-yellow'}}
@@ -30,7 +30,7 @@
       {{if (eq summaryLevel 'pumas') 'PUMA'~}}
       {{if (eq selectionCount 0) 's'}}{{if (gt selectionCount 1) 's'}}
     </strong></small>
-  {{/link-to}}
+  </div>
 
   <div class="clearfix" style="padding-bottom:1px;">
     {{#if (gt selectionCount 0)}}
@@ -55,6 +55,14 @@
       }}
     {{/each}}
 
+  </div>
+
+  <div class="clearfix">
+    {{#if (gt selectionCount 0)}}
+      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
+    {{/if}}
+
+    <a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a>
   </div>
 
   {{yield}}
