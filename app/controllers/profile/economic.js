@@ -12,6 +12,13 @@ import occupation from '../../table-config/economic/occupation';
 import healthInsuranceCoverage from '../../table-config/economic/health-insurance-coverage';
 import ratioOfIncomeToPovertyLevel from '../../table-config/economic/ratio-of-income-to-poverty-level';
 
+import classOfWorkerChartConfig from '../../chart-config/economic/class-of-worker';
+import incomeAndBenefitsChartConfig from '../../chart-config/economic/income-and-benefits';
+import commuteToWorkChartConfig from '../../chart-config/economic/commute-to-work';
+import occupationChartConfig from '../../chart-config/economic/occupation';
+import ratioOfIncomeToPovertyLevelChartConfig from '../../chart-config/economic/ratio-of-income-to-poverty-level';
+
+
 const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
@@ -25,6 +32,12 @@ export default Ember.Controller.extend({
   occupation,
   healthInsuranceCoverage,
   ratioOfIncomeToPovertyLevel,
+
+  classOfWorkerChartConfig,
+  incomeAndBenefitsChartConfig,
+  commuteToWorkChartConfig,
+  occupationChartConfig,
+  ratioOfIncomeToPovertyLevelChartConfig,
 
   profile: controller('profile'),
 

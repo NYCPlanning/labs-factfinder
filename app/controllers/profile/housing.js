@@ -15,6 +15,11 @@ import occupantsPerRoom from '../../table-config/housing/occupants-per-room';
 import yearStructureBuilt from '../../table-config/housing/year-structure-built';
 import rooms from '../../table-config/housing/rooms';
 
+import grossRentGrapiChartConfig from '../../chart-config/housing/gross-rent-grapi';
+import grossRentChartConfig from '../../chart-config/housing/gross-rent';
+import housingTenureChartConfig from '../../chart-config/housing/housing-tenure';
+import valueChartConfig from '../../chart-config/housing/value';
+import vehiclesAvailableChartConfig from '../../chart-config/housing/vehicles-available';
 
 const { inject: { controller } } = Ember;
 
@@ -34,6 +39,12 @@ export default Ember.Controller.extend({
   yearStructureBuilt,
   rooms,
 
+  grossRentGrapiChartConfig,
+  grossRentChartConfig,
+  housingTenureChartConfig,
+  valueChartConfig,
+  vehiclesAvailableChartConfig,
+
   profile: controller('profile'),
 
   @computed('model')
@@ -41,34 +52,5 @@ export default Ember.Controller.extend({
     return model.y2011_2015;
   },
 
-
-  housingTenureProfile: Ember.computed('model', function() {
-    const d = this.get('model.y2011_2015.housing_tenure');
-
-    const config = [
-      {
-        property: 'oochu1',
-        label: 'Owner-occupied',
-      },
-      {
-        property: 'rochu',
-        label: 'Renter-occupied',
-      },
-    ];
-
-
-    const profile = config.map(({ property, label }) => ({
-      percent: d[property].percent,
-      sum: d[property].sum,
-      moe: d[property].m,
-      percent_m: d[property].percent_m,
-      comparison_percent: d[property].comparison_percent,
-      comparison_percent_m: d[property].comparison_percent_m,
-      group: label,
-      classValue: property,
-    }));
-
-    return profile;
-  }),
 
 });

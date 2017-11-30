@@ -28,6 +28,11 @@
       t2=model.y2006_2010.household_type
     }}
   </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=householdTypeChartConfig data=model.y2011_2015.household_type height=234 xMax=1}}
+    </div>
+  </div>
 </div>
 
 
@@ -71,6 +76,27 @@
 <hr>
 
 <h3 class="header-medium" id="school-enrollment">School Enrollment</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+        {{acs-table
+      options=profile
+      scrollTable=profile.scrollTable
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=schoolEnrollment
+      t1=model.y2011_2015.school_enrollment
+      t2=model.y2006_2010.school_enrollment
+    }}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=schoolEnrollmentChartConfig data=model.y2011_2015.school_enrollment height=264 xMax=1}}
+    </div>
+  </div>
+</div>
+
+
 
 <hr>
 
@@ -90,7 +116,7 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar data=educationalAttainmentProfile height=210 xMax=1}}
+      {{acs-bar config=educationalAttainmentChartConfig data=model.y2011_2015.educational_attainment__highest_grade_completed_ height=210 xMax=1}}
     </div>
   </div>
 </div>
@@ -147,6 +173,11 @@
       t2=model.y2006_2010.residence_1_year_ago
     }}
   </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=residence1YearAgoChartConfig data=model.y2011_2015.residence_1_year_ago height=234 xMax=1}}
+    </div>
+  </div>
 </div>
 
 <hr>
@@ -164,6 +195,15 @@
       t1=model.y2011_2015.place_of_birth
       t2=model.y2006_2010.place_of_birth
     }}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      <h4>Place of Birth</h4>
+      {{acs-bar config=placeOfBirthChartConfig data=model.y2011_2015.place_of_birth height=210 xMax=1}}
+      <h4>Foreign Born</h4>
+      {{acs-bar config=foreignBornChartConfig data=model.y2011_2015.place_of_birth height=234 xMax=1}}
+
+    </div>
   </div>
 </div>
 

@@ -73,6 +73,11 @@
       t2=model.y2006_2010.hispanic_subgroup
     }}
   </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=hispanicSubgroupChartConfig data=model.y2011_2015.hispanic_subgroup height=264 xMax=1}}
+    </div>
+  </div>
 </div>
 
 <hr>
@@ -90,6 +95,11 @@
         t1=model.y2011_2015.asian_subgroup
         t2=model.y2006_2010.asian_subgroup
       }}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=asianSubgroupChartConfig data=model.y2011_2015.asian_subgroup height=210 xMax=1}}
+    </div>
   </div>
 </div>
 {{outlet}}
