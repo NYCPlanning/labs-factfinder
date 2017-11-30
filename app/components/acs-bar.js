@@ -199,7 +199,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
 
       const xFunctionMOE = (d) => {
-        if (d.percent_m > d.percent) return 0;
+        if (d.percent_m > d.percent) return x(0);
         return x(d.percent) - x(d.percent_m) - -textWidth;
       };
 
