@@ -31,4 +31,12 @@ export default [
     title: 'Other vacant',
     data: 'vhuothvc',
   },
+  {
+    title: 'Homeowner vacancy rate (percent)',
+    data: 'hmownrvcrt',
+  },
+  {
+    title: 'Rental vacancy rate (percent)',
+    data: 'rntvcrt',
+  },
 ];
