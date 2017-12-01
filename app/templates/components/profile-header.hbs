@@ -132,7 +132,7 @@
 
         {{map.on 'resize' (action 'handleResize')}}
       {{/mapbox-gl}}
-      {{#link-to 'index' classNames='edit-selection-button button tiny white text-orange'}}{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection{{/link-to}}
+      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button button tiny white text-orange'}}{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection{{/link-to}}
     </div>
 
  </div>
