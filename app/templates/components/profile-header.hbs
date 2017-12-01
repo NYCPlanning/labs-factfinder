@@ -71,6 +71,7 @@
         </div>
       </div>
 
+      {{#unless (eq profile.tab 'profile.census') }}
       <div class="profile-reliability-controls">
         <a {{action (mut profile.reliability) (not profile.reliability)}}>
           {{#if profile.reliability}}
@@ -81,6 +82,7 @@
           Show Data Reliability
         </a>
       </div>
+      {{/unless}}
 
     </div>
 
