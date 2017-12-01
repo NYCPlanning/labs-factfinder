@@ -4,7 +4,7 @@ export default [
     label: 'Owner-occupied',
   },
   {
-    property: 'rochu',
+    property: 'rochu1',
     label: 'Renter-occupied',
   },
 ];
