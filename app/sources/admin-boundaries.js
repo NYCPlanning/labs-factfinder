@@ -4,7 +4,13 @@ export default {
   'source-layers': [
     {
       id: 'neighborhood-tabulation-areas',
-      sql: 'SELECT the_geom_webmercator, ntaname, ntacode, ntacode AS geolabel, ntacode AS geoid FROM support_admin_ntaboundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
+      sql: `
+        SELECT a.the_geom_webmercator, e, p, ntaname, ntacode, ntacode AS geolabel, ntacode AS geoid, geotype
+        FROM support_admin_ntaboundaries a
+          LEFT JOIN economic on a.ntacode = economic.geoid
+        WHERE ntaname NOT ILIKE 'park-cemetery-etc%'
+          AND  dataset = 'Y2011-2015' AND variable = 'PBwPv' AND geotype = 'NTA2010'
+      `,
     },
 
     {

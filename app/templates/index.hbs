@@ -45,6 +45,8 @@
 
     {{map.layer-group config=layerGroups.nycPumas visible=(eq selection.summaryLevel 'pumas')}}
 
+    {{map.layer-group config=layerGroups.choropleths visible=true}}
+
     {{#if selection.current}}
       {{#map.source
         sourceId='selected-features'
