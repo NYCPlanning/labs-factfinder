@@ -28,7 +28,7 @@ body {
   position: relative;
   z-index: 2;
   height: calc(100vh - 6rem);
-  background-color: $white;
+  background-color: $body-background;
 
   @include breakpoint(large) {
     z-index: 1;
