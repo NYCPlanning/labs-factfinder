@@ -91,4 +91,34 @@
   }}
 {{/decennial-table}}
 
+{{#decennial-table category='decennial_housing_tenure' as |table|}}
+  {{acs-table
+    reliability=false
+    comparison=true
+    config=housingTenure
+    t1=table.categoryData.y2000
+    t2=table.categoryData.y2010
+  }}
+{{/decennial-table}}
+
+{{#decennial-table category='decennial_tenure_by_age' as |table|}}
+  {{acs-table
+    reliability=false
+    comparison=true
+    config=tenureAgeHouseholder
+    t1=table.categoryData.y2000
+    t2=table.categoryData.y2010
+  }}
+{{/decennial-table}}
+
+{{#decennial-table category='decennial_household_size' as |table|}}
+  {{acs-table
+    reliability=false
+    comparison=true
+    config=householdSize
+    t1=table.categoryData.y2000
+    t2=table.categoryData.y2010
+  }}
+{{/decennial-table}}
+
 {{outlet}}
