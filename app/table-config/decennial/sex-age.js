@@ -113,19 +113,6 @@ export default [
     divider: true,
   },
   {
-    title: 'Under 18 years',
-    classNames: '',
-    data: 'popu181',
-  },
-  {
-    title: '65 years and over',
-    classNames: '',
-    data: 'pop65pl1',
-  },
-  {
-    divider: true,
-  },
-  {
     title: 'Median age (years)',
     classNames: '',
     data: 'mdage',
@@ -158,36 +145,29 @@ export default [
     divider: true,
   },
   {
-    title: 'Under 18 years',
-    highlight: true,
-    data: 'popu18_2',
+    title: '18 years and over',
+    data: 'pop18pl',
   },
   {
-    title: 'Male',
-    classNames: '',
-    data: 'popu18m',
+    title: '21 years and over',
+    data: 'pop21pl',
   },
   {
-    title: 'Female',
-    classNames: '',
-    data: 'popu18f',
-  },
-  {
-    divider: true,
+    title: '62 years and over',
+    data: 'pop62pl',
   },
   {
     title: '65 years and over',
-    highlight: true,
-    data: 'pop65pl2',
+    data: 'pop65pl_1',
   },
   {
+    indent: 1,
     title: 'Male',
-    classNames: '',
     data: 'pop65plm',
   },
   {
+    indent: 1,
     title: 'Female',
-    classNames: '',
     data: 'pop65plf',
   },
 ];
