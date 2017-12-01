@@ -1,8 +1,21 @@
-<h1>Census Profile</h1>
+{{log profile}}
+{{log 'mode' profile.mode}}
+{{log rawData}}
+
+{{#profile-header
+  profile=profile
+  title="2010 Census Profile"
+  mode=profile.mode
+  data=rawData
+}}
+  <p class="text-tiny">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+{{/profile-header}}
 
 {{!-- Tables --}}
 
-{{!-- 
+{{!--
   decennial_median_age_for_blocks_only
   decennial_dictionary
   decennial_hispanic_subgroup
@@ -17,7 +30,7 @@
   decennial_housing_tenure
   decennial_tenure_by_age
   decennial_household_size
-  decennial_poppyramid_only 
+  decennial_poppyramid_only
 --}}
 
 {{#decennial-table category='decennial_sex_age' as |table|}}
