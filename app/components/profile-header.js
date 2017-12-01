@@ -14,6 +14,11 @@ export default Ember.Component.extend({
 
   selection: service(),
 
+  @computed()
+  currentProfile() {
+    return this.get('profile').target.currentRouteName.split('.')[1];
+  },
+
   sources,
   zoom: 10,
   center: [-73.916016, 40.697299],
