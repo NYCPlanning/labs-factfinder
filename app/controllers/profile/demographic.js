@@ -6,6 +6,10 @@ import raceGroup from '../../table-config/demographic/race-group';
 import hispanicSubgroup from '../../table-config/demographic/hispanic-subgroup';
 import asianSubgroup from '../../table-config/demographic/asian-subgroup';
 
+import raceGroupChartConfig from '../../chart-config/demographic/race-group';
+import hispanicSubgroupChartConfig from '../../chart-config/demographic/hispanic-subgroup';
+import asianSubgroupChartConfig from '../../chart-config/demographic/asian-subgroup';
+
 const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
@@ -13,6 +17,10 @@ export default Ember.Controller.extend({
   raceGroup,
   hispanicSubgroup,
   asianSubgroup,
+
+  raceGroupChartConfig,
+  hispanicSubgroupChartConfig,
+  asianSubgroupChartConfig,
 
   profile: controller('profile'),
 
@@ -63,4 +71,5 @@ export default Ember.Controller.extend({
       pyramidData,
     };
   },
+
 });
