@@ -11,7 +11,12 @@ import housingTenure from '../../table-config/decennial/housing-tenure';
 import tenureAgeHouseholder from '../../table-config/decennial/tenure-age-householder';
 import householdSize from '../../table-config/decennial/household-size';
 
+const { inject: { controller } } = Ember;
+
 export default Ember.Controller.extend({
+
+  profile: controller('profile'),
+
   popDensity,
   sexAge,
   mutuallyExclRaceHisp,
