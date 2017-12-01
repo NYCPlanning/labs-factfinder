@@ -8,7 +8,16 @@
               tabName='Census'
               tabNameSmall=''
               as |item| }}
-              <li>{{#item.scroll-to href='#'}}Section{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#sex-and-age'}}Sex and Age{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#mutually-exclusive-race-hispanic-origin'}}Mutually Exclusive Race / Hispanic Origin{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#hispanic-subgroup'}}Hispanic Subgroup{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#asian-subgroup'}}Asian Subgroup{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#relationship-to-head-of-household'}}Relationship to Head of Household{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#household-type'}}Household Type{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#housing-occupancy'}}Housing Occupancy{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#housing-tenure'}}Housing Tenure{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#tenure-by-age-of-housholer'}}Tenure by Age of Housholer{{/item.scroll-to}}</li>
+              <li>{{#item.scroll-to href='#household-size'}}Household Size{{/item.scroll-to}}</li>
             {{/tab-dropdown}}
           {{else}}
             {{link-to 'Census' 'profile.census'}}
