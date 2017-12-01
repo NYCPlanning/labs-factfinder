@@ -99,6 +99,11 @@
       t2=model.y2006_2010.housing_tenure
     }}
   </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=housingTenureChartConfig data=model.y2011_2015.housing_tenure height=182 xMax=1}}
+    </div>
+  </div>
 </div>
 
 <hr>
@@ -135,6 +140,11 @@
       t2=model.y2006_2010.vehicles_available
     }}
   </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=vehiclesAvailableChartConfig data=model.y2011_2015.vehicles_available height=236 xMax=1}}
+    </div>
+  </div>
 </div>
 
 <hr>
@@ -170,6 +180,11 @@
       t1=model.y2011_2015.value
       t2=model.y2006_2010.value
     }}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=valueChartConfig data=model.y2011_2015.value height=343 xMax=1}}
+    </div>
   </div>
 </div>
 
@@ -225,6 +240,11 @@
       t2=model.y2006_2010.gross_rent
     }}
   </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=grossRentChartConfig data=model.y2011_2015.gross_rent height=324 xMax=1}}
+    </div>
+  </div>
 </div>
 
 <hr>
@@ -242,6 +262,11 @@
       t1=model.y2011_2015.gross_rent_as_a_percentage_of_household_income__grapi_
       t2=model.y2006_2010.gross_rent_as_a_percentage_of_household_income__grapi_
     }}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar config=grossRentGrapiChartConfig data=model.y2011_2015.gross_rent_as_a_percentage_of_household_income__grapi_ height=295 xMax=1}}
+    </div>
   </div>
 </div>
 
