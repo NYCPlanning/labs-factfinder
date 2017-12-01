@@ -29,6 +29,9 @@ const draw = new MapboxDraw({
 });
 
 export default Ember.Controller.extend({
+  queryParams: ['lastreport'],
+  lastreport: 'demographic',
+
   selection: service(),
   mapMouseover: service(),
 
