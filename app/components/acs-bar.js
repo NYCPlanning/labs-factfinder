@@ -30,22 +30,10 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
   resizeHeightSensitive: true,
   loading: false,
 
-  // getBarChartData(d, config) {
-  //   return config.map(({ property, label }) =>
-  //     ({
-  //       percent: d[property].percent,
-  //       sum: d[property].sum,
-  //       moe: d[property].m,
-  //       percent_m: d[property].percent_m,
-  //       comparison_percent: d[property].comparison_percent,
-  //       comparison_percent_m: d[property].comparison_percent_m,
-  //       group: label,
-  //       classValue: property,
-  //     }));
-  // },
-
   didRender() {
-    this.createChart();
+    if (this.get('data')) {
+      this.createChart();
+    }
   },
 
   debouncedDidResize(width) {
