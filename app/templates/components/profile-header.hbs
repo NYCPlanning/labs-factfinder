@@ -14,7 +14,11 @@
           {{else}}
             <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
           {{/if}}
-          2011-2015 American Community Survey <small>(ACS)</small>
+          {{#if (eq profile.tab 'profile.census') }}
+            2010 Decennial Census
+          {{else}}
+            2011-2015 American Community Survey <small>(ACS)</small>
+          {{/if}}
         </a>
       </h2>
       <h2 class="header-medium" class="{{if (eq mode 'current') 'dark-gray'}}">
@@ -24,7 +28,11 @@
           {{else}}
             <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
           {{/if}}
-          Change Over Time <small>(2006-2010 vs 2011-2015)</small>
+          {{#if (eq profile.tab 'profile.census') }}
+            Change Over Time <small>2000 vs 2010</small>
+          {{else}}
+            Change Over Time <small>(2006-2010 vs 2011-2015)</small>
+          {{/if}}
         </a>
       </h2>
     </div>
