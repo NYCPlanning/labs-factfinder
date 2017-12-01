@@ -42,7 +42,8 @@ export default Ember.Component.extend({
       .then(d => d.json());
 
     const lastreport = this.get('lastreport');
-    const transitionRoute = `profile.${lastreport}`;
+    const blocks = this.get('selection.summaryLevel') === 'blocks';
+    const transitionRoute = blocks ? 'profile.census' : `profile.${lastreport}`;
 
     yield this.get('router')
       .transitionTo(transitionRoute, id, { queryParams: { mode: 'current', comparator: '0' } });
