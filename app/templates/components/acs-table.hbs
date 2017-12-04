@@ -1,108 +1,25 @@
-{{log t1}}
-
 <div class="table-copy-ui show-for-large">
   <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
 </div>
 <div class="table-scroll">
-  {{!-- <table class="text-small {{if scrollTable 'table-scroll-vert'}}"> --}}
-  <table class="text-small">
-    <thead>
-      {{#if (eq mode 'current')}} {{! current header}}
-      <tr>
-        <th rowspan="2">&nbsp;</th>
-        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
-        {{#if comparison}}
-        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
-        <th colspan="2" class="text-center cell-border-bottom">Difference</th>
-        {{/if}}
-      </tr>
-      <tr>
-        <th class="text-right cell-border-bottom">Estimate</th>
-          {{#if reliability}}
-          <th class="text-right cell-border-bottom">MOE</th>
-        <th class="text-right cell-border-bottom">CV</th>
-        {{/if}}
-        <th class="text-right cell-border-bottom">Pct. Estimate</th>
-          {{#if reliability}}
-        <th class="text-right cell-border-bottom">MOE</th>
-          {{/if}}
-       {{#if comparison}}
-          <th class="text-right cell-border-bottom">Estimate</th>
-          {{#if reliability}}
-        <th class="text-right cell-border-bottom">MOE</th>
-        <th class="text-right cell-border-bottom">CV</th>
-          {{/if}}
-        <th class="text-right cell-border-bottom">Pct. Estimate</th>
-          {{#if reliability}}
-        <th class="text-right cell-border-bottom">MOE</th>
-          {{/if}}
-        <th class="text-right cell-border-bottom">Number</th>
-        <th class="text-right cell-border-bottom">Pctg. Point</th>
-      {{/if}}
-      </tr>
-      {{ else }} {{! change over time header}}
-        <tr>
-          <th rowspan="3">&nbsp;</th>
-          <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2006-2010</th>
-          <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2011-2015</th>
-          {{#if comparison}}
-            {{#if reliability}}
-              <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
-            {{else}}
-              <th colspan="6" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
-            {{/if}}
-          {{else}}
-            {{#if reliability}}
-              <th colspan="4" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
-            {{else}}
-              <th colspan="2" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
-              {{/if}}
-          {{/if}}
-        </tr>
-        <tr>
-          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
-          {{#if comparison}}
-          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
-          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
-          {{/if}}
-        </tr>
-        <tr>
-          <th>Number</th>
-          <th>Percent</th>
-          <th>Number</th>
-          <th>Percent</th>
-          <th>Estimate</th>
-          {{#if reliability}}
-            <th>MOE</th>
-          {{/if}}
-          <th>Pct. Estimate</th>
-          {{#if reliability}}
-            <th>MOE</th>
-          {{/if}}
-          {{#if comparison}}
-          <th>Estimate</th>
-          {{#if reliability}}
-            <th>MOE</th>
-          {{/if}}
-          <th>Pct. Estimate</th>
-          {{#if reliability}}
-            <th>MOE</th>
-          {{/if}}
-          <th>Estimate</th>
-          {{#if reliability}}
-            <th>MOE</th>
-          {{/if}}
-          <th>Pctg. Estimate</th>
-          {{#if reliability}}
-            <th>MOE</th>
-          {{/if}}
-          {{/if}}
-        </tr>
 
-      {{/if}}
-    </thead>
+  {{#if media.isLarge}}
+    {{#sticky-element top=175 bottom=0}}
+    {{acs-table-header
+      reliability=reliability
+      comparison=comparison
+    }}
+    {{/sticky-element}}
+  {{else}}
+    {{acs-table-header
+      reliability=reliability
+      comparison=comparison
+    }}
+  {{/if}}
+
+  <table>
     <tbody>
-      {{#each config as |row|}} 
+      {{#each config as |row|}}
         {{#if hasBlock}}
           {{yield}}
         {{else}}
@@ -120,4 +37,5 @@
       {{/each}}
     </tbody>
   </table>
+
 </div>
