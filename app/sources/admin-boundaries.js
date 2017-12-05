@@ -5,7 +5,7 @@ export default {
     {
       id: 'neighborhood-tabulation-areas',
       sql: `
-        SELECT a.the_geom_webmercator, poverty_e, population_density, ntaname, ntacode, ntacode AS geolabel, a.ntacode AS geoid
+        SELECT a.the_geom_webmercator, poverty_e, population_density, popu181, ntaname, ntacode, ntacode AS geolabel, a.ntacode AS geoid
         FROM support_admin_ntaboundaries a
 
           LEFT JOIN (
@@ -17,6 +17,11 @@ export default {
             SELECT geoid, value as population_density FROM decennial_population_density
             WHERE year = '2010' AND variable = 'PopPerAcre'
           ) population_density on a.ntacode = population_density.geoid
+
+          LEFT JOIN (
+            SELECT geoid, e as popu181 FROM demographic
+            WHERE dataset = 'Y2011-2015' AND variable = 'PopU181' AND geotype = 'NTA2010'
+          ) popu181 on a.ntacode = popu181.geoid
 
         WHERE ntaname NOT ILIKE 'park-cemetery-etc%'
       `,
