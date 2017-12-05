@@ -296,8 +296,10 @@
     {{#if reliability}}
       <td>
       {{#if data2.sum}}
-          {{numeral-format comparisonLongitudinalPercentMOE '0.0%'}}
-        {{else}}
+        {{numeral-format comparisonLongitudinalPercentMOE '0.0%'}}
+      {{else if (eq data2.sum 0)}}
+        {{numeral-format comparisonLongitudinalPercentMOE '0.0%'}}
+      {{else}}
           &nbsp;
         {{/if}}
       </td>
