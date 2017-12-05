@@ -1,5 +1,6 @@
 export default [
   {
+    highlight: true,
     title: 'Occupied housing units',
     data: 'ochu_2',
   },
@@ -10,6 +11,9 @@ export default [
   {
     title: 'Renter-occupied housing units',
     data: 'rochu_1',
+  },
+  {
+    divider: true,
   },
   {
     title: 'Average household size of owner-occupied units',

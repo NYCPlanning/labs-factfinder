@@ -1,5 +1,6 @@
 export default [
   {
+    highlight: true,
     title: 'Total occupied housing units',
     data: 'ochu_4',
   },
