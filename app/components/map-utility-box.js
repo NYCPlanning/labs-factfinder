@@ -15,6 +15,8 @@ export default Ember.Component.extend({
   router: service(),
   lastreport: null,
 
+  choroplethConfigs,
+
   classNames: ['map-utility-box'],
 
   selectionCount: alias('selection.selectedCount'),
@@ -32,7 +34,9 @@ export default Ember.Component.extend({
 
   @computed('choroplethMode')
   choroplethPaint(mode) {
-    return choroplethConfigs[mode];
+    console.log('mode', mode)
+    console.log('update paint', choroplethConfigs.find(d => d.id === mode))
+    return choroplethConfigs.find(d => d.id === mode).paint;
   },
 
   generateProfileId: task(function* (type, geoids) {
@@ -75,7 +79,6 @@ export default Ember.Component.extend({
     },
 
     setChoroplethMode(mode) {
-      console.log('HEY!')
       this.set('choroplethMode', mode);
     },
   },
