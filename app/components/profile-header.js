@@ -4,6 +4,8 @@ import bbox from 'npm:@turf/bbox';
 
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
+import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
+import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
 
 const selectedFillLayer = selectedFeatures.fill;
 
@@ -18,6 +20,9 @@ export default Ember.Component.extend({
   currentProfile() {
     return this.get('profile').target.currentRouteName.split('.')[1];
   },
+
+  bkQnMhBoundarySource,
+  bkQnMhBoundaryLayer,
 
   sources,
   zoom: 10,
