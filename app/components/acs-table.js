@@ -1,10 +1,14 @@
 import Ember from 'ember';
 
+const { service } = Ember.inject;
+
 export default Ember.Component.extend({
   scrollTable: null,
   mode: 'current',
   reliability: false,
   comparison: true,
+
+  windowResize: service(),
 
   actions: {
     handleCopy() {
@@ -38,5 +42,11 @@ export default Ember.Component.extend({
       const offset = $(this).find('.data-table').offset();
       $(this).find('.sticky-element--sticky table').offset({ left: offset.left });
     });
+
+    this.get('windowResize').on('didResize', () => {
+      const tableWidth = this.$().find('.table-scroll').width();
+      this.$().find('.sticky-element--sticky').width(tableWidth);
+    });
   },
+
 });
