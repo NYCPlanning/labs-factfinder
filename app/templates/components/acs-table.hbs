@@ -43,8 +43,10 @@
       {{ else }} {{! change over time header}}
         <tr>
           <th rowspan="3">&nbsp;</th>
-          <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2006-2010</th>
-          <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2011-2015</th>
+          {{#unless comparison}}
+            <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2006-2010</th>
+            <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2011-2015</th>
+          {{/unless}}
           {{#if comparison}}
             {{#if reliability}}
               <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2011-2015</th>
@@ -67,10 +69,12 @@
           {{/if}}
         </tr>
         <tr>
-          <th>Number</th>
-          <th>Percent</th>
-          <th>Number</th>
-          <th>Percent</th>
+          {{#unless comparison}}
+            <th>Number</th>
+            <th>Percent</th>
+            <th>Number</th>
+            <th>Percent</th>
+          {{/unless}}
           <th>Estimate</th>
           {{#if reliability}}
             <th>MOE</th>
@@ -102,7 +106,7 @@
       {{/if}}
     </thead>
     <tbody>
-      {{#each config as |row|}} 
+      {{#each config as |row|}}
         {{#if hasBlock}}
           {{yield}}
         {{else}}
