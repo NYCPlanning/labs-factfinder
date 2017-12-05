@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   mode: 'current',
   reliability: false,
   comparison: true,
+
   actions: {
     handleCopy() {
       const el = this.get('element').getElementsByTagName('table')[0];
@@ -30,5 +31,11 @@ export default Ember.Component.extend({
 
       document.execCommand('copy');
     },
+  },
+
+  didInsertElement() {
+    this.$('.table-scroll').on('scroll', function() {
+      console.log('scrolled');
+    });
   },
 });
