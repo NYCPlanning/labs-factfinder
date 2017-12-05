@@ -1,9 +1,10 @@
 export default [
   {
     id: 'poverty',
+    label: 'Below Poverty (percent)',
     paint: {
       'fill-color': {
-        property: 'poverty_e',
+        property: 'pbwpv',
         stops: [
           [4999, '#E5E544'],
 
@@ -23,9 +24,10 @@ export default [
   },
   {
     id: 'populationDensity',
+    label: 'Population Density',
     paint: {
       'fill-color': {
-        property: 'population_density',
+        property: 'popperacre',
         stops: [
 
           [24.9, '#E5E544'],

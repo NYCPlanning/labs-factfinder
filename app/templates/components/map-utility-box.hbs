@@ -35,9 +35,8 @@
   <div class="selection-helpers {{if advanced 'closed'}}">
     <div id="layers-menu" class="{{if closed 'show-for-medium'}} hide-for-print">
       {{#layer-menu-item for='choropleths' as |item|}}
-        {{log choroplethConfigs}}
         {{#each choroplethConfigs as |config|}}
-          <button {{action (queue (action 'setChoroplethMode' config.id) (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaint))}}>{{config.id}}</button>
+          <button {{action (queue (action 'setChoroplethMode' config.id) (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaint))}}>{{config.label}}</button><br>
         {{/each}}
       {{/layer-menu-item}}
     </div>

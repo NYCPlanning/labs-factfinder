@@ -17,5 +17,30 @@ export default {
         },
       },
     },
+    {
+      layer: {
+        id: 'choropleth-nta-line',
+        type: 'line',
+        source: 'admin-boundaries',
+        'source-layer': 'neighborhood-tabulation-areas',
+        paint: {
+          'line-width': {
+            stops: [
+              [
+                10,
+                2,
+              ],
+              [
+                14,
+                5,
+              ],
+            ],
+          },
+          'line-opacity': 0.6,
+          'line-color': 'rgba(116, 116, 116, 1)',
+          'line-translate-anchor': 'map',
+        },
+      },
+    },
   ],
 };

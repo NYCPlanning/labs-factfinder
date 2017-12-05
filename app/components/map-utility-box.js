@@ -34,8 +34,6 @@ export default Ember.Component.extend({
 
   @computed('choroplethMode')
   choroplethPaint(mode) {
-    console.log('mode', mode)
-    console.log('update paint', choroplethConfigs.find(d => d.id === mode))
     return choroplethConfigs.find(d => d.id === mode).paint;
   },
 
