@@ -36,7 +36,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this.$('.table-scroll').on('scroll', function() {
       const offset = $(this).find('.data-table').offset();
-      $(this).find('.sticky-element--sticky').offset({ left: offset.left });
+      $(this).find('.sticky-element--sticky table').offset({ left: offset.left });
     });
   },
 });
