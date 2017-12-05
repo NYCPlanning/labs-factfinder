@@ -32,10 +32,14 @@
     </strong></small>
   </div>
 
-  <div class="selection-helpers {{unless advanced 'closed'}}">
-    <p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p>
-    <p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p>
-    <p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p>
+  <div class="selection-helpers {{if advanced 'closed'}}">
+    <div id="layers-menu" class="{{if closed 'show-for-medium'}} hide-for-print">
+      {{#layer-menu-item for='choropleths' as |item|}}
+      {{log 'item' item}}
+      <button {{action (queue (action 'setChoroplethMode' 'poverty') (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaint))}}>Poverty</button>
+      <button {{action (queue (action 'setChoroplethMode' 'populationDensity') (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaint))}}>Population Density</button>
+      {{/layer-menu-item}}
+    </div>
   </div>
 
   <div class="clearfix">

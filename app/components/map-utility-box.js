@@ -4,6 +4,8 @@ import { task } from 'ember-concurrency';
 import fetch from 'fetch';
 import Environment from '../config/environment';
 
+import choroplethConfigs from '../choropleth-config';
+
 const { service } = Ember.inject;
 const { alias } = Ember.computed;
 const { SupportServiceHost } = Environment;
@@ -19,11 +21,18 @@ export default Ember.Component.extend({
   mode: 'direct-select',
   advanced: false,
 
+  choroplethMode: 'poverty',
+
   summaryLevel: alias('selection.summaryLevel'),
 
   @computed('selection.selectedCount', 'generateProfileId.isIdle')
   profileButtonClasses(count, isIdle) {
     return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
+  },
+
+  @computed('choroplethMode')
+  choroplethPaint(mode) {
+    return choroplethConfigs[mode];
   },
 
   generateProfileId: task(function* (type, geoids) {
@@ -63,6 +72,11 @@ export default Ember.Component.extend({
         .mapBy('properties.geoid');
 
       this.get('generateProfileId').perform(type, geoids);
+    },
+
+    setChoroplethMode(mode) {
+      console.log('HEY!')
+      this.set('choroplethMode', mode);
     },
   },
 });
