@@ -443,8 +443,14 @@ button {
   margin: 0;
 }
 
-.table-scroll {
+.acs-table {
   position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  table {
+    margin-bottom: 0;
+  }
 }
 
 thead {
