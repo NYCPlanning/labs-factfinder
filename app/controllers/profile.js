@@ -17,7 +17,6 @@ export default Ember.Controller.extend({
   comparison: true,
   changeReliability: true,
   changeComparison: false,
-  scrollTable: true,
 
   selection: service(),
   mapMouseover: service(),

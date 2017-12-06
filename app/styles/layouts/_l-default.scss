@@ -39,7 +39,7 @@ body {
 
     @include breakpoint(large) {
       @include xy-grid(vertical, true);
-      height: calc(100vh - 7.25rem);
+      height: calc(100vh - 6rem);
       overflow: hidden;
 
       > .cell {
@@ -241,4 +241,9 @@ body {
     height: 100%;
     display: flex;
   }
+}
+
+
+.sticky-element--sticky {
+  overflow: hidden;
 }
