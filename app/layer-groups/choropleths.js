@@ -3,7 +3,7 @@ import choroplethConfigs from '../choropleth-config';
 export default {
   id: 'choropleths',
   title: 'Choropleths',
-  visible: true,
+  visible: false,
   layers: [
     {
       layer: {
