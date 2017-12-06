@@ -3,7 +3,6 @@ import Ember from 'ember';
 const { service } = Ember.inject;
 
 export default Ember.Component.extend({
-  scrollTable: null,
   mode: 'current',
   reliability: false,
   comparison: true,

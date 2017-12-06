@@ -3,11 +3,10 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 
 export default Ember.Component.extend({
-  scrollTable: null,
   mode: 'current',
   reliability: false,
   comparison: true,
-  
+
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
