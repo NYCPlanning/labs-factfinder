@@ -1,5 +1,5 @@
 {{#if layer}}
-  <div class="layer-menu-item" {{action 'toggleVisibility'}}>
+  <div class="layer-menu-item-header" {{action 'toggleVisibility'}}>
 
     {{#if (or warning titleTooltip)}}
       <span class="layer-tooltips-container">
@@ -38,9 +38,15 @@
 
 
   </div>
-  {{yield (hash
-    layer=layer
-    updateSql=(action 'updateSql')
-    updatePaintFor=(action 'updatePaintFor')
-    )}}
+
+  {{#if visible}}
+    <div class="layer-menu-item-content">
+      {{yield (hash
+        layer=layer
+        updateSql=(action 'updateSql')
+        updatePaintFor=(action 'updatePaintFor')
+        )}}
+    </div>
+  {{/if}}
+
 {{/if}}
