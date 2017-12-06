@@ -1,4 +1,3 @@
-{{log t1}}
 
 <div class="table-copy-ui show-for-large">
   <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
@@ -102,7 +101,7 @@
       {{/if}}
     </thead>
     <tbody>
-      {{#each config as |row|}} 
+      {{#each config as |row|}}
         {{#if hasBlock}}
           {{yield}}
         {{else}}
