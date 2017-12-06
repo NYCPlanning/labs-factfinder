@@ -5,10 +5,11 @@
 
   {{#if media.isLarge}}
     {{#sticky-element top=175 bottom=0}}
-    {{acs-table-header
-      reliability=reliability
-      comparison=comparison
-    }}
+      {{acs-table-header
+        reliability=reliability
+        comparison=comparison
+        mode=mode
+      }}
     {{/sticky-element}}
   {{else}}
     {{acs-table-header
