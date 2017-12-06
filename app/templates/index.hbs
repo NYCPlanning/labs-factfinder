@@ -23,6 +23,10 @@
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
+    {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
+      {{map.layer layer=bkQnMhBoundaryLayer}}
+    {{/map.source}}
+
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
         {{source.layer layer=selection.pointLayer}}
@@ -44,6 +48,8 @@
     {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=(eq selection.summaryLevel 'ntas')}}
 
     {{map.layer-group config=layerGroups.nycPumas visible=(eq selection.summaryLevel 'pumas')}}
+
+    {{map.layer-group config=layerGroups.choropleths visible=false}}
 
     {{#if selection.current}}
       {{#map.source

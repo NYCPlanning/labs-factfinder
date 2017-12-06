@@ -1,0 +1,52 @@
+{{#if layer}}
+  <div class="layer-menu-item-header" {{action 'toggleVisibility'}}>
+
+    {{#if (or warning titleTooltip)}}
+      <span class="layer-tooltips-container">
+        {{#if warning}}
+          {{info-tooltip
+            iconName='warning'
+            tip='Some information may not visible at this zoom level.'
+            classNames='layer-warning'
+            tooltipClass='tooltip--layer-warning'
+          }}
+        {{/if}}
+        {{#if titleTooltip}}
+          {{info-tooltip
+            tip=titleTooltip
+            classNames='layer-info'
+            tooltipClass='tooltip--layer-info'
+          }}
+        {{/if}}
+      </span>
+    {{/if}}
+
+    {{switch-toggle checked=visible}}
+
+    {{title}}
+
+    {{#if visible}}
+      {{#with legendIcon as |legendIcon|}}
+        {{#if (eq legendIcon 'admin-line')}}
+          <span class="layer-group-legend" style="border-color:{{legendColor}};"></span>
+        {{/if}}
+        {{#if (eq legendIcon 'polygon')}}
+          <span class="icon polygon legend-icon" style="background-color:{{legendColor}};"></span>
+        {{/if}}
+      {{/with}}
+    {{/if}}
+
+
+  </div>
+
+  {{#if visible}}
+    <div class="layer-menu-item-content">
+      {{yield (hash
+        layer=layer
+        updateSql=(action 'updateSql')
+        updatePaintFor=(action 'updatePaintFor')
+        )}}
+    </div>
+  {{/if}}
+
+{{/if}}
