@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 
   actions: {
     handleCopy() {
-      const el = this.get('element').getElementsByTagName('table')[0];
+      const [el] = this.get('element').getElementsByClassName('table-scroll');
       const body = document.body;
       let range;
       let sel;
