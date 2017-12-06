@@ -2,8 +2,53 @@ const preserveType = function(array) {
   return `'${array.join("','")}'`;
 };
 
+const singleGeometry = function(geoid, comparator, profile = 'demographic') {
+  return `
+    WITH 
+      filtered_selection AS (
+        SELECT *
+        FROM ${profile}
+        INNER JOIN support_fact_finder_meta_1
+          ON support_fact_finder_meta_1.variablename = variable
+        WHERE geoid = '${geoid}'
+      ),
+      comparison_selection AS (
+        SELECT e as comparison_sum,
+          variable as comparison_variable,
+          dataset as comparison_dataset,
+          p as comparison_percent,
+          z as comparison_percent_m,
+          m as comparison_m
+        FROM ${profile}
+        INNER JOIN support_fact_finder_meta_1
+          ON support_fact_finder_meta_1.variablename = variable
+        WHERE geoid = '${comparator}'
+      )
+    SELECT *,
+      e as sum,
+      c as cv,
+      z as percent_m,
+      regexp_replace(lower(dataset), '[^A-Za-z0-9]', '_', 'g') AS dataset,
+      regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') AS profile,
+      regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
+      regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') AS variable,
+      ROUND(p::numeric, 4) / 100 as percent
+    FROM
+      filtered_selection
+    LEFT OUTER JOIN comparison_selection
+      ON filtered_selection.variable = comparison_selection.comparison_variable
+      AND filtered_selection.dataset = comparison_selection.comparison_dataset
+  `;
+};
+
 const generateProfileSQL = function(geoids, comparator, profile = 'demographic') {
   const ids = preserveType(geoids);
+  const [firstGeoid] = geoids;
+  const { length: count } = geoids;
+
+  if (count === 1) {
+    return singleGeometry(firstGeoid, comparator, profile);
+  }
 
   return `
     WITH
