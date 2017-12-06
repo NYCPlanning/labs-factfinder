@@ -112,29 +112,40 @@ body {
 .edit-selection-button {
   position: absolute;
   z-index: 2;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: rem-calc(10);
+  right: rem-calc(10);
+  font-size: rem-calc(12);
 
   span {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: $global-weight-bold;
     background-color: transparentize($white, 0.2);
-    padding: 0.75rem 1rem;
+    padding: rem-calc(5) rem-calc(8);
     border-radius: $global-radius;
     box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+    display: inline-block;
   }
 
-  &:hover {
-    background-color: transparentize($light-gray, 0.3);
+  @include breakpoint(large) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     span {
-      display: block;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: $global-weight-bold;
+      padding: 0.75rem 1rem;
+    }
+
+    &:hover {
+      background-color: transparentize($light-gray, 0.3);
+
+      span {
+        display: block;
+      }
     }
   }
 }
