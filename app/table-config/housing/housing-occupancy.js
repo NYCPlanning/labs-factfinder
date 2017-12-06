@@ -1,3 +1,5 @@
+import calculator from '../../utils/calculator';
+
 export default [
   {
     title: 'Total housing units',
@@ -18,9 +20,14 @@ export default [
   {
     title: 'Homeowner vacancy rate',
     data: 'hovacrt',
+    special: true,
+    aggregator: calculator,
+    procedure: ['vacsale', 'divide', 'hovacu', 'multiply', 100],
   },
   {
     title: 'Rental vacancy rate',
     data: 'rntvacrt',
+    special: true,
+    procedure: ['vacrnt', 'divide', 'rntvacu', 'multiply', 100],
   },
 ];

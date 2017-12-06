@@ -26,7 +26,7 @@ const calculator = function(data) {
     }
 
     if (!isOperator(step)) {
-      procedure[i] = get(data, `${step}.sum`);
+      procedure[i] = get(data, `${step}.sum`) || step;
     }
   });
 
