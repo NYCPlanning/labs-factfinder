@@ -36,7 +36,7 @@
     <div id="layers-menu" class="{{if closed 'show-for-medium'}} hide-for-print">
       {{#layer-menu-item for='choropleths' as |item|}}
         {{#each choroplethConfigs as |config|}}
-          <button {{action (queue (action 'setChoroplethMode' config.id) (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaint))}}>{{config.label}}</button><br>
+          <button {{action (queue (action 'setChoroplethMode' config.id) (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill) (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine))}}>{{config.label}}</button><br>
         {{/each}}
       {{/layer-menu-item}}
     </div>

@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   mode: 'direct-select',
   advanced: false,
 
-  choroplethMode: 'poverty',
+  choroplethMode: 'popperacre',
 
   summaryLevel: alias('selection.summaryLevel'),
 
@@ -33,8 +33,12 @@ export default Ember.Component.extend({
   },
 
   @computed('choroplethMode')
-  choroplethPaint(mode) {
-    return choroplethConfigs.find(d => d.id === mode).paint;
+  choroplethPaintFill(mode) {
+    return choroplethConfigs.find(d => d.id === mode).paintFill;
+  },
+
+  choroplethPaintLine(mode) {
+    return choroplethConfigs.find(d => d.id === mode).paintLine;
   },
 
   generateProfileId: task(function* (type, geoids) {

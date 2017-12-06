@@ -13,7 +13,7 @@ export default {
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'fill-opacity': 0.6,
-          'fill-color': choroplethConfigs.find(d => d.id === 'poverty').paint['fill-color'],
+          'fill-color': choroplethConfigs.find(d => d.id === 'popperacre').paintFill['fill-color'],
         },
       },
     },
@@ -37,7 +37,7 @@ export default {
             ],
           },
           'line-opacity': 0.6,
-          'line-color': 'rgba(116, 116, 116, 1)',
+          'line-color': choroplethConfigs.find(d => d.id === 'popperacre').paintLine['line-color'],
           'line-translate-anchor': 'map',
         },
       },
