@@ -1,4 +1,5 @@
 import interpolate from '../../utils/interpolate';
+import calculator from '../../utils/calculator';
 
 export default [
   {
@@ -69,6 +70,9 @@ export default [
   {
     title: 'Mean household income (dollars)',
     data: 'mnhhinc',
+    special: true,
+    aggregator: calculator,
+    procedure: ['hhi10t14', 'divide', 'hhi50t74'],
   },
   {
     divider: true,

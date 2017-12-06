@@ -1,3 +1,5 @@
+import calculator from '../../utils/calculator';
+
 export default [
   {
     title: 'Workers 16 years and over',
@@ -34,5 +36,8 @@ export default [
   {
     title: 'Mean travel time to work (minutes)',
     data: 'mntrvtm',
+    special: true,
+    aggregator: calculator,
+    procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
   },
 ];
