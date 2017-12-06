@@ -20,5 +20,5 @@ test('it renders', function(assert) {
     {{/layer-menu-item}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), '');
 });
