@@ -23,6 +23,10 @@
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
+    {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
+      {{map.layer layer=bkQnMhBoundaryLayer}}
+    {{/map.source}}
+
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
         {{source.layer layer=selection.pointLayer}}
@@ -87,7 +91,6 @@
 
   {{/jane-maps}}
 </div>
-
-{{map-utility-box mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+{{map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
 
 {{outlet}}

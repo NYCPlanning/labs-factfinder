@@ -14,7 +14,11 @@
           {{else}}
             <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
           {{/if}}
-          2011-2015 American Community Survey <small>(ACS)</small>
+          {{#if (eq profile.tab 'profile.census') }}
+            2010 Decennial Census
+          {{else}}
+            2011-2015 American Community Survey <small>(ACS)</small>
+          {{/if}}
         </a>
       </h2>
       <h2 class="header-medium" class="{{if (eq mode 'current') 'dark-gray'}}">
@@ -24,7 +28,11 @@
           {{else}}
             <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
           {{/if}}
-          Change Over Time <small>(2006-2010 vs 2011-2015)</small>
+          {{#if (eq profile.tab 'profile.census') }}
+            Change Over Time <small>2000 vs 2010</small>
+          {{else}}
+            Change Over Time <small>(2006-2010 vs 2011-2015)</small>
+          {{/if}}
         </a>
       </h2>
     </div>
@@ -51,9 +59,9 @@
         <div class="cell shrink">
           <a {{action (mut profile.comparison) (not profile.comparison)}}>
             {{#if profile.comparison}}
-              <span>{{fa-icon 'check-square-o'}}</span>
+              <span>{{fa-icon 'check-square-o' class="fa-fw"}}</span>
             {{else}}
-              <span>{{fa-icon 'square-o'}}</span>
+              <span>{{fa-icon 'square-o' class="fa-fw"}}</span>
             {{/if}}
             Compare to &nbsp;
           </a>
@@ -63,16 +71,18 @@
         </div>
       </div>
 
+      {{#unless (eq profile.tab 'profile.census') }}
       <div class="profile-reliability-controls">
         <a {{action (mut profile.reliability) (not profile.reliability)}}>
           {{#if profile.reliability}}
-            <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+            <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
           {{else}}
-            <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+            <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
           {{/if}}
           Show Data Reliability
         </a>
       </div>
+      {{/unless}}
 
     </div>
 
@@ -118,6 +128,10 @@
 
         as |map|}}
 
+        {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
+          {{map.layer layer=bkQnMhBoundaryLayer}}
+        {{/map.source}}
+
         {{#if selection.current}}
           {{#map.source
             sourceId='selected-features'
@@ -132,7 +146,7 @@
 
         {{map.on 'resize' (action 'handleResize')}}
       {{/mapbox-gl}}
-      {{#link-to 'index' classNames='edit-selection-button button tiny white text-orange'}}{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection{{/link-to}}
+      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button'}}<span>{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
     </div>
 
  </div>

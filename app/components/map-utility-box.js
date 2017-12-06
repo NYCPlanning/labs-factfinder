@@ -12,6 +12,7 @@ export default Ember.Component.extend({
   selection: service(),
   selectionHelper: service(),
   router: service(),
+  lastreport: null,
 
   classNames: ['map-utility-box'],
 
@@ -41,8 +42,12 @@ export default Ember.Component.extend({
     })
       .then(d => d.json());
 
+    const lastreport = this.get('lastreport');
+    const blocks = this.get('selection.summaryLevel') === 'blocks';
+    const transitionRoute = blocks ? 'profile.census' : `profile.${lastreport}`;
+
     yield this.get('router')
-      .transitionTo('profile', id, { queryParams: { mode: 'current', comparator: '0' } });
+      .transitionTo(transitionRoute, id, { queryParams: { mode: 'current', comparator: '0' } });
   }).restartable(),
 
   actions: {

@@ -12,6 +12,9 @@ import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import highlightedFeature from '../layers/highlighted-feature';
 
+import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
+import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
+
 const selectedFillLayer = selectedFeatures.fill;
 
 const { service } = Ember.inject;
@@ -29,12 +32,17 @@ const draw = new MapboxDraw({
 });
 
 export default Ember.Controller.extend({
+  queryParams: ['lastreport'],
+  lastreport: 'demographic',
+
   selection: service(),
   selectionHelper: service(),
   mapMouseover: service(),
 
   layerGroups,
   sources,
+  bkQnMhBoundarySource,
+  bkQnMhBoundaryLayer,
   zoom: 12.25,
   center: [-73.9868, 40.724],
   mode: 'direct-select',

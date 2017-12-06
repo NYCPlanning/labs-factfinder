@@ -293,7 +293,7 @@ button {
 
   @include breakpoint(small only) {
 
-    li {
+    li:not(:first-child) {
       border-top: 1px solid $medium-gray;
     }
 
@@ -304,6 +304,7 @@ button {
     a.active {
       background-color: $medium-gray;
       color: $body-font-color;
+      box-shadow: 0 -1px 0 0 rgba(0,0,0,0.2);
     }
   }
 
@@ -388,6 +389,44 @@ button {
         box-shadow: none;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .back-to-map {
+    position: relative;
+    top: -0.75rem;
+    left: -0.5rem;
+    margin-right: -0.5rem;
+    border: 0 !important;
+
+    a {
+      box-shadow: none !important;
+      border: 0 !important;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .fa-long-arrow-left {
+      color: $dark-gray;
+      position: relative;
+      margin-right: -0.2em;
+      margin-left: -0.25rem;
+      z-index: 1;
+    }
+
+    .fa-map {
+      color: $dcp-orange;
+    }
+
+    a:hover {
+
+      .fa-long-arrow-left {
+        color: $black;
+      }
+
+      .fa-map {
+        color: $a11y-orange;
       }
     }
   }

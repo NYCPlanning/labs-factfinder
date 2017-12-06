@@ -15,6 +15,11 @@ import occupantsPerRoom from '../../table-config/housing/occupants-per-room';
 import yearStructureBuilt from '../../table-config/housing/year-structure-built';
 import rooms from '../../table-config/housing/rooms';
 
+import grossRentGrapiChartConfig from '../../chart-config/housing/gross-rent-grapi';
+import grossRentChartConfig from '../../chart-config/housing/gross-rent';
+import housingTenureChartConfig from '../../chart-config/housing/housing-tenure';
+import valueChartConfig from '../../chart-config/housing/value';
+import vehiclesAvailableChartConfig from '../../chart-config/housing/vehicles-available';
 
 const { inject: { controller } } = Ember;
 
@@ -34,10 +39,18 @@ export default Ember.Controller.extend({
   yearStructureBuilt,
   rooms,
 
+  grossRentGrapiChartConfig,
+  grossRentChartConfig,
+  housingTenureChartConfig,
+  valueChartConfig,
+  vehiclesAvailableChartConfig,
+
   profile: controller('profile'),
 
   @computed('model')
   currentData(model) {
     return model.y2011_2015;
   },
+
+
 });

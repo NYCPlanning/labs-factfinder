@@ -10,7 +10,7 @@ export default [
   },
   {
     title: 'Renter-occupied',
-    data: 'rochu',
+    data: 'rochu1',
   },
   {
     divider: true,
