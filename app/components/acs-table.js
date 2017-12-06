@@ -43,9 +43,6 @@ export default Ember.Component.extend({
       const tableOffset = $(this).find('.data-table').offset();
       const offset = tableOffset.left - thisOffset.left;
       $(this).parents('.acs-table').find('.header-table').css({ marginLeft: offset });
-
-      // const offset = $(this).find('.data-table').offset();
-      // $(this).find('.sticky-element--sticky table').offset({ left: offset.left });
     });
 
     this.get('windowResize').on('didResize', () => {
