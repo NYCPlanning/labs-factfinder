@@ -1,10 +1,9 @@
 import Ember from 'ember';
 import carto from 'ember-jane-maps/utils/carto';
+import { computed } from 'ember-decorators/object';
+
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
-
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
-
 import summaryLevelQueries from '../queries/summary-levels';
 import config from '../config/environment';
 
@@ -106,7 +105,7 @@ export default Ember.Service.extend({
       });
   },
 
-  handleSelectedFeatures(features = []) {
+  handleSelectedFeatures(features = [], toggle = true) {
     const selected = this.get('current');
 
     features.forEach((feature) => {
@@ -122,7 +121,7 @@ export default Ember.Service.extend({
           geometry,
           properties,
         });
-      } else {
+      } else if (toggle) {
         const newFeatures = selected.features.filter(
           selectedFeature => selectedFeature.properties.geoid !== properties.geoid,
         );

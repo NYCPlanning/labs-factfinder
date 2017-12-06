@@ -39,6 +39,19 @@
       {{/map.source}}
     {{/if}}
 
+    {{#if selectionHelper.ready}}
+        {{!-- even though they are the same layer, need 3 ifs so they are removed and added again when summarylevel changes --}}
+        {{#if (eq selection.summaryLevel 'tracts')}}
+          {{map.layer layer=selectionHelper.layer}}
+        {{/if}}
+        {{#if (eq selection.summaryLevel 'ntas')}}
+          {{map.layer layer=selectionHelper.layer}}
+        {{/if}}
+        {{#if (eq selection.summaryLevel 'pumas')}}
+          {{map.layer layer=selectionHelper.layer}}
+        {{/if}}
+    {{/if}}
+
     {{map.layer-group config=layerGroups.subway visible=false}}
 
     {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}

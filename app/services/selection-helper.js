@@ -1,0 +1,238 @@
+import Ember from 'ember';
+import { computed } from 'ember-decorators/object';
+import carto from 'ember-jane-maps/utils/carto';
+import { min, max } from 'd3-array';
+
+import configs from '../selection-helpers';
+import summaryLevels from '../queries/summary-levels';
+
+const { service } = Ember.inject;
+
+export default Ember.Service.extend({
+  selection: service(),
+
+  configs,
+
+  previousSummaryLevel: 'tracts',
+
+  addHighlightedToSelection() {
+    const geoids = this.get('filteredGeoids');
+    const geoidQuotedStrings = geoids.map(d => `'${d}'`);
+
+    const summaryLevel = this.get('selection.summaryLevel');
+    const subQuery = summaryLevels[summaryLevel](false);
+
+    const SQL = `
+      SELECT * FROM (${subQuery}) a WHERE geoid IN (${geoidQuotedStrings});
+    `;
+
+    carto.SQL(SQL, 'geojson', 'post')
+      .then(({ features }) => {
+        this.get('selection').handleSelectedFeatures(features);
+      });
+  },
+
+  updateHelperRange(variable, range) {
+    const allConfigs = this.get('configs');
+    const index = allConfigs.map(d => d.variable).indexOf(variable);
+    Ember.set(this.get('configs').objectAt(index), 'range', range);
+  },
+
+  toggleEnabled(variable) {
+    const allConfigs = this.get('configs');
+    const index = allConfigs.map(d => d.variable).indexOf(variable);
+    const enabled = this.get('configs').objectAt(index).enabled;
+    Ember.set(this.get('configs').objectAt(index), 'enabled', !enabled);
+  },
+
+  getData({ variable, table }) {
+    const summaryLevel = this.get('selection.summaryLevel');
+
+    let geotype;
+    switch (summaryLevel) {
+      case 'ntas':
+        geotype = 'NTA2010';
+        break;
+      case 'pumas':
+        geotype = 'PUMA2010';
+        break;
+      default:
+        geotype = 'CT2010';
+    }
+
+    const SQL = `SELECT geoid, c, e, m, p, z FROM ${table} WHERE LOWER(variable) = LOWER('${variable}') AND geotype = '${geotype}'`;
+    return carto.SQL(SQL);
+  },
+
+  resetData() {
+    // reset all data if summary level changed
+    const allConfigs = this.get('configs');
+    allConfigs.forEach((config) => {
+      Ember.set(config, 'data', null);
+    });
+
+    return null;
+  },
+
+  @computed('configs.@each.data', 'configs.@each.enabled', 'selection.summaryLevel')
+  ready() {
+    const allConfigs = this.get('configs');
+
+    const summaryLevel = this.get('selection.summaryLevel');
+    if (summaryLevel !== this.get('previousSummaryLevel')) {
+      this.set('previousSummaryLevel', summaryLevel);
+      allConfigs.forEach((config) => {
+        Ember.set(config, 'data', null);
+      });
+    }
+
+    // check if all enabled configs have data
+    const enabledHelpers = allConfigs.filter(d => d.enabled);
+    if (enabledHelpers.length === 0) return false;
+
+    const allHaveData = enabledHelpers.reduce((acc, config) => config.data && acc, true);
+
+    if (allHaveData) {
+      return true;
+    }
+
+    const enabledHelpersWithoutData = enabledHelpers.filter(d => !d.data);
+    const promises = enabledHelpersWithoutData.map(config => this.getData(config));
+
+    Promise.all(promises)
+      .then((promiseResults) => {
+        promiseResults.forEach((data, i) => {
+          const config = enabledHelpersWithoutData.objectAt(i);
+          Ember.set(config, 'data', data);
+          Ember.set(config, 'defaultRange', this.getRange(config));
+        });
+      });
+
+    return false;
+  },
+
+  getRange({ type, variable, data }) {
+    const property = (type === 'percentage') ? 'p' : 'e';
+    const defaultValue = {};
+    defaultValue[property] = 0;
+
+    const maxValue = max(data, d => d[property]);
+    const minValue = min(data, d => d[property]);
+
+    const range = [minValue, maxValue];
+
+    this.updateHelperRange(variable, range);
+
+    return range;
+  },
+
+  // returns an array of geoids that match the current helper filters
+  @computed('configs.@each.range', 'configs.@each.enabled')
+  filteredGeoids() {
+    const allConfigs = this.get('configs');
+    const enabledHelpers = allConfigs.filter(d => d.enabled);
+
+
+    // map configs into array of geoids where variable falls within the range
+    const matchesByConfig = enabledHelpers.map((config) => {
+      const [minValue, maxValue] = config.range;
+
+      const property = (config.type === 'percentage') ? 'p' : 'e';
+
+
+      const filteredGeoids = config.data
+        .filter(d => d[property] >= minValue && d[property] <= maxValue)
+        .map(d => d.geoid);
+
+      return (config.data) ? filteredGeoids : [];
+    });
+
+    // keep only geoids that are present in all arrays in matchesByConfig
+    const filteredGeoids = matchesByConfig.reduce((agg, curr) => agg.filter(d => curr.includes(d)));
+    return filteredGeoids;
+  },
+
+  // returns a mapboxGL filter object based on filteredGeoids
+  @computed('filteredGeoids')
+  filter(geoids) {
+    // prepend ['in', 'geoid'...
+    geoids.unshift('geoid');
+    geoids.unshift('in');
+
+    return geoids;
+  },
+
+  @computed('filter', 'selection.summaryLevel')
+  layer(filter, summaryLevel) {
+    let source;
+    let sourceLayer;
+
+    switch (summaryLevel) {
+      case 'tracts':
+        source = 'census-geoms';
+        sourceLayer = 'census-geoms-tracts';
+        break;
+
+      case 'ntas':
+        source = 'admin-boundaries';
+        sourceLayer = 'neighborhood-tabulation-areas';
+        break;
+
+      case 'pumas':
+        source = 'admin-boundaries';
+        sourceLayer = 'nyc-pumas';
+        break;
+
+      default:
+    }
+
+
+    return {
+      id: `helper-line-${sourceLayer}`,
+      type: 'line',
+      source,
+      'source-layer': sourceLayer,
+      paint: {
+        'line-color': 'rgba(38, 91, 217, 1)',
+        'line-width': {
+          stops: [
+            [
+              10,
+              2,
+            ],
+            [
+              15,
+              15,
+            ],
+          ],
+        },
+        'line-blur': {
+          stops: [
+            [
+              10,
+              1,
+            ],
+            [
+              15,
+              11,
+            ],
+          ],
+        },
+        'line-offset': {
+          stops: [
+            [
+              10,
+              1,
+            ],
+            [
+              15,
+              3,
+            ],
+          ],
+        },
+        'line-opacity': 1,
+      },
+      filter,
+    };
+  },
+});

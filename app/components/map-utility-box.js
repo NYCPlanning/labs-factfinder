@@ -10,6 +10,7 @@ const { SupportServiceHost } = Environment;
 
 export default Ember.Component.extend({
   selection: service(),
+  selectionHelper: service(),
   router: service(),
   lastreport: null,
 
@@ -17,7 +18,7 @@ export default Ember.Component.extend({
 
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
-  advanced: false,
+  advanced: true,
 
   summaryLevel: alias('selection.summaryLevel'),
 
@@ -63,6 +64,22 @@ export default Ember.Component.extend({
         .mapBy('properties.geoid');
 
       this.get('generateProfileId').perform(type, geoids);
+    },
+
+    toggleSelectionHelper() {
+      this.get('selectionHelper').toggleSelectionHelper();
+    },
+
+    handleSliderChange(sliderValue, variable) {
+      this.get('selectionHelper').updateHelperRange(variable, sliderValue);
+    },
+
+    toggleEnabled(variable) {
+      this.get('selectionHelper').toggleEnabled(variable);
+    },
+
+    addHighlightedToSelection() {
+      this.get('selectionHelper').addHighlightedToSelection();
     },
   },
 });
