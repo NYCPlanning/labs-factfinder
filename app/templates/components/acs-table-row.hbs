@@ -145,7 +145,7 @@
 
     <td>{{rowconfig.title}}</td>
       {{#unless comparison}}
-        <td class="cell-border-left">
+        <td class="cell-border-left"><!--previous dataset sum-->
         {{#if data2.sum}}
           {{numeral-format data2.sum}}
         {{else if (eq data2.sum 0)}}
@@ -154,7 +154,7 @@
            &nbsp;
         {{/if}}
       </td>
-      <td>
+      <td><!--previous dataset percent-->
         {{#if data2.sum}}
           {{#if data2.percent}}
             {{numeral-format data2.percent '0.0%'}}
@@ -167,7 +167,7 @@
           &nbsp;
         {{/if}}
       </td>
-      <td class="cell-border-left">
+      <td class="cell-border-left"><!--current dataset sum-->
         {{#if data2.sum}}
           {{#if data.sum}}
             {{numeral-format data.sum}}
@@ -188,7 +188,7 @@
           &nbsp;
         {{/if}}
       </td>
-      <td>
+      <td><!--current dataset percent-->
         {{#if data2.sum}}
           {{#if data.sum}}
             {{#if data.percent}}
@@ -218,7 +218,7 @@
         {{/if}}
       </td>
     {{/unless}}
-    <td class="cell-border-left">
+    <td class="cell-border-left"><!--selected area sum change-->
       {{#if data2.sum}}
         {{numeral-format (sub data.sum data2.sum) '0,0'}}
       {{else if (eq data2.sum 0)}}
@@ -228,15 +228,17 @@
       {{/if}}
     </td>
     {{#if reliability}}
-    <td>
+    <td><!--selected area sum change moe-->
       {{#if data2.sum}}
+        {{numeral-format (sqrt (add (pow (div data2.m 1.645) 2) (pow (div data.m 1.645) 2))) '0,0'}}
+      {{else if (eq data2.sum 0)}}
         {{numeral-format (sqrt (add (pow (div data2.m 1.645) 2) (pow (div data.m 1.645) 2))) '0,0'}}
       {{else}}
         &nbsp;
       {{/if}}
     </td>
     {{/if}}
-    <td>
+    <td><!--selected area percent change-->
       {{#if data2.sum}}
         {{#if data2.percent}}
           {{numeral-format (div (sub data.sum data2.sum) data2.sum) '0.0%'}}
@@ -250,7 +252,7 @@
       {{/if}}
     </td>
     {{#if reliability}}
-    <td>
+    <td><!--selected area percent change moe-->
       {{#if data2.sum}}
         {{numeral-format longitudinalPercentMOE '0.0%'}}
       {{else}}
@@ -260,7 +262,7 @@
     </td>
     {{/if}}
     {{#if comparison}}
-    <td class="cell-border-left">
+    <td class="cell-border-left"><!--comparison area sum change-->
       {{#if data2.comparison_sum}}
         {{numeral-format (sub data.comparison_sum data2.comparison_sum) '0,0'}}
       {{else if (eq data2.comparison_sum 0)}}
@@ -270,7 +272,7 @@
       {{/if}}
     </td>
     {{#if reliability}}
-    <td>
+    <td><!--comparison area sum change moe-->
       {{#if data2.comparison_sum}}
         {{numeral-format (sqrt (add (pow (div data2.comparison_m 1.645) 2) (pow (div data.comparison_m 1.645) 2))) '0,0'}}
       {{else if (eq data2.comparison_sum 0)}}
@@ -280,7 +282,7 @@
       {{/if}}
     </td>
     {{/if}}
-    <td>
+    <td><!--comparison area percent change-->
       {{#if data2.comparison_sum}}
         {{#if data2.comparison_percent}}
           {{numeral-format (div (sub data.comparison_sum data2.comparison_sum) data2.comparison_sum) '0.0%'}}
@@ -292,7 +294,7 @@
       {{else}}
         &nbsp;
       {{/if}}
-    </td>
+    </td><!--comparison area percent change moe-->
     {{#if reliability}}
       <td>
       {{#if data2.sum}}
@@ -307,6 +309,8 @@
       <td class="cell-border-left">
         {{#if data2.sum}}
           {{numeral-format (sub (sub data.sum data2.sum) (sub data.comparison_sum data2.comparison_sum)) '0,0'}}
+        {{else if (eq data2.sum 0)}}
+          {{numeral-format (sub (sub data.sum data2.sum) (sub data.comparison_sum data2.comparison_sum)) '0,0'}}
         {{else}}
           &nbsp;
         {{/if}}
@@ -314,6 +318,8 @@
       {{#if reliability}}
         <td>
         {{#if data2.sum}}
+          {{numeral-format differenceMOE '0,0'}}
+        {{else if (eq data2.sum 0)}}
           {{numeral-format differenceMOE '0,0'}}
         {{else}}
           &nbsp;
@@ -329,6 +335,14 @@
           {{else}}
              &nbsp;
           {{/if}}
+        {{else if (eq data2.sum 0)}}
+          {{#if data2.percent}}
+            {{numeral-format (mult (sub (div (sub data.sum data2.sum) data2.sum) (div (sub data.comparison_sum data2.comparison_sum) data2.comparison_sum)) 100) '0.0'}}
+          {{else if (eq data2.percent 0)}}
+            {{numeral-format (mult (sub (div (sub data.sum data2.sum) data2.sum) (div (sub data.comparison_sum data2.comparison_sum) data2.comparison_sum)) 100) '0.0'}}
+          {{else}}
+             &nbsp;
+          {{/if}}
         {{else}}
           &nbsp;
         {{/if}}
@@ -336,6 +350,8 @@
       {{#if reliability}}
       <td>
         {{#if data2.sum}}
+          {{numeral-format differencePercentMOE '0.0%'}}
+        {{else if (eq data2.sum 0)}}
           {{numeral-format differencePercentMOE '0.0%'}}
         {{else}}
           &nbsp;
