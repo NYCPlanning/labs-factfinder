@@ -33,10 +33,25 @@
   </div>
 
   <div class="selection-helpers {{if advanced 'closed'}}">
+    <div id=choropleth-legend>
+      <p>{{legendTitle}}</p>
+      {{#each stops as |stop|}}
+        <div class="legend-item"><div class="legend-color" style="background-color: {{stop.color}}; height: 15px; width: 15px;"></div>{{stop.label}}</div>
+      {{/each}}
+    </div>
     <div id="layers-menu" class="{{if closed 'show-for-medium'}} hide-for-print">
       {{#layer-menu-item for='choropleths' as |item|}}
         {{#each choroplethConfigs as |config|}}
-          <button {{action (queue (action 'setChoroplethMode' config.id) (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill) (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine))}}>{{config.label}}</button><br>
+          <button {{
+            action (
+              queue
+                (action 'setChoroplethMode' config.id)
+                (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
+                (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
+            )
+          }}>
+            {{config.label}}
+          </button><br>
         {{/each}}
       {{/layer-menu-item}}
     </div>

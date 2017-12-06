@@ -8,6 +8,7 @@ const choroplethConfigs = [
   {
     id: 'popperacre',
     label: 'Population Density',
+    legendTitle: 'Persons per Acre',
     stops: [
 
       [24.9, color0],
@@ -27,7 +28,8 @@ const choroplethConfigs = [
 
   {
     id: 'popu181',
-    label: 'Population under 18',
+    label: 'Under 18 Years',
+    legendTitle: 'Population under 18 years',
     stops: [
       [7999, color0],
 
@@ -46,7 +48,8 @@ const choroplethConfigs = [
   },
   {
     id: 'pop65pl1',
-    label: 'Population over 65',
+    label: '65 Years and Over',
+    legendTitle: 'Population 65 years and over',
     stops: [
       [4999, color0],
 
@@ -65,7 +68,8 @@ const choroplethConfigs = [
   },
   {
     id: 'ea_bchdh',
-    label: 'Bachelors degree or higher',
+    label: 'Bachelor\'s Degree or Higher',
+    legendTitle: 'Population 25 years and over with bachelor\'s degree or higher',
     stops: [
       [9999, color0],
 
@@ -84,7 +88,9 @@ const choroplethConfigs = [
   },
   {
     id: 'ea_bchdh_p',
-    label: 'Bachelors degree or higher percent',
+    isPercent: true,
+    label: 'Bachelor\'s Degree or Higher (percent)',
+    legendTitle: 'Percent of population 25 years and over with bachelor\'s degree or higher',
     stops: [
       [24.9, color0],
 
@@ -103,7 +109,9 @@ const choroplethConfigs = [
   },
   {
     id: 'fb1_p',
-    label: 'Foreign Born Percent',
+    isPercent: true,
+    label: 'Foreign Born (percent)',
+    legendTitle: 'Percent foreign-born population',
     stops: [
       [29.9, color0],
 
@@ -122,7 +130,8 @@ const choroplethConfigs = [
   },
   {
     id: 'lgoenlep',
-    label: 'Limited English Proficiency',
+    label: 'Limited English Proficiency (LEP)',
+    legendTitle: 'Percent of population 5 years and over who speak English "less than very well"',
     stops: [
       [7999, color0],
 
@@ -142,6 +151,7 @@ const choroplethConfigs = [
   {
     id: 'pbwpv',
     label: 'Below Poverty',
+    legendTitle: 'Population below poverty level',
     stops: [
       [4999, color0],
 
@@ -160,7 +170,9 @@ const choroplethConfigs = [
   },
   {
     id: 'pbwpv_p',
-    label: 'Below Poverty percent',
+    isPercent: true,
+    label: 'Below Poverty (percent)',
+    legendTitle: 'Percent of population below poverty level',
     stops: [
       [14.9, color0],
 
@@ -180,6 +192,7 @@ const choroplethConfigs = [
   {
     id: 'mdgr',
     label: 'Median Gross Rent',
+    legendTitle: 'Median Gross Rent',
     stops: [
       [1299, color0],
 
@@ -199,10 +212,12 @@ const choroplethConfigs = [
 ];
 
 const builtConfigs = choroplethConfigs.map((config) => {
-  const { id, label, stops } = config;
+  const { id, label, legendTitle, isPercent, stops } = config;
   return {
     id,
     label,
+    legendTitle,
+    isPercent,
     paintFill: {
       'fill-color': {
         property: id,
