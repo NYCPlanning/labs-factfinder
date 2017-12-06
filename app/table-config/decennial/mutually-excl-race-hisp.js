@@ -1,5 +1,6 @@
 export default [
   {
+    highlight: true,
     title: 'Total population',
     data: 'pop3',
   },
