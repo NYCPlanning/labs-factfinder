@@ -51,6 +51,9 @@ export default Ember.Controller.extend({
   selectedFillLayer,
   highlightedFeature,
 
+  selectedChoropleth: 'population',
+
+
   summaryLevel: alias('selection.summaryLevel'),
 
   @computed('selection.current')

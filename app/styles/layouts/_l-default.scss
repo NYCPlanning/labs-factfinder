@@ -39,7 +39,7 @@ body {
 
     @include breakpoint(large) {
       @include xy-grid(vertical, true);
-      height: calc(100vh - 7.25rem);
+      height: calc(100vh - 6rem);
       overflow: hidden;
 
       > .cell {
@@ -112,29 +112,40 @@ body {
 .edit-selection-button {
   position: absolute;
   z-index: 2;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: rem-calc(10);
+  right: rem-calc(10);
+  font-size: rem-calc(12);
 
   span {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: $global-weight-bold;
     background-color: transparentize($white, 0.2);
-    padding: 0.75rem 1rem;
+    padding: rem-calc(5) rem-calc(8);
     border-radius: $global-radius;
     box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+    display: inline-block;
   }
 
-  &:hover {
-    background-color: transparentize($light-gray, 0.3);
+  @include breakpoint(large) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     span {
-      display: block;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: $global-weight-bold;
+      padding: 0.75rem 1rem;
+    }
+
+    &:hover {
+      background-color: transparentize($light-gray, 0.3);
+
+      span {
+        display: block;
+      }
     }
   }
 }
@@ -149,6 +160,7 @@ body {
     top: 10px;
     left: 50px;
     z-index: 4;
+    padding-bottom: 0;
     margin-top: rem-calc(92);
     width: rem-calc(320);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
@@ -192,7 +204,11 @@ body {
   }
 }
 
-.selection-helpers {
+.advanced-options {
+  background-color: $light-gray;
+  margin-right: -$global-margin;
+  margin-left: -$global-margin;
+  border-top: 1px solid $medium-gray;
   transition: all 0.2s;
 
   &.closed {
@@ -200,13 +216,14 @@ body {
   }
 
   @include breakpoint(large) {
-    height: calc(100vh - #{rem-calc(472)});
+    height: 100vh;
+    max-height: calc(100vh - #{rem-calc(472)});
     min-height: rem-calc(200);
     overflow: auto;
 
     &.closed {
       display: block;
-      height: 0;
+      max-height: 0;
       min-height: 0;
     }
   }
@@ -235,4 +252,9 @@ body {
     height: 100%;
     display: flex;
   }
+}
+
+
+.sticky-element--sticky {
+  overflow: hidden;
 }

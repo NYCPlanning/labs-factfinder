@@ -4,9 +4,6 @@
   mode=profile.mode
   data=rawData
 }}
-  <p class="text-tiny">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
 {{/profile-header}}
 
 <hr>
@@ -17,6 +14,7 @@
     {{#decennial-table category='decennial_sex_age' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=sexAge
         t1=table.categoryData.y2000
@@ -34,6 +32,7 @@
     {{#decennial-table category='decennial_mutually_exclusive_race' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=mutuallyExclRaceHisp
         t1=table.categoryData.y2000
@@ -51,6 +50,7 @@
     {{#decennial-table category='decennial_hispanic_subgroup' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=hispSubgroup
         t1=table.categoryData.y2000
@@ -68,6 +68,7 @@
     {{#decennial-table category='decennial_asian_subgroup' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=asianSubgroup
         t1=table.categoryData.y2000
@@ -85,6 +86,7 @@
     {{#decennial-table category='decennial_relationship_head_householder' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=headHousehold
         t1=table.categoryData.y2000
@@ -102,6 +104,7 @@
     {{#decennial-table category='decennial_household_type' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=householdType
         t1=table.categoryData.y2000
@@ -119,6 +122,7 @@
     {{#decennial-table category='decennial_housing_occupancy' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=housingOccupancy
         t1=table.categoryData.y2000
@@ -136,6 +140,7 @@
     {{#decennial-table category='decennial_housing_tenure' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=housingTenure
         t1=table.categoryData.y2000
@@ -147,12 +152,13 @@
 
 <hr>
 
-<h3 id="tenure-by-age-of-housholer" class="header-medium">Tenure by Age of Housholer</h3>
+<h3 id="tenure-by-age-of-householder" class="header-medium">Tenure by Age of Householder</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     {{#decennial-table category='decennial_tenure_by_age' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=tenureAgeHouseholder
         t1=table.categoryData.y2000
@@ -170,6 +176,7 @@
     {{#decennial-table category='decennial_household_size' as |table|}}
       {{acs-table
         reliability=false
+        mode=profile.mode
         comparison=true
         config=householdSize
         t1=table.categoryData.y2000

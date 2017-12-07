@@ -1,33 +1,32 @@
+import adminBoundaryStyles from '../utils/admin-boundary-styles';
+
+const { paint, layout, labelLayout } = adminBoundaryStyles;
+
 export default {
   id: 'neighborhood-tabulation-areas',
   title: 'Neighborhood Tabulation Areas',
-  visible: true,
+  legendIcon: 'admin-line',
+  legendColor: '#F576CC',
+  visible: false,
+  meta: {
+    description: 'Neighborhood Tabulation Areas v17D, Bytes of the Big Apple',
+    url: ['https://www1.nyc.gov/site/planning/data-maps/open-data.page'],
+    updated_at: '21 November 2017',
+  },
   layers: [
     {
       layer: {
-        id: 'neighborhood-tabulation-areas-fill',
-        type: 'fill',
-        source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas',
-        paint: {
-          'fill-opacity': 0.01,
-        },
-      },
-      highlightable: true,
-    },
-    {
-      layer: {
-        id: 'neighborhood-tabulation-areas-line-glow',
+        id: 'nta-line-glow',
         type: 'line',
         source: 'admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
-          'line-color': '#D96B27',
-          'line-opacity': 0.05,
+          'line-color': '#F576CC',
+          'line-opacity': 0.2,
           'line-width': {
             stops: [
-              [11, 3],
-              [16, 6],
+              [11, 6],
+              [16, 12],
             ],
           },
         },
@@ -35,49 +34,23 @@ export default {
     },
     {
       layer: {
-        id: 'neighborhood-tabulation-areas-line',
+        id: 'nta-line',
         type: 'line',
         source: 'admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
-        paint: {
-          'line-color': '#444',
-          'line-opacity': 0.5,
-          'line-width': {
-            stops: [
-              [11, 1],
-              [16, 3],
-            ],
-          },
-        },
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round',
-        },
+        paint: paint.lines,
+        layout: layout.lines,
       },
     },
     {
       layer: {
-        id: 'neighborhood-tabulation-areas-label',
+        id: 'nta-label',
         type: 'symbol',
         source: 'admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas-centroids',
-        minzoom: 11,
-        paint: {
-          'text-color': '#626262',
-          'text-halo-color': '#FFFFFF',
-          'text-halo-width': 2,
-          'text-halo-blur': 2,
-        },
-        layout: {
-          'text-field': '{ntaname}',
-          'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-          'text-size': {
-            stops: [
-              [11, 12],
-              [14, 16],
-            ],
-          },
-        },
+        minzoom: 12,
+        paint: paint.labels,
+        layout: labelLayout('ntaname'),
       },
     },
   ],
