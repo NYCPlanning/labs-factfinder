@@ -41,6 +41,8 @@
 
     {{map.layer-group config=layerGroups.subway visible=false}}
 
+    {{map.layer-group config=layerGroups.communityDistricts visible=false}}
+
     {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
 
     {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
