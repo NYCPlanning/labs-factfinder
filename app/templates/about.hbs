@@ -13,9 +13,44 @@
         <div class="cell medium-8 large-7">
 
           <h3>Data</h3>
-
           <ul>
-            <li>data citation</li>
+            <li>
+              <h4 class="header-medium no-margin">2010 U.S. Decennial Census</h4>
+              <p>
+                <span style="display:block;" class="dark-gray"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong></span>
+                <span style="display:block;" class="dark-gray text-small">Updated in Fact Finder: November 2017</span>
+              </p>
+            </li>
+            <li>
+              <h4 class="header-medium no-margin">American Community Survey 5-Year Estimates</h4>
+              <p>
+                <span style="display:block;" class="dark-gray"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong></span>
+                <span style="display:block;" class="dark-gray text-small">Updated in Fact Finder: December 2017</span>
+              </p>
+            </li>
+          </ul>
+          <ul>
+          {{#each model as |layerGroup|}}
+            {{#if layerGroup.meta}}
+              <li>
+                <h4 class="header-medium no-margin">{{layerGroup.title}}</h4>
+                <p>
+                    {{#if layerGroup.meta.description}}
+                      <span style="display:block;" class="dark-gray"><strong>{{layerGroup.meta.description}}</strong></span>
+                    {{/if}}
+                    {{#if layerGroup.meta.url}}
+                      {{#each layerGroup.meta.url as |url|}}
+                        <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank">{{fa-icon 'external-link'}} {{url}}</a></span>
+                      {{/each}}
+                    {{/if}}
+                    {{#if layerGroup.meta.updated_at}}
+                      <span style="display:block;" class="dark-gray text-small">Updated in Fact Finder: {{layerGroup.meta.updated_at}}</span>
+                    {{/if}}
+
+                </p>
+              </li>
+            {{/if}}
+          {{/each}}
           </ul>
 
         </div>

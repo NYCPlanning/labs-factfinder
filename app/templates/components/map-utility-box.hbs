@@ -40,7 +40,7 @@
     <p><a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a></p>
   </div>
 
-  <div class="advanced-options {{if advanced 'closed'}}">
+  <div class="advanced-options {{unless advanced 'closed'}}">
     {{#unless closed}}
 
     <div class="selection-helpers">
@@ -89,7 +89,7 @@
       {{/layer-menu-item}}
       {{#layer-menu-item for='nyccouncildistricts' as |item|}}
       {{/layer-menu-item}}
-      {{#layer-menu-item for='neighborhood-tabulation-areas' as |item|}} 
+      {{#layer-menu-item for='neighborhood-tabulation-areas' as |item|}}
       {{/layer-menu-item}}
       {{#layer-menu-item for='nyc-pumas' as |item|}}
       {{/layer-menu-item}}
