@@ -72,10 +72,12 @@ export default Ember.Service.extend({
 
     // remove mapbox neighborhood labels if current Level is NTAs
     const map = this.get('currentMapInstance');
-    if (toLevel === 'ntas') {
-      map.setLayoutProperty('place-neighbourhood', 'visibility', 'none');
-    } else {
-      map.setLayoutProperty('place-neighbourhood', 'visibility', 'visible');
+    if (map) {
+      if (toLevel === 'ntas') {
+        map.setLayoutProperty('place-neighbourhood', 'visibility', 'none');
+      } else {
+        map.setLayoutProperty('place-neighbourhood', 'visibility', 'visible');
+      }
     }
 
     // sigh...
