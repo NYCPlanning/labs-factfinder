@@ -6,8 +6,7 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL,
 });
 
-Router.map(function() {
-  // eslint-disable-line
+Router.map(function() { // eslint-disable-line
   this.route('profile', { path: 'profile/:id' }, function() {
     this.route('census');
     this.route('demographic');
@@ -16,8 +15,6 @@ Router.map(function() {
     this.route('housing');
   });
   this.route('about');
-
-  return null;
 });
 
 export default Router;
