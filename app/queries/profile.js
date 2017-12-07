@@ -16,7 +16,7 @@ const singleGeometry = function(geoid, comparator, profile = 'demographic') {
         SELECT e as comparison_sum,
           variable as comparison_variable,
           dataset as comparison_dataset,
-          p as comparison_percent,
+          ROUND(p::numeric, 4) / 100 as comparison_percent,
           z as comparison_percent_m,
           m as comparison_m
         FROM ${profile}
