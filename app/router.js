@@ -16,6 +16,8 @@ Router.map(function() {
     this.route('housing');
   });
   this.route('about');
+
+  return null;
 });
 
 export default Router;
