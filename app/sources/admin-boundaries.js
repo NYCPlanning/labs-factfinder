@@ -8,6 +8,7 @@ export default {
         SELECT a.the_geom_webmercator, ntaname, ntacode, ntacode AS geolabel, a.ntacode AS geoid
         FROM support_admin_ntaboundaries a
         WHERE ntaname NOT ILIKE 'park-cemetery-etc%'
+          AND ntaname != 'Airport'
       `,
     },
 
