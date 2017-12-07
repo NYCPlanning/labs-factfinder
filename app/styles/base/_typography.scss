@@ -447,6 +447,7 @@ button {
   position: relative;
   width: 100%;
   overflow: hidden;
+  margin-top: -1.5rem;
 
   table {
     margin-bottom: 0;
@@ -531,11 +532,9 @@ tbody td:first-child {
 }
 
 .table-copy-ui {
-  position: relative;
+  text-align: right;
 
   a {
-    position: absolute;
-    right: $global-margin;
     bottom: 0;
     margin: 0;
     border-bottom: 0;
