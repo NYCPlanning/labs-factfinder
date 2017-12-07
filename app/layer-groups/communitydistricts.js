@@ -3,25 +3,25 @@ import adminBoundaryStyles from '../utils/admin-boundary-styles';
 const { paint, layout, labelLayout } = adminBoundaryStyles;
 
 export default {
-  id: 'neighborhood-tabulation-areas',
-  title: 'Neighborhood Tabulation Areas',
+  id: 'community-districts',
+  title: 'Community Districts',
   legendIcon: 'admin-line',
-  legendColor: '#F576CC',
+  legendColor: '#76CAF5',
   visible: false,
   meta: {
-    description: 'Neighborhood Tabulation Areas v17D, Bytes of the Big Apple',
+    description: 'Administrative and Political Districts v17D, Bytes of the Big Apple',
     url: ['https://www1.nyc.gov/site/planning/data-maps/open-data.page'],
     updated_at: '21 November 2017',
   },
   layers: [
     {
       layer: {
-        id: 'nta-line-glow',
+        id: 'community-districts-line-glow',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas',
+        'source-layer': 'community-districts',
         paint: {
-          'line-color': '#F576CC',
+          'line-color': '#76CAF5',
           'line-opacity': 0.2,
           'line-width': {
             stops: [
@@ -34,23 +34,23 @@ export default {
     },
     {
       layer: {
-        id: 'nta-line',
+        id: 'community-districts-line',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas',
+        'source-layer': 'community-districts',
         paint: paint.lines,
         layout: layout.lines,
       },
     },
     {
       layer: {
-        id: 'nta-label',
+        id: 'community-districts-label',
         type: 'symbol',
         source: 'admin-boundaries',
-        'source-layer': 'neighborhood-tabulation-areas-centroids',
-        minzoom: 12,
+        'source-layer': 'community-districts',
+        minzoom: 11,
         paint: paint.labels,
-        layout: labelLayout('ntaname'),
+        layout: labelLayout('boro_district'),
       },
     },
   ],

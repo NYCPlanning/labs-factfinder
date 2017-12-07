@@ -1,20 +1,14 @@
+import adminBoundaryStyles from '../utils/admin-boundary-styles';
+
+const { paint, layout, labelLayout } = adminBoundaryStyles;
+
 export default {
   id: 'nyc-pumas',
-  title: 'NYC PUMA',
-  visible: true,
+  title: 'PUMAs',
+  legendIcon: 'admin-line',
+  legendColor: '#F5B176',
+  visible: false,
   layers: [
-    {
-      layer: {
-        id: 'nyc-pumas-fill',
-        type: 'fill',
-        source: 'admin-boundaries',
-        'source-layer': 'nyc-pumas',
-        paint: {
-          'fill-opacity': 0.01,
-        },
-      },
-      highlightable: true,
-    },
     {
       layer: {
         id: 'nyc-pumas-line-glow',
@@ -22,12 +16,12 @@ export default {
         source: 'admin-boundaries',
         'source-layer': 'nyc-pumas',
         paint: {
-          'line-color': '#D96B27',
-          'line-opacity': 0.05,
+          'line-color': '#F5B176',
+          'line-opacity': 1,
           'line-width': {
             stops: [
-              [11, 3],
-              [16, 6],
+              [11, 6],
+              [16, 12],
             ],
           },
         },
@@ -39,20 +33,8 @@ export default {
         type: 'line',
         source: 'admin-boundaries',
         'source-layer': 'nyc-pumas',
-        paint: {
-          'line-color': '#444',
-          'line-opacity': 0.5,
-          'line-width': {
-            stops: [
-              [11, 1],
-              [16, 3],
-            ],
-          },
-        },
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round',
-        },
+        paint: paint.lines,
+        layout: layout.lines,
       },
     },
     {
@@ -60,42 +42,10 @@ export default {
         id: 'nyc-pumas-label',
         type: 'symbol',
         source: 'admin-boundaries',
-        'source-layer': 'nyc-pumas-centroids',
-        minzoom: 9,
-        paint: {
-          'text-color': '#626262',
-          'text-halo-color': '#FFFFFF',
-          'text-halo-width': 2,
-          'text-halo-blur': 2,
-          'text-opacity': {
-            stops: [
-              [
-                9,
-                0,
-              ],
-              [
-                10,
-                1,
-              ],
-            ],
-          },
-        },
-        layout: {
-          'text-field': '{puma}',
-          'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-          'text-size': {
-            stops: [
-              [
-                9,
-                11,
-              ],
-              [
-                14,
-                16,
-              ],
-            ],
-          },
-        },
+        'source-layer': 'nyc-pumas',
+        minzoom: 10,
+        paint: paint.labels,
+        layout: labelLayout('stsendist'),
       },
     },
   ],
