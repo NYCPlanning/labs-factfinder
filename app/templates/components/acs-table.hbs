@@ -11,11 +11,13 @@
     }}
   {{/sticky-element}}
 {{else}}
-  {{acs-table-header
-    reliability=reliability
-    comparison=comparison
-    mode=mode
-  }}
+  {{#sticky-element top=0 bottom=0}}
+    {{acs-table-header
+      reliability=reliability
+      comparison=comparison
+      mode=mode
+    }}
+  {{/sticky-element}}
 {{/if}}
 
 <div class="table-scroll">
