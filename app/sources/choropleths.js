@@ -69,6 +69,7 @@ export default {
           ) mdgr on a.ntacode = mdgr.geoid
 
         WHERE ntaname NOT ILIKE 'park-cemetery-etc%'
+          AND ntaname != 'Airport'
       `,
     },
   ],
