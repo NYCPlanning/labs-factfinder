@@ -3,7 +3,7 @@
   <div class="grid-x grid-padding-x">
     <div class="branding cell shrink large-auto">
       <a class="dcp-link" href="http://www1.nyc.gov/site/planning/index.page"><img class="dcp-logo" src="https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png" alt="NYC Planning"></a>
-      {{#link-to 'index' classNames='site-name'}}Population FactFinder <small class="site-subtitle show-for-medium">Population Information for N<span class="show-for-large">ew </span>Y<span class="show-for-large">ork </span>C<span class="show-for-large">ity</span></small>{{/link-to}}
+      {{#link-to 'index' classNames='site-name'}}Population Fact Finder{{/link-to}}
     </div>
     <div class="cell auto hide-for-large text-right">
       <button {{action (mut closed) (not closed)}} class="responsive-nav-toggler hide-for-print" data-toggle="responsive-menu">Menu</button>
@@ -11,7 +11,7 @@
     <div id="responsive-menu" class="cell large-shrink {{if closed 'show-for-large'}} hide-for-print" data-toggler=".show-for-large">
       <nav role="navigation">
         <ul class="vertical large-horizontal menu">
-          <li><a>About</a></li>
+          <li>{{link-to 'About' 'about' click=(action (mut closed))}}</li>
         </ul>
       </nav>
     </div>
