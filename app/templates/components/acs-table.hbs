@@ -1,24 +1,26 @@
 <div class="table-copy-ui show-for-large">
   <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
 </div>
-<div class="table-scroll">
 
-  {{#if media.isLarge}}
-    {{#sticky-element top=175 bottom=0}}
-      {{acs-table-header
-        reliability=reliability
-        comparison=comparison
-        mode=mode
-      }}
-    {{/sticky-element}}
-  {{else}}
+{{#if media.isLarge}}
+  {{#sticky-element top=175 bottom=0}}
     {{acs-table-header
       reliability=reliability
       comparison=comparison
       mode=mode
     }}
-  {{/if}}
+  {{/sticky-element}}
+{{else}}
+  {{#sticky-element top=0 bottom=0}}
+    {{acs-table-header
+      reliability=reliability
+      comparison=comparison
+      mode=mode
+    }}
+  {{/sticky-element}}
+{{/if}}
 
+<div class="table-scroll">
   <table class="data-table">
     <tbody>
       {{#each config as |row|}}
@@ -38,5 +40,4 @@
       {{/each}}
     </tbody>
   </table>
-
 </div>
