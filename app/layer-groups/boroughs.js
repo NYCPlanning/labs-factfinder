@@ -1,12 +1,12 @@
 import adminBoundaryStyles from '../utils/admin-boundary-styles';
 
-const { paint, layout, labelLayout } = adminBoundaryStyles;
+const { paint, layout } = adminBoundaryStyles;
 
 export default {
-  id: 'community-districts',
-  title: 'Community Districts',
+  id: 'boroughs',
+  title: 'Boroughs',
   legendIcon: 'admin-line',
-  legendColor: '#76CAF5',
+  legendColor: '#E4F576',
   visible: false,
   meta: {
     description: 'Administrative and Political Districts v17D, Bytes of the Big Apple',
@@ -16,12 +16,12 @@ export default {
   layers: [
     {
       layer: {
-        id: 'community-districts-line-glow',
+        id: 'boroughs-line-glow',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'community-districts',
+        'source-layer': 'boroughs',
         paint: {
-          'line-color': '#76CAF5',
+          'line-color': '#E4F576',
           'line-opacity': 0.2,
           'line-width': {
             stops: [
@@ -34,23 +34,12 @@ export default {
     },
     {
       layer: {
-        id: 'community-districts-line',
+        id: 'boroughs-line',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'community-districts',
+        'source-layer': 'boroughs',
         paint: paint.lines,
         layout: layout.lines,
-      },
-    },
-    {
-      layer: {
-        id: 'community-districts-label',
-        type: 'symbol',
-        source: 'admin-boundaries',
-        'source-layer': 'community-districts',
-        minzoom: 11,
-        paint: paint.labels,
-        layout: labelLayout('boro_district'),
       },
     },
   ],

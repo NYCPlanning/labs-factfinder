@@ -22,6 +22,11 @@ export default {
     },
 
     {
+      id: 'nyc-council-districts',
+      sql: 'SELECT the_geom_webmercator, coundist FROM support_admin_nyccouncildistricts',
+    },
+
+    {
       id: 'nyc-pumas',
       sql: 'SELECT the_geom_webmercator, puma AS geolabel, puma AS geoid FROM nyc_puma',
     },

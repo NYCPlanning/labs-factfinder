@@ -5,8 +5,8 @@ const adminBoundaryStyles = {
       'line-opacity': 0.3,
       'line-width': {
         stops: [
-          [11, 1],
-          [16, 3],
+          [11, 3],
+          [16, 6],
         ],
       },
     },
