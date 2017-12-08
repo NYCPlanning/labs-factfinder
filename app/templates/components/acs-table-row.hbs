@@ -25,7 +25,6 @@
     {{/if}}
   {{else}}
     <td>{{rowconfig.title}}</td>
-
     <td class="cell-border-left {{if (eq data.sum 0) 'medium-gray'}} {{if (gte data.cv 20) 'medium-gray'}}">{{selectedSum}}</td>
     {{#if reliability}}
       <td class="{{if (gte data.cv 20) 'medium-gray'}}">

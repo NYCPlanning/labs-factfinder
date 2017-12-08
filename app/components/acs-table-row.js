@@ -68,7 +68,7 @@ export default Ember.Component.extend({
   @computed('data.sum','data.percent_m')
   selectedPercentM(sum,percent_m) {
     sum = parseFloat(sum);
-    percent = parseFloat(percent_m);
+    percent_m = parseFloat(percent_m);
     if (sum > 0) {
       return decimalOnePlacePercent(percent_m);
     } else {
