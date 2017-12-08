@@ -2,7 +2,7 @@ import choroplethConfigs from '../choropleth-config';
 
 export default {
   id: 'choropleths',
-  title: 'Choropleths',
+  title: 'Thematic Maps',
   visible: false,
   layers: [
     {
