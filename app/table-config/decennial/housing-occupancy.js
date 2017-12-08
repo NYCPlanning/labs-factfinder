@@ -43,9 +43,11 @@ export default [
   {
     title: 'Homeowner vacancy rate (percent)',
     data: 'hmownrvcrt',
+    decimal: 1,
   },
   {
     title: 'Rental vacancy rate (percent)',
     data: 'rntvcrt',
+    decimal: 1,
   },
 ];

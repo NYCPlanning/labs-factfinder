@@ -18,9 +18,11 @@ export default [
   {
     title: 'Average household size of owner-occupied units',
     data: 'avhhszooc',
+    decimal: 2,
   },
   {
     title: 'Average household size of renter-occupied units',
     data: 'avhhszroc',
+    decimal: 2,
   },
 ];
