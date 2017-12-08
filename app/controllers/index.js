@@ -90,7 +90,7 @@ export default Ember.Controller.extend({
             layers = ['neighborhood-tabulation-areas-fill'];
             break;
           case 'pumas':
-            layers = ['nyc-pumas-fill'];
+            layers = ['nyc-pumas-selection-fill'];
             break;
         }
 
