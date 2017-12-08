@@ -6,5 +6,6 @@ export default [
   {
     title: 'Population per acre',
     data: 'popperacre',
+    decimal: 1,
   },
 ];

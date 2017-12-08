@@ -18,9 +18,11 @@ export default [
   {
     title: 'Homeowner vacancy rate',
     data: 'hovacrt',
+    decimal: 1,
   },
   {
     title: 'Rental vacancy rate',
     data: 'rntvacrt',
+    decimal: 1,
   },
 ];
