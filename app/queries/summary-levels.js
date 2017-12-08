@@ -32,5 +32,6 @@ export default {
       ntacode AS geoid
     FROM support_admin_ntaboundaries
     WHERE ntaname NOT ILIKE 'park-cemetery-etc%25'
+      AND ntaname != 'Airport'
   `,
 };

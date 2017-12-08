@@ -322,6 +322,7 @@ button {
         border: 1px solid transparent;
         border-bottom-width: 0;
         background-color: transparent;
+        font-weight: $global-weight-bold;
 
         &:not(.active) {
           border-right-color: transparent;
@@ -384,11 +385,16 @@ button {
       border-top: 1px solid #eee;
       background-color: $white;
 
+      &:hover {
+        background-color: $a11y-yellow;
+      }
+
       a {
         line-height: 1.2;
         box-shadow: none;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
+        font-weight: $global-weight-normal;
       }
     }
   }
@@ -439,35 +445,27 @@ button {
 .table-scroll table,
 .table-scroll {
   min-width: 100%;
-  transform:rotateX(180deg);
+  // transform:rotateX(180deg);
   margin: 0;
 }
 
-.table-scroll-vert {
+.acs-table {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: -1.5rem;
 
-  thead,
-  tbody {
-    display: block;
-    float: left;
-    clear: left;
+  table {
+    margin-bottom: 0;
   }
+}
 
-  thead {
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 0;
-  }
+thead {
+  font-size: rem-calc(10);
+}
 
-  tbody {
-    height: calc(60vh - 15rem);
-    border-top: 0;
-  }
-
-  thead,
-  tbody {
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
+tbody {
+  font-size: rem-calc(13);
 }
 
 th {
@@ -540,11 +538,9 @@ tbody td:first-child {
 }
 
 .table-copy-ui {
-  position: relative;
+  text-align: right;
 
   a {
-    position: absolute;
-    right: $global-margin;
     bottom: 0;
     margin: 0;
     border-bottom: 0;

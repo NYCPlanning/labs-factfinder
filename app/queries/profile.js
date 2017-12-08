@@ -1,9 +1,18 @@
+import simpleProfile from './profile-simple';
+
 const preserveType = function(array) {
   return `'${array.join("','")}'`;
 };
 
 const generateProfileSQL = function(geoids, comparator, profile = 'demographic') {
   const ids = preserveType(geoids);
+
+  const [firstGeoid] = geoids;
+  const { length: count } = geoids;
+
+  if (count === 1) {
+    return simpleProfile(firstGeoid, comparator, profile);
+  }
 
   return `
     WITH

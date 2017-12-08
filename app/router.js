@@ -14,6 +14,7 @@ Router.map(function() { // eslint-disable-line
     this.route('economic');
     this.route('housing');
   });
+  this.route('about');
 });
 
 export default Router;

@@ -4,11 +4,12 @@
   data=rawData
   mode=profile.mode
 }}
-  <p class="text-tiny">
+  <p class="text-small no-margin">
     ACS data are derived from a survey and are subject to sampling variability.
     Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
-
-    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+    <span class="text-tiny dark-gray">
+      Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+    </span>
   </p>
 {{/profile-header}}
 
@@ -19,7 +20,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -37,7 +37,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -60,13 +59,12 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=occupation
       t1=model.y2011_2015.occupation
-      t2=model.y2006_2010.occupatione
+      t2=model.y2006_2010.occupation
     }}
   </div>
   <div class="cell large-4">
@@ -83,7 +81,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -101,7 +98,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -124,7 +120,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -147,7 +142,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -165,7 +159,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -183,7 +176,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
@@ -201,7 +193,6 @@
   <div class="cell large-8">
     {{acs-table
       options=profile
-      scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison

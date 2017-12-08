@@ -1,13 +1,18 @@
 import Ember from 'ember';
 
+const { service } = Ember.inject;
+
 export default Ember.Component.extend({
-  scrollTable: null,
   mode: 'current',
   reliability: false,
   comparison: true,
+  classNames: 'acs-table',
+
+  windowResize: service(),
+
   actions: {
     handleCopy() {
-      const el = this.get('element').getElementsByTagName('table')[0];
+      const [el] = this.get('element').getElementsByClassName('table-scroll');
       const body = document.body;
       let range;
       let sel;
@@ -31,4 +36,19 @@ export default Ember.Component.extend({
       document.execCommand('copy');
     },
   },
+
+  didInsertElement() {
+    this.$('.table-scroll').on('scroll', function() {
+      const thisOffset = $(this).offset();
+      const tableOffset = $(this).find('.data-table').offset();
+      const offset = tableOffset.left - thisOffset.left;
+      $(this).parents('.acs-table').find('.header-table').css({ marginLeft: offset });
+    });
+
+    this.get('windowResize').on('didResize', () => {
+      const tableWidth = this.$().find('.table-scroll').width();
+      this.$().find('.sticky-element--sticky').width(tableWidth);
+    });
+  },
+
 });

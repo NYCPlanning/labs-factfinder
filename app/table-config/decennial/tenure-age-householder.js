@@ -1,5 +1,6 @@
 export default [
   {
+    highlight: true,
     title: 'Total occupied housing units',
     data: 'ochu_3',
   },
@@ -32,6 +33,7 @@ export default [
     data: 'hhr75p',
   },
   {
+    indent: 1,
     title: '85 years and over',
     data: 'hhr85p',
   },
@@ -40,34 +42,42 @@ export default [
     data: 'rochu_2',
   },
   {
+    indent: 1,
     title: '15 to 24 years',
     data: 'rntr15t24',
   },
   {
+    indent: 1,
     title: '25 to 34 years',
     data: 'rntr25t34',
   },
   {
+    indent: 1,
     title: '35 to 44 years',
     data: 'rntr35t44',
   },
   {
+    indent: 1,
     title: '45 to 54 years',
     data: 'rntr45t54',
   },
   {
+    indent: 1,
     title: '55 to 64 years',
     data: 'rntr55t64',
   },
   {
+    indent: 1,
     title: '65 to 74 years',
     data: 'rntr65t74',
   },
   {
+    indent: 1,
     title: '75 years and over',
     data: 'rntr75p',
   },
   {
+    indent: 2,
     title: '85 years and over',
     data: 'rntr85p',
   },
