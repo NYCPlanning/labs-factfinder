@@ -241,6 +241,22 @@ body {
   }
 }
 
+.profile-footer {
+  padding: 3rem 0;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    color: $medium-gray;
+    font-size: rem-calc(12);
+    font-weight: $global-weight-bold;
+
+    &:hover {
+      color: $dcp-orange
+    }
+  }
+}
+
 // HACK: dot and pulse misalign without this.
 .mapboxgl-user-location-dot {
   box-sizing: initial;
