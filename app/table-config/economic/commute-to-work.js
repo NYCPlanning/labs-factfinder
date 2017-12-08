@@ -34,5 +34,6 @@ export default [
   {
     title: 'Mean travel time to work (minutes)',
     data: 'mntrvtm',
+    decimal: 1,
   },
 ];

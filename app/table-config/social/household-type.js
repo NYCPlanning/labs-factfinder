@@ -74,10 +74,12 @@ export default [
   {
     title: 'Average household size',
     data: 'avghhsz',
+    decimal: 2,
   },
   {
     title: 'Average family size',
     data: 'avgfmsz',
+    decimal: 2,
   },
   {
     divider: true,
