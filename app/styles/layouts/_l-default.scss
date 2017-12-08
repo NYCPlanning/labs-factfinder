@@ -229,16 +229,8 @@ body {
   }
 }
 
-.profile-content > .cell,
-.profile-sidebar {
-  padding: 0 rem-calc(20);
-}
-
-.profile-content > .cell {
-
-  @include breakpoint(large) {
-    padding-left: 0;
-  }
+#profile-content {
+  padding-bottom: 4rem;
 }
 
 .profile-footer {
