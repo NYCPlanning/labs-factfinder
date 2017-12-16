@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 
+const { service } = Ember.inject;
+
 export default Ember.Component.extend({
-  scrollTable: null,
   mode: 'current',
   reliability: false,
   comparison: true,
@@ -20,9 +21,11 @@ export default Ember.Component.extend({
     return this.get(`model.${year2}`);
   },
 
+  windowResize: service(),
+
   actions: {
     handleCopy() {
-      const el = this.get('element').getElementsByTagName('table')[0];
+      const [el] = this.get('element').getElementsByClassName('table-scroll');
       const body = document.body;
       let range;
       let sel;
@@ -46,4 +49,17 @@ export default Ember.Component.extend({
       document.execCommand('copy');
     },
   },
+
+  didInsertElement() {
+    this.$('.table-scroll').on('scroll', function() {
+      const offset = $(this).find('.data-table').offset();
+      $(this).find('.sticky-element--sticky table').offset({ left: offset.left });
+    });
+
+    this.get('windowResize').on('didResize', () => {
+      const tableWidth = this.$().find('.table-scroll').width();
+      this.$().find('.sticky-element--sticky').width(tableWidth);
+    });
+  },
+
 });

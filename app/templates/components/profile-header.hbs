@@ -59,9 +59,9 @@
         <div class="cell shrink">
           <a {{action (mut profile.comparison) (not profile.comparison)}}>
             {{#if profile.comparison}}
-              <span>{{fa-icon 'check-square-o'}}</span>
+              <span>{{fa-icon 'check-square-o' class="fa-fw"}}</span>
             {{else}}
-              <span>{{fa-icon 'square-o'}}</span>
+              <span>{{fa-icon 'square-o' class="fa-fw"}}</span>
             {{/if}}
             Compare to &nbsp;
           </a>
@@ -75,39 +75,15 @@
       <div class="profile-reliability-controls">
         <a {{action (mut profile.reliability) (not profile.reliability)}}>
           {{#if profile.reliability}}
-            <span class="dcp-orange">{{fa-icon 'check-square-o'}}</span>
+            <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
           {{else}}
-            <span class="dcp-orange">{{fa-icon 'square-o'}}</span>
+            <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
           {{/if}}
           Show Data Reliability
         </a>
       </div>
       {{/unless}}
 
-    </div>
-
-    <div class="grid-x grid-margin-x">
-      <div class="cell medium-auto">
-        <h5 class="stat-header">Population</h5>
-        <div class="callout text-center">
-          <span class="stat">19,598</span>
-          <small class="stat-footer">residents</small>
-        </div>
-      </div>
-      <div class="cell medium-auto">
-        <h5 class="stat-header">Area</h5>
-        <div class="callout text-center">
-          <span class="stat">3.2</span>
-          <small class="stat-footer">square miles</small>
-        </div>
-      </div>
-      <div class="cell medium-auto">
-        <h5 class="stat-header">Density</h5>
-        <div class="callout text-center">
-          <span class="stat">20,962</span>
-          <small class="stat-footer">persons per sq mi</small>
-        </div>
-      </div>
     </div>
 
     {{yield}}
@@ -127,6 +103,10 @@
         mapLoaded=(action 'handleMapLoad')
 
         as |map|}}
+
+        {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
+          {{map.layer layer=bkQnMhBoundaryLayer}}
+        {{/map.source}}
 
         {{#if selection.current}}
           {{#map.source
