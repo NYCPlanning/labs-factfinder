@@ -2,8 +2,9 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
-import carto from 'ember-jane-maps/utils/carto';
 import bbox from 'npm:@turf/bbox';
+import carto from '../utils/carto';
+
 
 import generateIntersectionSQL from '../queries/intersection';
 import layerGroups from '../layer-groups';

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import carto from 'ember-jane-maps/utils/carto';
+import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
 

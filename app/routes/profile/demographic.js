@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import carto from 'ember-jane-maps/utils/carto';
+import carto from '../../utils/carto';
 import generateProfileSQL from '../../queries/profile';
 import Downloadable from '../../mixins/downloadable';
 
