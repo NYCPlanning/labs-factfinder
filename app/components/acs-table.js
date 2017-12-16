@@ -1,10 +1,25 @@
 import Ember from 'ember';
+import { computed } from 'ember-decorators/object';
 
 export default Ember.Component.extend({
   scrollTable: null,
   mode: 'current',
   reliability: false,
   comparison: true,
+  year1: 'y2011_2015',
+  year2: 'y2006_2010',
+  category: '',
+
+  @computed('year1')
+  t1(year1) {
+    return this.get(`model.${year1}`);
+  },
+
+  @computed('year2')
+  t2(year2) {
+    return this.get(`model.${year2}`);
+  },
+
   actions: {
     handleCopy() {
       const el = this.get('element').getElementsByTagName('table')[0];

@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
 
   @computed('currentData')
   agePopDist(currentData) {
-    const d = currentData.poppyramid_only;
+    const d = currentData;
     const variables = [
       'pop0t5',
       'pop5t9',
@@ -65,8 +65,8 @@ export default Ember.Controller.extend({
 
     return {
       totals: {
-        male: currentData.sex_and_age.male,
-        female: currentData.sex_and_age.fem,
+        male: currentData.male,
+        female: currentData.fem,
       },
       pyramidData,
     };

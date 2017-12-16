@@ -17,20 +17,23 @@
 <h3 class="header-medium" id="household-type">Household Type</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=householdType
-      t1=model.y2011_2015.household_type
-      t2=model.y2006_2010.household_type
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=householdTypeChartConfig data=model.y2011_2015.household_type height=236 xMax=1}}
+      {{acs-bar 
+        config=householdTypeChartConfig 
+        data=model.y2011_2015 
+        height=236 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -41,15 +44,14 @@
 <h3 class="header-medium" id="relationship-to-head-of-household">Relationship To Head Of Household (Householder)</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=relationshipToHeadOfHousehold
-      t1=model.y2011_2015.relationship_to_head_of_household__householder_
-      t2=model.y2006_2010.relationship_to_head_of_household__householder_
+      model=model
     }}
   </div>
 </div>
@@ -59,15 +61,14 @@
 <h3 class="header-medium" id="grandparents">Marital Status</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=maritalStatus
-      t1=model.y2011_2015.marital_status
-      t2=model.y2006_2010.marital_status
+      model=model
     }}
   </div>
 </div>
@@ -77,15 +78,14 @@
 <h3 class="header-medium" id="grandparents">Grandparents</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=grandparents
-      t1=model.y2011_2015.grandparents
-      t2=model.y2006_2010.grandparents
+      model=model
     }}
   </div>
 </div>
@@ -96,20 +96,23 @@
 <h3 class="header-medium" id="school-enrollment">School Enrollment</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=schoolEnrollment
-      t1=model.y2011_2015.school_enrollment
-      t2=model.y2006_2010.school_enrollment
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=schoolEnrollmentChartConfig data=model.y2011_2015.school_enrollment height=264 xMax=1}}
+      {{acs-bar 
+        config=schoolEnrollmentChartConfig 
+        data=model.y2011_2015 
+        height=264 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -121,20 +124,23 @@
 <h3 class="header-medium" id="educational-attainment">Educational Attainment (Highest Grade Completed)</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=educationalAttainment
-      t1=model.y2011_2015.educational_attainment__highest_grade_completed_
-      t2=model.y2006_2010.educational_attainment__highest_grade_completed_
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=educationalAttainmentChartConfig data=model.y2011_2015.educational_attainment__highest_grade_completed_ height=210 xMax=1}}
+      {{acs-bar 
+        config=educationalAttainmentChartConfig 
+        data=model.y2011_2015 
+        height=210 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -144,15 +150,14 @@
 <h3 class="header-medium" id="veteran-status">Veteran Status</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=veteranStatus
-      t1=model.y2011_2015.veteran_status
-      t2=model.y2006_2010.veteran_status
+      model=model
     }}
   </div>
 </div>
@@ -162,15 +167,14 @@
 <h3 class="header-medium" id="disability-status-of-the-civilian-noninstitutionalized-population">Disability Status Of The Civilian Noninstitutionalized Population</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=sexAge
-      t1=model.disabilityStatusOfCnp.disability_status_of_the_civilian_noninstitutionalized_population
-      t2=model.y2006_2010.disability_status_of_the_civilian_noninstitutionalized_population
+      model=model
     }}
   </div>
 </div>
@@ -180,20 +184,23 @@
 <h3 class="header-medium" id="residence-1-year-ago">Residence 1 Year Ago</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=residence1YearAgo
-      t1=model.y2011_2015.residence_1_year_ago
-      t2=model.y2006_2010.residence_1_year_ago
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=residence1YearAgoChartConfig data=model.y2011_2015.residence_1_year_ago height=236 xMax=1}}
+      {{acs-bar 
+        config=residence1YearAgoChartConfig 
+        data=model.y2011_2015 
+        height=236 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -203,23 +210,30 @@
 <h3 class="header-medium" id="place-of-birth">Place Of Birth</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=placeOfBirth
-      t1=model.y2011_2015.place_of_birth
-      t2=model.y2006_2010.place_of_birth
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
       <h4>Place of Birth</h4>
-      {{acs-bar config=placeOfBirthChartConfig data=model.y2011_2015.place_of_birth height=210 xMax=1}}
+      {{acs-bar 
+        config=placeOfBirthChartConfig 
+        data=model.y2011_2015 
+        height=210 
+        xMax=1}}
       <h4>Foreign Born</h4>
-      {{acs-bar config=foreignBornChartConfig data=model.y2011_2015.place_of_birth height=236 xMax=1}}
+      {{acs-bar 
+        config=foreignBornChartConfig 
+        data=model.y2011_2015 
+        height=236 
+        xMax=1}}
 
     </div>
   </div>
@@ -230,15 +244,14 @@
 <h3 class="header-medium" id="us-citizenship-status">U.S. Citizenship Status</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=citizenshipStatus
-      t1=model.y2011_2015.u_s__citizenship_status
-      t2=model.y2006_2010.u_s__citizenship_status
+      model=model
     }}
   </div>
 </div>
@@ -248,15 +261,14 @@
 <h3 class="header-medium" id="year-of-entry">Year Of Entry</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=yearOfEntry
-      t1=model.y2011_2015.year_of_entry
-      t2=model.y2006_2010.year_of_entry
+      model=model
     }}
   </div>
 </div>
@@ -266,15 +278,14 @@
 <h3 class="header-medium" id="language-spoken-at-home">Language Spoken At Home</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=languageSpokenAtHome
-      t1=model.y2011_2015.language_spoken_at_home
-      t2=model.y2006_2010.language_spoken_at_home
+      model=model
     }}
   </div>
 </div>
@@ -284,15 +295,14 @@
 <h3 class="header-medium" id="ancestry">Ancestry</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{acs-table
+    {{acs-table
       options=profile
       scrollTable=profile.scrollTable
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=ancestry
-      t1=model.y2011_2015.ancestry
-      t2=model.y2006_2010.ancestry
+      model=model
     }}
   </div>
 </div>

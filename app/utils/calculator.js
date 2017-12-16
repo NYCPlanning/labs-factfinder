@@ -41,7 +41,9 @@ const calculator = function(data) {
       const first = array[i - 1];
       const second = array[i + 1];
 
-      return operators[step](first, second);
+      const operation = operators[step] || Math[step];
+
+      return operation(first, second);
     }, firstValue);
 };
 
