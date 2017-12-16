@@ -28,6 +28,14 @@
 
   <div class="cell large-4">
     <div class="callout">
+      <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
+        <span class="cell small-6 text-right">
+          Male <br>{{numeral-format model.y2011_2015.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.male.percent_m '0.0%'}})</span>
+        </span>
+        <span class="cell small-6">
+          Female <br>{{numeral-format model.y2011_2015.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.fem.percent_m '0.0%'}})</span>
+        </span>
+      </h4>
       {{population-pyramid data=agePopDist}}
     </div>
   </div>
@@ -106,4 +114,7 @@
     </div>
   </div>
 </div>
+
+{{profile-footer}}
+
 {{outlet}}

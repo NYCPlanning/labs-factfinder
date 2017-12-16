@@ -130,6 +130,7 @@ export default [
     classNames: '',
     data: 'mdage',
     special: true,
+    decimal: 1,
     aggregator: interpolate,
     options: {
       bins: [

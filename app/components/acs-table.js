@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   mode: 'current',
   reliability: false,
   comparison: true,
+  
   year1: 'y2011_2015',
   year2: 'y2006_2010',
   category: '',
@@ -20,6 +21,8 @@ export default Ember.Component.extend({
   t2(year2) {
     return this.get(`model.${year2}`);
   },
+
+  classNames: 'acs-table',
 
   windowResize: service(),
 
@@ -52,8 +55,10 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.$('.table-scroll').on('scroll', function() {
-      const offset = $(this).find('.data-table').offset();
-      $(this).find('.sticky-element--sticky table').offset({ left: offset.left });
+      const thisOffset = $(this).offset();
+      const tableOffset = $(this).find('.data-table').offset();
+      const offset = tableOffset.left - thisOffset.left;
+      $(this).parents('.acs-table').find('.header-table').css({ marginLeft: offset });
     });
 
     this.get('windowResize').on('didResize', () => {

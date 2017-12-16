@@ -23,6 +23,7 @@ export default [
     special: true,
     aggregator: calculator,
     procedure: ['popoochu', 'divide', 'oochu1'],
+    decimal: 2,
   },
   {
     title: 'Average household size of renter-occupied unit',
@@ -30,5 +31,6 @@ export default [
     special: true,
     aggregator: calculator,
     procedure: ['poprtochu', 'divide', 'rochu1'],
+    decimal: 2,
   },
 ];

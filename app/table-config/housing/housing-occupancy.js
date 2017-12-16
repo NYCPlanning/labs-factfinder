@@ -23,6 +23,7 @@ export default [
     special: true,
     aggregator: calculator,
     procedure: ['vacsale', 'divide', 'hovacu', 'multiply', 100],
+    decimal: 1,
   },
   {
     title: 'Rental vacancy rate',
@@ -30,5 +31,6 @@ export default [
     special: true,
     aggregator: calculator,
     procedure: ['vacrnt', 'divide', 'rntvacu', 'multiply', 100],
+    decimal: 1,
   },
 ];

@@ -1,28 +1,28 @@
 import adminBoundaryStyles from '../utils/admin-boundary-styles';
 
-const { paint, layout, labelLayout } = adminBoundaryStyles;
+const { paint, layout } = adminBoundaryStyles;
 
 export default {
-  id: 'nyc-pumas',
-  title: 'PUMAs',
+  id: 'boroughs',
+  title: 'Boroughs',
   legendIcon: 'admin-line',
-  legendColor: '#F5B176',
+  legendColor: '#E4F576',
   visible: false,
   meta: {
-    description: 'NYC PUMAS v17D, Bytes of the Big Apple',
+    description: 'Administrative and Political Districts v17D, Bytes of the Big Apple',
     url: ['https://www1.nyc.gov/site/planning/data-maps/open-data.page'],
     updated_at: '21 November 2017',
   },
   layers: [
     {
       layer: {
-        id: 'nyc-pumas-line-glow',
+        id: 'boroughs-line-glow',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'nyc-pumas',
+        'source-layer': 'boroughs',
         paint: {
-          'line-color': '#F5B176',
-          'line-opacity': 1,
+          'line-color': '#E4F576',
+          'line-opacity': 0.2,
           'line-width': {
             stops: [
               [11, 6],
@@ -34,23 +34,12 @@ export default {
     },
     {
       layer: {
-        id: 'nyc-pumas-line',
+        id: 'boroughs-line',
         type: 'line',
         source: 'admin-boundaries',
-        'source-layer': 'nyc-pumas',
+        'source-layer': 'boroughs',
         paint: paint.lines,
         layout: layout.lines,
-      },
-    },
-    {
-      layer: {
-        id: 'nyc-pumas-label',
-        type: 'symbol',
-        source: 'admin-boundaries',
-        'source-layer': 'nyc-pumas',
-        minzoom: 10,
-        paint: paint.labels,
-        layout: labelLayout('stsendist'),
       },
     },
   ],

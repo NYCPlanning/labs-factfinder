@@ -39,5 +39,6 @@ export default [
     special: true,
     aggregator: calculator,
     procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
+    decimal: 1,
   },
 ];

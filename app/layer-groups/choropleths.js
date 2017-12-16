@@ -2,14 +2,14 @@ import choroplethConfigs from '../choropleth-config';
 
 export default {
   id: 'choropleths',
-  title: 'Choropleths',
+  title: 'Thematic Maps',
   visible: false,
   layers: [
     {
       layer: {
         id: 'choropleth-nta-fill',
         type: 'fill',
-        source: 'admin-boundaries',
+        source: 'choropleths',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'fill-opacity': 0.6,
@@ -21,7 +21,7 @@ export default {
       layer: {
         id: 'choropleth-nta-line',
         type: 'line',
-        source: 'admin-boundaries',
+        source: 'choropleths',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'line-width': {

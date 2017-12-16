@@ -229,15 +229,23 @@ body {
   }
 }
 
-.profile-content > .cell,
-.profile-sidebar {
-  padding: 0 rem-calc(20);
+#profile-content {
+  padding-bottom: 4rem;
 }
 
-.profile-content > .cell {
+.profile-footer {
+  padding: 3rem 0;
+  text-align: center;
 
-  @include breakpoint(large) {
-    padding-left: 0;
+  a {
+    display: inline-block;
+    color: $medium-gray;
+    font-size: rem-calc(12);
+    font-weight: $global-weight-bold;
+
+    &:hover {
+      color: $dcp-orange
+    }
   }
 }
 
