@@ -28,6 +28,7 @@ export default [
     title: 'Rental vacancy rate',
     data: 'rntvacrt',
     special: true,
+    aggregator: calculator,
     procedure: ['vacrnt', 'divide', 'rntvacu', 'multiply', 100],
   },
 ];
