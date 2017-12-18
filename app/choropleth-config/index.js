@@ -177,12 +177,12 @@ const choroplethConfigs = [
       [14.9, color0],
 
       [15, color1],
-      [29.9, color1],
+      [24.9, color1],
 
-      [30, color2],
-      [39.9, color2],
+      [25, color2],
+      [34.9, color2],
 
-      [40, color3],
+      [35, color3],
       [49.9, color3],
 
       [50, color4],
@@ -197,15 +197,15 @@ const choroplethConfigs = [
       [1299, color0],
 
       [1300, color1],
-      [1499, color1],
+      [1599, color1],
 
-      [1500, color2],
-      [1799, color2],
+      [1600, color2],
+      [1999, color2],
 
-      [1800, color3],
-      [2099, color3],
+      [2000, color3],
+      [2499, color3],
 
-      [2100, color4],
+      [2500, color4],
     ],
 
   },
