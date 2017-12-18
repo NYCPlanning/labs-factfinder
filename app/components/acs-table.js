@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   reliability: false,
   comparison: true,
 
-  year1: 'y2011_2015',
+  year1: 'y2012_2016',
   year2: 'y2006_2010',
   category: '',
 

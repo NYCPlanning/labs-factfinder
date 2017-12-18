@@ -30,10 +30,10 @@
     <div class="callout">
       <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
         <span class="cell small-6 text-right">
-          Male <br>{{numeral-format model.y2011_2015.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.male.percent_m '0.0%'}})</span>
+          Male <br>{{numeral-format model.y2012_2016.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.sex_and_age.male.percent_m '0.0%'}})</span>
         </span>
         <span class="cell small-6">
-          Female <br>{{numeral-format model.y2011_2015.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.fem.percent_m '0.0%'}})</span>
+          Female <br>{{numeral-format model.y2012_2016.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.sex_and_age.fem.percent_m '0.0%'}})</span>
         </span>
       </h4>
       {{population-pyramid data=agePopDist}}
@@ -59,7 +59,7 @@
     <div class="callout">
       {{acs-bar 
         config=raceGroupChartConfig 
-        data=model.y2011_2015 
+        data=model.y2012_2016 
         height=236 
         xMax=1}}
     </div>
@@ -83,7 +83,7 @@
     <div class="callout">
       {{acs-bar 
         config=hispanicSubgroupChartConfig 
-        data=model.y2011_2015 
+        data=model.y2012_2016 
         height=264 
         xMax=1}}
     </div>
@@ -108,7 +108,7 @@
     <div class="callout">
       {{acs-bar 
         config=asianSubgroupChartConfig 
-        data=model.y2011_2015 
+        data=model.y2012_2016 
         height=210 
         xMax=1}}
     </div>
