@@ -24,8 +24,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=employmentStatus
-      t1=model.y2011_2015.employment_status
-      t2=model.y2006_2010.employment_status
+      model=model
     }}
   </div>
 </div>
@@ -41,13 +40,16 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=commuteToWork
-      t1=model.y2011_2015.commute_to_work
-      t2=model.y2006_2010.commute_to_work
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=commuteToWorkChartConfig data=model.y2011_2015.commute_to_work height=296 xMax=1}}
+      {{acs-bar 
+        config=commuteToWorkChartConfig 
+        data=model.y2012_2016
+        height=296 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -63,13 +65,16 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=occupation
-      t1=model.y2011_2015.occupation
-      t2=model.y2006_2010.occupation
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=occupationChartConfig data=model.y2011_2015.occupation height=264 xMax=1}}
+      {{acs-bar 
+        config=occupationChartConfig 
+        data=model.y2012_2016
+        height=264 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -85,8 +90,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=industry
-      t1=model.y2011_2015.industry
-      t2=model.y2006_2010.industryage
+      model=model
     }}
   </div>
 </div>
@@ -102,13 +106,16 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=classOfWorker
-      t1=model.y2011_2015.class_of_worker
-      t2=model.y2006_2010.class_of_worker
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=classOfWorkerChartConfig data=model.y2011_2015.class_of_worker height=236 xMax=1}}
+      {{acs-bar 
+        config=classOfWorkerChartConfig 
+        data=model.y2012_2016
+        height=236 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -124,13 +131,16 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=incomeAndBenefits
-      t1=model.y2011_2015.income_and_benefits
-      t2=model.y2006_2010.income_and_benefits
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=incomeAndBenefitsChartConfig data=model.y2011_2015.income_and_benefits height=400 xMax=1}}
+      {{acs-bar 
+        config=incomeAndBenefitsChartConfig 
+        data=model.y2012_2016
+        height=400 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -146,8 +156,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=earnings
-      t1=model.y2011_2015.earnings
-      t2=model.y2006_2010.earningsage
+      model=model
     }}
   </div>
 </div>
@@ -163,8 +172,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=healthInsuranceCoverage
-      t1=model.y2011_2015.health_insurance_coverage
-      t2=model.y2006_2010.health_insurance_coverage
+      model=model
     }}
   </div>
 </div>
@@ -180,8 +188,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=incomePast12MonthsBelowPoverty
-      t1=model.y2011_2015.income_in_past_12_months_is_below_the_poverty_level
-      t2=model.y2006_2010.income_in_past_12_months_is_below_the_poverty_level
+      model=model
     }}
   </div>
 </div>
@@ -197,13 +204,16 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=ratioOfIncomeToPovertyLevel
-      t1=model.y2011_2015.ratio_of_income_to_poverty_level
-      t2=model.y2006_2010.ratio_of_income_to_poverty_level
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=ratioOfIncomeToPovertyLevelChartConfig data=model.y2011_2015.ratio_of_income_to_poverty_level height=454 xMax=1}}
+      {{acs-bar 
+        config=ratioOfIncomeToPovertyLevelChartConfig 
+        data=model.y2012_2016
+        height=454 
+        xMax=1}}
     </div>
   </div>
 </div>

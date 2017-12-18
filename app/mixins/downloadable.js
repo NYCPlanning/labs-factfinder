@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
   setupController(controller, model) {
     this._super(controller, model);
     controller.setProperties({
-      model: nestProfile(model),
+      model: nestProfile(model, 'dataset', 'variable'),
       rawData: model,
     });
   },

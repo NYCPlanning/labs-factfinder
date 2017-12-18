@@ -1,3 +1,4 @@
+{{log model}}
 {{#profile-header
   profile=profile
   title="Housing Profile"
@@ -24,8 +25,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=housingOccupancy
-      t1=model.y2011_2015.housing_occupancy
-      t2=model.y2006_2010.housing_occupancy
+      model=model
     }}
   </div>
 </div>
@@ -41,8 +41,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=unitsInStructure
-      t1=model.y2011_2015.units_in_structure
-      t2=model.y2006_2010.units_in_structure
+      model=model
     }}
   </div>
 </div>
@@ -57,8 +56,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=yearStructureBuilt
-      t1=model.y2011_2015.year_structure_built
-      t2=model.y2006_2010.year_structure_built
+      model=model
     }}
   </div>
 </div>
@@ -74,8 +72,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=rooms
-      t1=model.y2011_2015.rooms
-      t2=model.y2006_2010.rooms
+      model=model
     }}
   </div>
 </div>
@@ -91,13 +88,14 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=housingTenure
-      t1=model.y2011_2015.housing_tenure
-      t2=model.y2006_2010.housing_tenure
+      model=model
+      category='housing_tenure'
+      special_variables='housing__special_variable'
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=housingTenureChartConfig data=model.y2011_2015.housing_tenure height=182 xMax=1}}
+      {{acs-bar config=housingTenureChartConfig data=model.y2012_2016 height=182 xMax=1}}
     </div>
   </div>
 </div>
@@ -113,8 +111,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=yearHouseholderMovedIntoUnit
-      t1=model.y2011_2015.year_householder_moved_into_unit
-      t2=model.y2006_2010.year_householder_moved_into_unit
+      model=model
     }}
   </div>
 </div>
@@ -130,13 +127,12 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=vehiclesAvailable
-      t1=model.y2011_2015.vehicles_available
-      t2=model.y2006_2010.vehicles_available
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=vehiclesAvailableChartConfig data=model.y2011_2015.vehicles_available height=236 xMax=1}}
+      {{acs-bar config=vehiclesAvailableChartConfig data=model.y2012_2016 height=236 xMax=1}}
     </div>
   </div>
 </div>
@@ -152,8 +148,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=occupantsPerRoom
-      t1=model.y2011_2015.occupants_per_room
-      t2=model.y2006_2010.occupants_per_room
+      model=model
     }}
   </div>
 </div>
@@ -169,13 +164,12 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=value
-      t1=model.y2011_2015.value
-      t2=model.y2006_2010.value
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=valueChartConfig data=model.y2011_2015.value height=343 xMax=1}}
+      {{acs-bar config=valueChartConfig data=model.y2012_2016 height=343 xMax=1}}
     </div>
   </div>
 </div>
@@ -191,8 +185,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=mortgageStatus
-      t1=model.y2011_2015.mortgage_status
-      t2=model.y2006_2010.mortgage_status
+      model=model
     }}
   </div>
 </div>
@@ -208,8 +201,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=selectedMonthlyOwnerSmocapi
-      t1=model.y2011_2015.selected_monthly_owner_costs_as_a_percentage_of_household_income__smocapi_
-      t2=model.y2006_2010.selected_monthly_owner_costs_as_a_percentage_of_household_income__smocapi_
+      model=model
     }}
   </div>
 </div>
@@ -225,13 +217,12 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=grossRent
-      t1=model.y2011_2015.gross_rent
-      t2=model.y2006_2010.gross_rent
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=grossRentChartConfig data=model.y2011_2015.gross_rent height=324 xMax=1}}
+      {{acs-bar config=grossRentChartConfig data=model.y2012_2016 height=324 xMax=1}}
     </div>
   </div>
 </div>
@@ -247,13 +238,12 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=grossRentGrapi
-      t1=model.y2011_2015.gross_rent_as_a_percentage_of_household_income__grapi_
-      t2=model.y2006_2010.gross_rent_as_a_percentage_of_household_income__grapi_
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=grossRentGrapiChartConfig data=model.y2011_2015.gross_rent_as_a_percentage_of_household_income__grapi_ height=295 xMax=1}}
+      {{acs-bar config=grossRentGrapiChartConfig data=model.y2012_2016 height=295 xMax=1}}
     </div>
   </div>
 </div>

@@ -25,47 +25,47 @@ export default {
 
           LEFT JOIN (
             SELECT geoid, e as popu181 FROM demographic
-            WHERE dataset = 'Y2011-2015' AND variable = 'PopU181' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'PopU181' AND geotype = 'NTA2010'
           ) popu181 on a.ntacode = popu181.geoid
 
           LEFT JOIN (
             SELECT geoid, e as pop65pl1 FROM demographic
-            WHERE dataset = 'Y2011-2015' AND variable = 'Pop65pl1' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'Pop65pl1' AND geotype = 'NTA2010'
           ) pop65pl1 on a.ntacode = pop65pl1.geoid
 
           LEFT JOIN (
             SELECT geoid, e as ea_bchdh FROM social
-            WHERE dataset = 'Y2011-2015' AND variable = 'EA_BchDH' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'EA_BchDH' AND geotype = 'NTA2010'
           ) ea_bchdh on a.ntacode = ea_bchdh.geoid
 
           LEFT JOIN (
             SELECT geoid, p as ea_bchdh_p FROM social
-            WHERE dataset = 'Y2011-2015' AND variable = 'EA_BchDH' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'EA_BchDH' AND geotype = 'NTA2010'
           ) ea_bchdh_p on a.ntacode = ea_bchdh_p.geoid
 
           LEFT JOIN (
             SELECT geoid, p as fb1_p FROM social
-            WHERE dataset = 'Y2011-2015' AND variable = 'Fb1' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'Fb1' AND geotype = 'NTA2010'
           ) fb1_p on a.ntacode = fb1_p.geoid
 
           LEFT JOIN (
             SELECT geoid, e as lgoenlep FROM social
-            WHERE dataset = 'Y2011-2015' AND variable = 'LgOEnLEP1' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'LgOEnLEP1' AND geotype = 'NTA2010'
           ) lgoenlep on a.ntacode = lgoenlep.geoid
 
           LEFT JOIN (
             SELECT geoid, e as pbwpv FROM economic
-            WHERE dataset = 'Y2011-2015' AND variable = 'PBwPv' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'PBwPv' AND geotype = 'NTA2010'
           ) pbwpv on a.ntacode = pbwpv.geoid
 
           LEFT JOIN (
             SELECT geoid, p as pbwpv_p FROM economic
-            WHERE dataset = 'Y2011-2015' AND variable = 'PBwPv' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'PBwPv' AND geotype = 'NTA2010'
           ) pbwpv_p on a.ntacode = pbwpv_p.geoid
 
           LEFT JOIN (
             SELECT geoid, e as mdgr FROM housing
-            WHERE dataset = 'Y2011-2015' AND variable = 'MdGR' AND geotype = 'NTA2010'
+            WHERE dataset = 'Y2012-2016' AND variable = 'MdGR' AND geotype = 'NTA2010'
           ) mdgr on a.ntacode = mdgr.geoid
 
         WHERE ntaname NOT ILIKE 'park-cemetery-etc%'

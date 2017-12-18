@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { computed } from 'ember-decorators/object';
 
 const { service } = Ember.inject;
 
@@ -6,6 +7,21 @@ export default Ember.Component.extend({
   mode: 'current',
   reliability: false,
   comparison: true,
+
+  year1: 'y2012_2016',
+  year2: 'y2006_2010',
+  category: '',
+
+  @computed('year1')
+  t1(year1) {
+    return this.get(`model.${year1}`);
+  },
+
+  @computed('year2')
+  t2(year2) {
+    return this.get(`model.${year2}`);
+  },
+
   classNames: 'acs-table',
 
   windowResize: service(),

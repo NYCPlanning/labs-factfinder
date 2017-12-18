@@ -1,9 +1,9 @@
 import Ember from 'ember';
-import carto from 'ember-jane-maps/utils/carto';
 import { task } from 'ember-concurrency';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import nestProfile from '../utils/nest-profile';
 import decennialProfile from '../queries/decennial-profile';
+import carto from '../utils/carto';
 
 const { service } = Ember.inject;
 
