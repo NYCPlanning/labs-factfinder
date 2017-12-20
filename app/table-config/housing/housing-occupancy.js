@@ -22,7 +22,7 @@ export default [
     data: 'hovacrt',
     special: true,
     aggregator: calculator,
-    procedure: ['vacsale', 'divide', 'hovacu', 'multiply', 100],
+    procedure: [['vacsale', 'divide', 'hovacu'], 'multiply', 100],
     decimal: 1,
   },
   {
@@ -30,7 +30,7 @@ export default [
     data: 'rntvacrt',
     special: true,
     aggregator: calculator,
-    procedure: ['vacrnt', 'divide', 'rntvacu', 'multiply', 100],
+    procedure: [['vacrnt', 'divide', 'rntvacu'], 'multiply', 100],
     decimal: 1,
   },
 ];
