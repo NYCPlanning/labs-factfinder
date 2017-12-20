@@ -204,5 +204,8 @@ export default [
   {
     title: 'Per capita income (dollars)',
     data: 'percapinc',
+    special: true,
+    aggregator: calculator,
+    procedure: ['agip15pl', 'divide', 'pop_6'],
   },
 ];
