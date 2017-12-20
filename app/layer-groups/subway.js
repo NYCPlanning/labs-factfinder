@@ -1,6 +1,6 @@
 export default {
   id: 'subway',
-  title: 'Subways',
+  title: 'Subway System',
   visible: true,
   meta: {
     description: 'NYC Subway Lines and Stops - Originally Sourced from NYC DoITT GIS, combined with SI Railway data from Baruch College NYC Mass Transit Spatial Layers | Subway entrances from NYC Open Data',
