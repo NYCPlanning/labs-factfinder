@@ -1,3 +1,5 @@
+import calculator from '../../utils/calculator';
+
 export default [
   {
     title: 'Occupied housing units',
@@ -18,11 +20,17 @@ export default [
   {
     title: 'Average household size of owner-occupied unit',
     data: 'avghhsooc',
+    special: true,
+    aggregator: calculator,
+    procedure: ['popoochu', 'divide', 'oochu1'],
     decimal: 2,
   },
   {
     title: 'Average household size of renter-occupied unit',
     data: 'avghhsroc',
+    special: true,
+    aggregator: calculator,
+    procedure: ['poprtochu', 'divide', 'rochu1'],
     decimal: 2,
   },
 ];
