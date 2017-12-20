@@ -78,7 +78,7 @@ export default [
     data: 'avghhsz',
     special: true,
     aggregator: calculator,
-    procedure: ['hhpop', 'divide', 'hhe'],
+    procedure: ['hhpop', 'divide', 'hh'],
     decimal: 2,
   },
   {
@@ -86,7 +86,7 @@ export default [
     data: 'avgfmsz',
     special: true,
     aggregator: calculator,
-    procedure: ['popinfms', 'division', 'fame'],
+    procedure: ['popinfms', 'division', 'fam'],
     decimal: 2,
   },
   {
