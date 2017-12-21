@@ -55,21 +55,23 @@
         </ul>
       </div>
 
-      <div class="profile-comparison-controls grid-x align-middle">
-        <div class="cell shrink">
-          <a {{action (mut profile.comparison) (not profile.comparison)}}>
-            {{#if profile.comparison}}
-              <span>{{fa-icon 'check-square-o' class="fa-fw"}}</span>
-            {{else}}
-              <span>{{fa-icon 'square-o' class="fa-fw"}}</span>
-            {{/if}}
-            Compare to &nbsp;
-          </a>
+      {{#if (eq mode 'current')}}
+        <div class="profile-comparison-controls grid-x align-middle">
+          <div class="cell shrink">
+            <a {{action (mut profile.comparison) (not profile.comparison)}}>
+              {{#if profile.comparison}}
+                <span>{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+              {{else}}
+                <span>{{fa-icon 'square-o' class="fa-fw"}}</span>
+              {{/if}}
+              Compare to &nbsp;
+            </a>
+          </div>
+          <div class="cell auto">
+            {{comparison-area-selector comparisonArea=profile.comparator}}
+          </div>
         </div>
-        <div class="cell auto">
-          {{comparison-area-selector comparisonArea=profile.comparator}}
-        </div>
-      </div>
+      {{/if}}
 
       {{#unless (eq profile.tab 'profile.census') }}
       <div class="profile-reliability-controls">
