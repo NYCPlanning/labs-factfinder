@@ -55,6 +55,7 @@
         </ul>
       </div>
 
+      {{#if (eq mode 'current')}}
       <div class="profile-comparison-controls grid-x align-middle">
         <div class="cell shrink">
           <a {{action (mut profile.comparison) (not profile.comparison)}}>
@@ -70,6 +71,7 @@
           {{comparison-area-selector comparisonArea=profile.comparator}}
         </div>
       </div>
+      {{/if}}
 
       {{#unless (eq profile.tab 'profile.census') }}
       <div class="profile-reliability-controls">
