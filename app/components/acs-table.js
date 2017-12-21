@@ -22,6 +22,11 @@ export default Ember.Component.extend({
     return this.get(`model.${year2}`);
   },
 
+  @computed('media.isLarge')
+  stickyTop(isLarge) {
+    return isLarge ? 175 : 0;
+  },
+
   classNames: 'acs-table',
 
   windowResize: service(),
