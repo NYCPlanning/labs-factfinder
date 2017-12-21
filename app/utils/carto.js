@@ -7,8 +7,10 @@ const buildTemplate = (layergroupid, type) => { // eslint-disable-line
   return `https://${cartoDomain}/api/v1/map/${layergroupid}/{z}/{x}/{y}.${type}`;
 };
 
-const buildSqlUrl = (cleanedQuery, type = 'json') => { // eslint-disable-line
-  return `https://${cartoDomain}/api/v2/sql?q=${cleanedQuery}&format=${type}`;
+const buildSqlUrl = (cleanedQuery, type = 'json', method) => { // eslint-disable-line
+  let url = `https://${cartoDomain}/api/v2/sql`;
+  if (method === 'get') url += `?q=${cleanedQuery}&format=${type}`;
+  return url;
 };
 
 const carto = {
