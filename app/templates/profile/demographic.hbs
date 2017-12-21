@@ -22,8 +22,7 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=sexAge
-      t1=model.y2011_2015.sex_and_age
-      t2=model.y2006_2010.sex_and_age
+      model=model
     }}
   </div>
 
@@ -31,10 +30,10 @@
     <div class="callout">
       <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
         <span class="cell small-6 text-right">
-          Male <br>{{numeral-format model.y2011_2015.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.male.percent_m '0.0%'}})</span>
+          Male <br>{{numeral-format model.y2012_2016.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.sex_and_age.male.percent_m '0.0%'}})</span>
         </span>
         <span class="cell small-6">
-          Female <br>{{numeral-format model.y2011_2015.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2011_2015.sex_and_age.fem.percent_m '0.0%'}})</span>
+          Female <br>{{numeral-format model.y2012_2016.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.sex_and_age.fem.percent_m '0.0%'}})</span>
         </span>
       </h4>
       {{population-pyramid data=agePopDist}}
@@ -53,13 +52,16 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=raceGroup
-      t1=model.y2011_2015.mutually_exclusive_race_hispanic_origin
-      t2=model.y2006_2010.mutually_exclusive_race_hispanic_origin
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=raceGroupChartConfig data=model.y2011_2015.mutually_exclusive_race_hispanic_origin height=236 xMax=1}}
+      {{acs-bar 
+        config=raceGroupChartConfig 
+        data=model.y2012_2016 
+        height=236 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -74,13 +76,16 @@
       reliability=profile.reliability
       comparison=profile.comparison
       config=hispanicSubgroup
-      t1=model.y2011_2015.hispanic_subgroup
-      t2=model.y2006_2010.hispanic_subgroup
+      model=model
     }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=hispanicSubgroupChartConfig data=model.y2011_2015.hispanic_subgroup height=264 xMax=1}}
+      {{acs-bar 
+        config=hispanicSubgroupChartConfig 
+        data=model.y2012_2016 
+        height=264 
+        xMax=1}}
     </div>
   </div>
 </div>
@@ -96,13 +101,16 @@
         reliability=profile.reliability
         comparison=profile.comparison
         config=asianSubgroup
-        t1=model.y2011_2015.asian_subgroup
-        t2=model.y2006_2010.asian_subgroup
+        model=model
       }}
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar config=asianSubgroupChartConfig data=model.y2011_2015.asian_subgroup height=210 xMax=1}}
+      {{acs-bar 
+        config=asianSubgroupChartConfig 
+        data=model.y2012_2016 
+        height=210 
+        xMax=1}}
     </div>
   </div>
 </div>
