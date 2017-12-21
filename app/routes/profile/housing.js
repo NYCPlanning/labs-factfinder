@@ -8,7 +8,7 @@ const { service } = Ember.inject;
 export default Ember.Route.extend(Downloadable, {
   selection: service(),
 
-  model({ comparator = '0' }) {
+  model(params, { comparator = '0' }) {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
     const selectionSQL = generateProfileSQL(geoids, comparator, 'housing');
 
