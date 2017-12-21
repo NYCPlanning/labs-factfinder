@@ -22,7 +22,12 @@ export default Ember.Component.extend({
     return this.get(`model.${year2}`);
   },
 
-  classNames: 'acs-table',
+  @computed('media.isLarge')
+  stickyTop(isLarge) {
+    return isLarge ? 175 : 0;
+  },
+
+  classNames: 'data-table',
 
   windowResize: service(),
 
@@ -58,7 +63,7 @@ export default Ember.Component.extend({
       const thisOffset = $(this).offset();
       const tableOffset = $(this).find('.data-table').offset();
       const offset = tableOffset.left - thisOffset.left;
-      $(this).parents('.acs-table').find('.header-table').css({ marginLeft: offset });
+      $(this).parents('.data-table').find('.header-table').css({ marginLeft: offset });
     });
 
     this.get('windowResize').on('didResize', () => {

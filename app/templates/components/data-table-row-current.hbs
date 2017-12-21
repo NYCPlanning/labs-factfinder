@@ -1,0 +1,70 @@
+{{#if rowconfig.divider}}
+  <td>&nbsp;</td>
+  <td class="cell-border-left">&nbsp;</td>
+  {{#if reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+  <td>&nbsp;</td>
+  {{#if reliability}}
+    <td>&nbsp;</td>
+  {{/if}}
+  {{#if comparison}}
+    <td class="cell-border-left">&nbsp;</td>
+    {{#if reliability}}
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    {{/if}}
+    <td>&nbsp;</td>
+    {{#if reliability}}
+      <td>&nbsp;</td>
+    {{/if}}
+    <td class="cell-border-left">&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+{{else}}
+  <td>{{rowconfig.title}}</td>
+  <td class="cell-border-left {{if (eq data.sum 0) 'medium-gray'}} {{if (gte data.cv 20) 'medium-gray'}}">{{selectedSum}}</td>
+  {{#if reliability}}
+    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    {{selectedSumMoE}}
+    </td>
+    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    {{selectedCV}}
+    </td>
+  {{/if}}
+  <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    {{selectedPercent}}
+  </td>
+ {{#if reliability}}
+    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+      {{selectedPercentM}}
+    </td>
+  {{/if}}
+  {{#if comparison}}
+    <td class="cell-border-left {{if (eq data.comparison_sum 0) 'medium-gray'}} {{if (gte data.comparison_cv 20) 'medium-gray'}}">{{comparisonSum}}</td>
+    {{#if reliability}}
+      <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+        {{comparisonSumMoE}}
+      </td>
+      <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+        {{comparisonCV}}
+      </td>
+    {{/if}}
+    <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+      {{comparisonPercent}}
+    </td>
+    {{#if reliability}}
+      <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+        {{comparisonPercentM}}
+      </td>
+    {{/if}}
+    <td class="cell-border-left {{unless data.significant 'medium-gray'}}">
+      {{differenceSum}}
+    </td>
+    <td class="{{unless data.percent_significant 'medium-gray'}}">
+      {{differencePercent}}
+    </td>
+  {{/if}}
+{{/if}}
+{{yield}}
