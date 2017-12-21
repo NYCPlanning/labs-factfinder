@@ -258,30 +258,35 @@ differenceChangePercent(sum2, sum) {
   },
 
   @computed('data.sum', 'data2.sum', 'data.m', 'data2.m', 'data.comparison_sum', 'data2.comparison_sum', 'data.comparison_m', 'data2.comparison_m')
-  longTermDifferencePercentMOE(sum, sum2, m, m2, comparisonSum, comparisonSum2, comparisonM, comparisonM2) {
-    sum = parseFloat(sum);
-    sum2 = parseFloat(sum2);
-    m = parseFloat(m);
-    m2 = parseFloat(m2);
-    comparisonSum = parseFloat(comparisonSum);
-    comparisonSum2 = parseFloat(comparisonSum2);
-    comparisonM = parseFloat(comparisonM);
-    comparisonM2 = parseFloat(comparisonM2);
-    if ((sum2 > 0) && (comparisonSum2 > 0)) {
-    const bg = Math.abs(sum / sum2)
-      * Math.sqrt((Math.pow((m / 1.645), 2) / Math.pow(sum, 2))
-      + (Math.pow((m2 / 1.645), 2) / Math.pow(sum2, 2))) * 1.645;
-    const bn = Math.abs(comparisonSum / comparisonSum2)
-      * Math.sqrt((Math.pow((comparisonM / 1.645), 2) / Math.pow(comparisonSum, 2))
-      + (Math.pow((comparisonM2 / 1.645), 2) / Math.pow(comparisonSum2, 2))) * 1.645;
+    longTermDifferencePercentMOE(sum, sum2, m, m2, comparisonSum, comparisonSum2, comparisonM, comparisonM2) {
+      sum = parseFloat(sum);
+      sum2 = parseFloat(sum2);
+      m = parseFloat(m);
+      m2 = parseFloat(m2);
+      comparisonSum = parseFloat(comparisonSum);
+      comparisonSum2 = parseFloat(comparisonSum2);
+      comparisonM = parseFloat(comparisonM);
+      comparisonM2 = parseFloat(comparisonM2);
+      if ((sum2 > 0) && (comparisonSum2 > 0)) {
+      const bg = Math.abs(sum / sum2)
+        * Math.sqrt((Math.pow((m / 1.645), 2) / Math.pow(sum, 2))
+        + (Math.pow((m2 / 1.645), 2) / Math.pow(sum2, 2))) * 1.645;
+      const bn = Math.abs(comparisonSum / comparisonSum2)
+        * Math.sqrt((Math.pow((comparisonM / 1.645), 2) / Math.pow(comparisonSum, 2))
+        + (Math.pow((comparisonM2 / 1.645), 2) / Math.pow(comparisonSum2, 2))) * 1.645;
 
-    const moe = Math.sqrt((Math.pow((bg / 1.645), 2)) + (Math.pow((bn / 1.645), 2)));
+      const moe = Math.sqrt((Math.pow((bg / 1.645), 2)) + (Math.pow((bn / 1.645), 2)));
 
-    return decimalOnePlace(moe * 100);
-  } else {
-    return "";
-  }
+      return decimalOnePlace(moe * 100);
+    } else {
+      return "";
+    }
   },
+
+    @computed('selectedEarlyPercent', 'selectedCurrentPercent')
+    differencePercentagePoint(selectedEarlyPercent, selectedCurrentPercent) {
+      return decimalOnePlace(selectedCurrentPercent - selectedEarlyPercent)
+    },
 
 
 
@@ -334,6 +339,6 @@ export function decimalOnePlacePercent(number) {
   if (isNaN(number)) {
     return ""
   } else {
-    return (number*100).toFixed(1) +"%";
+    return (number*100).toFixed(1);
   }
 }

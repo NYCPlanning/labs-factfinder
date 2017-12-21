@@ -1,30 +1,18 @@
 <table class="header-table">
   <thead>
+    {{#if decennial}} {{!-- {{#if decennial}} decennial change table headers --}}
     <tr>
       <th rowspan="3">&nbsp;</th>
       {{#unless comparison}}
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2006-2010</th>
         <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2012-2016</th>
       {{/unless}}
-      {{#if comparison}}
-        {{#if reliability}}
-          <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
-        {{else}}
-          <th colspan="6" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
-        {{/if}}
-      {{else}}
-        {{#if reliability}}
-          <th colspan="4" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
-        {{else}}
-          <th colspan="2" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
-        {{/if}}
-      {{/if}}
     </tr>
     <tr>
-      <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
+      <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">2000</th>
       {{#if comparison}}
-        <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
-        <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
+        <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">2010</th>
+        <th colspan="{{if reliability "5" "3"}}" class="text-center cell-border-bottom">Change, 2000 to 2010</th>
       {{/if}}
     </tr>
     <tr>
@@ -34,15 +22,69 @@
         <th>Number</th>
         <th>Percent</th>
       {{/unless}}
-      <th>Estimate</th>
+      <th>Number</th>
       {{#if reliability}}
         <th>MOE</th>
       {{/if}}
-      <th>Percent Estimate</th>
+      <th>Percent</th>
       {{#if reliability}}
         <th>MOE</th>
       {{/if}}
       {{#if comparison}}
+        <th>Number</th>
+        {{#if reliability}}
+          <th>MOE</th>
+        {{/if}}
+        <th>Percent</th>
+        {{#if reliability}}
+          <th>MOE</th>
+        {{/if}}
+        <th>Number</th>
+        {{#if reliability}}
+          <th>MOE</th>
+        {{/if}}
+        <th>Percent</th>
+        {{#if reliability}}
+          <th>MOE</th>
+        {{/if}}
+        <th>Pctg. Pt.</th>
+      {{/if}}
+    </tr>
+    {{else}} {{!--  acs change table headers --}}
+      <tr>
+        <th rowspan="3">&nbsp;</th>
+        {{#unless comparison}}
+          <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2006-2010</th>
+          <th colspan="2" rowspan="2" class="text-center cell-border-bottom">2012-2016</th>
+        {{/unless}}
+        {{#if comparison}}
+          {{#if reliability}}
+            <th colspan="12" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
+          {{else}}
+            <th colspan="6" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
+          {{/if}}
+        {{else}}
+          {{#if reliability}}
+            <th colspan="4" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
+          {{else}}
+            <th colspan="2" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
+          {{/if}}
+        {{/if}}
+      </tr>
+      <tr>
+        <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
+        {{#if comparison}}
+          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
+          <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
+        {{/if}}
+      </tr>
+      <tr>
+        {{#unless comparison}}
+          <th>Number</th>
+          <th>Percent</th>
+          <th>Number</th>
+          <th>Percent</th>
+        {{/unless}}
         <th>Estimate</th>
         {{#if reliability}}
           <th>MOE</th>
@@ -51,16 +93,26 @@
         {{#if reliability}}
           <th>MOE</th>
         {{/if}}
-        <th>Estimate</th>
-        {{#if reliability}}
-          <th>MOE</th>
+        {{#if comparison}}
+          <th>Estimate</th>
+          {{#if reliability}}
+            <th>MOE</th>
+          {{/if}}
+          <th>Percent Estimate</th>
+          {{#if reliability}}
+            <th>MOE</th>
+          {{/if}}
+          <th>Estimate</th>
+          {{#if reliability}}
+            <th>MOE</th>
+          {{/if}}
+          <th>Percentage Estimate</th>
+          {{#if reliability}}
+            <th>MOE</th>
+          {{/if}}
         {{/if}}
-        <th>Percentage Estimate</th>
-        {{#if reliability}}
-          <th>MOE</th>
-        {{/if}}
-      {{/if}}
-    </tr>
+      </tr>
+    {{/if}}
   </thead>
 </table>
 {{yield}}
