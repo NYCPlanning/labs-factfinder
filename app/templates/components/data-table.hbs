@@ -4,13 +4,13 @@
 {{log mode}}
 {{#sticky-element top=stickyTop bottom=0}}
   {{#if (eq mode 'current')}}
-    {{acs-table-header-current
+    {{data-table-header-current
       reliability=reliability
       comparison=comparison
       mode=mode
     }}
   {{else}}
-    {{acs-table-header-change
+    {{data-table-header-change
       reliability=reliability
       comparison=comparison
       mode=mode
@@ -26,7 +26,7 @@
           {{yield}}
         {{else}}
           {{#if (eq mode 'current')}}
-            {{acs-table-row-current
+            {{data-table-row-current
               mode=mode
               reliability=reliability
               comparison=comparison
@@ -46,7 +46,7 @@
                 )
             }}
           {{else}}
-            {{acs-table-row-change
+            {{data-table-row-change
               mode=mode
               reliability=reliability
               comparison=comparison

@@ -1,7 +1,7 @@
 import { moduleForComponent, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('acs-table', 'Integration | Component | acs table', {
+moduleForComponent('data-table', 'Integration | Component | acs table', {
   integration: true
 });
 
@@ -10,15 +10,15 @@ skip('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{acs-table}}`);
+  this.render(hbs`{{data-table}}`);
 
   assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#acs-table}}
+    {{#data-table}}
       template block text
-    {{/acs-table}}
+    {{/data-table}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');
