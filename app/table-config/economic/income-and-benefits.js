@@ -78,7 +78,7 @@ export default [
     data: 'mnhhinc',
     special: true,
     aggregator: calculator,
-    procedure: ['AgHHInc', 'divide', 'HH'],
+    procedure: ['aghhinc', 'divide', 'hh'],
   },
   {
     divider: true,
