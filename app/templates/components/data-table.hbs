@@ -1,7 +1,7 @@
 <div class="table-copy-ui show-for-large">
   <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
 </div>
-{{log mode}}
+
 {{#sticky-element top=stickyTop bottom=0}}
   {{#if (eq mode 'current')}}
     {{data-table-header-current
