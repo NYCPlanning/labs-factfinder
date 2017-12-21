@@ -34,9 +34,8 @@ const generateProfileSQL = function(geoids, comparator, profile = 'demographic')
           INNER JOIN support_data_dictionary_0610_1216
             ON support_data_dictionary_0610_1216.variablename = filtered_selection.variable
         ) window_sum
-        WHERE base = VARIABLE AND 
-        category != 'Housing- Special Variable'
-        GROUP BY VARIABLE, "dataset"
+        WHERE base = VARIABLE
+        GROUP BY VARIABLE, dataset
       ),
 
       comparison_selection AS (
@@ -67,7 +66,7 @@ const generateProfileSQL = function(geoids, comparator, profile = 'demographic')
     FROM (
       SELECT
          *,
-        (((m / 1.645) / SUM) * 100) AS cv,
+        (((m / 1.645) / NULLIF(SUM,0)) * 100) AS cv,
         (((comparison_m / 1.645) / comparison_sum) * 100) AS comparison_cv,
         regexp_replace(lower(DATASET), '[^A-Za-z0-9]', '_', 'g') AS DATASET,
         regexp_replace(lower(PROFILE), '[^A-Za-z0-9]', '_', 'g') AS PROFILE,
