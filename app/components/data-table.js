@@ -61,7 +61,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this.$('.table-scroll').on('scroll', function() {
       const thisOffset = $(this).offset();
-      const tableOffset = $(this).find('.data-table').offset();
+      const tableOffset = $(this).find('.body-table').offset();
       const offset = tableOffset.left - thisOffset.left;
       $(this).parents('.data-table').find('.header-table').css({ marginLeft: offset });
     });
