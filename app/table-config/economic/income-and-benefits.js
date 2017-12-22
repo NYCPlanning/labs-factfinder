@@ -188,6 +188,7 @@ export default [
   {
     title: 'Median nonfamily income (dollars)',
     data: 'mdnfinc',
+    special: true,
     aggregator: interpolate,
     options: {
       bins: [
