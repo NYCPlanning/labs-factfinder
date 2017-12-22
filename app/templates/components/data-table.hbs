@@ -2,6 +2,22 @@
   <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
 </div>
 
+{{#sticky-element top=stickyTop bottom=0}}
+  {{#if (eq mode 'current')}}
+    {{data-table-header-current
+      reliability=reliability
+      comparison=comparison
+      mode=mode
+    }}
+  {{else}}
+    {{data-table-header-change
+      reliability=reliability
+      comparison=comparison
+      mode=mode
+    }}
+  {{/if}}
+{{/sticky-element}}
+
 <div class="wrapper-for-copy">
   {{#sticky-element top=stickyTop bottom=0}}
     {{#if (eq mode 'current')}}

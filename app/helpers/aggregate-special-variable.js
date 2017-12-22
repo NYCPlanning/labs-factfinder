@@ -1,13 +1,16 @@
 import Ember from 'ember';
 
+const noop = () => null;
+
 export function aggregateSpecialVariable(params, { rowConfig, data }) {
-  const sum = rowConfig.aggregator ? rowConfig.aggregator(data) : null;
-  const comparison_sum = // eslint-disable-line
-    rowConfig.aggregator ? rowConfig.aggregator(data, 'comparison_sum') : null;
+  const { aggregator = noop } = rowConfig || {};
+
+  const comparison_sum = aggregator.bind(rowConfig)(data, 'comparison_sum'); // eslint-disable-line
+  const sum = aggregator.bind(rowConfig)(data);
 
   return {
-    sum,
     comparison_sum,
+    sum,
   };
 }
 
