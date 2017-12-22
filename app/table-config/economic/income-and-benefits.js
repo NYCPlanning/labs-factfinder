@@ -78,7 +78,7 @@ export default [
     data: 'mnhhinc',
     special: true,
     aggregator: calculator,
-    procedure: ['AgHHInc', 'divide', 'HH'],
+    procedure: ['aghhinc', 'divide', 'hh'],
   },
   {
     divider: true,
@@ -188,6 +188,7 @@ export default [
   {
     title: 'Median nonfamily income (dollars)',
     data: 'mdnfinc',
+    special: true,
     aggregator: interpolate,
     options: {
       bins: [

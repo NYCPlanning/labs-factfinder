@@ -17,8 +17,26 @@
         decennial=true
         mode=profile.mode
         config=sexAge
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
+      }}
+    {{/decennial-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 id="sex-and-age" class="header-medium">Population Density</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#decennial-table category='decennial_population_density' as |table|}}
+      {{data-table
+        reliability=false
+        mode=profile.mode
+        comparison=true
+        config=popDensity
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -35,8 +53,8 @@
         decennial=true
         mode=profile.mode
         config=mutuallyExclRaceHisp
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -53,8 +71,8 @@
         decennial=true
         mode=profile.mode
         config=hispSubgroup
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -71,8 +89,8 @@
         decennial=true
         mode=profile.mode
         config=asianSubgroup
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -89,8 +107,8 @@
         decennial=true
         mode=profile.mode
         config=headHousehold
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -107,8 +125,8 @@
         decennial=true
         mode=profile.mode
         config=householdType
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -125,8 +143,8 @@
         decennial=true
         mode=profile.mode
         config=housingOccupancy
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -143,8 +161,8 @@
         decennial=true
         mode=profile.mode
         config=housingTenure
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -161,8 +179,8 @@
         decennial=true
         mode=profile.mode
         config=tenureAgeHouseholder
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -179,8 +197,8 @@
         decennial=true
         mode=profile.mode
         config=householdSize
-        t1=table.categoryData.y2000
-        t2=table.categoryData.y2010
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
       }}
     {{/decennial-table}}
   </div>
