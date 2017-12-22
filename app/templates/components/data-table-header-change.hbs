@@ -2,11 +2,13 @@
   <thead>
     <tr>
       <th rowspan="{{if reliability "3" "2"}}">&nbsp;</th>
+      {{#if decennial}}
       <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">2000</th>
       <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">2010</th>
-      {{#if decennial}}
         <th colspan="3" class="text-center cell-border-bottom">Change, 2000 to 2010</th>
       {{else}}{{!-- acs --}}
+        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">2006-2010</th>
+        <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">2012-2016</th>
         <th colspan="{{if reliability "6" "3"}}" class="text-center cell-border-bottom">Change, 2006-2010 to 2012-2016</th>
       {{/if}}
     </tr>
@@ -26,18 +28,18 @@
       <th class="text-right cell-border-bottom">Estimate</th>
       <th class="text-right cell-border-bottom">MOE</th>
       <th class="text-right cell-border-bottom">CV</th>
-      <th class="text-right cell-border-bottom">Percent</th>
+      <th class="text-right cell-border-bottom">Estimate</th>
       <th class="text-right cell-border-bottom">MOE</th>
 
       <th class="text-right cell-border-bottom">Estimate</th>
       <th class="text-right cell-border-bottom">MOE</th>
       <th class="text-right cell-border-bottom">CV</th>
-      <th class="text-right cell-border-bottom">Percent</th>
+      <th class="text-right cell-border-bottom">Estimate</th>
       <th class="text-right cell-border-bottom">MOE</th>
 
       <th class="text-right cell-border-bottom">Estimate</th>
       <th class="text-right cell-border-bottom">MOE</th>
-      <th class="text-right cell-border-bottom">Percent</th>
+      <th class="text-right cell-border-bottom">Estimate</th>
       <th class="text-right cell-border-bottom">MOE</th>
       <th class="text-right cell-border-bottom">Estimate</th>
       <th class="text-right cell-border-bottom">MOE</th>
