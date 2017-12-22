@@ -79,7 +79,7 @@ export default [
     special: true,
     aggregator: calculator,
     procedure: ['hhpop', 'divide', 'hh'],
-    decimal: 2,
+    decimal: 1,
   },
   {
     title: 'Average family size',
@@ -87,7 +87,7 @@ export default [
     special: true,
     aggregator: calculator,
     procedure: ['popinfms', 'division', 'fam'],
-    decimal: 2,
+    decimal: 1,
   },
   {
     divider: true,

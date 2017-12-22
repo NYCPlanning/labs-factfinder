@@ -33,7 +33,7 @@ export default Ember.Component.extend({
 
   actions: {
     handleCopy() {
-      const [el] = this.get('element').getElementsByClassName('table-scroll');
+      const [el] = this.get('element').getElementsByClassName('wrapper-for-copy');
       const body = document.body;
       let range;
       let sel;
