@@ -15,24 +15,26 @@ const isOperator = function(step) {
   return operations.any(op => op === step);
 };
 
-const calculator = function(data) {
+const calculator = function(data, sumColumn = 'sum') {
   const { procedure } = this;
+  const currentProcedure = procedure.copy();
 
-  // impute values
-  procedure.forEach((step, i) => {
+  // impute values, replacing their signifiers with their signifieds
+  currentProcedure.forEach((step, i) => {
     if (isArray(step)) {
-      procedure[i] = calculator.bind({ procedure: step })(data);
+      currentProcedure[i] = calculator.bind({ procedure: step, data: this.data })(data, sumColumn);
       return;
     }
 
     if (!isOperator(step)) {
-      procedure[i] = get(data, `${step}.sum`) || step;
+      const currentSum = get(data, `${step}.${sumColumn}`);
+      currentProcedure[i] = !isNaN(currentSum) ? currentSum : step;
     }
   });
 
-  const [firstValue] = procedure;
+  const [firstValue] = currentProcedure;
 
-  return procedure
+  return currentProcedure
     .reduce((accumulator, step, i, array) => {
       if (!isOperator(step)) {
         return accumulator;
