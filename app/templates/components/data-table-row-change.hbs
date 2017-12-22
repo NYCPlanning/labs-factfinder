@@ -15,10 +15,10 @@
 
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
   <td>&nbsp;</td>
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
 
 {{else}}{{! divider = false }}
 
@@ -26,17 +26,25 @@
 
   {{!-- OLD --}}
   <td class="cell-border-left">{{selectedEarlySum}}</td>{{!-- previous dataset sum--}}
-  {{#if reliability}}<td>[Num MOE]</td>{{/if}}
-  {{#if reliability}}<td>[CV]</td>{{/if}}
+  {{#if reliability}}
+    <td>[Num MOE]</td>
+    <td>[CV]</td>
+  {{/if}}
   <td>{{selectedEarlyPercent}}%</td>{{!-- previous dataset percent --}}
-  {{#if reliability}}<td>[% MOE]</td>{{/if}}
+  {{#if reliability}}
+    <td>[% MOE]</td>
+  {{/if}}
 
   {{!-- CURRENT --}}
   <td class="cell-border-left">{{selectedCurrentSum}}</td>{{!-- current dataset sum --}}
-  {{#if reliability}}<td>[Num MOE]</td>{{/if}}
-  {{#if reliability}}<td>[CV]</td>{{/if}}
+  {{#if reliability}}
+    <td>[Num MOE]</td>
+    <td>[CV]</td>
+  {{/if}}
   <td>{{selectedCurrentPercent}}%</td>{{!-- current dataset percent --}}
-  {{#if reliability}}<td>[% MOE]</td>{{/if}}
+  {{#if reliability}}
+    <td>[% MOE]</td>
+  {{/if}}
 
   {{!-- DIFFERENCE --}}
   <td class="cell-border-left">{{differenceChangeSum}}</td>{{!-- selected area sum change --}}
@@ -48,7 +56,9 @@
     <td>{{differenceChangePercentMOE}}</td>{{!-- selected area percent change moe --}}
   {{/if}}
   <td>{{differencePercentagePoint}}</td>
-  {{#if reliability}}<td>[% Pt. MOE]</td>{{/if}}
+  {{#if reliability}}
+    <td>[% Pt. MOE]</td>
+  {{/if}}
 
   {{!-- <td class="cell-border-left">
     {{longTermDifference}}
