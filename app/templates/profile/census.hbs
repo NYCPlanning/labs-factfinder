@@ -26,6 +26,24 @@
 
 <hr>
 
+<h3 id="sex-and-age" class="header-medium">Population Density</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#decennial-table category='decennial_population_density' as |table|}}
+      {{data-table
+        reliability=false
+        mode=profile.mode
+        comparison=true
+        config=popDensity
+        t1=table.categoryData.y2000
+        t2=table.categoryData.y2010
+      }}
+    {{/decennial-table}}
+  </div>
+</div>
+
+<hr>
+
 <h3 id="mutually-exclusive-race-hispanic-origin" class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
