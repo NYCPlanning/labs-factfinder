@@ -3828,9 +3828,9 @@ ember-inflector@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
-ember-jane-maps@0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/ember-jane-maps/-/ember-jane-maps-0.0.7.tgz#445403c8701eaffc2a4dc83883561832d8a48529"
+ember-jane-maps@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/ember-jane-maps/-/ember-jane-maps-0.0.8.tgz#bc577a7c8d8156bb20bac38f5e0a7b134d7fffc3"
   dependencies:
     ember-cli-babel "^6.3.0"
     ember-cli-htmlbars "^2.0.1"
