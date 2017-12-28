@@ -41,7 +41,7 @@ export default [
     data: 'cvlf2',
   },
   {
-    title: 'Unemployed',
+    title: 'Unemployed (percent equivalent to unemployment rate)',
     data: 'cvlfuem2',
   },
   {
