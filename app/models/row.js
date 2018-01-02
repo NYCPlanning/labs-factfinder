@@ -93,6 +93,7 @@ export default DS.Model.extend({
   selectedCV(sum, cv) {
     const floatedSum = parseFloat(sum);
     const floatedCv = parseFloat(cv);
+
     if (floatedSum > 0) {
       return decimalOnePlace(floatedCv);
     }
@@ -113,9 +114,9 @@ export default DS.Model.extend({
   },
 
   @computed('sum', 'percent_m')
-  selectedPercentM(sum, percent_m) {
+  selectedPercentM(sum, percentM) {
     const floatedSum = parseFloat(sum);
-    const floatedZ = parseFloat(percent_m);
+    const floatedZ = parseFloat(percentM);
     if (floatedSum > 0) {
       return decimalOnePlacePercent(floatedZ);
     }
@@ -169,5 +170,42 @@ export default DS.Model.extend({
     }
 
     return difference.toFixed(1);
+  },
+
+  @computed('sum', 'm')
+  selectedSumMoE(sum, m) {
+    const floatedSum = parseFloat(sum);
+    const floatedM = parseFloat(m);
+
+    if (floatedSum > 0) {
+      return floatedM;
+    }
+
+    return null;
+  },
+
+  @computed('data.comparison_sum', 'data.comparison_m')
+  comparisonSumMoE(sum, m) {
+    const floatedSum = parseFloat(sum);
+    const floatedM = parseFloat(m);
+
+    if (floatedSum > 0) {
+      return floatedM;
+    }
+
+    return null;
+  },
+
+  @computed('data.sum', 'data.comparison_sum')
+  differenceSum(sum, comparisonSum) {
+    const floatedSum = parseFloat(sum);
+    const floatedComparison = parseFloat(comparisonSum);
+    const difference = floatedSum - floatedComparison;
+
+    if (isNaN(floatedSum) || isNaN(floatedComparison)) {
+      return '';
+    }
+
+    return decimalFormatAll(difference);
   },
 });
