@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { decimalFormat } from '../models/row';
+import { decimalFormat } from '../utils/number-formatters';
 
 export function formatAs([number, formatConfig]) {
   return decimalFormat(number, formatConfig);
