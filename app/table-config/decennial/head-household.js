@@ -77,11 +77,13 @@ export default [
   },
   {
     title: 'Average household size',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'avghhsz',
     decimal: 2,
   },
   {
     title: 'Average family size',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'avgfamsz',
     decimal: 2,
   },

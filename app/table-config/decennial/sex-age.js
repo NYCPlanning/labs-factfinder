@@ -114,6 +114,7 @@ export default [
   },
   {
     title: 'Median age (years)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     classNames: '',
     data: 'mdage',
     special: true,

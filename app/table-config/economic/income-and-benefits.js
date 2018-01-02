@@ -49,6 +49,7 @@ export default [
   },
   {
     title: 'Median household income (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdhhinc',
     special: true,
     aggregator: interpolate,
@@ -75,6 +76,7 @@ export default [
   },
   {
     title: 'Mean household income (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mnhhinc',
     special: true,
     aggregator: calculator,
@@ -153,6 +155,7 @@ export default [
   },
   {
     title: 'Median family income (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdfaminc',
     special: true,
     aggregator: interpolate,
@@ -187,6 +190,7 @@ export default [
   },
   {
     title: 'Median nonfamily income (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdnfinc',
     special: true,
     aggregator: interpolate,
@@ -216,6 +220,7 @@ export default [
   },
   {
     title: 'Per capita income (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'percapinc',
     special: true,
     aggregator: calculator,

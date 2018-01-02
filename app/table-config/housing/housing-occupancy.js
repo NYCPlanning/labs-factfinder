@@ -19,6 +19,7 @@ export default [
   },
   {
     title: 'Homeowner vacancy rate',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'hovacrt',
     special: true,
     aggregator: calculator,
@@ -27,6 +28,7 @@ export default [
   },
   {
     title: 'Rental vacancy rate',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'rntvacrt',
     special: true,
     aggregator: calculator,

@@ -44,6 +44,7 @@ export default [
   },
   {
     title: 'Median rooms',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdrms',
     special: true,
     decimal: 1,

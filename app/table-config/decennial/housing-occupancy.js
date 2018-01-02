@@ -42,11 +42,13 @@ export default [
   },
   {
     title: 'Homeowner vacancy rate (percent)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'hmownrvcrt',
     decimal: 1,
   },
   {
     title: 'Rental vacancy rate (percent)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'rntvcrt',
     decimal: 1,
   },

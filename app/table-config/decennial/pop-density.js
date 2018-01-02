@@ -5,6 +5,7 @@ export default [
   },
   {
     title: 'Population per acre',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'popperacre',
     decimal: 1,
   },

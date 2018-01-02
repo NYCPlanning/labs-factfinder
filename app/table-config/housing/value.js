@@ -40,6 +40,7 @@ export default [
   },
   {
     title: 'Median (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdvl',
     special: true,
     aggregator: interpolate,

@@ -3,6 +3,7 @@ import interpolate from '../../utils/interpolate';
 export default [
   {
     title: 'Median earnings for workers (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdewrk',
     special: true,
     aggregator: interpolate,
@@ -33,6 +34,7 @@ export default [
   },
   {
     title: 'Median earnings for male full-time, year-round workers (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdemftwrk',
     special: true,
     aggregator: interpolate,
@@ -63,6 +65,7 @@ export default [
   },
   {
     title: 'Median earnings for female full-time, year-round workers (dollars)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mdefftwrk',
     special: true,
     aggregator: interpolate,

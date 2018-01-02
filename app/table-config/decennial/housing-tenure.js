@@ -17,11 +17,13 @@ export default [
   },
   {
     title: 'Average household size of owner-occupied units',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'avhhszooc',
     decimal: 2,
   },
   {
     title: 'Average household size of renter-occupied units',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'avhhszroc',
     decimal: 2,
   },

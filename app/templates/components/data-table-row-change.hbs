@@ -22,7 +22,12 @@
 
 {{else}}{{! divider = false }}
 
-  <td>{{rowconfig.title}}</td>
+  <td>
+    {{rowconfig.title}}
+    {{#if rowconfig.tooltip}}
+      {{info-tooltip tip=rowconfig.tooltip}}
+    {{/if}}
+  </td>
 
   {{!-- OLD --}}
   <td class="cell-border-left">{{selectedEarlySum}}</td>{{!-- previous dataset sum--}}

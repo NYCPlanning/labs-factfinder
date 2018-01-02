@@ -35,6 +35,7 @@ export default [
   },
   {
     title: 'Mean travel time to work (minutes)',
+    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     data: 'mntrvtm',
     special: true,
     aggregator: calculator,
