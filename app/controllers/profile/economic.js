@@ -45,5 +45,4 @@ export default Ember.Controller.extend({
   currentData(model) {
     return get(model, 'y2012_2016');
   },
-
 });
