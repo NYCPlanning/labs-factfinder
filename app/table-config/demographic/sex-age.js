@@ -129,7 +129,7 @@ export default [
     title: 'Median age (years)',
     classNames: '',
     data: 'mdage',
-    // special: true,
+    special: true,
     decimal: 1,
     aggregator: interpolate,
     options: {

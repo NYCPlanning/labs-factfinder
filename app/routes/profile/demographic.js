@@ -9,6 +9,7 @@ export default Ember.Route.extend(Downloadable, {
   model(params, { queryParams: { comparator = '0' } }) {
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
 
-    return this.store.query('row', { geoids, comparator, type: 'demographic' });
+    return this.store.query('row', { geoids, comparator, type: 'demographic' })
+      .then(rows => rows.toArray());
   },
 });

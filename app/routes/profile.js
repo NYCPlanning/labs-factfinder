@@ -17,8 +17,6 @@ export default Ember.Route.extend({
   },
 
   model({ id }) {
-    // Here we just get the selection, which could be it's own model.
-    // Going to punt on that for now.
     return fetch(SELECTION_API_URL(id))
       .then(response => response.json())
       .then(({ features }) => features);
