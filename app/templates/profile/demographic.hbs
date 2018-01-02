@@ -4,32 +4,38 @@
   mode=profile.mode
   data=rawData
 }}
-  <p class="text-tiny">
+  <p class="text-small no-margin">
     ACS data are derived from a survey and are subject to sampling variability.
     Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
-
-    Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+    <span class="text-tiny dark-gray">
+      Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
+    </span>
   </p>
 {{/profile-header}}
-
 <hr>
 
-<h3 class="header-medium">Sex and Age</h3>
+<h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{acs-table 
-      scrollTable=profile.scrollTable
+    {{data-table
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=sexAge
-      t1=model.y2011_2015.sex_and_age
-      t2=model.y2006_2010.sex_and_age
+      model=model
     }}
   </div>
 
   <div class="cell large-4">
     <div class="callout">
+      <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
+        <span class="cell small-6 text-right">
+          Male <br>{{numeral-format model.y2012_2016.sex_and_age.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.sex_and_age.male.percent_m '0.0%'}})</span>
+        </span>
+        <span class="cell small-6">
+          Female <br>{{numeral-format model.y2012_2016.sex_and_age.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.sex_and_age.fem.percent_m '0.0%'}})</span>
+        </span>
+      </h4>
       {{population-pyramid data=agePopDist}}
     </div>
   </div>
@@ -37,54 +43,78 @@
 
 <hr>
 
-<h3 class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
+<h3 id="mutually-exclusive-race-hispanic-origin" class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
 
-    {{acs-table 
-      scrollTable=profile.scrollTable
+    {{data-table
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=raceGroup
-      t1=model.y2011_2015.mutually_exclusive_race_hispanic_origin
-      t2=model.y2006_2010.mutually_exclusive_race_hispanic_origin
+      model=model
     }}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar 
+        config=raceGroupChartConfig 
+        data=model.y2012_2016 
+        height=236 
+        xMax=1}}
+    </div>
   </div>
 </div>
 
 <hr>
 
-<h3 class="header-medium">Hispanic Subgroup</h3>
+<h3 id="hispanic-subgroup" class="header-medium">Hispanic Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{acs-table 
-      scrollTable=profile.scrollTable
+    {{data-table
       mode=profile.mode
       reliability=profile.reliability
       comparison=profile.comparison
       config=hispanicSubgroup
-      t1=model.y2011_2015.hispanic_subgroup
-      t2=model.y2006_2010.hispanic_subgroup
+      model=model
     }}
+  </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar 
+        config=hispanicSubgroupChartConfig 
+        data=model.y2012_2016 
+        height=264 
+        xMax=1}}
+    </div>
   </div>
 </div>
 
 <hr>
 
-<h3 class="header-medium">Asian Subgroup</h3>
+<h3 id="asian-subgroup" class="header-medium">Asian Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
 
-      {{acs-table 
-        scrollTable=profile.scrollTable
+      {{data-table
         mode=profile.mode
         reliability=profile.reliability
         comparison=profile.comparison
         config=asianSubgroup
-        t1=model.y2011_2015.asian_subgroup
-        t2=model.y2006_2010.asian_subgroup
+        model=model
       }}
   </div>
+  <div class="cell large-4">
+    <div class="callout">
+      {{acs-bar 
+        config=asianSubgroupChartConfig 
+        data=model.y2012_2016 
+        height=210 
+        xMax=1}}
+    </div>
+  </div>
 </div>
+
+{{profile-footer}}
+
 {{outlet}}

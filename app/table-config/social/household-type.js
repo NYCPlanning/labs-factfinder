@@ -1,3 +1,5 @@
+import calculator from '../../utils/calculator';
+
 export default [
   {
     title: 'Total households',
@@ -74,10 +76,18 @@ export default [
   {
     title: 'Average household size',
     data: 'avghhsz',
+    special: true,
+    aggregator: calculator,
+    procedure: ['hhpop', 'divide', 'hh1'],
+    decimal: 1,
   },
   {
     title: 'Average family size',
     data: 'avgfmsz',
+    special: true,
+    aggregator: calculator,
+    procedure: ['popinfms', 'divide', 'fam1'],
+    decimal: 1,
   },
   {
     divider: true,

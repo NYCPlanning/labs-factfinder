@@ -46,6 +46,7 @@ export default [
     title: 'Median rooms',
     data: 'mdrms',
     special: true,
+    decimal: 1,
     aggregator: interpolate,
     options: {
       bins: [
@@ -62,4 +63,3 @@ export default [
     },
   },
 ];
-

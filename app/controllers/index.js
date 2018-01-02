@@ -2,8 +2,9 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
-import carto from 'ember-jane-maps/utils/carto';
 import bbox from 'npm:@turf/bbox';
+import carto from '../utils/carto';
+
 
 import generateIntersectionSQL from '../queries/intersection';
 import layerGroups from '../layer-groups';
@@ -11,6 +12,9 @@ import drawStyles from '../layers/draw-styles';
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import highlightedFeature from '../layers/highlighted-feature';
+
+import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
+import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
 
 const selectedFillLayer = selectedFeatures.fill;
 
@@ -29,11 +33,16 @@ const draw = new MapboxDraw({
 });
 
 export default Ember.Controller.extend({
+  queryParams: ['lastreport'],
+  lastreport: 'demographic',
+
   selection: service(),
   mapMouseover: service(),
 
   layerGroups,
   sources,
+  bkQnMhBoundarySource,
+  bkQnMhBoundaryLayer,
   zoom: 12.25,
   center: [-73.9868, 40.724],
   mode: 'direct-select',
@@ -42,6 +51,9 @@ export default Ember.Controller.extend({
 
   selectedFillLayer,
   highlightedFeature,
+
+  selectedChoropleth: 'population',
+
 
   summaryLevel: alias('selection.summaryLevel'),
 
@@ -79,7 +91,7 @@ export default Ember.Controller.extend({
             layers = ['neighborhood-tabulation-areas-fill'];
             break;
           case 'pumas':
-            layers = ['nyc-pumas-fill'];
+            layers = ['nyc-pumas-selection-fill'];
             break;
         }
 

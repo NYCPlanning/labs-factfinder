@@ -4,8 +4,10 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { task, timeout } from 'ember-concurrency';
 import bbox from 'npm:@turf/bbox';
 import getBuffer from 'npm:@turf/buffer';
+import Environment from '../config/environment';
 
 const { service } = Ember.inject;
+const { SupportServiceHost } = Environment;
 
 const DEBOUNCE_MS = 100;
 
@@ -26,7 +28,7 @@ export default Ember.Component.extend({
   debouncedResults: task(function* (searchTerms) {
     if (searchTerms.length < 3) this.cancel();
     yield timeout(DEBOUNCE_MS);
-    const URL = `https://factfinder-api.planninglabs.nyc/search?q=${searchTerms}`;
+    const URL = `${SupportServiceHost}/search?q=${searchTerms}`;
 
     // this.get('metrics').trackEvent(
     //   'GoogleAnalytics',

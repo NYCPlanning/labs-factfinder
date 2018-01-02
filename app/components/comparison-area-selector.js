@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
-import carto from 'ember-jane-maps/utils/carto';
 import { nest } from 'd3-collection';
+import carto from '../utils/carto';
+
 
 const OPTIONS_QUERY =
   `SELECT *, geotype || geogname || geoid AS name FROM support_geoids 

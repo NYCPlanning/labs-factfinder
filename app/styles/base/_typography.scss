@@ -96,6 +96,17 @@ button {
   }
 }
 
+.view-profile-button {
+  font-size: rem-calc(24) !important;
+  padding: rem-calc(10);
+  line-height: 1.2;
+
+  small {
+    display: block;
+    color: $a11y-yellow;
+  }
+}
+
 .button.text-orange {
   color: $primary-color;
 }
@@ -237,6 +248,9 @@ button {
 }
 
 .profile-header {
+  @include breakpoint(large) {
+    min-height: rem-calc(230);
+  }
 
   h1 {
     margin-bottom: 0.25rem;
@@ -276,7 +290,15 @@ button {
 
 .menu.tabs {
 
+  li {
+    position: relative;
+  }
+
   @include breakpoint(small only) {
+
+    li:not(:first-child) {
+      border-top: 1px solid $medium-gray;
+    }
 
     a:not(.active) {
       background-color: rgba(0,0,0,0.03);
@@ -285,13 +307,13 @@ button {
     a.active {
       background-color: $medium-gray;
       color: $body-font-color;
+      box-shadow: 0 -1px 0 0 rgba(0,0,0,0.2);
     }
   }
 
   @include breakpoint(medium) {
     font-size: rem-calc(12);
     margin-bottom: -1px;
-    // flex-wrap: nowrap;
     float: left;
 
     li {
@@ -303,7 +325,7 @@ button {
         border: 1px solid transparent;
         border-bottom-width: 0;
         background-color: transparent;
-        white-space: nowrap;
+        font-weight: $global-weight-bold;
 
         &:not(.active) {
           border-right-color: transparent;
@@ -324,6 +346,99 @@ button {
     color: $medium-gray;
     cursor: text;
   }
+
+  .has-dropdown {
+    padding-right: 2rem;
+  }
+
+  .fa-caret-down {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $medium-gray;
+    padding: 0.7rem 0.8rem 0.7rem 0.6rem;
+
+    &:hover {
+      color: $dark-gray;
+      cursor: pointer;
+    }
+
+    &.flip {
+      transform: scaleY(-1);
+    }
+  }
+
+  .tab-dropdown {
+    font-size: rem-calc(12);
+
+    @include breakpoint(medium) {
+      position: absolute;
+      top: 100%;
+      right: auto;
+      left: 1px;
+      z-index: 2;
+      width: rem-calc(240);
+      max-width: 90vw;
+      margin-top: -1px;
+      box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    li {
+      border-top: 1px solid #eee;
+      background-color: $white;
+
+      &:hover {
+        background-color: $a11y-yellow;
+      }
+
+      a {
+        line-height: 1.2;
+        box-shadow: none;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-weight: $global-weight-normal;
+      }
+    }
+  }
+
+  .back-to-map {
+    position: relative;
+    top: -0.75rem;
+    left: -0.5rem;
+    margin-right: -0.5rem;
+    border: 0 !important;
+
+    a {
+      box-shadow: none !important;
+      border: 0 !important;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .fa-long-arrow-left {
+      color: $dark-gray;
+      position: relative;
+      margin-right: -0.2em;
+      margin-left: -0.25rem;
+      z-index: 1;
+    }
+
+    .fa-map {
+      color: $dcp-orange;
+    }
+
+    a:hover {
+
+      .fa-long-arrow-left {
+        color: $black;
+      }
+
+      .fa-map {
+        color: $a11y-orange;
+      }
+    }
+  }
 }
 
 
@@ -333,35 +448,27 @@ button {
 .table-scroll table,
 .table-scroll {
   min-width: 100%;
-  transform:rotateX(180deg);
+  // transform:rotateX(180deg);
   margin: 0;
 }
 
-.table-scroll-vert {
+.data-table {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: -1.5rem;
 
-  thead,
-  tbody {
-    display: block;
-    float: left;
-    clear: left;
+  table {
+    margin-bottom: 0;
   }
+}
 
-  thead {
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 0;
-  }
+thead {
+  font-size: rem-calc(10);
+}
 
-  tbody {
-    height: calc(60vh - 15rem);
-    border-top: 0;
-  }
-
-  thead,
-  tbody {
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
+tbody {
+  font-size: rem-calc(13);
 }
 
 th {
@@ -434,11 +541,9 @@ tbody td:first-child {
 }
 
 .table-copy-ui {
-  position: relative;
+  text-align: right;
 
   a {
-    position: absolute;
-    right: $global-margin;
     bottom: 0;
     margin: 0;
     border-bottom: 0;
@@ -481,4 +586,28 @@ tbody td:first-child {
   display: block;
   line-height: 1.2;
   margin-bottom: 0.5rem;
+}
+
+
+//
+// Draw Tool
+// --------------------------------------------------
+.selection-tool--draw {
+  margin: $global-margin 0 0;
+
+  @include breakpoint(medium) {
+    margin-top: 0;
+  }
+
+  &.active, &.button:focus {
+    // @include button-style($primary-color, auto, $white);
+    color: $white;
+    background-color: $primary-color;
+  }
+
+  .fa {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: rem-calc(19);
+  }
 }

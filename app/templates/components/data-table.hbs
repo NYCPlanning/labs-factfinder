@@ -1,0 +1,78 @@
+<div class="table-copy-ui show-for-large">
+  <a class="button tiny gray text-orange" {{action 'handleCopy'}}>{{fa-icon 'clipboard'}} Copy Table to Clipboard</a>
+</div>
+
+<div class="wrapper-for-copy">
+  {{#sticky-element top=stickyTop bottom=0}}
+    {{#if (eq mode 'current')}}
+      {{data-table-header-current
+        decennial=decennial
+        reliability=reliability
+        comparison=comparison
+        mode=mode
+      }}
+    {{else}}
+      {{data-table-header-change
+        decennial=decennial
+        reliability=reliability
+        comparison=comparison
+        mode=mode
+      }}
+    {{/if}}
+  {{/sticky-element}}
+
+  <div class="table-scroll">
+    <table class="body-table">
+      <tbody>
+        {{#each config as |row|}}
+          {{#if hasBlock}}
+            {{yield}}
+          {{else}}
+            {{#if (eq mode 'current')}}
+              {{data-table-row-current
+                mode=mode
+                reliability=reliability
+                comparison=comparison
+                rowconfig=row
+                options=profile
+                data=
+                  (unless
+                    row.special
+                    (get this.t1 row.data)
+                    (aggregate-special-variable rowConfig=row data=t1)
+                  )
+                data2=
+                  (unless
+                    row.special
+                    (get this.t2 row.data)
+                    (aggregate-special-variable rowConfig=row data=t2)
+                  )
+              }}
+            {{else}}
+              {{data-table-row-change
+                decennial=decennial
+                mode=mode
+                reliability=reliability
+                comparison=comparison
+                rowconfig=row
+                options=profile
+                data=
+                  (unless
+                    row.special
+                    (get this.t1 row.data)
+                    (aggregate-special-variable rowConfig=row data=t1)
+                  )
+                data2=
+                  (unless
+                    row.special
+                    (get this.t2 row.data)
+                    (aggregate-special-variable rowConfig=row data=t2)
+                  )
+              }}
+            {{/if}}
+          {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

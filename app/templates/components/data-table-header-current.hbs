@@ -1,0 +1,50 @@
+<table class="header-table">
+  <thead>
+    <tr>
+      <th rowspan="{{if reliability "3" "2"}}">&nbsp;</th>
+      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
+      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
+      <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
+    </tr>
+    {{#if reliability}}
+    <tr>
+      <th colspan="3" class="text-center cell-border-bottom">Number</th>
+      <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+
+      <th colspan="3" class="text-center cell-border-bottom">Number</th>
+      <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+
+      <th colspan="2" class="text-center cell-border-bottom">Number</th>
+      <th colspan="2" class="text-center cell-border-bottom">Pctg. Pt.</th>
+    </tr>
+      <tr>
+        <th class="text-right cell-border-bottom">Estimate</th>
+        <th class="text-right cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">CV</th>
+        <th class="text-right cell-border-bottom">Estimate</th>
+        <th class="text-right cell-border-bottom">MOE</th>
+
+        <th class="text-right cell-border-bottom">Estimate</th>
+        <th class="text-right cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">CV</th>
+        <th class="text-right cell-border-bottom">Estimate</th>
+        <th class="text-right cell-border-bottom">MOE</th>
+
+        <th class="text-right cell-border-bottom">Estimate</th>
+        <th class="text-right cell-border-bottom">MOE</th>
+        <th class="text-right cell-border-bottom">Estimate</th>
+        <th class="text-right cell-border-bottom">MOE</th>
+      </tr>
+    {{else}}
+      <tr>
+        <th class="text-right cell-border-bottom">Number</th>
+        <th class="text-right cell-border-bottom">Percent</th>
+        <th class="text-right cell-border-bottom">Number</th>
+        <th class="text-right cell-border-bottom">Percent</th>
+        <th class="text-right cell-border-bottom">Number</th>
+        <th class="text-right cell-border-bottom">Pctg. Pt.</th>
+      </tr>
+    {{/if}}
+  </thead>
+</table>
+{{yield}}

@@ -5,8 +5,14 @@ export default Ember.Mixin.create({
   setupController(controller, model) {
     this._super(controller, model);
     controller.setProperties({
-      model: nestProfile(model),
+      model: nestProfile(model, 'dataset', 'variable'),
       rawData: model,
     });
+  },
+
+  afterModel(model, transition) {
+    const { targetName } = transition;
+    this._super(model, transition);
+    this.controllerFor('profile').set('tab', targetName);
   },
 });

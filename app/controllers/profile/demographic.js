@@ -6,6 +6,10 @@ import raceGroup from '../../table-config/demographic/race-group';
 import hispanicSubgroup from '../../table-config/demographic/hispanic-subgroup';
 import asianSubgroup from '../../table-config/demographic/asian-subgroup';
 
+import raceGroupChartConfig from '../../chart-config/demographic/race-group';
+import hispanicSubgroupChartConfig from '../../chart-config/demographic/hispanic-subgroup';
+import asianSubgroupChartConfig from '../../chart-config/demographic/asian-subgroup';
+
 const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
@@ -14,16 +18,20 @@ export default Ember.Controller.extend({
   hispanicSubgroup,
   asianSubgroup,
 
+  raceGroupChartConfig,
+  hispanicSubgroupChartConfig,
+  asianSubgroupChartConfig,
+
   profile: controller('profile'),
 
   @computed('model')
   currentData(model) {
-    return model.y2011_2015;
+    return model.y2012_2016;
   },
 
   @computed('currentData')
   agePopDist(currentData) {
-    const d = currentData.poppyramid_only;
+    const d = currentData;
     const variables = [
       'pop0t5',
       'pop5t9',
@@ -57,10 +65,11 @@ export default Ember.Controller.extend({
 
     return {
       totals: {
-        male: currentData.sex_and_age.male,
-        female: currentData.sex_and_age.fem,
+        male: currentData.male,
+        female: currentData.fem,
       },
       pyramidData,
     };
   },
+
 });

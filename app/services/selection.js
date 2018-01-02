@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import carto from 'ember-jane-maps/utils/carto';
+import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
 
@@ -69,6 +69,16 @@ export default Ember.Service.extend({
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
     this.set('summaryLevel', toLevel);
+
+    // remove mapbox neighborhood labels if current Level is NTAs
+    const map = this.get('currentMapInstance');
+    if (map) {
+      if (toLevel === 'ntas') {
+        map.setLayoutProperty('place-neighbourhood', 'visibility', 'none');
+      } else {
+        map.setLayoutProperty('place-neighbourhood', 'visibility', 'visible');
+      }
+    }
 
     // sigh...
     if (

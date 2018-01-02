@@ -23,13 +23,15 @@
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
+    {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
+      {{map.layer layer=bkQnMhBoundaryLayer}}
+    {{/map.source}}
+
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
         {{source.layer layer=selection.pointLayer}}
       {{/map.source}}
     {{/if}}
-
-
 
     {{#if selection.searchResultFeature}}
       {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
@@ -39,14 +41,25 @@
 
     {{map.layer-group config=layerGroups.subway visible=false}}
 
+    {{map.layer-group config=layerGroups.communityDistricts visible=false}}
+
+    {{map.layer-group config=layerGroups.nyccouncildistricts visible=false}}
+
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+
+    {{map.layer-group config=layerGroups.boroughs visible=false}}
+
+    {{map.layer-group config=layerGroups.nycPumas visible=false}}
+
     {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
 
     {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
 
-    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=(eq selection.summaryLevel 'ntas')}}
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreasSelection visible=(eq selection.summaryLevel 'ntas')}}
 
-    {{map.layer-group config=layerGroups.nycPumas visible=(eq selection.summaryLevel 'pumas')}}
+    {{map.layer-group config=layerGroups.nycPumasSelection visible=(eq selection.summaryLevel 'pumas')}}
 
+    {{map.layer-group config=layerGroups.choropleths visible=false}}
 
     {{#if selection.current}}
       {{#map.source
@@ -77,7 +90,6 @@
 
   {{/jane-maps}}
 </div>
-
-{{map-utility-box mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+{{map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
 
 {{outlet}}

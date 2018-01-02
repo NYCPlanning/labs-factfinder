@@ -13,13 +13,6 @@
   left: 0;
 }
 
-.layers-menu {
-  position: absolute;
-  background-color: white;
-  right: 0;
-  z-index: 5;
-}
-
 .map-popup {
   pointer-events: none;
   position: absolute;
@@ -35,6 +28,10 @@
     font-weight: $global-weight-bold;
     line-height: $global-lineheight;
   }
+}
+
+.mapboxgl-ctrl-group > button {
+  border-radius: 0;
 }
 
 .find-me {
