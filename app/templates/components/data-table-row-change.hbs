@@ -1,105 +1,81 @@
 {{#if rowconfig.divider}}
 
   <td>&nbsp;</td>
-  {{#unless comparison}}
-    <td class="cell-border-left">&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class="cell-border-left">&nbsp;</td>
-    <td>&nbsp;</td>
-  {{/unless}}
   <td class="cell-border-left">&nbsp;</td>
-  {{#if reliability}}
-    <td>&nbsp;</td>
-  {{/if}}
   <td>&nbsp;</td>
-  {{#if reliability}}
-    <td>&nbsp;</td>
-  {{/if}}
-  {{#if comparison}}
-    <td class="cell-border-left">&nbsp;</td>
-    {{#if reliability}}
-      <td>&nbsp;</td>
-    {{/if}}
-    <td>&nbsp;</td>
-    {{#if reliability}}
-      <td>&nbsp;</td>
-    {{/if}}
-    <td class="cell-border-left">&nbsp;</td>
-    {{#if reliability}}
-      <td>&nbsp;</td>
-    {{/if}}
-    <td>&nbsp;</td>
-    {{#if reliability}}
-      <td>&nbsp;</td>
-    {{/if}}
-  {{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
 
-{{else}}{{! subheader && divider = false }}
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+
+{{else}}{{! divider = false }}
 
   <td>{{rowconfig.title}}</td>
-    {{#unless comparison}}
-      <td class="cell-border-left"><!--previous dataset sum-->
-      {{selectedEarlySum}}
-    </td>
-    <td><!--previous dataset percent-->
-      {{selectedEarlyPercent}}
-    </td>
-    <td class="cell-border-left"><!--current dataset sum-->
-      {{selectedCurrentSum}}
-    </td>
-    <td><!--current dataset percent-->
-    {{selectedCurrentPercent}}
-    </td>
-  {{/unless}}
-  <td class="cell-border-left"><!--selected area sum change-->
-    {{differenceChangeSum}}
-  </td>
+
+  {{!-- OLD --}}
+  <td class="cell-border-left">{{selectedEarlySum}}</td>{{!-- previous dataset sum--}}
   {{#if reliability}}
-  <td><!--selected area sum change moe-->
-    {{differenceChangeSumMoE}}
-  </td>
+    <td>[Num MOE]</td>
+    <td>[CV]</td>
   {{/if}}
-  <td><!--selected area percent change-->
-    {{differenceChangePercent}}
-  </td>
+  <td>{{selectedEarlyPercent}}%</td>{{!-- previous dataset percent --}}
   {{#if reliability}}
-  <td><!--selected area percent change moe-->
-    {{differenceChangePercentMOE}}
-  </td>
+    <td>[% MOE]</td>
   {{/if}}
-  {{#if comparison}}
-  <td class="cell-border-left"><!--comparison area sum change-->
-    {{comparisonDifferenceChangeSum}}
-  </td>
+
+  {{!-- CURRENT --}}
+  <td class="cell-border-left">{{selectedCurrentSum}}</td>{{!-- current dataset sum --}}
   {{#if reliability}}
-  <td><!--comparison area sum change moe-->
-      {{comparisonDifferenceChangeSumMoE}}
-  </td>
+    <td>[Num MOE]</td>
+    <td>[CV]</td>
   {{/if}}
-  <td><!--comparison area percent change-->
-      {{comparisonDifferenceChangePercent}}
-  </td><!--comparison area percent change moe-->
+  <td>{{selectedCurrentPercent}}%</td>{{!-- current dataset percent --}}
+  {{#if reliability}}
+    <td>[% MOE]</td>
+  {{/if}}
+
+  {{!-- DIFFERENCE --}}
+  <td class="cell-border-left">{{differenceChangeSum}}</td>{{!-- selected area sum change --}}
+  {{#if reliability}}
+    <td>{{differenceChangeSumMoE}}</td>{{!-- selected area sum change moe --}}
+  {{/if}}
+  <td>{{differenceChangePercent}}%</td>{{!-- selected area percent change --}}
+  {{#if reliability}}
+    <td>{{differenceChangePercentMOE}}</td>{{!-- selected area percent change moe --}}
+  {{/if}}
+  <td>{{differencePercentagePoint}}</td>
+  {{#if reliability}}
+    <td>[% Pt. MOE]</td>
+  {{/if}}
+
+  {{!-- <td class="cell-border-left">
+    {{longTermDifference}}
+  </td>
   {{#if reliability}}
     <td>
-        {{comparisonDifferenceChangePercentMOE}}
+      {{longTermDifferenceMOE}}
     </td>
-    {{/if}}
-    <td class="cell-border-left">
-      {{longTermDifference}}
-    </td>
-    {{#if reliability}}
-      <td>
-        {{longTermDifferenceMOE}}
-      </td>
-    {{/if}}
-    <td>
-      {{longTermDifferencePercent}}
-    </td>
-    {{#if reliability}}
-    <td>
-      {{longTermDifferencePercentMOE}}
-    </td>
-    {{/if}}
   {{/if}}
+  <td>
+    {{longTermDifferencePercent}}
+  </td>
+  {{#if reliability}}
+  <td>
+    {{longTermDifferencePercentMOE}}
+  </td>
+  {{/if}} --}}
+
 {{/if}}
 {{yield}}

@@ -6,12 +6,14 @@
   {{#sticky-element top=stickyTop bottom=0}}
     {{#if (eq mode 'current')}}
       {{data-table-header-current
+        decennial=decennial
         reliability=reliability
         comparison=comparison
         mode=mode
       }}
     {{else}}
       {{data-table-header-change
+        decennial=decennial
         reliability=reliability
         comparison=comparison
         mode=mode
@@ -48,6 +50,7 @@
               }}
             {{else}}
               {{data-table-row-change
+                decennial=decennial
                 mode=mode
                 reliability=reliability
                 comparison=comparison
