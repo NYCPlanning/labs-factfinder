@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { select, selectAll } from 'd3-selection';
 import { max } from 'd3-array';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -7,6 +8,8 @@ import { format } from 'd3-format';
 import numeral from 'numeral';
 
 import HorizontalBar from '../components/horizontal-bar';
+
+const { get } = Ember;
 
 const translation = (x, y) => `translate(${x},${y})`;
 
@@ -23,7 +26,7 @@ export default HorizontalBar.extend({
   },
   height: 375,
 
-  createChart: function createChart() {
+  createChart() {
     let svg = this.get('svg');
     const margin = this.get('margin');
     const el = this.$();
@@ -65,12 +68,12 @@ export default HorizontalBar.extend({
     // get the largest of largest (percent + percent_moe)
     const maxValue = max([
       max([
-        max(data, d => d.male.percent + d.male.percent_m),
-        max(data, d => d.female.percent + d.female.percent_m),
+        max(data, d => get(d, 'male.percent') + get(d, 'male.percent_m')),
+        max(data, d => get(d, 'female.percent') + get(d, 'female.percent_m')),
       ]),
       max([
-        max(data, d => d.male.comparison_percent + d.male.comparison_percent_m),
-        max(data, d => d.female.comparison_percent + d.female.comparison_percent_m),
+        max(data, d => get(d, 'male.comparison_percent') + get(d, 'male.comparison_percent_m')),
+        max(data, d => get(d, 'female.comparison_percent') + get(d, 'female.comparison_percent_m')),
       ]),
     ]);
 
@@ -83,13 +86,13 @@ export default HorizontalBar.extend({
 
     // tooltip renderer
     const toolTip = (d, type) => {
-      const percent = d[type].percent;
-      const percentM = d[type].percent_m;
-      const estimate = d[type].sum;
-      const moe = d[type].m;
+      const percent = get(d, `${type}.percent`);
+      const percentM = get(d, `${type}.percent_m`);
+      const estimate = get(d, `${type}.sum`);
+      const moe = get(d, `${type}.m`);
 
       return `
-        The ${type} population aged ${yAxisFormat(d.group)}
+        The ${type} population aged ${yAxisFormat(get(d, 'group'))}
         is estimated at ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small> of the total population,
         or ${numeral(estimate).format('0,0')} <small>(±${numeral(moe).format('0,0')})</small> people.
       `;
@@ -103,12 +106,12 @@ export default HorizontalBar.extend({
       selectAll('.age-chart-tooltip')
         .html(toolTip(d, type));
 
-      selectAll(`.bar.${type}.${d.group}`)
+      selectAll(`.bar.${type}.${get(d, 'group')}`)
         .classed('highlight', true);
     };
 
     const handleMouseOut = (d) => {
-      selectAll(`.bar.${d.group}`)
+      selectAll(`.bar.${get(d, 'group')}`)
         .classed('highlight', false);
       timer = setTimeout(() => {
         selectAll('.age-chart-tooltip')
@@ -143,7 +146,7 @@ export default HorizontalBar.extend({
       .nice();
 
     const yScale = scaleBand()
-      .domain(data.map(d => d.group))
+      .domain(data.map(d => get(d, 'group')))
       .range([height, 0])
       .paddingInner(0.2);
 
@@ -185,21 +188,21 @@ export default HorizontalBar.extend({
     const leftBars = svg.select('.male')
       .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
       .selectAll('.bar.male')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const rightBars = svg.select('.female')
       .attr('transform', translation(pointB, 0))
       .selectAll('.bar.female')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const handleBars = (selection, type) => {
-      const widthFunction = d => xScale(d[type].percent);
+      const widthFunction = d => xScale(get(d, `${type}.percent`));
 
       selection.enter()
         .append('rect')
-        .attr('class', d => `bar ${type} ${d.group}`)
+        .attr('class', d => `bar ${type} ${get(d, 'group')}`)
         .attr('x', 0)
-        .attr('y', d => yScale(d.group))
+        .attr('y', d => yScale(get(d, 'group')))
         .attr('height', yScale.bandwidth())
         .attr('width', widthFunction)
         .attr('rx', 2)
@@ -223,22 +226,22 @@ export default HorizontalBar.extend({
     // margin of error bars
     const leftMOEs = svg.select('.male')
       .selectAll('.moe.male')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const rightMOEs = svg.select('.female')
       .selectAll('.moe.female')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const handleMOEs = (selection, type) => {
       const xFunction = (d) => {
-        if (d[type].percent_m > d[type].percent) return 0;
-        return xScale(d[type].percent) - xScale(d[type].percent_m);
+        if (get(d, `${type}.percent_m`) > get(d, `${type}.percent`)) return 0;
+        return xScale(get(d, `${type}.percent`)) - xScale(get(d, `${type}.percent_m`));
       };
 
       const widthFunction = (d) => {
-        const defaultWidth = xScale(d[type].percent_m) * 2;
-        if (d[type].percent_m > d[type].percent) {
-          const newWidth = (defaultWidth - (xScale(d[type].percent_m - d[type].percent)));
+        const defaultWidth = xScale(get(d, `${type}.percent_m`)) * 2;
+        if (get(d, `${type}.percent_m`) > get(d, `${type}.percent`)) {
+          const newWidth = (defaultWidth - (xScale(get(d, `${type}.percent_m`) - get(d, `${type}.percent`))));
           return newWidth;
         }
         return defaultWidth;
@@ -247,9 +250,9 @@ export default HorizontalBar.extend({
       selection.enter()
         .append('rect')
         .attr('alighnment-baseline', 'middle')
-        .attr('class', d => `moe ${type} ${d.group}`)
+        .attr('class', d => `moe ${type} ${get(d, 'group')}`)
         .attr('x', xFunction)
-        .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -3)
+        .attr('y', d => yScale(get(d, 'group')) + (yScale.bandwidth() / 2) + -3)
         .attr('height', 6)
         .attr('width', widthFunction);
 
@@ -269,23 +272,23 @@ export default HorizontalBar.extend({
     // comparison MOE bars
     const leftComparisonMOEs = svg.select('.male')
       .selectAll('.comparisonmoe.male')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const rightComparisonMOEs = svg.select('.female')
       .selectAll('.comparisonmoe.female')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const handleComparisonMOEs = (selection, type) => {
       const xFunction = (d) => { // eslint-disable-line
-        return xScale(d[type].comparison_percent) - xScale(d[type].comparison_percent_m);
+        return xScale(get(d, `${type}.comparison_percent`)) - xScale(get(d, `${type}.comparison_percent_m`));
       };
-      const widthFunction = d => xScale(d[type].comparison_percent_m) * 2;
+      const widthFunction = d => xScale(get(d, `${type}.comparison_percent_m`)) * 2;
 
       selection.enter()
         .append('rect')
-        .attr('class', d => `comparisonmoe ${type} ${d.group}`)
+        .attr('class', d => `comparisonmoe ${type} ${get(d, 'group')}`)
         .attr('x', xFunction)
-        .attr('y', d => yScale(d.group) + (yScale.bandwidth() / 2) + -0.5)
+        .attr('y', d => yScale(get(d, 'group')) + (yScale.bandwidth() / 2) + -0.5)
         .attr('height', 1)
         .attr('width', widthFunction);
 
@@ -304,19 +307,19 @@ export default HorizontalBar.extend({
     const leftComparisons = svg.select('.male')
       .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
       .selectAll('.comparison.male')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const rightComparisons = svg.select('.female')
       .selectAll('.comparison.female')
-      .data(data, d => d.group);
+      .data(data, d => get(d, 'group'));
 
     const handleComparisons = (selection, type) => {
-      const cxFunction = d => xScale(d[type].comparison_percent);
+      const cxFunction = d => xScale(get(d, `${type}.comparison_percent`));
       selection.enter()
         .append('circle')
-        .attr('class', d => `comparison ${type} ${d.group}`)
+        .attr('class', d => `comparison ${type} ${get(d, 'group')}`)
         .attr('cx', cxFunction)
-        .attr('cy', d => yScale(d.group) + (yScale.bandwidth() / 2)) // yScale.step()
+        .attr('cy', d => yScale(get(d, 'group')) + (yScale.bandwidth() / 2)) // yScale.step()
         .attr('r', 2.5);
 
       selection.transition().duration(300)

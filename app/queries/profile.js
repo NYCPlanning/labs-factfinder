@@ -61,6 +61,7 @@ const generateProfileSQL = function(geoids, comparator, profile = 'demographic')
       )
     SELECT
       *,
+      cartodb_id as id,
       CASE WHEN ABS(SQRT(POWER(m / 1.645, 2) %2B POWER(comparison_m / 1.645, 2)) * 1.645) > ABS(comparison_sum - sum) THEN false ELSE true END AS significant,
       CASE WHEN ABS(SQRT(POWER(percent_m / 1.645, 2) %2B POWER(comparison_percent_m / 1.645, 2)) * 1.645) > ABS(comparison_percent - percent) THEN false ELSE true END AS percent_significant
     FROM (

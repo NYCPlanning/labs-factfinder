@@ -10,7 +10,7 @@ export default function nestProfile(data, ...keys) {
 
   return allKeys
     .reduce(
-      (nesting, currentKey) => nesting.key(d => d[currentKey]),
+      (nesting, currentKey) => nesting.key(d => d.get(currentKey)),
       nest(),
     )
     .rollup(d => d[0])
