@@ -1,17 +1,9 @@
-{{#profile-header
+{{profile-header
   profile=profile
   title="Economic Profile"
   data=rawData
   mode=profile.mode
 }}
-  <p class="text-small no-margin">
-    ACS data are derived from a survey and are subject to sampling variability.
-    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
-    <span class="text-tiny dark-gray">
-      Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
-    </span>
-  </p>
-{{/profile-header}}
 
 <hr>
 
@@ -45,10 +37,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=commuteToWorkChartConfig 
+      {{acs-bar
+        config=commuteToWorkChartConfig
         data=model.y2012_2016
-        height=296 
+        height=296
         xMax=1}}
     </div>
   </div>
@@ -70,10 +62,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=occupationChartConfig 
+      {{acs-bar
+        config=occupationChartConfig
         data=model.y2012_2016
-        height=264 
+        height=264
         xMax=1}}
     </div>
   </div>
@@ -111,10 +103,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=classOfWorkerChartConfig 
+      {{acs-bar
+        config=classOfWorkerChartConfig
         data=model.y2012_2016
-        height=236 
+        height=236
         xMax=1}}
     </div>
   </div>
@@ -136,10 +128,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=incomeAndBenefitsChartConfig 
+      {{acs-bar
+        config=incomeAndBenefitsChartConfig
         data=model.y2012_2016
-        height=400 
+        height=400
         xMax=1}}
     </div>
   </div>
@@ -209,10 +201,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=ratioOfIncomeToPovertyLevelChartConfig 
+      {{acs-bar
+        config=ratioOfIncomeToPovertyLevelChartConfig
         data=model.y2012_2016
-        height=454 
+        height=454
         xMax=1}}
     </div>
   </div>
