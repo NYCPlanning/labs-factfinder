@@ -42,7 +42,6 @@ selectedEarlyPercent(sum,percent) {
   }
 },
 
-
 @computed('data2.sum','data.sum','rowconfig')
 selectedCurrentSum(sum2, sum,rowconfig) {
   sum2 = parseFloat(sum2);
@@ -117,7 +116,6 @@ differenceChangePercent(sum2, sum) {
   }
 },
 
-
 @computed('data.sum', 'data2.sum', 'data.m', 'data2.m')
   differenceChangePercentMOE(sum, sum2, m, m2) {
     sum = parseFloat(sum);
@@ -133,7 +131,6 @@ differenceChangePercent(sum2, sum) {
     return "";
   }
   },
-
 
   @computed('data2.comparison_sum','data.comparison_sum', 'rowconfig')
   comparisonDifferenceChangeSum(sum2,sum,rowconfig) {
@@ -182,7 +179,6 @@ differenceChangePercent(sum2, sum) {
     }
   },
 
-
   @computed('data.comparison_sum', 'data2.comparison_sum', 'data.comparison_m', 'data2.comparison_m')
     comparisonDifferenceChangePercentMOE(sum, sum2, m, m2) {
       sum = parseFloat(sum);
@@ -198,7 +194,6 @@ differenceChangePercent(sum2, sum) {
       return "";
     }
     },
-
 
   @computed('data.comparison_sum', 'data2.comparison_sum', 'data.sum', 'data2.sum', 'rowconfig')
     longTermDifference(comparisonSum, comparisonSum2, sum, sum2,rowconfig) {

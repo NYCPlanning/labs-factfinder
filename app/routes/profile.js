@@ -17,14 +17,15 @@ export default Ember.Route.extend({
   },
 
   model({ id }) {
-    const selection = this.get('selection');
-
     return fetch(SELECTION_API_URL(id))
       .then(response => response.json())
-      .then(({ features, type }) => {
-        selection.set('summaryLevel', type);
-        selection.set('current', { type: 'FeatureCollection', features });
-        return true;
-      });
+  },
+
+  afterModel(data) {
+    const { features, type } = data;
+    const selection = this.get('selection');
+
+    selection.set('summaryLevel', type);
+    selection.set('current', { type: 'FeatureCollection', features });
   },
 });

@@ -1,3 +1,8 @@
-{{#if categoryData.isFinished}}
-  {{yield (hash categoryData=categoryData.value)}}
+{{#if taskInstance.isFinished}}
+  {{yield (hash taskInstance=taskInstance.value)}}
+{{else}}
+  Loading...
+  {{#if taskInstance.isError}}
+    Servers overloaded... try again.
+  {{/if}}
 {{/if}}
