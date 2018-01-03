@@ -1,5 +1,3 @@
-{{log model}}
-
 {{#profile-header
   profile=profile
   title="2010 Census Profile"
@@ -10,17 +8,16 @@
 
 <hr>
 
-<h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
+<h3 id="sex-and-age" class="header-medium">Population Density</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table taskInstance=model.sex_age as |table|}}
-      {{log table}}
+    {{#decennial-table taskInstance=model.population_density as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
-        config=sexAge
+        config=popDensity
         t1=table.taskInstance.y2010
         t2=table.taskInstance.y2000
       }}
@@ -30,17 +27,16 @@
 
 <hr>
 
-<h3 id="sex-and-age" class="header-medium">Population Density</h3>
+<h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table taskInstance=model.population_density as |table|}}
-      {{log table}}
+    {{#decennial-table taskInstance=model.sex_age as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
-        config=popDensity
+        config=sexAge
         t1=table.taskInstance.y2010
         t2=table.taskInstance.y2000
       }}
