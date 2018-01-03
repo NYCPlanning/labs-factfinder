@@ -19,12 +19,13 @@ export default Ember.Route.extend({
   model({ id }) {
     return fetch(SELECTION_API_URL(id))
       .then(response => response.json())
-      .then(({ features }) => features);
   },
 
-  afterModel(features) {
+  afterModel(data) {
+    const { features, type } = data;
     const selection = this.get('selection');
 
+    selection.set('summaryLevel', type);
     selection.set('current', { type: 'FeatureCollection', features });
   },
 });
