@@ -225,10 +225,7 @@ const builtConfigs = choroplethConfigs.map((config) => {
       },
     },
     paintLine: {
-      'line-color': {
-        property: id,
-        stops,
-      },
+      'line-color': '#994d4d',
     },
   };
 });
