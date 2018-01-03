@@ -1,15 +1,15 @@
 // @create-index
 
-import classOfWorker from './class-of-worker';
-import commuteToWork from './commute-to-work';
+import classOfWorker from './classOfWorker';
+import commuteToWork from './commuteToWork';
 import earnings from './earnings';
-import employmentStatus from './employment-status';
-import healthInsuranceCoverage from './health-insurance-coverage';
-import incomeAndBenefits from './income-and-benefits';
-import incomePast12MonthsBelowPoverty from './income-past-12-months-below-poverty';
+import employmentStatus from './employmentStatus';
+import healthInsuranceCoverage from './healthInsuranceCoverage';
+import incomeAndBenefits from './incomeAndBenefits';
+import incomePast12MonthsBelowPoverty from './incomePast12MonthsBelowPoverty';
 import industry from './industry';
 import occupation from './occupation';
-import ratioOfIncomeToPovertyLevel from './ratio-of-income-to-poverty-level';
+import ratioOfIncomeToPovertyLevel from './ratioOfIncomeToPovertyLevel';
 
 export default {
   classOfWorker,
@@ -23,3 +23,4 @@ export default {
   occupation,
   ratioOfIncomeToPovertyLevel,
 };
+

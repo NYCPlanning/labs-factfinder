@@ -1,9 +1,9 @@
 // @create-index
 
-import asianSubgroup from './asian-subgroup';
-import hispanicSubgroup from './hispanic-subgroup';
-import raceGroup from './race-group';
-import sexAge from './sex-age';
+import asianSubgroup from './asianSubgroup';
+import hispanicSubgroup from './hispanicSubgroup';
+import raceGroup from './raceGroup';
+import sexAge from './sexAge';
 
 export default {
   asianSubgroup,
@@ -11,3 +11,4 @@ export default {
   raceGroup,
   sexAge,
 };
+

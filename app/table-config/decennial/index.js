@@ -1,16 +1,16 @@
 // @create-index
 
-import asianSubgroup from './asian-subgroup';
-import headHousehold from './head-household';
-import hispSubgroup from './hisp-subgroup';
-import householdSize from './household-size';
-import householdType from './household-type';
-import housingOccupancy from './housing-occupancy';
-import housingTenure from './housing-tenure';
-import mutuallyExclRaceHisp from './mutually-excl-race-hisp';
-import popDensity from './pop-density';
-import sexAge from './sex-age';
-import tenureAgeHouseholder from './tenure-age-householder';
+import asianSubgroup from './asianSubgroup';
+import headHousehold from './headHousehold';
+import hispSubgroup from './hispSubgroup';
+import householdSize from './householdSize';
+import householdType from './householdType';
+import housingOccupancy from './housingOccupancy';
+import housingTenure from './housingTenure';
+import mutuallyExclRaceHisp from './mutuallyExclRaceHisp';
+import popDensity from './popDensity';
+import sexAge from './sexAge';
+import tenureAgeHouseholder from './tenureAgeHouseholder';
 
 export default {
   asianSubgroup,
@@ -25,3 +25,4 @@ export default {
   sexAge,
   tenureAgeHouseholder,
 };
+

@@ -1,18 +1,18 @@
 // @create-index
 
-import grossRentGrapi from './gross-rent-grapi';
-import grossRent from './gross-rent';
-import housingOccupancy from './housing-occupancy';
-import housingTenure from './housing-tenure';
-import mortgageStatus from './mortgage-status';
-import occupantsPerRoom from './occupants-per-room';
+import grossRentGrapi from './grossRentGrapi';
+import grossRent from './grossRent';
+import housingOccupancy from './housingOccupancy';
+import housingTenure from './housingTenure';
+import mortgageStatus from './mortgageStatus';
+import occupantsPerRoom from './occupantsPerRoom';
 import rooms from './rooms';
-import selectedMonthlyOwnerSmocapi from './selected-monthly-owner-smocapi';
-import unitsInStructure from './units-in-structure';
+import selectedMonthlyOwnerSmocapi from './selectedMonthlyOwnerSmocapi';
+import unitsInStructure from './unitsInStructure';
 import value from './value';
-import vehiclesAvailable from './vehicles-available';
-import yearHouseholderMovedIntoUnit from './year-householder-moved-into-unit';
-import yearStructureBuilt from './year-structure-built';
+import vehiclesAvailable from './vehiclesAvailable';
+import yearHouseholderMovedIntoUnit from './yearHouseholderMovedIntoUnit';
+import yearStructureBuilt from './yearStructureBuilt';
 
 export default {
   grossRentGrapi,
@@ -29,3 +29,4 @@ export default {
   yearHouseholderMovedIntoUnit,
   yearStructureBuilt,
 };
+
