@@ -21,7 +21,8 @@ export default Ember.Route.extend({
 
     return fetch(SELECTION_API_URL(id))
       .then(response => response.json())
-      .then(({ features }) => {
+      .then(({ features, type }) => {
+        selection.set('summaryLevel', type);
         selection.set('current', { type: 'FeatureCollection', features });
         return true;
       });
