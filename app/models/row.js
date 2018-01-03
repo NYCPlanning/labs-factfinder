@@ -4,6 +4,8 @@ import { computed } from 'ember-decorators/object';
 import { decimalOnePlace,
   decimalOnePlacePercent } from '../utils/number-formatters';
 
+import tableConfigs from '../table-config';
+
 export default DS.Model.extend({
   base: DS.attr('number'),
   base_join: DS.attr('number'),
@@ -38,6 +40,11 @@ export default DS.Model.extend({
   unittype: DS.attr('string'),
   variable: DS.attr('string'),
   variablename: DS.attr('string'),
+
+  @computed('variable', 'profile', 'category')
+  config(variable, profile, category) {
+    return tableConfigs
+  },
 
   @computed('sum', 'cv')
   selectedCV(sum, cv) {

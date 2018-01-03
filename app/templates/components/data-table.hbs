@@ -41,12 +41,6 @@
                     (get this.t1 row.data)
                     (aggregate-special-variable rowConfig=row data=t1)
                   )
-                data2=
-                  (unless
-                    row.special
-                    (get this.t2 row.data)
-                    (aggregate-special-variable rowConfig=row data=t2)
-                  )
               }}
             {{else}}
               {{data-table-row-change
