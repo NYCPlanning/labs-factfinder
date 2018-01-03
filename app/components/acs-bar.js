@@ -9,6 +9,8 @@ import numeral from 'numeral';// eslint-disable-line
 import mungeBarChartData from '../utils/munge-bar-chart-data';
 import { transition } from 'd3-transition'; // eslint-disable-line
 
+const { get } = Ember;
+
 const translation = (x, y) => `translate(${x},${y})`;
 
 const HorizontalBar = Ember.Component.extend(ResizeAware, {
@@ -41,7 +43,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     this.updateChart();
   },
 
-  createChart: function createChart() {
+  createChart() {
     let svg = this.get('svg');
 
     if (!svg) {
@@ -64,8 +66,8 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
     // tooltip renderer
     const toolTip = (d) => {
-      const percent = d.percent;
-      const percentM = d.percent_m;
+      const percent = get(d, 'percent');
+      const percentM = get(d, 'percent_m');
       return `
         The estimated is ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small>
       `;
@@ -79,12 +81,12 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       selectAll(`#${this.elementId} .age-chart-tooltip`)
         .html(toolTip(d));
 
-      selectAll(`.${d.classValue}`)
+      selectAll(`.${get(d, 'classValue')}`)
         .classed('highlight', true);
     };
 
     const handleMouseOut = (d) => {
-      selectAll(`.${d.classValue}`)
+      selectAll(`.${get(d, 'classValue')}`)
         .classed('highlight', false);
       timer = setTimeout(() => {
         selectAll(`#${this.elementId} .age-chart-tooltip`)
@@ -108,18 +110,18 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
     const rawData = mungeBarChartData(config, data);
     const y = scaleBand()
-      .domain(rawData.map(d => d.group))
+      .domain(rawData.map(d => get(d, 'group')))
       .range([0, height])
       .paddingOuter(0)
       .paddingInner(0.1);
 
     const x = scaleLinear()
-      .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => d.percent)])
+      .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => get(d, 'percent'))])
       .range([textWidth, width]);
 
       // add bar text
     const groupLabels = svg.selectAll('.typelabel')
-      .data(rawData, d => d.group);
+      .data(rawData, d => get(d, 'group'));
 
     groupLabels.enter().append('text')
       .attr('class', 'label typelabel')
@@ -129,8 +131,8 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('width', textWidth);
 
     groupLabels.transition().duration(300)
-      .attr('y', d => y(d.group) + y.bandwidth() + -14)
-      .text(d => `${d.group}`);
+      .attr('y', d => y(get(d, 'group')) + y.bandwidth() + -14)
+      .text(d => `${get(d, 'group')}`);
 
     groupLabels.exit().remove();
 
@@ -152,18 +154,18 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     // draw bars
 
     const bars = svg.selectAll('.buildingsbar')
-      .data(rawData, d => d.group);
+      .data(rawData, d => get(d, 'group'));
 
     bars.enter()
       .append('rect')
-      .attr('class', d => `buildingsbar ${d.classValue}`)
+      .attr('class', d => `buildingsbar ${get(d, 'classValue')}`)
       .attr('fill', (d) => {
-        if (d.color) return d.color;
+        if (get(d, 'color')) return get(d, 'color');
         return '#60acbf';
       })
       .attr('x', x(0))
-      .attr('width', d => x(d.percent) - textWidth)
-      .attr('y', d => y(d.group))
+      .attr('width', d => x(get(d, 'percent')) - textWidth)
+      .attr('y', d => y(get(d, 'group')))
       .attr('height', y.bandwidth() - 14)
 
 
@@ -177,25 +179,25 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
     bars.transition().duration(300)
       .attr('x', x(0))
-      .attr('width', d => x(d.percent) - textWidth);
+      .attr('width', d => x(get(d, 'percent')) - textWidth);
 
     bars.exit().remove();
 
     // draw MOE
 
     const moebars = svg.selectAll('.moebar')
-      .data(rawData, d => d.group);
+      .data(rawData, d => get(d, 'group'));
 
 
     const xFunctionMOE = (d) => {
-      if (d.percent_m > d.percent) return x(0);
-      return x(d.percent) - x(d.percent_m) - -textWidth;
+      if (get(d, 'percent_m') > get(d, 'percent')) return x(0);
+      return x(get(d, 'percent')) - x(get(d, 'percent_m')) - -textWidth;
     };
 
     const widthFunctionMOE = (d) => {
-      const defaultWidth = (x(d.percent_m) - textWidth) * 2;
-      if (d.percent_m > d.percent) {
-        const newWidth = defaultWidth - (x(d.percent_m - d.percent) - textWidth);
+      const defaultWidth = (x(get(d, 'percent_m')) - textWidth) * 2;
+      if (get(d, 'percent_m') > get(d, 'percent')) {
+        const newWidth = defaultWidth - (x(get(d, 'percent_m') - get(d, 'percent')) - textWidth);
         return newWidth;
       }
       return defaultWidth;
@@ -204,14 +206,14 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
     moebars.enter()
       .append('rect')
-      .attr('class', d => `moebar ${d.classValue}`)
+      .attr('class', d => `moebar ${get(d, 'classValue')}`)
       .attr('fill', (d) => {
-        if (d.color) return d.color;
+        if (get(d, 'color')) return get(d, 'color');
         return '#2e6472';
       })
       .attr('opacity', 0.4)
       .attr('x', xFunctionMOE)
-      .attr('y', d => y(d.group) + (y.bandwidth() / 2) + -10)
+      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -10)
       .attr('height', 6)
       .attr('width', widthFunctionMOE);
 
@@ -225,24 +227,24 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     // draw Comparison MOE
 
     const comparisonMOEbars = svg.selectAll('.comparisonMoebar')
-      .data(rawData, d => d.group);
+      .data(rawData, d => get(d, 'group'));
 
 
-    const xFunctionComparisonMOE = d => x(d.comparison_percent)
-      - x(d.comparison_percent_m) -
+    const xFunctionComparisonMOE = d => x(get(d, 'comparison_percent'))
+      - x(get(d, 'comparison_percent_m')) -
       -textWidth;
 
-    const widthFunctionComparisonMOE = d => (x(d.comparison_percent_m) - textWidth) * 2;
+    const widthFunctionComparisonMOE = d => (x(get(d, 'comparison_percent_m')) - textWidth) * 2;
     comparisonMOEbars.enter()
       .append('rect')
-      .attr('class', d => `comparisonMoebar ${d.classValue}`)
+      .attr('class', d => `comparisonMoebar ${get(d, 'classValue')}`)
       .attr('fill', (d) => {
-        if (d.color) return d.color;
+        if (get(d, 'color')) return get(d, 'color');
         return '#000000';
       })
       .attr('opacity', 1)
       .attr('x', xFunctionComparisonMOE)
-      .attr('y', d => y(d.group) + (y.bandwidth() / 2) + -7)
+      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -7)
       .attr('height', 1)
       .attr('width', widthFunctionComparisonMOE);
 
@@ -259,17 +261,17 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
 
     const comparisonBars = svg.selectAll('.comparisonbar')
-      .data(rawData, d => d.group);
+      .data(rawData, d => get(d, 'group'));
 
 
-    const cxFunction = d => x(d.comparison_percent);
+    const cxFunction = d => x(get(d, 'comparison_percent'));
     comparisonBars.enter()
       .append('circle')
       .attr('fill', '#FFF')
       .attr('stroke', '#000')
-      .attr('class', d => `comparisonbar ${d.classValue}`)
+      .attr('class', d => `comparisonbar ${get(d, 'classValue')}`)
       .attr('cx', cxFunction)
-      .attr('cy', d => y(d.group) + (y.bandwidth() / 2) + -6.5)// yScale.step()
+      .attr('cy', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -6.5)// yScale.step()
       .attr('r', 2.5);
 
     comparisonBars.transition().duration(300)
