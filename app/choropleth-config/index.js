@@ -226,7 +226,6 @@ const builtConfigs = choroplethConfigs.map((config) => {
     },
     paintLine: {
       'line-color': '#994d4d',
-      'line-opacity': 1,
     },
   };
 });
