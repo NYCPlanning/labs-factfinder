@@ -1,6 +1,6 @@
 // for number >=0
 export function decimalFormat(number, decimal) {
-  if ((number > 0) || (number === 0)) {
+  if ((number < 0) || (number > 0) || (number === 0)) {
     let x;
     if (decimal === 1) {
       x = number.toFixed(1);
@@ -13,14 +13,14 @@ export function decimalFormat(number, decimal) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
-  return '';
+  return number;
 }
 
 // for all numbers
 export function decimalFormatAll(number, decimal) {
   let x;
   if (isNaN(number)) {
-    return '';
+    return number;
   }
 
   if (decimal === 1) {
@@ -37,7 +37,7 @@ export function decimalFormatAll(number, decimal) {
 export function decimalOnePlace(number) {
   const floated = parseFloat(number);
   if (isNaN(floated)) {
-    return '';
+    return number;
   }
 
   return floated.toFixed(1);
@@ -46,7 +46,7 @@ export function decimalOnePlace(number) {
 export function decimalOnePlacePercent(number) {
   const floated = parseFloat(number);
   if (isNaN(floated)) {
-    return '';
+    return number;
   }
 
   return `${(floated * 100).toFixed(1)}%`;

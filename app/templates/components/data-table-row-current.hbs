@@ -29,7 +29,7 @@
 
   {{!-- SELECTED AREA --}}
   <td class="cell-border-left {{if (eq data.sum 0) 'medium-gray'}} {{if (gte data.cv 20) 'medium-gray'}}">
-    {{format-as (as-float data.sum) rowconfig.decimal}}
+    {{format-as data.sum rowconfig.decimal}}
   </td>
   {{#if reliability}}
     <td class="{{if (gte data.cv 20) 'medium-gray'}}">
@@ -51,7 +51,7 @@
 
   {{!-- COMPARISON AREA --}}
   <td class="cell-border-left {{if (eq data.comparison_sum 0) 'medium-gray'}} {{if (gte data.comparison_cv 20) 'medium-gray'}}">
-    {{format-as (as-float data.comparison_sum) rowconfig.decimal}}
+    {{format-as data.comparison_sum rowconfig.decimal}}
   </td>
   {{#if reliability}}
     <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">

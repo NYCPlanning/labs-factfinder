@@ -135,7 +135,7 @@ export default DS.Model.extend({
     return null;
   },
 
-  @computed('data.comparison_sum', 'data.comparison_m')
+  @computed('comparison_sum', 'comparison_m')
   comparisonSumMoE(sum, m) {
     const floatedSum = parseFloat(sum);
     const floatedM = parseFloat(m);
@@ -147,7 +147,7 @@ export default DS.Model.extend({
     return null;
   },
 
-  @computed('data.sum', 'data.comparison_sum')
+  @computed('sum', 'comparison_sum')
   differenceSum(sum, comparisonSum) {
     const floatedSum = parseFloat(sum);
     const floatedComparison = parseFloat(comparisonSum);
@@ -157,6 +157,6 @@ export default DS.Model.extend({
       return '';
     }
 
-    return decimalFormatAll(difference);
+    return difference;
   },
 });
