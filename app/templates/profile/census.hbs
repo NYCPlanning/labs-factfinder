@@ -8,25 +8,6 @@
 
 <hr>
 
-<h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{#decennial-table category='decennial_sex_age' as |table|}}
-      {{data-table
-        decennial=true
-        reliability=false
-        mode=profile.mode
-        comparison=true
-        config=sexAge
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
-      }}
-    {{/decennial-table}}
-  </div>
-</div>
-
-<hr>
-
 <h3 id="sex-and-age" class="header-medium">Population Density</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
@@ -37,6 +18,25 @@
         mode=profile.mode
         comparison=true
         config=popDensity
+        t1=table.categoryData.y2010
+        t2=table.categoryData.y2000
+      }}
+    {{/decennial-table}}
+  </div>
+</div>
+
+<hr>
+
+<h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-8">
+    {{#decennial-table category='decennial_sex_age' as |table|}}
+      {{data-table
+        decennial=true
+        reliability=false
+        mode=profile.mode
+        comparison=true
+        config=sexAge
         t1=table.categoryData.y2010
         t2=table.categoryData.y2000
       }}
