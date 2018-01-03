@@ -6,7 +6,7 @@ export default Ember.Mixin.create({
     this._super(controller, model);
     controller.setProperties({
       model: nestProfile(model, 'dataset', 'variable'),
-      rawData: model,
+      rawData: model.map(row => row.toJSON()),
     });
   },
 

@@ -24,6 +24,7 @@ export default DS.Model.extend({
   comparison_sum: DS.attr('number'),
   cv: DS.attr('number'),
   dataset: DS.attr('string'), // year
+  year: DS.attr('string'), // year
   infltnfctr10to16: DS.attr('number'),
   m: DS.attr('number'),
   notinprofile: DS.attr('boolean'),
