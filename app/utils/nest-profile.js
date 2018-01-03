@@ -1,4 +1,7 @@
+import Ember from 'ember';
 import { nest } from 'd3-collection';
+
+const { get } = Ember;
 
 export default function nestProfile(data, ...keys) {
   const { length } = keys;
@@ -10,7 +13,7 @@ export default function nestProfile(data, ...keys) {
 
   return allKeys
     .reduce(
-      (nesting, currentKey) => nesting.key(d => d[currentKey]),
+      (nesting, currentKey) => nesting.key(d => get(d, currentKey)),
       nest(),
     )
     .rollup(d => d[0])

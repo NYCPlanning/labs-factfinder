@@ -10,7 +10,7 @@ import raceGroupChartConfig from '../../chart-config/demographic/race-group';
 import hispanicSubgroupChartConfig from '../../chart-config/demographic/hispanic-subgroup';
 import asianSubgroupChartConfig from '../../chart-config/demographic/asian-subgroup';
 
-const { inject: { controller } } = Ember;
+const { inject: { controller }, get } = Ember;
 
 export default Ember.Controller.extend({
   sexAge,
@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
 
   @computed('model')
   currentData(model) {
-    return model.y2012_2016;
+    return get(model, 'y2012_2016');
   },
 
   @computed('currentData')
@@ -54,8 +54,8 @@ export default Ember.Controller.extend({
     ];
 
     const pyramidData = variables.map((variable) => {
-      const male = d[`m${variable}`];
-      const female = d[`f${variable}`];
+      const male = get(d, `m${variable}`);
+      const female = get(d, `f${variable}`);
       return {
         group: variable,
         male,
@@ -71,5 +71,4 @@ export default Ember.Controller.extend({
       pyramidData,
     };
   },
-
 });

@@ -11,15 +11,15 @@
 <h3 id="sex-and-age" class="header-medium">Population Density</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_population_density' as |table|}}
+    {{#decennial-table taskInstance=model.population_density as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=popDensity
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -30,15 +30,15 @@
 <h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_sex_age' as |table|}}
+    {{#decennial-table taskInstance=model.sex_age as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=sexAge
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -49,15 +49,15 @@
 <h3 id="mutually-exclusive-race-hispanic-origin" class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_mutually_exclusive_race' as |table|}}
+    {{#decennial-table taskInstance=model.mutually_exclusive_race as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=mutuallyExclRaceHisp
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -68,15 +68,15 @@
 <h3 id="hispanic-subgroup" class="header-medium">Hispanic Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_hispanic_subgroup' as |table|}}
+    {{#decennial-table taskInstance=model.hispanic_subgroup as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=hispSubgroup
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -87,15 +87,15 @@
 <h3 id="asian-subgroup" class="header-medium">Asian Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_asian_subgroup' as |table|}}
+    {{#decennial-table taskInstance=model.asian_subgroup as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=asianSubgroup
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -106,15 +106,15 @@
 <h3 id="relationship-to-head-of-household" class="header-medium">Relationship to Head of Household</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_relationship_head_householder' as |table|}}
+    {{#decennial-table taskInstance=model.relationship_head_householder as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=headHousehold
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -125,15 +125,15 @@
 <h3 id="household-type" class="header-medium">Household Type</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_household_type' as |table|}}
+    {{#decennial-table taskInstance=model.household_type as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=householdType
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -144,15 +144,15 @@
 <h3 id="housing-occupancy" class="header-medium">Housing Occupancy</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_housing_occupancy' as |table|}}
+    {{#decennial-table taskInstance=model.housing_occupancy as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=housingOccupancy
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -163,15 +163,15 @@
 <h3 id="housing-tenure" class="header-medium">Housing Tenure</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_housing_tenure' as |table|}}
+    {{#decennial-table taskInstance=model.housing_tenure as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=housingTenure
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -182,15 +182,15 @@
 <h3 id="tenure-by-age-of-householder" class="header-medium">Tenure by Age of Householder</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_tenure_by_age' as |table|}}
+    {{#decennial-table taskInstance=model.tenure_by_age as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=tenureAgeHouseholder
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>
@@ -201,15 +201,15 @@
 <h3 id="household-size" class="header-medium">Household Size</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-    {{#decennial-table category='decennial_household_size' as |table|}}
+    {{#decennial-table taskInstance=model.household_size as |table|}}
       {{data-table
         decennial=true
         reliability=false
         mode=profile.mode
         comparison=true
         config=householdSize
-        t1=table.categoryData.y2010
-        t2=table.categoryData.y2000
+        t1=table.taskInstance.y2010
+        t2=table.taskInstance.y2000
       }}
     {{/decennial-table}}
   </div>

@@ -19,7 +19,7 @@ import occupationChartConfig from '../../chart-config/economic/occupation';
 import ratioOfIncomeToPovertyLevelChartConfig from '../../chart-config/economic/ratio-of-income-to-poverty-level';
 
 
-const { inject: { controller } } = Ember;
+const { inject: { controller }, get } = Ember;
 
 export default Ember.Controller.extend({
   employmentStatus,
@@ -43,7 +43,6 @@ export default Ember.Controller.extend({
 
   @computed('model')
   currentData(model) {
-    return model.y2012_2016;
+    return get(model, 'y2012_2016');
   },
-
 });
