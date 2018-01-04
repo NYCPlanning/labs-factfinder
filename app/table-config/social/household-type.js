@@ -75,7 +75,7 @@ export default [
   },
   {
     title: 'Average household size',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Average household size',
+    tooltip: 'Household population divided by number of households',
     data: 'avghhsz',
     special: true,
     aggregator: calculator,
@@ -84,7 +84,7 @@ export default [
   },
   {
     title: 'Average family size',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population in family households, minus nonrelatives in family households, divided by number of family households',
     data: 'avgfmsz',
     special: true,
     aggregator: calculator,
