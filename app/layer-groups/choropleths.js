@@ -3,7 +3,7 @@ import choroplethConfigs from '../choropleth-config';
 export default {
   id: 'choropleths',
   title: 'Thematic Maps (NTAs)',
-  titleTooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  titleTooltip: 'Neighborhood Tabulation Area maps for selected variables',
   visible: false,
   layers: [
     {
