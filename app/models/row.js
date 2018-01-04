@@ -53,7 +53,7 @@ export default DS.Model.extend({
     const categoryNormalized = category.camelize();
     const variables = get(tableConfigs, `${profile}.${categoryNormalized}`) || [];
 
-    return { special: false } || variables.findBy('data', variableName);
+    return variables.findBy('data', variableName) || { special: false };
   },
 
   isSpecial: alias('rowConfig.special'),
