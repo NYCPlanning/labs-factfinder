@@ -72,6 +72,7 @@ const generateProfileSQL = function(geoids, comparator, profile = 'demographic')
         regexp_replace(lower(PROFILE), '[^A-Za-z0-9]', '_', 'g') AS PROFILE,
         regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
         regexp_replace(lower(VARIABLE), '[^A-Za-z0-9]', '_', 'g') AS VARIABLE,
+        ENCODE(CONVERT_TO(VARIABLE || dataset, 'UTF-8'), 'base64') As id,
         ROUND((SUM / NULLIF(base_sum,0))::numeric, 4) as percent,
         (1 / NULLIF(base_sum,0)) * SQRT(POWER(m, 2) %2B ABS(POWER(sum / NULLIF(base_sum,0), 2) * POWER(base_m, 2))) as percent_m,
         ROUND((comparison_sum / NULLIF(comparison_base_sum,0))::numeric, 4) as comparison_percent,

@@ -464,7 +464,7 @@ button {
 }
 
 thead {
-  font-size: rem-calc(10);
+  font-size: rem-calc(11);
 }
 
 tbody {
@@ -491,16 +491,6 @@ tbody td:first-child {
   min-width: rem-calc(160);
   max-width: rem-calc(160);
   border-left: 0;
-}
-
-.table-section-header td {
-  background-color: lighten($medium-gray, 6%);
-
-  font-weight: $global-weight-bold;
-  font-size: 1.2em;
-}
-.th-large {
-  font-size: 1.2em;
 }
 
 .row-highlight {

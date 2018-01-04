@@ -1,8 +1,8 @@
-const color0 = '#E5E544';
-const color1 = '#E5BD44';
-const color2 = '#E59544';
-const color3 = '#E56D44';
-const color4 = '#E54444';
+const color0 = '#f2f2a2';
+const color1 = '#efc68a';
+const color2 = '#e99963';
+const color3 = '#e56d44';
+const color4 = '#e54444';
 
 const choroplethConfigs = [
   {
@@ -236,10 +236,7 @@ const builtConfigs = choroplethConfigs.map((config) => {
       },
     },
     paintLine: {
-      'line-color': {
-        property: id,
-        stops,
-      },
+      'line-color': '#994d4d',
     },
   };
 });

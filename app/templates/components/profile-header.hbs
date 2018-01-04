@@ -47,13 +47,20 @@
           {{if (eq summaryLevel 'blocks') 'Census Block'~}}
           {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
           {{if (eq summaryLevel 'pumas') 'PUMA'~}}
-          {{unless (eq selectionCount 1) 's'}}:
-        </h3>
-        <ul class="profile-geographies-list comma-separated-list">
-          {{#each selection.sortedLabels as |feature|}}
-            <li>{{feature.properties.geolabel}}</li>
+          {{unless (eq selectionCount 1) 's'}}
+          {{if (eq summaryLevel 'blocks') '(Tract Id-Block Id)'~}}
+        </h3> |
+        <p class="profile-geographies-list comma-separated-list">
+          {{#each selection.sortedLabels as |boro|}}
+            {{#if boro.features.length}}
+              <strong>{{boro.label}}:</strong>
+            {{/if}}
+            {{#each boro.features as |feature|}}
+              {{feature.properties.geolabel}}
+              {{~unless (eq boro.features.lastObject.properties.geoid feature.properties.geoid) ','}}
+            {{/each}}
           {{/each}}
-        </ul>
+        </p>
       </div>
 
       {{#if (eq mode 'current')}}
