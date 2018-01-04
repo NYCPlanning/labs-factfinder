@@ -9,7 +9,7 @@ import asianSubgroupChartConfig from '../../chart-config/demographic/asian-subgr
 
 const {
   sexAndAge,
-  raceGroup,
+  mutuallyExclusiveRaceHispanicOrigin,
   hispanicSubgroup,
   asianSubgroup,
 } = demographic;
@@ -18,7 +18,7 @@ const { inject: { controller }, get } = Ember;
 
 export default Ember.Controller.extend({
   sexAndAge,
-  raceGroup,
+  mutuallyExclusiveRaceHispanicOrigin,
   hispanicSubgroup,
   asianSubgroup,
 

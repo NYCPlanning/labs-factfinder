@@ -2,13 +2,13 @@
 
 import asianSubgroup from './asian-subgroup';
 import hispanicSubgroup from './hispanic-subgroup';
-import raceGroup from './race-group';
+import mutuallyExclusiveRaceHispanicOrigin from './mutually-exclusive-race-hispanic-origin';
 import sexAndAge from './sex-and-age';
 
 export default {
   asianSubgroup,
   hispanicSubgroup,
-  raceGroup,
+  mutuallyExclusiveRaceHispanicOrigin,
   sexAndAge,
 };
 
