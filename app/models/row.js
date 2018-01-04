@@ -154,7 +154,7 @@ export default DS.Model.extend({
       return null;
     }
 
-    return difference.toFixed(1);
+    return cleanPercent(difference);
   },
 
   @computed('selectedPercentM', 'comparisonPercentM')
@@ -170,3 +170,9 @@ export default DS.Model.extend({
     return difference.toFixed(1);
   },
 });
+
+function cleanPercent(value) {
+  let cleaned = value;
+  if ((value < 0) && (value > -0.05)) cleaned = 0;
+  return cleaned.toFixed(1);
+}
