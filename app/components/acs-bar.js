@@ -101,7 +101,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const margin = this.get('margin');
     const height = this.get('height') - margin.top - margin.bottom;
     const width = elWidth - margin.left - margin.right;
-    const textWidth = width / 2;
+    const textWidth = width * 0.35;
 
     svg
       .attr('width', width + margin.left + margin.right)
@@ -119,15 +119,17 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => get(d, 'percent'))])
       .range([textWidth, width]);
 
-      // add bar text
+
+    // add bar text
+
     const groupLabels = svg.selectAll('.typelabel')
       .data(rawData, d => get(d, 'group'));
 
     groupLabels.enter().append('text')
       .attr('class', 'label typelabel')
-      .attr('text-anchor', 'end')
+      .attr('text-anchor', 'start')
       .attr('alignment-baseline', 'top')
-      .attr('x', (width / 2) - 10)
+      .attr('x', 0)
       .attr('width', textWidth);
 
     groupLabels.transition().duration(300)
@@ -136,19 +138,18 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
     groupLabels.exit().remove();
 
-    // DRAW AXES
+
+    // draw axes
+
     const bottomAxis = axisBottom()
       .scale(x)
       .ticks(5)
       .tickFormat(format('.0%'));
 
-
     svg.select('.axis-bottom')
-      .attr('transform', translation(0, height))
+      .attr('transform', translation(0, height + 4))
 
       .call(bottomAxis);
-
-    // update positioning and text of top-labels
 
 
     // draw bars
@@ -166,8 +167,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('x', x(0))
       .attr('width', d => x(get(d, 'percent')) - textWidth)
       .attr('y', d => y(get(d, 'group')))
-      .attr('height', y.bandwidth() - 14)
-
+      .attr('height', y.bandwidth())
 
       .attr('rx', 2)
       .attr('ry', 2)
@@ -182,6 +182,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('width', d => x(get(d, 'percent')) - textWidth);
 
     bars.exit().remove();
+
 
     // draw MOE
 
@@ -203,7 +204,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       return defaultWidth;
     };
 
-
     moebars.enter()
       .append('rect')
       .attr('class', d => `moebar ${get(d, 'classValue')}`)
@@ -213,7 +213,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       })
       .attr('opacity', 0.4)
       .attr('x', xFunctionMOE)
-      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -10)
+      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -3)
       .attr('height', 6)
       .attr('width', widthFunctionMOE);
 
@@ -229,7 +229,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const comparisonMOEbars = svg.selectAll('.comparisonMoebar')
       .data(rawData, d => get(d, 'group'));
 
-
     const xFunctionComparisonMOE = d => x(get(d, 'comparison_percent'))
       - x(get(d, 'comparison_percent_m')) -
       -textWidth;
@@ -244,25 +243,21 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       })
       .attr('opacity', 1)
       .attr('x', xFunctionComparisonMOE)
-      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -7)
+      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -0.5)
       .attr('height', 1)
       .attr('width', widthFunctionComparisonMOE);
-
 
     comparisonMOEbars.transition().duration(300)
       .attr('x', xFunctionComparisonMOE)
       .attr('width', widthFunctionComparisonMOE);
-
 
     comparisonMOEbars.exit().remove();
 
 
     // draw comparison dots
 
-
     const comparisonBars = svg.selectAll('.comparisonbar')
       .data(rawData, d => get(d, 'group'));
-
 
     const cxFunction = d => x(get(d, 'comparison_percent'));
     comparisonBars.enter()
@@ -271,7 +266,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('stroke', '#000')
       .attr('class', d => `comparisonbar ${get(d, 'classValue')}`)
       .attr('cx', cxFunction)
-      .attr('cy', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -6.5)// yScale.step()
+      .attr('cy', d => y(get(d, 'group')) + (y.bandwidth() / 2))
       .attr('r', 2.5);
 
     comparisonBars.transition().duration(300)
