@@ -1,17 +1,9 @@
-{{#profile-header
+{{profile-header
   profile=profile
   title="Social Profile"
   mode=profile.mode
   data=rawData
 }}
-  <p class="text-small no-margin">
-    ACS data are derived from a survey and are subject to sampling variability.
-    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
-    <span class="text-tiny dark-gray">
-      Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
-    </span>
-  </p>
-{{/profile-header}}
 
 <hr>
 
@@ -29,10 +21,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=householdTypeChartConfig 
-        data=model.y2012_2016 
-        height=236 
+      {{acs-bar
+        config=householdTypeChartConfig
+        data=model.y2012_2016
+        height=236
         xMax=1}}
     </div>
   </div>
@@ -104,10 +96,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=schoolEnrollmentChartConfig 
-        data=model.y2012_2016 
-        height=264 
+      {{acs-bar
+        config=schoolEnrollmentChartConfig
+        data=model.y2012_2016
+        height=264
         xMax=1}}
     </div>
   </div>
@@ -131,10 +123,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=educationalAttainmentChartConfig 
-        data=model.y2012_2016 
-        height=210 
+      {{acs-bar
+        config=educationalAttainmentChartConfig
+        data=model.y2012_2016
+        height=210
         xMax=1}}
     </div>
   </div>
@@ -188,10 +180,10 @@
   </div>
   <div class="cell large-4">
     <div class="callout">
-      {{acs-bar 
-        config=residence1YearAgoChartConfig 
-        data=model.y2012_2016 
-        height=236 
+      {{acs-bar
+        config=residence1YearAgoChartConfig
+        data=model.y2012_2016
+        height=236
         xMax=1}}
     </div>
   </div>
@@ -214,16 +206,16 @@
   <div class="cell large-4">
     <div class="callout">
       <h4>Place of Birth</h4>
-      {{acs-bar 
-        config=placeOfBirthChartConfig 
-        data=model.y2012_2016 
-        height=210 
+      {{acs-bar
+        config=placeOfBirthChartConfig
+        data=model.y2012_2016
+        height=210
         xMax=1}}
       <h4>Foreign Born</h4>
-      {{acs-bar 
-        config=foreignBornChartConfig 
-        data=model.y2012_2016 
-        height=236 
+      {{acs-bar
+        config=foreignBornChartConfig
+        data=model.y2012_2016
+        height=236
         xMax=1}}
 
     </div>

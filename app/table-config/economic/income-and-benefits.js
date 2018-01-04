@@ -49,6 +49,7 @@ export default [
   },
   {
     title: 'Median household income (dollars)',
+    tooltip: 'Medians are calculated using linear interpolation, which may result in top- and bottom-coded values',
     data: 'mdhhinc',
     special: true,
     aggregator: interpolate,
@@ -75,6 +76,7 @@ export default [
   },
   {
     title: 'Mean household income (dollars)',
+    tooltip: 'Aggregate household income in the past 12 months, divided by total households',
     data: 'mnhhinc',
     special: true,
     aggregator: calculator,
@@ -153,6 +155,7 @@ export default [
   },
   {
     title: 'Median family income (dollars)',
+    tooltip: 'Medians are calculated using linear interpolation, which may result in top- and bottom-coded values',
     data: 'mdfaminc',
     special: true,
     aggregator: interpolate,
@@ -187,6 +190,7 @@ export default [
   },
   {
     title: 'Median nonfamily income (dollars)',
+    tooltip: 'Medians are calculated using linear interpolation, which may result in top- and bottom-coded values',
     data: 'mdnfinc',
     special: true,
     aggregator: interpolate,
@@ -216,6 +220,7 @@ export default [
   },
   {
     title: 'Per capita income (dollars)',
+    tooltip: 'Aggregate income in the past 12 months, divided by total population',
     data: 'percapinc',
     special: true,
     aggregator: calculator,
