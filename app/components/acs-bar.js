@@ -66,11 +66,10 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
     // tooltip renderer
     const toolTip = (d) => {
+      const group = get(d, 'group');
       const percent = get(d, 'percent');
       const percentM = get(d, 'percent_m');
-      return `
-        The estimated is ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small>
-      `;
+      return `${group} = ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small>.`;
     };
 
     let timer;
