@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
 import nestProfile from '../../utils/nest-profile';
+import delegateAggregator from '../../utils/delegate-aggregator';
 
-const { service } = Ember.inject;
+const { get, inject: { service } } = Ember;
 
 export default Ember.Route.extend({
   selection: service(),
@@ -39,9 +40,20 @@ export default Ember.Route.extend({
     const geoids = this.get('selection.current.features').mapBy('properties.geoid');
     const profileData = yield this.get('store')
       .query('row', { geoids, type: 'decennial', category, comparator })
-      .then(rows => rows.toArray())
-      .then(rows => nestProfile(rows, 'year', 'variable'));
+      .then(rows => rows.toArray());
 
-    return profileData;
+
+    const nestedModel = nestProfile(profileData, 'year', 'variable');
+    profileData.forEach((row) => {
+      if (row.get('isSpecial')) {
+        const rowConfig = row.get('rowConfig');
+        const latestYear = get(nestedModel, 'y2010');
+        row.setProperties(delegateAggregator(rowConfig, latestYear));
+      }
+
+      return row;
+    });
+
+    return nestedModel;
   }).enqueue().cancelOn('deactivate'),
 });

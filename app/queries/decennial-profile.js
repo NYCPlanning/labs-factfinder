@@ -74,6 +74,7 @@ const generateDecennialProfile = function(geoids, profile = 'decennial_sex_age',
 
     SELECT *,
       ENCODE(CONVERT_TO(variable || year, 'UTF-8'), 'base64') As id,
+      'decennial' AS profile,
       regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') AS variable,
       regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
       true AS significant,

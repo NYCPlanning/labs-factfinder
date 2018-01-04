@@ -1,20 +1,24 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
-import sexAge from '../../table-config/demographic/sex-age';
-import raceGroup from '../../table-config/demographic/race-group';
-import hispanicSubgroup from '../../table-config/demographic/hispanic-subgroup';
-import asianSubgroup from '../../table-config/demographic/asian-subgroup';
+import demographic from '../../table-config/demographic';
 
 import raceGroupChartConfig from '../../chart-config/demographic/race-group';
 import hispanicSubgroupChartConfig from '../../chart-config/demographic/hispanic-subgroup';
 import asianSubgroupChartConfig from '../../chart-config/demographic/asian-subgroup';
 
+const {
+  sexAndAge,
+  mutuallyExclusiveRaceHispanicOrigin,
+  hispanicSubgroup,
+  asianSubgroup,
+} = demographic;
+
 const { inject: { controller }, get } = Ember;
 
 export default Ember.Controller.extend({
-  sexAge,
-  raceGroup,
+  sexAndAge,
+  mutuallyExclusiveRaceHispanicOrigin,
   hispanicSubgroup,
   asianSubgroup,
 
