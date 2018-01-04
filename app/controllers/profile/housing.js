@@ -28,20 +28,19 @@ const {
 const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
-
-  grossRentAsAPercentageOfHouseholdIncomeGrapi,
-  selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi,
   grossRent,
-  unitsInStructure,
+  grossRentAsAPercentageOfHouseholdIncomeGrapi,
   housingOccupancy,
-  value,
   housingTenure,
-  vehiclesAvailable,
   mortgageStatus,
-  yearHouseholderMovedIntoUnit,
   occupantsPerRoom,
-  yearStructureBuilt,
   rooms,
+  selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi,
+  unitsInStructure,
+  value,
+  vehiclesAvailable,
+  yearHouseholderMovedIntoUnit,
+  yearStructureBuilt,
 
   grossRentGrapiChartConfig,
   grossRentChartConfig,
