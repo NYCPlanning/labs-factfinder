@@ -19,6 +19,7 @@ export default [
   },
   {
     title: 'Homeowner vacancy rate',
+    tooltip: 'Number of vacant units “for sale only,” divided by sum of owner-occupied units, vacant units that are “for sale only,” and vacant units that have been sold but not yet occupied. Quotient is multiplied by 100.',
     data: 'hovacrt',
     special: true,
     aggregator: calculator,
@@ -27,6 +28,7 @@ export default [
   },
   {
     title: 'Rental vacancy rate',
+    tooltip: 'Number of vacant units “for rent,” divided by sum of renter-occupied units, vacant units that are “for rent,” and vacant units that have been rented but not yet occupied. Quotient is multiplied by 100.',
     data: 'rntvacrt',
     special: true,
     aggregator: calculator,
