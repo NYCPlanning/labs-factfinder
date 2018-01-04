@@ -77,13 +77,13 @@ export default [
   },
   {
     title: 'Average household size',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Household population divided by number of households.',
     data: 'avghhsz',
     decimal: 2,
   },
   {
     title: 'Average family size',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population in family households, minus nonrelatives in family households, divded by number of family households.',
     data: 'avgfamsz',
     decimal: 2,
   },
