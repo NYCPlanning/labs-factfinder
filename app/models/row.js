@@ -1,12 +1,18 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 
 import { decimalOnePlace,
   decimalOnePlacePercent } from '../utils/number-formatters';
-
 import tableConfigs from '../table-config';
 
+const { get, computed: { alias } } = Ember;
+
 export default DS.Model.extend({
+  init(...args) {
+    return this._super(...args);
+  },
+
   base: DS.attr('number'),
   base_join: DS.attr('number'),
   base_m: DS.attr('number'),
@@ -41,10 +47,16 @@ export default DS.Model.extend({
   variable: DS.attr('string'),
   variablename: DS.attr('string'),
 
-  @computed('variable', 'profile', 'category')
-  config(variable, profile, category) {
-    return tableConfigs
+
+  @computed('profile', 'category', 'variable')
+  rowConfig(profile, category, variableName) {
+    const categoryNormalized = category.camelize();
+    const variables = get(tableConfigs, `${profile}.${categoryNormalized}`) || [];
+    console.log(profile,category, variableName, categoryNormalized, variables);
+    return variables.findBy('data', variableName);
   },
+
+  isSpecial: alias('rowConfig.special'),
 
   @computed('sum', 'cv')
   selectedCV(sum, cv) {
