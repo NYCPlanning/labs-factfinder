@@ -35,7 +35,7 @@ export default [
   },
   {
     title: 'Mean travel time to work (minutes)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Aggregate travel time to work, divided by workers 16 years and over who did not work at home',
     data: 'mntrvtm',
     special: true,
     aggregator: calculator,
