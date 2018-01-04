@@ -133,7 +133,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('width', textWidth);
 
     groupLabels.transition().duration(300)
-      .attr('y', d => y(get(d, 'group')) + y.bandwidth() + -14)
+      .attr('y', d => y(get(d, 'group')) + y.bandwidth() + -9)
       .text(d => `${get(d, 'group')}`);
 
     groupLabels.exit().remove();
