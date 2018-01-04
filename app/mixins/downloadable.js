@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import nestProfile from '../utils/nest-profile';
+import delegateAggregator from '../utils/delegate-aggregator';
+
+const { get } = Ember;
 
 export default Ember.Mixin.create({
   beforeModel(transition) {
@@ -13,8 +16,20 @@ export default Ember.Mixin.create({
 
   setupController(controller, model) {
     this._super(controller, model);
+
+    const nestedModel = nestProfile(model, 'dataset', 'variable');
+    model.forEach((row) => {
+      if (row.get('isSpecial')) {
+        const rowConfig = row.get('rowConfig');
+        const latestYear = get(nestedModel, 'y2012_2016');
+        row.setProperties(delegateAggregator(rowConfig, latestYear));
+      }
+
+      return row;
+    });
+
     controller.setProperties({
-      model: nestProfile(model, 'dataset', 'variable'),
+      model: nestedModel,
       rawData: model.map(row => row.toJSON()),
     });
   },
