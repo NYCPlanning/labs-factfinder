@@ -8,7 +8,7 @@ const choroplethConfigs = [
   {
     id: 'popperacre',
     label: 'Population Density',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Persons per acre',
     legendTitle: 'Persons per Acre',
     stops: [
 
@@ -30,7 +30,7 @@ const choroplethConfigs = [
   {
     id: 'popu181',
     label: 'Under 18 Years',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population under 18 years',
     legendTitle: 'Population under 18 years',
     stops: [
       [7999, color0],
@@ -51,7 +51,7 @@ const choroplethConfigs = [
   {
     id: 'pop65pl1',
     label: '65 Years and Over',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population 65 years and over',
     legendTitle: 'Population 65 years and over',
     stops: [
       [4999, color0],
@@ -72,7 +72,7 @@ const choroplethConfigs = [
   {
     id: 'ea_bchdh',
     label: 'Bachelor\'s Degree or Higher',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population 25 years and over with bachelor\'s degree or higher',
     legendTitle: 'Population 25 years and over with bachelor\'s degree or higher',
     stops: [
       [9999, color0],
@@ -94,7 +94,7 @@ const choroplethConfigs = [
     id: 'ea_bchdh_p',
     isPercent: true,
     label: 'Bachelor\'s Degree or Higher (percent)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Percent of population 25 years and over with bachelor\'s degree or higher',
     legendTitle: 'Percent of population 25 years and over with bachelor\'s degree or higher',
     stops: [
       [24.9, color0],
@@ -115,8 +115,8 @@ const choroplethConfigs = [
   {
     id: 'fb1_p',
     isPercent: true,
-    label: 'Foreign Born (percent)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    label: 'Foreign-born (percent)',
+    tooltip: 'Percent of population that is foreign-born',
     legendTitle: 'Percent foreign-born population',
     stops: [
       [29.9, color0],
@@ -137,7 +137,7 @@ const choroplethConfigs = [
   {
     id: 'lgoenlep',
     label: 'Limited English Proficiency (LEP)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population 5 years and over who speak English "less than very well"',
     legendTitle: 'Percent of population 5 years and over who speak English "less than very well"',
     stops: [
       [7999, color0],
@@ -158,7 +158,7 @@ const choroplethConfigs = [
   {
     id: 'pbwpv',
     label: 'Below Poverty',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population whose income is below the poverty level',
     legendTitle: 'Population below poverty level',
     stops: [
       [4999, color0],
@@ -180,7 +180,7 @@ const choroplethConfigs = [
     id: 'pbwpv_p',
     isPercent: true,
     label: 'Below Poverty (percent)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
     stops: [
       [14.9, color0],
@@ -201,7 +201,7 @@ const choroplethConfigs = [
   {
     id: 'mdgr',
     label: 'Median Gross Rent',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Median gross rent (in 2016 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
     stops: [
       [1299, color0],
