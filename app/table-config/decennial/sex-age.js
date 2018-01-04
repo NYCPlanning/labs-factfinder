@@ -114,7 +114,7 @@ export default [
   },
   {
     title: 'Median age (years)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Medians are calculated using linear interpolation, which may result in top-coded values',
     classNames: '',
     data: 'mdage',
     special: true,
