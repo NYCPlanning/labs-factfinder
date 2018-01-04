@@ -12,7 +12,10 @@
         to add them to the profile.</p>
     </div>
     <div class="cell medium-shrink">
-      <button class="selection-tool--draw button small gray text-orange {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>{{fa-icon "pencil-square-o"}} Draw</button>
+      <button class="selection-tool--draw button small gray text-orange {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>
+        {{fa-icon "pencil-square-o"}} Draw
+        {{tooltip-on-element delay=500 text='Create selection using drawing tool'}}
+      </button>
     </div>
   </div>
 
@@ -37,7 +40,7 @@
       <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
     {{/if}}
 
-    <p><a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options</a></p>
+    <p><a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options </a></p>
   </div>
 
   <div class="advanced-options {{unless advanced 'closed'}}">
@@ -65,7 +68,8 @@
                   {{else}}
                     {{fa-icon 'circle-thin'}}
                   {{/if}}
-                  {{config.label}}
+                  {{log config}}
+                  {{config.label}} {{info-tooltip tip=config.tooltip}}
                 </li>
               {{/each}}
             </ul>
