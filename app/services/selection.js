@@ -15,7 +15,7 @@ const SUM_LEVEL_DICT = {
   blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2010' },
   tracts: { sql: summaryLevelQueries.tracts(false), ntas: 'ntacode', blocks: 'boroct2010' },
   ntas: { sql: summaryLevelQueries.ntas(false), tracts: 'ntacode' },
-  pumas: 'something_else',
+  pumas: { sql: summaryLevelQueries.pumas(false) },
 };
 
 const findUniqueBy = function(collection, id) {
@@ -109,21 +109,22 @@ export default Ember.Service.extend({
       }
     }
 
-    // sigh...
-    if (
-      (toLevel === 'pumas' && fromLevel === 'ntas')
-      || (toLevel === 'pumas' && fromLevel === 'tracts')
-      || (toLevel === 'ntas' && fromLevel === 'pumas')
-      || (toLevel === 'blocks' && fromLevel === 'ntas')
-      || (toLevel === 'blocks' && fromLevel === 'pumas')
-      || (toLevel === 'ntas' && fromLevel === 'blocks')
-      || (toLevel === 'pumas' && fromLevel === 'blocks')
-    ) {
-      this.clearSelection();
-      return;
-    }
-
     if (this.get('selectedCount')) {
+      // sigh...
+      if (
+        (toLevel === 'pumas' && fromLevel === 'ntas')
+        || (toLevel === 'pumas' && fromLevel === 'tracts')
+        || (toLevel === 'ntas' && fromLevel === 'pumas')
+        || (toLevel === 'blocks' && fromLevel === 'ntas')
+        || (toLevel === 'blocks' && fromLevel === 'pumas')
+        || (toLevel === 'tracts' && fromLevel === 'pumas')
+        || (toLevel === 'ntas' && fromLevel === 'blocks')
+        || (toLevel === 'pumas' && fromLevel === 'blocks')
+      ) {
+        this.explodeGeo(fromLevel, toLevel);
+        return;
+      }
+
       this.explode(fromLevel, toLevel);
     } else {
       this.clearSelection();
@@ -131,14 +132,52 @@ export default Ember.Service.extend({
   },
 
   // target table is the TO and filter ID is the FROM;
-  explode(fromLevel, to) {
-    const crossWalkFromColumn = SUM_LEVEL_DICT[to][fromLevel];
-    const crossWalkToTable = SUM_LEVEL_DICT[to].sql;
+  explode(fromLevel, toLevel) {
+    const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
+    const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
 
     const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
     const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
 
+
     carto.SQL(sqlQuery, 'geojson')
+      .then((json) => {
+        this.clearSelection();
+        this.set('current', json);
+      });
+  },
+
+  explodeGeo(fromLevel, toLevel) {
+    const crossWalkFromTable = SUM_LEVEL_DICT[fromLevel].sql;
+    const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
+
+    const filterIds = this.get('current.features').map(d => d.properties.geoid).join("','");
+
+    let fromGeom = 'f.the_geom';
+    let toGeom = 'a.the_geom';
+
+    // logic to use centroids
+    if (fromLevel !== 'pumas') fromGeom = 'ST_Centroid(f.the_geom)';
+    if (toLevel !== 'pumas') toGeom = 'ST_Centroid(a.the_geom)';
+
+    // special handling for blocks to ntas and ntas to blocks
+    if (fromLevel === 'blocks' && toLevel === 'ntas') {
+      toGeom = 'a.the_geom';
+    }
+
+    if (fromLevel === 'ntas' && toLevel === 'blocks') {
+      fromGeom = 'f.the_geom';
+    }
+
+    const sqlQuery = `
+      WITH f AS (
+        SELECT * FROM (${crossWalkFromTable}) a WHERE geoid IN ('${filterIds}')
+      )
+
+      SELECT DISTINCT ON (geoid) a.* FROM (${crossWalkToTable}) a, f WHERE ST_Intersects(${toGeom}, ${fromGeom})
+    `;
+
+    carto.SQL(sqlQuery, 'geojson', 'post')
       .then((json) => {
         this.clearSelection();
         this.set('current', json);
