@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import Downloadable from '../../mixins/downloadable';
-import delegateAggregator from '../../utils/delegate-aggregator';
 
 const { service } = Ember.inject;
 
