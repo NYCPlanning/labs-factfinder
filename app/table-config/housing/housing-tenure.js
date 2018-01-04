@@ -19,7 +19,7 @@ export default [
   },
   {
     title: 'Average household size of owner-occupied unit',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population in owner-occupied housing units, divided by number of owner-occupied housing units',
     data: 'avghhsooc',
     special: true,
     aggregator: calculator,
@@ -28,7 +28,7 @@ export default [
   },
   {
     title: 'Average household size of renter-occupied unit',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Population in renter-occupied housing units, divided by number of renter-occupied housing units',
     data: 'avghhsroc',
     special: true,
     aggregator: calculator,
