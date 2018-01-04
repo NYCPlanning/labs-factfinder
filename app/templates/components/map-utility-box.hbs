@@ -14,7 +14,7 @@
     <div class="cell medium-shrink">
       <button class="selection-tool--draw button small gray text-orange {{if drawMode 'active'}}" {{action "handleDrawButtonClick"}}>
         {{fa-icon "pencil-square-o"}} Draw
-        {{tooltip-on-element delay=500 text='Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}
+        {{tooltip-on-element delay=500 text='Create selection using drawing tool'}}
       </button>
     </div>
   </div>
@@ -40,7 +40,7 @@
       <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
     {{/if}}
 
-    <p><a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options {{tooltip-on-element delay=500 text='Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</a></p>
+    <p><a {{action (mut advanced) (not advanced)}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options {{tooltip-on-element delay=500 text='REMOVE TOOLTIP'}}</a></p>
   </div>
 
   <div class="advanced-options {{unless advanced 'closed'}}">
