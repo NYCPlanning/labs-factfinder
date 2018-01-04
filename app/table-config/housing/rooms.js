@@ -44,7 +44,7 @@ export default [
   },
   {
     title: 'Median rooms',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Medians are calculated using linear interpolation, which may result in top-coded values',
     data: 'mdrms',
     special: true,
     decimal: 1,
