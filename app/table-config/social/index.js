@@ -1,19 +1,19 @@
 // @create-index
 
 import ancestry from './ancestry';
-import citizenshipStatus from './citizenship-status';
-import disabilityStatusOfCnp from './disability-status-of-cnp';
-import educationalAttainment from './educational-attainment';
+import citizenshipStatus from './citizenshipStatus';
+import disabilityStatusOfCnp from './disabilityStatusOfCnp';
+import educationalAttainment from './educationalAttainment';
 import grandparents from './grandparents';
-import householdType from './household-type';
-import languageSpokenAtHome from './language-spoken-at-home';
-import maritalStatus from './marital-status';
-import placeOfBirth from './place-of-birth';
-import relationshipToHeadOfHousehold from './relationship-to-head-of-household';
-import residence1YearAgo from './residence-1-year-ago';
-import schoolEnrollment from './school-enrollment';
-import veteranStatus from './veteran-status';
-import yearOfEntry from './year-of-entry';
+import householdType from './householdType';
+import languageSpokenAtHome from './languageSpokenAtHome';
+import maritalStatus from './maritalStatus';
+import placeOfBirth from './placeOfBirth';
+import relationshipToHeadOfHousehold from './relationshipToHeadOfHousehold';
+import residence1YearAgo from './residence1YearAgo';
+import schoolEnrollment from './schoolEnrollment';
+import veteranStatus from './veteranStatus';
+import yearOfEntry from './yearOfEntry';
 
 export default {
   ancestry,
