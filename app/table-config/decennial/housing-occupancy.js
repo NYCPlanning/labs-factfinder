@@ -42,13 +42,13 @@ export default [
   },
   {
     title: 'Homeowner vacancy rate (percent)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Number of vacant units ‘‘for sale only’’, divided by sum of owner-occupied units and vacant units ‘‘for sale only,’’ multiplied by 100. (Used definition from 2000 for consistency in measuring change.)',
     data: 'hmownrvcrt',
     decimal: 1,
   },
   {
     title: 'Rental vacancy rate (percent)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Number of vacant units ‘‘for rent’’, divided by sum of renter-occupied units and vacant units ‘‘for rent,’’ multiplied by 100. (Used definition from 2000 for consistency in measuring change.)',
     data: 'rntvcrt',
     decimal: 1,
   },
