@@ -48,6 +48,7 @@
           {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
           {{if (eq summaryLevel 'pumas') 'PUMA'~}}
           {{unless (eq selectionCount 1) 's'}}
+          {{if (eq summaryLevel 'blocks') '(Tract Id-Block Id)'~}}
         </h3> |
         <p class="profile-geographies-list comma-separated-list">
           {{#each selection.sortedLabels as |boro|}}
