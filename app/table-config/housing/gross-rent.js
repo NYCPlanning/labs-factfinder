@@ -36,7 +36,7 @@ export default [
   },
   {
     title: 'Median (dollars)',
-    tooltip: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    tooltip: 'Medians are calculated using linear interpolation, which may result in top-coded values',
     data: 'mdgr',
     special: true,
     aggregator: interpolate,
