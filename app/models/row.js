@@ -100,16 +100,6 @@ export default DS.Model.extend({
     return null;
   },
 
-  @computed('percent', 'comparison_percent')
-  differencePercent(percent, comparisonPercent) {
-    const difference = (percent - comparisonPercent) * 100;
-
-    if (isNaN(percent) || isNaN(comparisonPercent)) {
-      return null;
-    }
-
-    return difference.toFixed(1);
-  },
 
   @computed('sum', 'm')
   selectedSumMoE(sum, m) {
@@ -142,5 +132,41 @@ export default DS.Model.extend({
     }
 
     return difference;
+  },
+
+  @computed('base_m', 'comparison_m')
+  differenceM(base_m, comparison_m) {
+    const divisor = 1.645;
+    const sumOfSquares = (((base_m / divisor) ** 2) + ((comparison_m / divisor) ** 2));
+    const difference = Math.sqrt(sumOfSquares);
+    if (isNaN(base_m) || isNaN(comparison_m)) {
+      return null;
+    }
+
+    return difference.toFixed(1);
+  },
+
+  @computed('percent', 'comparison_percent')
+  differencePercent(percent, comparisonPercent) {
+    const difference = (percent - comparisonPercent) * 100;
+
+    if (isNaN(percent) || isNaN(comparisonPercent)) {
+      return null;
+    }
+
+    return difference.toFixed(1);
+  },
+
+  @computed('selectedPercentM', 'comparisonPercentM')
+  differencePercentM(selectedPercentM, comparisonPercentM) {
+    const divisor = 1.645;
+    const sumOfSquares = (((parseFloat(selectedPercentM) / divisor) ** 2) + ((parseFloat(comparisonPercentM) / divisor) ** 2));
+    const difference = Math.sqrt(sumOfSquares);
+
+    if (isNaN(parseFloat(selectedPercentM)) || isNaN(parseFloat(comparisonPercentM))) {
+      return null;
+    }
+
+    return difference.toFixed(1);
   },
 });
