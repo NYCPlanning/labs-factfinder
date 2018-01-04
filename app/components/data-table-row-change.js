@@ -31,12 +31,33 @@ selectedEarlySum(sum, rowconfig) {
   return decimalFormat(sum, rowconfig.decimal);
 },
 
+@computed('data2.m','rowconfig')
+selectedEarlySumM(m, rowconfig) {
+  return decimalFormat(m, rowconfig.decimal);
+},
+
+@computed('data2.cv','rowconfig')
+selectedEarlySumCV(cv, rowconfig) {
+  return decimalFormat(cv, rowconfig.decimal);
+},
+
 @computed('data2.sum','data2.percent')
 selectedEarlyPercent(sum,percent) {
   sum = parseFloat(sum);
   percent = parseFloat(percent);
   if (sum > 0) {
     return decimalOnePlacePercent(percent);
+  } else {
+    return "";
+  }
+},
+
+@computed('data2.sum','data2.percent_m')
+selectedEarlyPercentM(sum,percent_m) {
+  sum = parseFloat(sum);
+  percent_m = parseFloat(percent_m);
+  if (sum > 0) {
+    return decimalOnePlacePercent(percent_m);
   } else {
     return "";
   }
@@ -53,6 +74,16 @@ selectedCurrentSum(sum2, sum,rowconfig) {
   }
 },
 
+@computed('data.m','rowconfig')
+selectedCurrentSumM(m, rowconfig) {
+  return decimalFormat(m, rowconfig.decimal);
+},
+
+@computed('data.cv','rowconfig')
+selectedCurrentSumCV(cv, rowconfig) {
+  return decimalFormat(cv, rowconfig.decimal);
+},
+
 @computed('data2.sum', 'data.sum','data.percent')
 selectedCurrentPercent(sum2,sum,percent) {
   sum2 = parseFloat(sum2);
@@ -64,6 +95,17 @@ selectedCurrentPercent(sum2,sum,percent) {
     } else {
       return "";
     }
+  } else {
+    return "";
+  }
+},
+
+@computed('data.sum','data.percent_m')
+selectedCurrentPercentM(sum,percent_m) {
+  sum = parseFloat(sum);
+  percent_m = parseFloat(percent_m);
+  if (sum > 0) {
+    return decimalOnePlacePercent(percent_m);
   } else {
     return "";
   }
@@ -281,6 +323,19 @@ differenceChangePercent(sum2, sum) {
     @computed('selectedEarlyPercent', 'selectedCurrentPercent')
     differencePercentagePoint(selectedEarlyPercent, selectedCurrentPercent) {
       return decimalOnePlace(selectedCurrentPercent - selectedEarlyPercent)
+    },
+
+    @computed('selectedEarlyPercentM', 'selectedCurrentPercentM')
+    differencePercentagePointMOE(selectedEarlyPercentM, selectedCurrentPercentM) {
+      const divisor = 1.645;
+      const sumOfSquares = (((parseFloat(selectedEarlyPercentM) / divisor) ** 2) + ((parseFloat(selectedCurrentPercentM) / divisor) ** 2));
+      const difference = Math.sqrt(sumOfSquares);
+
+      if (isNaN(parseFloat(selectedEarlyPercentM)) || isNaN(parseFloat(selectedCurrentPercentM))) {
+        return null;
+      }
+
+      return difference.toFixed(1);
     },
 
 

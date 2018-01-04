@@ -7,9 +7,8 @@ export default DS.JSONAPIAdapter.extend({
   query(store, modelType, query) {
     const { geoids, comparator, type, category } = query;
     let selectionSQL;
-
     if (type === 'decennial') {
-      selectionSQL = decennialProfile(geoids, category);
+      selectionSQL = decennialProfile(geoids, category, comparator);
     } else {
       selectionSQL = generateProfileSQL(geoids, comparator, type);
     }
