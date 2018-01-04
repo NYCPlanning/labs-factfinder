@@ -2,6 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 
+import delegateAggregator from '../utils/delegate-aggregator';
 import { decimalOnePlace,
   decimalOnePlacePercent } from '../utils/number-formatters';
 import tableConfigs from '../table-config';
@@ -47,13 +48,12 @@ export default DS.Model.extend({
   variable: DS.attr('string'),
   variablename: DS.attr('string'),
 
-
   @computed('profile', 'category', 'variable')
   rowConfig(profile, category, variableName) {
     const categoryNormalized = category.camelize();
     const variables = get(tableConfigs, `${profile}.${categoryNormalized}`) || [];
-    console.log(profile,category, variableName, categoryNormalized, variables);
-    return variables.findBy('data', variableName);
+
+    return { special: false } || variables.findBy('data', variableName);
   },
 
   isSpecial: alias('rowConfig.special'),
