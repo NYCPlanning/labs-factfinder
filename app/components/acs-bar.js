@@ -118,6 +118,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => get(d, 'percent'))])
       .range([textWidth, width]);
 
+    /* eslint-disable */
 
     // wrap bar type label text to multiple lines
     function wrap(textElements, wrapWidth) {
@@ -127,7 +128,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
         const words = wrapText.text().split(/\s+/).reverse();
         let line = [];
         let lineNumber = 0;
-        const lineHeight = 1.1;
+        const lineHeight = 1;
         const yPosition = wrapText.attr('y');
         let tspan = wrapText.text(null)
           .append('tspan')
@@ -135,7 +136,8 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
           .attr('y', yPosition)
           .attr('dy', 0);
 
-        words.forEach((word) => {
+        let word;
+        while (word = words.pop()) {
           line.push(word);
           tspan.text(line.join(' '));
           if (tspan.node().getComputedTextLength() > wrapWidth) {
@@ -151,9 +153,12 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
               })
               .text(word);
           }
-        });
+        }
       });
     }
+
+    /* eslint-enable */
+
     // add bar type label text
     // start by deleting all existing labels on every update
     svg.selectAll('.typelabel').remove();
