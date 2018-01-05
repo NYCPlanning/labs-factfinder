@@ -18,7 +18,7 @@
 <h3 class="header-medium" id="housing-occupancy">Housing Occupancy</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -34,7 +34,7 @@
 <h3 class="header-medium" id="units-in-structure">Units in Structure</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -49,7 +49,7 @@
 <h3 class="header-medium" id="year-structure-built">Year Structure Built</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -65,7 +65,7 @@
 <h3 class="header-medium" id="rooms">Rooms</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -81,7 +81,7 @@
 <h3 class="header-medium" id="housing-tenure">Housing Tenure</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -93,9 +93,7 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar config=housingTenureChartConfig data=model.y2012_2016 height=182 xMax=1}}
-    </div>
+    {{acs-bar config=housingTenureChartConfig data=model.y2012_2016 height=182 xMax=1}}
   </div>
 </div>
 
@@ -104,7 +102,7 @@
 <h3 class="header-medium" id="year-householder-moved-into-unit">Year Householder Moved Into Unit</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -120,7 +118,7 @@
 <h3 class="header-medium" id="vehicles-available">Vehicles Available</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -130,9 +128,7 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar config=vehiclesAvailableChartConfig data=model.y2012_2016 height=236 xMax=1}}
-    </div>
+    {{acs-bar config=vehiclesAvailableChartConfig data=model.y2012_2016 height=236 xMax=1}}
   </div>
 </div>
 
@@ -141,7 +137,7 @@
 <h3 class="header-medium" id="occupants-per-room">Occupants per Room</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -157,7 +153,7 @@
 <h3 class="header-medium" id="value">Value</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -167,9 +163,7 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar config=valueChartConfig data=model.y2012_2016 height=343 xMax=1}}
-    </div>
+    {{acs-bar config=valueChartConfig data=model.y2012_2016 height=343 xMax=1}}
   </div>
 </div>
 
@@ -178,7 +172,7 @@
 <h3 class="header-medium" id="mortgage-status">Mortgage Status</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -194,7 +188,7 @@
 <h3 class="header-medium" id="selected-monthly-owner-costs-as-a-percentage-of-household-income">Selected Monthly Owner Costs as a Percentage of Household Income</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -210,7 +204,7 @@
 <h3 class="header-medium" id="gross-rent">Gross Rent</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -220,9 +214,7 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar config=grossRentChartConfig data=model.y2012_2016 height=324 xMax=1}}
-    </div>
+    {{acs-bar config=grossRentChartConfig data=model.y2012_2016 height=324 xMax=1}}
   </div>
 </div>
 
@@ -231,7 +223,7 @@
 <h3 class="header-medium" id="gross-rent-as-a-percentage-of-household-income">Gross Rent as a Percentage of Household Income (GRAPI)</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-        {{data-table
+    {{data-table
       options=profile
       mode=profile.mode
       reliability=profile.reliability
@@ -241,9 +233,7 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
       {{acs-bar config=grossRentGrapiChartConfig data=model.y2012_2016 height=295 xMax=1}}
-    </div>
   </div>
 </div>
 

@@ -28,13 +28,11 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar 
-        config=householdTypeChartConfig 
-        data=model.y2012_2016 
-        height=236 
-        xMax=1}}
-    </div>
+    {{acs-bar
+      config=householdTypeChartConfig
+      data=model.y2012_2016
+      height=236
+      xMax=1}}
   </div>
 </div>
 
@@ -103,13 +101,11 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar 
-        config=schoolEnrollmentChartConfig 
-        data=model.y2012_2016 
-        height=264 
-        xMax=1}}
-    </div>
+    {{acs-bar
+      config=schoolEnrollmentChartConfig
+      data=model.y2012_2016
+      height=264
+      xMax=1}}
   </div>
 </div>
 
@@ -130,13 +126,11 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar 
-        config=educationalAttainmentChartConfig 
-        data=model.y2012_2016 
-        height=210 
-        xMax=1}}
-    </div>
+    {{acs-bar
+      config=educationalAttainmentChartConfig
+      data=model.y2012_2016
+      height=210
+      xMax=1}}
   </div>
 </div>
 
@@ -187,13 +181,11 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar 
-        config=residence1YearAgoChartConfig 
-        data=model.y2012_2016 
-        height=236 
-        xMax=1}}
-    </div>
+    {{acs-bar 
+      config=residence1YearAgoChartConfig
+      data=model.y2012_2016
+      height=236
+      xMax=1}}
   </div>
 </div>
 
@@ -212,21 +204,21 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      <h4>Place of Birth</h4>
-      {{acs-bar 
-        config=placeOfBirthChartConfig 
-        data=model.y2012_2016 
-        height=210 
-        xMax=1}}
-      <h4>Foreign Born</h4>
-      {{acs-bar 
-        config=foreignBornChartConfig 
-        data=model.y2012_2016 
-        height=236 
-        xMax=1}}
 
-    </div>
+    <h4 class="header-small">Place of Birth</h4>
+    {{acs-bar
+      config=placeOfBirthChartConfig
+      data=model.y2012_2016
+      height=210
+      xMax=1}}
+
+    <h4 class="header-small">Foreign Born</h4>
+    {{acs-bar
+      config=foreignBornChartConfig
+      data=model.y2012_2016
+      height=236
+      xMax=1}}
+
   </div>
 </div>
 

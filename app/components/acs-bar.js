@@ -18,12 +18,12 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
   resizeService: Ember.inject.service('resize'),
 
   classNameBindings: ['loading'],
-  classNames: ['horizontal-bar'],
+  classNames: ['acs-bar callout'],
 
   margin: {
     top: 10,
     right: 10,
-    bottom: 120,
+    bottom: 60,
     left: 10,
   },
   height: 800,
@@ -65,33 +65,36 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const config = this.get('config');
 
     // tooltip renderer
-    const toolTip = (d) => {
-      const group = get(d, 'group');
-      const percent = get(d, 'percent');
-      const percentM = get(d, 'percent_m');
-      return `${group} = ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small>.`;
-    };
-
-    let timer;
-
+    // const toolTip = (d) => {
+    //   const group = get(d, 'group');
+    //   const percent = get(d, 'percent');
+    //   const percentM = get(d, 'percent_m');
+    //   return `
+    //     ${group} = ${numeral(percent).format('0.0%')}
+    //     <small>(±${numeral(percentM).format('0.0%')})</small>.
+    //   `;
+    // };
+    //
+    // let timer;
+    //
     // mouse event handlers
-    const handleMouseOver = (d) => {
-      clearTimeout(timer);
-      selectAll(`#${this.elementId} .age-chart-tooltip`)
-        .html(toolTip(d));
-
-      selectAll(`.${get(d, 'classValue')}`)
-        .classed('highlight', true);
-    };
-
-    const handleMouseOut = (d) => {
-      selectAll(`.${get(d, 'classValue')}`)
-        .classed('highlight', false);
-      timer = setTimeout(() => {
-        selectAll(`#${this.elementId} .age-chart-tooltip`)
-          .html('Hover over bars for more detail');
-      }, 400);
-    };
+    // const handleMouseOver = (d) => {
+    //   clearTimeout(timer);
+    //   selectAll(`#${this.elementId} .age-chart-tooltip`)
+    //     .html(toolTip(d));
+    //
+    //   selectAll(`.${get(d, 'classValue')}`)
+    //     .classed('highlight', true);
+    // };
+    //
+    // const handleMouseOut = (d) => {
+    //   selectAll(`.${get(d, 'classValue')}`)
+    //     .classed('highlight', false);
+    //   timer = setTimeout(() => {
+    //     selectAll(`#${this.elementId} .age-chart-tooltip`)
+    //       .html('Hover over bars for more detail');
+    //   }, 400);
+    // };
 
 
     const el = this.$();
@@ -217,10 +220,10 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
 
       .attr('rx', 2)
       .attr('ry', 2)
-      .on('mouseover', (d) => {
-        handleMouseOver(d);
-      })
-      .on('mouseout', handleMouseOut);
+      // .on('mouseover', (d) => {
+      //   handleMouseOver(d);
+      // })
+      // .on('mouseout', handleMouseOut);
 
 
     bars.transition().duration(300)
