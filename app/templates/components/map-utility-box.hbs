@@ -55,8 +55,8 @@
           <div class="cell small-8">
             <ul class="radio-buttons-list">
               {{#each-in (group-by "group" choroplethConfigs) as |group configs|}}
-                <h6>{{group}}</h6>
-                <ul>
+                <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
+                <ul class="no-bullet">
                   {{#each configs as |config|}}
                     <li {{
                       action (
@@ -71,7 +71,8 @@
                       {{else}}
                         {{fa-icon 'circle-thin'}}
                       {{/if}}
-                      {{config.label}} {{info-tooltip tip=config.tooltip}}
+                      {{config.label}}
+                      {{info-tooltip tip=config.tooltip classNames="primary-color"}}
                     </li>
                   {{/each}}
                 </ul>
