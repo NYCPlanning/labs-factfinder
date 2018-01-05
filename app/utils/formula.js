@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import FormulaParser from 'npm:hot-formula-parser';
 
-const { get } = Ember;
+const { get, Logger } = Ember;
 const { Parser } = FormulaParser;
 
-export default function(data, sumKey = 'sum', rowConfig) {
+export default function(data, sumKey, rowConfig) {
   const { formula } = rowConfig;
   const parser = new Parser();
 
@@ -13,7 +13,7 @@ export default function(data, sumKey = 'sum', rowConfig) {
   const { result, error } = parser.parse(formula);
 
   if (error) {
-    console.log(result, error);
+    Logger.warn('Special calculation failed: ', result, error, data);
     return error;
   }
 
