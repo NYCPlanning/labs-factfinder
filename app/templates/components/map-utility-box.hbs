@@ -54,23 +54,31 @@
         <div class="grid-x">
           <div class="cell small-8">
             <ul class="radio-buttons-list">
+              {{#each-in (group-by "group" choroplethConfigs) as |group configs|}}
+                <h6>{{group}}</h6>
+                <ul>
+                  {{#each configs as |config|}}
+                    <li {{
+                      action (
+                        queue
+                          (action 'setChoroplethMode' config.id)
+                          (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
+                          (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
+                      )
+                    }}>
+                      {{#if (eq choroplethMode config.id)}}
+                        {{fa-icon 'dot-circle-o'}}
+                      {{else}}
+                        {{fa-icon 'circle-thin'}}
+                      {{/if}}
+                      {{config.label}} {{info-tooltip tip=config.tooltip}}
+                    </li>
+                  {{/each}}
+                </ul>
+              {{/each-in}}
+
               {{#each choroplethConfigs as |config|}}
-                <li {{
-                  action (
-                    queue
-                      (action 'setChoroplethMode' config.id)
-                      (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
-                      (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
-                  )
-                }}>
-                  {{#if (eq choroplethMode config.id)}}
-                    {{fa-icon 'dot-circle-o'}}
-                  {{else}}
-                    {{fa-icon 'circle-thin'}}
-                  {{/if}}
-                  {{log config}}
-                  {{config.label}} {{info-tooltip tip=config.tooltip}}
-                </li>
+
               {{/each}}
             </ul>
           </div>

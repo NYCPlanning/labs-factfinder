@@ -27,9 +27,9 @@ const OPTIONS_QUERY = `
   UNION ALL
 
   (
-    SELECT geoid, geotype, neighborhoods || ' - ' || geoid || ' (approx. ' || cd || ')' as label, 'PUMAS (approximations of Community Districts)' AS typelabel
+    SELECT geoid, geotype, neighborhoods || ' - ' || geoid || ' (approx. ' || puma_roughcd_equiv || ')' as label, 'PUMAS (approximations of Community Districts)' AS typelabel
     FROM (
-      SELECT a.*, b.neighborhoods, b.cd FROM support_geoids a
+      SELECT a.*, b.neighborhoods, b.puma_roughcd_equiv FROM support_geoids a
       LEFT OUTER JOIN nyc_puma b ON (a.geoid = b.puma::text)
       WHERE geotype IN ('PUMA2010')
     ) x
