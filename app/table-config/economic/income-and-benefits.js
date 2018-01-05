@@ -113,14 +113,14 @@ export default [
         column: 'sum',
         aggregator: calculator,
         options: {
-          procedure: ['aghhinc', 'divide', 'hh'],
+          procedure: ['aghhinc.sum', 'divide', 'hh.sum'],
         },
       },
       {
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['aghhinc', 'divide', 'hh'],
+          procedure: ['aghhinc.comparison_sum', 'divide', 'hh.comparison_sum'],
         },
       },
     ],

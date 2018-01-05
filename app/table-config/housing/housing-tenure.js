@@ -35,7 +35,7 @@ export default [
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['popoochu', 'divide', 'oochu1'],
+          procedure: ['popoochu.comparison_sum', 'divide', 'oochu1.comparison_sum'],
         },
       },
     ],
@@ -51,14 +51,14 @@ export default [
         column: 'sum',
         aggregator: calculator,
         options: {
-          procedure: ['poprtochu', 'divide', 'rochu1'],
+          procedure: ['poprtochu.sum', 'divide', 'rochu1.sum'],
         },
       },
       {
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['poprtochu', 'divide', 'rochu1'],
+          procedure: ['poprtochu.comparison_sum', 'divide', 'rochu1.comparison_sum'],
         },
       },
     ],
