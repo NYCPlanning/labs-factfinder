@@ -2,7 +2,7 @@
 
 const singleGeometryProfile = function(geoid, comparator, profile = 'demographic') {
   return `
-    WITH 
+    WITH
       filtered_selection AS (
         SELECT *
         FROM ${profile}
@@ -12,6 +12,7 @@ const singleGeometryProfile = function(geoid, comparator, profile = 'demographic
       ),
       comparison_selection AS (
         SELECT e as comparison_sum,
+          (((m / 1.645) / NULLIF(e,0)) * 100) AS comparison_cv,
           variable as comparison_variable,
           dataset as comparison_dataset,
           ROUND(p::numeric, 4) / 100 as comparison_percent,
@@ -24,6 +25,7 @@ const singleGeometryProfile = function(geoid, comparator, profile = 'demographic
       )
     SELECT *,
       e as sum,
+      (((m / 1.645) / NULLIF(e,0)) * 100) AS cv,
       ROUND(z::numeric, 4) / 100 as percent_m,
       CASE WHEN ABS(SQRT(POWER(m / 1.645, 2) %2B POWER(comparison_m / 1.645, 2)) * 1.645) > ABS(comparison_sum - e) THEN false ELSE true END AS significant,
       CASE WHEN ABS(SQRT(POWER((ROUND(z::numeric, 4) / 100) / 1.645, 2) %2B POWER(comparison_percent_m / 1.645, 2)) * 1.645) > ABS(comparison_percent - p) THEN false ELSE true END AS percent_significant,
