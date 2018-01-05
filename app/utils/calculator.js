@@ -15,14 +15,14 @@ const isOperator = function(step) {
   return operations.any(op => op === step);
 };
 
-const calculator = function(data, sumColumn = 'sum') {
-  const { procedure } = this;
+const calculator = function(data, sumColumn = 'sum', rowConfig) {
+  const { procedure } = rowConfig;
   const currentProcedure = procedure.copy();
 
   // impute values, replacing their signifiers with their signifieds
   currentProcedure.forEach((step, i) => {
     if (isArray(step)) {
-      currentProcedure[i] = calculator.bind({ procedure: step, data: this.data })(data, sumColumn);
+      currentProcedure[i] = calculator.bind({ procedure: step, data: rowConfig.data })(data, sumColumn);
       return;
     }
 
