@@ -27,7 +27,10 @@
   </div>
 
   <div class="cell large-4">
-      {{#population-pyramid data=agePopDist}}
+      {{#population-pyramid
+        title="Age/Sex Distribution"
+        data=agePopDist
+      }}
         <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
           <span class="cell small-6 text-right">
             Male <br>{{numeral-format model.y2012_2016.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.male.percent_m '0.0%'}})</span>
@@ -56,6 +59,7 @@
   </div>
   <div class="cell large-4">
     {{acs-bar
+      title="Percent Distribution of Race/Hispanic Origin Groups"
       config=raceGroupChartConfig
       data=model.y2012_2016
       height=176
@@ -78,6 +82,7 @@
   </div>
   <div class="cell large-4">
     {{acs-bar
+      title="Percent Distribution of Hispanic Subgroups"
       config=hispanicSubgroupChartConfig
       data=model.y2012_2016
       height=204
@@ -101,6 +106,7 @@
   </div>
   <div class="cell large-4">
     {{acs-bar
+      title="Percent Distribution of Asian Subgroups"
       config=asianSubgroupChartConfig
       data=model.y2012_2016
       height=150
