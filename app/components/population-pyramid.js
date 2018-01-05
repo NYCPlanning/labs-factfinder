@@ -15,7 +15,7 @@ const translation = (x, y) => `translate(${x},${y})`;
 
 export default HorizontalBar.extend({
 
-  classNames: ['population-pyramid'],
+  classNames: ['population-pyramid callout'],
 
   margin: {
     top: 10,

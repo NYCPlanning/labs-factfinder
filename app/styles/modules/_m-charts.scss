@@ -2,6 +2,11 @@
 // Module: Charts
 // --------------------------------------------------
 
+.age-chart,
+.horizontal-bar {
+  letter-spacing: -0.01em;
+}
+
 .horizontal-bar {
   position: relative;
 }
@@ -49,9 +54,9 @@
 .age-chart-tooltip {
   position: absolute;
   top: auto;
-  right: 0;
+  right: 10px;
   bottom: 0;
-  left: 0;
+  left: 10px;
   height: 58px;
   padding: rem-calc(8);
   border-top: 1px solid $medium-gray;
@@ -64,21 +69,26 @@
 .age-chart-key {
   position: absolute;
   top: auto;
-  right: 0;
+  right: 10px;
   bottom: 58px;
-  left: 0;
+  left: 10px;
   height: 45px;
   border-top: 1px solid $medium-gray;
   // background-color: rgba(255,255,0,0.1);
+  width: calc(100% - 20px);
 
   text {
-    font-size: 10px;
+    font-size: rem-calc(10);
   }
 
   .bar {}
   .bar-moe {}
   .comparison {}
   .comparison-moe {}
+
+  .acs-bar & {
+    bottom: 10px;
+  }
 }
 
 .callout .chart .buildingsbar.highlight {
@@ -90,6 +100,11 @@
 }
 
 .moebar {
-    rx: 2;
-    pointer-events: none;
-  }
+  rx: 2;
+  pointer-events: none;
+}
+
+.typelabel {
+  font-size: rem-calc(10);
+  letter-spacing: -0.02em;
+}
