@@ -51,8 +51,7 @@ export default Ember.Component.extend({
   stops(mode) {
     // return an array of objects, each with a display-ready range and color
     const config = choroplethConfigs.find(d => d.id === mode);
-    const stops = config.paintFill['fill-color'].stops;
-    const { isPercent } = config;
+    const { isPercent, stops, colors } = config;
 
     const format = (value) => { // eslint-disable-line
       return isPercent ? `${value}%` : numeral(value).format('0,0');
@@ -61,24 +60,24 @@ export default Ember.Component.extend({
 
     return [
       {
-        label: `${format(stops[7][0])} or more`,
-        color: stops[7][1],
+        label: `${format(stops[3])} or more`,
+        color: colors[4],
       },
       {
-        label: `${format(stops[5][0])} - ${format(stops[6][0])}`,
-        color: stops[5][1],
+        label: `${format(stops[2])} - ${format(stops[3] - 1)}`,
+        color: colors[3],
       },
       {
-        label: `${format(stops[3][0])} - ${format(stops[4][0])}`,
-        color: stops[3][1],
+        label: `${format(stops[1])} - ${format(stops[2] - 1)}`,
+        color: colors[2],
       },
       {
-        label: `${format(stops[1][0])} - ${format(stops[2][0])}`,
-        color: stops[1][1],
+        label: `${format(stops[0])} - ${format(stops[1] - 1)}`,
+        color: colors[1],
       },
       {
-        label: isPercent ? `Less than ${format(stops[1][0])}` : `Under ${format(stops[1][0])}`,
-        color: stops[0][1],
+        label: isPercent ? `Less than ${format(stops[0])}` : `Under ${format(stops[0])}`,
+        color: colors[0],
       },
     ];
   },
