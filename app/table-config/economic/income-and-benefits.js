@@ -125,20 +125,6 @@ export default [
         },
       },
       {
-        column: 'm',
-        aggregator: formula,
-        options: {
-          formula: '((((GET("mnhhinc.cv"))/(100))*(1.645))*(GET("mnhhinc.sum")))',
-        },
-      },
-      {
-        column: 'comparison_m',
-        aggregator: formula,
-        options: {
-          formula: '((((GET("mnhhinc.comparison_cv"))/(100))*(1.645))*(GET("mnhhinc.comparison_sum")))',
-        },
-      },
-      {
         column: 'cv',
         aggregator: formula,
         options: {
@@ -152,6 +138,21 @@ export default [
           formula: '(462)*((GET("uwhusmpl2.comparison_sum"))^-0.754)',
         },
       },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("mnhhinc.cv"))/(100))*(1.645))*(GET("mnhhinc.sum")))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("mnhhinc.comparison_cv"))/(100))*(1.645))*(GET("mnhhinc.comparison_sum")))',
+        },
+      },
+      
     ],
   },
   {
