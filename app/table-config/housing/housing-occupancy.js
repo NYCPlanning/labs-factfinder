@@ -1,4 +1,5 @@
 import calculator from '../../utils/calculator';
+import formula from '../../utils/formula';
 
 export default [
   {
@@ -31,8 +32,7 @@ export default [
     tooltip: 'Number of vacant units “for rent,” divided by sum of renter-occupied units, vacant units that are “for rent,” and vacant units that have been rented but not yet occupied. Quotient is multiplied by 100.',
     data: 'rntvacrt',
     special: true,
-    aggregator: calculator,
-    procedure: [['vacrnt', 'divide', 'rntvacu'], 'multiply', 100],
-    decimal: 1,
+    aggregator: formula,
+    formula: 'GET("vacrnt.m")^2',
   },
 ];
