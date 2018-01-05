@@ -51,9 +51,7 @@ export default Ember.Component.extend({
   stops(mode) {
     // return an array of objects, each with a display-ready range and color
     const config = choroplethConfigs.find(d => d.id === mode);
-    const stops = config.stops;
-    const colors = config.colors;
-    const { isPercent } = config;
+    const { isPercent, stops, colors } = config;
 
     const format = (value) => { // eslint-disable-line
       return isPercent ? `${value}%` : numeral(value).format('0,0');
