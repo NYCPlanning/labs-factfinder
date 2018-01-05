@@ -6,234 +6,124 @@ const color4 = '#e54444';
 
 const choroplethConfigs = [
   {
+    group: 'Census',
     id: 'popperacre',
     label: 'Population Density',
     tooltip: 'Persons per acre',
     legendTitle: 'Persons per Acre',
-    stops: [
-
-      [24.9, color0],
-
-      [25, color1],
-      [49.9, color1],
-
-      [50, color2],
-      [99.9, color2],
-
-      [100, color3],
-      [149.9, color3],
-
-      [150.0, color4],
-    ],
+    stops: [25, 50, 100, 150, 1000000],
   },
 
   {
+    group: 'Demographic (ACS)',
     id: 'popu181',
     label: 'Under 18 Years',
     tooltip: 'Population under 18 years',
     legendTitle: 'Population under 18 years',
-    stops: [
-      [7999, color0],
-
-      [8000, color1],
-      [11999, color1],
-
-      [12000, color2],
-      [15999, color2],
-
-      [16000, color3],
-      [19999, color3],
-
-      [20000, color4],
-    ],
-
+    stops: [8000, 12000, 16000, 20000, 1000000],
   },
   {
+    group: 'Demographic (ACS)',
     id: 'pop65pl1',
     label: '65 Years and Over',
     tooltip: 'Population 65 years and over',
     legendTitle: 'Population 65 years and over',
-    stops: [
-      [4999, color0],
-
-      [5000, color1],
-      [7999, color1],
-
-      [8000, color2],
-      [10999, color2],
-
-      [11000, color3],
-      [13999, color3],
-
-      [14000, color4],
-    ],
-
+    stops: [5000, 8000, 11000, 14000, 1000000],
   },
   {
+    group: 'Social (ACS)',
     id: 'ea_bchdh',
     label: 'Bachelor\'s Degree or Higher',
     tooltip: 'Population 25 years and over with bachelor\'s degree or higher',
     legendTitle: 'Population 25 years and over with bachelor\'s degree or higher',
-    stops: [
-      [9999, color0],
-
-      [10000, color1],
-      [19999, color1],
-
-      [20000, color2],
-      [29999, color2],
-
-      [30000, color3],
-      [39999, color3],
-
-      [40000, color4],
-    ],
-
+    stops: [10000, 20000, 30000, 40000, 1000000],
   },
   {
+    group: 'Social (ACS)',
     id: 'ea_bchdh_p',
     isPercent: true,
     label: 'Bachelor\'s Degree or Higher (percent)',
     tooltip: 'Percent of population 25 years and over with bachelor\'s degree or higher',
     legendTitle: 'Percent of population 25 years and over with bachelor\'s degree or higher',
-    stops: [
-      [24.9, color0],
-
-      [25, color1],
-      [39.9, color1],
-
-      [40, color2],
-      [49.9, color2],
-
-      [50, color3],
-      [79.9, color3],
-
-      [80, color4],
-    ],
-
+    stops: [25, 40, 50, 80, 1000000],
   },
   {
+    group: 'Social (ACS)',
     id: 'fb1_p',
     isPercent: true,
     label: 'Foreign-born (percent)',
     tooltip: 'Percent of population that is foreign-born',
     legendTitle: 'Percent foreign-born population',
-    stops: [
-      [29.9, color0],
-
-      [30, color1],
-      [39.9, color1],
-
-      [40, color2],
-      [49.9, color2],
-
-      [50, color3],
-      [59.9, color3],
-
-      [60, color4],
-    ],
-
+    stops: [30, 40, 50, 60, 10000000],
   },
   {
+    group: 'Social (ACS)',
     id: 'lgoenlep',
     label: 'Limited English Proficiency (LEP)',
     tooltip: 'Population 5 years and over who speak English "less than very well"',
-    legendTitle: 'Percent of population 5 years and over who speak English "less than very well"',
-    stops: [
-      [7999, color0],
-
-      [8000, color1],
-      [15999, color1],
-
-      [16000, color2],
-      [23999, color2],
-
-      [24000, color3],
-      [31999, color3],
-
-      [32000, color4],
-    ],
-
+    legendTitle: 'Population 5 years and over who speak English "less than very well"',
+    stops: [8000, 16000, 24000, 32000, 1000000],
   },
   {
+    group: 'Economic (ACS)',
     id: 'pbwpv',
     label: 'Below Poverty',
     tooltip: 'Population whose income is below the poverty level',
     legendTitle: 'Population below poverty level',
-    stops: [
-      [4999, color0],
-
-      [5000, color1],
-      [9999, color1],
-
-      [10000, color2],
-      [14999, color2],
-
-      [15000, color3],
-      [19999, color3],
-
-      [20000, color4],
-    ],
-
+    stops: [5000, 10000, 15000, 20000, 1000000],
   },
   {
+    group: 'Economic (ACS)',
     id: 'pbwpv_p',
     isPercent: true,
     label: 'Below Poverty (percent)',
     tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
-    stops: [
-      [14.9, color0],
-
-      [15, color1],
-      [24.9, color1],
-
-      [25, color2],
-      [34.9, color2],
-
-      [35, color3],
-      [49.9, color3],
-
-      [50, color4],
-    ],
-
+    stops: [15, 25, 35, 50, 1000000],
   },
   {
+    group: 'Housing (ACS)',
     id: 'mdgr',
     label: 'Median Gross Rent',
     tooltip: 'Median gross rent (in 2016 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
-    stops: [
-      [1299, color0],
-
-      [1300, color1],
-      [1599, color1],
-
-      [1600, color2],
-      [1999, color2],
-
-      [2000, color3],
-      [2499, color3],
-
-      [2500, color4],
-    ],
-
+    stops: [1300, 1600, 2000, 2500, 1000000],
   },
 ];
 
 const builtConfigs = choroplethConfigs.map((config) => {
-  const { id, label, legendTitle, isPercent, stops, tooltip } = config;
+  const { group, id, label, legendTitle, isPercent, stops, tooltip } = config;
   return {
+    group,
     id,
     label,
     legendTitle,
     tooltip,
     isPercent,
+    colors: [
+      color0,
+      color1,
+      color2,
+      color3,
+      color4,
+    ],
+    stops,
     paintFill: {
-      'fill-color': {
-        property: id,
-        stops,
-      },
+      'fill-color': [
+        'curve',
+        ['step'],
+        [
+          'number',
+          ['get', id],
+          1,
+        ],
+        color0, stops[0],
+        color1, stops[1],
+        color2, stops[2],
+        color3, stops[3],
+        color4, stops[4],
+        '#FFF',
+      ],
     },
     paintLine: {
       'line-color': '#994d4d',

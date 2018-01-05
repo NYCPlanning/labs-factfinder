@@ -18,12 +18,12 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
   resizeService: Ember.inject.service('resize'),
 
   classNameBindings: ['loading'],
-  classNames: ['horizontal-bar'],
+  classNames: ['acs-bar callout'],
 
   margin: {
     top: 10,
     right: 10,
-    bottom: 120,
+    bottom: 60,
     left: 10,
   },
   height: 800,
@@ -65,34 +65,36 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const config = this.get('config');
 
     // tooltip renderer
-    const toolTip = (d) => {
-      const percent = get(d, 'percent');
-      const percentM = get(d, 'percent_m');
-      return `
-        The estimated is ${numeral(percent).format('0.0%')} <small>(±${numeral(percentM).format('0.0%')})</small>
-      `;
-    };
-
-    let timer;
-
+    // const toolTip = (d) => {
+    //   const group = get(d, 'group');
+    //   const percent = get(d, 'percent');
+    //   const percentM = get(d, 'percent_m');
+    //   return `
+    //     ${group} = ${numeral(percent).format('0.0%')}
+    //     <small>(±${numeral(percentM).format('0.0%')})</small>.
+    //   `;
+    // };
+    //
+    // let timer;
+    //
     // mouse event handlers
-    const handleMouseOver = (d) => {
-      clearTimeout(timer);
-      selectAll(`#${this.elementId} .age-chart-tooltip`)
-        .html(toolTip(d));
-
-      selectAll(`.${get(d, 'classValue')}`)
-        .classed('highlight', true);
-    };
-
-    const handleMouseOut = (d) => {
-      selectAll(`.${get(d, 'classValue')}`)
-        .classed('highlight', false);
-      timer = setTimeout(() => {
-        selectAll(`#${this.elementId} .age-chart-tooltip`)
-          .html('Hover over bars for more detail');
-      }, 400);
-    };
+    // const handleMouseOver = (d) => {
+    //   clearTimeout(timer);
+    //   selectAll(`#${this.elementId} .age-chart-tooltip`)
+    //     .html(toolTip(d));
+    //
+    //   selectAll(`.${get(d, 'classValue')}`)
+    //     .classed('highlight', true);
+    // };
+    //
+    // const handleMouseOut = (d) => {
+    //   selectAll(`.${get(d, 'classValue')}`)
+    //     .classed('highlight', false);
+    //   timer = setTimeout(() => {
+    //     selectAll(`#${this.elementId} .age-chart-tooltip`)
+    //       .html('Hover over bars for more detail');
+    //   }, 400);
+    // };
 
 
     const el = this.$();
@@ -101,7 +103,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const margin = this.get('margin');
     const height = this.get('height') - margin.top - margin.bottom;
     const width = elWidth - margin.left - margin.right;
-    const textWidth = width / 2;
+    const textWidth = width * 0.35;
 
     svg
       .attr('width', width + margin.left + margin.right)
@@ -119,36 +121,84 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => get(d, 'percent'))])
       .range([textWidth, width]);
 
-      // add bar text
+    /* eslint-disable */
+
+    // wrap bar type label text to multiple lines
+    function wrap(textElements, wrapWidth) {
+      textElements.each(function() {
+        const wrapText = select(this);
+
+        const words = wrapText.text().split(/\s+/).reverse();
+        let line = [];
+        let lineNumber = 0;
+        const lineHeight = 0.8;
+        const yPosition = wrapText.attr('y');
+        let tspan = wrapText.text(null)
+          .append('tspan')
+          .attr('x', 0)
+          .attr('y', yPosition)
+          .attr('dy', 0);
+
+        let word;
+        while (word = words.pop()) {
+          line.push(word);
+          tspan.text(line.join(' '));
+          if (tspan.node().getComputedTextLength() > wrapWidth) {
+            line.pop();
+            tspan.text(line.join(' '));
+            line = [word];
+            tspan = wrapText.append('tspan')
+              .attr('x', 0)
+              .attr('y', yPosition)
+              .attr('dy', () => {
+                const value = ((lineNumber += 1) * lineHeight);
+                return `${value}em`;
+              })
+              .text(word);
+          }
+        }
+
+        if (lineNumber == 1) {
+          wrapText.attr('y', yPosition - 4)
+          wrapText.selectAll('tspan').attr('y', yPosition - 4)
+        }
+        if (lineNumber == 2) {
+          wrapText.attr('y', yPosition - 8)
+          wrapText.selectAll('tspan').attr('y', yPosition - 8)
+        }
+      });
+    }
+
+    /* eslint-enable */
+
+    // add bar type label text
+    // start by deleting all existing labels on every update
+    svg.selectAll('.typelabel').remove();
+
     const groupLabels = svg.selectAll('.typelabel')
       .data(rawData, d => get(d, 'group'));
 
     groupLabels.enter().append('text')
       .attr('class', 'label typelabel')
-      .attr('text-anchor', 'end')
+      .attr('text-anchor', 'start')
       .attr('alignment-baseline', 'top')
-      .attr('x', (width / 2) - 10)
-      .attr('width', textWidth);
+      .attr('x', 0)
+      .attr('width', textWidth)
+      .attr('y', d => y(get(d, 'group')) + y.bandwidth() + -9)
+      .text(d => `${get(d, 'group')}`)
+      .call(wrap, textWidth);
 
-    groupLabels.transition().duration(300)
-      .attr('y', d => y(get(d, 'group')) + y.bandwidth() + -14)
-      .text(d => `${get(d, 'group')}`);
+    // draw axes
 
-    groupLabels.exit().remove();
-
-    // DRAW AXES
     const bottomAxis = axisBottom()
       .scale(x)
       .ticks(5)
       .tickFormat(format('.0%'));
 
-
     svg.select('.axis-bottom')
-      .attr('transform', translation(0, height))
+      .attr('transform', translation(0, height + 4))
 
       .call(bottomAxis);
-
-    // update positioning and text of top-labels
 
 
     // draw bars
@@ -166,15 +216,14 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('x', x(0))
       .attr('width', d => x(get(d, 'percent')) - textWidth)
       .attr('y', d => y(get(d, 'group')))
-      .attr('height', y.bandwidth() - 14)
-
+      .attr('height', y.bandwidth())
 
       .attr('rx', 2)
       .attr('ry', 2)
-      .on('mouseover', (d) => {
-        handleMouseOver(d);
-      })
-      .on('mouseout', handleMouseOut);
+      // .on('mouseover', (d) => {
+      //   handleMouseOver(d);
+      // })
+      // .on('mouseout', handleMouseOut);
 
 
     bars.transition().duration(300)
@@ -182,6 +231,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('width', d => x(get(d, 'percent')) - textWidth);
 
     bars.exit().remove();
+
 
     // draw MOE
 
@@ -203,7 +253,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       return defaultWidth;
     };
 
-
     moebars.enter()
       .append('rect')
       .attr('class', d => `moebar ${get(d, 'classValue')}`)
@@ -213,7 +262,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       })
       .attr('opacity', 0.4)
       .attr('x', xFunctionMOE)
-      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -10)
+      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -3)
       .attr('height', 6)
       .attr('width', widthFunctionMOE);
 
@@ -229,7 +278,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const comparisonMOEbars = svg.selectAll('.comparisonMoebar')
       .data(rawData, d => get(d, 'group'));
 
-
     const xFunctionComparisonMOE = d => x(get(d, 'comparison_percent'))
       - x(get(d, 'comparison_percent_m')) -
       -textWidth;
@@ -244,25 +292,21 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       })
       .attr('opacity', 1)
       .attr('x', xFunctionComparisonMOE)
-      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -7)
+      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -0.5)
       .attr('height', 1)
       .attr('width', widthFunctionComparisonMOE);
-
 
     comparisonMOEbars.transition().duration(300)
       .attr('x', xFunctionComparisonMOE)
       .attr('width', widthFunctionComparisonMOE);
-
 
     comparisonMOEbars.exit().remove();
 
 
     // draw comparison dots
 
-
     const comparisonBars = svg.selectAll('.comparisonbar')
       .data(rawData, d => get(d, 'group'));
-
 
     const cxFunction = d => x(get(d, 'comparison_percent'));
     comparisonBars.enter()
@@ -271,7 +315,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('stroke', '#000')
       .attr('class', d => `comparisonbar ${get(d, 'classValue')}`)
       .attr('cx', cxFunction)
-      .attr('cy', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -6.5)// yScale.step()
+      .attr('cy', d => y(get(d, 'group')) + (y.bandwidth() / 2))
       .attr('r', 2.5);
 
     comparisonBars.transition().duration(300)

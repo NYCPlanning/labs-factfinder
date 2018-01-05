@@ -20,16 +20,14 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar
-        config=householdTypeChartConfig
-        data=model.y2012_2016
-        height=236
-        xMax=1}}
-    </div>
+    {{acs-bar
+      title="Percent Distribution of Household Types"
+      config=householdTypeChartConfig
+      data=model.y2012_2016
+      height=176
+      xMax=1}}
   </div>
 </div>
-
 
 <hr>
 
@@ -63,8 +61,8 @@
   </div>
 </div>
 
-
 <hr>
+
 <h3 class="header-medium" id="grandparents">Grandparents</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
@@ -78,7 +76,6 @@
     }}
   </div>
 </div>
-
 
 <hr>
 
@@ -95,17 +92,14 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar
-        config=schoolEnrollmentChartConfig
-        data=model.y2012_2016
-        height=264
-        xMax=1}}
-    </div>
+    {{acs-bar
+      title="Percent Distribution of Population 3 and Over by School Enrollment"
+      config=schoolEnrollmentChartConfig
+      data=model.y2012_2016
+      height=204
+      xMax=1}}
   </div>
 </div>
-
-
 
 <hr>
 
@@ -122,13 +116,12 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar
-        config=educationalAttainmentChartConfig
-        data=model.y2012_2016
-        height=210
-        xMax=1}}
-    </div>
+    {{acs-bar
+      title="Percent Distribution of Population 25 and Over by Educational Attainment"
+      config=educationalAttainmentChartConfig
+      data=model.y2012_2016
+      height=150
+      xMax=1}}
   </div>
 </div>
 
@@ -179,13 +172,12 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      {{acs-bar
-        config=residence1YearAgoChartConfig
-        data=model.y2012_2016
-        height=236
-        xMax=1}}
-    </div>
+    {{acs-bar
+      title="Percent Distribution of Population who Lived in a Different House 1 Year Ago"
+      config=residence1YearAgoChartConfig
+      data=model.y2012_2016
+      height=176
+      xMax=1}}
   </div>
 </div>
 
@@ -204,21 +196,21 @@
     }}
   </div>
   <div class="cell large-4">
-    <div class="callout">
-      <h4>Place of Birth</h4>
-      {{acs-bar
-        config=placeOfBirthChartConfig
-        data=model.y2012_2016
-        height=210
-        xMax=1}}
-      <h4>Foreign Born</h4>
-      {{acs-bar
-        config=foreignBornChartConfig
-        data=model.y2012_2016
-        height=236
-        xMax=1}}
 
-    </div>
+    {{acs-bar
+      title="Percent Distribution of Total Population by Place of Birth"
+      config=placeOfBirthChartConfig
+      data=model.y2012_2016
+      height=150
+      xMax=1}}
+
+    {{acs-bar
+      title="Percent Distribution of Foreign-Born by World Region of Birth"
+      config=foreignBornChartConfig
+      data=model.y2012_2016
+      height=176
+      xMax=1}}
+
   </div>
 </div>
 
