@@ -30,25 +30,25 @@
   </td>
 
   {{!-- OLD --}}
-  <td class="cell-border-left">{{selectedEarlySum}}</td>{{!-- previous dataset sum--}}
+  <td class="cell-border-left {{if (eq data.sum 0) 'medium-gray'}} {{if (gte data.cv 20) 'medium-gray'}}">{{selectedEarlySum}}</td>{{!-- previous dataset sum--}}
   {{#if reliability}}
-    <td>{{selectedEarlySumM}}</td>
-    <td>{{selectedEarlySumCV}}</td>
+    <td class="{{if (gte data.cv 20) 'medium-gray'}}">{{selectedEarlySumM}}</td>
+    <td class="{{if (gte data.cv 20) 'medium-gray'}}">{{selectedEarlySumCV}}</td>
   {{/if}}
-  <td>{{selectedEarlyPercent}}%</td>{{!-- previous dataset percent --}}
+  <td class="{{if (gte data.cv 20) 'medium-gray'}}">{{selectedEarlyPercent}}%</td>{{!-- previous dataset percent --}}
   {{#if reliability}}
-    <td>{{selectedEarlyPercentM}}</td>
+    <td class="{{if (gte data.cv 20) 'medium-gray'}}">{{selectedEarlyPercentM}}</td>
   {{/if}}
 
   {{!-- CURRENT --}}
-  <td class="cell-border-left">{{selectedCurrentSum}}</td>{{!-- current dataset sum --}}
+  <td class="cell-border-left {{if (eq data2.sum 0) 'medium-gray'}} {{if (gte data2.cv 20) 'medium-gray'}}">{{selectedCurrentSum}}</td>{{!-- current dataset sum --}}
   {{#if reliability}}
-    <td>{{selectedCurrentSumM}}</td>
-    <td>{{selectedCurrentSumCV}}</td>
+    <td class="{{if (gte data2.cv 20) 'medium-gray'}}">{{selectedCurrentSumM}}</td>
+    <td class="{{if (gte data2.cv 20) 'medium-gray'}}">{{selectedCurrentSumCV}}</td>
   {{/if}}
-  <td>{{selectedCurrentPercent}}%</td>{{!-- current dataset percent --}}
+  <td class="{{if (gte data2.cv 20) 'medium-gray'}}">{{selectedCurrentPercent}}%</td>{{!-- current dataset percent --}}
   {{#if reliability}}
-    <td>{{selectedCurrentPercentM}}</td>
+    <td class="{{if (gte data2.cv 20) 'medium-gray'}}">{{selectedCurrentPercentM}}</td>
   {{/if}}
 
   {{!-- DIFFERENCE --}}
