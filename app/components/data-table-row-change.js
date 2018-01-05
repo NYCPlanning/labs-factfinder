@@ -119,7 +119,7 @@ differenceChangeSum(sum2,sum,rowconfig) {
     return "";
   } else {
     var difference = sum - sum2;
-    return decimalFormatAll(difference, rowconfig.decimal);
+    return decimalFormatAll(difference, rowconfig.decimal, true);
   }
 },
 
@@ -152,7 +152,7 @@ differenceChangePercent(sum2, sum) {
   sum2 = parseFloat(sum2);
   if (sum2 > 0) {
     var x = (sum - sum2)/sum2;
-    return decimalOnePlacePercent(x)
+    return decimalOnePlacePercent(x, true)
   } else {
     return "";
   }
@@ -322,7 +322,7 @@ differenceChangePercent(sum2, sum) {
 
     @computed('selectedEarlyPercent', 'selectedCurrentPercent')
     differencePercentagePoint(selectedEarlyPercent, selectedCurrentPercent) {
-      return decimalOnePlace(selectedCurrentPercent - selectedEarlyPercent)
+      return decimalOnePlace(selectedCurrentPercent - selectedEarlyPercent, true)
     },
 
     @computed('selectedEarlyPercentM', 'selectedCurrentPercentM')
@@ -358,37 +358,50 @@ export function decimalFormat(number, decimal) { //for number >=0
   }
 }
 
-export function decimalFormatAll(number, decimal) { //for all numbers
+export function decimalFormatAll(number, decimal, isChange) { //for all numbers
     var x;
     if(isNaN(number)){
       return "";
     } else {
-    if(decimal === 1) {
-      x = number.toFixed(1);
-    } else if (decimal === 2) {
-      x = number.toFixed(2);
-    } else {
-     x =  number.toFixed(0);
+      if(decimal === 1) {
+        x = number.toFixed(1);
+      } else if (decimal === 2) {
+        x = number.toFixed(2);
+      } else {
+       x =  number.toFixed(0);
+      }
+
+      let string = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+      // prepend + sign if isChange is true
+      if ((x > 0) && isChange)string = `+${string}`;
+      return string
     }
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
   }
 
 
-export function decimalOnePlace(number) {
+export function decimalOnePlace(number, isChange) {
   number = parseFloat(number);
   if (isNaN(number)) {
     return ""
   } else {
-    return number.toFixed(1);
+    let string = number.toFixed(1);
+
+    // prepend + sign if isChange is true
+    if ((number > 0) && isChange)string = `+${string}`;
+    return string
   }
 }
 
-export function decimalOnePlacePercent(number) {
+export function decimalOnePlacePercent(number, isChange) {
   number = parseFloat(number);
   if (isNaN(number)) {
     return ""
   } else {
-    return (number*100).toFixed(1);
+    let string = (number*100).toFixed(1);
+
+    // prepend + sign if isChange is true
+    if ((number > 0) && isChange)string = `+${string}`;
+    return string
   }
 }
