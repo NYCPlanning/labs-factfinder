@@ -31,6 +31,7 @@ const singleGeometryProfile = function(geoid, comparator, profile = 'demographic
       regexp_replace(lower(profile), '[^A-Za-z0-9]', '_', 'g') AS profile,
       regexp_replace(lower(category), '[^A-Za-z0-9]', '_', 'g') AS category,
       regexp_replace(lower(variable), '[^A-Za-z0-9]', '_', 'g') AS variable,
+      ENCODE(CONVERT_TO(VARIABLE || dataset, 'UTF-8'), 'base64') As id,
       ROUND(p::numeric, 4) / 100 as percent
     FROM
       filtered_selection

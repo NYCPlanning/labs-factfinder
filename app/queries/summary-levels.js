@@ -34,4 +34,12 @@ export default {
     WHERE ntaname NOT ILIKE 'park-cemetery-etc%25'
       AND ntaname != 'Airport'
   `,
+
+  pumas: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      puma AS geolabel,
+      puma AS geoid
+    FROM nyc_puma
+  `,
 };

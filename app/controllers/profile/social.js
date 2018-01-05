@@ -1,20 +1,7 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 
-import householdType from '../../table-config/social/household-type';
-import relationshipToHeadOfHousehold from '../../table-config/social/relationship-to-head-of-household';
-import maritalStatus from '../../table-config/social/marital-status';
-import grandparents from '../../table-config/social/grandparents';
-import schoolEnrollment from '../../table-config/social/school-enrollment';
-import educationalAttainment from '../../table-config/social/educational-attainment';
-import veteranStatus from '../../table-config/social/veteran-status';
-import disabilityStatusOfCnp from '../../table-config/social/disability-status-of-cnp';
-import residence1YearAgo from '../../table-config/social/residence-1-year-ago';
-import placeOfBirth from '../../table-config/social/place-of-birth';
-import citizenshipStatus from '../../table-config/social/citizenship-status';
-import yearOfEntry from '../../table-config/social/year-of-entry';
-import languageSpokenAtHome from '../../table-config/social/language-spoken-at-home';
-import ancestry from '../../table-config/social/ancestry';
+import social from '../../table-config/social';
 
 import householdTypeChartConfig from '../../chart-config/social/household-type';
 import schoolEnrollmentChartConfig from '../../chart-config/social/school-enrollment';
@@ -23,30 +10,47 @@ import residence1YearAgoChartConfig from '../../chart-config/social/residence-1-
 import placeOfBirthChartConfig from '../../chart-config/social/place-of-birth';
 import foreignBornChartConfig from '../../chart-config/social/foreign-born';
 
+const {
+  ancestry,
+  disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
+  educationalAttainmentHighestGradeCompleted,
+  grandparents,
+  householdType,
+  languageSpokenAtHome,
+  maritalStatus,
+  placeOfBirth,
+  relationshipToHeadOfHouseholdHouseholder,
+  residence1YearAgo,
+  schoolEnrollment,
+  uSCitizenshipStatus,
+  veteranStatus,
+  yearOfEntry,
+} = social;
+
 const { inject: { controller } } = Ember;
 
 export default Ember.Controller.extend({
-  householdType,
-  relationshipToHeadOfHousehold,
-  maritalStatus,
-  grandparents,
-  schoolEnrollment,
-  educationalAttainment,
-  veteranStatus,
-  disabilityStatusOfCnp,
-  residence1YearAgo,
-  placeOfBirth,
-  citizenshipStatus,
-  yearOfEntry,
-  languageSpokenAtHome,
   ancestry,
+  disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
+  educationalAttainmentHighestGradeCompleted,
+  grandparents,
+  householdType,
+  languageSpokenAtHome,
+  maritalStatus,
+  placeOfBirth,
+  relationshipToHeadOfHouseholdHouseholder,
+  residence1YearAgo,
+  schoolEnrollment,
+  uSCitizenshipStatus,
+  veteranStatus,
+  yearOfEntry,
 
-  householdTypeChartConfig,
-  schoolEnrollmentChartConfig,
   educationalAttainmentChartConfig,
-  residence1YearAgoChartConfig,
-  placeOfBirthChartConfig,
   foreignBornChartConfig,
+  householdTypeChartConfig,
+  placeOfBirthChartConfig,
+  residence1YearAgoChartConfig,
+  schoolEnrollmentChartConfig,
 
   profile: controller('profile'),
 

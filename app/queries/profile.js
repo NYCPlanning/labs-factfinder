@@ -14,7 +14,7 @@ const generateProfileSQL = function(geoids, comparator, profile = 'demographic')
     return simpleProfile(firstGeoid, comparator, profile);
   }
 
-  return `
+  const SQL = `
     WITH
       filtered_selection AS (
         SELECT *
@@ -74,9 +74,9 @@ const generateProfileSQL = function(geoids, comparator, profile = 'demographic')
         regexp_replace(lower(VARIABLE), '[^A-Za-z0-9]', '_', 'g') AS VARIABLE,
         ENCODE(CONVERT_TO(VARIABLE || dataset, 'UTF-8'), 'base64') As id,
         ROUND((SUM / NULLIF(base_sum,0))::numeric, 4) as percent,
-        (1 / NULLIF(base_sum,0)) * SQRT(POWER(m, 2) %2B ABS(POWER(sum / NULLIF(base_sum,0), 2) * POWER(base_m, 2))) as percent_m,
+        (1 / NULLIF(base_sum,0)) * SQRT(POWER(m, 2) %2D ABS(POWER(sum / NULLIF(base_sum,0), 2) * POWER(base_m, 2))) as percent_m,
         ROUND((comparison_sum / NULLIF(comparison_base_sum,0))::numeric, 4) as comparison_percent,
-        (1 / NULLIF(comparison_base_sum,0)) * SQRT(POWER(comparison_m, 2) %2B ABS(POWER(comparison_sum / NULLIF(comparison_base_sum,0), 2) * POWER(comparison_base_m, 2))) as comparison_percent_m
+        (1 / NULLIF(comparison_base_sum,0)) * SQRT(POWER(comparison_m, 2) %2D ABS(POWER(comparison_sum / NULLIF(comparison_base_sum,0), 2) * POWER(comparison_base_m, 2))) as comparison_percent_m
       FROM (
         SELECT
           sum(e) filter (WHERE geoid IN (${ids})) AS sum,
@@ -99,6 +99,8 @@ const generateProfileSQL = function(geoids, comparator, profile = 'demographic')
         AND DATASET = comparison_base_numbers.comparison_base_year
     ) x
   `;
+
+  return SQL;
 };
 
 export { preserveType };

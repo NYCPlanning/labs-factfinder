@@ -1,17 +1,9 @@
-{{#profile-header
+{{profile-header
   profile=profile
   title="Economic Profile"
   data=rawData
   mode=profile.mode
 }}
-  <p class="text-small no-margin">
-    ACS data are derived from a survey and are subject to sampling variability.
-    Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
-    <span class="text-tiny dark-gray">
-      Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.
-    </span>
-  </p>
-{{/profile-header}}
 
 <hr>
 
@@ -119,7 +111,10 @@
 
 <hr>
 
-<h3 class="header-medium" id="income-and-benefits">Income and Benefits</h3>
+<h3 class="header-medium" id="income-and-benefits">
+  Income and Benefits
+  {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
+</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     {{data-table
@@ -143,7 +138,10 @@
 
 <hr>
 
-<h3 class="header-medium" id="earnings">Earnings</h3>
+<h3 class="header-medium" id="earnings">
+  Earnings
+  {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
+</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     {{data-table
@@ -175,7 +173,10 @@
 
 <hr>
 
-<h3 class="header-medium" id="income-in-the-past-12-months-below-poverty-level">Income in the Past 12 Months Below Poverty Level</h3>
+<h3 class="header-medium" id="income-in-the-past-12-months-below-poverty-level">
+  Income in the Past 12 Months Below Poverty Level
+  {{info-tooltip tip="For alternative NYC poverty measure, please see website of the Mayor's Office for Economic Opportunity"}}
+</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     {{data-table
@@ -191,7 +192,10 @@
 
 <hr>
 
-<h3 class="header-medium" id="ratio-of-income-to-poverty-level">Ratio of Income to Poverty Level</h3>
+<h3 class="header-medium" id="ratio-of-income-to-poverty-level">
+  Ratio of Income to Poverty Level
+  {{info-tooltip tip="Ratio of income in the past 12 months to poverty level"}}
+</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
     {{data-table

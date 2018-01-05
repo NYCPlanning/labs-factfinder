@@ -22,28 +22,33 @@
 
 {{else}}{{! divider = false }}
 
-  <td>{{rowconfig.title}}</td>
+  <td>
+    {{rowconfig.title}}
+    {{#if rowconfig.tooltip}}
+      {{info-tooltip tip=rowconfig.tooltip}}
+    {{/if}}
+  </td>
 
   {{!-- OLD --}}
   <td class="cell-border-left">{{selectedEarlySum}}</td>{{!-- previous dataset sum--}}
   {{#if reliability}}
-    <td>[Num MOE]</td>
-    <td>[CV]</td>
+    <td>{{selectedEarlySumM}}</td>
+    <td>{{selectedEarlySumCV}}</td>
   {{/if}}
   <td>{{selectedEarlyPercent}}%</td>{{!-- previous dataset percent --}}
   {{#if reliability}}
-    <td>[% MOE]</td>
+    <td>{{selectedEarlyPercentM}}</td>
   {{/if}}
 
   {{!-- CURRENT --}}
   <td class="cell-border-left">{{selectedCurrentSum}}</td>{{!-- current dataset sum --}}
   {{#if reliability}}
-    <td>[Num MOE]</td>
-    <td>[CV]</td>
+    <td>{{selectedCurrentSumM}}</td>
+    <td>{{selectedCurrentSumCV}}</td>
   {{/if}}
   <td>{{selectedCurrentPercent}}%</td>{{!-- current dataset percent --}}
   {{#if reliability}}
-    <td>[% MOE]</td>
+    <td>{{selectedCurrentPercentM}}</td>
   {{/if}}
 
   {{!-- DIFFERENCE --}}
@@ -57,7 +62,7 @@
   {{/if}}
   <td>{{differencePercentagePoint}}</td>
   {{#if reliability}}
-    <td>[% Pt. MOE]</td>
+    <td>{{differencePercentagePointMOE}}</td>
   {{/if}}
 
   {{!-- <td class="cell-border-left">

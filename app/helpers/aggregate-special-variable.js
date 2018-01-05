@@ -1,16 +1,8 @@
 import Ember from 'ember';
-
-const noop = () => null;
+import delegateAggregator from '../utils/delegate-aggregator';
 
 export function aggregateSpecialVariable(params, { rowConfig, data }) {
-  const { aggregator = noop } = rowConfig || {};
-  const comparison_sum = aggregator.bind(rowConfig)(data, 'comparison_sum'); // eslint-disable-line
-  const sum = aggregator.bind(rowConfig)(data);
-
-  return {
-    comparison_sum,
-    sum,
-  };
+  return delegateAggregator(rowConfig, data);
 }
 
 export default Ember.Helper.helper(aggregateSpecialVariable);

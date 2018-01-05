@@ -25,7 +25,12 @@
 
 {{else}}{{! divider = false }}
 
-  <td>{{rowconfig.title}}</td>
+  <td>
+    {{rowconfig.title}}
+    {{#if rowconfig.tooltip}}
+      {{info-tooltip tip=rowconfig.tooltip}}
+    {{/if}}
+  </td>
 
   {{!-- SELECTED AREA --}}
   <td class="cell-border-left {{if (eq data.sum 0) 'medium-gray'}} {{if (gte data.cv 20) 'medium-gray'}}">
@@ -72,14 +77,14 @@
     {{format-as data.differenceSum rowconfig.decimal}}
   </td>
   {{#if reliability}}
+    <td>{{data.differenceM}}</td>
     <td>[% Num MOE]</td>
-  {{/if}}  
+  {{/if}}
   <td class="{{unless data.percent_significant 'medium-gray'}}">
     {{data.differencePercent}}
   </td>
   {{#if reliability}}
-    <td>[% Pt. MOE]</td>
+    <td>{{data.differencePercentM}}</td>
   {{/if}}
-
 {{/if}}
 {{yield}}

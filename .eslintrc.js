@@ -22,5 +22,7 @@ module.exports = {
     'space-before-function-paren': 0,
     'prefer-arrow-callback': 0,
     'no-underscore-dangle': 0,
+    'camelcase': 0,
+    'max-len': 0,
   }
 };

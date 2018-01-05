@@ -35,18 +35,7 @@
                 comparison=comparison
                 rowconfig=row
                 options=profile
-                data=
-                  (unless
-                    row.special
-                    (get this.t1 row.data)
-                    (aggregate-special-variable rowConfig=row data=t1)
-                  )
-                data2=
-                  (unless
-                    row.special
-                    (get this.t2 row.data)
-                    (aggregate-special-variable rowConfig=row data=t2)
-                  )
+                data=(get this.t1 row.data)
               }}
             {{else}}
               {{data-table-row-change
@@ -56,18 +45,8 @@
                 comparison=comparison
                 rowconfig=row
                 options=profile
-                data=
-                  (unless
-                    row.special
-                    (get this.t1 row.data)
-                    (aggregate-special-variable rowConfig=row data=t1)
-                  )
-                data2=
-                  (unless
-                    row.special
-                    (get this.t2 row.data)
-                    (aggregate-special-variable rowConfig=row data=t2)
-                  )
+                data=(get this.t1 row.data)
+                data2=(get this.t2 row.data)
               }}
             {{/if}}
           {{/if}}
