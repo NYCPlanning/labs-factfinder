@@ -1,5 +1,6 @@
 import interpolate from '../../utils/interpolate';
 import calculator from '../../utils/calculator';
+import formula from '../../utils/formula';
 
 export default [
   {
@@ -121,6 +122,34 @@ export default [
         aggregator: calculator,
         options: {
           procedure: ['aghhinc.comparison_sum', 'divide', 'hh.comparison_sum'],
+        },
+      },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("mnhhinc.cv"))/(100))*(1.645))*(GET("mnhhinc.sum")))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("mnhhinc.comparison_cv"))/(100))*(1.645))*(GET("mnhhinc.comparison_sum")))',
+        },
+      },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '(462)*((GET("uwhusmpl2.sum"))^-0.754)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '(462)*((GET("uwhusmpl2.comparison_sum"))^-0.754)',
         },
       },
     ],
@@ -330,6 +359,41 @@ export default [
         aggregator: calculator,
         options: {
           procedure: ['agip15pl.sum', 'divide', 'pop_6.sum'],
+        },
+      },
+      {
+        column: 'comparison_sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['agip15pl.comparison_sum', 'divide', 'pop_6.comparison_sum'],
+        },
+      },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '(1122)*((GET("uwpopsmpl.sum"))^-0.778)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '(1122)*((GET("uwpopsmpl.comparison_sum"))^-0.778)',
+        },
+      },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("percapinc.cv"))/(100))*(1.645))*(GET("percapinc.sum")))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("percapinc.comparison_cv"))/(100))*(1.645))*(GET("percapinc.comparison_sum")))',
         },
       },
     ],

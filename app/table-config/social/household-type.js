@@ -95,13 +95,34 @@ export default [
           procedure: ['hhpop.comparison_sum', 'divide', 'hh1.comparison_sum'],
         },
       },
-      // {
-      //   column: 'm',
-      //   aggregator: formula,
-      //   options: {
-      //     formula: '((((GET("avghhsz.cv"))/(100))*(1.645))*(GET("avghhsz.sum")))',
-      //   },
-      // },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '(62)*((GET("uwhusmpl1.sum"))^-0.503)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '(62)*((GET("uwhusmpl1.comparison_sum"))^-0.503)',
+        },
+      },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avghhsz.cv"))/(100))*(1.645))*(GET("avghhsz.sum")))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avghhsz.comparison_cv"))/(100))*(1.645))*(GET("avghhsz.comparison_sum")))',
+        },
+      },
     ],
   },
   {
@@ -123,6 +144,34 @@ export default [
         aggregator: calculator,
         options: {
           procedure: ['popinfms.comparison_sum', 'divide', 'fam1.comparison_sum'],
+        },
+      },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '(51)*((GET("uwhusmpl1.sum"))^-0.473)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '(51)*((GET("uwhusmpl1.comparison_sum"))^-0.473)',
+        },
+      },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avgfmsz.cv"))/(100))*(1.645))*(GET("avgfmsz.sum")))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avgfmsz.comparison_cv"))/(100))*(1.645))*(GET("avgfmsz.comparison_sum")))',
         },
       },
     ],

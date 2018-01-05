@@ -43,14 +43,28 @@ export default [
         column: 'm',
         aggregator: formula,
         options: {
-          formula: '((((GET("avghhsroc.cv"))/(100))*1.645))*(GET("avghhsroc.sum"))',
+          formula: '((((GET("avghhsooc.cv"))/(100))*1.645))*(GET("avghhsooc.sum"))',
         },
       },
       {
         column: 'comparison_m',
         aggregator: formula,
         options: {
-          formula: '((((GET("avghhsroc.comparison_cv"))/(100))*1.645))*(GET("avghhsroc.comparison_sum"))',
+          formula: '((((GET("avghhsooc.comparison_cv"))/(100))*1.645))*(GET("avghhsooc.comparison_sum"))',
+        },
+      },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '(257)*((GET("uwhusmpl3.sum"))^-0.699)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '(257)*((GET("uwhusmpl3.comparison_sum"))^-0.699)',
         },
       },
     ],
@@ -74,6 +88,34 @@ export default [
         aggregator: calculator,
         options: {
           procedure: ['poprtochu.comparison_sum', 'divide', 'rochu1.comparison_sum'],
+        },
+      },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avghhsroc.cv"))/(100))*1.645))*(GET("avghhsroc.sum"))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avghhsroc.comparison_cv"))/(100))*1.645))*(GET("avghhsroc.comparison_sum"))',
+        },
+      },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '(257)*((GET("uwhusmpl3.sum"))^-0.699)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '(257)*((GET("uwhusmpl3.comparison_sum"))^-0.699)',
         },
       },
     ],
