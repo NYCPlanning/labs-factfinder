@@ -128,6 +128,10 @@ changeMOE(sum2, m2, m, rowconfig) {
   sum2 = parseFloat(sum2);
   m = parseFloat(m);
   m2 = parseFloat(m2);
+
+  if (isNaN(m) && !isNaN(m2)) m=0;
+  if (!isNaN(m) && isNaN(m2)) m2=0;
+
   if ((sum2 > 0) || (sum2 === 0)) {
     if (isNaN(m2) || isNaN(m)) {
       return "";
@@ -135,7 +139,7 @@ changeMOE(sum2, m2, m, rowconfig) {
       var x = (((m2/1.645)* (m2/1.645))
       + ((m/1.645)* (m/1.645)));
       if ((x > 0) || (x === 0)) {
-        var changeM = Math.sqrt(x)
+        var changeM = Math.sqrt(x) * 1.645
         return decimalFormat(changeM, rowconfig.decimal) ;
       } else {
         return "";
@@ -356,8 +360,6 @@ changePercent(sum2, sum) {
 
 function differenceInsignificance(value, moe) {
   const insignificant = moe >= Math.abs(parseFloat(value))
-  console.log('here', value, Math.abs(parseFloat(value)), moe, insignificant);
-
   return insignificant;
 }
 
@@ -421,6 +423,6 @@ export function decimalOnePlacePercent(number, isChange) {
 
     // prepend + sign if isChange is true
     if ((number > 0) && isChange)string = `+${string}`;
-    return string
+    return `${string}%`;
   }
 }
