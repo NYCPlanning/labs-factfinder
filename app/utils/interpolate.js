@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 const { get, isArray } = Ember;
 
-export default function interpolate(data, sumKey = 'sum') {
-  const { bins } = this.options;
+export default function interpolate(data, sumKey = 'sum', rowConfig) {
+  const { bins } = rowConfig;
 
   let scenario = data;
 
