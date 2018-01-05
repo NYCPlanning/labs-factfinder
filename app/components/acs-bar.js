@@ -119,7 +119,44 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .range([textWidth, width]);
 
 
-    // add bar text
+    // wrap bar type label text to multiple lines
+    function wrap(textElements, wrapWidth) {
+      textElements.each(function() {
+        const wrapText = select(this);
+
+        const words = wrapText.text().split(/\s+/).reverse();
+        let line = [];
+        let lineNumber = 0;
+        const lineHeight = 1.1;
+        const yPosition = wrapText.attr('y');
+        let tspan = wrapText.text(null)
+          .append('tspan')
+          .attr('x', 0)
+          .attr('y', yPosition)
+          .attr('dy', 0);
+
+        words.forEach((word) => {
+          line.push(word);
+          tspan.text(line.join(' '));
+          if (tspan.node().getComputedTextLength() > wrapWidth) {
+            line.pop();
+            tspan.text(line.join(' '));
+            line = [word];
+            tspan = wrapText.append('tspan')
+              .attr('x', 0)
+              .attr('y', yPosition)
+              .attr('dy', () => {
+                const value = ((lineNumber += 1) * lineHeight);
+                return `${value}em`;
+              })
+              .text(word);
+          }
+        });
+      });
+    }
+    // add bar type label text
+    // start by deleting all existing labels on every update
+    svg.selectAll('.typelabel').remove();
 
     const groupLabels = svg.selectAll('.typelabel')
       .data(rawData, d => get(d, 'group'));
@@ -129,14 +166,10 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('text-anchor', 'start')
       .attr('alignment-baseline', 'top')
       .attr('x', 0)
-      .attr('width', textWidth);
-
-    groupLabels.transition().duration(300)
+      .attr('width', textWidth)
       .attr('y', d => y(get(d, 'group')) + y.bandwidth() + -9)
-      .text(d => `${get(d, 'group')}`);
-
-    groupLabels.exit().remove();
-
+      .text(d => `${get(d, 'group')}`)
+      .call(wrap, textWidth);
 
     // draw axes
 
