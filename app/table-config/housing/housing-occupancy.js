@@ -33,6 +33,12 @@ export default [
     data: 'rntvacrt',
     special: true,
     aggregator: formula,
-    formula: 'GET("vacrnt.m")^2',
+    formula: 'IF(((GET("vacrnt.m") ^2) - ((GET("vacrnt.sum") ^2/GET("rntvacu.sum")^2) * (GET("rntvacu.m")^2))) <0,((1/GET("rntvacu.sum")*(SQRT((GET("vacrnt.m") ^2)+((GET("vacrnt.sum") ^2/GET("rntvacu.sum")^2)*(GET("rntvacu.m")^2)))))*100),((1/GET("rntvacu.sum")*(SQRT((GET("vacrnt.m") ^2)-((GET("vacrnt.sum") ^2/GET("rntvacu.sum")^2)*(GET("rntvacu.m")^2)))))*100))',
+    calculations: [
+      {
+        formula: 'IF(((GET("vacrnt.m")^2)-((GET("vacrnt.sum")^2/GET("rntvacu.sum")^2)(GET("rntvacu.m")^2)))<0,((1/GET("rntvacu.sum")(SQRT((GET("vacrnt.m")^2)+((GET("vacrnt.sum")^2/GET("rntvacu.sum")^2)(GET("rntvacu.m")^2)))))100),((1/GET("rntvacu.sum")(SQRT((GET("vacrnt.m")^2)-((GET("vacrnt.sum")^2/GET("rntvacu.sum")^2)(get("rntvacu.m")^2)))))*100))',
+        columns: ['cv'],
+      },
+    ],
   },
 ];
