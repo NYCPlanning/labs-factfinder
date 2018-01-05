@@ -28,7 +28,7 @@ export default [
         column: 'sum',
         aggregator: calculator,
         options: {
-          procedure: ['popoochu', 'divide', 'oochu1'],
+          procedure: ['popoochu.sum', 'divide', 'oochu1.sum'],
         },
       },
       {

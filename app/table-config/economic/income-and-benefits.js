@@ -326,9 +326,10 @@ export default [
     special: true,
     specialCalculations: [
       {
+        column: 'sum',
         aggregator: calculator,
         options: {
-          procedure: ['agip15pl', 'divide', 'pop_6'],
+          procedure: ['agip15pl.sum', 'divide', 'pop_6.sum'],
         },
       },
     ],
