@@ -128,7 +128,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
         const words = wrapText.text().split(/\s+/).reverse();
         let line = [];
         let lineNumber = 0;
-        const lineHeight = 1;
+        const lineHeight = 0.8;
         const yPosition = wrapText.attr('y');
         let tspan = wrapText.text(null)
           .append('tspan')
@@ -153,6 +153,15 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
               })
               .text(word);
           }
+        }
+
+        if (lineNumber == 1) {
+          wrapText.attr('y', yPosition - 4)
+          wrapText.selectAll('tspan').attr('y', yPosition - 4)
+        }
+        if (lineNumber == 2) {
+          wrapText.attr('y', yPosition - 8)
+          wrapText.selectAll('tspan').attr('y', yPosition - 8)
         }
       });
     }
