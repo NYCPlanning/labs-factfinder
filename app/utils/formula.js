@@ -12,6 +12,10 @@ export default function(data, sumKey = 'sum', rowConfig) {
 
   const { result, error } = parser.parse(formula);
 
-  if (error) return error;
+  if (error) {
+    console.log(result, error);
+    return error;
+  }
+
   return result;
 }

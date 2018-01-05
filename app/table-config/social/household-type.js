@@ -1,4 +1,5 @@
 import calculator from '../../utils/calculator';
+import formula from '../../utils/formula';
 
 export default [
   {
@@ -94,6 +95,13 @@ export default [
           procedure: ['hhpop', 'divide', 'hh1'],
         },
       },
+      // {
+      //   column: 'm',
+      //   aggregator: formula,
+      //   options: {
+      //     formula: '((((GET("avghhsz.cv"))/(100))*(1.645))*(GET("avghhsz.sum")))',
+      //   },
+      // },
     ],
   },
   {

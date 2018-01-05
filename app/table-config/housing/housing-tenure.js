@@ -1,4 +1,5 @@
 import calculator from '../../utils/calculator';
+import formula from '../../utils/formula';
 
 export default [
   {
@@ -35,7 +36,21 @@ export default [
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['popoochu', 'divide', 'oochu1'],
+          procedure: ['popoochu.sum', 'divide', 'oochu1.sum'],
+        },
+      },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avghhsroc.cv"))/(100))*1.645))*(GET("avghhsroc.sum"))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("avghhsroc.comparison_cv"))/(100))*1.645))*(GET("avghhsroc.comparison_sum"))',
         },
       },
     ],
