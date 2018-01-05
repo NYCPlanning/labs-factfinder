@@ -4,8 +4,8 @@ import FormulaParser from 'npm:hot-formula-parser';
 const { get } = Ember;
 const { Parser } = FormulaParser;
 
-export default function(data) {
-  const { formula } = this;
+export default function(data, sumKey = 'sum', rowConfig) {
+  const { formula } = rowConfig;
   const parser = new Parser();
 
   parser.setFunction('GET', ([path]) => get(data, path));

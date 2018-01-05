@@ -22,7 +22,7 @@ const calculator = function(data, sumColumn = 'sum', rowConfig) {
   // impute values, replacing their signifiers with their signifieds
   currentProcedure.forEach((step, i) => {
     if (isArray(step)) {
-      currentProcedure[i] = calculator.bind({ procedure: step, data: rowConfig.data })(data, sumColumn);
+      currentProcedure[i] = calculator(data, sumColumn, { procedure: step, data: rowConfig.data });
       return;
     }
 
