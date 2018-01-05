@@ -22,17 +22,45 @@ export default [
     tooltip: 'Population in owner-occupied housing units, divided by number of owner-occupied housing units',
     data: 'avghhsooc',
     special: true,
-    aggregator: calculator,
-    procedure: ['popoochu', 'divide', 'oochu1'],
     decimal: 2,
+    specialCalculations: [
+      {
+        column: 'sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['popoochu', 'divide', 'oochu1'],
+        },
+      },
+      {
+        column: 'comparison_sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['popoochu', 'divide', 'oochu1'],
+        },
+      },
+    ],
   },
   {
     title: 'Average household size of renter-occupied unit',
     tooltip: 'Population in renter-occupied housing units, divided by number of renter-occupied housing units',
     data: 'avghhsroc',
     special: true,
-    aggregator: calculator,
-    procedure: ['poprtochu', 'divide', 'rochu1'],
     decimal: 2,
+    specialCalculations: [
+      {
+        column: 'sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['poprtochu', 'divide', 'rochu1'],
+        },
+      },
+      {
+        column: 'comparison_sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['poprtochu', 'divide', 'rochu1'],
+        },
+      },
+    ],
   },
 ];

@@ -78,18 +78,46 @@ export default [
     tooltip: 'Household population divided by number of households',
     data: 'avghhsz',
     special: true,
-    aggregator: calculator,
-    procedure: ['hhpop', 'divide', 'hh1'],
     decimal: 1,
+    specialCalculations: [
+      {
+        column: 'sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['hhpop', 'divide', 'hh1'],
+        },
+      },
+      {
+        column: 'comparison_sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['hhpop', 'divide', 'hh1'],
+        },
+      },
+    ],
   },
   {
     title: 'Average family size',
     tooltip: 'Population in family households, minus nonrelatives in family households, divided by number of family households',
     data: 'avgfmsz',
     special: true,
-    aggregator: calculator,
-    procedure: ['popinfms', 'divide', 'fam1'],
     decimal: 1,
+    specialCalculations: [
+      {
+        column: 'sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['popinfms', 'divide', 'fam1'],
+        },
+      },
+      {
+        column: 'comparison_sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['popinfms', 'divide', 'fam1'],
+        },
+      },
+    ],
   },
   {
     divider: true,

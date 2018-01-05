@@ -43,14 +43,14 @@ export default [
         column: 'sum',
         aggregator: calculator,
         options: {
-          procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
+          procedure: ['agttm.sum', 'divide', ['wrkr16pl.sum', 'subtract', 'cw_wrkdhm.sum']],
         },
       },
       {
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
+          procedure: ['agttm.comparison_sum', 'divide', ['wrkr16pl.comparison_sum', 'subtract', 'cw_wrkdhm.comparison_sum']],
         },
       },
     ],
