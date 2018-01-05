@@ -181,7 +181,7 @@
     }}
   </div>
   <div class="cell large-4">
-    {{acs-bar 
+    {{acs-bar
       config=residence1YearAgoChartConfig
       data=model.y2012_2016
       height=236
@@ -205,15 +205,15 @@
   </div>
   <div class="cell large-4">
 
-    <h4 class="header-small">Place of Birth</h4>
     {{acs-bar
+      title="Place of Birth"
       config=placeOfBirthChartConfig
       data=model.y2012_2016
       height=210
       xMax=1}}
 
-    <h4 class="header-small">Foreign Born</h4>
     {{acs-bar
+      title="Foreign Born"
       config=foreignBornChartConfig
       data=model.y2012_2016
       height=236
