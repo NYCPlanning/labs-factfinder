@@ -27,7 +27,7 @@ const calculator = function(data, sumColumn = 'sum', rowConfig) {
     }
 
     if (!isOperator(step)) {
-      const currentSum = get(data, `${step}.${sumColumn}`);
+      const currentSum = get(data, `${step}`);
       currentProcedure[i] = !isNaN(currentSum) ? currentSum : step;
     }
   });

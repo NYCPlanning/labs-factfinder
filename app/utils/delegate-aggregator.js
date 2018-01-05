@@ -1,13 +1,12 @@
 const noop = () => null;
 
 export default function aggregateSpecialVariable(rowConfig, data) {
-  const { aggregator = noop } = rowConfig || {};
+  const { specialCalculations = [] } = rowConfig || {};
+  const resultsObject = {};
 
-  const comparison_sum = aggregator(data, 'comparison_sum', rowConfig);
-  const sum = aggregator(data, 'sum', rowConfig);
+  specialCalculations.forEach(({ column, aggregator = noop, options }) => {
+    resultsObject[column] = aggregator(data, column, options);
+  });
 
-  return {
-    comparison_sum,
-    sum,
-  };
+  return resultsObject;
 }
