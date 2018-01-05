@@ -38,8 +38,22 @@ export default [
     tooltip: 'Aggregate travel time to work, divided by workers 16 years and over who did not work at home',
     data: 'mntrvtm',
     special: true,
-    aggregator: calculator,
-    procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
+    specialCalculations: [
+      {
+        column: 'sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
+        },
+      },
+      {
+        column: 'comparison_sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
+        },
+      },
+    ],
     decimal: 1,
   },
 ];
