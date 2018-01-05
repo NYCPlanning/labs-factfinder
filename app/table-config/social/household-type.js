@@ -84,14 +84,14 @@ export default [
         column: 'sum',
         aggregator: calculator,
         options: {
-          procedure: ['hhpop', 'divide', 'hh1'],
+          procedure: ['hhpop.sum', 'divide', 'hh1.sum'],
         },
       },
       {
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['hhpop', 'divide', 'hh1'],
+          procedure: ['hhpop.comparison_sum', 'divide', 'hh1.comparison_sum'],
         },
       },
     ],
@@ -107,14 +107,14 @@ export default [
         column: 'sum',
         aggregator: calculator,
         options: {
-          procedure: ['popinfms', 'divide', 'fam1'],
+          procedure: ['popinfms.sum', 'divide', 'fam1.sum'],
         },
       },
       {
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['popinfms', 'divide', 'fam1'],
+          procedure: ['popinfms.comparison_sum', 'divide', 'fam1.comparison_sum'],
         },
       },
     ],
