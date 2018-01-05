@@ -52,35 +52,19 @@
   {{/if}}
 
   {{!-- DIFFERENCE --}}
-  <td class="cell-border-left">{{differenceChangeSum}}</td>{{!-- selected area sum change --}}
+  <td class="cell-border-left {{if changeInsignificant 'medium-gray'}}">{{change}}</td>{{!-- selected area sum change --}}
   {{#if reliability}}
-    <td>{{differenceChangeSumMoE}}</td>{{!-- selected area sum change moe --}}
+    <td class="{{if changeInsignificant 'medium-gray'}}">{{changeMOE}}</td>{{!-- selected area sum change moe --}}
   {{/if}}
-  <td>{{differenceChangePercent}}%</td>{{!-- selected area percent change --}}
+  <td class="{{if changePercentInsignificant 'medium-gray'}}">{{changePercent}}%</td>{{!-- selected area percent change --}}
   {{#if reliability}}
-    <td>{{differenceChangePercentMOE}}</td>{{!-- selected area percent change moe --}}
+    <td class="{{if changePercentInsignificant 'medium-gray'}}">{{changePercentMOE}}</td>{{!-- selected area percent change moe --}}
   {{/if}}
-  <td>{{differencePercentagePoint}}</td>
+  <td class="{{if changePercentagePointInsignificant 'medium-gray'}}">{{changePercentagePoint}}</td>
   {{#if reliability}}
-    <td>{{differencePercentagePointMOE}}</td>
+    <td class="{{if changePercentagePointInsignificant 'medium-gray'}}">{{changePercentagePointMOE}}</td>
   {{/if}}
 
-  {{!-- <td class="cell-border-left">
-    {{longTermDifference}}
-  </td>
-  {{#if reliability}}
-    <td>
-      {{longTermDifferenceMOE}}
-    </td>
-  {{/if}}
-  <td>
-    {{longTermDifferencePercent}}
-  </td>
-  {{#if reliability}}
-  <td>
-    {{longTermDifferencePercentMOE}}
-  </td>
-  {{/if}} --}}
 
 {{/if}}
 {{yield}}
