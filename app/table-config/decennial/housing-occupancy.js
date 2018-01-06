@@ -53,14 +53,14 @@ export default [
         column: 'sum',
         aggregator: formula,
         options: {
-          formula: '((GET("vhufsio.sum"))/((GET("vhufsio.sum"))+(GET("oochu.sum"))))*100',
+          formula: '((GET("vhufslo.sum"))/((GET("vhufslo.sum"))+(GET("oochu1.sum"))))*100',
         },
       },
       {
         column: 'comparison_sum',
         aggregator: formula,
         options: {
-          formula: '((GET("vhufsio.comparison_sum"))/((GET("vhufsio.comparison_sum"))+(GET("oochu.comparison_sum"))))*100',
+          formula: '((GET("vhufslo.comparison_sum"))/((GET("vhufslo.comparison_sum"))+(GET("oochu1.comparison_sum"))))*100',
         },
       },
     ],
@@ -83,7 +83,7 @@ export default [
         column: 'comparison_sum',
         aggregator: formula,
         options: {
-          formula: '((GET("vhufrnt.comparison_sum"))/((GET("vhufrnt.comparison_sum"))+(GET("rochu_1.comparison_sum"))))*100',
+          formula: '((GET("vhufrnt.comparison_sum"))/((GET("vhufrnt.comparison_sum"))+(GET("rochu_3.comparison_sum"))))*100',
         },
       },
     ],
