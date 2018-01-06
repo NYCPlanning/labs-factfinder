@@ -35,7 +35,7 @@ export default [
         column: 'comparison_sum',
         aggregator: formula,
         options: {
-          formula: '(GET("poprochu.comparison_sum"))/(GET("rochu_1.comparison_sum"))',
+          formula: '(GET("popoochu.comparison_sum"))/(GET("oochu.comparison_sum"))',
         },
       },
     ],
