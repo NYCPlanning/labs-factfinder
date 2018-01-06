@@ -76,7 +76,7 @@ export default [
         column: 'sum',
         aggregator: formula,
         options: {
-          formula: '((GET("vhufrnt.sum"))/((GET("vhufrnt.sum"))+(GET("rochu_1.sum"))))*100',
+          formula: '((GET("vhufrnt.sum"))/((GET("vhufrnt.sum"))+(GET("rochu_3.sum"))))*100',
         },
       },
       {
