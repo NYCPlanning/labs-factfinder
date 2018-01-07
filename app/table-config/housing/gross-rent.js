@@ -106,6 +106,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: calculator,
+        options: {
+          formula: '((((GET('mdgr.m')/ 1.645) / NULLIF((GET('mdgr.sum'),0)) * 100)',
+        },
+        },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
