@@ -2,12 +2,10 @@ import Ember from 'ember';
 
 const { get, isArray } = Ember;
 
-export default function interpolate(data, sumKey = 'sum') {
-  const { bins } = this.options;
+export default function interpolate(data, sumKey = 'sum', options) {
+  const { bins } = options;
 
   let scenario = data;
-
-  if (!data) return;
 
   if (!isArray(scenario)) {
     scenario = bins.map((bin) => {

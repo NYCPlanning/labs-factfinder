@@ -53,7 +53,7 @@ export default DS.Model.extend({
     const variables = get(tableConfigs, `${profile}.${categoryNormalized}`) || [];
     const foundVariable = variables.findBy('data', variableName);
 
-    if (!foundVariable) {
+    if (!foundVariable && (profile !== 'decennial')) {
       Logger.warn(`Row configuration not found for ${profile}, ${category}, ${variableName}.
         Data may be misnamed in the layer-groups.
         Please make sure profile, category, and variable names

@@ -1,12 +1,12 @@
 const noop = () => null;
 
-export default function aggregateSpecialVariable(rowConfig, data) {
-  const { aggregator = noop } = rowConfig || {};
-  const comparison_sum = aggregator.bind(rowConfig)(data, 'comparison_sum'); // eslint-disable-line
-  const sum = aggregator.bind(rowConfig)(data);
+export default function aggregateSpecialVariable(row, rowConfig, data) {
+  const { specialCalculations = [] } = rowConfig || {};
+  const resultsObject = {};
 
-  return {
-    comparison_sum,
-    sum,
-  };
+  specialCalculations.forEach(({ column, aggregator = noop, options }) => {
+    row.set(column, aggregator(data, column, options));
+  });
+
+  return resultsObject;
 }
