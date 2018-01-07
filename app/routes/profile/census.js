@@ -46,7 +46,8 @@ export default Ember.Route.extend({
     profileData.forEach((row) => {
       if (row.get('isSpecial')) {
         const rowConfig = row.get('rowConfig');
-        const latestYear = get(nestedModel, 'y2010');
+        const rowYear = row.get('year');
+        const latestYear = get(nestedModel, rowYear);
 
         delegateAggregator(row, rowConfig, latestYear);
       }
