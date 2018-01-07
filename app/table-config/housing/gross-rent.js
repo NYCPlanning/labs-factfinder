@@ -181,7 +181,7 @@ export default [
         column: 'comparison_cv',
         aggregator: formula,
         options: {
-          formula: '((GET("mdgr.m")/ 1.645) / GET("mdgr.sum") * 100)',
+          formula: '((GET("mdgr.comparison_m")/ 1.645) / GET("mdgr.comparison_sum") * 100)',
         },
       },
     ],
