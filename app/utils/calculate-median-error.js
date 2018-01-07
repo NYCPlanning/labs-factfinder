@@ -1,11 +1,12 @@
 import Ember from 'ember';
 
 const { get, isArray } = Ember;
-const { sqrt } = Math;
+const { sqrt, ceil } = Math;
 const DESIGN_FACTOR = 1.1;
 
 const findCumulativePercentage = function(scenario, sum, index) {
-  const slicedBins = scenario.slice(0, index);
+  const copiedBins = scenario.copy();
+  const slicedBins = copiedBins.slice(0, index);
   const cumulativeSum = slicedBins.reduce(
     (total, { quantity }) => total + quantity,
     0,
@@ -14,15 +15,21 @@ const findCumulativePercentage = function(scenario, sum, index) {
   return (cumulativeSum / sum) * 100;
 };
 
-export default function calculateMedianError(data, sumKey, options) {
+export default function calculateMedianError(data, column, options) {
   const { bins } = options;
+
+  const sumKey = (function() {
+    if (column.length === 1) return 'sum';
+    return column.replace('_m', '_sum');
+  }());
 
   let scenario = data;
 
   if (!isArray(scenario)) {
     scenario = bins.map((bin) => {
       const [key] = bin;
-      const sum = get(data, `${key}.sum`);
+      const sum = get(data, `${key}.${sumKey}`);
+
       return {
         quantity: sum,
       };
@@ -43,9 +50,9 @@ export default function calculateMedianError(data, sumKey, options) {
   const pLower = 50 - standardError;
 
   const upperCategoryIndex =
-    bins.findIndex(([, [min, max]]) => pUpper >= min && pUpper <= max);
+    bins.findIndex(([, [min, max]]) => ceil(pUpper) >= min && ceil(pUpper) <= max);
   const lowerCategoryIndex =
-    bins.findIndex(([, [min, max]]) => pLower >= min && pLower <= max);
+    bins.findIndex(([, [min, max]]) => ceil(pLower) >= min && ceil(pLower) <= max);
 
   const upperCategory = bins[upperCategoryIndex];
   const lowerCategory = bins[lowerCategoryIndex];
