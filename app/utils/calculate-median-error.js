@@ -39,12 +39,14 @@ export default function calculateMedianError(data, column, options) {
     const [firstObject] = Object.keys(data) || [];
     const thisYear = get(data, `${firstObject}.dataset`).slice(-4);
 
-    if (thisYear === '2000' || thisYear === '2016') {
+    if (thisYear === '2010' || thisYear === '2016') {
       foundBins = laterSet;
     } else {
       foundBins = earlySet;
     }
   }
+
+  console.log(foundBins);
 
   if (!isArray(scenario)) {
     scenario = foundBins.map((bin) => {
