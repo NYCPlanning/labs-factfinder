@@ -70,6 +70,7 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['rms1', [1, 1]],
@@ -104,6 +105,7 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['rms1', [1, 1]],

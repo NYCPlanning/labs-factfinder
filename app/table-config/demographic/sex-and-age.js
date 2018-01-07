@@ -168,6 +168,7 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
+        designFactor: 1.1,
         options: {
           bins: [
             ['mdpop0t4', [0, 4]],
@@ -230,6 +231,7 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
+        designFactor: 1.1,
         options: {
           bins: [
             ['mdpop0t4', [0, 4]],

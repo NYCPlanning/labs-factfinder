@@ -82,6 +82,7 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['hhiu10', [0, 9999]],
@@ -130,6 +131,7 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['hhiu10', [0, 9999]],
@@ -307,6 +309,7 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['famiu10', [0, 9999]],
@@ -355,6 +358,7 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['famiu10', [0, 9999]],
@@ -419,6 +423,7 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['nfmiu10', [0, 9999]],
@@ -467,6 +472,7 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
+        designFactor: 1.5,
         options: {
           bins: [
             ['nfmiu10', [0, 9999]],
