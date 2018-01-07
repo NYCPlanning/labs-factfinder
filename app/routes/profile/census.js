@@ -42,13 +42,12 @@ export default Ember.Route.extend({
       .query('row', { geoids, type: 'decennial', category, comparator })
       .then(rows => rows.toArray());
 
-
     const nestedModel = nestProfile(profileData, 'year', 'variable');
     profileData.forEach((row) => {
       if (row.get('isSpecial')) {
         const rowConfig = row.get('rowConfig');
         const latestYear = get(nestedModel, 'y2010');
-        // row.setProperties(delegateAggregator(rowConfig, latestYear));
+
         delegateAggregator(row, rowConfig, latestYear);
       }
 

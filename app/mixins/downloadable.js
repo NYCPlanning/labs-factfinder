@@ -28,8 +28,7 @@ export default Ember.Mixin.create({
       if (row.get('isSpecial') && (numberGeoids > 1)) {
         const rowConfig = row.get('rowConfig');
         const latestYear = get(nestedModel, 'y2012_2016');
-        // row.setProperties(delegateAggregator(rowConfig, latestYear));
-        row.setProperties(delegateAggregator(row, rowConfig, latestYear));
+        delegateAggregator(row, rowConfig, latestYear);
       }
 
       return row;
