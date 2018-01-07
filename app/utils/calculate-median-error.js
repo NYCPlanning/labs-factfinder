@@ -65,12 +65,6 @@ export default function calculateMedianError(data, column, options) {
         round(pLower) < findCumulativePercentage(scenario, sum, currentBin + 1),
     );
 
-  // const lowerCategoryIndex =
-  //   bins.findIndex(
-  //     ([, [min, max]], currentBin) =>
-  //       round(pLower) >= min && round(pLower) <= max,
-  //   );
-
   const upperCategory = bins[upperCategoryIndex];
   const lowerCategory = bins[lowerCategoryIndex];
 
