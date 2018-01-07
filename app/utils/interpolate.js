@@ -7,8 +7,6 @@ export default function interpolate(data, sumKey = 'sum', options) {
 
   let scenario = data;
 
-  if (!data) return;
-
   if (!isArray(scenario)) {
     scenario = bins.map((bin) => {
       const [key, range] = bin;
