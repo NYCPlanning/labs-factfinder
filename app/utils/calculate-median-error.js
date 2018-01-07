@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 const { get, isArray } = Ember;
-const { sqrt, round } = Math;
-const DESIGN_FACTOR = 1.1;
+const { round } = Math;
+const { environment } = config;
+const DESIGN_FACTOR = 1.6;
 
 const findCumulativePercentage = function(scenario, sum, index) {
   const copiedBins = scenario.copy();
@@ -42,17 +44,32 @@ export default function calculateMedianError(data, column, options) {
   );
 
   const standardError =
-    DESIGN_FACTOR * sqrt(
-      (95 / (5 * sum)) * (50 ** 2),
-    );
+    DESIGN_FACTOR * ((
+      (93 / (7 * sum)) * 2500
+    ) ** 0.5);
 
   const pUpper = 50 + standardError;
   const pLower = 50 - standardError;
 
   const upperCategoryIndex =
-    bins.findIndex(([, [min, max]]) => round(pUpper) >= min && round(pUpper) <= max);
+    bins.findIndex(
+      (_, currentBin) =>
+        round(pUpper) > findCumulativePercentage(scenario, sum, currentBin) &&
+        round(pUpper) < findCumulativePercentage(scenario, sum, currentBin + 1),
+    );
+
   const lowerCategoryIndex =
-    bins.findIndex(([, [min, max]]) => round(pLower) >= min && round(pLower) <= max);
+    bins.findIndex(
+      (_, currentBin) =>
+        round(pLower) > findCumulativePercentage(scenario, sum, currentBin) &&
+        round(pLower) < findCumulativePercentage(scenario, sum, currentBin + 1),
+    );
+
+  // const lowerCategoryIndex =
+  //   bins.findIndex(
+  //     ([, [min, max]], currentBin) =>
+  //       round(pLower) >= min && round(pLower) <= max,
+  //   );
 
   const upperCategory = bins[upperCategoryIndex];
   const lowerCategory = bins[lowerCategoryIndex];
@@ -75,7 +92,7 @@ export default function calculateMedianError(data, column, options) {
   if ((inputs.upper.C1 === 0 && inputs.upper.C2 === 0) || (inputs.lower.C1 === 0 && inputs.lower.C2 === 0)) {
     console.log( // eslint-disable-line
       'Divide by zero for median MOE calculation: \n',
-      'Bins: ', bins,
+      '\nBins: ', bins,
       '\nEstimates: ', scenario,
       '\nInputs: ', inputs,
       '\npUpper: ', pUpper,
@@ -101,6 +118,22 @@ export default function calculateMedianError(data, column, options) {
 
   const standardErrorOfMedian = 0.5 * (upperBound - lowerBound);
   const marginOfError = standardErrorOfMedian * 1.645;
+
+  if (environment === 'development') {
+    console.log( // eslint-disable-line
+      'Environment for Median MOE calculations : \n',
+      '\nBins: ', bins,
+      '\nEstimates: ', scenario,
+      '\nInputs: ', inputs,
+      '\npUpper: ', pUpper,
+      '\npLower: ', pLower,
+      '\nUpper Category: ', upperCategory,
+      '\nLower Category: ', lowerCategory,
+      '\nUpper Bound: ', upperBound,
+      '\nLower Bound: ', lowerBound,
+      '\nMargin of Error: ', marginOfError,
+    );
+  }
 
   return marginOfError;
 }
