@@ -18,7 +18,9 @@ const findCumulativePercentage = function(scenario, sum, index) {
 };
 
 export default function calculateMedianError(data, column, options) {
-  const { bins } = options;
+  const { bins, multipleBins } = options;
+
+  let foundBins = bins;
 
   const sumKey = (function() {
     if (column.length === 1) return 'sum';
@@ -27,8 +29,25 @@ export default function calculateMedianError(data, column, options) {
 
   let scenario = data;
 
+  // if we provide an array of bins in the configuration,
+  // it's implied that the first bins should be used for the earlier
+  // time period, and the last bin should be used for the later
+  if (multipleBins) {
+    const [earlySet, laterSet] = foundBins;
+
+    // guess which year it is
+    const [firstObject] = Object.keys(data) || [];
+    const thisYear = get(data, `${firstObject}.dataset`).slice(-4);
+
+    if (thisYear === '2000' || thisYear === '2016') {
+      foundBins = laterSet;
+    } else {
+      foundBins = earlySet;
+    }
+  }
+
   if (!isArray(scenario)) {
-    scenario = bins.map((bin) => {
+    scenario = foundBins.map((bin) => {
       const [key] = bin;
       const sum = get(data, `${key}.${sumKey}`);
 
@@ -52,32 +71,32 @@ export default function calculateMedianError(data, column, options) {
   const pLower = 50 - standardError;
 
   const upperCategoryIndex =
-    bins.findIndex(
+    foundBins.findIndex(
       (_, currentBin) =>
         round(pUpper) > findCumulativePercentage(scenario, sum, currentBin) &&
         round(pUpper) < findCumulativePercentage(scenario, sum, currentBin + 1),
     );
 
   const lowerCategoryIndex =
-    bins.findIndex(
+    foundBins.findIndex(
       (_, currentBin) =>
         round(pLower) > findCumulativePercentage(scenario, sum, currentBin) &&
         round(pLower) < findCumulativePercentage(scenario, sum, currentBin + 1),
     );
 
-  const upperCategory = bins[upperCategoryIndex];
-  const lowerCategory = bins[lowerCategoryIndex];
+  const upperCategory = foundBins[upperCategoryIndex];
+  const lowerCategory = foundBins[lowerCategoryIndex];
 
   const inputs = {
     upper: {
       A1: upperCategory[1][0],
-      A2: bins[upperCategoryIndex + 1][1][0],
+      A2: foundBins[upperCategoryIndex + 1][1][0],
       C1: findCumulativePercentage(scenario, sum, upperCategoryIndex),
       C2: findCumulativePercentage(scenario, sum, upperCategoryIndex + 1),
     },
     lower: {
       A1: lowerCategory[1][0],
-      A2: bins[lowerCategoryIndex + 1][1][0],
+      A2: foundBins[lowerCategoryIndex + 1][1][0],
       C1: findCumulativePercentage(scenario, sum, lowerCategoryIndex),
       C2: findCumulativePercentage(scenario, sum, lowerCategoryIndex + 1),
     },
@@ -86,7 +105,7 @@ export default function calculateMedianError(data, column, options) {
   if ((inputs.upper.C1 === 0 && inputs.upper.C2 === 0) || (inputs.lower.C1 === 0 && inputs.lower.C2 === 0)) {
     console.log( // eslint-disable-line
       'Divide by zero for median MOE calculation: \n',
-      '\nBins: ', bins,
+      '\nBins: ', foundBins,
       '\nEstimates: ', scenario,
       '\nInputs: ', inputs,
       '\npUpper: ', pUpper,
@@ -116,7 +135,7 @@ export default function calculateMedianError(data, column, options) {
   if (environment === 'development') {
     console.log( // eslint-disable-line
       'Environment for Median MOE calculations : \n',
-      '\nBins: ', bins,
+      '\nBins: ', foundBins,
       '\nEstimates: ', scenario,
       '\nInputs: ', inputs,
       '\npUpper: ', pUpper,

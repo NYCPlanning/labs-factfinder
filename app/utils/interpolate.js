@@ -3,15 +3,35 @@ import Ember from 'ember';
 const { get, isArray } = Ember;
 
 export default function interpolate(data, sumKey = 'sum', options) {
-  const { bins } = options;
-
+  const { bins, multipleBins } = options;
   let scenario = data;
+  let foundBins = bins;
 
+  // if we provide an array of bins in the configuration,
+  // it's implied that the first bins should be used for the earlier
+  // time period, and the last bin should be used for the later
+  if (multipleBins) {
+    const [earlySet, laterSet] = foundBins;
+
+    // guess which year it is
+    const [firstObject] = Object.keys(data) || [];
+    const thisYear = get(data, `${firstObject}.dataset`).slice(-4);
+
+    if (thisYear === '2000' || thisYear === '2016') {
+      foundBins = laterSet;
+    } else {
+      foundBins = earlySet;
+    }
+  }
+
+  // this is done in an effort to make this utility more generic
+  // and therefore, testable
   if (!isArray(scenario)) {
-    scenario = bins.map((bin) => {
+    scenario = foundBins.map((bin) => {
       const [key, range] = bin;
       const [min, max] = range;
       const sum = get(data, `${key}.${sumKey}`);
+
       return {
         quantity: sum,
         bounds: {
