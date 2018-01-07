@@ -82,9 +82,9 @@ export default function calculateMedianError(data, column, options) {
   const lowerBound =
     (
       (
-        (pLower - inputs.upper.C1) / (inputs.upper.C2 - inputs.upper.C1)
-      ) * (inputs.upper.A2 - inputs.upper.A1)
-    ) + inputs.upper.A1;
+        (pLower - inputs.lower.C1) / (inputs.lower.C2 - inputs.lower.C1)
+      ) * (inputs.lower.A2 - inputs.lower.A1)
+    ) + inputs.lower.A1;
 
   const standardErrorOfMedian = 0.5 * (upperBound - lowerBound);
   const marginOfError = standardErrorOfMedian * 1.645;
