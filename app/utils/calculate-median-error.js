@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const { get, isArray } = Ember;
-const { sqrt, ceil } = Math;
+const { sqrt, round } = Math;
 const DESIGN_FACTOR = 1.1;
 
 const findCumulativePercentage = function(scenario, sum, index) {
@@ -50,9 +50,9 @@ export default function calculateMedianError(data, column, options) {
   const pLower = 50 - standardError;
 
   const upperCategoryIndex =
-    bins.findIndex(([, [min, max]]) => ceil(pUpper) >= min && ceil(pUpper) <= max);
+    bins.findIndex(([, [min, max]]) => round(pUpper) >= min && round(pUpper) <= max);
   const lowerCategoryIndex =
-    bins.findIndex(([, [min, max]]) => ceil(pLower) >= min && ceil(pLower) <= max);
+    bins.findIndex(([, [min, max]]) => round(pLower) >= min && round(pLower) <= max);
 
   const upperCategory = bins[upperCategoryIndex];
   const lowerCategory = bins[lowerCategoryIndex];
@@ -71,6 +71,19 @@ export default function calculateMedianError(data, column, options) {
       C2: findCumulativePercentage(scenario, sum, lowerCategoryIndex + 1),
     },
   };
+
+  if ((inputs.upper.C1 === 0 && inputs.upper.C2 === 0) || (inputs.lower.C1 === 0 && inputs.lower.C2 === 0)) {
+    console.log( // eslint-disable-line
+      'Divide by zero for median MOE calculation: \n',
+      'Bins: ', bins,
+      '\nEstimates: ', scenario,
+      '\nInputs: ', inputs,
+      '\npUpper: ', pUpper,
+      '\npLower: ', pLower,
+      '\nUpper Category: ', upperCategory,
+      '\nLower Category: ', lowerCategory,
+    );
+  }
 
   const upperBound =
     (
