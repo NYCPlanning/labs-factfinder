@@ -5,7 +5,14 @@ export default function aggregateSpecialVariable(row, rowConfig, data) {
   const resultsObject = {};
 
   specialCalculations.forEach(({ column, aggregator = noop, options }) => {
-    row.set(column, aggregator(data, column, options));
+    let specialValue;
+    try {
+      specialValue = aggregator(data, column, options);
+    } catch (err) {
+      console.log('Error with ', column, options, 'Stack trace: ', err); // eslint-disable-line
+    }
+
+    row.set(column, specialValue);
   });
 
   return resultsObject;
