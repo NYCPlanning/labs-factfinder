@@ -48,7 +48,8 @@ export default Ember.Route.extend({
       if (row.get('isSpecial')) {
         const rowConfig = row.get('rowConfig');
         const latestYear = get(nestedModel, 'y2010');
-        row.setProperties(delegateAggregator(rowConfig, latestYear));
+        // row.setProperties(delegateAggregator(rowConfig, latestYear));
+        delegateAggregator(row, rowConfig, latestYear);
       }
 
       return row;

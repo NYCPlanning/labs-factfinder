@@ -1,4 +1,5 @@
 import calculator from '../../utils/calculator';
+import formula from '../../utils/formula';
 
 export default [
   {
@@ -38,8 +39,50 @@ export default [
     tooltip: 'Aggregate travel time to work, divided by workers 16 years and over who did not work at home',
     data: 'mntrvtm',
     special: true,
-    aggregator: calculator,
-    procedure: ['agttm', 'divide', ['wrkr16pl', 'subtract', 'cw_wrkdhm']],
+    specialCalculations: [
+      {
+        column: 'sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['agttm.sum', 'divide', ['wrkr16pl.sum', 'subtract', 'cw_wrkdhm.sum']],
+        },
+      },
+      {
+        column: 'comparison_sum',
+        aggregator: calculator,
+        options: {
+          procedure: ['agttm.comparison_sum', 'divide', ['wrkr16pl.comparison_sum', 'subtract', 'cw_wrkdhm.comparison_sum']],
+        },
+      },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '(316)*((GET("uwpopsmpl.sum"))^-0.679)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '(316)*((GET("uwpopsmpl.comparison_sum"))^-0.679)',
+        },
+      },
+      {
+        column: 'm',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("mntrvtm.cv"))/(100))*(1.645))*(GET("mntrvtm.sum")))',
+        },
+      },
+      {
+        column: 'comparison_m',
+        aggregator: formula,
+        options: {
+          formula: '((((GET("mntrvtm.comparison_cv"))/(100))*(1.645))*(GET("mntrvtm.comparison_sum")))',
+        },
+      },
+    ],
     decimal: 1,
   },
 ];
