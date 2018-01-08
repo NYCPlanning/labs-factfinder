@@ -1,4 +1,5 @@
 import interpolate from '../../utils/interpolate';
+import formula from '../../utils/formula';
 import calculateMedianError from '../../utils/calculate-median-error';
 
 export default [
@@ -197,6 +198,13 @@ export default [
           ],
         },
       },
+       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdage.m")/ 1.645) / GET("mdage.sum") * 100)',
+        },
+      },
       {
         column: 'comparison_sum',
         aggregator: interpolate,
@@ -258,6 +266,13 @@ export default [
             ['mdpop80t84', [80, 84]],
             ['mdpop85pl', [85, 115]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdage.comparison_m")/ 1.645) / GET("mdage.comparison_sum") * 100)',
         },
       },
     ],
