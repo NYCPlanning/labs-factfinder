@@ -37,7 +37,7 @@
   {{/if}}
   <td class="{{if (gte data2.cv 20) 'medium-gray'}}">{{selectedEarlyPercent}}</td>{{!-- previous dataset percent --}}
   {{#if reliability}}
-    <td class="{{if (gte data2.cv 20) 'medium-gray'}}">{{selectedEarlyPercentM}}</td>
+    <td class="{{if (gte data2.cv 20) 'medium-gray'}}">{{data2.selectedPercentM}}</td>
   {{/if}}
 
   {{!-- CURRENT --}}
@@ -48,7 +48,7 @@
   {{/if}}
   <td class="{{if (gte data.cv 20) 'medium-gray'}}">{{selectedCurrentPercent}}</td>{{!-- current dataset percent --}}
   {{#if reliability}}
-    <td class="{{if (gte data.cv 20) 'medium-gray'}}">{{selectedCurrentPercentM}}</td>
+    <td class="{{if (gte data.cv 20) 'medium-gray'}}">{{data.selectedPercentM}}</td>
   {{/if}}
 
   {{!-- DIFFERENCE --}}

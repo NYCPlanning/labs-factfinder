@@ -16,7 +16,7 @@ export default DS.Model.extend({
   dataset: DS.attr('string'), // year
   year: DS.attr('string'), // year
 
-  base: DS.attr('number'),
+  base: DS.attr('string'),
   base_join: DS.attr('number'),
   base_m: DS.attr('number'),
   base_sum: DS.attr('number'),
@@ -44,6 +44,11 @@ export default DS.Model.extend({
   significant: DS.attr('boolean'),
   sum: DS.attr('number'),
   unittype: DS.attr('string'),
+
+  @computed('base', 'variablename')
+  isBase(base, variablename) {
+    return base === variablename;
+  },
 
   @computed('profile', 'category', 'variable', 'notinprofile')
   rowConfig(profile, category, variableName, notinprofile) {
@@ -77,8 +82,9 @@ export default DS.Model.extend({
     return null;
   },
 
-  @computed('sum', 'percent')
-  selectedPercent(sum, percent) {
+  @computed('sum', 'percent', 'isSpecial')
+  selectedPercent(sum, percent, isSpecial) {
+    if (isSpecial) return null;
     if (sum > 0) {
       return decimalOnePlacePercent(percent);
     }
@@ -86,8 +92,10 @@ export default DS.Model.extend({
     return null;
   },
 
-  @computed('sum', 'percent_m')
-  selectedPercentM(sum, percentM) {
+  @computed('sum', 'percent_m', 'isBase', 'isSpecial')
+  selectedPercentM(sum, percentM, isBase, isSpecial) {
+    if (isBase || isSpecial) return null;
+
     const floatedZ = parseFloat(percentM);
     if (sum > 0) {
       return decimalOnePlacePercent(floatedZ);
@@ -116,8 +124,10 @@ export default DS.Model.extend({
     return null;
   },
 
-  @computed('comparison_sum', 'comparison_percent_m')
-  comparisonPercentM(sum, percentM) {
+  @computed('comparison_sum', 'comparison_percent_m', 'isBase', 'isSpecial')
+  comparisonPercentM(sum, percentM, isBase, isSpecial) {
+    if (isBase || isSpecial) return null;
+
     const floatedZ = parseFloat(percentM);
     if (sum > 0) {
       return decimalOnePlacePercent(floatedZ);
@@ -183,8 +193,10 @@ export default DS.Model.extend({
     return cleanPercent(difference);
   },
 
-  @computed('selectedPercentM', 'comparisonPercentM')
-  differencePercentM(selectedPercentM, comparisonPercentM) {
+  @computed('selectedPercentM', 'comparisonPercentM', 'isBase')
+  differencePercentM(selectedPercentM, comparisonPercentM, isBase) {
+    if (isBase) return null;
+
     const divisor = 1.645;
     const sumOfSquares = (((parseFloat(selectedPercentM) / divisor) ** 2) + ((parseFloat(comparisonPercentM) / divisor) ** 2));
     const difference = Math.sqrt(sumOfSquares);

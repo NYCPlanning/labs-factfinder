@@ -149,5 +149,6 @@ export default [
   {
     title: 'No rent paid',
     data: 'grnorntpd',
+    special: true,
   },
 ];

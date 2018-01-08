@@ -40,11 +40,13 @@ export default [
   {
     title: 'Civilian noninstitutionalized population 18 to 64 years',
     data: 'cni1864_2',
+    special: true,
   },
   {
     indent: 1,
     title: 'In labor force',
     data: 'cvlf18t64',
+    special: true,
   },
   {
     indent: 3,

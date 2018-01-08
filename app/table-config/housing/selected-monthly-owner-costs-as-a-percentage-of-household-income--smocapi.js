@@ -30,6 +30,7 @@ export default [
   {
     title: 'Not computed',
     data: 'smpntc',
+    special: true,
   },
   {
     divider: true,
@@ -73,5 +74,6 @@ export default [
   {
     title: 'Not computed',
     data: 'nmsmpntc',
+    special: true,
   },
 ];
