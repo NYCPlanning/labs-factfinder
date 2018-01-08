@@ -170,10 +170,10 @@ export default DS.Model.extend({
     return difference;
   },
 
-  @computed('base_m', 'comparison_m')
-  differenceM(base_m, comparison_m) {
+  @computed('m', 'comparison_m')
+  differenceM(m, comparison_m) {
     const divisor = 1.645;
-    const sumOfSquares = (((base_m / divisor) ** 2) + ((comparison_m / divisor) ** 2));
+    const sumOfSquares = (((m / divisor) ** 2) + ((comparison_m / divisor) ** 2));
     const difference = Math.sqrt(sumOfSquares);
     if (isNaN(base_m) || isNaN(comparison_m)) {
       return null;
