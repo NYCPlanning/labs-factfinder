@@ -119,6 +119,7 @@ export default function calculateMedianError(data, column, options) {
   if (environment === 'development') {
     console.log( // eslint-disable-line
       'Environment for Median MOE calculations : \n',
+      '\nDesign Factor: ', designFactor,
       '\nBins: ', foundBins,
       '\nEstimates: ', scenario,
       '\nInputs: ', inputs,

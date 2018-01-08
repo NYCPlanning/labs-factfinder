@@ -113,8 +113,8 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
-        designFactor: 1.4,
         options: {
+          designFactor: 1.4,
           multipleBins: true,
           bins: [binsMedianValueEarly, binsMedianValueLater],
         },
@@ -130,8 +130,8 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
-        designFactor: 1.4,
         options: {
+          designFactor: 1.4,
           multipleBins: true,
           bins: [binsMedianValueEarly, binsMedianValueLater],
         },

@@ -82,8 +82,8 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
-        designFactor: 1.5,
         options: {
+          designFactor: 1.5,
           bins: [
             ['hhiu10', [0, 9999]],
             ['hhi10t14', [10000, 14999]],
@@ -131,8 +131,8 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
-        designFactor: 1.5,
         options: {
+          designFactor: 1.5,
           bins: [
             ['hhiu10', [0, 9999]],
             ['hhi10t14', [10000, 14999]],
@@ -309,8 +309,8 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
-        designFactor: 1.5,
         options: {
+          designFactor: 1.5,
           bins: [
             ['famiu10', [0, 9999]],
             ['fami10t14', [10000, 14999]],
@@ -358,8 +358,8 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
-        designFactor: 1.5,
         options: {
+          designFactor: 1.5,
           bins: [
             ['famiu10', [0, 9999]],
             ['fami10t14', [10000, 14999]],
@@ -423,8 +423,8 @@ export default [
       {
         column: 'm',
         aggregator: calculateMedianError,
-        designFactor: 1.5,
         options: {
+          designFactor: 1.5,
           bins: [
             ['nfmiu10', [0, 9999]],
             ['nfmi10t14', [10000, 14999]],
@@ -472,8 +472,8 @@ export default [
       {
         column: 'comparison_m',
         aggregator: calculateMedianError,
-        designFactor: 1.5,
         options: {
+          designFactor: 1.5,
           bins: [
             ['nfmiu10', [0, 9999]],
             ['nfmi10t14', [10000, 14999]],
