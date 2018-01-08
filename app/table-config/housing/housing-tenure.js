@@ -36,21 +36,21 @@ export default [
         column: 'comparison_sum',
         aggregator: calculator,
         options: {
-          procedure: ['popoochu.sum', 'divide', 'oochu1.sum'],
+          procedure: ['popoochu.comparison_sum', 'divide', 'oochu1.comparison_sum'],
         },
       },
       {
         column: 'cv',
         aggregator: formula,
         options: {
-          formula: '(257)*((GET("uwhusmpl3.sum"))^-0.699)',
+          formula: '(564)*((GET("uwhusmpl3.sum"))^-0.762)',
         },
       },
       {
         column: 'comparison_cv',
         aggregator: formula,
         options: {
-          formula: '(257)*((GET("uwhusmpl3.comparison_sum"))^-0.699)',
+          formula: '(564)*((GET("uwhusmpl3.comparison_sum"))^-0.762)',
         },
       },
       {
