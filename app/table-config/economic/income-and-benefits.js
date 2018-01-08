@@ -104,7 +104,7 @@ export default [
           ],
         },
       },
-       {
+      {
         column: 'cv',
         aggregator: formula,
         options: {
