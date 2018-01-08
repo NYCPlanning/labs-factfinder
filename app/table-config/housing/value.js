@@ -1,4 +1,5 @@
 import interpolate from '../../utils/interpolate';
+import formula from '../../utils/formula';
 import calculateMedianError from '../../utils/calculate-median-error';
 
 // mdvl
@@ -120,6 +121,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdvl.m")/ 1.645) / GET("mdvl.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -134,6 +142,13 @@ export default [
           designFactor: 1.4,
           multipleBins: true,
           bins: [binsMedianValueEarly, binsMedianValueLater],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdvl.comparison_m")/ 1.645) / GET("mdvl.comparison_sum") * 100)',
         },
       },
     ],
