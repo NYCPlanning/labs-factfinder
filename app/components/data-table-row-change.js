@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
+import { decimalOnePlace } from '../utils/number-formatters';
 
 export default Ember.Component.extend({
   mode: 'current',
@@ -38,7 +39,7 @@ selectedEarlySumM(m, rowconfig) {
 
 @computed('data2.cv','rowconfig')
 selectedEarlySumCV(cv, rowconfig) {
-  return decimalFormat(cv, rowconfig.decimal);
+  return decimalOnePlace(cv, rowconfig.decimal);
 },
 
 @computed('data2.sum','data2.percent')
@@ -81,7 +82,7 @@ selectedCurrentSumM(m, rowconfig) {
 
 @computed('data.cv','rowconfig')
 selectedCurrentSumCV(cv, rowconfig) {
-  return decimalFormat(cv, rowconfig.decimal);
+  return decimalOnePlace(cv, rowconfig.decimal);
 },
 
 @computed('data2.sum', 'data.sum','data.percent')
@@ -401,18 +402,18 @@ export function decimalFormatAll(number, decimal, isChange) { //for all numbers
   }
 
 
-export function decimalOnePlace(number, isChange) {
-  number = parseFloat(number);
-  if (isNaN(number)) {
-    return ""
-  } else {
-    let string = number.toFixed(1);
+// export function decimalOnePlace(number, isChange) {
+//   number = parseFloat(number);
+//   if (isNaN(number)) {
+//     return ""
+//   } else {
+//     let string = number.toFixed(1);
 
-    // prepend + sign if isChange is true
-    if ((number > 0) && isChange)string = `+${string}`;
-    return string
-  }
-}
+//     // prepend + sign if isChange is true
+//     if ((number > 0) && isChange)string = `+${string}`;
+//     return string
+//   }
+// }
 
 export function decimalOnePlacePercent(number, isChange) {
   number = parseFloat(number);
