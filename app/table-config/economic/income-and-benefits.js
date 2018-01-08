@@ -105,6 +105,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdhhinc.m")/ 1.645) / GET("mdhhinc.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -151,6 +158,13 @@ export default [
             ['hi150t199', [150000, 199999]],
             ['hhi200pl', [200000, 9999999]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdhhinc.comparison_m")/ 1.645) / GET("mdhhinc.comparison_sum") * 100)',
         },
       },
     ],
@@ -332,6 +346,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdfaminc.m")/ 1.645) / GET("mdfaminc.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -378,6 +399,13 @@ export default [
             ['fi150t199', [150000, 199999]],
             ['fami200pl', [200000, 9999999]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdfaminc.comparison_m")/ 1.645) / GET("mdfaminc.comparison_sum") * 100)',
         },
       },
     ],
@@ -446,6 +474,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdnfinc.m")/ 1.645) / GET("mdnfinc.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -492,6 +527,13 @@ export default [
             ['nf150t199', [150000, 199999]],
             ['nfi200pl', [200000, 9999999]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdnfinc.comparison_m")/ 1.645) / GET("mdnfinc.comparison_sum") * 100)',
         },
       },
     ],

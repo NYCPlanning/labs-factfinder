@@ -1,5 +1,6 @@
 import interpolate from '../../utils/interpolate';
 import calculateMedianError from '../../utils/calculate-median-error';
+import formula from '../../utils/formula';
 
 export default [
   {
@@ -86,6 +87,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdrms.m")/ 1.645) / GET("mdrms.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -118,6 +126,13 @@ export default [
             ['rms8', [8, 8]],
             ['rms9pl', [9, 9]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdrms.comparison_m")/ 1.645) / GET("mdrms.comparison_sum") * 100)',
         },
       },
     ],

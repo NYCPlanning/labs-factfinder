@@ -1,4 +1,5 @@
 import interpolate from '../../utils/interpolate';
+import formula from '../../utils/formula';
 import calculateMedianError from '../../utils/calculate-median-error';
 
 export default [
@@ -66,6 +67,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdewrk.m")/ 1.645) / GET("mdewrk.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -120,6 +128,13 @@ export default [
             ['ern75t100', [75000, 99999]],
             ['ern100pl', [100000, 250000]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdewrk.comparison_m")/ 1.645) / GET("mdewrk.comparison_sum") * 100)',
         },
       },
     ],
@@ -188,6 +203,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdemftwrk.m")/ 1.645) / GET("mdemftwrk.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -242,6 +264,13 @@ export default [
             ['mft75t100', [75000, 99999]],
             ['mft100pl', [100000, 250000]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdemftwrk.comparison_m")/ 1.645) / GET("mdemftwrk.comparison_sum") * 100)',
         },
       },
     ],
@@ -310,6 +339,13 @@ export default [
         },
       },
       {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdefftwrk.m")/ 1.645) / GET("mdefftwrk.sum") * 100)',
+        },
+      },
+      {
         column: 'comparison_sum',
         aggregator: interpolate,
         options: {
@@ -364,6 +400,13 @@ export default [
             ['fft75t100', [75000, 99999]],
             ['fft100pl', [100000, 250000]],
           ],
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("mdefftwrk.comparison_m")/ 1.645) / GET("mdefftwrk.comparison_sum") * 100)',
         },
       },
     ],
