@@ -53,6 +53,20 @@ export default [
           formula: 'IF(((GET("vacsale.comparison_m")^2)-(( GET("vacsale.comparison_sum") ^2/ GET("hovacu.comparison_sum") ^2)*( GET("hovacu.comparison_m") ^2)))<0,((1/ GET("hovacu.comparison_sum") *(SQRT((GET("vacsale.comparison_m") ^2)+(( GET("vacsale.comparison_sum") ^2/ GET("hovacu.comparison_sum") ^2)*( GET("hovacu.comparison_m") ^2)))))*100),((1/ GET("hovacu.comparison_sum") *(SQRT((GET("vacsale.comparison_m") ^2)-(( GET("vacsale.comparison_sum") ^2/ GET("hovacu.comparison_sum") ^2)*( GET("hovacu.comparison_m") ^2)))))*100))',
         },
       },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("hovacrt.m")/ 1.645) / GET("hovacrt.sum") * 100)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("hovacrt.comparison_m")/ 1.645) / GET("hovacrt.comparison_sum") * 100)',
+        },
+      },
     ],
   },
   {
@@ -88,6 +102,20 @@ export default [
         aggregator: formula,
         options: {
           formula: 'IF(((GET("vacrnt.comparison_m")^2)-(( GET("vacrnt.comparison_sum") ^2/ GET("rntvacu.comparison_sum") ^2)*( GET("rntvacu.comparison_m") ^2)))<0,((1/ GET("rntvacu.comparison_sum") *(SQRT((GET("vacrnt.comparison_m") ^2)+(( GET("vacrnt.comparison_sum") ^2/ GET("rntvacu.comparison_sum") ^2)*( GET("rntvacu.comparison_m") ^2)))))*100),((1/ GET("rntvacu.comparison_sum") *(SQRT((GET("vacrnt.comparison_m") ^2)-(( GET("vacrnt.comparison_sum") ^2/ GET("rntvacu.comparison_sum") ^2)*( GET("rntvacu.comparison_m") ^2)))))*100))',
+        },
+      },
+      {
+        column: 'cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("rntvacrt.m")/ 1.645) / GET("rntvacrt.sum") * 100)',
+        },
+      },
+      {
+        column: 'comparison_cv',
+        aggregator: formula,
+        options: {
+          formula: '((GET("rntvacrt.comparison_m")/ 1.645) / GET("rntvacrt.comparison_sum") * 100)',
         },
       },
     ],
