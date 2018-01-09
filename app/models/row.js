@@ -175,7 +175,7 @@ export default DS.Model.extend({
     const divisor = 1.645;
     const sumOfSquares = (((m / divisor) ** 2) + ((comparison_m / divisor) ** 2));
     const difference = Math.sqrt(sumOfSquares);
-    if (isNaN(base_m) || isNaN(comparison_m)) {
+    if (isNaN(m) || isNaN(comparison_m)) {
       return null;
     }
 
