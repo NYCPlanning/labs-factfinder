@@ -140,7 +140,7 @@ changeMOE(sum2, m2, m, rowconfig) {
       var x = (((m2/1.645)* (m2/1.645))
       + ((m/1.645)* (m/1.645)));
       if ((x > 0) || (x === 0)) {
-        var changeM = Math.sqrt(x) * 1.645
+        var changeM = Math.sqrt(x)
         return decimalFormat(changeM, rowconfig.decimal) ;
       } else {
         return "";
