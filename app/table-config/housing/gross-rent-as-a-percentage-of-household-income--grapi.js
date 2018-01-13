@@ -30,6 +30,7 @@ export default [
     data: 'grpi35pl',
   },
   {
+    indent: 1,
     title: '50.0 percent or more',
     data: 'grpi50pl',
   },
