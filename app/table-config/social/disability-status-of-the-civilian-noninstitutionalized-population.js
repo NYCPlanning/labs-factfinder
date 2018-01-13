@@ -47,7 +47,6 @@ export default [
     data: 'cvniu18_1',
   },
   {
-    indent: 1,
     title: 'With a disability',
     data: 'cvniu18d',
   },
