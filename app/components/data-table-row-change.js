@@ -137,8 +137,8 @@ changeMOE(sum2, m2, m, rowconfig) {
     if (isNaN(m2) || isNaN(m)) {
       return "";
     } else {
-      var x = (((m2/1.645)* (m2/1.645))
-      + ((m/1.645)* (m/1.645)));
+      var x = (((m2)* (m2))
+      + ((m)* (m)));
       if ((x > 0) || (x === 0)) {
         var changeM = Math.sqrt(x)
         return decimalFormat(changeM, rowconfig.decimal) ;
@@ -332,8 +332,7 @@ changePercent(sum2, sum) {
 
     @computed('selectedEarlyPercentM', 'selectedCurrentPercentM')
     changePercentagePointMOE(selectedEarlyPercentM, selectedCurrentPercentM) {
-      const divisor = 1.645;
-      const sumOfSquares = (((parseFloat(selectedEarlyPercentM) / divisor) ** 2) + ((parseFloat(selectedCurrentPercentM) / divisor) ** 2));
+      const sumOfSquares = (((parseFloat(selectedEarlyPercentM)) ** 2) + ((parseFloat(selectedCurrentPercentM)) ** 2));
       const difference = Math.sqrt(sumOfSquares);
 
       if (isNaN(parseFloat(selectedEarlyPercentM)) || isNaN(parseFloat(selectedCurrentPercentM))) {
