@@ -172,8 +172,7 @@ export default DS.Model.extend({
 
   @computed('m', 'comparison_m')
   differenceM(m, comparison_m) {
-    const divisor = 1.645;
-    const sumOfSquares = (((m / divisor) ** 2) + ((comparison_m / divisor) ** 2));
+    const sumOfSquares = (((m) ** 2) + ((comparison_m) ** 2));
     const difference = Math.sqrt(sumOfSquares);
     if (isNaN(m) || isNaN(comparison_m)) {
       return null;
@@ -197,8 +196,7 @@ export default DS.Model.extend({
   differencePercentM(selectedPercentM, comparisonPercentM, isBase) {
     if (isBase) return null;
 
-    const divisor = 1.645;
-    const sumOfSquares = (((parseFloat(selectedPercentM) / divisor) ** 2) + ((parseFloat(comparisonPercentM) / divisor) ** 2));
+    const sumOfSquares = (((parseFloat(selectedPercentM)) ** 2) + ((parseFloat(comparisonPercentM)) ** 2));
     const difference = Math.sqrt(sumOfSquares);
 
     if (isNaN(parseFloat(selectedPercentM)) || isNaN(parseFloat(comparisonPercentM))) {
