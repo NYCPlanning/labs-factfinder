@@ -41,7 +41,7 @@ export default [
         column: 'm',
         aggregator: calculateMedianError,
         options: {
-          designFactor: 1.5,
+          designFactor: 1.6,
           bins: [
             ['ernu2pt5k', [0, 2499]],
             ['ern2pt5t5', [2500, 4999]],
@@ -105,7 +105,7 @@ export default [
         column: 'comparison_m',
         aggregator: calculateMedianError,
         options: {
-          designFactor: 1.5,
+          designFactor: 1.6,
           bins: [
             ['ernu2pt5k', [0, 2499]],
             ['ern2pt5t5', [2500, 4999]],
@@ -177,7 +177,7 @@ export default [
         column: 'm',
         aggregator: calculateMedianError,
         options: {
-          designFactor: 1.5,
+          designFactor: 1.6,
           bins: [
             ['mftu2pt5k', [0, 2499]],
             ['mft2p5t5', [2500, 4999]],
@@ -241,7 +241,7 @@ export default [
         column: 'comparison_m',
         aggregator: calculateMedianError,
         options: {
-          designFactor: 1.5,
+          designFactor: 1.6,
           bins: [
             ['mftu2pt5k', [0, 2499]],
             ['mft2p5t5', [2500, 4999]],
@@ -313,7 +313,7 @@ export default [
         column: 'm',
         aggregator: calculateMedianError,
         options: {
-          designFactor: 1.5,
+          designFactor: 1.6,
           bins: [
             ['fftu2pt5k', [0, 2499]],
             ['fft2p5t5', [2500, 4999]],
@@ -377,7 +377,7 @@ export default [
         column: 'comparison_m',
         aggregator: calculateMedianError,
         options: {
-          designFactor: 1.5,
+          designFactor: 1.6,
           bins: [
             ['fftu2pt5k', [0, 2499]],
             ['fft2p5t5', [2500, 4999]],
