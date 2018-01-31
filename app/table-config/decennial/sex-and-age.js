@@ -178,8 +178,8 @@ export default [
     divider: true,
   },
   {
-    title: '18 years and over',
-    data: 'pop18pl',
+    title: 'Under 18 years',
+    data: 'popu18',
   },
   {
     title: '21 years and over',
