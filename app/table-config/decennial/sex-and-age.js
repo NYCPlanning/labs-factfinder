@@ -9,7 +9,7 @@ export default [
   {
     title: 'Male',
     classNames: '',
-    data: 'male',
+    data: 'male ',
   },
   {
     title: 'Female',

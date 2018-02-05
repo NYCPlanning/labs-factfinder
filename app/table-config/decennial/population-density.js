@@ -2,6 +2,7 @@ import formula from '../../utils/formula';
 
 export default [
   {
+    highlight: true,
     title: 'Total population',
     data: 'pop1',
   },

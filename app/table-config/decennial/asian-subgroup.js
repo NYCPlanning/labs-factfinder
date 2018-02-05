@@ -26,12 +26,12 @@ export default [
   {
     indent: 1,
     title: 'Chinese, including Taiwanese',
-    data: 'chinese',
+    data: 'chinese ',
   },
   {
     indent: 1,
     title: 'Filipino',
-    data: 'filipino',
+    data: 'filipino ',
   },
   {
     indent: 1,
@@ -46,7 +46,7 @@ export default [
   {
     indent: 1,
     title: 'Korean',
-    data: 'korean',
+    data: 'korean ',
   },
   {
     indent: 1,
@@ -66,7 +66,7 @@ export default [
   {
     indent: 1,
     title: 'Thai',
-    data: 'thai',
+    data: 'thai ',
   },
   {
     indent: 1,
