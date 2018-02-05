@@ -79,7 +79,7 @@ export default [
     tooltip: 'Household population divided by number of households',
     data: 'avghhsz',
     special: true,
-    decimal: 1,
+    decimal: 2,
     specialCalculations: [
       {
         column: 'sum',
@@ -130,7 +130,7 @@ export default [
     tooltip: 'Population in family households, minus nonrelatives in family households, divided by number of family households',
     data: 'avgfmsz',
     special: true,
-    decimal: 1,
+    decimal: 2,
     specialCalculations: [
       {
         column: 'sum',
