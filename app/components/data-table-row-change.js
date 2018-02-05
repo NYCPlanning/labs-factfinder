@@ -327,7 +327,13 @@ changePercent(sum2, sum) {
 
     @computed('selectedEarlyPercent', 'selectedCurrentPercent')
     changePercentagePoint(selectedEarlyPercent, selectedCurrentPercent) {
-      return decimalOnePlace(selectedCurrentPercent - selectedEarlyPercent, true)
+      return decimalOnePlace(selectedCurrentPercent - selectedEarlyPercent);
+ 
+      if (isNaN(parseFloat(selectedEarlyPercent)) || isNaN(parseFloat(selectedCurrentPercent))) {
+        return null;
+      }
+
+      return difference.toFixed(1);
     },
 
     @computed('selectedEarlyPercentM', 'selectedCurrentPercentM')
