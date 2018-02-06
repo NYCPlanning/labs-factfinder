@@ -1,8 +1,8 @@
 [![CircleCI](https://circleci.com/gh/NYCPlanning/labs-nyc-factfinder/tree/develop.svg?style=svg)](https://circleci.com/gh/NYCPlanning/labs-nyc-factfinder/tree/develop)
 
-# NYC Population Fact Finder
+# NYC Population FactFinder
 
-Population Fact Finder allows you to easily define study areas — by selecting Census Tracts, Census Blocks, Neighborhood Tabulation Areas (NTAs), or Public Use Microdata Areas (PUMAs) — and produce detailed population profiles.
+Population FactFinder allows you to easily define study areas — by selecting Census Tracts, Census Blocks, Neighborhood Tabulation Areas (NTAs), or Public Use Microdata Areas (PUMAs) — and produce detailed population profiles.
 
 <img width="1368" alt="pff" src="https://user-images.githubusercontent.com/1833820/34444527-c079d456-ec9c-11e7-805b-93b95dc1844a.png">
 
