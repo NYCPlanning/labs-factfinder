@@ -9,14 +9,12 @@ const { SupportServiceHost } = Environment;
 export default DS.JSONAPIAdapter.extend({
   query(store, modelType, query) {
     const { selectionId, comparator, type } = query;
-    // let selectionSQL;
-    // if (type === 'decennial') {
-    //   selectionSQL = decennialProfile(geoids, category, comparator);
-    // } else {
-    //   selectionSQL = generateProfileSQL(geoids, comparator, type);
-    // }
-
-    const URL = `${SupportServiceHost}/profile/${selectionId}/decennial`;
+    let URL;
+    if (type === 'decennial') {
+      URL = `${SupportServiceHost}/profile/${selectionId}/decennial`;
+    } else {
+      URL = `${SupportServiceHost}/profile/${selectionId}/${type}`;
+    }
 
     return fetch(URL)
       .then(d => d.json());
