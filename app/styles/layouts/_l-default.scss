@@ -285,5 +285,6 @@ body {
 
   @include breakpoint(medium) {
     max-width: 100%;
+    margin-bottom: $global-margin*2;
   }
 }
