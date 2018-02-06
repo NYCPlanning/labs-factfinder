@@ -1,8 +1,0 @@
-{{#if taskInstance.isFinished}}
-  {{yield (hash taskInstance=taskInstance.value)}}
-{{else}}
-  Loading...
-  {{#if taskInstance.isError}}
-    Servers overloaded... try again.
-  {{/if}}
-{{/if}}
