@@ -20,12 +20,14 @@
     }}
   </div>
   <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Household Types"
-      config=householdTypeChartConfig
-      data=model.y2012_2016
-      height=176
-      xMax=1}}
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Household Types"
+        config=householdTypeChartConfig
+        data=model.y2012_2016
+        height=176
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 
@@ -92,12 +94,14 @@
     }}
   </div>
   <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Population 3 and Over by School Enrollment"
-      config=schoolEnrollmentChartConfig
-      data=model.y2012_2016
-      height=204
-      xMax=1}}
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Population 3 and Over by School Enrollment"
+        config=schoolEnrollmentChartConfig
+        data=model.y2012_2016
+        height=204
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 
@@ -116,12 +120,14 @@
     }}
   </div>
   <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Population 25 and Over by Educational Attainment"
-      config=educationalAttainmentChartConfig
-      data=model.y2012_2016
-      height=150
-      xMax=1}}
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Population 25 and Over by Educational Attainment"
+        config=educationalAttainmentChartConfig
+        data=model.y2012_2016
+        height=150
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 
@@ -172,12 +178,14 @@
     }}
   </div>
   <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Population who Lived in a Different House 1 Year Ago"
-      config=residence1YearAgoChartConfig
-      data=model.y2012_2016
-      height=176
-      xMax=1}}
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Population who Lived in a Different House 1 Year Ago"
+        config=residence1YearAgoChartConfig
+        data=model.y2012_2016
+        height=176
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 
@@ -196,21 +204,20 @@
     }}
   </div>
   <div class="cell large-4">
-
-    {{acs-bar
-      title="Percent Distribution of Total Population by Place of Birth"
-      config=placeOfBirthChartConfig
-      data=model.y2012_2016
-      height=150
-      xMax=1}}
-
-    {{acs-bar
-      title="Percent Distribution of Foreign-Born by World Region of Birth"
-      config=foreignBornChartConfig
-      data=model.y2012_2016
-      height=176
-      xMax=1}}
-
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Total Population by Place of Birth"
+        config=placeOfBirthChartConfig
+        data=model.y2012_2016
+        height=150
+        xMax=1}}
+      {{acs-bar
+        title="Percent Distribution of Foreign-Born by World Region of Birth"
+        config=foreignBornChartConfig
+        data=model.y2012_2016
+        height=176
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 

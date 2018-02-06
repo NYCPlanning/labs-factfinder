@@ -17,8 +17,8 @@
       model=model
     }}
   </div>
-
   <div class="cell large-4">
+    {{#if (eq profile.mode 'current')}}
       {{#population-pyramid
         title="Age/Sex Distribution"
         data=agePopDist
@@ -32,6 +32,7 @@
           </span>
         </h4>
       {{/population-pyramid}}
+    {{/if}}
   </div>
 </div>
 
@@ -40,7 +41,6 @@
 <h3 id="mutually-exclusive-race-hispanic-origin" class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-
     {{data-table
       mode=profile.mode
       reliability=profile.reliability
@@ -50,12 +50,14 @@
     }}
   </div>
   <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Race/Hispanic Origin Groups"
-      config=raceGroupChartConfig
-      data=model.y2012_2016
-      height=176
-      xMax=1}}
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Race/Hispanic Origin Groups"
+        config=raceGroupChartConfig
+        data=model.y2012_2016
+        height=176
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 
@@ -73,12 +75,14 @@
     }}
   </div>
   <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Hispanic Subgroups"
-      config=hispanicSubgroupChartConfig
-      data=model.y2012_2016
-      height=204
-      xMax=1}}
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Hispanic Subgroups"
+        config=hispanicSubgroupChartConfig
+        data=model.y2012_2016
+        height=204
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 
@@ -87,22 +91,23 @@
 <h3 id="asian-subgroup" class="header-medium">Asian Subgroup</h3>
 <div class="grid-x grid-margin-x">
   <div class="cell large-8">
-
-      {{data-table
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
-        config=asianSubgroup
-        model=model
-      }}
+    {{data-table
+      mode=profile.mode
+      reliability=profile.reliability
+      comparison=profile.comparison
+      config=asianSubgroup
+      model=model
+    }}
   </div>
   <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Asian Subgroups"
-      config=asianSubgroupChartConfig
-      data=model.y2012_2016
-      height=150
-      xMax=1}}
+    {{#if (eq profile.mode 'current')}}
+      {{acs-bar
+        title="Percent Distribution of Asian Subgroups"
+        config=asianSubgroupChartConfig
+        data=model.y2012_2016
+        height=150
+        xMax=1}}
+    {{/if}}
   </div>
 </div>
 
