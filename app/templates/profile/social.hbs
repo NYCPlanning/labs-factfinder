@@ -1,290 +1,292 @@
-{{profile-header
-  profile=profile
-  title="Social Profile"
-  mode=profile.mode
-  data=rawData
-}}
+<div class="shows-signficance">
+  {{profile-header
+    profile=profile
+    title="Social Profile"
+    mode=profile.mode
+    data=rawData
+  }}
 
-<hr>
+  <hr>
 
-<h3 class="header-medium" id="household-type">Household Type</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=householdType
-      model=model
-    }}
+  <h3 class="header-medium" id="household-type">Household Type</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=householdType
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Household Types"
+          config=householdTypeChartConfig
+          data=model.y2012_2016
+          height=176
+          xMax=1}}
+      {{/if}}
+    </div>
   </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Household Types"
-        config=householdTypeChartConfig
-        data=model.y2012_2016
-        height=176
-        xMax=1}}
-    {{/if}}
+
+  <hr>
+
+  <h3 class="header-medium" id="relationship-to-head-of-household">Relationship To Head Of Household (Householder)</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=relationshipToHeadOfHouseholdHouseholder
+        model=model
+      }}
+    </div>
   </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="grandparents">Marital Status</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=maritalStatus
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="grandparents">Grandparents</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=grandparents
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="school-enrollment">School Enrollment</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=schoolEnrollment
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Population 3 and Over by School Enrollment"
+          config=schoolEnrollmentChartConfig
+          data=model.y2012_2016
+          height=204
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="educational-attainment">Educational Attainment (Highest Grade Completed)</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=educationalAttainmentHighestGradeCompleted
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Population 25 and Over by Educational Attainment"
+          config=educationalAttainmentChartConfig
+          data=model.y2012_2016
+          height=150
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="veteran-status">Veteran Status</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=veteranStatus
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="disability-status-of-the-civilian-noninstitutionalized-population">Disability Status Of The Civilian Noninstitutionalized Population</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=disabilityStatusOfTheCivilianNoninstitutionalizedPopulation
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="residence-1-year-ago">Residence 1 Year Ago</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=residence1YearAgo
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Population who Lived in a Different House 1 Year Ago"
+          config=residence1YearAgoChartConfig
+          data=model.y2012_2016
+          height=176
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="place-of-birth">Place Of Birth</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=placeOfBirth
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Total Population by Place of Birth"
+          config=placeOfBirthChartConfig
+          data=model.y2012_2016
+          height=150
+          xMax=1}}
+        {{acs-bar
+          title="Percent Distribution of Foreign-Born by World Region of Birth"
+          config=foreignBornChartConfig
+          data=model.y2012_2016
+          height=176
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="us-citizenship-status">U.S. Citizenship Status</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=uSCitizenshipStatus
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="year-of-entry">Year Of Entry</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=yearOfEntry
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="language-spoken-at-home">Language Spoken At Home <small class="dark-gray">| data are from 2011-2015 ACS <sup>{{info-tooltip iconName='info-circle' tip='Detailed language data are not available from the 2012-2016 ACS Summary File'}}</sup></small></h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=languageSpokenAtHome
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="ancestry">Ancestry</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=ancestry
+        model=model
+      }}
+    </div>
+  </div>
+
+  {{profile-footer}}
+
+  {{outlet}}
 </div>
-
-<hr>
-
-<h3 class="header-medium" id="relationship-to-head-of-household">Relationship To Head Of Household (Householder)</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=relationshipToHeadOfHouseholdHouseholder
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="grandparents">Marital Status</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=maritalStatus
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="grandparents">Grandparents</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=grandparents
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="school-enrollment">School Enrollment</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=schoolEnrollment
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Population 3 and Over by School Enrollment"
-        config=schoolEnrollmentChartConfig
-        data=model.y2012_2016
-        height=204
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="educational-attainment">Educational Attainment (Highest Grade Completed)</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=educationalAttainmentHighestGradeCompleted
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Population 25 and Over by Educational Attainment"
-        config=educationalAttainmentChartConfig
-        data=model.y2012_2016
-        height=150
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="veteran-status">Veteran Status</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=veteranStatus
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="disability-status-of-the-civilian-noninstitutionalized-population">Disability Status Of The Civilian Noninstitutionalized Population</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=disabilityStatusOfTheCivilianNoninstitutionalizedPopulation
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="residence-1-year-ago">Residence 1 Year Ago</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=residence1YearAgo
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Population who Lived in a Different House 1 Year Ago"
-        config=residence1YearAgoChartConfig
-        data=model.y2012_2016
-        height=176
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="place-of-birth">Place Of Birth</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=placeOfBirth
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Total Population by Place of Birth"
-        config=placeOfBirthChartConfig
-        data=model.y2012_2016
-        height=150
-        xMax=1}}
-      {{acs-bar
-        title="Percent Distribution of Foreign-Born by World Region of Birth"
-        config=foreignBornChartConfig
-        data=model.y2012_2016
-        height=176
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="us-citizenship-status">U.S. Citizenship Status</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=uSCitizenshipStatus
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="year-of-entry">Year Of Entry</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=yearOfEntry
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="language-spoken-at-home">Language Spoken At Home <small class="dark-gray">| data are from 2011-2015 ACS <sup>{{info-tooltip iconName='info-circle' tip='Detailed language data are not available from the 2012-2016 ACS Summary File'}}</sup></small></h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=languageSpokenAtHome
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="ancestry">Ancestry</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=ancestry
-      model=model
-    }}
-  </div>
-</div>
-
-{{profile-footer}}
-
-{{outlet}}

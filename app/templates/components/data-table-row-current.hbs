@@ -33,53 +33,53 @@
   </td>
 
   {{!-- SELECTED AREA --}}
-  <td class="cell-border-left {{if (eq data.sum 0) 'medium-gray'}} {{if (gte data.cv 20) 'medium-gray'}}">
+  <td class="cell-border-left {{if (eq data.sum 0) 'insignificant'}} {{if (gte data.cv 20) 'insignificant'}}">
     {{format-as data.sum rowconfig.decimal}}
   </td>
   {{#if reliability}}
-    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    <td class="{{if (gte data.cv 20) 'insignificant'}}">
       {{format-as data.selectedSumMoE rowconfig.decimal}}
     </td>
-    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    <td class="{{if (gte data.cv 20) 'insignificant'}}">
       {{data.selectedCV}}
     </td>
   {{/if}}
 
-  <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+  <td class="{{if (gte data.cv 20) 'insignificant'}}">
     {{data.selectedPercent}}
   </td>
   {{#if reliability}}
-    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    <td class="{{if (gte data.cv 20) 'insignificant'}}">
       {{data.selectedPercentM}}
     </td>
   {{/if}}
 
   {{!-- COMPARISON AREA --}}
-  <td class="cell-border-left {{if (eq data.comparison_sum 0) 'medium-gray'}} {{if (gte data.comparison_cv 20) 'medium-gray'}}">
+  <td class="cell-border-left {{if (eq data.comparison_sum 0) 'insignificant'}} {{if (gte data.comparison_cv 20) 'insignificant'}}">
     {{format-as data.comparison_sum rowconfig.decimal}}
   </td>
   {{#if reliability}}
-    <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+    <td class="{{if (gte data.comparison_cv 20) 'insignificant'}}">
       {{format-as data.comparisonSumMoE rowconfig.decimal}}
     </td>
-    <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+    <td class="{{if (gte data.comparison_cv 20) 'insignificant'}}">
       {{data.comparisonCV}}
     </td>
   {{/if}}
 
-  <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">{{data.comparisonPercent}}</td>
+  <td class="{{if (gte data.comparison_cv 20) 'insignificant'}}">{{data.comparisonPercent}}</td>
   {{#if reliability}}
-    <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">{{data.comparisonPercentM}}</td>
+    <td class="{{if (gte data.comparison_cv 20) 'insignificant'}}">{{data.comparisonPercentM}}</td>
   {{/if}}
 
   {{!-- DIFFERENCE --}}
-  <td class="cell-border-left {{unless data.significant 'medium-gray'}}">
+  <td class="cell-border-left {{unless data.significant 'insignificant'}}">
     {{format-as data.differenceSum rowconfig.decimal}}
   </td>
   {{#if reliability}}
     <td>{{data.differenceM}}</td>
   {{/if}}
-  <td class="{{unless data.percent_significant 'medium-gray'}}">
+  <td class="{{unless data.percent_significant 'insignificant'}}">
     {{data.differencePercent}}
   </td>
   {{#if reliability}}
