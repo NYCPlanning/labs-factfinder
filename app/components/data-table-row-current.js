@@ -23,4 +23,10 @@ export default Ember.Component.extend({
 
     return classes.join(' ');
   },
+
+  actions: {
+    showData() {
+      console.log(this.get('data'));
+    },
+  },
 });

@@ -1,5 +1,5 @@
 {{#unless rowconfig.divider}}
-  <td class='title-column'>
+  <td class='title-column' {{action 'showData'}}>
     {{rowconfig.title}}
     {{#if rowconfig.tooltip}}
       {{info-tooltip tip=rowconfig.tooltip}}
@@ -9,34 +9,57 @@
   {{!-- SELECTED AREA --}}
   {{data-table-column-group
     model=data.selection
-    rowConfig=rowConfig
+    rowconfig=rowconfig
     reliabilityMode=reliability}}
 
   {{!-- COMPARISON AREA --}}
   {{data-table-column-group
     model=data.comparison
-    rowConfig=rowConfig
+    rowconfig=rowconfig
     reliabilityMode=reliability}}
 
   {{!-- DIFFERENCE --}}
   <td 
     class="cell-border-left 
-    {{unless data.significant 'insignificant'}}">
-    {{format-number data.difference_sum precision=rowconfig.decimal}}
+    {{if 
+      (or 
+        (not data.significant) 
+        (and (eq data.sum 0) (eq data.comparison_sum 0))) 
+      'insignificant'}}">
+    {{format-number
+      data.difference_sum 
+      precision=rowconfig.decimal}}
   </td>
   {{#if reliability}}
-    <td>
-      {{data.differenceM}}
+    <td class="
+      {{if 
+        (or 
+          (not data.significant) 
+          (and (eq data.sum 0) (eq data.comparison_sum 0))) 
+        'insignificant'}}">
+      {{format-number 
+        data.difference_m}}
     </td>
   {{/if}}
-  <td 
-    class="
-    {{unless data.percent_significant 'insignificant'}}">
-    {{data.difference_percent}}
-  </td>
-  {{#if reliability}}
-    <td>{{data.difference_percent_m}}</td>
-  {{/if}}
+
+  {{#unless 
+    (or rowconfig.special 
+      (and (eq data.sum 0) 
+        (eq data.comparison_sum 0)))}}
+    <td 
+      class="{{unless data.percent_significant 'insignificant'}}">
+      {{format-number
+        data.difference_percent
+        precision=1}}
+    </td>
+    {{#if reliability}}
+      <td>
+        {{format-number
+          data.difference_percent_m
+          precision=1}}
+      </td>
+    {{/if}}
+  {{/unless}}
 
 {{else}}
 

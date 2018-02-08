@@ -1,16 +1,24 @@
+{{!-- Estimate --}}
 <td class="cell-border-left {{unless model.is_reliable 'insignificant'}}">
   {{format-number model.sum precision=rowconfig.decimal}}
 </td>
 
 {{#if reliabilityMode}}
+  {{!-- MOE --}}
   <td class="{{unless model.is_reliable 'insignificant'}}">
-    {{format-number model.moe precision=rowconfig.decimal}}
+    {{if
+      (gt model.sum 0)
+        (format-number model.moe precision=rowconfig.decimal)}}
   </td>
+  {{!-- CV --}}
   <td class="{{unless model.is_reliable 'insignificant'}}">
-    {{if model.cv (format-number model.cv precision=1)}}
+    {{if 
+      (gt model.sum 0) 
+        (format-number model.cv precision=1)}}
   </td>
 {{/if}}
 
+{{!-- Percent Estimate --}}
 <td class="{{unless model.is_reliable 'insignificant'}}">
   {{if 
     model.percent 
@@ -19,6 +27,7 @@
         '%')}}
 </td>
 
+{{!-- Percent MOE --}}
 {{#if reliabilityMode}}
   <td class="{{unless model.is_reliable 'insignificant'}}">
     {{if 

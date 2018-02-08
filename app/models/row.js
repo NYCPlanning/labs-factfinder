@@ -156,7 +156,6 @@ export default DS.Model.extend({
   // calculate on the server
   @computed('m', 'comparison_m')
   differenceM(m, comparison_m) {
-    console.log(m, comparison_m);
     const sumOfSquares = (((m) ** 2) + ((comparison_m) ** 2));
     const difference = Math.sqrt(sumOfSquares);
     if (isNaN(m) || isNaN(comparison_m)) {
