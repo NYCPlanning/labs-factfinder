@@ -1,232 +1,234 @@
-{{profile-header
-  profile=profile
-  title="Economic Profile"
-  data=rawData
-  mode=profile.mode
-}}
+<div class="shows-signficance">
+  {{profile-header
+    profile=profile
+    title="Economic Profile"
+    data=rawData
+    mode=profile.mode
+  }}
 
-<hr>
+  <hr>
 
-<h3 class="header-medium" id="employment-status">Employment Status</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=employmentStatus
-      model=model
-    }}
+  <h3 class="header-medium" id="employment-status">Employment Status</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=employmentStatus
+        model=model
+      }}
+    </div>
   </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="commute-to-work">Commute to Work</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=commuteToWork
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Workers by Means of Transportation to Work"
+          config=commuteToWorkChartConfig
+          data=model.y2012_2016
+          height=236
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="occupation">Occupation</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=occupation
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Workers by Occupation"
+          config=occupationChartConfig
+          data=model.y2012_2016
+          height=204
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="industry">Industry</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=industry
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="class-of-worker">Class of Worker</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=classOfWorker
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Workers by Class of Worker"
+          config=classOfWorkerChartConfig
+          data=model.y2012_2016
+          height=176
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="income-and-benefits">
+    Income and Benefits
+    {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
+  </h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=incomeAndBenefits
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Household Income"
+          config=incomeAndBenefitsChartConfig
+          data=model.y2012_2016
+          height=340
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="earnings">
+    Earnings
+    {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
+  </h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=earnings
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="health-insurance-coverage">Health Insurance Coverage</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=healthInsuranceCoverage
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="income-in-the-past-12-months-below-poverty-level">
+    Income in the Past 12 Months Below Poverty Level
+    {{info-tooltip tip="For alternative NYC poverty measure, please see website of the Mayor's Office for Economic Opportunity"}}
+  </h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=incomeInPast12MonthsIsBelowThePovertyLevel
+        model=model
+      }}
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="header-medium" id="ratio-of-income-to-poverty-level">
+    Ratio of Income to Poverty Level
+    {{info-tooltip tip="Ratio of income in the past 12 months to poverty level"}}
+  </h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=ratioOfIncomeToPovertyLevel
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Population by Ratio of Income to Poverty Level"
+          config=ratioOfIncomeToPovertyLevelChartConfig
+          data=model.y2012_2016
+          height=394
+          xMax=1}}
+      {{/if}}
+    </div>
+  </div>
+
+  {{profile-footer}}
+
+  {{outlet}}
 </div>
-
-<hr>
-
-<h3 class="header-medium" id="commute-to-work">Commute to Work</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=commuteToWork
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Workers by Means of Transportation to Work"
-        config=commuteToWorkChartConfig
-        data=model.y2012_2016
-        height=236
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="occupation">Occupation</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=occupation
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Workers by Occupation"
-        config=occupationChartConfig
-        data=model.y2012_2016
-        height=204
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="industry">Industry</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=industry
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="class-of-worker">Class of Worker</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=classOfWorker
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Workers by Class of Worker"
-        config=classOfWorkerChartConfig
-        data=model.y2012_2016
-        height=176
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="income-and-benefits">
-  Income and Benefits
-  {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
-</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=incomeAndBenefits
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Household Income"
-        config=incomeAndBenefitsChartConfig
-        data=model.y2012_2016
-        height=340
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="earnings">
-  Earnings
-  {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
-</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=earnings
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="health-insurance-coverage">Health Insurance Coverage</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=healthInsuranceCoverage
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="income-in-the-past-12-months-below-poverty-level">
-  Income in the Past 12 Months Below Poverty Level
-  {{info-tooltip tip="For alternative NYC poverty measure, please see website of the Mayor's Office for Economic Opportunity"}}
-</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=incomeInPast12MonthsIsBelowThePovertyLevel
-      model=model
-    }}
-  </div>
-</div>
-
-<hr>
-
-<h3 class="header-medium" id="ratio-of-income-to-poverty-level">
-  Ratio of Income to Poverty Level
-  {{info-tooltip tip="Ratio of income in the past 12 months to poverty level"}}
-</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      options=profile
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=ratioOfIncomeToPovertyLevel
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{#if (eq profile.mode 'current')}}
-      {{acs-bar
-        title="Percent Distribution of Population by Ratio of Income to Poverty Level"
-        config=ratioOfIncomeToPovertyLevelChartConfig
-        data=model.y2012_2016
-        height=394
-        xMax=1}}
-    {{/if}}
-  </div>
-</div>
-
-{{profile-footer}}
-
-{{outlet}}
