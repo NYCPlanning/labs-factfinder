@@ -9,13 +9,6 @@ export default Ember.Component.extend({
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
-  // (eq data.sum 0)
-  // (gte data.cv 20)
-  @computed('data.sum')
-  isSumZero(sum) {
-    return !!sum;
-  },
-
   @computed('rowconfig')
   getClassNames(rowconfig) {
     const classes = [];

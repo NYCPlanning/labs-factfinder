@@ -1,20 +1,20 @@
-<td class="cell-border-left {{unless model.is_reliable 'medium-gray'}}">
+<td class="cell-border-left {{unless model.is_reliable 'insignificant'}}">
   {{format-as model.sum rowconfig.decimal}}
 </td>
 {{#if reliabilityMode}}
-  <td class="{{unless model.is_reliable 'medium-gray'}}">
+  <td class="{{unless model.is_reliable 'insignificant'}}">
     {{format-as model.moe rowconfig.decimal}}
   </td>
-  <td class="{{unless model.is_reliable 'medium-gray'}}">
+  <td class="{{unless model.is_reliable 'insignificant'}}">
     {{model.cv}}
   </td>
 {{/if}}
 
-<td class="{{unless model.is_reliable 'medium-gray'}}">
+<td class="{{unless model.is_reliable 'insignificant'}}">
   {{model.pct}}
 </td>
 {{#if reliabilityMode}}
-  <td class="{{unless model.is_reliable 'medium-gray'}}">
+  <td class="{{unless model.is_reliable 'insignificant'}}">
     {{model.pctm}}
   </td>
 {{/if}}

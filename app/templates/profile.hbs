@@ -26,7 +26,7 @@
               <li>{{#item.scroll-to href='#household-size'}}Household Size{{/item.scroll-to}}</li>
             {{/tab-dropdown}}
           {{else}}
-            {{#link-to 'profile.census' (query-params mode=mode)}}
+            {{#link-to 'profile.census' (query-params mode=mode comparator=comparator)}}
               Census
               {{tooltip-on-element delay=500 side="right" text='Basic population and housing characteristics from decennial census'}}
             {{/link-to}}
@@ -50,7 +50,7 @@
                 <li>{{#item.scroll-to href='#asian-subgroup'}}Asian Subgroup{{/item.scroll-to}}</li>
               {{/tab-dropdown}}
             {{else}}
-              {{#link-to 'profile.demographic' (query-params mode=mode)}}
+              {{#link-to 'profile.demographic' (query-params mode=mode comparator=comparator)}}
                 Demographic <small>(ACS)</small>
                 {{tooltip-on-element delay=500 side="right" text='Basic population characteristics from the American Community Survey'}}
               {{/link-to}}
@@ -77,7 +77,7 @@
                 <li>{{#item.scroll-to href='#ancestry'}}Ancestry{{/item.scroll-to}}</li>
               {{/tab-dropdown}}
             {{else}}
-              {{#link-to 'profile.social' (query-params mode=mode)}}
+              {{#link-to 'profile.social' (query-params mode=mode comparator=comparator)}}
                 Social <small>(ACS)</small>
                 {{tooltip-on-element delay=500 side="right" text='Social characteristics from the American Community Survey'}}
               {{/link-to}}
@@ -101,7 +101,7 @@
                 <li>{{#item.scroll-to href='#ratio-of-income-to-poverty-level'}}Ratio of Income to Poverty Level{{/item.scroll-to}}</li>
               {{/tab-dropdown}}
             {{else}}
-              {{#link-to 'profile.economic' (query-params mode=mode)}}
+              {{#link-to 'profile.economic' (query-params mode=mode comparator=comparator)}}
                 Economic <small>(ACS)</small>
                 {{tooltip-on-element delay=500 side="right" text='Economic characteristics from the American Community Survey'}}
               {{/link-to}}
@@ -128,7 +128,7 @@
                 <li>{{#item.scroll-to href='#gross-rent-as-a-percentage-of-household-income'}}Gross Rent as a Percentage of Household Income (GRAPI){{/item.scroll-to}}</li>
               {{/tab-dropdown}}
             {{else}}
-              {{#link-to 'profile.housing' (query-params mode=mode)}}
+              {{#link-to 'profile.housing' (query-params mode=mode comparator=comparator)}}
                 Housing <small>(ACS)</small>
                 {{tooltip-on-element delay=500 side="right" text='Housing characteristics from the American Community Survey'}}
               {{/link-to}}

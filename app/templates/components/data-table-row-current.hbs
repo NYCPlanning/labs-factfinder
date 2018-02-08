@@ -21,7 +21,7 @@
   {{!-- DIFFERENCE --}}
   <td 
     class="cell-border-left 
-    {{unless data.significant 'medium-gray'}}">
+    {{unless data.significant 'insignificant'}}">
     {{format-as data.differenceSum rowconfig.decimal}}
   </td>
   {{#if reliability}}
@@ -31,7 +31,7 @@
   {{/if}}
   <td 
     class="
-    {{unless data.percent_significant 'medium-gray'}}">
+    {{unless data.percent_significant 'insignificant'}}">
     {{data.differencePercent}}
   </td>
   {{#if reliability}}
