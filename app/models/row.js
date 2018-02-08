@@ -9,6 +9,7 @@ import tableConfigs from '../table-config';
 const { get, Logger, computed: { alias } } = Ember;
 
 export default DS.Model.extend({
+  // categorical information
   category: DS.attr('string'),
   profile: DS.attr('string'),
   variable: DS.attr('string'),
@@ -16,22 +17,14 @@ export default DS.Model.extend({
   dataset: DS.attr('string'), // year
   year: DS.attr('string'), // year
 
+  // all data
   base: DS.attr('string'),
-  base_join: DS.attr('number'),
-  base_m: DS.attr('number'),
-  base_sum: DS.attr('number'),
-  base_year: DS.attr('number'),
-  comparison_base_join: DS.attr('number'),
-  comparison_base_m: DS.attr('number'),
-  comparison_base_sum: DS.attr('number'),
-  comparison_base_year: DS.attr('number'),
   comparison_cv: DS.attr('number'),
   comparison_m: DS.attr('number'),
   comparison_percent: DS.attr('number'),
   comparison_percent_m: DS.attr('number'),
   comparison_sum: DS.attr('number'),
   cv: DS.attr('number'),
-
   m: DS.attr('number'),
   notinprofile: DS.attr('string'),
   percent: DS.attr('number'),
