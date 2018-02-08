@@ -21,7 +21,6 @@ export default DS.Model.extend({
   base_m: DS.attr('number'),
   base_sum: DS.attr('number'),
   base_year: DS.attr('number'),
-  cartodb_id: DS.attr('number'),
   comparison_base_join: DS.attr('number'),
   comparison_base_m: DS.attr('number'),
   comparison_base_sum: DS.attr('number'),
@@ -33,7 +32,6 @@ export default DS.Model.extend({
   comparison_sum: DS.attr('number'),
   cv: DS.attr('number'),
 
-  infltnfctr10to16: DS.attr('number'),
   m: DS.attr('number'),
   notinprofile: DS.attr('string'),
   percent: DS.attr('number'),
@@ -43,8 +41,20 @@ export default DS.Model.extend({
   release_year: DS.attr('string'),
   significant: DS.attr('boolean'),
   is_reliable: DS.attr('boolean'),
+  comparison_is_reliable: DS.attr('boolean'),
   sum: DS.attr('number'),
   unittype: DS.attr('string'),
+
+  // groupings
+  @computed('sum', 'selectedSumMoE', 'selectedCV', 'selectedPercent', 'selectedPercentM', 'is_reliable')
+  selection(sum, moe, cv, pct, pctm, is_reliable) {
+    return { sum, moe, cv, pct, pctm, is_reliable };
+  },
+
+  @computed('comparison_sum', 'comparisonSumMoE', 'comparisonCV', 'comparisonPercent', 'comparisonPercentM', 'comparison_is_reliable')
+  comparison(sum, moe, cv, pct, pctm, is_reliable) {
+    return { sum, moe, cv, pct, pctm, is_reliable };
+  },
 
   @computed('base', 'variablename')
   isBase(base, variablename) {
