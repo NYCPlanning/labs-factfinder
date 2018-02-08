@@ -1,7 +1,4 @@
 import DS from 'ember-data';
-import carto from '../utils/carto';
-import generateProfileSQL from '../queries/profile';
-import decennialProfile from '../queries/decennial-profile';
 import Environment from '../config/environment';
 
 const { SupportServiceHost } = Environment;
