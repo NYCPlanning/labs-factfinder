@@ -1,21 +1,32 @@
 <td class="cell-border-left {{unless model.is_reliable 'insignificant'}}">
-  {{format-as model.sum rowconfig.decimal}}
+  {{format-number model.sum precision=rowconfig.decimal}}
 </td>
+
 {{#if reliabilityMode}}
   <td class="{{unless model.is_reliable 'insignificant'}}">
-    {{format-as model.moe rowconfig.decimal}}
+    {{format-number model.moe precision=rowconfig.decimal}}
   </td>
   <td class="{{unless model.is_reliable 'insignificant'}}">
-    {{model.cv}}
+    {{if model.cv (format-number model.cv precision=1)}}
   </td>
 {{/if}}
 
 <td class="{{unless model.is_reliable 'insignificant'}}">
-  {{model.pct}}
+  {{if 
+    model.percent 
+      (concat 
+        (format-number (mult model.percent 100) precision=1) 
+        '%')}}
 </td>
+
 {{#if reliabilityMode}}
   <td class="{{unless model.is_reliable 'insignificant'}}">
-    {{model.pctm}}
+    {{if 
+      model.percent_m 
+        (concat 
+          (format-number (mult model.percent_m 100) precision=1) 
+          '%')}}
   </td>
 {{/if}}
+
 {{yield}}

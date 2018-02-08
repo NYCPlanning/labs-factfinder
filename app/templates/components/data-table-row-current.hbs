@@ -22,7 +22,7 @@
   <td 
     class="cell-border-left 
     {{unless data.significant 'insignificant'}}">
-    {{format-as data.differenceSum rowconfig.decimal}}
+    {{format-number data.difference_sum precision=rowconfig.decimal}}
   </td>
   {{#if reliability}}
     <td>
@@ -32,10 +32,10 @@
   <td 
     class="
     {{unless data.percent_significant 'insignificant'}}">
-    {{data.differencePercent}}
+    {{data.difference_percent}}
   </td>
   {{#if reliability}}
-    <td>{{data.differencePercentM}}</td>
+    <td>{{data.difference_percent_m}}</td>
   {{/if}}
 
 {{else}}

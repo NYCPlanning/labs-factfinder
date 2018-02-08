@@ -2,8 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 
-import { decimalOnePlace,
-  decimalOnePlacePercent } from '../utils/number-formatters';
+import { decimalOnePlacePercent } from '../utils/number-formatters';
 import tableConfigs from '../table-config';
 
 const { get, Logger, computed: { alias } } = Ember;
@@ -26,6 +25,11 @@ export default DS.Model.extend({
   comparison_sum: DS.attr('number'),
   cv: DS.attr('number'),
   m: DS.attr('number'),
+  difference_sum: DS.attr('number'),
+  difference_percent: DS.attr('number'),
+  difference_m: DS.attr('number'),
+  difference_percent_m: DS.attr('number'),
+
   notinprofile: DS.attr('string'),
   percent: DS.attr('number'),
   percent_m: DS.attr('number'),
@@ -39,14 +43,16 @@ export default DS.Model.extend({
   unittype: DS.attr('string'),
 
   // groupings
-  @computed('sum', 'selectedSumMoE', 'selectedCV', 'selectedPercent', 'selectedPercentM', 'is_reliable')
-  selection(sum, moe, cv, pct, pctm, is_reliable) {
-    return { sum, moe, cv, pct, pctm, is_reliable };
+  // these are used to group together similar type columns
+  // into normalized mappings for components
+  @computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable')
+  selection(sum, moe, cv, percent, percent_m, is_reliable) {
+    return { sum, moe, cv, percent, percent_m, is_reliable };
   },
 
-  @computed('comparison_sum', 'comparisonSumMoE', 'comparisonCV', 'comparisonPercent', 'comparisonPercentM', 'comparison_is_reliable')
-  comparison(sum, moe, cv, pct, pctm, is_reliable) {
-    return { sum, moe, cv, pct, pctm, is_reliable };
+  @computed('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable')
+  comparison(sum, moe, cv, percent, percent_m, is_reliable) {
+    return { sum, moe, cv, percent, percent_m, is_reliable };
   },
 
   @computed('base', 'variablename')
@@ -74,21 +80,10 @@ export default DS.Model.extend({
 
   isSpecial: alias('rowConfig.special'),
 
-  @computed('sum', 'cv')
-  selectedCV(sum, cv) {
-    const floatedSum = parseFloat(sum);
-    const floatedCv = parseFloat(cv);
-
-    if (floatedSum > 0) {
-      return decimalOnePlace(floatedCv);
-    }
-
-    return null;
-  },
-
-  @computed('sum', 'percent', 'isSpecial')
-  selectedPercent(sum, percent, isSpecial) {
-    if (isSpecial) return null;
+  // this is still used in another component
+  @computed('sum', 'percent')
+  selectedPercent(sum, percent) {
+    // if (isSpecial) return null;
     if (sum > 0) {
       return decimalOnePlacePercent(percent);
     }
@@ -96,6 +91,7 @@ export default DS.Model.extend({
     return null;
   },
 
+  // this is still used in another component
   @computed('sum', 'percent_m', 'isBase', 'isSpecial')
   selectedPercentM(sum, percentM, isBase, isSpecial) {
     if (isBase || isSpecial) return null;
@@ -108,17 +104,7 @@ export default DS.Model.extend({
     return null;
   },
 
-  @computed('comparison_sum', 'comparison_cv')
-  comparisonCV(sum, cv) {
-    const floatedCv = parseFloat(cv);
-
-    if (sum > 0) {
-      return decimalOnePlace(floatedCv);
-    }
-
-    return null;
-  },
-
+  // this is still used in another component
   @computed('comparison_sum', 'comparison_percent')
   comparisonPercent(sum, percent) {
     if (sum > 0) {
@@ -128,6 +114,7 @@ export default DS.Model.extend({
     return null;
   },
 
+  // this is still used in another component
   @computed('comparison_sum', 'comparison_percent_m', 'isBase', 'isSpecial')
   comparisonPercentM(sum, percentM, isBase, isSpecial) {
     if (isBase || isSpecial) return null;
@@ -140,18 +127,7 @@ export default DS.Model.extend({
     return null;
   },
 
-
-  @computed('sum', 'm')
-  selectedSumMoE(sum, m) {
-    const floatedM = parseFloat(m);
-
-    if (sum > 0) {
-      return floatedM;
-    }
-
-    return null;
-  },
-
+  // this is still used in another component
   @computed('comparison_sum', 'comparison_m')
   comparisonSumMoE(sum, m) {
     const floatedM = parseFloat(m);
@@ -163,6 +139,9 @@ export default DS.Model.extend({
     return null;
   },
 
+  // if sum and comparison sum
+  // are not numbers return blank
+  // calculate on the server...
   @computed('sum', 'comparison_sum')
   differenceSum(sum, comparisonSum) {
     const difference = sum - comparisonSum;
@@ -174,8 +153,10 @@ export default DS.Model.extend({
     return difference;
   },
 
+  // calculate on the server
   @computed('m', 'comparison_m')
   differenceM(m, comparison_m) {
+    console.log(m, comparison_m);
     const sumOfSquares = (((m) ** 2) + ((comparison_m) ** 2));
     const difference = Math.sqrt(sumOfSquares);
     if (isNaN(m) || isNaN(comparison_m)) {
@@ -185,6 +166,7 @@ export default DS.Model.extend({
     return difference.toFixed(1);
   },
 
+  // calculate on the server
   @computed('percent', 'comparison_percent')
   differencePercent(percent, comparisonPercent) {
     const difference = (percent - comparisonPercent) * 100;
@@ -196,6 +178,7 @@ export default DS.Model.extend({
     return cleanPercent(difference);
   },
 
+  // calculate on the server
   @computed('selectedPercentM', 'comparisonPercentM', 'isBase')
   differencePercentM(selectedPercentM, comparisonPercentM, isBase) {
     if (isBase) return null;
