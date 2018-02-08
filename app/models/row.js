@@ -42,6 +42,7 @@ export default DS.Model.extend({
   producttype: DS.attr('string'),
   release_year: DS.attr('string'),
   significant: DS.attr('boolean'),
+  is_reliable: DS.attr('boolean'),
   sum: DS.attr('number'),
   unittype: DS.attr('string'),
 

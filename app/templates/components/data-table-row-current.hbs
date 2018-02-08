@@ -1,75 +1,51 @@
-{{#if rowconfig.divider}}
-  <td>&nbsp;</td>
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if reliability}}
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  {{/if}}
-
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if reliability}}
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  {{/if}}
-
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if reliability}}
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  {{/if}}
-
-{{else}}{{! divider = false }}
-
-  <td>
+{{#unless rowconfig.divider}}
+  <td class='title-column'>
     {{rowconfig.title}}
     {{#if rowconfig.tooltip}}
       {{info-tooltip tip=rowconfig.tooltip}}
     {{/if}}
   </td>
 
+  {{log data.is_reliable}}
+
   {{!-- SELECTED AREA --}}
-  <td class="cell-border-left {{if (eq data.sum 0) 'medium-gray'}} {{if (gte data.cv 20) 'medium-gray'}}">
+  <td class="cell-border-left {{unless data.is_reliable 'medium-gray'}}">
     {{format-as data.sum rowconfig.decimal}}
   </td>
   {{#if reliability}}
-    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    <td class="{{unless data.is_reliable 'medium-gray'}}">
       {{format-as data.selectedSumMoE rowconfig.decimal}}
     </td>
-    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    <td class="{{unless data.is_reliable 'medium-gray'}}">
       {{data.selectedCV}}
     </td>
   {{/if}}
 
-  <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+  <td class="{{unless data.is_reliable 'medium-gray'}}">
     {{data.selectedPercent}}
   </td>
   {{#if reliability}}
-    <td class="{{if (gte data.cv 20) 'medium-gray'}}">
+    <td class="{{unless data.is_reliable 'medium-gray'}}">
       {{data.selectedPercentM}}
     </td>
   {{/if}}
 
   {{!-- COMPARISON AREA --}}
-  <td class="cell-border-left {{if (eq data.comparison_sum 0) 'medium-gray'}} {{if (gte data.comparison_cv 20) 'medium-gray'}}">
+  <td class="cell-border-left {{unless data.is_reliable 'medium-gray'}}">
     {{format-as data.comparison_sum rowconfig.decimal}}
   </td>
   {{#if reliability}}
-    <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+    <td class="{{unless data.is_reliable 'medium-gray'}}">
       {{format-as data.comparisonSumMoE rowconfig.decimal}}
     </td>
-    <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">
+    <td class="{{unless data.is_reliable 'medium-gray'}}">
       {{data.comparisonCV}}
     </td>
   {{/if}}
 
-  <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">{{data.comparisonPercent}}</td>
+  <td class="{{unless data.is_reliable 'medium-gray'}}">{{data.comparisonPercent}}</td>
   {{#if reliability}}
-    <td class="{{if (gte data.comparison_cv 20) 'medium-gray'}}">{{data.comparisonPercentM}}</td>
+    <td class="{{unless data.is_reliable 'medium-gray'}}">{{data.comparisonPercentM}}</td>
   {{/if}}
 
   {{!-- DIFFERENCE --}}
@@ -85,5 +61,29 @@
   {{#if reliability}}
     <td>{{data.differencePercentM}}</td>
   {{/if}}
-{{/if}}
+{{else}}
+  <td>&nbsp;</td>
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+{{/unless}}
 {{yield}}
