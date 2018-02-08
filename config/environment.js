@@ -40,6 +40,10 @@ module.exports = function(environment) {
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
   }
 
+  if (environment === 'devlocal') {
+    ENV.SupportServiceHost = 'http://localhost:4000';
+  }
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
