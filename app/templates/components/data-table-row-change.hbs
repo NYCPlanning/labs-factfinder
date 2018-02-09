@@ -22,7 +22,9 @@
 
   {{!-- Estimate --}}
   <td class="cell-border-left {{unless data.change_significant 'insignificant'}}">
-    {{data.change_sum}}
+    {{format-number 
+      data.change_sum
+      precision=rowConfig.decimal}}
   </td>
 
   {{#if reliability}}
@@ -58,16 +60,16 @@
   {{!-- percentage point --}}
   <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
     {{format-number 
-      data.change_percentage_point 
-      precision=rowConfig.decimal}}
+      (mult data.change_percentage_point 100) 
+      precision=1}}
   </td>
 
   {{#if reliability}}
     {{!-- percentage point m --}}
     <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
       {{format-number 
-        data.change_percentage_point_m
-        precision=rowConfig.decimal}}
+        (mult data.change_percentage_point_m 100)
+        precision=1}}
     </td>
   {{/if}}
 
