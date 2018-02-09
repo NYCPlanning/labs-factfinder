@@ -30,6 +30,16 @@ export default DS.Model.extend({
   difference_m: DS.attr('number'),
   difference_percent_m: DS.attr('number'),
 
+  change_sum: DS.attr('number'),
+  change_percent: DS.attr('number'),
+  change_m: DS.attr('number'),
+  change_percent_m: DS.attr('number'),
+  change_percentage_point: DS.attr('number'),
+  change_percentage_point_m: DS.attr('number'),
+  change_significant: DS.attr('number'),
+  change_percent_significant: DS.attr('number'),
+  change_percentage_point_significant: DS.attr('number'),
+
   notinprofile: DS.attr('string'),
   percent: DS.attr('number'),
   percent_m: DS.attr('number'),
