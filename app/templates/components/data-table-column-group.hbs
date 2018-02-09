@@ -1,6 +1,6 @@
 {{!-- Estimate --}}
 <td class="cell-border-left {{unless model.is_reliable 'insignificant'}}">
-  {{format-number model.sum precision=rowconfig.decimal}}
+  {{format-number model.sum precision=rowConfig.decimal}}
 </td>
 
 {{#if reliabilityMode}}
@@ -8,7 +8,7 @@
   <td class="{{unless model.is_reliable 'insignificant'}}">
     {{if
       (gt model.sum 0)
-        (format-number model.moe precision=rowconfig.decimal)}}
+        (format-number model.moe precision=rowConfig.decimal)}}
   </td>
   {{!-- CV --}}
   <td class="{{unless model.is_reliable 'insignificant'}}">

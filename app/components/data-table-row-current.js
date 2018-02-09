@@ -9,16 +9,16 @@ export default Ember.Component.extend({
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
-  @computed('rowconfig')
-  getClassNames(rowconfig) {
+  @computed('rowConfig')
+  getClassNames(rowConfig) {
     const classes = [];
 
-    if (rowconfig.highlight) {
+    if (rowConfig.highlight) {
       classes.push('row-highlight');
     }
 
-    if (rowconfig.indent) {
-      classes.push(`row-indent-x${rowconfig.indent}`);
+    if (rowConfig.indent) {
+      classes.push(`row-indent-x${rowConfig.indent}`);
     }
 
     return classes.join(' ');

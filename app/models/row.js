@@ -80,6 +80,11 @@ export default DS.Model.extend({
 
   isSpecial: alias('rowConfig.special'),
 
+  @computed('isSpecial', 'sum', 'comparison_sum')
+  shouldHideDeltaPercent(isSpecial, sum, comparison_sum) {
+    return isSpecial || (sum + comparison_sum === 0);
+  },
+
   // this is still used in another component
   @computed('sum', 'percent')
   selectedPercent(sum, percent) {

@@ -11,35 +11,35 @@ export default Ember.Component.extend({
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
-  @computed('rowconfig')
-  getClassNames(rowconfig) {
+  @computed('rowConfig')
+  getClassNames(rowConfig) {
     const classes = [];
 
-    if (rowconfig.highlight) {
+    if (rowConfig.highlight) {
       classes.push('row-highlight');
     }
 
-    if (rowconfig.indent) {
-      classes.push(`row-indent-x${rowconfig.indent}`);
+    if (rowConfig.indent) {
+      classes.push(`row-indent-x${rowConfig.indent}`);
     }
 
     return classes.join(' ');
   },
 
-@computed('data2.sum','rowconfig')
-selectedEarlySum(sum, rowconfig) {
+@computed('data2.sum','rowConfig')
+selectedEarlySum(sum, rowConfig) {
   sum = parseFloat(sum);
-  return decimalFormat(sum, rowconfig.decimal);
+  return decimalFormat(sum, rowConfig.decimal);
 },
 
-@computed('data2.m','rowconfig')
-selectedEarlySumM(m, rowconfig) {
-  return decimalFormat(m, rowconfig.decimal);
+@computed('data2.m','rowConfig')
+selectedEarlySumM(m, rowConfig) {
+  return decimalFormat(m, rowConfig.decimal);
 },
 
-@computed('data2.cv','rowconfig')
-selectedEarlySumCV(cv, rowconfig) {
-  return decimalOnePlace(cv, rowconfig.decimal);
+@computed('data2.cv','rowConfig')
+selectedEarlySumCV(cv, rowConfig) {
+  return decimalOnePlace(cv, rowConfig.decimal);
 },
 
 @computed('data2.sum','data2.percent')
@@ -64,25 +64,25 @@ selectedEarlyPercentM(sum,percent_m) {
   }
 },
 
-@computed('data2.sum','data.sum','rowconfig')
-selectedCurrentSum(sum2, sum,rowconfig) {
+@computed('data2.sum','data.sum','rowConfig')
+selectedCurrentSum(sum2, sum,rowConfig) {
   sum2 = parseFloat(sum2);
   sum = parseFloat(sum);
   if ((sum2 > 0) || (sum2 === 0)) {
-    return decimalFormat(sum, rowconfig.decimal);
+    return decimalFormat(sum, rowConfig.decimal);
   } else {
     return "";
   }
 },
 
-@computed('data.m','rowconfig')
-selectedCurrentSumM(m, rowconfig) {
-  return decimalFormat(m, rowconfig.decimal);
+@computed('data.m','rowConfig')
+selectedCurrentSumM(m, rowConfig) {
+  return decimalFormat(m, rowConfig.decimal);
 },
 
-@computed('data.cv','rowconfig')
-selectedCurrentSumCV(cv, rowconfig) {
-  return decimalOnePlace(cv, rowconfig.decimal);
+@computed('data.cv','rowConfig')
+selectedCurrentSumCV(cv, rowConfig) {
+  return decimalOnePlace(cv, rowConfig.decimal);
 },
 
 @computed('data2.sum', 'data.sum','data.percent')
@@ -112,20 +112,20 @@ selectedCurrentPercentM(sum,percent_m) {
   }
 },
 
-@computed('data2.sum','data.sum', 'rowconfig')
-change(sum2,sum,rowconfig) {
+@computed('data2.sum','data.sum', 'rowConfig')
+change(sum2,sum,rowConfig) {
   sum2 = parseFloat(sum2);
   sum = parseFloat(sum);
   if (isNaN(sum2) || isNaN(sum)) {
     return "";
   } else {
     var difference = sum - sum2;
-    return decimalFormatAll(difference, rowconfig.decimal, true);
+    return decimalFormatAll(difference, rowConfig.decimal, true);
   }
 },
 
-@computed('data2.sum', 'data2.m', 'data.m', 'rowconfig')
-changeMOE(sum2, m2, m, rowconfig) {
+@computed('data2.sum', 'data2.m', 'data.m', 'rowConfig')
+changeMOE(sum2, m2, m, rowConfig) {
   sum2 = parseFloat(sum2);
   m = parseFloat(m);
   m2 = parseFloat(m2);
@@ -141,7 +141,7 @@ changeMOE(sum2, m2, m, rowconfig) {
       + ((m)* (m)));
       if ((x > 0) || (x === 0)) {
         var changeM = Math.sqrt(x)
-        return decimalFormat(changeM, rowconfig.decimal) ;
+        return decimalFormat(changeM, rowConfig.decimal) ;
       } else {
         return "";
       }
@@ -179,20 +179,20 @@ changePercent(sum2, sum) {
   }
   },
 
-  // @computed('data2.comparison_sum','data.comparison_sum', 'rowconfig')
-  // comparisonDifferenceChangeSum(sum2,sum,rowconfig) {
+  // @computed('data2.comparison_sum','data.comparison_sum', 'rowConfig')
+  // comparisonDifferenceChangeSum(sum2,sum,rowConfig) {
   //   sum2 = parseFloat(sum2);
   //   sum = parseFloat(sum);
   //   if (isNaN(sum2) || isNaN(sum)) {
   //     return "";
   //   } else {
   //     var difference = sum - sum2;
-  //     return decimalFormatAll(difference, rowconfig.decimal);
+  //     return decimalFormatAll(difference, rowConfig.decimal);
   //   }
   // },
   //
-  // @computed('data2.comparison_sum', 'data2.comparison_m', 'data.comparison_m', 'rowconfig')
-  // comparisonDifferenceChangeSumMoE(sum2, m2, m, rowconfig) {
+  // @computed('data2.comparison_sum', 'data2.comparison_m', 'data.comparison_m', 'rowConfig')
+  // comparisonDifferenceChangeSumMoE(sum2, m2, m, rowConfig) {
   //   sum2 = parseFloat(sum2);
   //   m = parseFloat(m);
   //   m2 = parseFloat(m2);
@@ -204,7 +204,7 @@ changePercent(sum2, sum) {
   //       + ((m/1.645)* (m/1.645)));
   //       if ((x > 0) || (x === 0)) {
   //         var changeM = Math.sqrt(x)
-  //         return decimalFormat(changeM, rowconfig.decimal) ;
+  //         return decimalFormat(changeM, rowConfig.decimal) ;
   //       } else {
   //         return "";
   //       }
@@ -242,22 +242,22 @@ changePercent(sum2, sum) {
   //   }
   //   },
 
-  // @computed('data.comparison_sum', 'data2.comparison_sum', 'data.sum', 'data2.sum', 'rowconfig')
-  //   longTermDifference(comparisonSum, comparisonSum2, sum, sum2,rowconfig) {
+  // @computed('data.comparison_sum', 'data2.comparison_sum', 'data.sum', 'data2.sum', 'rowConfig')
+  //   longTermDifference(comparisonSum, comparisonSum2, sum, sum2,rowConfig) {
   //     sum = parseFloat(sum);
   //     sum2 = parseFloat(sum2);
   //     comparisonSum = parseFloat(comparisonSum);
   //     comparisonSum2 = parseFloat(comparisonSum2);
   //     if ((sum2 > 0) || (sum2 === 0)) {
   //       const x = ( sum - sum2 ) - (comparisonSum - comparisonSum2);
-  //       return decimalFormatAll(x,rowconfig.decimal);
+  //       return decimalFormatAll(x,rowConfig.decimal);
   //     } else {
   //       return "";
   //     }
   // },
   //
-  // @computed('data2.sum', 'data.comparison_m', 'data2.comparison_m', 'data.m', 'data2.m', 'rowconfig')
-  // longTermDifferenceMOE(sum2, comparisonM, comparisonM2, m, m2, rowconfig) {
+  // @computed('data2.sum', 'data.comparison_m', 'data2.comparison_m', 'data.m', 'data2.m', 'rowConfig')
+  // longTermDifferenceMOE(sum2, comparisonM, comparisonM2, m, m2, rowConfig) {
   //   sum2 = parseFloat(sum2);
   //   comparisonM = parseFloat(comparisonM);
   //   comparisonM2 = parseFloat(comparisonM2);
@@ -272,7 +272,7 @@ changePercent(sum2, sum) {
   //   if (isNaN(moe)) {
   //     return "";
   //   } else {
-  //   return decimalFormatAll(moe, rowconfig.decimal);
+  //   return decimalFormatAll(moe, rowConfig.decimal);
   // }
   // } else {
   //   return "";

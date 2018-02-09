@@ -1,21 +1,21 @@
-{{#unless rowconfig.divider}}
+{{#unless rowConfig.divider}}
   <td class='title-column' {{action 'showData'}}>
-    {{rowconfig.title}}
-    {{#if rowconfig.tooltip}}
-      {{info-tooltip tip=rowconfig.tooltip}}
+    {{rowConfig.title}}
+    {{#if rowConfig.tooltip}}
+      {{info-tooltip tip=rowConfig.tooltip}}
     {{/if}}
   </td>
 
   {{!-- SELECTED AREA --}}
   {{data-table-column-group
     model=data.selection
-    rowconfig=rowconfig
+    rowConfig=rowConfig
     reliabilityMode=reliability}}
 
   {{!-- COMPARISON AREA --}}
   {{data-table-column-group
     model=data.comparison
-    rowconfig=rowconfig
+    rowConfig=rowConfig
     reliabilityMode=reliability}}
 
   {{!-- DIFFERENCE --}}
@@ -28,7 +28,7 @@
       'insignificant'}}">
     {{format-number
       data.difference_sum 
-      precision=rowconfig.decimal}}
+      precision=rowConfig.decimal}}
   </td>
   {{#if reliability}}
     <td class="
@@ -39,28 +39,25 @@
         'insignificant'}}">
       {{format-number 
         data.difference_m
-        precision=rowconfig.decimal}}
+        precision=rowConfig.decimal}}
     </td>
   {{/if}}
 
-  {{#unless 
-    (or rowconfig.special 
-      (and (eq data.sum 0) 
-        (eq data.comparison_sum 0)))}}
     <td 
       class="{{unless data.percent_significant 'insignificant'}}">
-      {{format-number
-        data.difference_percent
-        precision=1}}
+      {{unless data.shouldHideDeltaPercent 
+        (format-number
+          data.difference_percent
+          precision=1)}}
     </td>
     {{#if reliability}}
       <td>
-        {{format-number
-          data.difference_percent_m
-          precision=1}}
+        {{unless data.shouldHideDeltaPercent 
+          (format-number
+            data.difference_percent_m
+            precision=1)}}
       </td>
     {{/if}}
-  {{/unless}}
 
 {{else}}
 

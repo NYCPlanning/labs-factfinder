@@ -1,4 +1,4 @@
-{{#if rowconfig.divider}}
+{{#if rowConfig.divider}}
 
   <td>&nbsp;</td>
   <td class="cell-border-left">&nbsp;</td>
@@ -23,9 +23,9 @@
 {{else}}{{! divider = false }}
 
   <td>
-    {{rowconfig.title}}
-    {{#if rowconfig.tooltip}}
-      {{info-tooltip tip=rowconfig.tooltip}}
+    {{rowConfig.title}}
+    {{#if rowConfig.tooltip}}
+      {{info-tooltip tip=rowConfig.tooltip}}
     {{/if}}
   </td>
 
