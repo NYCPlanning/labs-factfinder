@@ -51,7 +51,8 @@
           precision=1)}}
     </td>
     {{#if reliability}}
-      <td>
+      <td
+        class="{{unless data.percent_significant 'insignificant'}}">
         {{unless data.shouldHideDeltaPercent 
           (format-number
             data.difference_percent_m

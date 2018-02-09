@@ -59,17 +59,25 @@
 
   {{!-- percentage point --}}
   <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
-    {{format-number 
-      (mult data.change_percentage_point 100) 
-      precision=1}}
+    {{#unless 
+        (or data.isSpecial
+          (and (eq data.sum 0) (eq data2.sum 0)))}}
+      {{format-number 
+        (mult data.change_percentage_point 100) 
+        precision=1}}
+    {{/unless}}
   </td>
 
   {{#if reliability}}
     {{!-- percentage point m --}}
     <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
-      {{format-number 
-        (mult data.change_percentage_point_m 100)
-        precision=1}}
+      {{#unless 
+          (or data.isSpecial
+            (and (eq data.sum 0) (eq data2.sum 0)))}}
+        {{format-number 
+          (mult data.change_percentage_point_m 100)
+          precision=1}}
+      {{/unless}}
     </td>
   {{/if}}
 
