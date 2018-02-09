@@ -1,9 +1,8 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
 import nestProfile from '../../utils/nest-profile';
-import delegateAggregator from '../../utils/delegate-aggregator';
 
-const { get, inject: { service } } = Ember;
+const { inject: { service } } = Ember;
 
 export default Ember.Route.extend({
   selection: service(),
@@ -15,7 +14,7 @@ export default Ember.Route.extend({
   },
 
   model(params, { queryParams: { comparator = '0' } }) {
-    return this.get('fetchDecennialData').perform(comparator)
+    return this.get('fetchDecennialData').perform(comparator);
   },
 
   afterModel(model, transition) {
@@ -31,17 +30,6 @@ export default Ember.Route.extend({
       .then(rows => rows.toArray());
 
     const nestedModel = nestProfile(profileData, 'year', 'variable');
-    profileData.forEach((row) => {
-      if (row.get('isSpecial')) {
-        const rowConfig = row.get('rowConfig');
-        const rowYear = row.get('year');
-        const latestYear = get(nestedModel, rowYear);
-
-        delegateAggregator(row, rowConfig, latestYear);
-      }
-
-      return row;
-    });
 
     return nestedModel;
   }).enqueue().cancelOn('deactivate'),
