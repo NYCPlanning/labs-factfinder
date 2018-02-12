@@ -14,7 +14,7 @@
         {{#if titleTooltip}}
           {{info-tooltip
             tip=titleTooltip
-            classNames='layer-info'
+            classNames='layer-info primary-color'
             tooltipClass='tooltip--layer-info'
           }}
         {{/if}}
@@ -42,11 +42,11 @@
 
   {{#if visible}}
     <div class="layer-menu-item-content">
-      {{yield (hash
+      {{~yield (hash
         layer=layer
         updateSql=(action 'updateSql')
         updatePaintFor=(action 'updatePaintFor')
-        )}}
+        )~}}
     </div>
   {{/if}}
 

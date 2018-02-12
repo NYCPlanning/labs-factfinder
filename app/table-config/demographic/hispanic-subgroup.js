@@ -134,6 +134,7 @@ export default [
   },
   {
     title: 'All other Hispanic/Latino',
+    indent: 1,
     data: 'hspalloth',
   },
 ];

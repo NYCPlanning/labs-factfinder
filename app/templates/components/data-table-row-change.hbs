@@ -1,86 +1,107 @@
-{{#if rowconfig.divider}}
-
-  <td>&nbsp;</td>
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-
-{{else}}{{! divider = false }}
-
-  <td>
-    {{rowconfig.title}}
-    {{#if rowconfig.tooltip}}
-      {{info-tooltip tip=rowconfig.tooltip}}
+{{#unless rowConfig.divider}}
+  <td class='title-column' {{action 'showData'}}>
+    {{rowConfig.title}}
+    {{#if rowConfig.tooltip}}
+      {{info-tooltip tip=rowConfig.tooltip}}
     {{/if}}
   </td>
 
   {{!-- OLD --}}
-  <td class="cell-border-left">{{selectedEarlySum}}</td>{{!-- previous dataset sum--}}
-  {{#if reliability}}
-    <td>{{selectedEarlySumM}}</td>
-    <td>{{selectedEarlySumCV}}</td>
-  {{/if}}
-  <td>{{selectedEarlyPercent}}%</td>{{!-- previous dataset percent --}}
-  {{#if reliability}}
-    <td>{{selectedEarlyPercentM}}</td>
-  {{/if}}
+  {{data-table-column-group
+    model=data2.selection
+    rowConfig=rowConfig
+    reliabilityMode=reliability}}
 
   {{!-- CURRENT --}}
-  <td class="cell-border-left">{{selectedCurrentSum}}</td>{{!-- current dataset sum --}}
-  {{#if reliability}}
-    <td>{{selectedCurrentSumM}}</td>
-    <td>{{selectedCurrentSumCV}}</td>
-  {{/if}}
-  <td>{{selectedCurrentPercent}}%</td>{{!-- current dataset percent --}}
-  {{#if reliability}}
-    <td>{{selectedCurrentPercentM}}</td>
-  {{/if}}
+   {{data-table-column-group
+    model=data.selection
+    rowConfig=rowConfig
+    reliabilityMode=reliability}}
 
-  {{!-- DIFFERENCE --}}
-  <td class="cell-border-left">{{differenceChangeSum}}</td>{{!-- selected area sum change --}}
-  {{#if reliability}}
-    <td>{{differenceChangeSumMoE}}</td>{{!-- selected area sum change moe --}}
-  {{/if}}
-  <td>{{differenceChangePercent}}%</td>{{!-- selected area percent change --}}
-  {{#if reliability}}
-    <td>{{differenceChangePercentMOE}}</td>{{!-- selected area percent change moe --}}
-  {{/if}}
-  <td>{{differencePercentagePoint}}</td>
-  {{#if reliability}}
-    <td>{{differencePercentagePointMOE}}</td>
-  {{/if}}
+  {{!-- CHANGE --}}
 
-  {{!-- <td class="cell-border-left">
-    {{longTermDifference}}
+  {{!-- Estimate --}}
+  <td class="cell-border-left {{unless data.change_significant 'insignificant'}}">
+    {{format-number 
+      data.change_sum
+      precision=rowConfig.decimal}}
   </td>
+
   {{#if reliability}}
-    <td>
-      {{longTermDifferenceMOE}}
+    {{!-- MOE --}}
+    <td class="{{unless data.change_significant 'insignificant'}}">
+      {{format-number 
+        data.change_m 
+        precision=rowConfig.decimal}}
     </td>
   {{/if}}
-  <td>
-    {{longTermDifferencePercent}}
-  </td>
-  {{#if reliability}}
-  <td>
-    {{longTermDifferencePercentMOE}}
-  </td>
-  {{/if}} --}}
 
-{{/if}}
+  {{!-- percent --}}
+  <td class="{{unless data.change_percent_significant 'insignificant'}}">
+    {{if 
+      data.change_percent 
+        (concat 
+          (format-number (mult data.change_percent 100) precision=1) 
+          '%')}}
+  </td>
+
+
+  {{#if reliability}}
+    {{!-- Percent M --}}
+    <td class="{{unless data.change_percent_significant 'insignificant'}}">
+      {{if 
+        data.change_percent_m 
+          (concat 
+            (format-number (mult data.change_percent_m 100) precision=1) 
+            '%')}}
+    </td>
+  {{/if}}
+
+  {{!-- percentage point --}}
+  <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
+    {{#unless 
+        (or data.isSpecial
+          (and (eq data.sum 0) (eq data2.sum 0)))}}
+      {{format-number 
+        (mult data.change_percentage_point 100) 
+        precision=1}}
+    {{/unless}}
+  </td>
+
+  {{#if reliability}}
+    {{!-- percentage point m --}}
+    <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
+      {{#unless 
+          (or data.isSpecial
+            (and (eq data.sum 0) (eq data2.sum 0)))}}
+        {{format-number 
+          (mult data.change_percentage_point_m 100)
+          precision=1}}
+      {{/unless}}
+    </td>
+  {{/if}}
+
+{{else}}
+
+  <td>&nbsp;</td>
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+{{/unless}}
+
 {{yield}}

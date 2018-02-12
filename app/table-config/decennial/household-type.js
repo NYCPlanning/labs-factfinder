@@ -5,7 +5,6 @@ export default [
     data: 'hh',
   },
   {
-    indent: 1,
     title: 'Family households (families)',
     data: 'fam',
   },

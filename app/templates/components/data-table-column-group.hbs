@@ -1,0 +1,41 @@
+{{!-- Estimate --}}
+<td class="cell-border-left {{unless model.is_reliable 'insignificant'}}" {{action 'logModel'}}>
+  {{format-number model.sum precision=rowConfig.decimal}}
+</td>
+
+{{#if reliabilityMode}}
+  {{!-- MOE --}}
+  <td class="{{unless model.is_reliable 'insignificant'}}">
+    {{if
+      (gt model.sum 0)
+        (format-number model.moe precision=rowConfig.decimal)}}
+  </td>
+  {{!-- CV --}}
+  <td class="{{unless model.is_reliable 'insignificant'}}">
+    {{if 
+      (gt model.sum 0) 
+        (format-number model.cv precision=1)}}
+  </td>
+{{/if}}
+
+{{!-- Percent Estimate --}}
+<td class="{{unless model.is_reliable 'insignificant'}}">
+  {{if 
+    model.percent 
+      (concat 
+        (format-number (mult model.percent 100) precision=1) 
+        '%')}}
+</td>
+
+{{!-- Percent MOE --}}
+{{#if reliabilityMode}}
+  <td class="{{unless model.is_reliable 'insignificant'}}">
+    {{if 
+      model.percent_m 
+        (concat 
+          (format-number (mult model.percent_m 100) precision=1) 
+          '%')}}
+  </td>
+{{/if}}
+
+{{yield}}

@@ -1,45 +1,309 @@
 <div class="overflow-y-grid grid-padding-x grid-padding-y">
   <div class="cell auto" id="profile-content">
 
-    <div class="grid-container" style="max-width:65em;">
+    <div class="grid-container" style="max-width:60em;">
       <div class="grid-x grid-padding-x">
-        <div class="cell large-10">
+        <div class="cell">
 
           <h1>Features</h1>
 
-          <h2 class="header-medium">Feature Number One</h2>
+          <hr />
+
+          <h2 class="header-large">Map View</h2>
           <div class="grid-x">
-            <div class="cell medium-3 large-2 feature-image-cell">
-              {{!-- TODO: Edit this placeholder image! --}}
-              <img src="http://via.placeholder.com/400x400" class="feature-image">
+            <div class="cell medium-4 feature-image-cell">
+              <img class="feature-image" src='/img/feature--map-view.png' />
             </div>
-            <div class="cell medium-9 large-10">
-              {{!-- TODO: Edit this placeholder text! --}}
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <div class="cell medium-8">
+              <p>The Map View allows you to select geographies to create profiles.</p>
+
+              <h3 class="header-medium">Geographic Summary Level</h3>
+              <p>There are four types of geographic summary levels from which to build profiles:</p>
+              <ul>
+                <li><strong>Census Blocks</strong></li>
+                <li><strong>Census Tracts</strong></li>
+                <li><strong>Neighborhood Tabulation Areas</strong> (NTAs)</li>
+                <li><strong>Public Use Microdata Areas</strong> (PUMAs)</li>
+              </ul>
             </div>
           </div>
 
-          <h2 class="header-medium">Feature Number Two</h2>
-          <div class="grid-x">
-            <div class="cell medium-3 large-2 feature-image-cell">
-              {{!-- TODO: Edit this placeholder image! --}}
-              <img src="http://via.placeholder.com/400x400" class="feature-image">
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Search</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--search.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>The Search input provides results as you type. Search for any New York City address or specific buildings (like "Museum of Natural History").</p>
+                </div>
+              </div>
+
             </div>
-            <div class="cell medium-9 large-10">
-              {{!-- TODO: Edit this placeholder text! --}}
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Selection <small>(click on geography)</small></h3>
+              <p>You can add or remove geographies by clicking on them. Once a selection has been made, you can go to the Profile View to examine the population, socioeconomic, and housing characteristics. </p>
+
             </div>
           </div>
 
-          <h2 class="header-medium">Feature Number Three</h2>
-          <div class="grid-x">
-            <div class="cell medium-3 large-2 feature-image-cell">
-              {{!-- TODO: Edit this placeholder image! --}}
-              <img src="http://via.placeholder.com/400x400" class="feature-image">
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Draw</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--draw.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>The Draw tool lets you create a polygon by clicking to add vertices. Clicking an exisisting vertex will finish the drawing. All geographies within the polygon will be added to your selection. </p>
+                </div>
+              </div>
+
             </div>
-            <div class="cell medium-9 large-10">
-              {{!-- TODO: Edit this placeholder text! --}}
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Clear Selection</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--clear-selection.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>The Clear Selection feature removes all geographies from your selection.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <h3 class="header-medium">Advanced Map Controls</h3>
+          <div class="grid-x">
+            <div class="cell large-7">
+              <div class="grid-x">
+                <div class="cell medium-3 large-4 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--map-controls.png' />
+                </div>
+                <div class="cell medium-9 large-8 feature-image-cell">
+                  <h4 class="header-small no-margin">Zoom, Tilt, Rotate</h4>
+                  <p>Next-generation web mapping technology used in NYC Population FactFinder allows you to fine tune the map's zoom, tilt, and rotation. Use the scrollwheel to zoom, hold Ctrl while dragging the map to adjust pitch and bearing. Click the compass icon to reset north.</p>
+                </div>
+              </div>
+            </div>
+            <div class="cell large-5">
+              <h4 class="header-small no-margin">Find my Location</h4>
+              <p>Click the locator control and the map will zoom in on your current location (you may need to give permission via your web browser). This feature works great on mobile, so you can quickly lookup population and housing data on the go.</p>
+            </div>
+          </div>
+
+          <h3 class="header-medium">Advanced Options</h3>
+          <div class="grid-x">
+            <div class="cell large-9">
+              <div class="grid-x">
+                <div class="cell medium-3 large-3 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--adv-options.png' />
+                </div>
+                <div class="cell medium-9 large-9">
+                  <p>Advanced Options encompass features that can inform your geographic selection. The Thematic Maps feature provides you with Neighborhood Tabulation Area overlay maps for selected variables. Other overlay features include: Subway System (showing an overlay of all subway lines and stations), Community District (CD) boundaries, New York City Council District boundaries, Neighborhood Tabulation Area (NTA) boundaries, Public Use Microdata Area (PUMA) boundaries, and Borough boundaries.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <hr />
+
+
+          <h2 class="header-large">Profile View</h2>
+          <div class="grid-x">
+            <div class="cell medium-4 feature-image-cell">
+              <img class="feature-image" src='/img/feature--profile-view.png' />
+            </div>
+            <div class="cell medium-8">
+              <p>The Profile View allows you to examine all data output for the selected area.</p>
+
+              <h3 class="header-medium">Profile Tabs</h3>
+              <p>The Profile Tabs let you switch between different data sources and profile types. There are five Profile Tabs:</p>
+              <ul>
+                <li><strong>Census</strong> <small>- Basic demographic and housing data from the decennial censuses</small></li>
+                <li><strong>Demographic</strong> <small>(ACS) - Basic population statistics from the American Community Survey</small></li>
+                <li><strong>Social</strong> <small>(ACS) - Social characteristics from the American Community Survey</small></li>
+                <li><strong>Economic</strong> <small>(ACS) - Economic characteristics from the American Community Survey</small></li>
+                <li><strong>Housing</strong> <small>(ACS) - Detailed housing characteristics from the American Community Survey</small></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Profile Mode <small>- Latest Data or Change Over Time</small></h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--profile-mode.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>By default, the profile shows the latest data. This radio button switches the profile to show how a selected area has changed over time. In the Census Profile Tab, change is shown from 2000 to 2010. In the four ACS profiles, change is from the 2006-2010 five-year estimates to the 2012-2016 five-year estimates.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Comparison Area</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--profile-comparison.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>The Comparison Area is the geography chosen to provide a contrast to the Selected Area. This Comparison Area is selected through the Compare to drop-down menu.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <h3 class="header-medium">Show Data Reliability</h3>
+          <div class="grid-x">
+            <div class="cell large-9">
+              <div class="grid-x">
+                <div class="cell medium-3 large-3 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--profile-reliability.png' />
+                </div>
+                <div class="cell medium-9 large-9">
+                  <p>This feature expands the ACS tables to reveal reliability measures associated with estimates&mdash;margins of error (MOEs) and Coefficients of Variation (CVs). ACS data are subject to sampling variability, so these measures of reliability help you gauge the consistency of the ACS and the degree to which they can trust any given statistic.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="header-medium">Grayed Values</h3>
+          <div class="grid-x">
+            <div class="cell large-9">
+              <div class="grid-x">
+                <div class="cell medium-3 large-3 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--profile-grayed-values.png' />
+                </div>
+                <div class="cell medium-9 large-9">
+                  <p>ACS profiles may include grayed values which mean that they are not statistically reliable enough for most applications. For estimates and MOEs with a CV, graying is an indication that the CV is greater than or equal to 20%. Data associated with count estimates of zero and top- and bottom-coded median estimates are also grayed to alert you that data are either unreliable, or of indeterminate reliability. Estimates and MOEs of differences between two areas and change over time for a selected area may also be grayed, indicating that the estimates are not statistically significant at a 90% confidence level.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="header-medium">Charts</h3>
+          <div class="grid-x">
+            <div class="cell large-9">
+              <div class="grid-x">
+                <div class="cell medium-3 large-3 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--chart.png' />
+                </div>
+                <div class="cell medium-9 large-9">
+                  <p>The charts show a distribution for the Selected Area in contrast to the Comparison Area. Charts appearing in ACS tabs include Margins of Error bars. In general, if error bars around an estimate for the Selected Area does not overlap with the error bars around an estimate for the Comparison Area, then the difference between the two estimates is statistically significant at a 90% confidence level.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Drop-down List on Profile Tabs</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--profile-section-menu.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>This feature allows you to jump to particular profile sections.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Tooltips</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--tooltip.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>Tooltips can be found throughout NYC Population FactFinder to provide guidance on selected aspects.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Back to Map View</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--return-to-selection.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>You can return to the Map View by clicking on the map, or by clicking on the map icon to the left of the Profile Tabs. You can also use your web browser's back button.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Copy Table to Clipboard</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--copy-to-clipboard.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>The Copy Table to Clipboard feature allows you to copy a table in a profile and paste it into other applications.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Download Data</h3>
+              <div class="grid-x">
+                <div class="cell medium-3 large-5 feature-image-cell">
+                  <img class="feature-image" src='/img/feature--download.png' />
+                </div>
+                <div class="cell medium-9 large-7">
+                  <p>You can download a comma delimited file (CSV) for all data shown in a given Profile Tab.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Sharable Links</h3>
+              <p>Every user-defined Selected Area has a unique URL, specific to particular Profile Tab. You can share these links with others, or save them to view the profiles later.</p>
+
+            </div>
+          </div>
+
+
+          <hr >
+
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Open Data</h3>
+              <p>NYC Population FactFinder is built entirely on open data. The data page provides dataset descriptions, source links, and a timestamp of the last update.</p>
+
+            </div>
+            <div class="cell large-6">
+
+              <h3 class="header-medium">Open Source</h3>
+              <p>As with most NYC Planning Labs projects, NYC Population FactFinder (PFF) is 100% open source and developed in the open. You can follow along on GitHub, and help improve PFF by opening issues to report bugs or request features. If you’re a developer and want to contribute to PFF, we will gladly accept pull requests.</p>
+
             </div>
           </div>
 

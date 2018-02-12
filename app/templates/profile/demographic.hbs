@@ -1,93 +1,97 @@
-{{profile-header
-  profile=profile
-  title="Demographic Profile"
-  mode=profile.mode
-  data=rawData
-}}
-<hr>
+<div class="shows-signficance">
+  {{profile-header
+    profile=profile
+    title="Demographic Profile"
+    mode=profile.mode
+    data=rawData
+  }}
+  <hr>
 
-<h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=sexAndAge
-      model=model
-    }}
-  </div>
-
-  <div class="cell large-4">
-      {{#population-pyramid
-        title="Age/Sex Distribution"
-        data=agePopDist
+  <h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=sexAndAge
+        model=model
       }}
-        <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
-          <span class="cell small-6 text-right">
-            Male <br>{{numeral-format model.y2012_2016.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.male.percent_m '0.0%'}})</span>
-          </span>
-          <span class="cell small-6">
-            Female <br>{{numeral-format model.y2012_2016.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.fem.percent_m '0.0%'}})</span>
-          </span>
-        </h4>
-      {{/population-pyramid}}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{#population-pyramid
+          title="Age/Sex Distribution"
+          data=agePopDist
+        }}
+          <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
+            <span class="cell small-6 text-right">
+              Male <br>{{numeral-format model.y2012_2016.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.male.percent_m '0.0%'}})</span>
+            </span>
+            <span class="cell small-6">
+              Female <br>{{numeral-format model.y2012_2016.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2012_2016.fem.percent_m '0.0%'}})</span>
+            </span>
+          </h4>
+        {{/population-pyramid}}
+      {{/if}}
+    </div>
   </div>
-</div>
 
-<hr>
+  <hr>
 
-<h3 id="mutually-exclusive-race-hispanic-origin" class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-
-    {{data-table
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=mutuallyExclusiveRaceHispanicOrigin
-      model=model
-    }}
+  <h3 id="mutually-exclusive-race-hispanic-origin" class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=mutuallyExclusiveRaceHispanicOrigin
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Race/Hispanic Origin Groups"
+          config=raceGroupChartConfig
+          data=model.y2012_2016
+          height=176
+          xMax=1}}
+      {{/if}}
+    </div>
   </div>
-  <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Race/Hispanic Origin Groups"
-      config=raceGroupChartConfig
-      data=model.y2012_2016
-      height=176
-      xMax=1}}
+
+  <hr>
+
+  <h3 id="hispanic-subgroup" class="header-medium">Hispanic Subgroup</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
+      {{data-table
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=hispanicSubgroup
+        model=model
+      }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Hispanic Subgroups"
+          config=hispanicSubgroupChartConfig
+          data=model.y2012_2016
+          height=204
+          xMax=1}}
+      {{/if}}
+    </div>
   </div>
-</div>
 
-<hr>
+  <hr>
 
-<h3 id="hispanic-subgroup" class="header-medium">Hispanic Subgroup</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-    {{data-table
-      mode=profile.mode
-      reliability=profile.reliability
-      comparison=profile.comparison
-      config=hispanicSubgroup
-      model=model
-    }}
-  </div>
-  <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Hispanic Subgroups"
-      config=hispanicSubgroupChartConfig
-      data=model.y2012_2016
-      height=204
-      xMax=1}}
-  </div>
-</div>
-
-<hr>
-
-<h3 id="asian-subgroup" class="header-medium">Asian Subgroup</h3>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-8">
-
+  <h3 id="asian-subgroup" class="header-medium">Asian Subgroup</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-8">
       {{data-table
         mode=profile.mode
         reliability=profile.reliability
@@ -95,17 +99,20 @@
         config=asianSubgroup
         model=model
       }}
+    </div>
+    <div class="cell large-4">
+      {{#if (eq profile.mode 'current')}}
+        {{acs-bar
+          title="Percent Distribution of Asian Subgroups"
+          config=asianSubgroupChartConfig
+          data=model.y2012_2016
+          height=150
+          xMax=1}}
+      {{/if}}
+    </div>
   </div>
-  <div class="cell large-4">
-    {{acs-bar
-      title="Percent Distribution of Asian Subgroups"
-      config=asianSubgroupChartConfig
-      data=model.y2012_2016
-      height=150
-      xMax=1}}
-  </div>
+
+  {{profile-footer}}
+
+  {{outlet}}
 </div>
-
-{{profile-footer}}
-
-{{outlet}}

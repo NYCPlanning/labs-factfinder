@@ -171,6 +171,7 @@ button {
   }
 }
 
+.primary-color { color: $primary-color; }
 .light-gray { color: $light-gray; }
 .medium-gray { color: $medium-gray; }
 .dark-gray { color: $dark-gray; }
@@ -541,6 +542,9 @@ tbody td:first-child {
     border-bottom-left-radius: 0;
   }
 }
+
+.shows-signficance .insignificant { color: $medium-gray; }
+
 
 //
 // Callouts

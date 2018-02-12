@@ -18,6 +18,7 @@ export default [
     data: 'pbwpv',
   },
   {
+    indent: 1,
     title: 'Under 18 years',
     highlight: true,
     data: 'pu18pvu',
@@ -28,6 +29,7 @@ export default [
     data: 'pu18bwpv',
   },
   {
+    indent: 1,
     title: '65 years and over',
     highlight: true,
     data: 'p65plpvu',

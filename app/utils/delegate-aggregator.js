@@ -1,12 +1,19 @@
 const noop = () => null;
 
-export default function aggregateSpecialVariable(rowConfig, data) {
-  const { aggregator = noop } = rowConfig || {};
-  const comparison_sum = aggregator.bind(rowConfig)(data, 'comparison_sum'); // eslint-disable-line
-  const sum = aggregator.bind(rowConfig)(data);
+export default function aggregateSpecialVariable(row, rowConfig, data) {
+  const { specialCalculations = [] } = rowConfig || {};
+  const resultsObject = {};
 
-  return {
-    comparison_sum,
-    sum,
-  };
+  specialCalculations.forEach(({ column, aggregator = noop, options }) => {
+    let specialValue;
+    try {
+      specialValue = aggregator(data, column, options);
+    } catch (err) {
+      console.log('Error with ', column, options, 'Stack trace: ', err); // eslint-disable-line
+    }
+
+    row.set(column, specialValue);
+  });
+
+  return resultsObject;
 }
