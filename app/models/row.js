@@ -2,7 +2,6 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 
-import { decimalOnePlacePercent } from '../utils/number-formatters';
 import tableConfigs from '../table-config';
 
 const { get, Logger, computed: { alias } } = Ember;
@@ -30,6 +29,7 @@ export default DS.Model.extend({
   difference_m: DS.attr('number'),
   difference_percent_m: DS.attr('number'),
 
+  previous_sum: DS.attr('number'),
   change_sum: DS.attr('number'),
   change_percent: DS.attr('number'),
   change_m: DS.attr('number'),
@@ -94,122 +94,4 @@ export default DS.Model.extend({
   shouldHideDeltaPercent(isSpecial, sum, comparison_sum) {
     return isSpecial || (sum + comparison_sum === 0);
   },
-
-  // this is still used in another component
-  @computed('sum', 'percent')
-  selectedPercent(sum, percent) {
-    // if (isSpecial) return null;
-    if (sum > 0) {
-      return decimalOnePlacePercent(percent);
-    }
-
-    return null;
-  },
-
-  // this is still used in another component
-  @computed('sum', 'percent_m', 'isBase', 'isSpecial')
-  selectedPercentM(sum, percentM, isBase, isSpecial) {
-    if (isBase || isSpecial) return null;
-
-    const floatedZ = parseFloat(percentM);
-    if (sum > 0) {
-      return decimalOnePlacePercent(floatedZ);
-    }
-
-    return null;
-  },
-
-  // this is still used in another component
-  @computed('comparison_sum', 'comparison_percent')
-  comparisonPercent(sum, percent) {
-    if (sum > 0) {
-      return decimalOnePlacePercent(percent);
-    }
-
-    return null;
-  },
-
-  // this is still used in another component
-  @computed('comparison_sum', 'comparison_percent_m', 'isBase', 'isSpecial')
-  comparisonPercentM(sum, percentM, isBase, isSpecial) {
-    if (isBase || isSpecial) return null;
-
-    const floatedZ = parseFloat(percentM);
-    if (sum > 0) {
-      return decimalOnePlacePercent(floatedZ);
-    }
-
-    return null;
-  },
-
-  // this is still used in another component
-  @computed('comparison_sum', 'comparison_m')
-  comparisonSumMoE(sum, m) {
-    const floatedM = parseFloat(m);
-
-    if (sum > 0) {
-      return floatedM;
-    }
-
-    return null;
-  },
-
-  // if sum and comparison sum
-  // are not numbers return blank
-  // calculate on the server...
-  @computed('sum', 'comparison_sum')
-  differenceSum(sum, comparisonSum) {
-    const difference = sum - comparisonSum;
-
-    if (isNaN(sum) || isNaN(comparisonSum)) {
-      return null;
-    }
-
-    return difference;
-  },
-
-  // calculate on the server
-  @computed('m', 'comparison_m')
-  differenceM(m, comparison_m) {
-    const sumOfSquares = (((m) ** 2) + ((comparison_m) ** 2));
-    const difference = Math.sqrt(sumOfSquares);
-    if (isNaN(m) || isNaN(comparison_m)) {
-      return null;
-    }
-
-    return difference.toFixed(1);
-  },
-
-  // calculate on the server
-  @computed('percent', 'comparison_percent')
-  differencePercent(percent, comparisonPercent) {
-    const difference = (percent - comparisonPercent) * 100;
-
-    if (isNaN(percent) || isNaN(comparisonPercent)) {
-      return null;
-    }
-
-    return cleanPercent(difference);
-  },
-
-  // calculate on the server
-  @computed('selectedPercentM', 'comparisonPercentM', 'isBase')
-  differencePercentM(selectedPercentM, comparisonPercentM, isBase) {
-    if (isBase) return null;
-
-    const sumOfSquares = (((parseFloat(selectedPercentM)) ** 2) + ((parseFloat(comparisonPercentM)) ** 2));
-    const difference = Math.sqrt(sumOfSquares);
-
-    if (isNaN(parseFloat(selectedPercentM)) || isNaN(parseFloat(comparisonPercentM))) {
-      return null;
-    }
-
-    return difference.toFixed(1);
-  },
 });
-
-function cleanPercent(value) {
-  let cleaned = value;
-  if ((value < 0) && (value > -0.05)) cleaned = 0;
-  return cleaned.toFixed(1);
-}

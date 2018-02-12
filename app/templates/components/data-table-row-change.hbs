@@ -1,5 +1,5 @@
 {{#unless rowConfig.divider}}
-  <td>
+  <td class='title-column' {{action 'showData'}}>
     {{rowConfig.title}}
     {{#if rowConfig.tooltip}}
       {{info-tooltip tip=rowConfig.tooltip}}

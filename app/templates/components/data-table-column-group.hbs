@@ -1,5 +1,5 @@
 {{!-- Estimate --}}
-<td class="cell-border-left {{unless model.is_reliable 'insignificant'}}">
+<td class="cell-border-left {{unless model.is_reliable 'insignificant'}}" {{action 'logModel'}}>
   {{format-number model.sum precision=rowConfig.decimal}}
 </td>
 

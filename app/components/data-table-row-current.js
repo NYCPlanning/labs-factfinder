@@ -26,6 +26,7 @@ export default Ember.Component.extend({
 
   actions: {
     showData() {
+      window.logModel = this.get('data');
       console.log(this.get('data'));
     },
   },
