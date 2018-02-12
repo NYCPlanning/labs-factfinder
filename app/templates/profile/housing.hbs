@@ -10,7 +10,7 @@
 
   <h3 class="header-medium" id="housing-occupancy">Housing Occupancy</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -26,7 +26,7 @@
 
   <h3 class="header-medium" id="units-in-structure">Units in Structure</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -41,7 +41,7 @@
 
   <h3 class="header-medium" id="year-structure-built">Year Structure Built</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -57,7 +57,7 @@
 
   <h3 class="header-medium" id="rooms">Rooms</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -73,7 +73,7 @@
 
   <h3 class="header-medium" id="housing-tenure">Housing Tenure</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -85,23 +85,23 @@
         special_variables='housing__special_variable'
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Housing Tenure"
           config=housingTenureChartConfig
           data=model.y2012_2016
           height=122
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 class="header-medium" id="year-householder-moved-into-unit">Year Householder Moved Into Unit</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -117,7 +117,7 @@
 
   <h3 class="header-medium" id="vehicles-available">Vehicles Available</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -127,23 +127,23 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Households by Vehicles Available"
           config=vehiclesAvailableChartConfig
           data=model.y2012_2016
           height=176
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 class="header-medium" id="occupants-per-room">Occupants per Room</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -162,7 +162,7 @@
     {{info-tooltip tip='In 2016 inflation-adjusted dollars'}}
   </h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -172,23 +172,23 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Owner-occupied Households by Housing Value"
           config=valueChartConfig
           data=model.y2012_2016
           height=283
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 class="header-medium" id="mortgage-status">Mortgage Status</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -204,7 +204,7 @@
 
   <h3 class="header-medium" id="selected-monthly-owner-costs-as-a-percentage-of-household-income">Selected Monthly Owner Costs as a Percentage of Household Income</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -223,7 +223,7 @@
     {{info-tooltip tip='In 2016 inflation-adjusted dollars'}}
   </h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -233,23 +233,23 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Renter-occupied Households by Gross Rent"
           config=grossRentChartConfig
           data=model.y2012_2016
           height=264
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 class="header-medium" id="gross-rent-as-a-percentage-of-household-income">Gross Rent as a Percentage of Household Income (GRAPI)</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -259,16 +259,16 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income"
           config=grossRentGrapiChartConfig
           data=model.y2012_2016
           height=235
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   {{profile-footer}}

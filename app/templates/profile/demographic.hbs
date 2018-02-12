@@ -9,7 +9,7 @@
 
   <h3 id="sex-and-age" class="header-medium">Sex and Age</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         mode=profile.mode
         reliability=profile.reliability
@@ -18,8 +18,8 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{#population-pyramid
           title="Age/Sex Distribution"
           data=agePopDist
@@ -33,15 +33,15 @@
             </span>
           </h4>
         {{/population-pyramid}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 id="mutually-exclusive-race-hispanic-origin" class="header-medium">Mutually Exclusive Race / Hispanic Origin</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         mode=profile.mode
         reliability=profile.reliability
@@ -50,23 +50,23 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Race/Hispanic Origin Groups"
           config=raceGroupChartConfig
           data=model.y2012_2016
           height=176
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 id="hispanic-subgroup" class="header-medium">Hispanic Subgroup</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         mode=profile.mode
         reliability=profile.reliability
@@ -75,23 +75,23 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Hispanic Subgroups"
           config=hispanicSubgroupChartConfig
           data=model.y2012_2016
           height=204
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 id="asian-subgroup" class="header-medium">Asian Subgroup</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         mode=profile.mode
         reliability=profile.reliability
@@ -100,16 +100,16 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Asian Subgroups"
           config=asianSubgroupChartConfig
           data=model.y2012_2016
           height=150
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   {{profile-footer}}
