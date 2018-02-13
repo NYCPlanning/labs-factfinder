@@ -103,9 +103,9 @@ export default Ember.Service.extend({
     const map = this.get('currentMapInstance');
     if (map) {
       if (toLevel === 'ntas') {
-        map.setLayoutProperty('place-neighbourhood', 'visibility', 'none');
+        map.setLayoutProperty('subdued_nta_labels', 'visibility', 'none');
       } else {
-        map.setLayoutProperty('place-neighbourhood', 'visibility', 'visible');
+        map.setLayoutProperty('subdued_nta_labels', 'visibility', 'visible');
       }
     }
 

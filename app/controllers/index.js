@@ -15,6 +15,7 @@ import highlightedFeature from '../layers/highlighted-feature';
 
 import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
 import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
+import subduedNtaLabels from '../layers/subdued-nta-labels';
 
 const selectedFillLayer = selectedFeatures.fill;
 
@@ -41,8 +42,11 @@ export default Ember.Controller.extend({
 
   layerGroups,
   sources,
+
   bkQnMhBoundarySource,
   bkQnMhBoundaryLayer,
+  subduedNtaLabels,
+
   zoom: 12.25,
   center: [-73.9868, 40.724],
   mode: 'direct-select',
@@ -188,6 +192,9 @@ export default Ember.Controller.extend({
       if (this.get('selection.selectedCount')) {
         this.fitBounds(map);
       }
+
+      // remove default neighborhood names
+      map.removeLayer('place-neighbourhood');
     },
   },
 });
