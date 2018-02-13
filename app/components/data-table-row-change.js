@@ -24,6 +24,11 @@ export default Ember.Component.extend({
     return classes.join(' ');
   },
 
+  @computed('data2.selection.sum')
+  noPriorData(previousSum) {
+    return previousSum === null;
+  },
+
   actions: {
     showData() {
       window.logModel = this.get('data');

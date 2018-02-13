@@ -1,4 +1,4 @@
-{{#unless rowConfig.divider}}
+{{#unless (or rowConfig.divider noPriorData)}}
   <td class='title-column' {{action 'showData'}}>
     {{rowConfig.title}}
     {{#if rowConfig.tooltip}}
@@ -32,60 +32,72 @@
     {{!-- MOE --}}
     <td class="{{unless data.change_significant 'insignificant'}}">
       {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
-        (format-number 
-            data.change_m 
+        (format-number
+            data.change_m
             precision=rowConfig.decimal)}}
     </td>
   {{/if}}
 
   {{!-- percent --}}
   <td class="{{unless data.change_percent_significant 'insignificant'}}">
-    {{if 
+    {{if
       (and data.change_percent (and (not data.codingThresholds.sum) (not data2.codingThresholds.sum)))
-        (concat 
-          (format-number (mult data.change_percent 100) precision=1) 
+        (concat
+          (format-number (mult data.change_percent 100) precision=1)
           '%')}}
   </td>
 
   {{#if reliability}}
     {{!-- Percent M --}}
     <td class="{{unless data.change_percent_significant 'insignificant'}}">
-      {{if 
+      {{if
         (and data.change_percent_m (and (not data.codingThresholds.sum) (not data2.codingThresholds.sum)))
-          (concat 
-            (format-number (mult data.change_percent_m 100) precision=1) 
-            '%')}}
-    </td>
-  {{/if}}
+          (concat
+            (format-number (mult data.change_percent_m 100) precision=1)
+              '%')}}
+      </td>
+    {{/if}}
 
-  {{!-- percentage point --}}
-  <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
-    {{#unless 
-        (or data.isSpecial
-          (and (eq data.sum 0) (eq data2.sum 0)))}}
-      {{format-number 
-        (mult data.change_percentage_point 100) 
-        precision=1}}
-    {{/unless}}
-  </td>
-
-  {{#if reliability}}
-    {{!-- percentage point m --}}
+    {{!-- percentage point --}}
     <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
-      {{#unless 
+      {{#unless
           (or data.isSpecial
             (and (eq data.sum 0) (eq data2.sum 0)))}}
-        {{format-number 
-          (mult data.change_percentage_point_m 100)
+        {{format-number
+          (mult data.change_percentage_point 100)
           precision=1}}
       {{/unless}}
     </td>
-  {{/if}}
 
+    {{#if reliability}}
+      {{!-- percentage point m --}}
+      <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
+        {{#unless
+            (or data.isSpecial
+              (and (eq data.sum 0) (eq data2.sum 0)))}}
+          {{format-number
+            (mult data.change_percentage_point_m 100)
+            precision=1}}
+        {{/unless}}
+      </td>
+    {{/if}}
+  {{!-- {{/if}} --}}
 {{else}}
-
-  <td>&nbsp;</td>
-  <td class="cell-border-left">&nbsp;</td>
+  {{#if noPriorData}}
+    {{!-- if 2006-2010 sum is null, just return empty cells --}}
+    <td class='title-column' {{action 'showData'}}>
+      {{rowConfig.title}}
+      {{#if rowConfig.tooltip}}
+        {{info-tooltip tip=rowConfig.tooltip}}
+      {{/if}}
+    </td>
+    <td class="cell-border-left" class="no-compare-message">
+      <div>Data for this row are not comparable or are unavailable</div>
+    </td>
+  {{else}}
+    <td>&nbsp;</td>
+    <td class="cell-border-left">&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
   {{#if reliability}}<td>&nbsp;</td>{{/if}}
   {{#if reliability}}<td>&nbsp;</td>{{/if}}
