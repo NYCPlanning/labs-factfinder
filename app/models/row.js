@@ -14,6 +14,19 @@ export default DS.Model.extend({
   variablename: DS.attr('string'),
   dataset: DS.attr('string'), // year
   year: DS.attr('string'), // year
+  codingThresholds: DS.attr(),
+
+  /*
+    One of:
+      NTA2010
+      CT2010
+      PUMA2010
+      Boro2010
+  */
+  geotype: DS.attr('string'),
+
+  // number of geoids
+  numGeoids: DS.attr('number'),
 
   // all data
   base: DS.attr('string'),
@@ -55,14 +68,15 @@ export default DS.Model.extend({
   // groupings
   // these are used to group together similar type columns
   // into normalized mappings for components
-  @computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable')
-  selection(sum, moe, cv, percent, percent_m, is_reliable) {
-    return { sum, moe, cv, percent, percent_m, is_reliable };
+  // These are used in the column groups
+  @computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds.sum')
+  selection(sum, moe, cv, percent, percent_m, is_reliable, direction) {
+    return { sum, moe, cv, percent, percent_m, is_reliable, direction };
   },
 
-  @computed('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable')
-  comparison(sum, moe, cv, percent, percent_m, is_reliable) {
-    return { sum, moe, cv, percent, percent_m, is_reliable };
+  @computed('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'codingThresholds.comparison_sum')
+  comparison(sum, moe, cv, percent, percent_m, is_reliable, direction) {
+    return { sum, moe, cv, percent, percent_m, is_reliable, direction };
   },
 
   @computed('base', 'variablename')

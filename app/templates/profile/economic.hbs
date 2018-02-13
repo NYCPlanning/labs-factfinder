@@ -10,7 +10,7 @@
 
   <h3 class="header-medium" id="employment-status">Employment Status</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -26,7 +26,7 @@
 
   <h3 class="header-medium" id="commute-to-work">Commute to Work</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -36,23 +36,23 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Workers by Means of Transportation to Work"
           config=commuteToWorkChartConfig
           data=model.y2012_2016
           height=236
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 class="header-medium" id="occupation">Occupation</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -62,23 +62,23 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Workers by Occupation"
           config=occupationChartConfig
           data=model.y2012_2016
           height=204
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
 
   <h3 class="header-medium" id="industry">Industry</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -94,7 +94,7 @@
 
   <h3 class="header-medium" id="class-of-worker">Class of Worker</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -104,16 +104,16 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Workers by Class of Worker"
           config=classOfWorkerChartConfig
           data=model.y2012_2016
           height=176
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
@@ -123,7 +123,7 @@
     {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
   </h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -133,16 +133,16 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Household Income"
           config=incomeAndBenefitsChartConfig
           data=model.y2012_2016
           height=340
           xMax=1}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 
   <hr>
@@ -152,7 +152,7 @@
     {{info-tooltip tip="In 2016 inflation-adjusted dollars"}}
   </h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -168,7 +168,7 @@
 
   <h3 class="header-medium" id="health-insurance-coverage">Health Insurance Coverage</h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -187,7 +187,7 @@
     {{info-tooltip tip="For alternative NYC poverty measure, please see website of the Mayor's Office for Economic Opportunity"}}
   </h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -206,7 +206,7 @@
     {{info-tooltip tip="Ratio of income in the past 12 months to poverty level"}}
   </h3>
   <div class="grid-x grid-margin-x">
-    <div class="cell large-8">
+    <div class="cell large-auto">
       {{data-table
         options=profile
         mode=profile.mode
@@ -216,16 +216,16 @@
         model=model
       }}
     </div>
-    <div class="cell large-4">
-      {{#if (eq profile.mode 'current')}}
+    {{#if (and (eq profile.mode 'current') profile.charts)}}
+      <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Population by Ratio of Income to Poverty Level"
           config=ratioOfIncomeToPovertyLevelChartConfig
           data=model.y2012_2016
           height=394
           xMax=1}}
-      {{/if}}
-    </div>
+     </div>
+   {{/if}}
   </div>
 
   {{profile-footer}}

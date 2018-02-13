@@ -49,7 +49,8 @@
           {{if (eq summaryLevel 'pumas') 'PUMA'~}}
           {{unless (eq selectionCount 1) 's'}}
           {{if (eq summaryLevel 'blocks') '(Tract Id-Block Id)'~}}
-        </h3> |
+        </h3>
+        <span class="dark-gray">&nbsp;|&nbsp;</span>
         <p class="profile-geographies-list comma-separated-list">
           {{#each selection.sortedLabels as |boro|}}
             {{#if boro.features.length}}
@@ -75,7 +76,7 @@
       {{/if}}
 
       {{#unless (eq profile.tab 'profile.census') }}
-      <div class="profile-reliability-controls">
+      <div class="profile-checkbox-controls">
         <a {{action (mut profile.reliability) (not profile.reliability)}}>
           {{#if profile.reliability}}
             <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
@@ -84,6 +85,17 @@
           {{/if}}
           Show Reliability Data
         </a>
+        {{#if (eq mode 'current')}}
+          <span class="dark-gray">&nbsp;|&nbsp;</span>
+          <a {{action (mut profile.charts) (not profile.charts)}}>
+            {{#if profile.charts}}
+              <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+            {{else}}
+              <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
+            {{/if}}
+            Show Charts
+          </a>
+        {{/if}}
       </div>
       {{/unless}}
 

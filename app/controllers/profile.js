@@ -14,6 +14,7 @@ const { alias } = Ember.computed;
 export default Ember.Controller.extend({
   mode: 'current',
   reliability: false,
+  charts: true,
   comparison: true,
   changeReliability: true,
   changeComparison: false,
@@ -21,7 +22,7 @@ export default Ember.Controller.extend({
   selection: service(),
   mapMouseover: service(),
 
-  queryParams: ['mode', 'comparator'],
+  queryParams: ['mode', 'reliability', 'charts', 'comparator'],
   comparator: '0',
 
   layerGroups,
