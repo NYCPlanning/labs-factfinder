@@ -545,6 +545,19 @@ tbody td:first-child {
 
 .shows-signficance .insignificant { color: $medium-gray; }
 
+.no-compare-message {
+  position: relative;
+
+  div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    padding: 0.3125rem 0.4375rem 0.375rem;
+    color: $medium-gray;
+    font-style:italic;
+  }
+}
 
 //
 // Callouts
