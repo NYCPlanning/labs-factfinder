@@ -26,54 +26,54 @@
     {{#if reliability}}<td>&nbsp;</td>{{/if}}
     {{#if reliability}}<td>&nbsp;</td>{{/if}}
   {{else}}
+  {{!-- OLD --}}
+  {{data-table-column-group
+    model=data2.selection
+    rowConfig=rowConfig
+    reliabilityMode=reliability}}
 
-    {{!-- OLD --}}
-    {{data-table-column-group
-      model=data2.selection
-      rowConfig=rowConfig
-      reliabilityMode=reliability}}
+  {{!-- CURRENT --}}
+   {{data-table-column-group
+    model=data.selection
+    rowConfig=rowConfig
+    reliabilityMode=reliability}}
 
-    {{!-- CURRENT --}}
-     {{data-table-column-group
-      model=data.selection
-      rowConfig=rowConfig
-      reliabilityMode=reliability}}
+  {{!-- CHANGE --}}
 
-    {{!-- CHANGE --}}
+  {{!-- Estimate --}}
+  <td class="cell-border-left {{unless data.change_significant 'insignificant'}}">
+    {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+      (format-number
+          data.change_sum
+          precision=rowConfig.decimal)}}
+  </td>
 
-    {{!-- Estimate --}}
-    <td class="cell-border-left {{unless data.change_significant 'insignificant'}}">
-      {{format-number
-        data.change_sum
-        precision=rowConfig.decimal}}
+  {{#if reliability}}
+    {{!-- MOE --}}
+    <td class="{{unless data.change_significant 'insignificant'}}">
+      {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+        (format-number
+            data.change_m
+            precision=rowConfig.decimal)}}
     </td>
+  {{/if}}
 
-    {{#if reliability}}
-      {{!-- MOE --}}
-      <td class="{{unless data.change_significant 'insignificant'}}">
-        {{format-number
-          data.change_m
-          precision=rowConfig.decimal}}
-      </td>
-    {{/if}}
+  {{!-- percent --}}
+  <td class="{{unless data.change_percent_significant 'insignificant'}}">
+    {{if
+      (and data.change_percent (and (not data.codingThresholds.sum) (not data2.codingThresholds.sum)))
+        (concat
+          (format-number (mult data.change_percent 100) precision=1)
+          '%')}}
+  </td>
 
-    {{!-- percent --}}
+  {{#if reliability}}
+    {{!-- Percent M --}}
     <td class="{{unless data.change_percent_significant 'insignificant'}}">
       {{if
-        data.change_percent
+        (and data.change_percent_m (and (not data.codingThresholds.sum) (not data2.codingThresholds.sum)))
           (concat
-            (format-number (mult data.change_percent 100) precision=1)
-            '%')}}
-    </td>
-
-
-    {{#if reliability}}
-      {{!-- Percent M --}}
-      <td class="{{unless data.change_percent_significant 'insignificant'}}">
-        {{if
-          data.change_percent_m
-            (concat
-              (format-number (mult data.change_percent_m 100) precision=1)
+            (format-number (mult data.change_percent_m 100) precision=1)
               '%')}}
       </td>
     {{/if}}

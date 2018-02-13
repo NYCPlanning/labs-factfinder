@@ -9,7 +9,7 @@ export default Ember.Route.extend(Downloadable, {
   model(params, { queryParams: { comparator = '0' } }) {
     const selectionId = this.modelFor('profile').id;
 
-    return this.store.query('row', { selectionId, comparator, type: 'economic_1' })
+    return this.store.query('row', { selectionId, comparator, type: 'economic' })
       .then(rows => rows.toArray());
   },
 });

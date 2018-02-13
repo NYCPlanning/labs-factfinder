@@ -24,22 +24,26 @@
     {{if 
       (or 
         (not data.significant) 
-        (and (eq data.sum 0) (eq data.comparison_sum 0))) 
+        (and (eq data.sum 0) (eq data.comparison_sum 0)))
       'insignificant'}}">
-    {{format-number
-      data.difference_sum 
-      precision=rowConfig.decimal}}
+    {{unless 
+      (or data.codingThresholds.sum data.codingThresholds.comparison_sum)
+        (format-number
+            data.difference_sum 
+            precision=rowConfig.decimal)}}
   </td>
   {{#if reliability}}
     <td class="
       {{if 
         (or 
           (not data.significant) 
-          (and (eq data.sum 0) (eq data.comparison_sum 0))) 
+          (and (eq data.sum 0) (eq data.comparison_sum 0)))
         'insignificant'}}">
-      {{format-number 
-        data.difference_m
-        precision=rowConfig.decimal}}
+      {{unless 
+        (or data.codingThresholds.sum data.codingThresholds.comparison_sum)
+          (format-number 
+            data.difference_m
+            precision=rowConfig.decimal)}}
     </td>
   {{/if}}
 

@@ -11,6 +11,10 @@ export default Ember.Route.extend({
   selection: service(),
 
   queryParams: {
+    mode: {
+      refreshModel: false,
+      scope: 'controller',
+    },
     comparator: {
       refreshModel: true,
       scope: 'controller',
