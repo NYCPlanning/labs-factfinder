@@ -22,35 +22,36 @@
 
   {{!-- Estimate --}}
   <td class="cell-border-left {{unless data.change_significant 'insignificant'}}">
-    {{format-number 
-      data.change_sum
-      precision=rowConfig.decimal}}
+    {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+      (format-number
+          data.change_sum
+          precision=rowConfig.decimal)}}
   </td>
 
   {{#if reliability}}
     {{!-- MOE --}}
     <td class="{{unless data.change_significant 'insignificant'}}">
-      {{format-number 
-        data.change_m 
-        precision=rowConfig.decimal}}
+      {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+        (format-number 
+            data.change_m 
+            precision=rowConfig.decimal)}}
     </td>
   {{/if}}
 
   {{!-- percent --}}
   <td class="{{unless data.change_percent_significant 'insignificant'}}">
     {{if 
-      data.change_percent 
+      (and data.change_percent (and (not data.codingThresholds.sum) (not data2.codingThresholds.sum)))
         (concat 
           (format-number (mult data.change_percent 100) precision=1) 
           '%')}}
   </td>
 
-
   {{#if reliability}}
     {{!-- Percent M --}}
     <td class="{{unless data.change_percent_significant 'insignificant'}}">
       {{if 
-        data.change_percent_m 
+        (and data.change_percent_m (and (not data.codingThresholds.sum) (not data2.codingThresholds.sum)))
           (concat 
             (format-number (mult data.change_percent_m 100) precision=1) 
             '%')}}
