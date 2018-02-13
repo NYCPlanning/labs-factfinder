@@ -9,7 +9,14 @@ const OPTIONS_QUERY = `
     SELECT geoid, geotype, geogname AS label, 'City %26 Boroughs' AS typelabel
     FROM support_geoids
     WHERE geotype IN ('Boro2010', 'City2010')
-    ORDER BY geotype DESC
+    ORDER BY CASE
+      WHEN geogname = 'New York City' THEN '1'
+      WHEN geogname = 'Bronx' THEN '2'
+      WHEN geogname = 'Brooklyn' THEN '3'
+      WHEN geogname = 'Manhattan' THEN '4'
+      WHEN geogname = 'Queens' THEN '5'
+      WHEN geogname = 'Staten Island' THEN '6'
+      ELSE geogname END ASC
   )
 
   UNION ALL
@@ -33,6 +40,7 @@ const OPTIONS_QUERY = `
       LEFT OUTER JOIN nyc_puma b ON (a.geoid = b.puma::text)
       WHERE geotype IN ('PUMA2010')
     ) x
+    ORDER BY geoid ASC
   )
 `;
   // `SELECT *, geotype || geogname || geoid AS name FROM support_geoids
