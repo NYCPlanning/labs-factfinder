@@ -102,7 +102,8 @@ export default DS.Model.extend({
     return foundVariable;
   },
 
-  isSpecial: alias('rowConfig.special'),
+  special: DS.attr('boolean'),
+  isSpecial: alias('special'),
 
   @computed('isSpecial', 'sum', 'comparison_sum')
   shouldHideDeltaPercent(isSpecial, sum, comparison_sum) {
