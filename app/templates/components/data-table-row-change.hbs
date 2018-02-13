@@ -1,31 +1,11 @@
-{{#unless rowConfig.divider}}
+{{#unless (or rowConfig.divider noPriorData)}}
   <td class='title-column' {{action 'showData'}}>
     {{rowConfig.title}}
     {{#if rowConfig.tooltip}}
       {{info-tooltip tip=rowConfig.tooltip}}
     {{/if}}
   </td>
-  {{!-- if 2006-2010 sum is null, just return empty cells --}}
-  {{#if (eq data2.selection.sum null)}}
-    <td class="cell-border-left" class="no-compare-message"><div>Data for this row are not comparable or are unavailable</div></td>
-    <td>&nbsp;</td>
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
 
-    <td class="cell-border-left">&nbsp;</td>
-    <td>&nbsp;</td>
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-
-    <td class="cell-border-left">&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-    {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{else}}
   {{!-- OLD --}}
   {{data-table-column-group
     model=data2.selection
@@ -101,11 +81,23 @@
         {{/unless}}
       </td>
     {{/if}}
-  {{/if}}
+  {{!-- {{/if}} --}}
 {{else}}
-
-  <td>&nbsp;</td>
-  <td class="cell-border-left">&nbsp;</td>
+  {{#if noPriorData}}
+    {{!-- if 2006-2010 sum is null, just return empty cells --}}
+    <td class='title-column' {{action 'showData'}}>
+      {{rowConfig.title}}
+      {{#if rowConfig.tooltip}}
+        {{info-tooltip tip=rowConfig.tooltip}}
+      {{/if}}
+    </td>
+    <td class="cell-border-left" class="no-compare-message">
+      <div>Data for this row are not comparable or are unavailable</div>
+    </td>
+  {{else}}
+    <td>&nbsp;</td>
+    <td class="cell-border-left">&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
   {{#if reliability}}<td>&nbsp;</td>{{/if}}
   {{#if reliability}}<td>&nbsp;</td>{{/if}}
