@@ -23,7 +23,9 @@
 {{!-- Percent Estimate --}}
 <td class="{{unless model.is_reliable 'insignificant'}}">
   {{unless 
-    (eq model.percent null)
+    (or
+      (eq model.percent null)
+      (eq model.sum 0))
       (concat 
         (format-number (mult model.percent 100) precision=1) 
         '%')}}
@@ -33,7 +35,9 @@
 {{#if reliabilityMode}}
   <td class="{{unless model.is_reliable 'insignificant'}}">
     {{unless 
-      (eq model.percent null)
+      (or
+        (eq model.percent null)
+        (eq model.sum 0))
         (concat 
           (format-number (mult model.percent_m 100) precision=1) 
           '%')}}
