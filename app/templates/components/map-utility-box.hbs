@@ -77,24 +77,6 @@
                   {{/each}}
                 </ul>
               {{/each-in}}
-
-              {{#each choroplethConfigs as |config|}}
-                <li {{
-                  action (
-                    queue
-                      (action 'setChoroplethMode' config.id)
-                      (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
-                      (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
-                  )
-                }}>
-                  {{#if (eq choroplethMode config.id)}}
-                    {{fa-icon 'dot-circle-o'}}
-                  {{else}}
-                    {{fa-icon 'circle-thin'}}
-                  {{/if}}
-                  {{config.label}} {{info-tooltip tip=config.tooltip}}
-                </li>
-              {{/each}}
             </ul>
           </div>
           <div class="cell small-4">
