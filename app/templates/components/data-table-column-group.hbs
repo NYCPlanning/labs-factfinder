@@ -37,6 +37,7 @@
     {{unless 
       (or
         (eq model.percent null)
+        (eq model.percent 1)
         (eq model.sum 0))
         (concat 
           (format-number (mult model.percent_m 100) precision=1) 
