@@ -235,7 +235,7 @@ export default [
   },
   {
     title: 'New Zealander',
-    data: 'nzealnder',
+    data: 'nzealnd',
   },
   {
     title: 'Northern European',
