@@ -84,23 +84,24 @@ export default DS.Model.extend({
     return base === variablename;
   },
 
-  @computed('profile', 'category', 'variable', 'notinprofile')
-  rowConfig(profile, category, variableName, notinprofile) {
-    if (notinprofile) return {};
+  rowConfig: DS.attr(),
+  // @computed('profile', 'category', 'variable', 'notinprofile')
+  // rowConfig(profile, category, variableName, notinprofile) {
+  //   if (notinprofile) return {};
 
-    const categoryNormalized = category.camelize();
-    const variables = get(tableConfigs, `${profile}.${categoryNormalized}`) || [];
-    const foundVariable = variables.findBy('data', variableName);
+  //   const categoryNormalized = category.camelize();
+  //   const variables = get(tableConfigs, `${profile}.${categoryNormalized}`) || [];
+  //   const foundVariable = variables.findBy('data', variableName);
 
-    if (!foundVariable && (profile !== 'decennial')) {
-      Logger.warn(`Row configuration not found for ${profile}, ${category}, ${variableName}.
-        Data may be misnamed in the layer-groups.
-        Please make sure profile, category, and variable names
-        are consistent in the database, and re-index.`);
-    }
+  //   if (!foundVariable && (profile !== 'decennial')) {
+  //     Logger.warn(`Row configuration not found for ${profile}, ${category}, ${variableName}.
+  //       Data may be misnamed in the layer-groups.
+  //       Please make sure profile, category, and variable names
+  //       are consistent in the database, and re-index.`);
+  //   }
 
-    return foundVariable;
-  },
+  //   return foundVariable;
+  // },
 
   special: DS.attr('boolean'),
   isSpecial: alias('special'),
