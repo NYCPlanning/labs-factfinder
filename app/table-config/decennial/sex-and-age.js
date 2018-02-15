@@ -179,7 +179,7 @@ export default [
   },
   {
     title: 'Under 18 years',
-    data: 'popu18',
+    data: 'popu18_1',
   },
   {
     title: '21 years and over',
