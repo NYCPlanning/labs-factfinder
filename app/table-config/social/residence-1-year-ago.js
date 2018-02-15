@@ -24,22 +24,22 @@ export default [{
   data: 'dfhsus',
 },
 {
-  indent: 2,
+  indent: 1,
   title: 'Same county',
   data: 'dfhssmcnt',
 },
 {
-  indent: 2,
+  indent: 1,
   title: 'Different county',
   data: 'dfhsdfcnt',
 },
 {
-  indent: 4,
+  indent: 2,
   title: 'Within New York City',
   data: 'dhdfcntnyc',
 },
 {
-  indent: 4,
+  indent: 2,
   title: 'Outside New York City',
   data: 'dhnonyc',
 },
