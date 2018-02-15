@@ -41,11 +41,11 @@
   {{!-- percent --}}
   <td class="{{unless data.change_percent_significant 'insignificant'}}">
     {{if
-      (and 
-        data.change_percent 
+      (and
+        data.change_percent
         (not data.rowConfig.hidePercentChange)
-        (and 
-          (not data.codingThresholds.sum) 
+        (and
+          (not data.codingThresholds.sum)
           (not data2.codingThresholds.sum)))
         (concat
           (format-number (mult data.change_percent 100) precision=1)
@@ -56,11 +56,11 @@
     {{!-- Percent M --}}
     <td class="{{unless data.change_percent_significant 'insignificant'}}">
       {{if
-        (and 
-          data.change_percent_m 
+        (and
+          data.change_percent_m
           (not data.rowConfig.hidePercentChange)
-          (and 
-            (not data.codingThresholds.sum) 
+          (and
+            (not data.codingThresholds.sum)
             (not data2.codingThresholds.sum)))
           (concat
             (format-number (mult data.change_percent_m 100) precision=1)
@@ -71,8 +71,11 @@
   {{!-- percentage point --}}
   <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
     {{#unless
-        (or data.isSpecial
-          (and (eq data.sum 0) (eq data2.sum 0)))}}
+        (or
+          data.isSpecial
+          (and (eq data.sum 0) (eq data2.sum 0))
+          (eq data.change_percentage_point null)
+        )}}
       {{format-number
         (mult data.change_percentage_point 100)
         precision=1}}
@@ -83,8 +86,11 @@
     {{!-- percentage point m --}}
     <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
       {{#unless
-          (or data.isSpecial
-            (and (eq data.sum 0) (eq data2.sum 0)))}}
+          (or
+            data.isSpecial
+            (and (eq data.sum 0) (eq data2.sum 0))
+            (eq data.change_percentage_point null)
+          )}}
         {{format-number
           (mult data.change_percentage_point_m 100)
           precision=1}}
