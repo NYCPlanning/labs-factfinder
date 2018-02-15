@@ -54,15 +54,23 @@
 
     <td
       class="{{unless data.percent_significant 'insignificant'}}">
-      {{unless data.shouldHideDeltaPercent
-        (format-number
+      {{log data.variable data.percent data.previous_percent}}
+      {{#unless (or
+          data.shouldHideDeltaPercent
+          (and (eq data.percent null) (eq data.previous_percent null))
+        )}}
+          {{format-number
           data.difference_percent
-          precision=1)}}
+          precision=1}}
+      {{/unless}}
     </td>
     {{#if reliability}}
       <td
         class="{{unless data.percent_significant 'insignificant'}}">
-        {{unless data.shouldHideDeltaPercent
+        {{unless (or
+            data.shouldHideDeltaPercent
+            (and (eq data.percent null) (eq data.previous_percent null))
+          )
           (format-number
             data.difference_percent_m
             precision=1)}}
