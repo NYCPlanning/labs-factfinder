@@ -129,7 +129,7 @@ export default [
   {
     highlight: true,
     title: 'Total persons under 18 years',
-    data: 'popu18',
+    data: 'popu18_2',
   },
   {
     title: 'Householder or spouse',
