@@ -39,6 +39,7 @@ export default Ember.Controller.extend({
 
   selection: service(),
   mapMouseover: service(),
+  metrics: service(),
 
   layerGroups,
   sources,
@@ -122,6 +123,11 @@ export default Ember.Controller.extend({
         map.addControl(draw, 'top-left');
         draw.changeMode('draw_polygon');
         this.set('drawMode', true);
+
+        this.get('metrics').trackEvent(
+          'GoogleAnalytics',
+          { eventCategory: 'Draw', eventAction: 'Draw Start', eventLabel: this.get('selection').summaryLevel },
+        );
       }
     },
 
@@ -144,10 +150,18 @@ export default Ember.Controller.extend({
       carto.SQL(intersectionSQL, 'geojson', 'post')
         .then((FC) => {
           selection.handleSelectedFeatures(FC.features);
+
+          this.get('metrics').trackEvent('GoogleAnalytics', {
+            eventCategory: 'Draw',
+            eventAction: 'Draw Create',
+            eventLabel: this.get('selection').summaryLevel,
+            eventValue: FC.features.length,
+          });
         });
     },
 
     handleDrawModeChange(e) {
+      console.log('DRAWMODECHANGE')
       const drawMode = e.mode === 'draw_polygon';
       // delay setting drawMode boolean so that polygon-closing click won't be handled
       setTimeout(() => {

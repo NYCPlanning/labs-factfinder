@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const { isEmpty, inject: { service } } = Ember;
 
-export default function trackEvent(eventCategory, incAction, incLabel, eventValue) {
+export default function trackEvent(eventCategory, incAction, incLabel, incValue) {
   return (target, name, desc) => {
     const descriptor = desc;
     const originalValue = descriptor.value;
@@ -16,6 +16,7 @@ export default function trackEvent(eventCategory, incAction, incLabel, eventValu
 
       let eventAction = incAction;
       let eventLabel = incLabel;
+      let eventValue = incValue;
 
       // allow getting prop names for values
       if (eventAction) {
@@ -30,6 +31,13 @@ export default function trackEvent(eventCategory, incAction, incLabel, eventValu
         const labelIdentifier = this.get(eventLabel);
         if (!isEmpty(labelIdentifier)) {
           eventLabel = labelIdentifier;
+        }
+      }
+
+      if (eventValue) {
+        const valueIdentifier = this.get(eventValue);
+        if (!isEmpty(valueIdentifier)) {
+          eventValue = valueIdentifier;
         }
       }
 

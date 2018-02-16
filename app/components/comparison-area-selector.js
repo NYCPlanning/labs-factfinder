@@ -3,6 +3,7 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { nest } from 'd3-collection';
 import carto from '../utils/carto';
 
+const { service } = Ember.inject;
 
 const OPTIONS_QUERY = `
   (
@@ -50,6 +51,8 @@ const OPTIONS_QUERY = `
 export default Ember.Component.extend({
   comparisonArea: null,
 
+  metrics: service(),
+
   @computed('comparisonArea', 'options')
   selected(area, options) {
     return options.then(
@@ -76,7 +79,12 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    updateProperty({ geoid }) {
+    updateProperty({ geoid, label }) {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Profile Settings',
+        eventAction: 'Selected Comparison Area',
+        eventLabel: label,
+      });
       this.set('comparisonArea', geoid);
     },
   },

@@ -29,7 +29,7 @@ module.exports = function(environment) {
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',
-        environments: ['development', 'production'],
+        environments: ['production', 'development'],
         config: {
           id: 'UA-84250233-10',
           // Use `analytics_debug.js` in development
@@ -41,6 +41,7 @@ module.exports = function(environment) {
         },
       },
     ],
+
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' www.google-analytics.com",

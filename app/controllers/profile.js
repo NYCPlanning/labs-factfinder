@@ -21,6 +21,7 @@ export default Ember.Controller.extend({
 
   selection: service(),
   mapMouseover: service(),
+  metrics: service(),
 
   queryParams: ['mode', 'reliability', 'charts', 'comparator'],
   comparator: '0',
@@ -57,6 +58,14 @@ export default Ember.Controller.extend({
 
     handleResize(e) {
       this.fitBounds(e.target);
+    },
+
+    sendAnalytics(eventAction, eventLabel) {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Profile Navigation',
+        eventAction,
+        eventLabel,
+      });
     },
   },
 

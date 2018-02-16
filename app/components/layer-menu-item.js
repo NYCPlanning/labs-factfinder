@@ -6,6 +6,8 @@ const { alias } = Ember.computed;
 
 export default Ember.Component.extend({
   registeredLayers: service(),
+  metrics: service(),
+
   visible: alias('layer.visible'),
   // tagName: 'li',
   classNames: 'layer-menu-item',
@@ -26,6 +28,11 @@ export default Ember.Component.extend({
   actions: {
 
     toggleVisibility() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: `${this.get('visible') ? 'Turned off' : 'Turned on'} ${this.get('layer.config.title')}`,
+      });
+
       this.toggleProperty('visible');
     },
     updateSql(method, column, value) {

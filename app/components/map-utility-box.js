@@ -4,6 +4,8 @@ import { task } from 'ember-concurrency';
 import fetch from 'fetch';
 import numeral from 'numeral';
 import Environment from '../config/environment';
+import trackEvent from '../utils/track-event';
+
 
 import choroplethConfigs from '../choropleth-config';
 
@@ -14,6 +16,8 @@ const { SupportServiceHost } = Environment;
 export default Ember.Component.extend({
   selection: service(),
   router: service(),
+  metrics: service(),
+
   lastreport: null,
 
   choroplethConfigs,
@@ -113,6 +117,8 @@ export default Ember.Component.extend({
       this.sendAction('handleDrawButtonClick');
     },
     transitionTo() {},
+
+    @trackEvent('Selection', 'Created Profile', 'summaryLevel', 'selection.current.features.length')
     generateProfileId() {
       const type = this.get('summaryLevel');
       const geoids = this.get('selection.current.features')
@@ -121,8 +127,19 @@ export default Ember.Component.extend({
       this.get('generateProfileId').perform(type, geoids);
     },
 
+    @trackEvent('Advanced Options', 'Selected Choropleth', 'choroplethMode')
     setChoroplethMode(mode) {
       this.set('choroplethMode', mode);
+    },
+
+    toggleAdvancedOptions() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Toggle Advanced Options',
+        eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
+      });
+
+      this.set('advanced', !this.get('advanced'));
     },
   },
 });
