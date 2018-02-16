@@ -5,6 +5,7 @@ import { task, timeout } from 'ember-concurrency';
 import bbox from 'npm:@turf/bbox';
 import getBuffer from 'npm:@turf/buffer';
 import Environment from '../config/environment';
+import trackEvent from '../utils/track-event'; // eslint-disable-line
 
 const { service } = Ember.inject;
 const { SupportServiceHost } = Environment;
@@ -30,14 +31,14 @@ export default Ember.Component.extend({
     yield timeout(DEBOUNCE_MS);
     const URL = `${SupportServiceHost}/search?q=${searchTerms}`;
 
-    // this.get('metrics').trackEvent(
-    //   'GoogleAnalytics',
-    //   {
-    //     eventCategory: 'Search',
-    //     eventAction: 'Received Results for Search Terms',
-    //     eventLabel: searchTerms,
-    //   },
-    // );
+    this.get('metrics').trackEvent(
+      'GoogleAnalytics',
+      {
+        eventCategory: 'Search',
+        eventAction: 'Received Results for Search Terms',
+        eventLabel: searchTerms,
+      },
+    );
 
     return yield fetch(URL)
       .then(data => data.json())
@@ -46,7 +47,20 @@ export default Ember.Component.extend({
           const newResult = result;
           newResult.id = index;
           return result;
-        }));
+        }))
+      .then((resultList) => {
+        if (isEmpty(resultList)) {
+          this.get('metrics').trackEvent(
+            'GoogleAnalytics',
+            {
+              eventCategory: 'Search',
+              eventAction: 'No results found for search terms',
+              eventLabel: searchTerms,
+            },
+          );
+        }
+        return resultList;
+      });
   }).keepLatest(),
 
   @computed('results.value')
@@ -115,7 +129,7 @@ export default Ember.Component.extend({
       selection.set('searchResultFeature', null);
     },
 
-    // @trackEvent('Map Search', 'Clicked result', 'searchTerms')
+    @trackEvent('Map Search', 'Clicked result', 'searchTerms')
     goTo(result) {
       this.$('.map-search-input').blur();
 
@@ -174,12 +188,12 @@ export default Ember.Component.extend({
       }
     },
 
-    // @trackEvent('Search', 'Focused In', 'searchTerms')
+    @trackEvent('Search', 'Focused In', 'searchTerms')
     handleFocusIn() {
       this.set('focused', true);
     },
 
-    // @trackEvent('Search', 'Focused Out', 'searchTerms')
+    @trackEvent('Search', 'Focused Out', 'searchTerms')
     handleFocusOut() {
       this.set('focused', false);
     },
