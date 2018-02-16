@@ -5,11 +5,12 @@ export default Ember.Component.extend({
   mode: 'current',
   reliability: false,
   comparison: true,
+  isSelected: false,
 
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
-  @computed('rowConfig')
+  @computed('rowConfig', 'isSelected')
   getClassNames(rowConfig) {
     const classes = [];
 
@@ -21,13 +22,20 @@ export default Ember.Component.extend({
       classes.push(`row-indent-x${rowConfig.indent}`);
     }
 
+    if (this.isSelected) {
+      classes.push('is-selected');
+    }
+
     return classes.join(' ');
   },
 
   actions: {
     showData() {
       window.logModel = this.get('data');
-      console.log(this.get('data'));
     },
+  },
+
+  click() {
+    this.set('isSelected', !this.isSelected);
   },
 });

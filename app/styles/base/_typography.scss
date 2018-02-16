@@ -501,6 +501,14 @@ tbody td:first-child {
   }
 }
 
+// Selectable rows
+tr {
+  &:hover td,
+  &.is-selected td {
+    background-color: transparentize($lu-blue, 0.8);
+  }
+}
+
 .row-divider {
   td, th {
     background-color: $body-background;
@@ -558,6 +566,7 @@ tbody td:first-child {
     font-size: rem-calc(10);
   }
 }
+
 
 //
 // Callouts
