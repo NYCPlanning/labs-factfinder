@@ -30,6 +30,7 @@ export default Ember.Component.extend({
   classNames: 'data-table',
 
   windowResize: service(),
+  metrics: service(),
 
   actions: {
     handleCopy() {
@@ -55,6 +56,11 @@ export default Ember.Component.extend({
       }
 
       document.execCommand('copy');
+
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Data',
+        eventAction: 'Copy table to clipboard',
+      });
     },
   },
 

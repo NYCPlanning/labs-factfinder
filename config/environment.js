@@ -26,6 +26,27 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['production', 'development'],
+        config: {
+          id: 'UA-84250233-10',
+          // Use `analytics_debug.js` in development
+          debug: environment === 'development',
+          // Use verbose tracing of GA events
+          trace: false,
+          // Ensure development env hits aren't sent to GA
+          sendHitTask: environment !== 'development',
+        },
+      },
+    ],
+
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' www.google-analytics.com",
+    },
+
     SAMPLE_SELECTION,
 
     SupportServiceHost: 'https://factfinder-api.planninglabs.nyc',

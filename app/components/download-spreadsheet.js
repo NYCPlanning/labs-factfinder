@@ -1,10 +1,12 @@
 import Ember from 'ember';
+import trackEvent from '../utils/track-event'; // eslint-disable-line
 
 export default Ember.Component.extend({
   tagName: '',
   data: [],
   filename: 'download',
   actions: {
+    @trackEvent('Data', 'Downloaded CSV')
     handleDownload(format = 'csv') {
       const filename = this.get('filename');
       const profile = this.get('data')

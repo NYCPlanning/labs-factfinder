@@ -8,7 +8,7 @@
 
     <div class="profile-mode">
       <h2 class="header-medium" class="{{if (eq mode 'change') 'dark-gray'}}">
-        <a {{action (mut mode) 'current'}}>
+        <a {{action 'setMode' 'current'}}>
           {{#if (eq mode 'current')}}
             {{fa-icon 'dot-circle-o'}}
           {{else}}
@@ -22,7 +22,7 @@
         </a>
       </h2>
       <h2 class="header-medium" class="{{if (eq mode 'current') 'dark-gray'}}">
-        <a {{action (mut mode) 'change'}}>
+        <a {{action 'setMode' 'change'}}>
           {{#if (eq mode 'change')}}
             {{fa-icon 'dot-circle-o'}}
           {{else}}
@@ -77,7 +77,7 @@
 
       {{#unless (eq profile.tab 'profile.census') }}
       <div class="profile-checkbox-controls">
-        <a {{action (mut profile.reliability) (not profile.reliability)}}>
+        <a {{action 'toggleReliability'}}>
           {{#if profile.reliability}}
             <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
           {{else}}
@@ -87,7 +87,7 @@
         </a>
         {{#if (eq mode 'current')}}
           <span class="dark-gray">&nbsp;|&nbsp;</span>
-          <a {{action (mut profile.charts) (not profile.charts)}}>
+          <a {{action 'toggleCharts'}}>
             {{#if profile.charts}}
               <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
             {{else}}
@@ -142,7 +142,7 @@
 
         {{map.on 'resize' (action 'handleResize')}}
       {{/mapbox-gl}}
-      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button'}}<span>{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
+      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
     </div>
 
  </div>

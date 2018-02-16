@@ -6,6 +6,7 @@ import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
 import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
+import trackEvent from '../utils/track-event';
 
 const selectedFillLayer = selectedFeatures.fill;
 
@@ -15,6 +16,7 @@ const { alias } = Ember.computed;
 export default Ember.Component.extend({
 
   selection: service(),
+  metrics: service(),
 
   @computed()
   currentProfile() {
@@ -55,6 +57,37 @@ export default Ember.Component.extend({
 
     handleResize(e) {
       this.fitBounds(e.target);
+    },
+
+    @trackEvent('Profile Navigation', 'Returned to Selection', 'static-map')
+    backToSelection() {
+    },
+
+    toggleReliability() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Profile Settings',
+        eventAction: `${this.get('profile.reliability') ? 'Turned off' : 'Turned on'} reliability data`,
+      });
+
+      this.set('profile.reliability', !this.get('profile.reliability'));
+    },
+
+    toggleCharts() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Profile Settings',
+        eventAction: `${this.get('profile.charts') ? 'Turned off' : 'Turned on'} charts`,
+      });
+
+      this.set('profile.charts', !this.get('profile.charts'));
+    },
+
+    setMode(mode) {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Profile Settings',
+        eventAction: `Switched Mode: ${mode}`,
+      });
+
+      this.set('mode', mode);
     },
   },
 
