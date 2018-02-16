@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 import bbox from 'npm:@turf/bbox';
 import carto from '../utils/carto';
-
+import trackEvent from '../utils/track-event'; // eslint-disable-line
 
 import generateIntersectionSQL from '../queries/intersection';
 import layerGroups from '../layer-groups';
