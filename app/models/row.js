@@ -15,6 +15,7 @@ export default DS.Model.extend({
   dataset: DS.attr('string'), // year
   year: DS.attr('string'), // year
   codingThresholds: DS.attr(),
+  is_most_recent: DS.attr('boolean'),
 
   /*
     One of:
