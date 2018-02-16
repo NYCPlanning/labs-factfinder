@@ -57,6 +57,7 @@ export default DS.Model.extend({
   notinprofile: DS.attr('string'),
   percent: DS.attr('number'),
   percent_m: DS.attr('number'),
+  previous_percent: DS.attr('number'),
   percent_significant: DS.attr('boolean'),
   producttype: DS.attr('string'),
   release_year: DS.attr('string'),
