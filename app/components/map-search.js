@@ -7,7 +7,7 @@ import getBuffer from 'npm:@turf/buffer';
 import Environment from '../config/environment';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 
-const { service } = Ember.inject;
+const { isEmpty, inject: { service } } = Ember;
 const { SupportServiceHost } = Environment;
 
 const DEBOUNCE_MS = 100;
