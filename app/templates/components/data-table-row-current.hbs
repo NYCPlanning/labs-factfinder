@@ -54,7 +54,6 @@
 
     <td
       class="{{unless data.percent_significant 'insignificant'}}">
-      {{log data.variable data.percent data.previous_percent}}
       {{#unless (or
           data.shouldHideDeltaPercent
           (and (eq data.percent null) (eq data.previous_percent null))
