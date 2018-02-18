@@ -23,6 +23,31 @@ const { service } = Ember.inject;
 
 const { alias } = Ember.computed;
 
+const RadiusMode = MapboxDraw.modes.draw_line_string;
+
+function isEventAtCoordinates(event, coordinates) {
+  if (!event.lngLat) return false;
+  return event.lngLat.lng === coordinates[0] && event.lngLat.lat === coordinates[1];
+}
+
+RadiusMode.clickAnywhere = function(state, e) {
+  console.log('clickanywhere', state.line)
+  if (state.currentVertexPosition === 1) {
+    console.log('RETURNING HERE')
+    state.line.addCoordinate(0, e.lngLat.lng, e.lngLat.lat);
+    return this.changeMode('simple_select', { featureIds: [state.line.id] });
+  }
+  this.updateUIClasses({ mouse: 'add' });
+  state.line.updateCoordinate(state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
+  if (state.direction === 'forward') {
+    state.currentVertexPosition++;
+    state.line.updateCoordinate(state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
+  } else {
+    state.line.addCoordinate(0, e.lngLat.lng, e.lngLat.lat);
+  }
+};
+
+
 const draw = new MapboxDraw({
   displayControlsDefault: false,
   controls: {
@@ -31,6 +56,9 @@ const draw = new MapboxDraw({
     trash: false,
   },
   styles: drawStyles,
+  modes: Object.assign({
+    draw_radius: RadiusMode,
+  }, MapboxDraw.modes),
 });
 
 export default Ember.Controller.extend({
@@ -113,7 +141,8 @@ export default Ember.Controller.extend({
       }
     },
 
-    handleDrawButtonClick() {
+    handleDrawButtonClick(type) {
+      console.log('TYPE', type);
       const drawMode = this.get('drawMode');
       const map = this.get('selection').currentMapInstance;
       if (drawMode) {
@@ -121,9 +150,11 @@ export default Ember.Controller.extend({
         this.set('drawMode', false);
       } else {
         map.addControl(draw, 'top-left');
-        draw.changeMode('draw_polygon');
-        this.set('drawMode', true);
 
+        if (type === 'polygon') draw.changeMode('draw_polygon');
+        if (type === 'radius') draw.changeMode('draw_radius');
+
+        this.set('drawMode', true);
         this.get('metrics').trackEvent(
           'GoogleAnalytics',
           { eventCategory: 'Draw', eventAction: 'Draw Start', eventLabel: this.get('selection').summaryLevel },
@@ -132,6 +163,8 @@ export default Ember.Controller.extend({
     },
 
     handleDrawCreate(e) {
+      console.log('DRAW CREATE')
+
       // delete the drawn geometry
       draw.deleteAll();
 
@@ -158,6 +191,10 @@ export default Ember.Controller.extend({
             eventValue: FC.features.length,
           });
         });
+    },
+
+    handleDrawUpdate(e) {
+      console.log('DRAW UPDATE', e)
     },
 
     handleDrawModeChange(e) {

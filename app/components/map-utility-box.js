@@ -113,8 +113,11 @@ export default Ember.Component.extend({
     clearSelection() {
       this.get('selection').clearSelection();
     },
-    handleDrawButtonClick() {
-      this.sendAction('handleDrawButtonClick');
+    handleDrawButtonClick(type) {
+      this.sendAction('handleDrawButtonClick', type);
+    },
+    handleDrawRadiusButtonClick() {
+      this.sendAction('handleDrawRadiusButtonClick');
     },
     transitionTo() {},
 
