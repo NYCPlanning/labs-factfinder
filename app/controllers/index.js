@@ -3,8 +3,10 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 import bbox from 'npm:@turf/bbox';
+import lineDistance from 'npm:@turf/line-distance';
 import carto from '../utils/carto';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
+
 
 import generateIntersectionSQL from '../queries/intersection';
 import layerGroups from '../layer-groups';
@@ -30,6 +32,22 @@ function isEventAtCoordinates(event, coordinates) {
   return event.lngLat.lng === coordinates[0] && event.lngLat.lat === coordinates[1];
 }
 
+function createVertex(parentId, coordinates, path, selected) {
+  return {
+    type: 'Feature',
+    properties: {
+      meta: 'vertex',
+      parent: parentId,
+      coord_path: path,
+      active: (selected) ? 'true' : 'false',
+    },
+    geometry: {
+      type: 'Point',
+      coordinates,
+    },
+  };
+}
+
 RadiusMode.clickAnywhere = function(state, e) {
   console.log('clickanywhere', state.line)
   if (state.currentVertexPosition === 1) {
@@ -45,6 +63,69 @@ RadiusMode.clickAnywhere = function(state, e) {
   } else {
     state.line.addCoordinate(0, e.lngLat.lng, e.lngLat.lat);
   }
+};
+
+// https://stackoverflow.com/questions/37599561/drawing-a-circle-with-the-radius-in-miles-meters-with-mapbox-gl-js/39006388#39006388
+function createGeoJSONCircle(center, radiusInKm, points) {
+    if(!points) points = 64;
+
+    var coords = {
+        latitude: center[1],
+        longitude: center[0]
+    };
+
+    var km = radiusInKm;
+
+    var ret = [];
+    var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
+    var distanceY = km/110.574;
+
+    var theta, x, y;
+    for(var i=0; i<points; i++) {
+        theta = (i/points)*(2*Math.PI);
+        x = distanceX*Math.cos(theta);
+        y = distanceY*Math.sin(theta);
+
+        ret.push([coords.longitude+x, coords.latitude+y]);
+    }
+    ret.push(ret[0]);
+
+    return {
+      "type": "Feature",
+      "geometry": {
+          "type": "Polygon",
+          "coordinates": [ret]
+      },
+      "properties": {},
+    }
+};
+
+RadiusMode.toDisplayFeatures = function(state, geojson, display) {
+  console.log('toDisplayFeatures')
+  const isActiveLine = geojson.properties.id === state.line.id;
+  geojson.properties.active = (isActiveLine) ? 'true': 'false';
+  if (!isActiveLine) return display(geojson);
+  // Only render the line if it has at least one real coordinate
+  if (geojson.geometry.coordinates.length < 2) return;
+  geojson.properties.meta = 'feature';
+
+  display(createVertex(
+    state.line.id,
+    geojson.geometry.coordinates[state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1],
+    `${state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1}`,
+    false
+  ));
+
+  display(geojson);
+
+  // create custom feature for radius circlemarker
+  const center = geojson.geometry.coordinates[state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1];
+  const radiusInKm = lineDistance(geojson);
+  const circleFeature = createGeoJSONCircle(center, radiusInKm);
+  console.log('CIRCLEFEATURE', circleFeature, circleFeature.properties)
+  circleFeature.properties.meta = 'radius';
+
+  display(circleFeature);
 };
 
 
@@ -163,7 +244,7 @@ export default Ember.Controller.extend({
     },
 
     handleDrawCreate(e) {
-      console.log('DRAW CREATE')
+      console.log('DRAW CREATE', e.features)
 
       // delete the drawn geometry
       draw.deleteAll();

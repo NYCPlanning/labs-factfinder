@@ -15,6 +15,7 @@ export default [
       'line-width': 4,
     },
   },
+
   // polygon fill
   {
     id: 'gl-draw-polygon-fill',
