@@ -9,6 +9,8 @@ import trackEvent from '../utils/track-event'; // eslint-disable-line
 
 
 import generateIntersectionSQL from '../queries/intersection';
+import generateRadiusSQL from '../queries/radius';
+
 import layerGroups from '../layer-groups';
 import drawStyles from '../layers/draw-styles';
 import sources from '../sources';
@@ -49,9 +51,7 @@ function createVertex(parentId, coordinates, path, selected) {
 }
 
 RadiusMode.clickAnywhere = function(state, e) {
-  console.log('clickanywhere', state.line)
   if (state.currentVertexPosition === 1) {
-    console.log('RETURNING HERE')
     state.line.addCoordinate(0, e.lngLat.lng, e.lngLat.lat);
     return this.changeMode('simple_select', { featureIds: [state.line.id] });
   }
@@ -100,8 +100,41 @@ function createGeoJSONCircle(center, radiusInKm, points) {
     }
 };
 
+RadiusMode.onStop = function(state) {
+  // doubleClickZoom.enable(this);
+  this.activateUIButton();
+
+  // check to see if we've deleted this feature
+  if (this.getFeature(state.line.id) === undefined) return;
+
+  //remove last added coordinate
+  // state.line.removeCoordinate(`${state.currentVertexPosition}`);
+  if (state.line.isValid()) {
+    console.log(state.line)
+
+    const lineGeoJson = state.line.toGeoJSON()
+    // reconfigure the geojson line into a geojson point with a radius property
+    const pointWithRadius = {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: lineGeoJson.geometry.coordinates[state.direction === 'forward' ? lineGeoJson.geometry.coordinates.length - 2 : 1],
+      },
+      properties: {
+        radius: (lineDistance(lineGeoJson) * 1000).toFixed(1),
+      },
+    };
+
+    this.map.fire('draw.create', {
+      features: [pointWithRadius],
+    });
+  } else {
+    this.deleteFeature([state.line.id], { silent: true });
+    this.changeMode('simple_select', {}, { silent: true });
+  }
+};
+
 RadiusMode.toDisplayFeatures = function(state, geojson, display) {
-  console.log('toDisplayFeatures')
   const isActiveLine = geojson.properties.id === state.line.id;
   geojson.properties.active = (isActiveLine) ? 'true': 'false';
   if (!isActiveLine) return display(geojson);
@@ -122,7 +155,6 @@ RadiusMode.toDisplayFeatures = function(state, geojson, display) {
   const center = geojson.geometry.coordinates[state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1];
   const radiusInKm = lineDistance(geojson);
   const circleFeature = createGeoJSONCircle(center, radiusInKm);
-  console.log('CIRCLEFEATURE', circleFeature, circleFeature.properties)
   circleFeature.properties.meta = 'radius';
 
   display(circleFeature);
@@ -223,7 +255,6 @@ export default Ember.Controller.extend({
     },
 
     handleDrawButtonClick(type) {
-      console.log('TYPE', type);
       const drawMode = this.get('drawMode');
       const map = this.get('selection').currentMapInstance;
       if (drawMode) {
@@ -244,6 +275,7 @@ export default Ember.Controller.extend({
     },
 
     handleDrawCreate(e) {
+      console.log(e)
       console.log('DRAW CREATE', e.features)
 
       // delete the drawn geometry
@@ -253,6 +285,7 @@ export default Ember.Controller.extend({
       const summaryLevel = selection.summaryLevel;
 
       const geometry = e.features[0].geometry;
+
       geometry.crs = {
         type: 'name',
         properties: {
@@ -260,8 +293,14 @@ export default Ember.Controller.extend({
         },
       };
 
-      const intersectionSQL = generateIntersectionSQL(summaryLevel, geometry);
-      carto.SQL(intersectionSQL, 'geojson', 'post')
+      let SQL;
+      if (geometry.type === 'Polygon') SQL = generateIntersectionSQL(summaryLevel, geometry);
+      if (geometry.type === 'Point') {
+        const radius = e.features[0].properties.radius;
+        SQL = generateRadiusSQL(summaryLevel, geometry, radius);
+      }
+
+      carto.SQL(SQL, 'geojson', 'post')
         .then((FC) => {
           selection.handleSelectedFeatures(FC.features);
 
@@ -274,12 +313,7 @@ export default Ember.Controller.extend({
         });
     },
 
-    handleDrawUpdate(e) {
-      console.log('DRAW UPDATE', e)
-    },
-
     handleDrawModeChange(e) {
-      console.log('DRAWMODECHANGE')
       const drawMode = e.mode === 'draw_polygon';
       // delay setting drawMode boolean so that polygon-closing click won't be handled
       setTimeout(() => {
