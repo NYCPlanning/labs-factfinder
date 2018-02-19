@@ -108,11 +108,12 @@ RadiusMode.onStop = function(state) {
   if (this.getFeature(state.line.id) === undefined) return;
 
   //remove last added coordinate
-  // state.line.removeCoordinate(`${state.currentVertexPosition}`);
+  state.line.removeCoordinate('0');
   if (state.line.isValid()) {
     console.log(state.line)
 
     const lineGeoJson = state.line.toGeoJSON()
+    console.log(lineGeoJson)
     // reconfigure the geojson line into a geojson point with a radius property
     const pointWithRadius = {
       type: 'Feature',
@@ -150,10 +151,11 @@ RadiusMode.toDisplayFeatures = function(state, geojson, display) {
   ));
 
   display(geojson);
-
+  console.log(JSON.stringify(geojson))
+  console.log('LINEDISTANCE', lineDistance(geojson, 'kilometers') + 'km')
   // create custom feature for radius circlemarker
   const center = geojson.geometry.coordinates[state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1];
-  const radiusInKm = lineDistance(geojson);
+  const radiusInKm = lineDistance(geojson, 'kilometers');
   const circleFeature = createGeoJSONCircle(center, radiusInKm);
   circleFeature.properties.meta = 'radius';
 
