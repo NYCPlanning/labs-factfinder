@@ -12,13 +12,13 @@
         to add them to the profile.</p>
     </div>
     <div class="cell medium-shrink">
-      <button class="selection-tool--draw button small gray text-orange {{if drawMode 'active'}}" {{action "handleDrawButtonClick" 'polygon'}}>
-        {{fa-icon "pencil-square-o"}} Draw
+      <button class="selection-tool--draw button small gray text-orange {{if (eq drawMode 'polygon') 'active'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+        {{fa-icon "pencil-square-o"}} Draw Polygon
         {{tooltip-on-element delay=500 text='Create selection using drawing tool'}}
       </button>
     </div>
     <div class="cell medium-shrink">
-      <button class="selection-tool--draw button small gray text-orange {{if drawRadiusMode 'active'}}" {{action "handleDrawButtonClick" 'radius'}}>
+      <button class="selection-tool--draw button small gray text-orange {{if (eq drawMode 'radius') 'active'}}" {{action "handleDrawButtonClick" 'radius'}}>
         {{fa-icon "pencil-square-o"}} Draw Radius
         {{tooltip-on-element delay=500 text='Create selection using drawing tool'}}
       </button>

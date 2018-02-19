@@ -3,10 +3,9 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 import bbox from 'npm:@turf/bbox';
-import lineDistance from 'npm:@turf/line-distance';
 import carto from '../utils/carto';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
-
+import RadiusMode from '../utils/radius-mode';
 
 import generateIntersectionSQL from '../queries/intersection';
 import generateRadiusSQL from '../queries/radius';
@@ -26,142 +25,6 @@ const selectedFillLayer = selectedFeatures.fill;
 const { service } = Ember.inject;
 
 const { alias } = Ember.computed;
-
-const RadiusMode = MapboxDraw.modes.draw_line_string;
-
-function isEventAtCoordinates(event, coordinates) {
-  if (!event.lngLat) return false;
-  return event.lngLat.lng === coordinates[0] && event.lngLat.lat === coordinates[1];
-}
-
-function createVertex(parentId, coordinates, path, selected) {
-  return {
-    type: 'Feature',
-    properties: {
-      meta: 'vertex',
-      parent: parentId,
-      coord_path: path,
-      active: (selected) ? 'true' : 'false',
-    },
-    geometry: {
-      type: 'Point',
-      coordinates,
-    },
-  };
-}
-
-RadiusMode.clickAnywhere = function(state, e) {
-  if (state.currentVertexPosition === 1) {
-    state.line.addCoordinate(0, e.lngLat.lng, e.lngLat.lat);
-    return this.changeMode('simple_select', { featureIds: [state.line.id] });
-  }
-  this.updateUIClasses({ mouse: 'add' });
-  state.line.updateCoordinate(state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
-  if (state.direction === 'forward') {
-    state.currentVertexPosition++;
-    state.line.updateCoordinate(state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
-  } else {
-    state.line.addCoordinate(0, e.lngLat.lng, e.lngLat.lat);
-  }
-};
-
-// https://stackoverflow.com/questions/37599561/drawing-a-circle-with-the-radius-in-miles-meters-with-mapbox-gl-js/39006388#39006388
-function createGeoJSONCircle(center, radiusInKm, points) {
-    if(!points) points = 64;
-
-    var coords = {
-        latitude: center[1],
-        longitude: center[0]
-    };
-
-    var km = radiusInKm;
-
-    var ret = [];
-    var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
-    var distanceY = km/110.574;
-
-    var theta, x, y;
-    for(var i=0; i<points; i++) {
-        theta = (i/points)*(2*Math.PI);
-        x = distanceX*Math.cos(theta);
-        y = distanceY*Math.sin(theta);
-
-        ret.push([coords.longitude+x, coords.latitude+y]);
-    }
-    ret.push(ret[0]);
-
-    return {
-      "type": "Feature",
-      "geometry": {
-          "type": "Polygon",
-          "coordinates": [ret]
-      },
-      "properties": {},
-    }
-};
-
-RadiusMode.onStop = function(state) {
-  // doubleClickZoom.enable(this);
-  this.activateUIButton();
-
-  // check to see if we've deleted this feature
-  if (this.getFeature(state.line.id) === undefined) return;
-
-  //remove last added coordinate
-  state.line.removeCoordinate('0');
-  if (state.line.isValid()) {
-    console.log(state.line)
-
-    const lineGeoJson = state.line.toGeoJSON()
-    console.log(lineGeoJson)
-    // reconfigure the geojson line into a geojson point with a radius property
-    const pointWithRadius = {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: lineGeoJson.geometry.coordinates[state.direction === 'forward' ? lineGeoJson.geometry.coordinates.length - 2 : 1],
-      },
-      properties: {
-        radius: (lineDistance(lineGeoJson) * 1000).toFixed(1),
-      },
-    };
-
-    this.map.fire('draw.create', {
-      features: [pointWithRadius],
-    });
-  } else {
-    this.deleteFeature([state.line.id], { silent: true });
-    this.changeMode('simple_select', {}, { silent: true });
-  }
-};
-
-RadiusMode.toDisplayFeatures = function(state, geojson, display) {
-  const isActiveLine = geojson.properties.id === state.line.id;
-  geojson.properties.active = (isActiveLine) ? 'true': 'false';
-  if (!isActiveLine) return display(geojson);
-  // Only render the line if it has at least one real coordinate
-  if (geojson.geometry.coordinates.length < 2) return;
-  geojson.properties.meta = 'feature';
-
-  display(createVertex(
-    state.line.id,
-    geojson.geometry.coordinates[state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1],
-    `${state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1}`,
-    false
-  ));
-
-  display(geojson);
-  console.log(JSON.stringify(geojson))
-  console.log('LINEDISTANCE', lineDistance(geojson, 'kilometers') + 'km')
-  // create custom feature for radius circlemarker
-  const center = geojson.geometry.coordinates[state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1];
-  const radiusInKm = lineDistance(geojson, 'kilometers');
-  const circleFeature = createGeoJSONCircle(center, radiusInKm);
-  circleFeature.properties.meta = 'radius';
-
-  display(circleFeature);
-};
-
 
 const draw = new MapboxDraw({
   displayControlsDefault: false,
@@ -195,7 +58,8 @@ export default Ember.Controller.extend({
   center: [-73.9868, 40.724],
   mode: 'direct-select',
 
-  drawMode: false,
+  isDrawing: false,
+  drawMode: null,
 
   selectedFillLayer,
   highlightedFeature,
@@ -222,7 +86,7 @@ export default Ember.Controller.extend({
 
   actions: {
     handleClick(e) {
-      if (!this.get('drawMode')) {
+      if (!this.get('isDrawing')) {
         const selection = this.get('selection');
         const summaryLevel = selection.summaryLevel;
 
@@ -257,29 +121,30 @@ export default Ember.Controller.extend({
     },
 
     handleDrawButtonClick(type) {
-      const drawMode = this.get('drawMode');
+      const isDrawing = this.get('isDrawing');
       const map = this.get('selection').currentMapInstance;
-      if (drawMode) {
+      if (isDrawing) {
         draw.trash();
-        this.set('drawMode', false);
+        this.set('isDrawing', false);
+        this.set('drawMode', null);
       } else {
         map.addControl(draw, 'top-left');
+        this.set('drawMode', type);
 
-        if (type === 'polygon') draw.changeMode('draw_polygon');
+        if (type === 'polygon') {
+          draw.changeMode('draw_polygon');
+        }
         if (type === 'radius') draw.changeMode('draw_radius');
 
-        this.set('drawMode', true);
+        this.set('isDrawing', true);
         this.get('metrics').trackEvent(
           'GoogleAnalytics',
-          { eventCategory: 'Draw', eventAction: 'Draw Start', eventLabel: this.get('selection').summaryLevel },
+          { eventCategory: 'Draw', eventAction: `Draw ${type} Start`, eventLabel: this.get('selection').summaryLevel },
         );
       }
     },
 
     handleDrawCreate(e) {
-      console.log(e)
-      console.log('DRAW CREATE', e.features)
-
       // delete the drawn geometry
       draw.deleteAll();
 
@@ -296,8 +161,9 @@ export default Ember.Controller.extend({
       };
 
       let SQL;
-      if (geometry.type === 'Polygon') SQL = generateIntersectionSQL(summaryLevel, geometry);
-      if (geometry.type === 'Point') {
+      if (geometry.type === 'Polygon') {
+        SQL = generateIntersectionSQL(summaryLevel, geometry);
+      } else {
         const radius = e.features[0].properties.radius;
         SQL = generateRadiusSQL(summaryLevel, geometry, radius);
       }
@@ -316,19 +182,20 @@ export default Ember.Controller.extend({
     },
 
     handleDrawModeChange(e) {
-      const drawMode = e.mode === 'draw_polygon';
-      // delay setting drawMode boolean so that polygon-closing click won't be handled
+      const isDrawing = e.mode === 'draw_polygon' || e.mode === 'draw_radius';
+      // delay setting isDrawing boolean so that polygon-closing click won't be handled
       setTimeout(() => {
-        this.set('drawMode', drawMode);
-        if (!drawMode) {
+        this.set('isDrawing', isDrawing);
+        if (!isDrawing) {
           const map = this.get('selection').currentMapInstance;
+          this.set('drawMode', null);
           map.removeControl(draw);
         }
       }, 200);
     },
 
     handleMousemove(e) {
-      if (!this.get('drawMode')) {
+      if (!this.get('isDrawing')) {
         const mapMouseover = this.get('mapMouseover');
         mapMouseover.highlighter(e);
       }
