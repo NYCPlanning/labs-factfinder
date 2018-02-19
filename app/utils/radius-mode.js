@@ -26,7 +26,7 @@ function createVertex(parentId, coordinates, path, selected) {
 
 // create a circle-like polygon given a center point and radius
 // https://stackoverflow.com/questions/37599561/drawing-a-circle-with-the-radius-in-miles-meters-with-mapbox-gl-js/39006388#39006388
-function createGeoJSONCircle(center, radiusInKm, points = 64) {
+function createGeoJSONCircle(center, radiusInKm, parentId, points = 64) {
   const coords = {
     latitude: center[1],
     longitude: center[0],
@@ -56,7 +56,9 @@ function createGeoJSONCircle(center, radiusInKm, points = 64) {
       type: 'Polygon',
       coordinates: [ret],
     },
-    properties: {},
+    properties: {
+      parent: parentId,
+    },
   };
 }
 
@@ -191,6 +193,7 @@ RadiusMode.toDisplayFeatures = function(state, geojson, display) {
       meta: 'currentPosition',
       radiusMetric: displayMeasurements.metric,
       radiusStandard: displayMeasurements.standard,
+      parent: state.line.id,
     },
     geometry: {
       type: 'Point',
@@ -202,7 +205,7 @@ RadiusMode.toDisplayFeatures = function(state, geojson, display) {
   // create custom feature for radius circlemarker
   const center = geojson.geometry.coordinates[0];
   const radiusInKm = lineDistance(geojson, 'kilometers');
-  const circleFeature = createGeoJSONCircle(center, radiusInKm);
+  const circleFeature = createGeoJSONCircle(center, radiusInKm, state.line.id);
   circleFeature.properties.meta = 'radius';
 
   display(circleFeature);
