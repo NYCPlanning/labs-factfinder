@@ -3,6 +3,7 @@
 // forces draw.create on creation of second vertex
 
 import MapboxDraw from 'mapbox-gl-draw';
+import numeral from 'numeral';
 import lineDistance from 'npm:@turf/line-distance';
 
 const RadiusMode = MapboxDraw.modes.draw_line_string;
@@ -57,6 +58,43 @@ function createGeoJSONCircle(center, radiusInKm, points = 64) {
     },
     properties: {},
   };
+}
+
+function getDisplayMeasurements(feature) {
+  // should log both metric and standard display strings for the current drawn feature
+
+
+  // metric calculation
+  const drawnLength = (lineDistance(feature) * 1000); // meters
+
+  let metricUnits = 'm';
+  let metricFormat = '0,0';
+  let metricMeasurement;
+
+  let standardUnits = 'feet';
+  let standardFormat = '0,0';
+  let standardMeasurement;
+
+  metricMeasurement = drawnLength;
+  if (drawnLength >= 1000) { // if over 1000 meters, upgrade metric
+    metricMeasurement = drawnLength / 1000;
+    metricUnits = 'km';
+    metricFormat = '0.00';
+  }
+
+  standardMeasurement = drawnLength * 3.28084;
+  if (standardMeasurement >= 5280) { // if over 5280 feet, upgrade standard
+    standardMeasurement /= 5280;
+    standardUnits = 'mi';
+    standardFormat = '0.00';
+  }
+
+  const displayMeasurements = {
+    metric: `${numeral(metricMeasurement).format(metricFormat)} ${metricUnits}`,
+    standard: `${numeral(standardMeasurement).format(standardFormat)} ${standardUnits}`,
+  };
+
+  return displayMeasurements;
 }
 
 const doubleClickZoom = {
@@ -144,8 +182,25 @@ RadiusMode.toDisplayFeatures = function(state, geojson, display) {
   // displays the line as it is drawn
   display(geojson);
 
+  const displayMeasurements = getDisplayMeasurements(geojson);
+
+  // create custom feature for the current pointer position
+  const currentVertex = {
+    type: 'Feature',
+    properties: {
+      meta: 'currentPosition',
+      radiusMetric: displayMeasurements.metric,
+      radiusStandard: displayMeasurements.standard,
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: geojson.geometry.coordinates[1],
+    },
+  };
+  display(currentVertex);
+
   // create custom feature for radius circlemarker
-  const center = geojson.geometry.coordinates[state.direction === 'forward' ? geojson.geometry.coordinates.length - 2 : 1];
+  const center = geojson.geometry.coordinates[0];
   const radiusInKm = lineDistance(geojson, 'kilometers');
   const circleFeature = createGeoJSONCircle(center, radiusInKm);
   circleFeature.properties.meta = 'radius';
