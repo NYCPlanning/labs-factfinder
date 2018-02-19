@@ -24,5 +24,6 @@ module.exports = {
     'no-underscore-dangle': 0,
     'camelcase': 0,
     'max-len': 0,
+    'no-param-reassign': 0,
   }
 };
