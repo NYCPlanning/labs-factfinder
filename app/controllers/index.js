@@ -15,6 +15,7 @@ import highlightedFeature from '../layers/highlighted-feature';
 
 import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
 import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
+import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
 const selectedFillLayer = selectedFeatures.fill;
@@ -47,6 +48,7 @@ export default Ember.Controller.extend({
   bkQnMhBoundarySource,
   bkQnMhBoundaryLayer,
   subduedNtaLabels,
+  choroplethsSource,
 
   zoom: 12.25,
   center: [-73.9868, 40.724],
