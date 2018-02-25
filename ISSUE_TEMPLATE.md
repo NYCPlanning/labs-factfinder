@@ -11,6 +11,8 @@
 
 #### If change over time view, is it in 2006-2010 or 2012-2016 columns?:
 
+#### What is the value now and what should it be instead? What is the significance coding now and what should it be instead?:
+
 <!-- For Bugs -->
 
 #### How to reproduce this bug:
