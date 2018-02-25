@@ -7,7 +7,7 @@
 
 #### Which calculation is it (estimate, margine of error, percentage margine of error, difference margin of error, etc?):
 
-#### Is this in the change over time view or the difference view?:
+#### Is this in the change over time view or the current year view?:
 
 #### If change over time view, is it in 2006-2010 or 2012-2016 columns?:
 
