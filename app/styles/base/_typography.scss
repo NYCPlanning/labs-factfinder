@@ -608,8 +608,43 @@ tr {
 //
 // Draw Tool
 // --------------------------------------------------
-.selection-tool--draw {
-  margin: $global-margin 0 0;
+.draw-tools--container {
+  position: relative;
+  z-index: 2;
+
+  .fa {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: rem-calc(19);
+  }
+}
+
+.draw-tools--trigger {}
+
+.draw-tools {
+  display: none;
+  padding: rem-calc(4);
+  background-color: $white;
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+
+  .draw-tools--container:hover &,
+  &.active {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.draw-tool {
+  margin: 0;
+  white-space: nowrap;
+  width: 8.25em;
+
+  & + & {
+    margin-top: rem-calc(4);
+  }
 
   @include breakpoint(medium) {
     margin-top: 0;
@@ -619,11 +654,5 @@ tr {
     // @include button-style($primary-color, auto, $white);
     color: $white;
     background-color: $primary-color;
-  }
-
-  .fa {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: rem-calc(19);
   }
 }
