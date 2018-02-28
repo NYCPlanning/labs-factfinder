@@ -11,7 +11,6 @@ export default {
         id: 'choropleth-nta-fill',
         type: 'fill',
         source: 'choropleths',
-        'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'fill-opacity': 0.6,
           'fill-color': choroplethConfigs.find(d => d.id === 'popperacre').paintFill['fill-color'],
@@ -23,7 +22,6 @@ export default {
         id: 'choropleth-nta-line',
         type: 'line',
         source: 'choropleths',
-        'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'line-width': {
             stops: [
