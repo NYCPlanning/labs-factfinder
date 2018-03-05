@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   metrics: service(),
 
   actions: {
-    closeTabDropdown(x) {
+    closeTabDropdown() {
       this.set('isOpen', false);
     },
 

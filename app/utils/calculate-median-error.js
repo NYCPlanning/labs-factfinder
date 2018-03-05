@@ -62,18 +62,14 @@ export default function calculateMedianError(data, column, options) {
   const pLower = 50 - standardError;
 
   const upperCategoryIndex =
-    foundBins.findIndex(
-      (_, currentBin) =>
-        round(pUpper) > findCumulativePercentage(scenario, sum, currentBin) &&
-        round(pUpper) < findCumulativePercentage(scenario, sum, currentBin + 1),
-    );
+    foundBins.findIndex((_, currentBin) =>
+      round(pUpper) > findCumulativePercentage(scenario, sum, currentBin) &&
+        round(pUpper) < findCumulativePercentage(scenario, sum, currentBin + 1));
 
   const lowerCategoryIndex =
-    foundBins.findIndex(
-      (_, currentBin) =>
-        round(pLower) > findCumulativePercentage(scenario, sum, currentBin) &&
-        round(pLower) < findCumulativePercentage(scenario, sum, currentBin + 1),
-    );
+    foundBins.findIndex((_, currentBin) =>
+      round(pLower) > findCumulativePercentage(scenario, sum, currentBin) &&
+        round(pLower) < findCumulativePercentage(scenario, sum, currentBin + 1));
 
   const upperCategory = foundBins[upperCategoryIndex];
   const lowerCategory = foundBins[lowerCategoryIndex];

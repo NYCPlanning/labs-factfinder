@@ -55,9 +55,7 @@ export default Ember.Component.extend({
 
   @computed('comparisonArea', 'options')
   selected(area, options) {
-    return options.then(
-      d => d.findBy('geoid', area),
-    );
+    return options.then(d => d.findBy('geoid', area));
   },
 
   @computed()
@@ -74,8 +72,7 @@ export default Ember.Component.extend({
         .map(d => ({
           groupName: d.key,
           options: d.values,
-        })),
-      );
+        })));
   },
 
   actions: {

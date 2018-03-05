@@ -106,7 +106,11 @@ export default Ember.Component.extend({
     const transitionRoute = blocks ? 'profile.census' : `profile.${lastreport}`;
 
     yield this.get('router')
-      .transitionTo(transitionRoute, id, { queryParams: { mode: 'current', comparator: '0', reliability: false, charts: true } });
+      .transitionTo(transitionRoute, id, {
+        queryParams: {
+          mode: 'current', comparator: '0', reliability: false, charts: true,
+        },
+      });
   }).restartable(),
 
   actions: {

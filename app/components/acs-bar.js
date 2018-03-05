@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
-import { select, selectAll } from 'd3-selection';
+import { select } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 import { axisBottom } from 'd3-axis';
@@ -219,12 +219,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('height', y.bandwidth())
 
       .attr('rx', 2)
-      .attr('ry', 2)
-      // .on('mouseover', (d) => {
-      //   handleMouseOver(d);
-      // })
-      // .on('mouseout', handleMouseOut);
-
+      .attr('ry', 2);
 
     bars.transition().duration(300)
       .attr('x', x(0))

@@ -92,7 +92,9 @@ const choroplethConfigs = [
 ];
 
 const builtConfigs = choroplethConfigs.map((config) => {
-  const { group, id, label, legendTitle, isPercent, stops, tooltip } = config;
+  const {
+    group, id, label, legendTitle, isPercent, stops, tooltip,
+  } = config;
   return {
     group,
     id,

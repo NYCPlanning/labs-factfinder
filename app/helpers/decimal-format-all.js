@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function decimalFormatAll(params/*, hash*/) {
+export function decimalFormatAll(params/* , hash */) {
   return params;
 }
 

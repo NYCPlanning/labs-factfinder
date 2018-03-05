@@ -42,12 +42,11 @@ export default Ember.Component.extend({
 
     return yield fetch(URL)
       .then(data => data.json())
-      .then(json => json.map(
-        (result, index) => {
-          const newResult = result;
-          newResult.id = index;
-          return result;
-        }))
+      .then(json => json.map((result, index) => {
+        const newResult = result;
+        newResult.id = index;
+        return result;
+      }))
       .then((resultList) => {
         if (isEmpty(resultList)) {
           this.get('metrics').trackEvent(

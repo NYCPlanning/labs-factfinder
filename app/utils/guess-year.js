@@ -13,8 +13,7 @@ export default function guessYear(data, foundBins, environment = 'production') {
   if (thisYear === '2016') {
     if (environment === 'development') {
       console.log( // eslint-disable-line
-        'Year Guessed for Median MOE: ', thisYear,
-      );
+        'Year Guessed for Median MOE: ', thisYear);
     }
     return laterSet;
   }

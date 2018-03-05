@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
-const { get,
-  run: { scheduleOnce } } = Ember;
+const {
+  get,
+  run: { scheduleOnce },
+} = Ember;
 
 export default Ember.Mixin.create({
   metrics: Ember.inject.service(),

@@ -18,9 +18,7 @@ export default Ember.Component.extend({
         })
         .sortBy('dataset', 'profile', 'category').reverse();
       const columnNames = [Object.keys(profile.get('firstObject'))];
-      const matrixValues = profile.map(
-        row => Object.values(row),
-      );
+      const matrixValues = profile.map(row => Object.values(row));
 
       const data = []
         .concat(

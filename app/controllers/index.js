@@ -163,7 +163,7 @@ export default Ember.Controller.extend({
     },
 
     handleDrawModeChange(e) {
-      console.log('DRAWMODECHANGE')
+      console.log('DRAWMODECHANGE');
       const drawMode = e.mode === 'draw_polygon';
       // delay setting drawMode boolean so that polygon-closing click won't be handled
       setTimeout(() => {

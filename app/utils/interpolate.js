@@ -21,8 +21,7 @@ export default function interpolate(data, sumKey = 'sum', options) {
 
     if (environment === 'development') {
       console.log( // eslint-disable-line
-        'Year Guessed: ', thisYear,
-      );
+        'Year Guessed: ', thisYear);
     }
 
     if (thisYear === '2000' || thisYear === '2016') {

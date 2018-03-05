@@ -190,9 +190,7 @@ export default Ember.Service.extend({
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
 
-      const inSelection = selected.features.find(
-        selectedFeature => selectedFeature.properties.geoid === properties.geoid,
-      );
+      const inSelection = selected.features.find(selectedFeature => selectedFeature.properties.geoid === properties.geoid);
 
       if (inSelection === undefined) {
         selected.features.push({
@@ -201,9 +199,7 @@ export default Ember.Service.extend({
           properties,
         });
       } else {
-        const newFeatures = selected.features.filter(
-          selectedFeature => selectedFeature.properties.geoid !== properties.geoid,
-        );
+        const newFeatures = selected.features.filter(selectedFeature => selectedFeature.properties.geoid !== properties.geoid);
 
         this.set('current.features', newFeatures);
       }

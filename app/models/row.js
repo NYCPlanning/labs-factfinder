@@ -73,12 +73,16 @@ export default DS.Model.extend({
   // These are used in the column groups
   @computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds.sum')
   selection(sum, moe, cv, percent, percent_m, is_reliable, direction) {
-    return { sum, moe, cv, percent, percent_m, is_reliable, direction };
+    return {
+      sum, moe, cv, percent, percent_m, is_reliable, direction,
+    };
   },
 
   @computed('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'codingThresholds.comparison_sum')
   comparison(sum, moe, cv, percent, percent_m, is_reliable, direction) {
-    return { sum, moe, cv, percent, percent_m, is_reliable, direction };
+    return {
+      sum, moe, cv, percent, percent_m, is_reliable, direction,
+    };
   },
 
   @computed('base', 'variablename')

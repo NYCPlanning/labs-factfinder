@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function decimalOnePlacePercent(params/*, hash*/) {
+export function decimalOnePlacePercent(params/* , hash */) {
   return params;
 }
 
