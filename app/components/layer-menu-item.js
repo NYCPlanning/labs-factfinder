@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
-const { service } = Ember.inject;
-const { alias } = Ember.computed;
-
-export default Ember.Component.extend({
+export default Component.extend({
   registeredLayers: service(),
   metrics: service(),
 

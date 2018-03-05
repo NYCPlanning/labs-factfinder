@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { get } from '@ember/object';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
-import { select, selectAll } from 'd3-selection';
+import { select } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 import { axisBottom } from 'd3-axis';
@@ -9,23 +11,22 @@ import numeral from 'numeral';// eslint-disable-line
 import mungeBarChartData from '../utils/munge-bar-chart-data';
 import { transition } from 'd3-transition'; // eslint-disable-line
 
-const { get } = Ember;
-
 const translation = (x, y) => `translate(${x},${y})`;
+const margin = {
+  top: 10,
+  right: 10,
+  bottom: 60,
+  left: 10,
+};
 
-const HorizontalBar = Ember.Component.extend(ResizeAware, {
+export default Component.extend(ResizeAware, {
   // necessary to get tests to pass https://github.com/mike-north/ember-resize/issues/43
-  resizeService: Ember.inject.service('resize'),
+  resizeService: service('resize'),
 
   classNameBindings: ['loading'],
   classNames: ['acs-bar callout'],
 
-  margin: {
-    top: 10,
-    right: 10,
-    bottom: 60,
-    left: 10,
-  },
+
   height: 800,
   xMax: null,
   resizeWidthSensitive: true,
@@ -64,43 +65,9 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const data = this.get('data');
     const config = this.get('config');
 
-    // tooltip renderer
-    // const toolTip = (d) => {
-    //   const group = get(d, 'group');
-    //   const percent = get(d, 'percent');
-    //   const percentM = get(d, 'percent_m');
-    //   return `
-    //     ${group} = ${numeral(percent).format('0.0%')}
-    //     <small>(±${numeral(percentM).format('0.0%')})</small>.
-    //   `;
-    // };
-    //
-    // let timer;
-    //
-    // mouse event handlers
-    // const handleMouseOver = (d) => {
-    //   clearTimeout(timer);
-    //   selectAll(`#${this.elementId} .age-chart-tooltip`)
-    //     .html(toolTip(d));
-    //
-    //   selectAll(`.${get(d, 'classValue')}`)
-    //     .classed('highlight', true);
-    // };
-    //
-    // const handleMouseOut = (d) => {
-    //   selectAll(`.${get(d, 'classValue')}`)
-    //     .classed('highlight', false);
-    //   timer = setTimeout(() => {
-    //     selectAll(`#${this.elementId} .age-chart-tooltip`)
-    //       .html('Hover over bars for more detail');
-    //   }, 400);
-    // };
-
-
     const el = this.$();
     const elWidth = el.width();
 
-    const margin = this.get('margin');
     const height = this.get('height') - margin.top - margin.bottom;
     const width = elWidth - margin.left - margin.right;
     const textWidth = width * 0.35;
@@ -219,12 +186,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
       .attr('height', y.bandwidth())
 
       .attr('rx', 2)
-      .attr('ry', 2)
-      // .on('mouseover', (d) => {
-      //   handleMouseOver(d);
-      // })
-      // .on('mouseout', handleMouseOut);
-
+      .attr('ry', 2);
 
     bars.transition().duration(300)
       .attr('x', x(0))
@@ -324,5 +286,3 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     comparisonBars.exit().remove();
   },
 });
-
-export default HorizontalBar;

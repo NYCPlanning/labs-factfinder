@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
 import { nest } from 'd3-collection';
-
-const { get } = Ember;
 
 export default function nestProfile(data, ...keys) {
   const { length } = keys;

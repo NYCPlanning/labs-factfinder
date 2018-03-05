@@ -1,14 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
-const { service } = Ember.inject;
-
-export default Ember.Component.extend({
+export default Component.extend({
   isOpen: false,
 
   metrics: service(),
 
   actions: {
-    closeTabDropdown(x) {
+    closeTabDropdown() {
       this.set('isOpen', false);
     },
 

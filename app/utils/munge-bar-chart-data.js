@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { get } = Ember;
+import { get } from '@ember/object';
 
 export default (config, d) =>
   (config.map(({ property, label }) =>

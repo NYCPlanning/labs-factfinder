@@ -42,6 +42,7 @@ export default [
   },
   {
     title: 'Bachelor\'s degree or higher',
-    data: 'ea_bchdh' },
+    data: 'ea_bchdh',
+  },
 
 ];

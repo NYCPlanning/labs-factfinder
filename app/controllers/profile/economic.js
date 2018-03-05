@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Controller, { inject as controller } from '@ember/controller';
+import { get } from '@ember/object';
 import { computed } from 'ember-decorators/object';
 import classOfWorkerChartConfig from '../../chart-config/economic/class-of-worker';
 import incomeAndBenefitsChartConfig from '../../chart-config/economic/income-and-benefits';
@@ -21,9 +22,7 @@ const {
   ratioOfIncomeToPovertyLevel,
 } = economic;
 
-const { inject: { controller }, get } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   classOfWorker,
   commuteToWork,
   earnings,

@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
@@ -20,10 +22,6 @@ import subduedNtaLabels from '../layers/subdued-nta-labels';
 
 const selectedFillLayer = selectedFeatures.fill;
 
-const { service } = Ember.inject;
-
-const { alias } = Ember.computed;
-
 const draw = new MapboxDraw({
   displayControlsDefault: false,
   controls: {
@@ -34,7 +32,7 @@ const draw = new MapboxDraw({
   styles: drawStyles,
 });
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['lastreport'],
   lastreport: 'demographic',
 
@@ -83,7 +81,7 @@ export default Ember.Controller.extend({
     handleClick(e) {
       if (!this.get('drawMode')) {
         const selection = this.get('selection');
-        const summaryLevel = selection.summaryLevel;
+        const { summaryLevel } = selection;
 
         let layers = [];
 
@@ -138,9 +136,9 @@ export default Ember.Controller.extend({
       draw.deleteAll();
 
       const selection = this.get('selection');
-      const summaryLevel = selection.summaryLevel;
+      const { summaryLevel } = selection;
 
-      const geometry = e.features[0].geometry;
+      const { geometry } = e.features[0];
       geometry.crs = {
         type: 'name',
         properties: {
@@ -163,7 +161,6 @@ export default Ember.Controller.extend({
     },
 
     handleDrawModeChange(e) {
-      console.log('DRAWMODECHANGE')
       const drawMode = e.mode === 'draw_polygon';
       // delay setting drawMode boolean so that polygon-closing click won't be handled
       setTimeout(() => {

@@ -1,5 +1,3 @@
-import formula from '../../utils/formula';
-
 export default [
   {
     highlight: true,
@@ -48,22 +46,6 @@ export default [
     data: 'hmownrvcrt',
     decimal: 1,
     special: true,
-    specialCalculations: [
-      {
-        column: 'sum',
-        aggregator: formula,
-        options: {
-          formula: '((GET("vhufslo.sum"))/((GET("vhufslo.sum"))+(GET("oochu1.sum"))))*100',
-        },
-      },
-      {
-        column: 'comparison_sum',
-        aggregator: formula,
-        options: {
-          formula: '((GET("vhufslo.comparison_sum"))/((GET("vhufslo.comparison_sum"))+(GET("oochu1.comparison_sum"))))*100',
-        },
-      },
-    ],
   },
   {
     title: 'Rental vacancy rate (percent)',
@@ -71,21 +53,5 @@ export default [
     data: 'rntvcrt',
     decimal: 1,
     special: true,
-    specialCalculations: [
-      {
-        column: 'sum',
-        aggregator: formula,
-        options: {
-          formula: '((GET("vhufrnt.sum"))/((GET("vhufrnt.sum"))+(GET("rochu_3.sum"))))*100',
-        },
-      },
-      {
-        column: 'comparison_sum',
-        aggregator: formula,
-        options: {
-          formula: '((GET("vhufrnt.comparison_sum"))/((GET("vhufrnt.comparison_sum"))+(GET("rochu_3.comparison_sum"))))*100',
-        },
-      },
-    ],
   },
 ];

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
@@ -8,7 +8,7 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import summaryLevelQueries from '../queries/summary-levels';
 import config from '../config/environment';
 
-const DEFAULT_SELECTION = config.DEFAULT_SELECTION;
+const { DEFAULT_SELECTION } = config;
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 
 const SUM_LEVEL_DICT = {
@@ -24,7 +24,7 @@ const findUniqueBy = function(collection, id) {
     .mapBy(`properties.${id}`);
 };
 
-export default Ember.Service.extend({
+export default Service.extend({
   current: DEFAULT_SELECTION,
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
 
@@ -190,9 +190,7 @@ export default Ember.Service.extend({
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
 
-      const inSelection = selected.features.find(
-        selectedFeature => selectedFeature.properties.geoid === properties.geoid,
-      );
+      const inSelection = selected.features.find(selectedFeature => selectedFeature.properties.geoid === properties.geoid);
 
       if (inSelection === undefined) {
         selected.features.push({
@@ -201,9 +199,7 @@ export default Ember.Service.extend({
           properties,
         });
       } else {
-        const newFeatures = selected.features.filter(
-          selectedFeature => selectedFeature.properties.geoid !== properties.geoid,
-        );
+        const newFeatures = selected.features.filter(selectedFeature => selectedFeature.properties.geoid !== properties.geoid);
 
         this.set('current.features', newFeatures);
       }

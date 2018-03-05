@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Controller, { inject as controller } from '@ember/controller';
+import { get } from '@ember/object';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 
 import demographic from '../../table-config/demographic';
@@ -14,9 +15,7 @@ const {
   asianSubgroup,
 } = demographic;
 
-const { inject: { controller }, get } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   sexAndAge,
   mutuallyExclusiveRaceHispanicOrigin,
   hispanicSubgroup,
