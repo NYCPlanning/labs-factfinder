@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import bbox from 'npm:@turf/bbox';
 
@@ -10,10 +12,7 @@ import trackEvent from '../utils/track-event';
 
 const selectedFillLayer = selectedFeatures.fill;
 
-const { service } = Ember.inject;
-const { alias } = Ember.computed;
-
-export default Ember.Component.extend({
+export default Component.extend({
 
   selection: service(),
   metrics: service(),

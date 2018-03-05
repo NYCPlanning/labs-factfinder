@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
-
-const { computed: { alias } } = Ember;
 
 export default DS.Model.extend({
   // categorical information

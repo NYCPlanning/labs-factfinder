@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { isArray } from '@ember/array';
 import config from '../config/environment';
 import guessYear from '../utils/guess-year';
 
-const { get, isArray } = Ember;
 const { round } = Math;
 const { environment } = config;
 const DESIGN_FACTOR = 1.5;

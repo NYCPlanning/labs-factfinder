@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import Downloadable from '../../mixins/downloadable';
 
-const { service } = Ember.inject;
-
-export default Ember.Route.extend(Downloadable, {
+export default Route.extend(Downloadable, {
   selection: service(),
 
   model(params, { queryParams: { comparator = '0' } }) {

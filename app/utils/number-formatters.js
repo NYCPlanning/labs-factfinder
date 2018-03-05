@@ -1,3 +1,5 @@
+const { isNaN } = Number;
+
 // for number >=0
 export function decimalFormat(number, decimal) {
   if ((number < 0) || (number > 0) || (number === 0)) {

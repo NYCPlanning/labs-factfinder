@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object';
 import { task } from 'ember-concurrency';
 import fetch from 'fetch';
@@ -9,11 +11,9 @@ import trackEvent from '../utils/track-event';
 
 import choroplethConfigs from '../choropleth-config';
 
-const { service } = Ember.inject;
-const { alias } = Ember.computed;
 const { SupportServiceHost } = Environment;
 
-export default Ember.Component.extend({
+export default Component.extend({
   selection: service(),
   router: service(),
   metrics: service(),
@@ -116,9 +116,6 @@ export default Ember.Component.extend({
   actions: {
     clearSelection() {
       this.get('selection').clearSelection();
-    },
-    handleDrawButtonClick() {
-      this.sendAction('handleDrawButtonClick');
     },
     transitionTo() {},
 

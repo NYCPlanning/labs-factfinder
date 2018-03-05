@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function renderTopBottomCodingSuffix([direction]) {
   const symbol = (direction === 'upper') ? '+' : '-';
   return direction ? symbol : '';
 }
 
-export default Ember.Helper.helper(renderTopBottomCodingSuffix);
+export default helper(renderTopBottomCodingSuffix);

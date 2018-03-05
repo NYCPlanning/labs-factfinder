@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
-  data: [],
+  data: null, // []
   filename: 'download',
   actions: {
     @trackEvent('Data', 'Downloaded CSV')
@@ -25,8 +25,6 @@ export default Ember.Component.extend({
           columnNames,
           matrixValues,
         );
-
-      console.log(data);
 
       if (format === 'csv') {
         this.get('csv').export(data, { fileName: `${filename}.csv`, withSeparator: false });

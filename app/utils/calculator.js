@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
 
 const { isArray } = Array;
-const { get } = Ember;
+const { isNaN } = Number;
 
 const operations = ['divide', 'subtract', 'add', 'multiply'];
 const operators = {

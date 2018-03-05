@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function asFloat([number]) {
   return number;
 }
 
-export default Ember.Helper.helper(asFloat);
+export default helper(asFloat);

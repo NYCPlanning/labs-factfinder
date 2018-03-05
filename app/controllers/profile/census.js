@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Controller, { inject as controller } from '@ember/controller';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import decennial from '../../table-config/decennial';
 
@@ -16,9 +16,7 @@ const {
   householdSize,
 } = decennial;
 
-const { inject: { controller } } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   profile: controller('profile'),
   @computed('model.taskInstance.value') data(value) { return value; },
 

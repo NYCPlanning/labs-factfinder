@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import bbox from 'npm:@turf/bbox';
 
@@ -8,10 +10,7 @@ import selectedFeatures from '../layers/selected-features';
 
 const selectedFillLayer = selectedFeatures.fill;
 
-const { service } = Ember.inject;
-const { alias } = Ember.computed;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   mode: 'current',
   reliability: false,
   charts: true,

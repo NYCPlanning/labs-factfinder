@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { get } from '@ember/object';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
 import { select } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -9,23 +11,22 @@ import numeral from 'numeral';// eslint-disable-line
 import mungeBarChartData from '../utils/munge-bar-chart-data';
 import { transition } from 'd3-transition'; // eslint-disable-line
 
-const { get } = Ember;
-
 const translation = (x, y) => `translate(${x},${y})`;
+const margin = {
+  top: 10,
+  right: 10,
+  bottom: 60,
+  left: 10,
+};
 
-const HorizontalBar = Ember.Component.extend(ResizeAware, {
+export default Component.extend(ResizeAware, {
   // necessary to get tests to pass https://github.com/mike-north/ember-resize/issues/43
-  resizeService: Ember.inject.service('resize'),
+  resizeService: service('resize'),
 
   classNameBindings: ['loading'],
   classNames: ['acs-bar callout'],
 
-  margin: {
-    top: 10,
-    right: 10,
-    bottom: 60,
-    left: 10,
-  },
+
   height: 800,
   xMax: null,
   resizeWidthSensitive: true,
@@ -67,7 +68,6 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     const el = this.$();
     const elWidth = el.width();
 
-    const margin = this.get('margin');
     const height = this.get('height') - margin.top - margin.bottom;
     const width = elWidth - margin.left - margin.right;
     const textWidth = width * 0.35;
@@ -286,5 +286,3 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
     comparisonBars.exit().remove();
   },
 });
-
-export default HorizontalBar;

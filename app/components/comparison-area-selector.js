@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { nest } from 'd3-collection';
 import carto from '../utils/carto';
-
-const { service } = Ember.inject;
 
 const OPTIONS_QUERY = `
   (
@@ -44,11 +43,11 @@ const OPTIONS_QUERY = `
     ORDER BY geoid ASC
   )
 `;
-  // `SELECT *, geotype || geogname || geoid AS name FROM support_geoids
-  //   WHERE geotype IN ('Boro2010', 'City2010', 'PUMA2010', 'NTA2010')
-  //   ORDER BY geotype`;
+// `SELECT *, geotype || geogname || geoid AS name FROM support_geoids
+//   WHERE geotype IN ('Boro2010', 'City2010', 'PUMA2010', 'NTA2010')
+//   ORDER BY geotype`;
 
-export default Ember.Component.extend({
+export default Component.extend({
   comparisonArea: null,
 
   metrics: service(),

@@ -9,8 +9,8 @@ module.exports = {
     'ember'
   ],
   extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
+    // 'eslint:recommended',
+    // 'plugin:ember/recommended',
     'airbnb'
   ],
   env: {

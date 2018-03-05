@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function decimalFormatAll(params/* , hash */) {
   return params;
 }
 
-export default Ember.Helper.helper(decimalFormatAll);
+export default helper(decimalFormatAll);

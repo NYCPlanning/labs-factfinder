@@ -1,7 +1,10 @@
+import { get } from '@ember/object';
 import Ember from 'ember';
 import FormulaParser from 'npm:hot-formula-parser';
 
-const { get, Logger } = Ember;
+const {
+  Logger,
+} = Ember;
 const { Parser } = FormulaParser;
 
 export default function(data, sumKey, rowConfig) {

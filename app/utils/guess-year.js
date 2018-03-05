@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { get } = Ember;
+import { get } from '@ember/object';
 
 export default function guessYear(data, foundBins, environment = 'production') {
   const [earlySet, laterSet] = foundBins;

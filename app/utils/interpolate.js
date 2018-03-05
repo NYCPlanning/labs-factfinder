@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { isArray } from '@ember/array';
 import config from '../config/environment';
 
-const { get, isArray } = Ember;
 const { environment } = config;
 
 export default function interpolate(data, sumKey = 'sum', options) {
