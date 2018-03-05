@@ -1,5 +1,3 @@
-import formula from '../../utils/formula';
-
 export default [
   {
     highlight: true,
@@ -83,22 +81,6 @@ export default [
     data: 'avghhsz',
     decimal: 2,
     special: true,
-    specialCalculations: [
-      {
-        column: 'sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("popinhh.sum"))/(GET("hh1.sum"))',
-        },
-      },
-      {
-        column: 'comparison_sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("popinhh.comparison_sum"))/(GET("hh1.comparison_sum"))',
-        },
-      },
-    ],
   },
   {
     title: 'Average family size',
@@ -106,22 +88,6 @@ export default [
     data: 'avgfamsz',
     decimal: 2,
     special: true,
-    specialCalculations: [
-      {
-        column: 'sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("popinfam.sum"))/(GET("fam1.sum"))',
-        },
-      },
-      {
-        column: 'comparison_sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("popinfam.comparison_sum"))/(GET("fam1.comparison_sum"))',
-        },
-      },
-    ],
   },
   {
     divider: true,
