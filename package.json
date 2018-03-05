@@ -59,7 +59,7 @@
     "ember-resize": "0.0.17",
     "ember-resolver": "^4.0.0",
     "ember-responsive": "^2.0.5",
-    "ember-scroll-to": "^0.6.4",
+    "ember-scroll-to": "allthesignals/ember-scroll-to#master",
     "ember-source": "~3.0.0",
     "ember-sticky-element": "^0.1.5",
     "ember-test-helpers": "^0.7.0-beta.4",

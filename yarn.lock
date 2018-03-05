@@ -4443,12 +4443,12 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
     ember-cli-babel "^6.9.0"
     ember-cli-version-checker "^2.1.0"
 
-ember-scroll-to@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/ember-scroll-to/-/ember-scroll-to-0.6.4.tgz#aabf0e683db1d9eaf2d1b09e33a2e6691fcf77f4"
+ember-scroll-to@allthesignals/ember-scroll-to#master:
+  version "0.6.5"
+  resolved "https://codeload.github.com/allthesignals/ember-scroll-to/tar.gz/e88252463005dc6fae65f39714654e4a51af68f9"
   dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-htmlbars "^1.0.3"
+    ember-cli-babel "^6.3.0"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-select-list@^0.9.5:
   version "0.9.5"
