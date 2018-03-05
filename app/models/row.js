@@ -2,9 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 
-import tableConfigs from '../table-config';
-
-const { get, Logger, computed: { alias } } = Ember;
+const { computed: { alias } } = Ember;
 
 export default DS.Model.extend({
   // categorical information
