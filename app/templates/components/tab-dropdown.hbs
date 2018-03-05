@@ -1,5 +1,14 @@
-{{#scroll-to href='#top' class='active has-dropdown'}}{{tabName}}{{#if tabNameSmall}} <small>{{tabNameSmall}}</small>{{/if}}{{/scroll-to}}
-<span {{action 'toggleDropdown'}}>{{fa-icon 'caret-down' class=(if (eq isOpen true) 'flip')}}</span>
+{{#scroll-to href='#top' class='active has-dropdown'}}
+  {{tabName}}
+  {{#if tabNameSmall}}
+    <small>{{tabNameSmall}}</small>
+  {{/if}}
+{{/scroll-to}}
+
+<span {{action 'toggleDropdown'}}>
+  {{fa-icon 'caret-down' class=(if (eq isOpen true) 'flip')}}
+</span>
+
 <ul class="tab-dropdown menu vertical {{if (eq isOpen false) 'hide'}}">
   {{yield (hash scroll-to=(component 'scroll-to' afterScroll=(action 'closeTabDropdown')))}}
 </ul>

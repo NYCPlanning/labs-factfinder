@@ -81,6 +81,7 @@
   },
   "private": true,
   "dependencies": {
+    "@ember-decorators/babel-transforms": "2.0.0",
     "@turf/bbox": "^5.0.0",
     "@turf/buffer": "^5.0.4",
     "babel-eslint": "^8.0.1",
