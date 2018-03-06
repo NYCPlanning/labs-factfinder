@@ -37,4 +37,8 @@ jobs:
         
       # run tests!
       - run: yarn test
+      - run: ember s &; npm run
+      - store_artifacts:
+          path: screenshot.png
+          destination: screenshot.png
 
