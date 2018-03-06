@@ -2,16 +2,22 @@ import Component from '@ember/component';
 import { computed } from 'ember-decorators/object';
 
 export default Component.extend({
+  // state
   mode: 'current',
   reliability: false,
   comparison: true,
   isSelected: false,
+  rowConfig: {},
+  data: {},
+  data2: {},
 
+  // configuration
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
+  // computeds
   @computed('rowConfig', 'isSelected')
-  getClassNames(rowConfig) {
+  getClassNames(rowConfig = {}) {
     const classes = [];
 
     if (rowConfig.highlight) {
