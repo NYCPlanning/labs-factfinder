@@ -42,7 +42,6 @@
   <td class="{{unless data.change_percent_significant 'insignificant'}}">
     {{if
       (and
-        data.change_percent
         (not data.rowConfig.hidePercentChange)
         (and
           (not data.codingThresholds.sum)
