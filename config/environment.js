@@ -76,7 +76,11 @@ module.exports = function(environment) {
       const page = await browser.newPage();
       await page.goto('http://localhost:4200/profile/1/demographic?charts=false&reliability=true');
       await page.waitForSelector('h3#sex-and-age');
-      await page.screenshot({ path: 'latest.png', fullPage: true });
+      await page.screenshot({ path: 'latest-current-view.png', fullPage: true });
+
+      await page.goto('http://localhost:4200/profile/1/demographic?mode=change&charts=false&reliability=true');
+      await page.waitForSelector('h3#sex-and-age');
+      await page.screenshot({ path: 'latest-change-view.png', fullPage: true });
 
       await browser.close();
     })();
