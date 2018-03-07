@@ -21,7 +21,7 @@
   {{!-- CHANGE --}}
 
   {{!-- Estimate --}}
-  <td class="cell-border-left {{unless data.change_significant 'insignificant'}}">
+  <td class="cell-border-left change-estimate {{unless data.change_significant 'insignificant'}}">
     {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
       (format-number
           data.change_sum
@@ -30,7 +30,7 @@
 
   {{#if reliability}}
     {{!-- MOE --}}
-    <td class="{{unless data.change_significant 'insignificant'}}">
+    <td class="{{unless data.change_significant 'insignificant'}} change-estimate-moe">
       {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
         (format-number
             data.change_m
@@ -39,10 +39,9 @@
   {{/if}}
 
   {{!-- percent --}}
-  <td class="{{unless data.change_percent_significant 'insignificant'}}">
+  <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent">
     {{if
       (and
-        data.change_percent
         (not data.rowConfig.hidePercentChange)
         (and
           (not data.codingThresholds.sum)
@@ -54,7 +53,7 @@
 
   {{#if reliability}}
     {{!-- Percent M --}}
-    <td class="{{unless data.change_percent_significant 'insignificant'}}">
+    <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent-moe">
       {{if
         (and
           data.change_percent_m
@@ -69,7 +68,7 @@
   {{/if}}
 
   {{!-- percentage point --}}
-  <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
+  <td class="{{unless data.change_percentage_point_significant 'insignificant'}} change-percentage-point">
     {{#unless
         (or
           data.isSpecial
@@ -84,7 +83,7 @@
 
   {{#if reliability}}
     {{!-- percentage point m --}}
-    <td class="{{unless data.change_percentage_point_significant 'insignificant'}}">
+    <td class="{{unless data.change_percentage_point_significant 'insignificant'}} change-percentage-point-moe">
       {{#unless
           (or
             data.isSpecial

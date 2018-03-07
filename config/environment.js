@@ -69,21 +69,21 @@ module.exports = function(environment) {
     ENV.SupportServiceHost = 'http://localhost:4000';
   }
 
-  if (environment === 'development') {
+  // generates a screenshot for diffing
+  if (environment === 'development' || environment === 'devlocal') {
     (async () => {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.goto('http://localhost:4200/profile/1/demographic?charts=false&reliability=true');
       await page.waitForSelector('h3#sex-and-age');
-      await page.screenshot({ path: 'latest.png', fullPage: true });
+      await page.screenshot({ path: 'latest-current-view.png', fullPage: true });
+
+      await page.goto('http://localhost:4200/profile/1/demographic?mode=change&charts=false&reliability=true');
+      await page.waitForSelector('h3#sex-and-age');
+      await page.screenshot({ path: 'latest-change-view.png', fullPage: true });
 
       await browser.close();
     })();
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'test') {
