@@ -53,10 +53,10 @@
   {{/if}}
 
     <td
-      class="{{unless data.percent_significant 'insignificant'}}">
+      class="{{unless data.percent_significant 'insignificant'}} difference-percent">
       {{#unless (or
           data.shouldHideDeltaPercent
-          (and (eq data.percent null) (eq data.previous_percent null))
+          (and (eq data.percent null) (eq data.comparison_percent null))
         )}}
           {{format-number
           data.difference_percent
@@ -65,10 +65,10 @@
     </td>
     {{#if reliability}}
       <td
-        class="{{unless data.percent_significant 'insignificant'}}">
+        class="{{unless data.percent_significant 'insignificant'}} difference-percent-m">
         {{unless (or
             data.shouldHideDeltaPercent
-            (and (eq data.percent null) (eq data.previous_percent null))
+            (and (eq data.percent null) (eq data.comparison_percent null))
           )
           (format-number
             data.difference_percent_m

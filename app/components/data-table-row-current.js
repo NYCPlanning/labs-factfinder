@@ -6,12 +6,14 @@ export default Component.extend({
   reliability: false,
   comparison: true,
   isSelected: false,
+  data: {}, // model object with specific properties
+  rowConfig: {}, // model's row configuration object
 
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
   @computed('rowConfig', 'isSelected')
-  getClassNames(rowConfig) {
+  getClassNames(rowConfig = {}) {
     const classes = [];
 
     if (rowConfig.highlight) {
