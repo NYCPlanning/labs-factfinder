@@ -72,6 +72,7 @@ module.exports = function(environment) {
   // generates a screenshot for diffing
   if (environment === 'development' || environment === 'devlocal') {
     (async () => {
+      console.log('Generating screenshot');
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.goto('http://localhost:4200/profile/1/demographic?charts=false&reliability=true');
