@@ -1,10 +1,6 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
-
-import tableConfigs from '../table-config';
-
-const { get, Logger, computed: { alias } } = Ember;
 
 export default DS.Model.extend({
   // categorical information
@@ -73,12 +69,16 @@ export default DS.Model.extend({
   // These are used in the column groups
   @computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds.sum')
   selection(sum, moe, cv, percent, percent_m, is_reliable, direction) {
-    return { sum, moe, cv, percent, percent_m, is_reliable, direction };
+    return {
+      sum, moe, cv, percent, percent_m, is_reliable, direction,
+    };
   },
 
   @computed('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'codingThresholds.comparison_sum')
   comparison(sum, moe, cv, percent, percent_m, is_reliable, direction) {
-    return { sum, moe, cv, percent, percent_m, is_reliable, direction };
+    return {
+      sum, moe, cv, percent, percent_m, is_reliable, direction,
+    };
   },
 
   @computed('base', 'variablename')

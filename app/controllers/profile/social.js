@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Controller, { inject as controller } from '@ember/controller';
 import { computed } from 'ember-decorators/object';
 
 import social from '../../table-config/social';
@@ -27,9 +27,7 @@ const {
   yearOfEntry,
 } = social;
 
-const { inject: { controller } } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   ancestry,
   disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
   educationalAttainmentHighestGradeCompleted,

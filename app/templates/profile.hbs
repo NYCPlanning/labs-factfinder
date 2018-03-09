@@ -1,4 +1,4 @@
-<div class="overflow-y-grid grid-padding-x">
+<div class="overflow-y-grid grid-padding-x" id="profile-wrapper">
   <div class="cell shrink">
     <div class="profile-menus">
       <ul class="menu tabs vertical medium-horizontal text-center">
@@ -14,16 +14,36 @@
               tabName='Census'
               tabNameSmall=''
               as |item| }}
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Age and Sex'}}>{{#item.scroll-to href='#sex-and-age'}}Age and Sex{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Mutually Exclusive Race / Hispanic Origin'}}>{{#item.scroll-to href='#mutually-exclusive-race-hispanic-origin'}}Mutually Exclusive Race / Hispanic Origin{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Hispanic Subgroup'}}>{{#item.scroll-to href='#hispanic-subgroup'}}Hispanic Subgroup{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Asian Subgroup'}}>{{#item.scroll-to href='#asian-subgroup'}}Asian Subgroup{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Relationship to Head of Household'}}>{{#item.scroll-to href='#relationship-to-head-of-household'}}Relationship to Head of Household{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Household Type'}}>{{#item.scroll-to href='#household-type'}}Household Type{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Occupancy'}}>{{#item.scroll-to href='#housing-occupancy'}}Housing Occupancy{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Tenure'}}>{{#item.scroll-to href='#housing-tenure'}}Housing Tenure{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Tenure by Age of Househodler'}}>{{#item.scroll-to href='#tenure-by-age-of-householder'}}Tenure by Age of Househodler{{/item.scroll-to}}</li>
-              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Household Size'}}>{{#item.scroll-to href='#household-size'}}Household Size{{/item.scroll-to}}</li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Age and Sex'}}>
+                {{#item.scroll-to href='#sex-and-age'}}Age and Sex{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Mutually Exclusive Race / Hispanic Origin'}}>
+                {{#item.scroll-to href='#mutually-exclusive-race-hispanic-origin'}}Mutually Exclusive Race / Hispanic Origin{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Hispanic Subgroup'}}>
+                {{#item.scroll-to href='#hispanic-subgroup'}}Hispanic Subgroup{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Asian Subgroup'}}>
+                {{#item.scroll-to href='#asian-subgroup'}}Asian Subgroup{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Relationship to Head of Household'}}>
+                {{#item.scroll-to href='#relationship-to-head-of-household'}}Relationship to Head of Household{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Household Type'}}>
+                {{#item.scroll-to href='#household-type'}}Household Type{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Occupancy'}}>
+                {{#item.scroll-to href='#housing-occupancy'}}Housing Occupancy{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Tenure'}}>
+                {{#item.scroll-to href='#housing-tenure'}}Housing Tenure{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Tenure by Age of Househodler'}}>
+                {{#item.scroll-to href='#tenure-by-age-of-householder'}}Tenure by Age of Househodler{{/item.scroll-to}}
+              </li>
+              <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Household Size'}}>
+                {{#item.scroll-to href='#household-size'}}Household Size{{/item.scroll-to}}
+              </li>
             {{/tab-dropdown}}
           {{else}}
             {{#link-to
@@ -48,10 +68,18 @@
                 tabName='Demographic'
                 tabNameSmall='(ACS)'
                 as |item| }}
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Age and Sex'}}>{{#item.scroll-to href='#sex-and-age'}}Age and Sex{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Mutually Exclusive Race / Hispanic Origin'}}>{{#item.scroll-to href='#mutually-exclusive-race-hispanic-origin'}}Mutually Exclusive Race / Hispanic Origin{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Hispanic Subgroup'}}>{{#item.scroll-to href='#hispanic-subgroup'}}Hispanic Subgroup{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Asian Subgroup'}}>{{#item.scroll-to href='#asian-subgroup'}}Asian Subgroup{{/item.scroll-to}}</li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Age and Sex'}}>
+                  {{#item.scroll-to href='#sex-and-age'}}Age and Sex{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Mutually Exclusive Race / Hispanic Origin'}}>
+                  {{#item.scroll-to href='#mutually-exclusive-race-hispanic-origin'}}Mutually Exclusive Race / Hispanic Origin{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Hispanic Subgroup'}}>
+                  {{#item.scroll-to href='#hispanic-subgroup'}}Hispanic Subgroup{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Asian Subgroup'}}>
+                  {{#item.scroll-to href='#asian-subgroup'}}Asian Subgroup{{/item.scroll-to}}
+                </li>
               {{/tab-dropdown}}
             {{else}}
               {{#link-to
@@ -70,19 +98,45 @@
                 tabName='Social'
                 tabNameSmall='(ACS)'
                 as |item| }}
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Household Type'}}>{{#item.scroll-to href='#household-type'}}Household Type{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Relationship To Head Of Household (Householder'}}>{{#item.scroll-to href='#relationship-to-head-of-household'}}Relationship To Head Of Household (Householder){{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Grandparents'}}>{{#item.scroll-to href='#grandparents'}}Grandparents{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'School Enrollment'}}>{{#item.scroll-to href='#school-enrollment'}}School Enrollment{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Educational Attainment (Highest Grade Completed)'}}>{{#item.scroll-to href='#educational-attainment'}}Educational Attainment (Highest Grade Completed){{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Veteran Status'}}>{{#item.scroll-to href='#veteran-status'}}Veteran Status{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Disability Status Of The Civilian Noninstitutionalized Population'}}>{{#item.scroll-to href='#disability-status-of-the-civilian-noninstitutionalized-population'}}Disability Status Of The Civilian Noninstitutionalized Population{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Residence 1 Year Ago'}}>{{#item.scroll-to href='#residence-1-year-ago'}}Residence 1 Year Ago{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Place Of Birth'}}>{{#item.scroll-to href='#place-of-birth'}}Place Of Birth{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'U.S. Citizenship Status'}}>{{#item.scroll-to href='#us-citizenship-status'}}U.S. Citizenship Status{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Year Of Entry'}}>{{#item.scroll-to href='#year-of-entry'}}Year Of Entry{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Language Spoken At Home'}}>{{#item.scroll-to href='#language-spoken-at-home'}}Language Spoken At Home{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Ancestry'}}>{{#item.scroll-to href='#ancestry'}}Ancestry{{/item.scroll-to}}</li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Household Type'}}>
+                  {{#item.scroll-to href='#household-type'}}Household Type{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Relationship To Head Of Household (Householder'}}>
+                  {{#item.scroll-to href='#relationship-to-head-of-household'}}Relationship To Head Of Household (Householder){{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Grandparents'}}>
+                  {{#item.scroll-to href='#grandparents'}}Grandparents{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'School Enrollment'}}>
+                  {{#item.scroll-to href='#school-enrollment'}}School Enrollment{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Educational Attainment (Highest Grade Completed)'}}>
+                  {{#item.scroll-to href='#educational-attainment'}}Educational Attainment (Highest Grade Completed){{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Veteran Status'}}>
+                  {{#item.scroll-to href='#veteran-status'}}Veteran Status{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Disability Status Of The Civilian Noninstitutionalized Population'}}>
+                  {{#item.scroll-to href='#disability-status-of-the-civilian-noninstitutionalized-population'}}Disability Status Of The Civilian Noninstitutionalized Population{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Residence 1 Year Ago'}}>
+                  {{#item.scroll-to href='#residence-1-year-ago'}}Residence 1 Year Ago{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Place Of Birth'}}>
+                  {{#item.scroll-to href='#place-of-birth'}}Place Of Birth{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'U.S. Citizenship Status'}}>
+                  {{#item.scroll-to href='#us-citizenship-status'}}U.S. Citizenship Status{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Year Of Entry'}}>
+                  {{#item.scroll-to href='#year-of-entry'}}Year Of Entry{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Language Spoken At Home'}}>
+                  {{#item.scroll-to href='#language-spoken-at-home'}}Language Spoken At Home{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Ancestry'}}>
+                  {{#item.scroll-to href='#ancestry'}}Ancestry{{/item.scroll-to}}
+                </li>
               {{/tab-dropdown}}
             {{else}}
               {{#link-to
@@ -101,16 +155,36 @@
                 tabName='Economic'
                 tabNameSmall='(ACS)'
                 as |item| }}
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Employment Status'}}>{{#item.scroll-to href='#employment-status'}}Employment Status{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Commute to Work'}}>{{#item.scroll-to href='#commute-to-work'}}Commute to Work{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Occupation'}}>{{#item.scroll-to href='#occupation'}}Occupation{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Industry'}}>{{#item.scroll-to href='#industry'}}Industry{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Class of Worker'}}>{{#item.scroll-to href='#class-of-worker'}}Class of Worker{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Income and Benefits'}}>{{#item.scroll-to href='#income-and-benefits'}}Income and Benefits{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Earnings'}}>{{#item.scroll-to href='#earnings'}}Earnings{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Health Insurance Coverage'}}>{{#item.scroll-to href='#health-insurance-coverage'}}Health Insurance Coverage{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Income in the Past 12 Months Below Poverty Level'}}>{{#item.scroll-to href='#income-in-the-past-12-months-below-poverty-level'}}Income in the Past 12 Months Below Poverty Level{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Ratio of Income to Poverty Level'}}>{{#item.scroll-to href='#ratio-of-income-to-poverty-level'}}Ratio of Income to Poverty Level{{/item.scroll-to}}</li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Employment Status'}}>
+                  {{#item.scroll-to href='#employment-status'}}Employment Status{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Commute to Work'}}>
+                  {{#item.scroll-to href='#commute-to-work'}}Commute to Work{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Occupation'}}>
+                  {{#item.scroll-to href='#occupation'}}Occupation{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Industry'}}>
+                  {{#item.scroll-to href='#industry'}}Industry{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Class of Worker'}}>
+                  {{#item.scroll-to href='#class-of-worker'}}Class of Worker{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Income and Benefits'}}>
+                  {{#item.scroll-to href='#income-and-benefits'}}Income and Benefits{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Earnings'}}>
+                  {{#item.scroll-to href='#earnings'}}Earnings{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Health Insurance Coverage'}}>
+                  {{#item.scroll-to href='#health-insurance-coverage'}}Health Insurance Coverage{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Income in the Past 12 Months Below Poverty Level'}}>
+                  {{#item.scroll-to href='#income-in-the-past-12-months-below-poverty-level'}}Income in the Past 12 Months Below Poverty Level{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Ratio of Income to Poverty Level'}}>
+                  {{#item.scroll-to href='#ratio-of-income-to-poverty-level'}}Ratio of Income to Poverty Level{{/item.scroll-to}}
+                </li>
               {{/tab-dropdown}}
             {{else}}
               {{#link-to
@@ -129,19 +203,45 @@
                 tabName='Housing'
                 tabNameSmall='(ACS)'
                 as |item| }}
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Occupancy'}}>{{#item.scroll-to href='#housing-occupancy'}}Housing Occupancy{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Units in Structure'}}>{{#item.scroll-to href='#units-in-structure'}}Units in Structure{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Year Structure Built'}}>{{#item.scroll-to href='#year-structure-built'}}Year Structure Built{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Rooms'}}>{{#item.scroll-to href='#rooms'}}Rooms{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Tenure'}}>{{#item.scroll-to href='#housing-tenure'}}Housing Tenure{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Year Householder Moved Into Unit'}}>{{#item.scroll-to href='#year-householder-moved-into-unit'}}Year Householder Moved Into Unit{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Vehicles Available'}}>{{#item.scroll-to href='#vehicles-available'}}Vehicles Available{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Occupants per Room'}}>{{#item.scroll-to href='#occupants-per-room'}}Occupants per Room{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Value'}}>{{#item.scroll-to href='#value'}}Value{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Mortgage Status'}}>{{#item.scroll-to href='#mortgage-status'}}Mortgage Status{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Selected Monthly Owner Costs as a Percentage of Household Income'}}>{{#item.scroll-to href='#selected-monthly-owner-costs-as-a-percentage-of-household-income'}}Selected Monthly Owner Costs as a Percentage of Household Income{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Gross Rent'}}>{{#item.scroll-to href='#gross-rent'}}Gross Rent{{/item.scroll-to}}</li>
-                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Gross Rent as a Percentage of Household Income (GRAPI)'}}>{{#item.scroll-to href='#gross-rent-as-a-percentage-of-household-income'}}Gross Rent as a Percentage of Household Income (GRAPI){{/item.scroll-to}}</li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Occupancy'}}>
+                  {{#item.scroll-to href='#housing-occupancy'}}Housing Occupancy{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Units in Structure'}}>
+                  {{#item.scroll-to href='#units-in-structure'}}Units in Structure{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Year Structure Built'}}>
+                  {{#item.scroll-to href='#year-structure-built'}}Year Structure Built{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Rooms'}}>
+                  {{#item.scroll-to href='#rooms'}}Rooms{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Housing Tenure'}}>
+                  {{#item.scroll-to href='#housing-tenure'}}Housing Tenure{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Year Householder Moved Into Unit'}}>
+                  {{#item.scroll-to href='#year-householder-moved-into-unit'}}Year Householder Moved Into Unit{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Vehicles Available'}}>
+                  {{#item.scroll-to href='#vehicles-available'}}Vehicles Available{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Occupants per Room'}}>
+                  {{#item.scroll-to href='#occupants-per-room'}}Occupants per Room{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Value'}}>
+                  {{#item.scroll-to href='#value'}}Value{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Mortgage Status'}}>
+                  {{#item.scroll-to href='#mortgage-status'}}Mortgage Status{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Selected Monthly Owner Costs as a Percentage of Household Income'}}>
+                  {{#item.scroll-to href='#selected-monthly-owner-costs-as-a-percentage-of-household-income'}}Selected Monthly Owner Costs as a Percentage of Household Income{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Gross Rent'}}>
+                  {{#item.scroll-to href='#gross-rent'}}Gross Rent{{/item.scroll-to}}
+                </li>
+                <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' 'Gross Rent as a Percentage of Household Income (GRAPI)'}}>
+                  {{#item.scroll-to href='#gross-rent-as-a-percentage-of-household-income'}}Gross Rent as a Percentage of Household Income (GRAPI){{/item.scroll-to}}
+                </li>
               {{/tab-dropdown}}
             {{else}}
               {{#link-to

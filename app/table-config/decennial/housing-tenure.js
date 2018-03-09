@@ -1,5 +1,3 @@
-import formula from '../../utils/formula';
-
 export default [
   {
     highlight: true,
@@ -23,22 +21,6 @@ export default [
     data: 'avhhszooc',
     decimal: 2,
     special: true,
-    specialCalculations: [
-      {
-        column: 'sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("popoochu.sum"))/(GET("oochu.sum"))',
-        },
-      },
-      {
-        column: 'comparison_sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("popoochu.comparison_sum"))/(GET("oochu.comparison_sum"))',
-        },
-      },
-    ],
   },
   {
     title: 'Average household size of renter-occupied units',
@@ -46,21 +28,5 @@ export default [
     data: 'avhhszroc',
     decimal: 2,
     special: true,
-    specialCalculations: [
-      {
-        column: 'sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("poprochu.sum"))/(GET("rochu_1.sum"))',
-        },
-      },
-      {
-        column: 'comparison_sum',
-        aggregator: formula,
-        options: {
-          formula: '(GET("poprochu.comparison_sum"))/(GET("rochu_1.comparison_sum"))',
-        },
-      },
-    ],
   },
 ];

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Controller, { inject as controller } from '@ember/controller';
 import { computed } from 'ember-decorators/object';
 
 import housing from '../../table-config/housing';
@@ -25,9 +25,7 @@ const {
   rooms,
 } = housing;
 
-const { inject: { controller } } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
   grossRent,
   grossRentAsAPercentageOfHouseholdIncomeGrapi,
   housingOccupancy,

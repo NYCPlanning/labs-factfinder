@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
 import { select, selectAll } from 'd3-selection';
 import { max } from 'd3-array';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -8,8 +8,6 @@ import { format } from 'd3-format';
 import numeral from 'numeral';
 
 import HorizontalBar from '../components/horizontal-bar';
-
-const { get } = Ember;
 
 const translation = (x, y) => `translate(${x},${y})`;
 

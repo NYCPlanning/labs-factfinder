@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
-  data: [],
+  data: null, // []
   filename: 'download',
   actions: {
     @trackEvent('Data', 'Downloaded CSV')
@@ -18,17 +18,13 @@ export default Ember.Component.extend({
         })
         .sortBy('dataset', 'profile', 'category').reverse();
       const columnNames = [Object.keys(profile.get('firstObject'))];
-      const matrixValues = profile.map(
-        row => Object.values(row),
-      );
+      const matrixValues = profile.map(row => Object.values(row));
 
       const data = []
         .concat(
           columnNames,
           matrixValues,
         );
-
-      console.log(data);
 
       if (format === 'csv') {
         this.get('csv').export(data, { fileName: `${filename}.csv`, withSeparator: false });

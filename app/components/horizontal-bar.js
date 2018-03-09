@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
 import numeral from 'numeral';
 
@@ -6,9 +7,9 @@ import { select } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 
-const HorizontalBar = Ember.Component.extend(ResizeAware, {
+const HorizontalBar = Component.extend(ResizeAware, {
   // necessary to get tests to pass https://github.com/mike-north/ember-resize/issues/43
-  resizeService: Ember.inject.service('resize'),
+  resizeService: service('resize'),
 
   classNameBindings: ['loading'],
   classNames: ['horizontal-bar'],
@@ -20,7 +21,7 @@ const HorizontalBar = Ember.Component.extend(ResizeAware, {
   loading: false,
   barLabel: true,
 
-  data: [],
+  data: null, // []
 
   didRender() {
     this.createChart();

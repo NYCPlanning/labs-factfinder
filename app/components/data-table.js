@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object';
 
-const { service } = Ember.inject;
-
-export default Ember.Component.extend({
+export default Component.extend({
   mode: 'current',
   reliability: false,
   comparison: true,
@@ -35,7 +34,7 @@ export default Ember.Component.extend({
   actions: {
     handleCopy() {
       const [el] = this.get('element').getElementsByClassName('wrapper-for-copy');
-      const body = document.body;
+      const { body } = document;
       let range;
       let sel;
       if (document.createRange && window.getSelection) {
@@ -66,10 +65,10 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.$('.table-scroll').on('scroll', function() {
-      const thisOffset = $(this).offset();
-      const tableOffset = $(this).find('.body-table').offset();
+      const thisOffset = $(this).offset(); // eslint-disable-line
+      const tableOffset = $(this).find('.body-table').offset(); // eslint-disable-line
       const offset = tableOffset.left - thisOffset.left;
-      $(this).parents('.data-table').find('.header-table').css({ marginLeft: offset });
+      $(this).parents('.data-table').find('.header-table').css({ marginLeft: offset }); // eslint-disable-line
     });
 
     this.get('windowResize').on('didResize', () => {

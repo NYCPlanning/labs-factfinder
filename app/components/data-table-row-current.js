@@ -1,17 +1,19 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { computed } from 'ember-decorators/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   mode: 'current',
   reliability: false,
   comparison: true,
   isSelected: false,
+  data: {}, // model object with specific properties
+  rowConfig: {}, // model's row configuration object
 
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
   @computed('rowConfig', 'isSelected')
-  getClassNames(rowConfig) {
+  getClassNames(rowConfig = {}) {
     const classes = [];
 
     if (rowConfig.highlight) {
