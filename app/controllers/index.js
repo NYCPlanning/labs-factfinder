@@ -164,7 +164,7 @@ export default Controller.extend({
       if (geometry.type === 'Polygon') {
         SQL = generateIntersectionSQL(summaryLevel, geometry);
       } else {
-        const radius = e.features[0].properties.radius;
+        const { radius } = e.features[0].properties;
         SQL = generateRadiusSQL(summaryLevel, geometry, radius);
       }
 
