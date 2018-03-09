@@ -15,6 +15,7 @@ export default [
       'line-width': 4,
     },
   },
+
   // polygon fill
   {
     id: 'gl-draw-polygon-fill',
@@ -60,6 +61,41 @@ export default [
     paint: {
       'circle-radius': 6,
       'circle-color': '#D96B27',
+    },
+  },
+
+  // radius label
+  {
+    id: 'gl-draw-radius-label',
+    type: 'symbol',
+    filter: ['==', 'meta', 'currentPosition'],
+    layout: {
+      'text-field': '{radiusStandard} \n {radiusMetric}',
+      'text-anchor': 'left',
+      'text-offset': [
+        1,
+        0,
+      ],
+      'text-size': 22,
+    },
+    paint: {
+      'text-color': 'rgba(0, 0, 0, 1)',
+      'text-halo-color': 'rgba(255, 255, 255, 1)',
+      'text-halo-width': 3,
+      'icon-opacity': {
+        base: 1,
+        stops: [
+          [
+            7.99,
+            1,
+          ],
+          [
+            8,
+            0,
+          ],
+        ],
+      },
+      'text-halo-blur': 1,
     },
   },
 

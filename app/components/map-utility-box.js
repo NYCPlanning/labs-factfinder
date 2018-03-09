@@ -117,6 +117,14 @@ export default Component.extend({
     clearSelection() {
       this.get('selection').clearSelection();
     },
+    handleDrawButtonClick(type) {
+      const el = this.get('element').getElementsByClassName('draw-tool');
+      this.sendAction('handleDrawButtonClick', type);
+      this.$(el).blur();
+    },
+    handleDrawRadiusButtonClick() {
+      this.sendAction('handleDrawRadiusButtonClick');
+    },
     transitionTo() {},
 
     @trackEvent('Selection', 'Created Profile', 'summaryLevel', 'selection.current.features.length')

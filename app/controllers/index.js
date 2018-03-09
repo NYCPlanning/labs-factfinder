@@ -7,8 +7,11 @@ import MapboxDraw from 'mapbox-gl-draw';
 import bbox from 'npm:@turf/bbox';
 import carto from '../utils/carto';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
+import RadiusMode from '../utils/radius-mode';
 
 import generateIntersectionSQL from '../queries/intersection';
+import generateRadiusSQL from '../queries/radius';
+
 import layerGroups from '../layer-groups';
 import drawStyles from '../layers/draw-styles';
 import sources from '../sources';
@@ -30,6 +33,9 @@ const draw = new MapboxDraw({
     trash: false,
   },
   styles: drawStyles,
+  modes: Object.assign({
+    draw_radius: RadiusMode,
+  }, MapboxDraw.modes),
 });
 
 export default Controller.extend({
@@ -52,7 +58,8 @@ export default Controller.extend({
   center: [-73.9868, 40.724],
   mode: 'direct-select',
 
-  drawMode: false,
+  isDrawing: false,
+  drawMode: null,
 
   selectedFillLayer,
   highlightedFeature,
@@ -79,7 +86,7 @@ export default Controller.extend({
 
   actions: {
     handleClick(e) {
-      if (!this.get('drawMode')) {
+      if (!this.get('isDrawing')) {
         const selection = this.get('selection');
         const { summaryLevel } = selection;
 
@@ -113,20 +120,26 @@ export default Controller.extend({
       }
     },
 
-    handleDrawButtonClick() {
-      const drawMode = this.get('drawMode');
+    handleDrawButtonClick(type) {
+      const isDrawing = this.get('isDrawing');
       const map = this.get('selection').currentMapInstance;
-      if (drawMode) {
+      if (isDrawing) {
         draw.trash();
-        this.set('drawMode', false);
+        this.set('isDrawing', false);
+        this.set('drawMode', null);
       } else {
         map.addControl(draw, 'top-left');
-        draw.changeMode('draw_polygon');
-        this.set('drawMode', true);
+        this.set('drawMode', type);
 
+        if (type === 'polygon') {
+          draw.changeMode('draw_polygon');
+        }
+        if (type === 'radius') draw.changeMode('draw_radius');
+
+        this.set('isDrawing', true);
         this.get('metrics').trackEvent(
           'GoogleAnalytics',
-          { eventCategory: 'Draw', eventAction: 'Draw Start', eventLabel: this.get('selection').summaryLevel },
+          { eventCategory: 'Draw', eventAction: `Draw ${type} Start`, eventLabel: this.get('selection').summaryLevel },
         );
       }
     },
@@ -139,6 +152,7 @@ export default Controller.extend({
       const { summaryLevel } = selection;
 
       const { geometry } = e.features[0];
+
       geometry.crs = {
         type: 'name',
         properties: {
@@ -146,8 +160,15 @@ export default Controller.extend({
         },
       };
 
-      const intersectionSQL = generateIntersectionSQL(summaryLevel, geometry);
-      carto.SQL(intersectionSQL, 'geojson', 'post')
+      let SQL;
+      if (geometry.type === 'Polygon') {
+        SQL = generateIntersectionSQL(summaryLevel, geometry);
+      } else {
+        const { radius } = e.features[0].properties;
+        SQL = generateRadiusSQL(summaryLevel, geometry, radius);
+      }
+
+      carto.SQL(SQL, 'geojson', 'post')
         .then((FC) => {
           selection.handleSelectedFeatures(FC.features);
 
@@ -161,19 +182,20 @@ export default Controller.extend({
     },
 
     handleDrawModeChange(e) {
-      const drawMode = e.mode === 'draw_polygon';
-      // delay setting drawMode boolean so that polygon-closing click won't be handled
+      const isDrawing = e.mode === 'draw_polygon' || e.mode === 'draw_radius';
+      // delay setting isDrawing boolean so that polygon-closing click won't be handled
       setTimeout(() => {
-        this.set('drawMode', drawMode);
-        if (!drawMode) {
+        this.set('isDrawing', isDrawing);
+        if (!isDrawing) {
           const map = this.get('selection').currentMapInstance;
+          this.set('drawMode', null);
           map.removeControl(draw);
         }
       }, 200);
     },
 
     handleMousemove(e) {
-      if (!this.get('drawMode')) {
+      if (!this.get('isDrawing')) {
         const mapMouseover = this.get('mapMouseover');
         mapMouseover.highlighter(e);
       }
