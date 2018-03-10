@@ -62,41 +62,17 @@ function createGeoJSONCircle(center, radiusInKm, parentId, points = 64) {
   };
 }
 
-function getDisplayMeasurements(feature) {
-  // should log both metric and standard display strings for the current drawn feature
+function getDisplayMeasurements(lineFeature) {
+  // create metric and standard display strings for the line
+  const drawnLength = (lineDistance(lineFeature) * 1000); // meters
 
+  const metricMeasurement = drawnLength / 1000;
+  const standardMeasurement = (drawnLength * 3.28084) / 5280;
 
-  // metric calculation
-  const drawnLength = (lineDistance(feature) * 1000); // meters
-
-  let metricUnits = 'm';
-  let metricFormat = '0,0';
-  let metricMeasurement;
-
-  let standardUnits = 'feet';
-  let standardFormat = '0,0';
-  let standardMeasurement;
-
-  metricMeasurement = drawnLength;
-  if (drawnLength >= 1000) { // if over 1000 meters, upgrade metric
-    metricMeasurement = drawnLength / 1000;
-    metricUnits = 'km';
-    metricFormat = '0.00';
-  }
-
-  standardMeasurement = drawnLength * 3.28084;
-  if (standardMeasurement >= 5280) { // if over 5280 feet, upgrade standard
-    standardMeasurement /= 5280;
-    standardUnits = 'mi';
-    standardFormat = '0.00';
-  }
-
-  const displayMeasurements = {
-    metric: `${numeral(metricMeasurement).format(metricFormat)} ${metricUnits}`,
-    standard: `${numeral(standardMeasurement).format(standardFormat)} ${standardUnits}`,
+  return {
+    metric: `${numeral(metricMeasurement).format('0.00')} km`,
+    standard: `${numeral(standardMeasurement).format('0.00')} mi`,
   };
-
-  return displayMeasurements;
 }
 
 const doubleClickZoom = {
