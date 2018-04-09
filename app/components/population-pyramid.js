@@ -115,7 +115,7 @@ export default HorizontalBar.extend({
         .classed('highlight', false);
       timer = setTimeout(() => {
         selectAll('.age-chart-tooltip')
-          .html('Hover over bars for details about each age cohort');
+          .html('Hover over bars for details about each age group');
       }, 400);
     };
 
