@@ -66,12 +66,12 @@ function getDisplayMeasurements(lineFeature) {
   // create metric and standard display strings for the line
   const drawnLength = (lineDistance(lineFeature) * 1000); // meters
 
-  const metricMeasurement = drawnLength / 1000;
-  const standardMeasurement = (drawnLength * 3.28084) / 5280;
+  const feetMeasurement = (drawnLength * 3.28084);
+  const milesMeasurement = (drawnLength * 3.28084) / 5280;
 
   return {
-    metric: `${numeral(metricMeasurement).format('0.00')} km`,
-    standard: `${numeral(standardMeasurement).format('0.00')} mi`,
+    feet: `${numeral(feetMeasurement).format('0,0')} ft`,
+    miles: `${numeral(milesMeasurement).format('0.00')} mi`,
   };
 }
 
@@ -167,8 +167,8 @@ RadiusMode.toDisplayFeatures = function(state, geojson, display) {
     type: 'Feature',
     properties: {
       meta: 'currentPosition',
-      radiusMetric: displayMeasurements.metric,
-      radiusStandard: displayMeasurements.standard,
+      radiusFeet: displayMeasurements.feet,
+      radiusMiles: displayMeasurements.miles,
       parent: state.line.id,
     },
     geometry: {

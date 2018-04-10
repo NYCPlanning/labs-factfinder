@@ -70,7 +70,7 @@ export default [
     type: 'symbol',
     filter: ['==', 'meta', 'currentPosition'],
     layout: {
-      'text-field': '{radiusStandard} \n {radiusMetric}',
+      'text-field': '{radiusFeet} \n {radiusMiles}',
       'text-anchor': 'left',
       'text-offset': [
         1,
