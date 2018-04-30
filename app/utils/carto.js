@@ -1,15 +1,21 @@
 import fetch from 'fetch';
 import { Promise } from 'rsvp';
 
-const cartoDomain = 'planninglabs.carto.com';
+const cartoUsername = 'planninglabs';
 
-const buildTemplate = (layergroupid, type) => { // eslint-disable-line
-  return `https://${cartoDomain}/api/v1/map/${layergroupid}/{z}/{x}/{y}.${type}`;
+const buildTemplate = (config, type='mvt') => { // eslint-disable-line
+  const protocol = location.protocol.slice(0, -1); // eslint-disable-line
+  const { layergroupid } = config;
+  const { subdomains, url } = config.cdn_url.templates[protocol];
+  const subdomain = subdomains[Math.floor(Math.random() * subdomains.length)];
+  const renderedUrl = url.replace('{s}', subdomain);
+
+  return `${renderedUrl}/${cartoUsername}/api/v1/map/${layergroupid}/{z}/{x}/{y}.${type}`;
 };
 
-const buildSqlUrl = (cleanedQuery, type = 'json', method) => { // eslint-disable-line
-  let url = `https://${cartoDomain}/api/v2/sql`;
-  if (method === 'get') url += `?q=${cleanedQuery}&format=${type}`;
+const buildSqlUrl = (cleanedQuery, format = 'json', method) => { // eslint-disable-line
+  let url = `https://${cartoUsername}.carto.com/api/v2/sql`;
+  url += method === 'get' ? `?q=${cleanedQuery}&format=${format}` : '';
   return url;
 };
 
@@ -63,7 +69,7 @@ const carto = {
     };
 
     return new Promise((resolve, reject) => {
-      fetch(`https://${cartoDomain}/api/v1/map`, {
+      fetch(`https://${cartoUsername}.carto.com/api/v1/map`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +79,7 @@ const carto = {
         .catch(err => reject(err))
         .then(response => response.json())
         .then((json) => {
-          resolve(buildTemplate(json.layergroupid, 'mvt'));
+          resolve(buildTemplate(json));
         });
     });
   },
