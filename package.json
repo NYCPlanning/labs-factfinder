@@ -40,6 +40,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
+    "ember-composability-tools": "^0.0.9",
     "ember-composable-helpers": "^2.0.3",
     "ember-concurrency": "^0.8.12",
     "ember-d3": "^0.4.3",
@@ -50,6 +51,7 @@
     "ember-font-awesome": "^4.0.0-alpha.3",
     "ember-link-action": "0.0.38",
     "ember-load-initializers": "^1.0.0",
+    "ember-mapbox-gl": "^0.9.1",
     "ember-mapbox-gl-draw": "^1.1.0",
     "ember-math-helpers": "^2.3.0",
     "ember-maybe-import-regenerator": "^0.1.6",
@@ -76,6 +78,7 @@
     "eslint-plugin-react": "^7.1.0",
     "foundation-sites": "^6.4.3",
     "loader.js": "^4.2.3",
+    "mapbox-gl": "^0.44.0",
     "puppeteer": "1.1.1"
   },
   "engines": {
@@ -88,7 +91,6 @@
     "@turf/buffer": "^5.0.4",
     "@turf/line-distance": "^4.7.3",
     "babel-eslint": "^8.0.1",
-    "ember-jane-maps": "0.0.9",
     "hot-formula-parser": "^2.3.1",
     "numeral": "^2.0.6",
     "pre-commit": "^1.2.2"
