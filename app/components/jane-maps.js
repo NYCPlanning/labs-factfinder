@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import EmberMapboxGL from 'ember-mapbox-gl/components/mapbox-gl';
+import { ParentMixin } from 'ember-composability-tools';
+
 import layout from '../templates/components/jane-maps';
 import carto from '../utils/carto';
-
-import { ParentMixin } from 'ember-composability-tools';
 
 const { service } = Ember.inject;
 const { Promise } = Ember.RSVP;
@@ -17,8 +17,8 @@ export default EmberMapboxGL.extend(ParentMixin, {
     this.set('registeredLayers.layers', this.get('childComponents'));
   },
   registeredLayers: service(),
-  _onLoad(map) {
-    this._super(...arguments);
+  _onLoad(map, ...args) {
+    this._super(...args);
 
     const sources = this.get('sources');
 
@@ -38,16 +38,17 @@ export default EmberMapboxGL.extend(ParentMixin, {
             }));
         });
 
-      if(!this.isDestroyed) {
-        this.set('cartoSourcePromises',
-          Promise.all(cartoSourcePromises).then(sources => {
+      if (!this.isDestroyed) {
+        this.set(
+          'cartoSourcePromises',
+          Promise.all(cartoSourcePromises).then((finishedSources) => {
             window.map = map;
-            sources.forEach(source => {
+            finishedSources.forEach((source) => {
               map.addSource(source.id, source);
             });
-          })
+          }),
         );
       }
     }
-  }
+  },
 });

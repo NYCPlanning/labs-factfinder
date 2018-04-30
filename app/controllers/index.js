@@ -229,7 +229,8 @@ export default Controller.extend({
       }
 
       // remove default neighborhood names
-      map.removeLayer('place-neighbourhood');
+      map.removeLayer('place_suburb');
+      map.removeLayer('place_city_large');
     },
   },
 });

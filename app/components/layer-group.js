@@ -2,7 +2,6 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { ParentMixin, ChildMixin } from 'ember-composability-tools';
 import carto from '../utils/carto';
-import layerGroups from '../layer-groups';
 import layout from '../templates/components/layer-group';
 
 const { copy, merge, set } = Ember;
@@ -65,11 +64,11 @@ export default Ember.Component.extend(ParentMixin, ChildMixin, {
 
     // walk all layergroups that should be displayed above this one
     for (let i = position - 1; i >= 0; i -= 1) {
-      const config = allLayerGroups[i].config;
+      const { config } = allLayerGroups[i];
       const bottomLayer = config.layers[0].layer.id;
       const map = this.get('parentComponent.map');
 
-      const visible = allLayerGroups[i].attrs.visible;
+      const { visible } = allLayerGroups[i].attrs;
       if (visible) {
         // if the bottom-most layer of the layergroup exists on the map, use it as the 'before'
         if (map.getLayer(bottomLayer)) {
