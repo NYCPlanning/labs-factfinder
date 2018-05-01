@@ -18,7 +18,7 @@ export default EmberMapboxGL.extend(ParentMixin, {
   },
   registeredLayers: service(),
   _onLoad(map, ...args) {
-    this._super(...args);
+    this._super(map, ...args);
 
     const sources = this.get('sources');
 
