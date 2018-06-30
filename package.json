@@ -29,6 +29,7 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-data-export": "^0.1.29",
     "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-dropzonejs": "1.1.0",
     "ember-cli-eslint": "^4.2.2",
     "ember-cli-foundation-6-sass": "0.0.24",
     "ember-cli-htmlbars": "^2.0.1",
@@ -89,9 +90,11 @@
     "@ember-decorators/babel-transforms": "2.0.0",
     "@turf/bbox": "^5.0.0",
     "@turf/buffer": "^5.0.4",
+    "@turf/combine": "6.0.1",
     "@turf/line-distance": "^4.7.3",
     "babel-eslint": "^8.0.1",
     "hot-formula-parser": "^2.3.1",
-    "numeral": "^2.0.6"
+    "numeral": "^2.0.6",
+    "shpjs": "3.4.2"
   }
 }

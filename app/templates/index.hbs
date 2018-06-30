@@ -1,3 +1,9 @@
+{{drop-zone 
+  url='#' 
+  maxDropRegion=true
+  clickable=false
+  addedfile=(action 'addedfile')}}
+
 <ul class="menu align-center menu--selector">
   <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>

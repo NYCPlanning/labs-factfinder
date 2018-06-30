@@ -5,6 +5,8 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 import bbox from 'npm:@turf/bbox';
+
+import shpjs from 'npm:shpjs';
 import carto from '../utils/carto';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 import RadiusMode from '../utils/radius-mode';
@@ -231,6 +233,37 @@ export default Controller.extend({
       // remove default neighborhood names
       map.removeLayer('place_suburb');
       map.removeLayer('place_city_large');
+    },
+
+    addedfile(file) {
+      const reader = new FileReader();
+      const selection = this.get('selection');
+      const { summaryLevel } = selection;
+      console.log('adding...');
+
+      let buffer;
+      reader.onload = function(event) {
+        buffer = event.target.result;
+
+        shpjs(buffer).then((geojson) => {
+          let SQL;
+          geojson.features =
+            geojson.features.map(({ geometry, type }) => ({ geometry, type }));
+
+          if (geojson.type === 'FeatureCollection') {
+            SQL = generateIntersectionSQL(summaryLevel, geojson);
+            console.log(geojson, SQL);
+            carto.SQL(SQL, 'geojson', 'post')
+              .then((FC) => {
+                console.log(FC);
+                selection.handleSelectedFeatures(FC.features);
+              });
+          }
+
+          // selection.handleSelectedFeatures(features);
+        });
+      };
+      reader.readAsArrayBuffer(file);
     },
   },
 });
