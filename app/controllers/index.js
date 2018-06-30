@@ -81,7 +81,8 @@ export default Controller.extend({
     };
   },
 
-  fitBounds(map) {
+  fitBounds() {
+    const map = this.get('map');
     const FC = this.get('selection').current;
     map.fitBounds(bbox(FC), {
       padding: 40,
@@ -210,6 +211,8 @@ export default Controller.extend({
     },
 
     handleMapLoad(map) {
+      this.set('map', map);
+
       // setup controls
       const navigationControl = new mapboxgl.NavigationControl();
       const geoLocateControl = new mapboxgl.GeolocateControl({
@@ -243,7 +246,7 @@ export default Controller.extend({
       const { summaryLevel } = selection;
 
       let buffer;
-      reader.onload = function(event) {
+      reader.onload = (event) => {
         buffer = event.target.result;
 
         shpjs(buffer).then((geojson) => {
@@ -262,6 +265,7 @@ export default Controller.extend({
           carto.SQL(SQL, 'geojson', 'post')
             .then((FC) => {
               selection.handleSelectedFeatures(FC.features);
+              this.fitBounds();
             })
             .catch(() => {
               alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
