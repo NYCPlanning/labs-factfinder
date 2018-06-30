@@ -249,12 +249,7 @@ export default Controller.extend({
         shpjs(buffer).then((geojson) => {
           let combined;
 
-          try {
-            combined = combine(geojson);
-          } catch (e) {
-            console.log(e);
-          }
-
+          combined = combine(geojson);
           combined = combined.features[0].geometry;
           combined.crs = {
             type: 'name',
@@ -269,7 +264,7 @@ export default Controller.extend({
               selection.handleSelectedFeatures(FC.features);
             })
             .catch(() => {
-              alert('Something went wrong with this Shapefile. Try to simplify the geometries.');
+              alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
             });
         });
       };
