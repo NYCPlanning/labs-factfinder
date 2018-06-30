@@ -264,14 +264,13 @@ export default Controller.extend({
           };
 
           const SQL = generateIntersectionSQL(summaryLevel, combined);
-          console.log(combined, SQL);
           carto.SQL(SQL, 'geojson', 'post')
             .then((FC) => {
-              console.log(FC);
               selection.handleSelectedFeatures(FC.features);
+            })
+            .catch(() => {
+              alert('Something went wrong with this Shapefile. Try to simplify the geometries.');
             });
-
-          // selection.handleSelectedFeatures(features);
         });
       };
       reader.readAsArrayBuffer(file);
