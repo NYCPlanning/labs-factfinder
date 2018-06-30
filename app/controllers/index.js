@@ -5,6 +5,7 @@ import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 import bbox from 'npm:@turf/bbox';
+import turfCombine from 'npm:@turf/combine';
 
 import shpjs from 'npm:shpjs';
 import carto from '../utils/carto';
@@ -26,6 +27,7 @@ import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
 const selectedFillLayer = selectedFeatures.fill;
+const { default: combine } = turfCombine;
 
 const draw = new MapboxDraw({
   displayControlsDefault: false,
@@ -239,26 +241,35 @@ export default Controller.extend({
       const reader = new FileReader();
       const selection = this.get('selection');
       const { summaryLevel } = selection;
-      console.log('adding...');
 
       let buffer;
       reader.onload = function(event) {
         buffer = event.target.result;
 
         shpjs(buffer).then((geojson) => {
-          let SQL;
-          geojson.features =
-            geojson.features.map(({ geometry, type }) => ({ geometry, type }));
+          let combined;
 
-          if (geojson.type === 'FeatureCollection') {
-            SQL = generateIntersectionSQL(summaryLevel, geojson);
-            console.log(geojson, SQL);
-            carto.SQL(SQL, 'geojson', 'post')
-              .then((FC) => {
-                console.log(FC);
-                selection.handleSelectedFeatures(FC.features);
-              });
+          try {
+            combined = combine(geojson);
+          } catch (e) {
+            console.log(e);
           }
+
+          combined = combined.features[0].geometry;
+          combined.crs = {
+            type: 'name',
+            properties: {
+              name: 'EPSG:4326',
+            },
+          };
+
+          const SQL = generateIntersectionSQL(summaryLevel, combined);
+          console.log(combined, SQL);
+          carto.SQL(SQL, 'geojson', 'post')
+            .then((FC) => {
+              console.log(FC);
+              selection.handleSelectedFeatures(FC.features);
+            });
 
           // selection.handleSelectedFeatures(features);
         });
