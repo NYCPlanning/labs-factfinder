@@ -270,6 +270,8 @@ export default Controller.extend({
             .catch(() => {
               alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
             });
+        }).catch(() => {
+          alert('Something went wrong with this Shapefile. Check that it is valid'); // eslint-disable-line
         });
       };
       reader.readAsArrayBuffer(file);
