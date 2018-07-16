@@ -1,0 +1,9 @@
+{{#each selection.sortedLabels as |boro|}}
+  {{#if boro.features.length}}
+    <strong>{{boro.label}}:</strong>
+  {{/if}}
+  {{#each boro.features as |feature|}}
+    {{feature.properties.geolabel}}
+    {{~unless (eq boro.features.lastObject.properties.geoid feature.properties.geoid) ','}}
+  {{/each}}
+{{/each}}
