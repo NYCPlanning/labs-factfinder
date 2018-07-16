@@ -21,4 +21,3 @@ export default [
     data: 'vhcl3plav',
   },
 ];
-

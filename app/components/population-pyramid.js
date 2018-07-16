@@ -7,7 +7,7 @@ import { transition } from 'd3-transition'; // eslint-disable-line
 import { format } from 'd3-format';
 import numeral from 'numeral';
 
-import HorizontalBar from '../components/horizontal-bar';
+import HorizontalBar from './horizontal-bar';
 
 const translation = (x, y) => `translate(${x},${y})`;
 

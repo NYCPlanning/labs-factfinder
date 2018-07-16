@@ -107,11 +107,10 @@ export default Controller.extend({
             break;
         }
 
-        const [found] =
-          e.target.queryRenderedFeatures(
-            e.point,
-            { layers },
-          );
+        const [found] = e.target.queryRenderedFeatures(
+          e.point,
+          { layers },
+        );
 
 
         if (found) {
