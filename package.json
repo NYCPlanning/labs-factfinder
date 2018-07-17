@@ -51,7 +51,7 @@
     "ember-font-awesome": "^4.0.0-alpha.3",
     "ember-link-action": "0.1.0",
     "ember-load-initializers": "^1.0.0",
-    "ember-mapbox-gl": "^0.9.1",
+    "ember-mapbox-gl": "^0.10.0",
     "ember-mapbox-gl-draw": "^1.1.0",
     "ember-math-helpers": "^2.3.0",
     "ember-maybe-import-regenerator": "^0.1.6",
