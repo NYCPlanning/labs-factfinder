@@ -1,4 +1,4 @@
-import summaryLevels from '../queries/summary-levels';
+import summaryLevels from './summary-levels';
 
 const Intersection = (summaryLevel, geometry) => {
   const sqlBase = summaryLevels[summaryLevel](false);

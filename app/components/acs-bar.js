@@ -241,8 +241,8 @@ export default Component.extend(ResizeAware, {
       .data(rawData, d => get(d, 'group'));
 
     const xFunctionComparisonMOE = d => x(get(d, 'comparison_percent'))
-      - x(get(d, 'comparison_percent_m')) -
-      -textWidth;
+      - x(get(d, 'comparison_percent_m'))
+      - -textWidth;
 
     const widthFunctionComparisonMOE = d => (x(get(d, 'comparison_percent_m')) - textWidth) * 2;
     comparisonMOEbars.enter()

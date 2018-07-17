@@ -4,7 +4,7 @@
 
 import MapboxDraw from 'mapbox-gl-draw';
 import numeral from 'numeral';
-import lineDistance from 'npm:@turf/line-distance';
+import lineDistance from '@turf/line-distance';
 
 const RadiusMode = MapboxDraw.modes.draw_line_string;
 

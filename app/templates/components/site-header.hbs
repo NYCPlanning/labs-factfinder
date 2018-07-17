@@ -11,9 +11,9 @@
     <div id="responsive-menu" class="cell large-shrink {{if closed 'show-for-large'}} hide-for-print" data-toggler=".show-for-large">
       <nav role="navigation">
         <ul class="vertical large-horizontal menu">
-          <li>{{link-to 'About' 'about' click=(action (mut closed))}}</li>
-          <li>{{link-to 'Features' 'features' click=(action (mut closed))}}</li>
-          <li>{{link-to 'Data' 'data' click=(action (mut closed))}}</li>
+          <li>{{link-to 'About' 'about' invokeAction=(action (mut closed))}}</li>
+          <li>{{link-to 'Features' 'features' invokeAction=(action (mut closed))}}</li>
+          <li>{{link-to 'Data' 'data' invokeAction=(action (mut closed))}}</li>
         </ul>
       </nav>
     </div>

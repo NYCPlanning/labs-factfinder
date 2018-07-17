@@ -3,15 +3,13 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   plugins: [
     'ember'
   ],
   extends: [
-    // 'eslint:recommended',
-    // 'plugin:ember/recommended',
-    'airbnb'
+    'airbnb-base'
   ],
   env: {
     browser: true,

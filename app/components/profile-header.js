@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
-import bbox from 'npm:@turf/bbox';
+import bbox from '@turf/bbox';
 
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
