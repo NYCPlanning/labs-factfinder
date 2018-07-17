@@ -18,4 +18,3 @@ export default [
     data: 'ocpr1p5pl',
   },
 ];
-

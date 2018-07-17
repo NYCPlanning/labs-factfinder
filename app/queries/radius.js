@@ -1,4 +1,4 @@
-import summaryLevels from '../queries/summary-levels';
+import summaryLevels from './summary-levels';
 
 const Radius = (summaryLevel, geometry, radius) => {
   const sqlBase = summaryLevels[summaryLevel](false);
