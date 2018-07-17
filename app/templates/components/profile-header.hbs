@@ -62,29 +62,28 @@
       {{/if}}
 
       {{#unless (eq profile.tab 'profile.census') }}
-      <div class="profile-checkbox-controls">
-        <a {{action 'toggleReliability'}}>
-          {{#if profile.reliability}}
-            <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
-          {{else}}
-            <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
-          {{/if}}
-          Show Reliability Data
-        </a>
-        {{#if (eq mode 'current')}}
-          <span class="dark-gray">&nbsp;|&nbsp;</span>
-          <a {{action 'toggleCharts'}}>
-            {{#if profile.charts}}
+        <div class="profile-checkbox-controls">
+          <a {{action 'toggleReliability'}}>
+            {{#if profile.reliability}}
               <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
             {{else}}
               <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
             {{/if}}
-            Show Charts
+            Show Reliability Data
           </a>
-        {{/if}}
-      </div>
+          {{#if (eq mode 'current')}}
+            <span class="dark-gray">&nbsp;|&nbsp;</span>
+            <a {{action 'toggleCharts'}}>
+              {{#if profile.charts}}
+                <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+              {{else}}
+                <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
+              {{/if}}
+              Show Charts
+            </a>
+          {{/if}}
+        </div>
       {{/unless}}
-
     </div>
     {{#unless (eq profile.tab 'profile.census')}}
       <p class="text-small no-margin">
