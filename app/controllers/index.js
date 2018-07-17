@@ -4,7 +4,11 @@ import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
+
+import turfCombine from '@turf/combine';
+import shpjs from 'shpjs';
 import bbox from '@turf/bbox';
+
 import carto from '../utils/carto';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 import RadiusMode from '../utils/radius-mode';
@@ -24,6 +28,7 @@ import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
 const selectedFillLayer = selectedFeatures.fill;
+const combine = turfCombine;
 
 const draw = new MapboxDraw({
   displayControlsDefault: false,
@@ -77,7 +82,8 @@ export default Controller.extend({
     };
   },
 
-  fitBounds(map) {
+  fitBounds() {
+    const map = this.get('map');
     const FC = this.get('selection').current;
     map.fitBounds(bbox(FC), {
       padding: 40,
@@ -205,6 +211,8 @@ export default Controller.extend({
     },
 
     handleMapLoad(map) {
+      this.set('map', map);
+
       // setup controls
       const navigationControl = new mapboxgl.NavigationControl();
       const geoLocateControl = new mapboxgl.GeolocateControl({
@@ -230,6 +238,43 @@ export default Controller.extend({
       // remove default neighborhood names
       map.removeLayer('place_suburb');
       map.removeLayer('place_city_large');
+    },
+
+    addedfile(file) {
+      const reader = new FileReader();
+      const selection = this.get('selection');
+      const { summaryLevel } = selection;
+
+      let buffer;
+      reader.onload = (event) => {
+        buffer = event.target.result;
+
+        shpjs(buffer).then((geojson) => {
+          let combined;
+
+          combined = combine(geojson);
+          combined = combined.features[0].geometry;
+          combined.crs = {
+            type: 'name',
+            properties: {
+              name: 'EPSG:4326',
+            },
+          };
+
+          const SQL = generateIntersectionSQL(summaryLevel, combined);
+          carto.SQL(SQL, 'geojson', 'post')
+            .then((FC) => {
+              selection.handleSelectedFeatures(FC.features);
+              this.fitBounds();
+            })
+            .catch(() => {
+              alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
+            });
+        }).catch(() => {
+          alert('Something went wrong with this Shapefile. Check that it is valid'); // eslint-disable-line
+        });
+      };
+      reader.readAsArrayBuffer(file);
     },
   },
 });
