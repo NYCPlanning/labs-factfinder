@@ -2,14 +2,11 @@
   <thead>
     <tr>
       <th rowspan="{{if reliability "3" "2"}}">&nbsp;</th>
-      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
       <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">
-        {{selection-details-text}} in
-        {{#each selection.sortedLabels as |boro|}}
-          {{#if boro.features.length}}
-            <strong>{{boro.label}}</strong>
-          {{/if}}
-        {{/each}}
+        Your Selection Area
+      </th>
+      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">
+        Comparison Area
       </th>
       <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
     </tr>
