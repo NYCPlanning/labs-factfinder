@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import fetch from 'fetch';
 import Environment from '../config/environment';
 
 const { SupportServiceHost } = Environment;
