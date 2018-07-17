@@ -23,7 +23,7 @@ export default Controller.extend({
   metrics: service(),
 
   queryParams: ['mode', 'reliability', 'charts', 'comparator'],
-  comparator: '0',
+  comparator: alias('selection.comparator'),
 
   layerGroups,
   sources,

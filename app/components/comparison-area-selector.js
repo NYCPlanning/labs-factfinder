@@ -49,12 +49,18 @@ const OPTIONS_QUERY = `
 
 export default Component.extend({
   comparisonArea: null,
+  selection: service(),
 
   metrics: service(),
 
   @computed('comparisonArea', 'options')
   selected(area, options) {
-    return options.then(d => d.findBy('geoid', area));
+    return options
+      .then(d => d.findBy('geoid', area))
+      .then((selected) => {
+        this.set('selection.comparisonLabel', selected.label);
+        return selected;
+      });
   },
 
   @computed()
