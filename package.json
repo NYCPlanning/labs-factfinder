@@ -22,6 +22,7 @@
     "broccoli-clean-css": "^2.0.1",
     "d3": "^4.11.0",
     "ember-ajax": "^3.0.0",
+    "ember-auto-import": "^1.2.3",
     "ember-browserify": "^1.2.0",
     "ember-cli": "~3.0.0",
     "ember-cli-accounting": "2.0.2",
@@ -82,8 +83,8 @@
   },
   "private": true,
   "dependencies": {
-    "@ember-decorators/babel-transforms": "2.0.0",
-    "@turf/bbox": "^5.0.0",
+    "@ember-decorators/babel-transforms": "2.0.1",
+    "@turf/bbox": "^6.0.1",
     "@turf/buffer": "^5.0.4",
     "@turf/line-distance": "^4.7.3",
     "hot-formula-parser": "^2.3.1",

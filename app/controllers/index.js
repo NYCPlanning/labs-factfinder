@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
-import bbox from 'npm:@turf/bbox';
+import bbox from '@turf/bbox';
 import carto from '../utils/carto';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 import RadiusMode from '../utils/radius-mode';

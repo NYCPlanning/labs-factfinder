@@ -4,8 +4,8 @@ import { inject as service } from '@ember/service';
 import fetch from 'fetch';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { task, timeout } from 'ember-concurrency';
-import bbox from 'npm:@turf/bbox';
-import getBuffer from 'npm:@turf/buffer';
+import bbox from '@turf/bbox';
+import getBuffer from '@turf/buffer';
 import Environment from '../config/environment';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 
