@@ -1,9 +1,10 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
-import nestProfile from '../../utils/nest-profile';
+import Downloadable from '../../mixins/downloadable';
 
-export default Route.extend({
+
+export default Route.extend(Downloadable, {
   selection: service(),
 
   beforeModel() {
@@ -28,8 +29,6 @@ export default Route.extend({
       .query('row', { selectionId, type: 'decennial', comparator })
       .then(rows => rows.toArray());
 
-    const nestedModel = nestProfile(profileData, 'year', 'variable');
-
-    return nestedModel;
+    return profileData;
   }).enqueue().cancelOn('deactivate'),
 });
