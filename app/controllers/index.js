@@ -4,10 +4,11 @@ import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
-import bbox from 'npm:@turf/bbox';
-import turfCombine from 'npm:@turf/combine';
 
-import shpjs from 'npm:shpjs';
+import turfCombine from '@turf/combine';
+import shpjs from 'shpjs';
+import bbox from '@turf/bbox';
+
 import carto from '../utils/carto';
 import trackEvent from '../utils/track-event'; // eslint-disable-line
 import RadiusMode from '../utils/radius-mode';
@@ -27,7 +28,7 @@ import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
 const selectedFillLayer = selectedFeatures.fill;
-const { default: combine } = turfCombine;
+const combine = turfCombine;
 
 const draw = new MapboxDraw({
   displayControlsDefault: false,
@@ -112,11 +113,10 @@ export default Controller.extend({
             break;
         }
 
-        const [found] =
-          e.target.queryRenderedFeatures(
-            e.point,
-            { layers },
-          );
+        const [found] = e.target.queryRenderedFeatures(
+          e.point,
+          { layers },
+        );
 
 
         if (found) {

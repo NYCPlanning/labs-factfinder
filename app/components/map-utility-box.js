@@ -3,11 +3,10 @@ import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object';
 import { task } from 'ember-concurrency';
-import fetch from 'fetch';
 import numeral from 'numeral';
+import fetch from 'fetch';
 import Environment from '../config/environment';
 import trackEvent from '../utils/track-event';
-
 
 import choroplethConfigs from '../choropleth-config';
 
