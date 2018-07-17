@@ -1,4 +1,5 @@
 import { Promise } from 'rsvp';
+import fetch from 'fetch';
 
 const cartoUsername = 'planninglabs';
 

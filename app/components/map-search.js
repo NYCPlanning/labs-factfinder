@@ -3,6 +3,7 @@ import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object'; // eslint-disable-line
 import { task, timeout } from 'ember-concurrency';
+import fetch from 'fetch';
 import bbox from '@turf/bbox';
 import getBuffer from '@turf/buffer';
 import Environment from '../config/environment';
