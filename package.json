@@ -24,7 +24,7 @@
     "ember-ajax": "^3.0.0",
     "ember-auto-import": "^1.2.3",
     "ember-browserify": "^1.2.0",
-    "ember-cli": "~3.0.0",
+    "ember-cli": "~3.3.0",
     "ember-cli-accounting": "2.0.2",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.14.1",
@@ -65,7 +65,7 @@
     "ember-responsive": "^2.0.5",
     "ember-scroll-to": "allthesignals/ember-scroll-to#master",
     "ember-source": "~3.0.0",
-    "ember-sticky-element": "^0.1.5",
+    "ember-sticky-element": "^0.2.2",
     "ember-test-helpers": "^0.7.0-beta.4",
     "ember-tether": "^1.0.0-beta.0",
     "ember-tooltips": "^2.9.2",
@@ -87,7 +87,6 @@
     "@turf/bbox": "^6.0.1",
     "@turf/buffer": "^5.0.4",
     "@turf/line-distance": "^4.7.3",
-    "hot-formula-parser": "^2.3.1",
     "numeral": "^2.0.6"
   }
 }
