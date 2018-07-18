@@ -1,7 +1,20 @@
 <table class="header-table">
   <thead>
     <tr>
-      <th rowspan="{{if reliability "3" "2"}}">&nbsp;</th>
+      <th rowspan="{{if reliability "3" "2"}}">
+        {{#unless decennial}}
+          <div class="profile-checkbox-controls">
+            <a {{action (mut reliability) (not reliability)}}>
+              {{#if reliability}}
+                <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+              {{else}}
+                <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
+              {{/if}}
+              Show Reliability Data
+            </a>
+          </div>
+        {{/unless}}
+      </th>
       {{#if decennial}}
       <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">2000</th>
       <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">2010</th>

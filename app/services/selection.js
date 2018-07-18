@@ -27,6 +27,8 @@ const findUniqueBy = function(collection, id) {
 export default Service.extend({
   current: DEFAULT_SELECTION,
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
+  comparator: '0',
+  reliability: false,
 
   currentMapInstance: null,
 

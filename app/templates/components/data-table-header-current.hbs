@@ -1,9 +1,26 @@
 <table class="header-table">
   <thead>
     <tr>
-      <th rowspan="{{if reliability "3" "2"}}">&nbsp;</th>
-      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Selected Area</th>
-      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">Comparison Area</th>
+      <th rowspan="{{if reliability "3" "2"}}">
+        {{#unless decennial}}
+          <div class="profile-checkbox-controls">
+            <a {{action (mut reliability) (not reliability)}}>
+              {{#if reliability}}
+                <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+              {{else}}
+                <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
+              {{/if}}
+              Show Reliability Data
+            </a>
+          </div>
+        {{/unless}}
+      </th>
+      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">
+        Your Selection Area
+      </th>
+      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">
+        {{selection.comparisonLabel}}
+      </th>
       <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
     </tr>
     {{#if reliability}}

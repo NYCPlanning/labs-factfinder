@@ -42,25 +42,11 @@
 
       <div class="profile-geographies">
         <h3 class="profile-geographies-header">
-          {{selectionCount}}
-          {{if (eq summaryLevel 'tracts') 'Census Tract'~}}
-          {{if (eq summaryLevel 'blocks') 'Census Block'~}}
-          {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
-          {{if (eq summaryLevel 'pumas') 'PUMA'~}}
-          {{unless (eq selectionCount 1) 's'}}
-          {{if (eq summaryLevel 'blocks') '(Tract Id-Block Id)'~}}
+          {{selection-details-text}}
         </h3>
         <span class="dark-gray">&nbsp;|&nbsp;</span>
         <p class="profile-geographies-list comma-separated-list">
-          {{#each selection.sortedLabels as |boro|}}
-            {{#if boro.features.length}}
-              <strong>{{boro.label}}:</strong>
-            {{/if}}
-            {{#each boro.features as |feature|}}
-              {{feature.properties.geolabel}}
-              {{~unless (eq boro.features.lastObject.properties.geoid feature.properties.geoid) ','}}
-            {{/each}}
-          {{/each}}
+          {{select-geography-list selection=selection}}
         </p>
       </div>
 
@@ -70,35 +56,34 @@
           <strong>Compare&nbsp;to:&nbsp;&nbsp;</strong>
         </div>
         <div class="cell auto">
-          {{comparison-area-selector comparisonArea=profile.comparator}}
+          {{comparison-area-selector comparisonArea=selection.comparator}}
         </div>
       </div>
       {{/if}}
 
       {{#unless (eq profile.tab 'profile.census') }}
-      <div class="profile-checkbox-controls">
-        <a {{action 'toggleReliability'}}>
-          {{#if profile.reliability}}
-            <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
-          {{else}}
-            <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
-          {{/if}}
-          Show Reliability Data
-        </a>
-        {{#if (eq mode 'current')}}
-          <span class="dark-gray">&nbsp;|&nbsp;</span>
-          <a {{action 'toggleCharts'}}>
-            {{#if profile.charts}}
+        <div class="profile-checkbox-controls">
+          <a {{action 'toggleReliability'}}>
+            {{#if profile.reliability}}
               <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
             {{else}}
               <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
             {{/if}}
-            Show Charts
+            Show Reliability Data
           </a>
-        {{/if}}
-      </div>
+          {{#if (eq mode 'current')}}
+            <span class="dark-gray">&nbsp;|&nbsp;</span>
+            <a {{action 'toggleCharts'}}>
+              {{#if profile.charts}}
+                <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+              {{else}}
+                <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
+              {{/if}}
+              Show Charts
+            </a>
+          {{/if}}
+        </div>
       {{/unless}}
-
     </div>
     {{#unless (eq profile.tab 'profile.census')}}
       <p class="text-small no-margin">

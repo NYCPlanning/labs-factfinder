@@ -12,7 +12,6 @@ const selectedFillLayer = selectedFeatures.fill;
 
 export default Controller.extend({
   mode: 'current',
-  reliability: false,
   charts: true,
   comparison: true,
   changeReliability: true,
@@ -23,7 +22,8 @@ export default Controller.extend({
   metrics: service(),
 
   queryParams: ['mode', 'reliability', 'charts', 'comparator'],
-  comparator: '0',
+  comparator: alias('selection.comparator'),
+  reliability: alias('selection.reliability'),
 
   layerGroups,
   sources,

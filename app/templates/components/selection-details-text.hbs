@@ -1,0 +1,7 @@
+{{selection.selectedCount}}
+{{if (eq selection.summaryLevel 'tracts') 'Census Tract'~}}
+{{if (eq selection.summaryLevel 'blocks') 'Census Block'~}}
+{{if (eq selection.summaryLevel 'ntas') 'Neighborhood'~}}
+{{if (eq selection.summaryLevel 'pumas') 'PUMA'~}}
+{{unless (eq selection.selectedCount 1) 's'}}
+{{if (eq selection.summaryLevel 'blocks') '(Tract Id-Block Id)'~}}
