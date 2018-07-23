@@ -1,13 +1,9 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10-browsers
+      - image: circleci/node:8-browsers
       # - image: circleci/node:6-browsers
         environment:
             CHROME_BIN: "/usr/bin/google-chrome"
@@ -34,6 +30,19 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+
       # run tests!
       - run: yarn test
+
+      # deploy
+      - run:
+          name: Avoid hosts unknown for github
+          command: ssh-keyscan planninglabs.nyc >> ~/.ssh/known_hosts
+      - deploy:
+          name: Deployment
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git remote add dokku dokku@planninglabs.nyc:factfinder && git push dokku master
+            elif [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              git remote add dokku dokku@planninglabs.nyc:factfinder-staging && git push dokku develop:master
+            fi
