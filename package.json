@@ -20,7 +20,7 @@
     "babel-eslint": "8",
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-clean-css": "^2.0.1",
-    "d3": "^4.11.0",
+    "d3": "^5.5.0",
     "ember-ajax": "^3.0.0",
     "ember-auto-import": "^1.2.3",
     "ember-browserify": "^1.2.0",
