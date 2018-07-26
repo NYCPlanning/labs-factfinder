@@ -27,7 +27,7 @@
     "ember-cli": "~3.3.0",
     "ember-cli-accounting": "2.0.2",
     "ember-cli-app-version": "^3.0.0",
-    "ember-cli-babel": "^6.14.1",
+    "ember-cli-babel": "^6.16.0",
     "ember-cli-data-export": "^0.1.29",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-dropzonejs": "1.1.0",
