@@ -83,7 +83,7 @@
   },
   "private": true,
   "dependencies": {
-    "@ember-decorators/babel-transforms": "2.0.1",
+    "@ember-decorators/babel-transforms": "2.0.2",
     "@turf/bbox": "^6.0.1",
     "@turf/buffer": "^5.0.4",
     "@turf/combine": "6.0.1",
