@@ -94,6 +94,10 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
   }
+  
+  if (environment === 'staging') {
+    ENV.host = 'https://factfinder-api-staging.planninglabs.nyc';
+  }
 
   if (environment === 'devlocal') {
     ENV.SupportServiceHost = 'http://localhost:4000';
