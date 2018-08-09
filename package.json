@@ -22,7 +22,7 @@
     "broccoli-clean-css": "^2.0.1",
     "d3": "^4.11.0",
     "ember-ajax": "^3.0.0",
-    "ember-auto-import": "^1.2.3",
+    "ember-auto-import": "^1.2.4",
     "ember-browserify": "^1.2.0",
     "ember-cli": "~3.3.0",
     "ember-cli-accounting": "2.0.2",
