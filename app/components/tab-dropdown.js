@@ -9,6 +9,19 @@ export default Component.extend({
 
   dropdown: '',
 
+  censusItems: [
+    { anchor: '#sex-and-age', title: 'Age and Sex' },
+    { anchor: '#mutually-exclusive-race-hispanic-origin', title: 'Mutually Exclusive Race / Hispanic Origin' },
+    { anchor: '#hispanic-subgroup', title: 'Hispanic Subgroup' },
+    { anchor: '#asian-subgroup', title: 'Asian Subgroup' },
+    { anchor: '#relationship-to-head-of-household', title: 'Relationship to Head of Household' },
+    { anchor: '#household-type', title: 'Household Type' },
+    { anchor: '#housing-occupancy', title: 'Housing Occupancy' },
+    { anchor: '#housing-tenure', title: 'Housing Tenure' },
+    { anchor: '#tenure-by-age-of-householder', title: 'Tenure by Age of Househodler' },
+    { anchor: '#household-size', title: 'Household Size' },
+  ],
+
   demographicItems: [
     { anchor: '#sex-and-age', title: 'Age and Sex' },
     { anchor: '#mutually-exclusive-race-hispanic-origin', title: 'Mutually Exclusive Race / Hispanic Origin' },
@@ -63,6 +76,7 @@ export default Component.extend({
 
   @computed('dropdown')
   dropdownItems() {
+    const censusItems = this.get('censusItems');
     const demographicItems = this.get('demographicItems');
     const socialItems = this.get('socialItems');
     const economicItems = this.get('economicItems');
@@ -70,6 +84,9 @@ export default Component.extend({
 
     const dropdown = this.get('dropdown');
 
+    if (dropdown === 'census') {
+      return censusItems;
+    }
     if (dropdown === 'demographic') {
       return demographicItems;
     }
