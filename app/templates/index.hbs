@@ -97,6 +97,30 @@
       {{/map.source}}
     {{/if}}
 
+    {{#if customVisualOverlayData}}
+      {{#map.source
+        sourceId='custom-overlay'
+        options=(hash 
+          type='geojson'
+          data=customVisualOverlayData
+        ) as |source|}}
+        {{source.layer
+          layer=(hash
+            type='line'
+            layout=(hash line-cap='round')
+            paint=(hash 
+              line-color='rgba(255, 0, 185, 1)'
+              line-width=(hash
+                stops=(array (array 6 1.5) (array 12 3))
+              )
+              line-dasharray=(array 0 2)
+            )
+          )
+          before='place_other'}}
+
+      {{/map.source}}
+    {{/if}}
+
     {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
     {{map.on 'draw.create' (action 'handleDrawCreate')}}
     {{map.on 'click' (action 'handleClick')}}
