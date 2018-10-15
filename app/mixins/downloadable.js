@@ -21,7 +21,8 @@ export default Mixin.create({
 
     controller.setProperties({
       model: nestedModel,
-      rawData: model.map(row => row.toJSON()),
+      rawData: model
+        .map(row => row.toJSON()),
     });
   },
 });
