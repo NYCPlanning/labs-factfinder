@@ -251,7 +251,7 @@ export default Controller.extend({
 
         shpjs(buffer).then((geojson) => {
           let combined;
-
+          this.set('customVisualOverlayData', geojson);
           combined = combine(geojson);
           combined = combined.features[0].geometry;
           combined.crs = {
