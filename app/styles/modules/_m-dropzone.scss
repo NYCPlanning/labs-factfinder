@@ -13,6 +13,28 @@
     cursor: pointer;
   }
 
+  .dz-default.dz-message {
+    margin: 0;
+
+    span {
+      display: block;
+    }
+
+    &::after {
+      @include button(
+        $expand:false,
+        $background:$light-gray,
+        $background-hover:$light-gray,
+        $color:$primary-color,
+        $style:solid
+      );
+      content: 'Choose file';
+      font-size: rem-calc(12);
+      text-decoration: none;
+      margin: 0.5em 0 0;
+    }
+  }
+
   .dz-preview {
     margin: 0;
     min-height: 0;
@@ -52,17 +74,18 @@
         }
       }
     }
-  }
 
-  .dz-remove {
-    @include button(
-      $expand:false,
-      $background:$light-gray,
-      $background-hover:scale-color($light-gray, $lightness: -15%),
-      $color:$primary-color,
-      $style:solid
-    );
-    text-decoration: none;
-    margin: 0;
+    .dz-remove {
+      @include button(
+        $expand:false,
+        $background:$light-gray,
+        $background-hover:$light-gray,
+        $color:$primary-color,
+        $style:solid
+      );
+      font-size: rem-calc(12);
+      text-decoration: none;
+      margin: 0;
+    }
   }
 }
