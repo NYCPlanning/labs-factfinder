@@ -14,6 +14,7 @@
   }
 
   .dz-default.dz-message {
+    font-weight: $global-weight-bold;
     margin: 0;
 
     span {
@@ -30,6 +31,7 @@
       );
       content: 'Choose file';
       font-size: rem-calc(12);
+      font-weight: $global-weight-normal;
       text-decoration: none;
       margin: 0.5em 0 0;
     }
