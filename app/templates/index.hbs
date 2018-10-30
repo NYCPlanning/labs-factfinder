@@ -1,9 +1,3 @@
-{{drop-zone 
-  url='#' 
-  maxDropRegion=true
-  clickable=false
-  addedfile=(action 'addedfile')}}
-
 <ul class="menu align-center menu--selector">
   <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>
@@ -100,7 +94,7 @@
     {{#if customVisualOverlayData}}
       {{#map.source
         sourceId='custom-overlay'
-        options=(hash 
+        options=(hash
           type='geojson'
           data=customVisualOverlayData
         ) as |source|}}
@@ -108,7 +102,7 @@
           layer=(hash
             type='line'
             layout=(hash line-cap='round')
-            paint=(hash 
+            paint=(hash
               line-color='rgba(255, 0, 185, 1)'
               line-width=(hash
                 stops=(array (array 6 1.5) (array 12 3))
@@ -128,6 +122,17 @@
 
   {{/jane-maps}}
 </div>
-{{map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+
+{{#map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+  {{drop-zone
+    url='#'
+    addedfile=(action 'addedfile')
+    removedfile=(action 'removedfile')
+    dictDefaultMessage='Drag & drop a zipped shapefile here to add it to the map.'
+    createImageThumbnails=false
+    acceptedFiles='application/zip'
+    addRemoveLinks=true
+  }}
+{{/map-utility-box}}
 
 {{outlet}}

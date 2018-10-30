@@ -56,70 +56,70 @@
   <div class="advanced-options {{unless advanced 'closed'}}">
     {{#unless closed}}
 
-    <div class="selection-helpers">
-    </div>
+      <div class="selection-helpers">
+      </div>
 
-    <div class="layers-menu">
-      {{#layer-menu-item for='choropleths' as |item|}}
-        <div class="grid-x">
-          <div class="cell small-8">
-            <ul class="radio-buttons-list">
-              {{#each-in (group-by "group" choroplethConfigs) as |group configs|}}
-                <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
-                <ul class="no-bullet">
-                  {{#each configs as |config|}}
-                    <li {{
-                      action (
-                        queue
-                          (action 'setChoroplethMode' config.id)
-                          (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
-                          (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
-                      )
-                    }}>
-                      {{#if (eq choroplethMode config.id)}}
-                        {{fa-icon 'dot-circle-o'}}
-                      {{else}}
-                        {{fa-icon 'circle-thin'}}
-                      {{/if}}
-                      {{config.label}}
-                      {{info-tooltip tip=config.tooltip classNames="primary-color"}}
-                    </li>
-                  {{/each}}
-                </ul>
-              {{/each-in}}
-            </ul>
-          </div>
-          <div class="cell small-4">
-            <div class="legend">
-              <div class="legend-title">{{legendTitle}}</div>
-              {{#each stops as |stop|}}
-                <div class="legend-item">
-                  <span class="legend-color" style="color:{{stop.color}};">{{fa-icon 'square'}}</span>
-                  {{stop.label}}
-                </div>
-              {{/each}}
+      <div class="layers-menu">
+        {{#layer-menu-item for='choropleths' as |item|}}
+          <div class="grid-x">
+            <div class="cell small-8">
+              <ul class="radio-buttons-list">
+                {{#each-in (group-by "group" choroplethConfigs) as |group configs|}}
+                  <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
+                  <ul class="no-bullet">
+                    {{#each configs as |config|}}
+                      <li {{
+                        action (
+                          queue
+                            (action 'setChoroplethMode' config.id)
+                            (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
+                            (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
+                        )
+                      }}>
+                        {{#if (eq choroplethMode config.id)}}
+                          {{fa-icon 'dot-circle-o'}}
+                        {{else}}
+                          {{fa-icon 'circle-thin'}}
+                        {{/if}}
+                        {{config.label}}
+                        {{info-tooltip tip=config.tooltip classNames="primary-color"}}
+                      </li>
+                    {{/each}}
+                  </ul>
+                {{/each-in}}
+              </ul>
+            </div>
+            <div class="cell small-4">
+              <div class="legend">
+                <div class="legend-title">{{legendTitle}}</div>
+                {{#each stops as |stop|}}
+                  <div class="legend-item">
+                    <span class="legend-color" style="color:{{stop.color}};">{{fa-icon 'square'}}</span>
+                    {{stop.label}}
+                  </div>
+                {{/each}}
+              </div>
             </div>
           </div>
-        </div>
-      {{/layer-menu-item}}
-      {{#layer-menu-item for='subway' as |item|}}
-      {{/layer-menu-item}}
-      {{#layer-menu-item for='community-districts' as |item|}}
-      {{/layer-menu-item}}
-      {{#layer-menu-item for='nyccouncildistricts' as |item|}}
-      {{/layer-menu-item}}
-      {{#layer-menu-item for='neighborhood-tabulation-areas' as |item|}}
-      {{/layer-menu-item}}
-      {{#layer-menu-item for='nyc-pumas' as |item|}}
-      {{/layer-menu-item}}
-      {{#layer-menu-item for='boroughs' as |item|}}
-      {{/layer-menu-item}}
-    </div>
+        {{/layer-menu-item}}
+        {{#layer-menu-item for='subway' as |item|}}
+        {{/layer-menu-item}}
+        {{#layer-menu-item for='community-districts' as |item|}}
+        {{/layer-menu-item}}
+        {{#layer-menu-item for='nyccouncildistricts' as |item|}}
+        {{/layer-menu-item}}
+        {{#layer-menu-item for='neighborhood-tabulation-areas' as |item|}}
+        {{/layer-menu-item}}
+        {{#layer-menu-item for='nyc-pumas' as |item|}}
+        {{/layer-menu-item}}
+        {{#layer-menu-item for='boroughs' as |item|}}
+        {{/layer-menu-item}}
+      </div>
+
+      {{yield}}
 
     {{/unless}}
   </div>
-
-  {{yield}}
 
 {{else}}
   {{component mode}}
