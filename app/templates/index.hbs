@@ -1,5 +1,5 @@
-{{drop-zone 
-  url='#' 
+{{drop-zone
+  url='#'
   maxDropRegion=true
   clickable=false
   addedfile=(action 'addedfile')}}
@@ -23,15 +23,17 @@
   </li>
 </ul>
 <div class="map-container">
-  {{#jane-maps
+  {{#labs-map
     id='map'
     sources=sources
-    initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                      zoom=zoom
+    initOptions=(hash zoom=zoom
                       center=center
                       hash=true)
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
+
+    {{!map.labs-layers layerGroups=model}}
+    {{map.labs-layers layerGroups=mapConfiguration.layerGroups}}
 
     {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
       {{map.layer layer=bkQnMhBoundaryLayer}}
@@ -39,7 +41,7 @@
 
     {{map.source sourceId='choropleths' options=choroplethsSource}}
 
-    {{map.layer layer=subduedNtaLabels}}
+    {{!map.layer layer=subduedNtaLabels}}
 
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
@@ -52,6 +54,11 @@
         {{source.layer layer=selection.searchResultLayer}}
       {{/map.source}}
     {{/if}}
+
+    {{!-- labs-layers (includes tax-lots layer) --}}
+    {{#map.labs-layers
+      as |layers|}}
+    {{/map.labs-layers}}
 
     {{map.layer-group config=layerGroups.subway visible=false}}
 
@@ -100,7 +107,7 @@
     {{#if customVisualOverlayData}}
       {{#map.source
         sourceId='custom-overlay'
-        options=(hash 
+        options=(hash
           type='geojson'
           data=customVisualOverlayData
         ) as |source|}}
@@ -108,7 +115,7 @@
           layer=(hash
             type='line'
             layout=(hash line-cap='round')
-            paint=(hash 
+            paint=(hash
               line-color='rgba(255, 0, 185, 1)'
               line-width=(hash
                 stops=(array (array 6 1.5) (array 12 3))
@@ -126,7 +133,7 @@
     {{map.on 'click' (action 'handleClick')}}
     {{map.on 'mousemove' (action 'handleMousemove')}}
 
-  {{/jane-maps}}
+  {{/labs-map}}
 </div>
 {{map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
 

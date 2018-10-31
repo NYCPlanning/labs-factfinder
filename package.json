@@ -22,7 +22,7 @@
     "broccoli-clean-css": "^2.0.1",
     "d3": "^4.11.0",
     "ember-ajax": "^3.0.0",
-    "ember-auto-import": "^1.2.3",
+    "ember-auto-import": "^1.2.15",
     "ember-browserify": "^1.2.0",
     "ember-cli": "~3.3.0",
     "ember-cli-accounting": "2.0.2",
@@ -52,6 +52,7 @@
     "ember-font-awesome": "^4.0.0-alpha.3",
     "ember-link-action": "0.1.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-mapbox-composer": "^0.0.19",
     "ember-mapbox-gl": "^0.10.0",
     "ember-mapbox-gl-draw": "^1.1.0",
     "ember-math-helpers": "^2.3.0",
@@ -88,9 +89,9 @@
     "@turf/buffer": "^5.0.4",
     "@turf/combine": "6.0.1",
     "@turf/line-distance": "^4.7.3",
-    "hot-formula-parser": "^2.3.1",
-    "shpjs": "3.4.2",
     "ember-fetch": "^5.0.1",
-    "numeral": "^2.0.6"
+    "hot-formula-parser": "^2.3.1",
+    "numeral": "^2.0.6",
+    "shpjs": "3.4.2"
   }
 }
