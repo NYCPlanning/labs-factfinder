@@ -23,6 +23,9 @@
   </li>
 </ul>
 <div class="map-container">
+  {{#jane-maps}}
+    {{map.layer-group config=layerGroups.communityDistricts visible=true}}
+  {{/jane-maps}}
   {{#labs-map
     id='map'
     sources=sources
@@ -32,8 +35,14 @@
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
+    {{!-- labs-layers (includes tax-lots layer) --}}
+    {{#map.labs-layers
+      layerGroups=model.layerGroups as |layers|}}
+      {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+    {{/map.labs-layers}}
+
     {{!map.labs-layers layerGroups=model}}
-    {{map.labs-layers layerGroups=mapConfiguration.layerGroups}}
+    {{!map.labs-layers layerGroups=mapConfiguration.layerGroups}}
 
     {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
       {{map.layer layer=bkQnMhBoundaryLayer}}
@@ -54,33 +63,6 @@
         {{source.layer layer=selection.searchResultLayer}}
       {{/map.source}}
     {{/if}}
-
-    {{!-- labs-layers (includes tax-lots layer) --}}
-    {{#map.labs-layers
-      as |layers|}}
-    {{/map.labs-layers}}
-
-    {{map.layer-group config=layerGroups.subway visible=false}}
-
-    {{map.layer-group config=layerGroups.communityDistricts visible=false}}
-
-    {{map.layer-group config=layerGroups.nyccouncildistricts visible=false}}
-
-    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
-
-    {{map.layer-group config=layerGroups.boroughs visible=false}}
-
-    {{map.layer-group config=layerGroups.nycPumas visible=false}}
-
-    {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
-
-    {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
-
-    {{map.layer-group config=layerGroups.neighborhoodTabulationAreasSelection visible=(eq selection.summaryLevel 'ntas')}}
-
-    {{map.layer-group config=layerGroups.nycPumasSelection visible=(eq selection.summaryLevel 'pumas')}}
-
-    {{map.layer-group config=layerGroups.choropleths visible=false}}
 
     {{#if selection.current}}
       {{#map.source
