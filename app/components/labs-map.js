@@ -1,14 +1,14 @@
 import Ember from 'ember';
-import EmberMapboxGL from 'ember-mapbox-gl/components/mapbox-gl';
+import LabsMap from 'ember-mapbox-composer/components/labs-map';
 import { ParentMixin } from 'ember-composability-tools';
 
-import layout from '../templates/components/jane-maps';
+import layout from '../templates/components/labs-map';
 import carto from '../utils/carto';
 
 const { service } = Ember.inject;
 const { Promise } = Ember.RSVP;
 
-export default EmberMapboxGL.extend(ParentMixin, {
+export default LabsMap.extend(ParentMixin, {
   layout,
 
   init(...args) {

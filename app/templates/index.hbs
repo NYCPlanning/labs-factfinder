@@ -23,9 +23,6 @@
   </li>
 </ul>
 <div class="map-container">
-  {{#jane-maps}}
-    {{map.layer-group config=layerGroups.communityDistricts visible=true}}
-  {{/jane-maps}}
   {{#labs-map
     id='map'
     sources=sources
@@ -37,9 +34,11 @@
 
     {{!-- labs-layers (includes tax-lots layer) --}}
     {{#map.labs-layers
+      onLayerClick=(action 'handleClick')
       layerGroups=model.layerGroups as |layers|}}
-      {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
     {{/map.labs-layers}}
+
+    {{!map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
 
     {{!map.labs-layers layerGroups=model}}
     {{!map.labs-layers layerGroups=mapConfiguration.layerGroups}}
@@ -51,6 +50,18 @@
     {{map.source sourceId='choropleths' options=choroplethsSource}}
 
     {{!map.layer layer=subduedNtaLabels}}
+
+    {{!map.layer-group config=layerGroups.subway visible=false}}
+
+    {{!#map.source
+        sourceId='community-districts'
+        options=admin-boundaries as |source|}}
+          {{!source.layer
+              layer=community-districts
+              before='place_other'}}
+          {{!source.layer
+            before='place_other'}}
+    {{!/map.source}}
 
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}

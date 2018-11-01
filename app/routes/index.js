@@ -19,7 +19,8 @@ export default class IndexRoute extends Route {
 
     const layerGroups = await this.store.query('layer-group', {
       'layer-groups': [
-        { id: 'subway', visible: true },
+        { id: 'neighborhood-tabulation-areas', visible: true },
+        { id: 'subway', visible: false },
         { id: 'nyc-council-districts', visible: false },
         { id: 'community-districts', visible: false },
       ],

@@ -3,22 +3,22 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | jane-maps', function(hooks) {
+module('Integration | Component | labs-map', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{jane-maps}}`);
+    await render(hbs`{{labs-map}}`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      {{#jane-maps}}
+      {{#labs-maps}}
         template block text
-      {{/jane-maps}}
+      {{/labs-maps}}
     `);
 
     assert.equal(this.element.textContent.trim(), '');
