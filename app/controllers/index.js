@@ -260,7 +260,6 @@ export default Controller.extend({
               name: 'EPSG:4326',
             },
           };
-          console.log(combined.type);
           if (combined.type === 'MultiPolygon' || combined.type === 'MultiLineString') {
             this.set('customVisualOverlayLines', true);
           } if (combined.type === 'MultiPoint') {
