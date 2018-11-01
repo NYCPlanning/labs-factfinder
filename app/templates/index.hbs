@@ -91,7 +91,7 @@
       {{/map.source}}
     {{/if}}
 
-    {{#if customVisualOverlayData}}
+    {{#if customVisualOverlayLines}}
       {{#map.source
         sourceId='custom-overlay'
         options=(hash
@@ -108,6 +108,32 @@
                 stops=(array (array 6 3) (array 12 6))
               )
               line-dasharray=(array 0 2)
+            )
+          )
+          before='place_village'}}
+
+      {{/map.source}}
+    {{/if}}
+
+    {{#if customVisualOverlayPoints}}
+      {{#map.source
+        sourceId='custom-overlay'
+        options=(hash
+          type='geojson'
+          data=customVisualOverlayData
+        ) as |source|}}
+        {{source.layer
+          layer=(hash
+            type='circle'
+            paint=(hash
+              circle-color='rgba(325, 0, 185, 1)'
+              circle-radius=(hash
+                stops=(array (array 9 2) (array 14 3) (array 16 4))
+              )
+              circle-stroke-color='rgba(230, 0, 167, 1)'
+              circle-stroke-width=(hash
+                stops=(array (array 9 1) (array 14 2) (array 16 3))
+              )
             )
           )
           before='place_village'}}

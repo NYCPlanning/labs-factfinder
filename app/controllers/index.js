@@ -260,6 +260,12 @@ export default Controller.extend({
               name: 'EPSG:4326',
             },
           };
+          console.log(combined.type);
+          if (combined.type === 'MultiPolygon' || combined.type === 'MultiLineString') {
+            this.set('customVisualOverlayLines', true);
+          } if (combined.type === 'MultiPoint') {
+            this.set('customVisualOverlayPoints', true);
+          }
 
           // const SQL = generateIntersectionSQL(summaryLevel, combined);
           // carto.SQL(SQL, 'geojson', 'post')
