@@ -101,13 +101,13 @@
         {{source.layer
           layer=(hash
             type='line'
-            layout=(hash line-cap='round')
+            layout=(hash line-cap='butt')
             paint=(hash
-              line-color='rgba(325, 0, 185, 1)'
+              line-color='rgba(255, 0, 185, 0.5)'
               line-width=(hash
                 stops=(array (array 11 3) (array 12 6))
               )
-              line-dasharray=(array 0 2)
+              line-dasharray=(array 1 0.5)
             )
           )
           before='place_village'}}
@@ -126,7 +126,7 @@
           layer=(hash
             type='circle'
             paint=(hash
-              circle-color='rgba(325, 0, 185, 1)'
+              circle-color='rgba(255, 0, 185, 1)'
               circle-radius=(hash
                 stops=(array (array 9 2) (array 14 3) (array 16 4))
               )
@@ -154,7 +154,7 @@
     url='#'
     addedfile=(action 'addedfile')
     removedfile=(action 'removedfile')
-    dictDefaultMessage='Drag & drop a zipped shapefile here to add it as an overlay.'
+    dictDefaultMessage='Drag & drop a zipped shapefile here to add it as an overlay'
     createImageThumbnails=false
     acceptedFiles='application/zip'
     addRemoveLinks=true
