@@ -103,14 +103,14 @@
             type='line'
             layout=(hash line-cap='round')
             paint=(hash
-              line-color='rgba(255, 0, 185, 1)'
+              line-color='rgba(325, 0, 185, 1)'
               line-width=(hash
-                stops=(array (array 6 1.5) (array 12 3))
+                stops=(array (array 6 3) (array 12 6))
               )
               line-dasharray=(array 0 2)
             )
           )
-          before='place_other'}}
+          before='place_village'}}
 
       {{/map.source}}
     {{/if}}
@@ -128,7 +128,7 @@
     url='#'
     addedfile=(action 'addedfile')
     removedfile=(action 'removedfile')
-    dictDefaultMessage='Drag & drop a zipped shapefile here to add it to the map.'
+    dictDefaultMessage='Drag & drop a zipped shapefile here to add it as an overlay.'
     createImageThumbnails=false
     acceptedFiles='application/zip'
     addRemoveLinks=true
