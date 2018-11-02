@@ -17,18 +17,7 @@
           source=(component 'mapbox-gl-source' map=map)
         )
       )
-      interactive-layers=(
-        component 'interactive-layers'
-          map=(hash
-            layer-group=(component 'layer-group'
-              map=(hash
-                layer=(component 'mapbox-gl-layer' map=map)
-                source=(component 'mapbox-gl-source' map=map)
-              )
-            )
-          )
-        )
-      )
+    )
     }}
   {{/if}}
 {{else}}

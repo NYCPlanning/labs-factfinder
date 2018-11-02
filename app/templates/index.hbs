@@ -38,7 +38,7 @@
       layerGroups=model.layerGroups as |layers|}}
     {{/map.labs-layers}}
 
-    {{!map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=true}}
 
     {{!map.labs-layers layerGroups=model}}
     {{!map.labs-layers layerGroups=mapConfiguration.layerGroups}}
@@ -52,16 +52,6 @@
     {{!map.layer layer=subduedNtaLabels}}
 
     {{!map.layer-group config=layerGroups.subway visible=false}}
-
-    {{!#map.source
-        sourceId='community-districts'
-        options=admin-boundaries as |source|}}
-          {{!source.layer
-              layer=community-districts
-              before='place_other'}}
-          {{!source.layer
-            before='place_other'}}
-    {{!/map.source}}
 
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
