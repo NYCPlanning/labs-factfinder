@@ -1,0 +1,93 @@
+// --------------------------------------------------
+// Module: Dropzone
+// --------------------------------------------------
+.dropzone {
+  color: $dark-gray;
+  border: rem-calc(2) dashed $medium-gray;
+  padding: $global-margin*2;
+  margin: $global-margin;
+  border-radius: rem-calc(4);
+  text-align: center;
+
+  &.dz-clickable {
+    cursor: pointer;
+  }
+
+  .dz-default.dz-message {
+    font-weight: $global-weight-bold;
+    margin: 0;
+
+    span {
+      display: block;
+    }
+
+    &::after {
+      @include button(
+        $expand:false,
+        $background:$light-gray,
+        $background-hover:$light-gray,
+        $color:$primary-color,
+        $style:solid
+      );
+      content: 'or choose a file';
+      font-size: rem-calc(12);
+      font-weight: $global-weight-normal;
+      text-decoration: none;
+      margin: 0.5em 0 0;
+    }
+  }
+
+  .dz-preview {
+    margin: 0;
+    min-height: 0;
+
+    &:not(:last-child) {
+      display: none;
+    }
+
+    .dz-image {
+      display: none;
+    }
+
+    .dz-details {
+      position: relative;
+      font-size: rem-calc(12);
+      color: $black;
+      line-height: 1;
+      padding: 0;
+      margin: 0 0 0.5rem;
+
+      .dz-size {
+        margin-bottom: 0.5em;
+        font-size: rem-calc(16);
+
+        span {
+          background-color: transparent;
+          padding: 0;
+          border-radius: 0;
+        }
+      }
+
+      .dz-filename {
+        span {
+          background-color: transparent;
+          padding: 0;
+          border-radius: 0;
+        }
+      }
+    }
+
+    .dz-remove {
+      @include button(
+        $expand:false,
+        $background:$light-gray,
+        $background-hover:$light-gray,
+        $color:$primary-color,
+        $style:solid
+      );
+      font-size: rem-calc(12);
+      text-decoration: none;
+      margin: 0;
+    }
+  }
+}

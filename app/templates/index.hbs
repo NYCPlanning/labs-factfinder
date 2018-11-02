@@ -1,9 +1,3 @@
-{{drop-zone 
-  url='#' 
-  maxDropRegion=true
-  clickable=false
-  addedfile=(action 'addedfile')}}
-
 <ul class="menu align-center menu--selector">
   <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>
@@ -97,6 +91,56 @@
       {{/map.source}}
     {{/if}}
 
+    {{#if customVisualOverlayLines}}
+      {{#map.source
+        sourceId='custom-overlay'
+        options=(hash
+          type='geojson'
+          data=customVisualOverlayData
+        ) as |source|}}
+        {{source.layer
+          layer=(hash
+            type='line'
+            layout=(hash line-cap='butt')
+            paint=(hash
+              line-color='rgba(255, 0, 185, 0.5)'
+              line-width=(hash
+                stops=(array (array 11 3) (array 12 6))
+              )
+              line-dasharray=(array 1 0.5)
+            )
+          )
+          before='place_village'}}
+
+      {{/map.source}}
+    {{/if}}
+
+    {{#if customVisualOverlayPoints}}
+      {{#map.source
+        sourceId='custom-overlay'
+        options=(hash
+          type='geojson'
+          data=customVisualOverlayData
+        ) as |source|}}
+        {{source.layer
+          layer=(hash
+            type='circle'
+            paint=(hash
+              circle-color='rgba(255, 0, 185, 1)'
+              circle-radius=(hash
+                stops=(array (array 9 2) (array 14 3) (array 16 4))
+              )
+              circle-stroke-color='rgba(230, 0, 167, 1)'
+              circle-stroke-width=(hash
+                stops=(array (array 9 1) (array 14 2) (array 16 3))
+              )
+            )
+          )
+          before='place_village'}}
+
+      {{/map.source}}
+    {{/if}}
+
     {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
     {{map.on 'draw.create' (action 'handleDrawCreate')}}
     {{map.on 'click' (action 'handleClick')}}
@@ -104,6 +148,17 @@
 
   {{/jane-maps}}
 </div>
-{{map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+
+{{#map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+  {{drop-zone
+    url='#'
+    addedfile=(action 'addedfile')
+    removedfile=(action 'removedfile')
+    dictDefaultMessage='Drag & drop a zipped shapefile here to add it as an overlay'
+    createImageThumbnails=false
+    acceptedFiles='application/zip'
+    addRemoveLinks=true
+  }}
+{{/map-utility-box}}
 
 {{outlet}}

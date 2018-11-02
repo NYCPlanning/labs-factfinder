@@ -12,7 +12,7 @@ module('Integration | Component | jane-maps', function(hooks) {
 
     await render(hbs`{{jane-maps}}`);
 
-    assert.equal(this.element.textContent.trim(), 'Missing Mapbox GL JS CSS');
+    assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | jane-maps', function(hooks) {
       {{/jane-maps}}
     `);
 
-    assert.equal(this.element.textContent.trim(), 'Missing Mapbox GL JS CSS');
+    assert.equal(this.element.textContent.trim(), '');
   });
 });

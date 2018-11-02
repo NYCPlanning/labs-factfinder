@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/NYCPlanning/labs-nyc-factfinder/tree/develop.svg?style=svg)](https://circleci.com/gh/NYCPlanning/labs-nyc-factfinder/tree/develop)
+[![CircleCI](https://circleci.com/gh/NYCPlanning/labs-factfinder/tree/develop.svg?style=svg)](https://circleci.com/gh/NYCPlanning/labs-factfinder/tree/develop)
 
 # NYC Population FactFinder
 

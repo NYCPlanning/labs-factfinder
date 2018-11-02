@@ -242,8 +242,8 @@ export default Controller.extend({
 
     addedfile(file) {
       const reader = new FileReader();
-      const selection = this.get('selection');
-      const { summaryLevel } = selection;
+      // const selection = this.get('selection');
+      // const { summaryLevel } = selection;
 
       let buffer;
       reader.onload = (event) => {
@@ -251,7 +251,7 @@ export default Controller.extend({
 
         shpjs(buffer).then((geojson) => {
           let combined;
-
+          this.set('customVisualOverlayData', geojson);
           combined = combine(geojson);
           combined = combined.features[0].geometry;
           combined.crs = {
@@ -260,21 +260,30 @@ export default Controller.extend({
               name: 'EPSG:4326',
             },
           };
+          if (combined.type === 'MultiPolygon' || combined.type === 'MultiLineString') {
+            this.set('customVisualOverlayLines', true);
+          } if (combined.type === 'MultiPoint') {
+            this.set('customVisualOverlayPoints', true);
+          }
 
-          const SQL = generateIntersectionSQL(summaryLevel, combined);
-          carto.SQL(SQL, 'geojson', 'post')
-            .then((FC) => {
-              selection.handleSelectedFeatures(FC.features);
-              this.fitBounds();
-            })
-            .catch(() => {
-              alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
-            });
+          // const SQL = generateIntersectionSQL(summaryLevel, combined);
+          // carto.SQL(SQL, 'geojson', 'post')
+          //   .then((FC) => {
+          //     selection.handleSelectedFeatures(FC.features);
+          //     this.fitBounds();
+          //   })
+          //   .catch(() => {
+          //     alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
+          //   });
         }).catch(() => {
           alert('Something went wrong with this Shapefile. Check that it is valid'); // eslint-disable-line
         });
       };
       reader.readAsArrayBuffer(file);
+    },
+
+    removedfile() {
+      this.set('customVisualOverlayData', null);
     },
   },
 });
