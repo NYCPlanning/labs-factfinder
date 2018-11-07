@@ -16,6 +16,7 @@ export default LabsMap.extend(ParentMixin, {
 
     this.set('registeredLayers.layers', this.get('childComponents'));
   },
+  cartoSourcePromises: null,
   registeredLayers: service(),
   _onLoad(map, ...args) {
     this._super(map, ...args);
@@ -38,17 +39,14 @@ export default LabsMap.extend(ParentMixin, {
             }));
         });
 
-      if (!this.isDestroyed) {
-        this.set(
-          'cartoSourcePromises',
-          Promise.all(cartoSourcePromises).then((finishedSources) => {
-            window.map = map;
-            finishedSources.forEach((source) => {
-              map.addSource(source.id, source);
-            });
-          }),
-        );
-      }
+      Promise.all(cartoSourcePromises).then((finishedSources) => {
+        window.map = map;
+        finishedSources.forEach((source) => {
+          map.addSource(source.id, source);
+        });
+
+        if (!this.isDestroyed) this.set('cartoSourcePromises', finishedSources);
+      });
     }
   },
 });
