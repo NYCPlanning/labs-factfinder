@@ -8,7 +8,7 @@ import neighborhoodTabulationAreasSelection from './neighborhood-tabulation-area
 import nyccouncildistricts from './nyccouncildistricts';
 import nycPumas from './nyc-pumas';
 import nycPumasSelection from './nyc-pumas-selection';
-import subway from './subway';
+// import subway from './subway';
 
 export default {
   boroughs,
@@ -21,5 +21,5 @@ export default {
   nyccouncildistricts,
   nycPumas,
   nycPumasSelection,
-  subway,
+  // subway,
 };

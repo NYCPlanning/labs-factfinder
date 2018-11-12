@@ -80,6 +80,11 @@ $lu-gray: #5F5F60;
 @import 'layouts/_l-print';
 
 //
+// Labs UI variables
+// --------------------------------------------------
+@import 'labs-ui/variables';
+
+//
 // Modules
 // --------------------------------------------------
 @import 'modules/_m-advanced-options';
@@ -92,5 +97,6 @@ $lu-gray: #5F5F60;
 @import 'modules/_m-site-header';
 @import 'modules/_m-tooltips';
 @import 'modules/_m-spinner';
+@import 'labs-ui/all-modules';
 
 @import 'ember-power-select';

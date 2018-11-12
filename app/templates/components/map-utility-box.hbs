@@ -102,6 +102,13 @@
           </div>
         </div>
       {{/layer-menu-item}}
+
+      {{#lookup-layer-group for='waterfront-access--wpaas' as |layerGroup|}}
+        {{#each layerGroup.model.legend.items as |item|}}
+      {{labs-ui/legend-item item=item}}
+        {{/each}}
+      {{/lookup-layer-group}}
+
       {{#layer-menu-item for='subway' as |item|}}
       {{/layer-menu-item}}
       {{#layer-menu-item for='community-districts' as |item|}}
