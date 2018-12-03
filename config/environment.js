@@ -69,6 +69,13 @@ module.exports = function(environment) {
       },
     },
 
+    fontawesome: {
+      icons: {
+        'free-regular-svg-icons': 'all',
+        'free-solid-svg-icons': 'all',
+      },
+    },
+
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',

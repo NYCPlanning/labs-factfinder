@@ -13,6 +13,9 @@ module.exports = function(defaults) {
     emberCliDropzonejs: {
       includeDropzoneCss: false,
     },
+    'ember-cli-foundation-6-sass': {
+      foundationJs: 'all',
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

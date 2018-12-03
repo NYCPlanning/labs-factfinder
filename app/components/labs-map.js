@@ -42,7 +42,7 @@ export default LabsMap.extend(ParentMixin, {
       Promise.all(cartoSourcePromises).then((finishedSources) => {
         window.map = map;
         finishedSources.forEach((source) => {
-          // map.addSource(source.id, source);
+          map.addSource(source.id, source);
         });
 
         if (!this.isDestroyed) this.set('cartoSourcePromises', finishedSources);
