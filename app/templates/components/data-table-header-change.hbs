@@ -6,9 +6,9 @@
           <div class="profile-checkbox-controls">
             <a {{action (mut reliability) (not reliability)}}>
               {{#if reliability}}
-                <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+                <span class="dcp-orange">{{fa-icon 'check-square' fixedWidth=true}}</span>
               {{else}}
-                <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
+                <span class="dcp-orange">{{fa-icon 'square' fixedWidth=true}}</span>
               {{/if}}
               Show Reliability Data
             </a>

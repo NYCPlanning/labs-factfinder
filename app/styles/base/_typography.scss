@@ -224,7 +224,7 @@ button {
   @include breakpoint(small only) {
 
     li:not(:first-child) {
-      border-top: 1px solid $medium-gray;
+      border-top: 1px solid $silver;
     }
 
     a:not(.active) {
@@ -232,7 +232,7 @@ button {
     }
 
     a.active {
-      background-color: $medium-gray;
+      background-color: $silver;
       color: $body-font-color;
       box-shadow: 0 -1px 0 0 rgba(0,0,0,0.2);
     }
@@ -264,6 +264,7 @@ button {
           background-color: $body-background;
           border-color: $medium-gray;
           color: $body-font-color;
+          float: left;
         }
       }
     }
@@ -274,42 +275,31 @@ button {
     cursor: text;
   }
 
-  .has-dropdown {
-    padding-right: 2rem;
-  }
-
-  .fa-caret-down {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: $medium-gray;
-    padding: 0.7rem 0.8rem 0.7rem 0.6rem;
-
-    &:hover {
-      color: $dark-gray;
-      cursor: pointer;
-    }
-
-    &.flip {
-      transform: scaleY(-1);
-    }
-  }
-
   .tab-dropdown {
-    font-size: rem-calc(12);
+    cursor: pointer;
+  }
 
-    @include breakpoint(medium) {
-      position: absolute;
-      top: 100%;
-      right: auto;
-      left: 1px;
-      z-index: 2;
-      width: rem-calc(240);
-      max-width: 90vw;
-      margin-top: -1px;
-      box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
-      text-align: left;
-    }
+  a.tab-dropdown-trigger {
+    margin-bottom: -1px;
+    margin-left: -0.7rem;
+    padding-left: 0.7rem;
+    border-top-color: $medium-gray !important;
+    border-right-color: $medium-gray !important;
+    border-right-width: 1px !important;
+    border-left-width: 0 !important;
+    box-shadow: none !important;
+    background-color: $body-background;
+  }
+
+  .tab-popover {
+    top: 100% !important;
+    left: 1px !important;
+    width: rem-calc(240);
+    margin-top: -1px !important;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
+    transform: none !important;
+
+    text-align: left;
 
     li {
       border-top: 1px solid #eee;
