@@ -10,9 +10,6 @@ module.exports = function(defaults) {
     'ember-font-awesome': {
       removeUnusedIcons: false,
     },
-    emberCliDropzonejs: {
-      includeDropzoneCss: false,
-    },
     'ember-cli-foundation-6-sass': {
       foundationJs: 'all',
     },
