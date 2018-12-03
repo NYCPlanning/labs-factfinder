@@ -60,6 +60,9 @@ The `profile` route contains 4 different ACS profiles (Demographic, Social, Econ
 - **ESLint** - We use ESLint with Airbnb's rules for JavaScript projects
   - Add an ESLint plugin to your text editor to highlight broken rules while you code
   - You can also run `eslint` at the command line with the `--fix` flag to automatically fix some errors.
+* `npm run lint:hbs`
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
 
 - **Testing**
   - run `ember test --serve`

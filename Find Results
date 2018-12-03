@@ -1,0 +1,23 @@
+Searching 306 files for "34ce168"
+
+/Users/hannahkates/repos/labs-factfinder/.eslintignore:
+   22  /bower.json.ember-try
+   23  /package.json.ember-try
+   24: >>>>>>> 34ce168... message
+   25  
+
+/Users/hannahkates/repos/labs-factfinder/.eslintrc.js:
+   41          '.template-lintrc.js',
+   42          'ember-cli-build.js',
+   43: >>>>>>> 34ce168... message
+   44          'testem.js',
+   45          'ember-cli-build.js',
+
+/Users/hannahkates/repos/labs-factfinder/README.md:
+   66  * `npm run lint:js`
+   67  * `npm run lint:js -- --fix`
+   68: >>>>>>> 34ce168... message
+   69  
+   70  - **Testing**
+
+3 matches across 3 files
