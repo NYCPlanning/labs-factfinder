@@ -273,6 +273,11 @@ button {
   .disabled {
     color: $medium-gray;
     cursor: text;
+
+    .warning-icon {
+      color: $gold;
+      margin-top: -2px;
+    }
   }
 
   .tab-dropdown {
@@ -322,7 +327,6 @@ button {
     position: relative;
     top: -0.75rem;
     left: -0.5rem;
-    margin-right: -0.5rem;
     border: 0 !important;
 
     a {
@@ -332,23 +336,7 @@ button {
       padding-left: 0.5rem;
     }
 
-    // .fa-long-arrow-left {
-    //   color: $dark-gray;
-    //   position: relative;
-    //   margin-right: -0.2em;
-    //   margin-left: -0.25rem;
-    //   z-index: 1;
-    // }
-    //
-    // .fa-map {
-    //   color: $dcp-orange;
-    // }
-
     a:hover {
-
-      .fa-long-arrow-left {
-        color: $black;
-      }
 
       .fa-map {
         color: $a11y-orange;
