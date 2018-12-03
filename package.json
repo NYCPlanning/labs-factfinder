@@ -91,6 +91,7 @@
     "@turf/buffer": "^5.0.4",
     "@turf/combine": "6.0.1",
     "@turf/line-distance": "^4.7.3",
+    "ember-cli-shims": "^1.2.0",
     "ember-fetch": "^5.0.1",
     "hot-formula-parser": "^2.3.1",
     "numeral": "^2.0.6",
