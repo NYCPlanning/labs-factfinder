@@ -3,6 +3,11 @@
 // --------------------------------------------------
 @import 'labs-ui/variables';
 
+// HACK!!! This should be fixed in Labs UI
+$hr-width: auto;
+$table-border: 1px solid $silver;
+
+
 //
 // Foundation
 // --------------------------------------------------
