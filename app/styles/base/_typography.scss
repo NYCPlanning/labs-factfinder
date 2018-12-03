@@ -5,20 +5,6 @@
 //
 // Headings
 // --------------------------------------------------
-.header-xxlarge { @extend h1; }
-.header-xlarge {  @extend h2; }
-.header-large {   @extend h3; }
-.header-medium {  @extend h4; }
-.header-small {   @extend h5; }
-.header-tiny {    @extend h6; }
-
-h6,
-.header-tiny {
-  text-transform: uppercase;
-  font-weight: $global-weight-normal;
-  margin-bottom: 0.5em;
-}
-
 .content-header {
   @extend h3;
   margin-bottom: rem-calc(10);
@@ -88,10 +74,6 @@ button {
 
     &.saved .fa {
       color: $success-color;
-
-      // &:hover {
-      //   color: darken($success-color, 10%);
-      // }
     }
   }
 }
@@ -130,32 +112,6 @@ button {
 //
 // Typography helper classes
 // --------------------------------------------------
-.nowrap {
-  white-space: nowrap;
-}
-.no-margin {
-  margin: 0 !important;
-}
-.small-margin-bottom {
-  margin-bottom: rem-calc(5);
-}
-
-.text-small {
-  font-size: rem-calc(13);
-}
-
-.text-tiny {
-  font-size: rem-calc(10);
-  line-height: 1.5;
-}
-
-.text-weight-normal {
-  font-weight: $global-weight-normal;
-}
-.text-weight-bold {
-  font-weight: $global-weight-bold;
-}
-
 .pipe {
   opacity: 0.25;
   margin-right: 0.25em;
@@ -171,28 +127,6 @@ button {
   }
 }
 
-.primary-color { color: $primary-color; }
-.light-gray { color: $light-gray; }
-.medium-gray { color: $medium-gray; }
-.dark-gray { color: $dark-gray; }
-.black { color: $black; }
-.dcp-orange { color: $dcp-orange; }
-.dcp-yellow { color: $dcp-yellow; }
-.a11y-yellow { color: $a11y-yellow; }
-
-// Land Use colors
-.lu-peach { color: $lu-peach; }
-.lu-yellow { color: $lu-yellow; }
-.lu-magenta { color: $lu-magenta; }
-.lu-red { color: $lu-red; }
-.lu-orange { color: $lu-orange; }
-.lu-pink { color: $lu-pink; }
-.lu-green { color: $lu-green; }
-.lu-blue { color: $lu-blue; }
-.lu-lavendar { color: $lu-lavendar; }
-.lu-silver { color: $lu-silver; }
-.lu-gray { color: $lu-gray; }
-
 .comma-separated-list {
   list-style: none;
   margin-left: 0;
@@ -204,14 +138,6 @@ button {
       content: ',';
     }
   }
-}
-
-
-//
-// Ember Tooltip
-// --------------------------------------------------
-.ember-tooltip {
-  font-size: rem-calc(10);
 }
 
 
