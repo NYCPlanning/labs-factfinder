@@ -84,11 +84,14 @@ export default Component.extend(ResizeAware, {
       .paddingOuter(0)
       .paddingInner(0.1);
 
-    const x = scaleLinear()
-      .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => get(d, 'percent'))])
-      .range([textWidth, width]);
+    const xMax = max([
+      max(rawData, d => get(d, 'percent') + get(d, 'percent_m')),
+      max(rawData, d => get(d, 'comparison_percent') + get(d, 'comparison_percent_m')),
+    ]);
 
-    /* eslint-disable */
+    const x = scaleLinear()
+      .domain([0, xMax])
+      .range([textWidth, width]);
 
     // wrap bar type label text to multiple lines
     function wrap(textElements, wrapWidth) {
