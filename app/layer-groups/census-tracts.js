@@ -45,7 +45,7 @@ export default {
           'line-width': {
             stops: [
               [11, 1],
-              [16, 3],
+              [16, 5],
             ],
           },
         },
