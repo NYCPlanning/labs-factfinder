@@ -93,6 +93,8 @@ export default Component.extend(ResizeAware, {
       .domain([0, xMax])
       .range([textWidth, width]);
 
+    /* eslint-disable */
+
     // wrap bar type label text to multiple lines
     function wrap(textElements, wrapWidth) {
       textElements.each(function() {
