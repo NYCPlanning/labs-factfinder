@@ -91,6 +91,7 @@ export default Controller.extend({
   },
 
   actions: {
+    // allows geometry to be selected by clicking on shape on map
     handleClick(e) {
       if (!this.get('isDrawing')) {
         const selection = this.get('selection');

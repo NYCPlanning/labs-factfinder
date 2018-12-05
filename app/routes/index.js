@@ -12,10 +12,13 @@ export default class IndexRoute extends Route {
 
     const layerGroups = await this.store.query('layer-group', {
       'layer-groups': [
-        // { id: 'neighborhood-tabulation-areas', visible: true },
-        { id: 'subway', visible: true },
+        { id: 'neighborhood-tabulation-areas', visible: false },
+        { id: 'subway', visible: false },
         // { id: 'nyc-council-districts', visible: true },
-        // { id: 'community-districts', visible: false },
+        { id: 'community-districts', visible: false },
+        // { id: 'boroughs', visible: false },
+        // { id: 'borough-boundaries', visible: true }, --Use Citymap?
+        // {{ id: 'nycPumas', visible: false }},
       ],
     });
 
