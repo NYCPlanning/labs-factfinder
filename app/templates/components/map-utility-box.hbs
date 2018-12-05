@@ -132,6 +132,15 @@
           {{/labs-ui/layer-group-toggle}}
         {{/lookup-layer-group}}
 
+        {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
         {{!#layer-menu-item for='community-districts' as |item|}}
         {{!/layer-menu-item}}
 
