@@ -19,7 +19,6 @@ Router.map(function() {
   this.route('features');
   this.route('data');
   this.route('tutorial');
-  this.route('feedback');
 });
 
 export default Router;
