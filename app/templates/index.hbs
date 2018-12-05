@@ -64,27 +64,15 @@
 
     {{!map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
 
-    {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
+    {{!map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
 
-    {{!map.layer-group config=layerGroups.neighborhoodTabulationAreasSelection visible=(eq selection.summaryLevel 'ntas')}}
+    {{map.layer-group config=layerGroups.neighborhoodTabulationAreasSelection visible=(eq selection.summaryLevel 'ntas')}}
 
     {{!map.layer-group config=layerGroups.nycPumasSelection visible=(eq selection.summaryLevel 'pumas')}}
 
     {{map.layer-group config=layerGroups.choropleths visible=false}}
 
     {{map.source sourceId='choropleths' options=choroplethsSource}}
-
-    {{#if selection.currentAddress}}
-      {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
-        {{source.layer layer=selection.pointLayer}}
-      {{/map.source}}
-    {{/if}}
-
-    {{#if selection.searchResultFeature}}
-      {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
-        {{source.layer layer=selection.searchResultLayer}}
-      {{/map.source}}
-    {{/if}}
 
     {{#if selection.current}}
       {{#map.source
