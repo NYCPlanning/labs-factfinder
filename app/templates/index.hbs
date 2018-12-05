@@ -62,13 +62,13 @@
 
     {{!map.layer-group config=layerGroups.nycPumas visible=false}}
 
-    {{!map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
+    {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
 
-    {{!map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
+    {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
 
     {{map.layer-group config=layerGroups.neighborhoodTabulationAreasSelection visible=(eq selection.summaryLevel 'ntas')}}
 
-    {{!map.layer-group config=layerGroups.nycPumasSelection visible=(eq selection.summaryLevel 'pumas')}}
+    {{map.layer-group config=layerGroups.nycPumasSelection visible=(eq selection.summaryLevel 'pumas')}}
 
     {{map.layer-group config=layerGroups.choropleths visible=false}}
 
