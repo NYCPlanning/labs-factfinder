@@ -38,6 +38,18 @@
 
     {{map.layer layer=subduedNtaLabels}}
 
+    {{#if selection.currentAddress}}
+      {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
+        {{source.layer layer=selection.pointLayer}}
+      {{/map.source}}
+    {{/if}}
+
+    {{#if selection.searchResultFeature}}
+      {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
+        {{source.layer layer=selection.searchResultLayer}}
+      {{/map.source}}
+    {{/if}}
+
     {{!map.layer-group config=layerGroups.subway visible=false}}
 
     {{!map.layer-group config=layerGroups.communityDistricts visible=false}}
