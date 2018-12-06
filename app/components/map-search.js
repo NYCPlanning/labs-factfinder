@@ -1,13 +1,13 @@
 import Component from '@ember/component';
 import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import fetch from 'fetch';
 import bbox from '@turf/bbox';
 import getBuffer from '@turf/buffer';
 import Environment from '../config/environment';
-import trackEvent from '../utils/track-event'; // eslint-disable-line
+// import trackEvent from '../utils/track-event';
 
 const { SupportServiceHost } = Environment;
 
@@ -21,11 +21,12 @@ export default Component.extend({
   selection: service(),
   focused: false,
 
-  @computed('searchTerms')
-  results(searchTerms) {
+  results: computed('searchTerms', function() {
+    const searchTerms = this.get('searchTerms');
+
     const rawResults = this.get('debouncedResults').perform(searchTerms);
     return rawResults;
-  },
+  }),
 
   debouncedResults: task(function* (searchTerms) {
     if (searchTerms.length < 3) this.cancel();
@@ -63,11 +64,12 @@ export default Component.extend({
       });
   }).keepLatest(),
 
-  @computed('results.value')
-  resultsCount(results) {
+  resultsCount: computed('results.value', function() {
+    const results = this.get('results');
+
     if (results) return results.length;
     return 0;
-  },
+  }),
 
   keyPress(event) {
     const selected = this.get('selected');
@@ -129,7 +131,7 @@ export default Component.extend({
       selection.set('searchResultFeature', null);
     },
 
-    @trackEvent('Map Search', 'Clicked result', 'searchTerms')
+    // @trackEvent('Map Search', 'Clicked result', 'searchTerms')
     goTo(result) {
       this.$('.map-search-input').blur();
 
@@ -188,12 +190,12 @@ export default Component.extend({
       }
     },
 
-    @trackEvent('Search', 'Focused In', 'searchTerms')
+    // @trackEvent('Search', 'Focused In', 'searchTerms')
     handleFocusIn() {
       this.set('focused', true);
     },
 
-    @trackEvent('Search', 'Focused Out', 'searchTerms')
+    // @trackEvent('Search', 'Focused Out', 'searchTerms')
     handleFocusOut() {
       this.set('focused', false);
     },

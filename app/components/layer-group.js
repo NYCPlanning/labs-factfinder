@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object'; // eslint-disable-line
 import { ParentMixin, ChildMixin } from 'ember-composability-tools';
 import carto from '../utils/carto';
 import layout from '../templates/components/layer-group';
@@ -31,35 +31,40 @@ export default Ember.Component.extend(ParentMixin, ChildMixin, {
   sql: '',
   visible: false,
 
-  @computed('config.layers')
-  minzoom(layers) {
+  minzoom: computed('config.layers', function() {
+    const { layers } = this.getProperties('config.layers');
+
     const allZooms = layers.map(layer => layer.layer.minzoom).filter(zoom => !!zoom);
     if (allZooms.length) return Math.min(...allZooms);
     return false;
-  },
+  }),
 
-  @computed('config.layers.@each.id')
-  layerIds(layers) {
+  layerIds: computed('config.layers.@each.id', function() {
+    const { layers } = this.getProperties('config.layers.@each.id');
+
     return layers.mapBy('layer.id');
-  },
+  }),
 
-  @computed('isCarto', 'configWithTemplate.isSuccessful', 'config', 'visible')
-  isReady(isCarto, successful, config) {
+  isReady: computed('isCarto', 'configWithTemplate.isSuccessful', 'config', 'visible', function() {
+    const { isCarto, successful, config } = this.getProperties('isCarto', 'configWithTemplate.isSuccessful', 'config', 'visible');
+
     return !!(
       ((isCarto && successful) || !isCarto) && config
     );
-  },
+  }),
 
   'query-param': alias('config.id'),
   queryParamBoundKey: 'visible',
 
-  @computed('config.type')
-  isCarto(type) {
-    return type === 'carto';
-  },
+  isCarto: computed('config.type', function() {
+    const { type } = this.getProperties('config.type');
 
-  @computed('registeredLayers.layers')
-  before(allLayerGroups) {
+    return type === 'carto';
+  }),
+
+  before: computed('registeredLayers.layers', function() {
+    const { allLayerGroups } = this.getProperties('registeredLayers.layers');
+
     const position = allLayerGroups.map(layerGroup => layerGroup.config.id).indexOf(this.get('config.id'));
 
     // walk all layergroups that should be displayed above this one
@@ -79,12 +84,13 @@ export default Ember.Component.extend(ParentMixin, ChildMixin, {
 
     // if we can't find any before when walking the layergroups, use this 'global before'
     return 'place_other';
-  },
+  }),
 
   layers: alias('config.layers'),
 
-  @computed('config', 'isCarto', 'sql')
-  sourceOptions(config, isCarto) {
+  sourceOptions: computed('config', 'isCarto', 'sql', function() {
+    const { config, isCarto } = this.getProperties('config', 'isCarto', 'sql');
+
     if (isCarto) return this.get('configWithTemplate.value');
 
     if (config.type === 'raster') {
@@ -96,7 +102,7 @@ export default Ember.Component.extend(ParentMixin, ChildMixin, {
     }
 
     return config;
-  },
+  }),
 
   buildRangeSQL(sql, column = '', range = [0, 1] || ['a', 'b']) {
     let newSql = sql;
