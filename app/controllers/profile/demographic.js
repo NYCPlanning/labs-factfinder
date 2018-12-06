@@ -1,9 +1,7 @@
 import Controller, { inject as controller } from '@ember/controller';
-import { get } from '@ember/object';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { get, computed } from '@ember/object';
 
 import demographic from '../../table-config/demographic';
-
 import raceGroupChartConfig from '../../chart-config/demographic/race-group';
 import hispanicSubgroupChartConfig from '../../chart-config/demographic/hispanic-subgroup';
 import asianSubgroupChartConfig from '../../chart-config/demographic/asian-subgroup';
@@ -27,13 +25,13 @@ export default Controller.extend({
 
   profile: controller('profile'),
 
-  @computed('model')
-  currentData(model) {
+  currentData: computed('model', function() {
+    const model = this.get('model');
     return get(model, 'y2012_2016');
-  },
+  }),
 
-  @computed('currentData')
-  agePopDist(currentData) {
+  agePopDist: computed('currentData', function() {
+    const currentData = this.get('currentData');
     const d = currentData;
     const variables = [
       'pop0t5',
@@ -73,5 +71,5 @@ export default Controller.extend({
       },
       pyramidData,
     };
-  },
+  }),
 });

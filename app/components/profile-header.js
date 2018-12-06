@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 import bbox from '@turf/bbox';
 
 import sources from '../sources';
