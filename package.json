@@ -63,6 +63,7 @@
     "ember-responsive": "^3.0.0-beta.3",
     "ember-scroll-to": "0.6.5",
     "ember-source": "~3.5.1",
+    "ember-spreadsheet-export": "0.3.0",
     "ember-sticky-element": "^0.2.2",
     "ember-test-helpers": "^0.7.0-beta.4",
     "ember-tether": "^1.0.0-beta.0",

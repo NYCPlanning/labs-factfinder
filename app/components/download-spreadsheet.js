@@ -1,10 +1,12 @@
 import Component from '@ember/component';
-import trackEvent from '../utils/track-event'; // eslint-disable-line
+// import trackEvent from '../utils/track-event';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   tagName: '',
   data: null, // []
   filename: 'download',
+  csv: service('csv'),
   actions: {
     // @trackEvent('Data', 'Downloaded CSV')
     handleDownload(format = 'csv') {
