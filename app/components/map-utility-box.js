@@ -1,12 +1,12 @@
 import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import numeral from 'numeral';
 import fetch from 'fetch';
 import Environment from '../config/environment';
-import trackEvent from '../utils/track-event';
+// import trackEvent from '../utils/track-event';
 
 import choroplethConfigs from '../choropleth-config';
 
@@ -31,27 +31,31 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  @computed('selection.selectedCount', 'generateProfileId.isIdle')
-  profileButtonClasses(count, isIdle) {
-    return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
-  },
+  profileButtonClasses: computed('selection.selectedCount', 'generateProfileId.isIdle', function() {
+    const { count, isIdle } = this.getProperties('selection.selectedCount', 'generateProfileId.isIdle');
 
-  @computed('choroplethMode')
-  choroplethPaintFill(mode) {
+    return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
+  }),
+
+  choroplethPaintFill: computed('choroplethMode', function() {
+    const { mode } = this.getProperties('choroplethMode');
+
     return choroplethConfigs.find(d => d.id === mode).paintFill;
-  },
+  }),
 
   choroplethPaintLine(mode) {
     return choroplethConfigs.find(d => d.id === mode).paintLine;
   },
 
-  @computed('choroplethMode')
-  legendTitle(mode) {
-    return choroplethConfigs.find(d => d.id === mode).legendTitle;
-  },
+  legendTitle: computed('choroplethMode', function() {
+    const { mode } = this.getProperties('choroplethMode');
 
-  @computed('choroplethMode')
-  stops(mode) {
+    return choroplethConfigs.find(d => d.id === mode).legendTitle;
+  }),
+
+  stops: computed('choroplethMode', function() {
+    const { mode } = this.getProperties('choroplethMode');
+
     // return an array of objects, each with a display-ready range and color
     const config = choroplethConfigs.find(d => d.id === mode);
     const { isPercent, stops, colors } = config;
@@ -83,7 +87,7 @@ export default Component.extend({
         color: colors[0],
       },
     ];
-  },
+  }),
 
   generateProfileId: task(function* (type, geoids) {
     const postBody = {
@@ -126,7 +130,7 @@ export default Component.extend({
     },
     transitionTo() {},
 
-    @trackEvent('Selection', 'Created Profile', 'summaryLevel', 'selection.current.features.length')
+    // TODO: @trackEvent('Selection', 'Created Profile', 'summaryLevel', 'selection.current.features.length')
     generateProfileId() {
       const type = this.get('summaryLevel');
       const geoids = this.get('selection.current.features')
@@ -135,7 +139,7 @@ export default Component.extend({
       this.get('generateProfileId').perform(type, geoids);
     },
 
-    @trackEvent('Advanced Options', 'Selected Choropleth', 'choroplethMode')
+    // TODO: @trackEvent('Advanced Options', 'Selected Choropleth', 'choroplethMode')
     setChoroplethMode(mode) {
       this.set('choroplethMode', mode);
     },
