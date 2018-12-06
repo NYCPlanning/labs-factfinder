@@ -16,9 +16,9 @@ export default class IndexRoute extends Route {
         { id: 'subway', visible: false },
         { id: 'nyc-council-districts', visible: false },
         { id: 'community-districts', visible: false },
-        // { id: 'boroughs', visible: false },
+        { id: 'boroughs', visible: false },
         // { id: 'borough-boundaries', visible: true }, --Use Citymap?
-        // {{ id: 'nycPumas', visible: false }},
+        { id: 'nyc-pumas', visible: false },
       ],
     });
 
