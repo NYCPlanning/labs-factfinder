@@ -31,10 +31,6 @@
       layerGroups=model.layerGroups as |layers|}}
     {{/map.labs-layers}}
 
-    {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
-      {{map.layer layer=bkQnMhBoundaryLayer}}
-    {{/map.source}}
-
     {{map.layer layer=subduedNtaLabels}}
 
     {{#if selection.currentAddress}}

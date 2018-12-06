@@ -22,8 +22,6 @@ import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import highlightedFeature from '../layers/highlighted-feature';
 
-import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
-import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
 import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
@@ -54,8 +52,6 @@ export default Controller.extend({
   layerGroups,
   sources,
 
-  bkQnMhBoundarySource,
-  bkQnMhBoundaryLayer,
   subduedNtaLabels,
   choroplethsSource,
 

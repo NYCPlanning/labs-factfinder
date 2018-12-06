@@ -6,8 +6,6 @@ import bbox from '@turf/bbox';
 
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
-import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
-import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
 import trackEvent from '../utils/track-event';
 
 const selectedFillLayer = selectedFeatures.fill;
@@ -21,9 +19,6 @@ export default Component.extend({
   currentProfile() {
     return this.get('profile').target.currentRouteName.split('.')[1];
   },
-
-  bkQnMhBoundarySource,
-  bkQnMhBoundaryLayer,
 
   sources,
   zoom: 10,
