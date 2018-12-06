@@ -12,7 +12,7 @@ export default Component.extend({
   classNames: 'layer-menu-item',
 
   layer: computed('for', 'registeredLayers.layers.@each', function() {
-    const { layerId, layers } = this.getProperties('for', 'registeredLayers.layers.@each');
+    const { for: layerId, 'registeredLayers.layers': layers } = this.getProperties('for', 'registeredLayers.layers');
 
     return layers.findBy('config.id', layerId);
   }),

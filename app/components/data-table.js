@@ -24,7 +24,7 @@ export default Component.extend({
   }),
 
   stickyTop: computed('media.isLarge', function() {
-    const { isLarge } = this.getProperties('media.isLarge');
+    const { 'media.isLarge': isLarge } = this.getProperties('media.isLarge');
 
     return isLarge ? 175 : 0;
   }),

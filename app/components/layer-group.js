@@ -32,7 +32,7 @@ export default Ember.Component.extend(ParentMixin, ChildMixin, {
   visible: false,
 
   minzoom: computed('config.layers', function() {
-    const { layers } = this.getProperties('config.layers');
+    const { 'config.layers': layers } = this.getProperties('config.layers');
 
     const allZooms = layers.map(layer => layer.layer.minzoom).filter(zoom => !!zoom);
     if (allZooms.length) return Math.min(...allZooms);
@@ -40,13 +40,13 @@ export default Ember.Component.extend(ParentMixin, ChildMixin, {
   }),
 
   layerIds: computed('config.layers.@each.id', function() {
-    const { layers } = this.getProperties('config.layers.@each.id');
+    const { 'config.layers': layers } = this.getProperties('config.layers');
 
     return layers.mapBy('layer.id');
   }),
 
   isReady: computed('isCarto', 'configWithTemplate.isSuccessful', 'config', 'visible', function() {
-    const { isCarto, successful, config } = this.getProperties('isCarto', 'configWithTemplate.isSuccessful', 'config', 'visible');
+    const { isCarto, 'configWithTemplate.isSuccessful': successful, config } = this.getProperties('isCarto', 'configWithTemplate.isSuccessful', 'config', 'visible');
 
     return !!(
       ((isCarto && successful) || !isCarto) && config
@@ -57,13 +57,13 @@ export default Ember.Component.extend(ParentMixin, ChildMixin, {
   queryParamBoundKey: 'visible',
 
   isCarto: computed('config.type', function() {
-    const { type } = this.getProperties('config.type');
+    const { 'config.type': type } = this.getProperties('config.type');
 
     return type === 'carto';
   }),
 
   before: computed('registeredLayers.layers', function() {
-    const { allLayerGroups } = this.getProperties('registeredLayers.layers');
+    const { 'registeredLayers.layers': allLayerGroups } = this.getProperties('registeredLayers.layers');
 
     const position = allLayerGroups.map(layerGroup => layerGroup.config.id).indexOf(this.get('config.id'));
 

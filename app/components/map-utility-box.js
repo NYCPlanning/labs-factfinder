@@ -32,13 +32,13 @@ export default Component.extend({
   summaryLevel: alias('selection.summaryLevel'),
 
   profileButtonClasses: computed('selection.selectedCount', 'generateProfileId.isIdle', function() {
-    const { count, isIdle } = this.getProperties('selection.selectedCount', 'generateProfileId.isIdle');
+    const { 'selection.selectedCount': count, 'generateProfileId.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileId.isIdle');
 
     return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
   }),
 
   choroplethPaintFill: computed('choroplethMode', function() {
-    const { mode } = this.getProperties('choroplethMode');
+    const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
     return choroplethConfigs.find(d => d.id === mode).paintFill;
   }),
@@ -48,13 +48,13 @@ export default Component.extend({
   },
 
   legendTitle: computed('choroplethMode', function() {
-    const { mode } = this.getProperties('choroplethMode');
+    const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
     return choroplethConfigs.find(d => d.id === mode).legendTitle;
   }),
 
   stops: computed('choroplethMode', function() {
-    const { mode } = this.getProperties('choroplethMode');
+    const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
     // return an array of objects, each with a display-ready range and color
     const config = choroplethConfigs.find(d => d.id === mode);

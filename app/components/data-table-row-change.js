@@ -36,7 +36,7 @@ export default Component.extend({
   }),
 
   noPriorData: computed('data2.selection.sum', function() {
-    const { previousSum } = this.getProperties('data2.selection.sum');
+    const { 'data2.selection.sum': previousSum } = this.getProperties('data2.selection.sum');
     return previousSum === null;
   }),
 
