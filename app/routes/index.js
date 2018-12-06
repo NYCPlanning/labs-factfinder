@@ -17,7 +17,7 @@ export default class IndexRoute extends Route {
         { id: 'nyc-council-districts', visible: false },
         { id: 'community-districts', visible: false },
         { id: 'boroughs', visible: false },
-        { id: 'bk-qn-mh-boundary', visible: true },
+        { id: 'bk-qn-mh-boundary', visible: true, layers: [{ tooltipable: true }] },
         { id: 'nyc-pumas', visible: false },
       ],
     });

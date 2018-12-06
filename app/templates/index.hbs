@@ -29,6 +29,11 @@
     {{#map.labs-layers
       onLayerClick=(action 'handleClick')
       layerGroups=model.layerGroups as |layers|}}
+      {{#layers.tooltip as |tooltip|}}
+        {{tooltip-renderer
+          feature=tooltip.feature
+          template=tooltip.layer.tooltipTemplate}}
+      {{/layers.tooltip}}
     {{/map.labs-layers}}
 
     {{map.layer layer=subduedNtaLabels}}
