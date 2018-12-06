@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 
 const { get } = Ember;
 const { service } = Ember.inject;

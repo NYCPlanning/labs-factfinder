@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   // state
@@ -16,8 +16,8 @@ export default Component.extend({
   classNameBindings: ['getClassNames'],
 
   // computeds
-  @computed('rowConfig', 'isSelected')
-  getClassNames(rowConfig = {}) {
+  getClassNames: computed('rowConfig', 'isSelected', function() {
+    const { rowConfig } = this.getProperties('rowConfig', 'isSelected');
     const classes = [];
 
     if (rowConfig.highlight) {
@@ -33,12 +33,12 @@ export default Component.extend({
     }
 
     return classes.join(' ');
-  },
+  }),
 
-  @computed('data2.selection.sum')
-  noPriorData(previousSum) {
+  noPriorData: computed('data2.selection.sum', function() {
+    const { previousSum } = this.getProperties('data2.selection.sum');
     return previousSum === null;
-  },
+  }),
 
   actions: {
     showData() {
