@@ -26,15 +26,14 @@
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
-    {{!-- labs-layers (includes tax-lots layer) --}}
     {{#map.labs-layers
       onLayerClick=(action 'handleClick')
       layerGroups=model.layerGroups as |layers|}}
     {{/map.labs-layers}}
 
-    {{!#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
-      {{!map.layer layer=bkQnMhBoundaryLayer}}
-    {{!/map.source}}
+    {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
+      {{map.layer layer=bkQnMhBoundaryLayer}}
+    {{/map.source}}
 
     {{map.layer layer=subduedNtaLabels}}
 
@@ -49,18 +48,6 @@
         {{source.layer layer=selection.searchResultLayer}}
       {{/map.source}}
     {{/if}}
-
-    {{!map.layer-group config=layerGroups.subway visible=false}}
-
-    {{!map.layer-group config=layerGroups.communityDistricts visible=false}}
-
-    {{!map.layer-group config=layerGroups.nyccouncildistricts visible=false}}
-
-    {{!map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
-
-    {{!map.layer-group config=layerGroups.boroughs visible=false}}
-
-    {{!map.layer-group config=layerGroups.nycPumas visible=false}}
 
     {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
 
