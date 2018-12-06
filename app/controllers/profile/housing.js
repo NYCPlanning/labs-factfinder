@@ -1,5 +1,5 @@
 import Controller, { inject as controller } from '@ember/controller';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 
 import housing from '../../table-config/housing';
 
@@ -48,10 +48,10 @@ export default Controller.extend({
 
   profile: controller('profile'),
 
-  @computed('model')
-  currentData(model) {
+  currentData: computed('model', function() {
+    const { model } = this.get('model');
     return model.y2012_2016;
-  },
+  }),
 
 
 });
