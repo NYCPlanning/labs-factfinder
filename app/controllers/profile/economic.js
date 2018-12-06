@@ -1,6 +1,6 @@
 import Controller, { inject as controller } from '@ember/controller';
 import { get } from '@ember/object';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 import classOfWorkerChartConfig from '../../chart-config/economic/class-of-worker';
 import incomeAndBenefitsChartConfig from '../../chart-config/economic/income-and-benefits';
 import commuteToWorkChartConfig from '../../chart-config/economic/commute-to-work';
@@ -42,8 +42,8 @@ export default Controller.extend({
 
   profile: controller('profile'),
 
-  @computed('model')
-  currentData(model) {
+  currentData: computed('model', function() {
+    const model = this.get('model');
     return get(model, 'y2012_2016');
-  },
+  }),
 });

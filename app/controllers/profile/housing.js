@@ -49,7 +49,7 @@ export default Controller.extend({
   profile: controller('profile'),
 
   currentData: computed('model', function() {
-    const { model } = this.get('model');
+    const model = this.get('model');
     return model.y2012_2016;
   }),
 
