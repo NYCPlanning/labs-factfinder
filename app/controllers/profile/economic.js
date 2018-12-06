@@ -1,6 +1,5 @@
 import Controller, { inject as controller } from '@ember/controller';
-import { get } from '@ember/object';
-import { computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 import classOfWorkerChartConfig from '../../chart-config/economic/class-of-worker';
 import incomeAndBenefitsChartConfig from '../../chart-config/economic/income-and-benefits';
 import commuteToWorkChartConfig from '../../chart-config/economic/commute-to-work';

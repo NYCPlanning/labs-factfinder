@@ -6,7 +6,7 @@ export default Component.extend({
   data: null, // []
   filename: 'download',
   actions: {
-    @trackEvent('Data', 'Downloaded CSV')
+    // @trackEvent('Data', 'Downloaded CSV')
     handleDownload(format = 'csv') {
       const filename = this.get('filename');
       const profile = this.get('data')
