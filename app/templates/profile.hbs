@@ -5,7 +5,7 @@
         <li class="show-for-large back-to-map">
           {{#link-to 'index' invokeAction=(action 'sendAnalytics' 'Returned to Selection' 'map icon')}}
             {{fa-icon 'long-arrow-left'}}{{fa-icon 'map'}}
-            {{tooltip-on-element side="right" text='Return to Selection View'}}
+            {{ember-tooltip side="right" text='Return to Selection View'}}
           {{/link-to}}
         </li>
         <li>
@@ -18,15 +18,15 @@
               invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'census')
             }}
               Census
-              {{tooltip-on-element delay=500 side="right" text='Basic population and housing characteristics from decennial census'}}
+              {{ember-tooltip delay=500 side="right" text='Basic population and housing characteristics from decennial census'}}
             {{/link-to}}
           {{/if}}
         </li>
         {{#if (eq summaryLevel 'blocks')}}
-          <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
-          <li><a class="disabled">Social <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
-          <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
-          <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{tooltip-on-element text="ACS data not available at block level."}}</sup></a></li>
+          <li><a class="disabled">Demographic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{ember-tooltip text="ACS data not available at block level."}}</sup></a></li>
+          <li><a class="disabled">Social <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{ember-tooltip text="ACS data not available at block level."}}</sup></a></li>
+          <li><a class="disabled">Economic <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{ember-tooltip text="ACS data not available at block level."}}</sup></a></li>
+          <li><a class="disabled">Housing <small>(ACS)</small> <sup class="warning">{{fa-icon 'warning'}}{{ember-tooltip text="ACS data not available at block level."}}</sup></a></li>
         {{else}}
           <li>
             {{#if (eq tab 'profile.demographic')}}
@@ -38,7 +38,7 @@
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'demographic')
               }}
                 Demographic <small>(ACS)</small>
-                {{tooltip-on-element delay=500 side="right" text='Basic population characteristics from the American Community Survey'}}
+                {{ember-tooltip delay=500 side="right" text='Basic population characteristics from the American Community Survey'}}
               {{/link-to}}
             {{/if}}
           </li>
@@ -52,7 +52,7 @@
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'social')
               }}
                 Social <small>(ACS)</small>
-                {{tooltip-on-element delay=500 side="right" text='Social characteristics from the American Community Survey'}}
+                {{ember-tooltip delay=500 side="right" text='Social characteristics from the American Community Survey'}}
               {{/link-to}}
             {{/if}}
           </li>
@@ -66,7 +66,7 @@
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'economic')
               }}
                 Economic <small>(ACS)</small>
-                {{tooltip-on-element delay=500 side="right" text='Economic characteristics from the American Community Survey'}}
+                {{ember-tooltip delay=500 side="right" text='Economic characteristics from the American Community Survey'}}
               {{/link-to}}
             {{/if}}
           </li>
@@ -80,7 +80,7 @@
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'housing')
               }}
                 Housing <small>(ACS)</small>
-                {{tooltip-on-element delay=500 side="right" text='Housing characteristics from the American Community Survey'}}
+                {{ember-tooltip delay=500 side="right" text='Housing characteristics from the American Community Survey'}}
               {{/link-to}}
             {{/if}}
           </li>

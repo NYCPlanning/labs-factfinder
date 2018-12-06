@@ -31,12 +31,12 @@ export default Service.extend({
   currentMapInstance: null,
 
   selectedCount: computed('current', function() {
-    const currentSelected = this.get('currentSelected');
+    const currentSelected = this.get('current');
     return currentSelected.features.length;
   }),
 
   sortedLabels: computed('current', function() {
-    const currentSelected = this.get('currentSelected');
+    const currentSelected = this.get('current');
     const { features } = currentSelected;
 
     const bronx = features.filter(d => d.properties.borocode === '2');
@@ -87,7 +87,7 @@ export default Service.extend({
   }),
 
   searchResultSource: computed('searchResultFeature', function() {
-    const feature = this.get('feature');
+    const feature = this.get('searchResultFeature');
     return {
       type: 'geojson',
       data: feature,
