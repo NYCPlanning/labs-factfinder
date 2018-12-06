@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 import { nest } from 'd3-collection';
 import carto from '../utils/carto';
 
@@ -53,23 +53,24 @@ export default Component.extend({
 
   metrics: service(),
 
-  @computed('comparisonArea', 'options')
-  selected(area, options) {
+  selected: computed('comparisonArea', 'options', function() {
+    const area = this.get('comparisonArea');
+    const options = this.get('options');
+
     return options
       .then(d => d.findBy('geoid', area))
       .then((selected) => {
         this.set('selection.comparisonLabel', selected.label);
         return selected;
       });
-  },
+  }),
 
-  @computed()
-  options() {
+  options: computed(function() {
     return carto.SQL(OPTIONS_QUERY);
-  },
+  }),
 
-  @computed('options')
-  nestedOptions(optsList) {
+  nestedOptions: computed('options', function() {
+    const optsList = this.get('options');
     return optsList
       .then(options => nest()
         .key(d => d.typelabel)
@@ -78,7 +79,7 @@ export default Component.extend({
           groupName: d.key,
           options: d.values,
         })));
-  },
+  }),
 
   actions: {
     updateProperty({ geoid, label }) {
