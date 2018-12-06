@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 
 const flattenedIds = function(layers) {
   return layers
@@ -13,28 +13,28 @@ const flattenedIds = function(layers) {
 export default Ember.Service.extend({
   layers: [],
 
-  @computed('layers.@each.visible')
-  currentlyVisible(layers) {
+  currentlyVisible: computed('layers.@each.visible', function() {
+    const layers = this.get('layers');
     return layers.filterBy('visible', true);
-  },
+  }),
 
-  @computed('layers.@each')
-  layerGroupIds(layers) {
+  layerGroupIds: computed('layers.@each', function() {
+    const layers = this.get('layers');
     return layers.mapBy('config.id');
-  },
+  }),
 
-  @computed('layers.@each')
-  layerIds(layers) {
+  layerIds: computed('layers.@each', function() {
+    const layers = this.get('layers');
     return flattenedIds(layers);
-  },
+  }),
 
-  @computed('currentlyVisible')
-  visibleLayerIds(layers) {
+  visibleLayerIds: computed('currentlyVisible', function() {
+    const layers = this.get('layers');
     return flattenedIds(layers);
-  },
+  }),
 
-  @computed('currentlyVisible')
-  highlightableAndVisibleLayerIds(layers) {
+  highlightableAndVisibleLayerIds: computed('currentlyVisible', function() {
+    const layers = this.get('layers');
     // return an array of layerids that are both visible and highlightable
     return layers
       .map(layer => layer.config.layers.filter(l => l.highlightable).map(l => l.layer.id))
@@ -42,10 +42,10 @@ export default Ember.Service.extend({
         (accumulator, curr) => (accumulator.concat(curr)),
         [],
       );
-  },
+  }),
 
-  @computed('currentlyVisible')
-  clickableAndVisibleLayerIds(layers) {
+  clickableAndVisibleLayerIds: computed('currentlyVisible', function() {
+    const layers = this.get('layers');
     // return an array of layerids that are both visible and highlightable
     return layers
       .map(layer => layer.config.layers.filter(l => l.clickable).map(l => l.layer.id))
@@ -53,7 +53,7 @@ export default Ember.Service.extend({
         (accumulator, curr) => (accumulator.concat(curr)),
         [],
       );
-  },
+  }),
 
   getTooltipTemplate(id) {
     // find the layer with this id, return its tooltipTemplate
