@@ -10,6 +10,9 @@ module.exports = function(defaults) {
     'ember-font-awesome': {
       removeUnusedIcons: false,
     },
+    'ember-cli-foundation-6-sass': {
+      foundationJs: 'all',
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
