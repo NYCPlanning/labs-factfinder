@@ -455,8 +455,8 @@ tr {
     bottom: 0;
     margin: 0;
     border-bottom: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-right-radius: rem-calc(4);
+    border-top-left-radius: rem-calc(4);
   }
 }
 
