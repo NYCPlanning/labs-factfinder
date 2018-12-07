@@ -105,23 +105,60 @@
           </div>
         {{/layer-menu-item}}
 
-        {{#layer-menu-item for='subway' as |item|}}
-        {{/layer-menu-item}}
+        {{#lookup-layer-group for='subway' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
 
-        {{#layer-menu-item for='community-districts' as |item|}}
-        {{/layer-menu-item}}
+        {{#lookup-layer-group for='community-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
 
-        {{#layer-menu-item for='nyccouncildistricts' as |item|}}
-        {{/layer-menu-item}}
+        {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
 
-        {{#layer-menu-item for='neighborhood-tabulation-areas' as |item|}}
-        {{/layer-menu-item}}
+        {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
 
-        {{#layer-menu-item for='nyc-pumas' as |item|}}
-        {{/layer-menu-item}}
+        {{#lookup-layer-group for='nyc-pumas' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
 
-        {{#layer-menu-item for='boroughs' as |item|}}
-        {{/layer-menu-item}}
+        {{#lookup-layer-group for='boroughs' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
       </div>
 
       {{yield}}

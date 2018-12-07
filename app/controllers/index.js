@@ -22,8 +22,6 @@ import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import highlightedFeature from '../layers/highlighted-feature';
 
-import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
-import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
 import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
@@ -54,8 +52,6 @@ export default Controller.extend({
   layerGroups,
   sources,
 
-  bkQnMhBoundarySource,
-  bkQnMhBoundaryLayer,
   subduedNtaLabels,
   choroplethsSource,
 
@@ -91,6 +87,7 @@ export default Controller.extend({
   },
 
   actions: {
+    // allows geometry to be selected by clicking on shape on map
     handleClick(e) {
       if (!this.get('isDrawing')) {
         const selection = this.get('selection');
