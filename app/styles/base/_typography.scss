@@ -481,6 +481,7 @@ tr {
 // Callouts
 // --------------------------------------------------
 .callout {
+  padding: 0.625rem;
   margin-bottom: rem-calc(20);
 
   @include breakpoint(medium) {
