@@ -58,7 +58,6 @@ export default Component.extend({
       this.fitBounds(e.target);
     },
 
-    // @trackEvent('Profile Navigation', 'Returned to Selection', 'static-map')
     backToSelection() {
     },
 

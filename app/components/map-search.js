@@ -7,10 +7,8 @@ import fetch from 'fetch';
 import bbox from '@turf/bbox';
 import getBuffer from '@turf/buffer';
 import Environment from '../config/environment';
-// import trackEvent from '../utils/track-event';
 
 const { SupportServiceHost } = Environment;
-
 const DEBOUNCE_MS = 100;
 
 export default Component.extend({
@@ -19,6 +17,7 @@ export default Component.extend({
   transitionTo: null,
   selected: 0,
   selection: service(),
+  metrics: service('metrics'),
   focused: false,
 
   results: computed('searchTerms', function() {
@@ -131,8 +130,12 @@ export default Component.extend({
       selection.set('searchResultFeature', null);
     },
 
-    // @trackEvent('Map Search', 'Clicked result', 'searchTerms')
     goTo(result) {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Map Search',
+        eventAction: 'Downloaded CSV',
+        eventValue: this.get('searchTerms'),
+      });
       this.$('.map-search-input').blur();
 
       this.setProperties({
@@ -190,13 +193,21 @@ export default Component.extend({
       }
     },
 
-    // @trackEvent('Search', 'Focused In', 'searchTerms')
     handleFocusIn() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Search',
+        eventAction: 'Focused In',
+        eventValue: this.get('searchTerms'),
+      });
       this.set('focused', true);
     },
 
-    // @trackEvent('Search', 'Focused Out', 'searchTerms')
     handleFocusOut() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Search',
+        eventAction: 'Focused Out',
+        eventValue: this.get('searchTerms'),
+      });
       this.set('focused', false);
     },
   },

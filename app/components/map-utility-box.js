@@ -6,8 +6,6 @@ import { task } from 'ember-concurrency';
 import numeral from 'numeral';
 import fetch from 'fetch';
 import Environment from '../config/environment';
-// import trackEvent from '../utils/track-event';
-
 import choroplethConfigs from '../choropleth-config';
 
 const { SupportServiceHost } = Environment;
@@ -130,8 +128,13 @@ export default Component.extend({
     },
     transitionTo() {},
 
-    // TODO: @trackEvent('Selection', 'Created Profile', 'summaryLevel', 'selection.current.features.length')
     generateProfileId() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Selection',
+        eventAction: 'Created Profile',
+        eventLabel: this.get('summaryLevel'),
+        eventValue: this.get('selection.current.features.length'),
+      });
       const type = this.get('summaryLevel');
       const geoids = this.get('selection.current.features')
         .mapBy('properties.geoid');
@@ -139,8 +142,12 @@ export default Component.extend({
       this.get('generateProfileId').perform(type, geoids);
     },
 
-    // TODO: @trackEvent('Advanced Options', 'Selected Choropleth', 'choroplethMode')
     setChoroplethMode(mode) {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Selected Choropleth',
+        eventLabel: this.get('choroplethMode'),
+      });
       this.set('choroplethMode', mode);
     },
 
