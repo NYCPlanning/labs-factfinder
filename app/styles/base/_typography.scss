@@ -356,6 +356,12 @@ button {
   margin: 0;
 }
 
+thead th,
+tbody td,
+tbody th {
+  padding: .3125rem .4375rem .375rem;
+}
+
 .data-table {
   position: relative;
   width: 100%;
