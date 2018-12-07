@@ -85,21 +85,38 @@ export default DS.Model.extend({
     };
   }),
 
-  comparison: computed('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'codingThresholds.comparison_sum', function() {
-    const {
-      comparison_sum: sum,
-      comparison_m: moe,
-      comparison_cv: cv,
-      comparison_percent: percent,
-      comparison_percent_m: percent_m,
-      comparison_is_reliable: is_reliable,
-      comparison_sum: direction,
-    } = this.getProperties('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'codingThresholds.comparison_sum');
+  comparison: computed(
+    'comparison_sum',
+    'comparison_m',
+    'comparison_cv',
+    'comparison_percent',
+    'comparison_percent_m',
+    'comparison_is_reliable',
+    'codingThresholds.comparison_sum',
+    function() {
+      const {
+        comparison_sum: sum,
+        comparison_m: moe,
+        comparison_cv: cv,
+        comparison_percent: percent,
+        comparison_percent_m: percent_m,
+        comparison_is_reliable: is_reliable,
+        'codingThresholds.comparison_sum': direction,
+      } = this.getProperties(
+        'comparison_sum',
+        'comparison_m',
+        'comparison_cv',
+        'comparison_percent',
+        'comparison_percent_m',
+        'comparison_is_reliable',
+        'codingThresholds.comparison_sum',
+      );
 
-    return {
-      sum, moe, cv, percent, percent_m, is_reliable, direction,
-    };
-  }),
+      return {
+        sum, moe, cv, percent, percent_m, is_reliable, direction,
+      };
+    },
+  ),
 
   isBase: computed('base', 'variablename', function() {
     const { base, variablename } = this.getProperties('base', 'variablename');
