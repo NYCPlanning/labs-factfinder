@@ -4393,7 +4393,7 @@ ember-cli-babel-plugin-helpers@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel-plugin-helpers/-/ember-cli-babel-plugin-helpers-1.0.2.tgz#d4bec0f32febc530e621ea8d66d3365727cb5e6c"
 
-ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.1.0, ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0, ember-cli-babel@^6.17.0, ember-cli-babel@^6.17.2, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.0:
+ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0, ember-cli-babel@^6.17.0, ember-cli-babel@^6.17.2, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.0:
   version "6.17.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.17.2.tgz#f0d53d2fb95e70c15d8db84760d045f88f458f69"
   dependencies:
@@ -4928,12 +4928,12 @@ ember-maybe-in-element@^0.2.0:
   dependencies:
     ember-cli-babel "^7.1.0"
 
-ember-metrics@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/ember-metrics/-/ember-metrics-0.12.1.tgz#8659343bf7b8bda403e70d482ff59cc9714d89f6"
+ember-metrics@^0.13:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/ember-metrics/-/ember-metrics-0.13.0.tgz#1dccf74c0cd628f6dcabce076d81258e9a8bd7af"
   dependencies:
     broccoli-funnel "^1.0.1"
-    ember-cli-babel "^6.1.0"
+    ember-cli-babel "^6.6.0"
     ember-getowner-polyfill "^2.0.0"
     ember-runtime-enumerable-includes-polyfill "^2.0.0"
 
