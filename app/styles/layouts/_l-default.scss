@@ -44,6 +44,7 @@ body {
 
       > .cell {
         @include xy-cell-block($vertical:true);
+        min-height: 0;
 
         &.shrink {
           overflow: visible;

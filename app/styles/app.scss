@@ -11,7 +11,8 @@ $table-border: 1px solid $silver;
 //
 // Foundation
 // --------------------------------------------------
-@import 'foundation-sites/foundation';
+@import "foundation-sites/foundation";
+// @include foundation-everything;
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;

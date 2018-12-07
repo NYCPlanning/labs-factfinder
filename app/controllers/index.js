@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 
@@ -67,16 +67,15 @@ export default Controller.extend({
 
   selectedChoropleth: 'population',
 
-
   summaryLevel: alias('selection.summaryLevel'),
 
-  @computed('selection.current')
-  selectedSource(current) {
+  selectedSource: computed('selection.current', function() {
+    const current = this.get('selection.current');
     return {
       type: 'geojson',
       data: current,
     };
-  },
+  }),
 
   fitBounds() {
     const map = this.get('map');

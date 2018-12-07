@@ -7,7 +7,7 @@
     </h1>
 
     <div class="profile-mode">
-      <h2 class="header-medium" class="{{if (eq mode 'change') 'gray'}}">
+      <h2 class="header-medium {{if (eq mode 'change') 'dark-gray'}}">
         <a {{action 'setMode' 'current'}}>
           {{#if (eq mode 'current')}}
             {{fa-icon 'dot-circle' prefix='far'}}
@@ -21,7 +21,7 @@
           {{/if}}
         </a>
       </h2>
-      <h2 class="header-medium" class="{{if (eq mode 'current') 'gray'}}">
+      <h2 class="header-medium {{if (eq mode 'current') 'dark-gray'}}">
         <a {{action 'setMode' 'change'}}>
           {{#if (eq mode 'change')}}
             {{fa-icon 'dot-circle' prefix='far'}}

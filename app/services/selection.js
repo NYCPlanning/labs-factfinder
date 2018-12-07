@@ -1,10 +1,8 @@
 import Service from '@ember/service';
+import { computed } from '@ember/object';
 import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
-
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
-
 import summaryLevelQueries from '../queries/summary-levels';
 import config from '../config/environment';
 
@@ -32,13 +30,13 @@ export default Service.extend({
 
   currentMapInstance: null,
 
-  @computed('current')
-  selectedCount(currentSelected) {
+  selectedCount: computed('current', function() {
+    const currentSelected = this.get('current');
     return currentSelected.features.length;
-  },
+  }),
 
-  @computed('current')
-  sortedLabels(currentSelected) {
+  sortedLabels: computed('current', function() {
+    const currentSelected = this.get('current');
     const { features } = currentSelected;
 
     const bronx = features.filter(d => d.properties.borocode === '2');
@@ -69,7 +67,7 @@ export default Service.extend({
         features: statenisland,
       },
     ];
-  },
+  }),
 
   pointLayer,
   currentAddress: null,
@@ -77,8 +75,8 @@ export default Service.extend({
   searchResultFeature: null,
   searchResultLayer,
 
-  @computed('currentAddress')
-  addressSource(currentAddress) {
+  addressSource: computed('currentAddress', function() {
+    const currentAddress = this.get('currentAddress');
     return {
       type: 'geojson',
       data: {
@@ -86,15 +84,15 @@ export default Service.extend({
         coordinates: currentAddress,
       },
     };
-  },
+  }),
 
-  @computed('searchResultFeature')
-  searchResultSource(feature) {
+  searchResultSource: computed('searchResultFeature', function() {
+    const feature = this.get('searchResultFeature');
     return {
       type: 'geojson',
       data: feature,
     };
-  },
+  }),
 
   // methods
   handleSummaryLevelToggle(toLevel) {

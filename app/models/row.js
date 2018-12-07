@@ -1,6 +1,6 @@
 import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 
 export default DS.Model.extend({
   // categorical information
@@ -67,24 +67,61 @@ export default DS.Model.extend({
   // these are used to group together similar type columns
   // into normalized mappings for components
   // These are used in the column groups
-  @computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds.sum')
-  selection(sum, moe, cv, percent, percent_m, is_reliable, direction) {
+  selection: computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds.sum', function() {
+    const {
+      sum,
+      m: moe,
+      cv,
+      percent,
+      percent_m,
+      is_reliable,
+      codingThresholds,
+    } = this.getProperties('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds');
+
+    const { sum: direction } = codingThresholds;
+
     return {
       sum, moe, cv, percent, percent_m, is_reliable, direction,
     };
-  },
+  }),
 
-  @computed('comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'codingThresholds.comparison_sum')
-  comparison(sum, moe, cv, percent, percent_m, is_reliable, direction) {
-    return {
-      sum, moe, cv, percent, percent_m, is_reliable, direction,
-    };
-  },
+  comparison: computed(
+    'comparison_sum',
+    'comparison_m',
+    'comparison_cv',
+    'comparison_percent',
+    'comparison_percent_m',
+    'comparison_is_reliable',
+    'codingThresholds.comparison_sum',
+    function() {
+      const {
+        comparison_sum: sum,
+        comparison_m: moe,
+        comparison_cv: cv,
+        comparison_percent: percent,
+        comparison_percent_m: percent_m,
+        comparison_is_reliable: is_reliable,
+        'codingThresholds.comparison_sum': direction,
+      } = this.getProperties(
+        'comparison_sum',
+        'comparison_m',
+        'comparison_cv',
+        'comparison_percent',
+        'comparison_percent_m',
+        'comparison_is_reliable',
+        'codingThresholds.comparison_sum',
+      );
 
-  @computed('base', 'variablename')
-  isBase(base, variablename) {
+      return {
+        sum, moe, cv, percent, percent_m, is_reliable, direction,
+      };
+    },
+  ),
+
+  isBase: computed('base', 'variablename', function() {
+    const { base, variablename } = this.getProperties('base', 'variablename');
     return base === variablename;
-  },
+  }),
 
   rowConfig: DS.attr(),
   // @computed('profile', 'category', 'variable', 'notinprofile')
@@ -108,8 +145,9 @@ export default DS.Model.extend({
   special: DS.attr('boolean'),
   isSpecial: alias('special'),
 
-  @computed('isSpecial', 'sum', 'comparison_sum')
-  shouldHideDeltaPercent(isSpecial, sum, comparison_sum) {
+  shouldHideDeltaPercent: computed('isSpecial', 'sum', 'comparison_sum', function() {
+    const { isSpecial, sum, comparison_sum } = this.getProperties('isSpecial', 'sum', 'comparison_sum');
     return isSpecial || (sum + comparison_sum === 0);
-  },
+  }),
+
 });

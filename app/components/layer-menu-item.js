@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object'; // eslint-disable-line
 
 export default Component.extend({
   registeredLayers: service(),
@@ -11,10 +11,11 @@ export default Component.extend({
   // tagName: 'li',
   classNames: 'layer-menu-item',
 
-  @computed('for', 'registeredLayers.layers.@each')
-  layer(layerId, layers) {
+  layer: computed('for', 'registeredLayers.layers.@each', function() {
+    const { for: layerId, 'registeredLayers.layers': layers } = this.getProperties('for', 'registeredLayers.layers');
+
     return layers.findBy('config.id', layerId);
-  },
+  }),
 
   title: alias('layer.config.title'),
 

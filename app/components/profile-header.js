@@ -1,12 +1,11 @@
 import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 import bbox from '@turf/bbox';
 
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
-import trackEvent from '../utils/track-event';
 
 const selectedFillLayer = selectedFeatures.fill;
 
@@ -15,22 +14,22 @@ export default Component.extend({
   selection: service(),
   metrics: service(),
 
-  @computed()
-  currentProfile() {
+  currentProfile: computed(function() {
     return this.get('profile').target.currentRouteName.split('.')[1];
-  },
+  }),
 
   sources,
   zoom: 10,
   center: [-73.916016, 40.697299],
 
-  @computed('selection.current')
-  selectedSource(current) {
+  selectedSource: computed('selection.current', function() {
+    const current = this.get('selection.current');
+
     return {
       type: 'geojson',
       data: current,
     };
-  },
+  }),
 
   selectionCount: alias('selection.selectedCount'),
   summaryLevel: alias('selection.summaryLevel'),
@@ -53,7 +52,6 @@ export default Component.extend({
       this.fitBounds(e.target);
     },
 
-    @trackEvent('Profile Navigation', 'Returned to Selection', 'static-map')
     backToSelection() {
     },
 
