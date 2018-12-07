@@ -70,7 +70,7 @@ export default DS.Model.extend({
   selection: computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds.sum', function() {
     const {
       sum,
-      m,
+      m: moe,
       cv,
       percent,
       percent_m,
@@ -81,7 +81,7 @@ export default DS.Model.extend({
     const { sum: direction } = codingThresholds;
 
     return {
-      sum, m, cv, percent, percent_m, is_reliable, direction,
+      sum, moe, cv, percent, percent_m, is_reliable, direction,
     };
   }),
 
