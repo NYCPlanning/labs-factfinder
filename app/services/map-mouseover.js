@@ -89,7 +89,7 @@ export default Ember.Service.extend({
       const thisFeature = features[0];
 
       const prevFeature = this.get('highlightedFeature')[0];
-      if (!prevFeature || thisFeature.id !== prevFeature.id) {
+      if (!prevFeature || thisFeature.properties.geoid !== prevFeature.properties.geoid) {
         this.set('highlightedFeature', [thisFeature]);
         // move the layer
         const layerId = thisFeature.layer.id;

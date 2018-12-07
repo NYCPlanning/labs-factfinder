@@ -34,7 +34,7 @@ export default Ember.Service.extend({
   }),
 
   highlightableAndVisibleLayerIds: computed('currentlyVisible', function() {
-    const layers = this.get('layers');
+    const layers = this.get('currentlyVisible');
     // return an array of layerids that are both visible and highlightable
     return layers
       .map(layer => layer.config.layers.filter(l => l.highlightable).map(l => l.layer.id))
