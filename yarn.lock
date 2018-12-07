@@ -5157,7 +5157,7 @@ ember-spreadsheet-export@0.3.0:
     ember-cli-htmlbars "^2.0.1"
     xlsx "^0.9.0"
 
-ember-sticky-element@^0.2.2:
+ember-sticky-element@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/ember-sticky-element/-/ember-sticky-element-0.2.3.tgz#39702e0fc0f04905a7b34add61a85a9186d3d16b"
   dependencies:
