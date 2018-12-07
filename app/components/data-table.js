@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 
 export default Component.extend({
+  media: service('media'),
   mode: 'current',
   reliability: false,
   comparison: true,
@@ -11,20 +12,23 @@ export default Component.extend({
   year2: 'y2006_2010',
   category: '',
 
-  @computed('year1')
-  t1(year1) {
+  t1: computed('year1', function() {
+    const { year1 } = this.getProperties('year1');
+
     return this.get(`model.${year1}`);
-  },
+  }),
 
-  @computed('year2')
-  t2(year2) {
+  t2: computed('year2', function() {
+    const { year2 } = this.getProperties('year2');
+
     return this.get(`model.${year2}`);
-  },
+  }),
 
-  @computed('media.isLarge')
-  stickyTop(isLarge) {
+  stickyTop: computed('media.isLarge', function() {
+    const { 'media.isLarge': isLarge } = this.getProperties('media.isLarge');
+
     return isLarge ? 175 : 0;
-  },
+  }),
 
   classNames: 'data-table',
 

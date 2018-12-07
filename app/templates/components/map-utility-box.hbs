@@ -17,7 +17,7 @@
           {{fa-icon "pencil-square-o"}} Draw
         </span>
         <div class="draw-tools {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
-          {{tooltip-on-element delay=200 text='Create selection using drawing tool'}}
+          {{ember-tooltip delay=200 text='Create selection using drawing tool'}}
           <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
             {{fa-icon "object-group"}} <span class="hide-for-medium">Draw</span> Polygon
           </button>

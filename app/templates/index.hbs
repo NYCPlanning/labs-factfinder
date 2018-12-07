@@ -1,19 +1,19 @@
 <ul class="menu align-center menu--selector">
   <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>
-    {{tooltip-on-element delay=500 text='Create selection area using census blocks'}}
+    {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}} explode-tract">
     <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
-    {{tooltip-on-element delay=500 text='Create selection area using census tracts'}}
+    {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}} explode-nta">
     <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
-    {{tooltip-on-element delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
+    {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}} explode-puma">
     <a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
-    {{tooltip-on-element delay=500 text='Create selection area using Public Use Microdata Areas'}}
+    {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
   </li>
 </ul>
 <div class="map-container">

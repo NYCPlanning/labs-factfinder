@@ -1,13 +1,18 @@
 import Component from '@ember/component';
-import trackEvent from '../utils/track-event'; // eslint-disable-line
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   tagName: '',
   data: null, // []
   filename: 'download',
+  csv: service('csv'),
+  metrics: service('metrics'),
   actions: {
-    @trackEvent('Data', 'Downloaded CSV')
     handleDownload(format = 'csv') {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Data',
+        eventAction: 'Downloaded CSV',
+      });
       const filename = this.get('filename');
       const profile = this.get('data')
         .map((row) => {
