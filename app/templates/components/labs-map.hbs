@@ -1,5 +1,5 @@
 {{#if glSupported}}
-  {{#if (and map (is-fulfilled cartoSourcePromises))}}
+  {{#if (and map sourcesHaveLoaded)}}
     {{yield (hash
       call=(component 'mapbox-gl-call' obj=map)
       control=(component 'mapbox-gl-control' map=map)

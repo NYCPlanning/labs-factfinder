@@ -1,4 +1,4 @@
-import adminBoundaries from './admin-boundaries';
+import adminBoundaries from './census-admin-boundaries';
 import censusGeoms from './census-geoms';
 
 export default {

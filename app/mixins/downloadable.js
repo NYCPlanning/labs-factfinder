@@ -8,7 +8,7 @@ export default Mixin.create({
   beforeModel(transition) {
     // unload to avoid the issue with duplicate ids.
     // there are duplicates because id is based arbitrarily on the array index.
-    this.store.unloadAll();
+    this.store.unloadAll('row');
 
     const { targetName } = transition;
     this.controllerFor('profile').set('tab', targetName);

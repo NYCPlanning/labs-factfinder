@@ -1,7 +1,7 @@
 export default {
   id: 'subdued_nta_labels',
   type: 'symbol',
-  source: 'admin-boundaries',
+  source: 'census-admin-boundaries',
   'source-layer': 'neighborhood-tabulation-areas-centroids',
   paint: {
     'text-halo-color': 'hsl(0, 0%, 100%)',

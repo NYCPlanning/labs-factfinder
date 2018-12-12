@@ -10,7 +10,7 @@ export default Route.extend(Downloadable, {
   beforeModel() {
     // unload to avoid the issue with duplicate ids.
     // there are duplicates because id is based arbitrarily on the array index.
-    this.store.unloadAll();
+    this.store.unloadAll('row');
   },
 
   model(params, { queryParams: { comparator = '0' } }) {
