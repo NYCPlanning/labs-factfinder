@@ -42,10 +42,10 @@ export default LabsMap.extend(ParentMixin, {
 
       Promise.all(cartoSourcePromises).then((finishedSources) => {
         finishedSources.forEach((source) => {
-          map.addSource(source.id, source);
+          if (!this.isDestroyed || !this.isDestroying) map.addSource(source.id, source);
         });
 
-        if (!this.isDestroyed) this.set('sourcesHaveLoaded', true);
+        if (!this.isDestroyed || !this.isDestroying) this.set('sourcesHaveLoaded', true);
       });
     }
   },

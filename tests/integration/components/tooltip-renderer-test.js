@@ -13,14 +13,5 @@ module('Integration | Component | tooltip-renderer', function(hooks) {
     await render(hbs`{{tooltip-renderer}}`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#tooltip-renderer}}
-        template block text
-      {{/tooltip-renderer}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

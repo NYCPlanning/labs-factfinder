@@ -223,9 +223,6 @@ export default Controller.extend({
       map.addControl(geoLocateControl, 'top-left');
 
       this.set('selection.currentMapInstance', map);
-      if (window) {
-        window.map = map;
-      }
 
       if (this.get('selection.selectedCount')) {
         this.fitBounds(map);
