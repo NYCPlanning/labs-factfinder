@@ -1,18 +1,24 @@
 <ul class="menu align-center menu--selector">
   <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>
+    <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
+      <span class="show-for-medium">Census </span>
+      Block
+    </a>
     {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}} explode-tract">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
+    <a href="#" data-test-toggle-tracts {{action 'handleSummaryLevelToggle' 'tracts'}}>
+      <span class="show-for-medium">Census </span>
+      Tract
+    </a>
     {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}} explode-nta">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
+    <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
     {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}} explode-puma">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
+    <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
     {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
   </li>
 </ul>
