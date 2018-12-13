@@ -87,37 +87,11 @@ export default Controller.extend({
 
   actions: {
     // allows geometry to be selected by clicking on shape on map
-    handleClick(e) {
+    handleClick(feature) {
+      const selection = this.get('selection');
+
       if (!this.get('isDrawing')) {
-        const selection = this.get('selection');
-        const { summaryLevel } = selection;
-
-        let layers = [];
-
-        switch (summaryLevel) { // eslint-disable-line
-          case 'tracts':
-            layers = ['census-tracts-fill'];
-            break;
-          case 'blocks':
-            layers = ['census-blocks-fill'];
-            break;
-          case 'ntas':
-            layers = ['neighborhood-tabulation-areas-fill'];
-            break;
-          case 'pumas':
-            layers = ['nyc-pumas-selection-fill'];
-            break;
-        }
-
-        const [found] = e.target.queryRenderedFeatures(
-          e.point,
-          { layers },
-        );
-
-
-        if (found) {
-          selection.handleSelectedFeatures([found]);
-        }
+        selection.handleSelectedFeatures([feature]);
       }
     },
 

@@ -36,6 +36,7 @@
       {{/layers.tooltip}}
     {{/map.labs-layers}}
 
+    {{!-- TODO --}}
     {{map.layer layer=subduedNtaLabels}}
 
     {{#if selection.currentAddress}}
@@ -49,22 +50,6 @@
         {{source.layer layer=selection.searchResultLayer}}
       {{/map.source}}
     {{/if}}
-
-    {{map.layer-group
-      config=layerGroups.censusBlocks
-      visible=(eq selection.summaryLevel 'blocks')}}
-
-    {{map.layer-group
-      config=layerGroups.censusTracts
-      visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
-
-    {{map.layer-group
-      config=layerGroups.neighborhoodTabulationAreasSelection
-      visible=(eq selection.summaryLevel 'ntas')}}
-
-    {{map.layer-group
-      config=layerGroups.nycPumasSelection
-      visible=(eq selection.summaryLevel 'pumas')}}
 
     {{map.layer-group
       config=layerGroups.choropleths
@@ -146,10 +131,10 @@
       {{/map.source}}
     {{/if}}
 
-    {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
-    {{map.on 'draw.create' (action 'handleDrawCreate')}}
-    {{map.on 'click' (action 'handleClick')}}
-    {{map.on 'mousemove' (action 'handleMousemove')}}
+{{!--     {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
+    {{map.on 'draw.create' (action 'handleDrawCreate')}} --}}
+    {{!-- {{map.on 'click' (action 'handleClick')}} --}}
+    {{!-- {{map.on 'mousemove' (action 'handleMousemove')}} --}}
 
   {{/labs-map}}
 </div>

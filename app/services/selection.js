@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
@@ -27,6 +28,8 @@ export default Service.extend({
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
   comparator: '0',
   reliability: false,
+
+  store: service(),
 
   currentMapInstance: null,
 
@@ -98,6 +101,27 @@ export default Service.extend({
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
     this.set('summaryLevel', toLevel);
+
+    const layerGroupIdMap = (level) => {
+      switch (level) {
+        case 'tracts':
+          return 'census-tracts';
+        case 'blocks':
+          return 'census-blocks';
+        case 'ntas':
+          return 'neighborhood-tabulation-areas';
+        case 'pumas':
+          return 'nyc-pumas';
+        default:
+          return null;
+      }
+    };
+
+    const fromLayerGroup = this.get('store').peekRecord('layer-group', layerGroupIdMap(fromLevel));
+    const toLayerGroup = this.get('store').peekRecord('layer-group', layerGroupIdMap(toLevel));
+
+    fromLayerGroup.set('visible', false);
+    toLayerGroup.set('visible', true);
 
     // remove mapbox neighborhood labels if current Level is NTAs
     const map = this.get('currentMapInstance');

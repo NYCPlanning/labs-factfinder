@@ -11,7 +11,7 @@ const { service } = Ember.inject;
 const { alias } = Ember.computed;
 const { warn } = Ember.Logger;
 
-export default Ember.Component.extend(ParentMixin, ChildMixin, {
+export default Ember.Component.extend({
   layout,
 
   init(...args) {

@@ -18,6 +18,8 @@ export default Route.extend({
         { id: 'boroughs', visible: false },
         { id: 'bk-qn-mh-boundary', visible: true, layers: [{ tooltipable: false }] },
         { id: 'nyc-pumas', visible: false },
+        { id: 'census-tracts', visible: true, layers: [{ clickable: true }] },
+        { id: 'census-blocks', visible: false },
       ],
     });
 
