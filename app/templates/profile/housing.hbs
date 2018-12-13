@@ -158,8 +158,14 @@
   <hr>
 
   <h3 class="header-medium" id="value">
-    Value
-    {{info-tooltip tip='In 2016 inflation-adjusted dollars'}}
+    <span>
+      Value
+      {{fa-icon 'question-circle' transform='shrink-6 left-4 up-2'}}
+      {{ember-tooltip
+        text='In 2016 inflation-adjusted dollars'
+        side='right'
+      }}
+    </span>
   </h3>
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
@@ -219,8 +225,14 @@
   <hr>
 
   <h3 class="header-medium" id="gross-rent">
-    Gross Rent
-    {{info-tooltip tip='In 2016 inflation-adjusted dollars'}}
+    <span>
+      Gross Rent
+      {{fa-icon 'question-circle' transform='shrink-6 left-4 up-2'}}
+      {{ember-tooltip
+        text='In 2016 inflation-adjusted dollars'
+        side='right'
+      }}
+    </span>
   </h3>
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">

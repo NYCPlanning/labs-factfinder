@@ -1,9 +1,12 @@
 {{#unless rowConfig.divider}}
   <td class='title-column' {{action 'showData'}}>
-    {{rowConfig.title}}
-    {{#if rowConfig.tooltip}}
-      {{info-tooltip tip=rowConfig.tooltip}}
-    {{/if}}
+    <span>
+      {{rowConfig.title}}
+      {{#if rowConfig.tooltip}}
+        {{fa-icon 'question-circle' transform='shrink-2'}}
+        {{ember-tooltip text=rowConfig.tooltip side='right'}}
+      {{/if}}
+    </span>
   </td>
 
   {{!-- SELECTED AREA --}}
