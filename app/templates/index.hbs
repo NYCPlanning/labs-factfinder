@@ -139,7 +139,12 @@
   {{/labs-map}}
 </div>
 
-{{#map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+{{#map-utility-box 
+  lastreport=lastreport 
+  mode=mode 
+  drawMode=drawMode 
+  handleDrawButtonClick=(action "handleDrawButtonClick")
+}}
   {{drop-zone
     url='#'
     addedfile=(action 'addedfile')
