@@ -208,6 +208,15 @@ button {
 
 
 //
+// Site Header - External links
+// --------------------------------------------------
+.external-nav-item {
+  a { color: $light-gray !important;}
+  a:hover { color: $primary-color !important; }
+}
+
+
+//
 // Ember Tooltip
 // --------------------------------------------------
 .ember-tooltip {
