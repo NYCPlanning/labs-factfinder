@@ -3,8 +3,7 @@
 module.exports = {
   test_page: 'tests/index.html?hidepassed',
   disable_watching: true,
-  timeout: 600,
-  browser_disconnect_timeout: 600,
+  timeout: 540,
   launch_in_ci: [
     'Chrome',
   ],
