@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import { computed } from '@ember/object';
 import { ParentMixin, ChildMixin } from 'ember-composability-tools';
+import { copy } from 'ember-copy';
 import carto from '../utils/carto';
 import layout from '../templates/components/layer-group';
 
-const { copy, merge, set } = Ember;
+const { merge, set } = Ember;
 const { service } = Ember.inject;
 const { alias } = Ember.computed;
 const { warn } = Ember.Logger;
