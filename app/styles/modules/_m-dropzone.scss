@@ -24,8 +24,8 @@
     &::after {
       @include button(
         $expand:false,
-        $background:$light-gray,
-        $background-hover:$light-gray,
+        $background: $white-smoke,
+        $background-hover: $silver,
         $color:$primary-color,
         $style:solid
       );
