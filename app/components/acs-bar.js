@@ -84,8 +84,13 @@ export default Component.extend(ResizeAware, {
       .paddingOuter(0)
       .paddingInner(0.1);
 
+    const xMax = max([
+      max(rawData, d => get(d, 'percent') + get(d, 'percent_m')),
+      max(rawData, d => get(d, 'comparison_percent') + get(d, 'comparison_percent_m')),
+    ]);
+
     const x = scaleLinear()
-      .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => get(d, 'percent'))])
+      .domain([0, xMax])
       .range([textWidth, width]);
 
     /* eslint-disable */
