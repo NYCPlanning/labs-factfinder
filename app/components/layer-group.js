@@ -1,6 +1,5 @@
 import Ember from 'ember';
-import { computed } from '@ember/object'; // eslint-disable-line
-import { ParentMixin, ChildMixin } from 'ember-composability-tools';
+import { computed } from '@ember/object';
 import carto from '../utils/carto';
 import layout from '../templates/components/layer-group';
 

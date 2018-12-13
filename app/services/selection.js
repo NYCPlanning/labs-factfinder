@@ -1,6 +1,5 @@
-import Service from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
