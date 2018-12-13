@@ -1,9 +1,12 @@
 {{#unless (or rowConfig.divider noPriorData)}}
   <td class='title-column' {{action 'showData'}}>
-    {{rowConfig.title}}
-    {{#if rowConfig.tooltip}}
-      {{info-tooltip tip=rowConfig.tooltip}}
-    {{/if}}
+    <span>
+      {{rowConfig.title}}
+      {{#if rowConfig.tooltip}}
+        {{fa-icon 'question-circle' transform='shrink-2'}}
+        {{ember-tooltip text=rowConfig.tooltip side='right'}}
+      {{/if}}
+    </span>
   </td>
 
   {{!-- OLD --}}
@@ -100,10 +103,13 @@
   {{#if noPriorData}}
     {{!-- if 2006-2010 sum is null, just return empty cells --}}
     <td class='title-column' {{action 'showData'}}>
-      {{rowConfig.title}}
-      {{#if rowConfig.tooltip}}
-        {{info-tooltip tip=rowConfig.tooltip}}
-      {{/if}}
+      <span>
+        {{rowConfig.title}}
+        {{#if rowConfig.tooltip}}
+          {{fa-icon 'question-circle' transform='shrink-2'}}
+          {{ember-tooltip text=rowConfig.tooltip side='right'}}
+        {{/if}}
+      </span>
     </td>
     <td class="cell-border-left" class="no-compare-message">
       <div>Data for this row are not comparable or are unavailable</div>

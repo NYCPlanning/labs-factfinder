@@ -5192,7 +5192,7 @@ ember-fetch@^6.2.2:
     node-fetch "^2.3.0"
     whatwg-fetch "^3.0.0"
 
-ember-font-awesome@^4.0.0-alpha.3, ember-font-awesome@^4.0.0-rc.2:
+ember-font-awesome@^4.0.0-rc.2:
   version "4.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/ember-font-awesome/-/ember-font-awesome-4.0.0-rc.4.tgz#7d4b7fbb401e21afeb7068cbb42ac8d8a84873f7"
   dependencies:
