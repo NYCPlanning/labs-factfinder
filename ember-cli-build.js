@@ -7,9 +7,6 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: true,
     },
-    'ember-font-awesome': {
-      removeUnusedIcons: false,
-    },
     'ember-cli-foundation-6-sass': {
       foundationJs: 'all',
     },

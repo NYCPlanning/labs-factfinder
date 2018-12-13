@@ -3,16 +3,16 @@
     <tr>
       <th rowspan="{{if reliability "3" "2"}}">
         {{#unless decennial}}
-          <div class="profile-checkbox-controls">
-            <a {{action (mut reliability) (not reliability)}}>
+          <a {{action (mut reliability) (not reliability)}}>
+            <span class="dcp-orange">
               {{#if reliability}}
-                <span class="dcp-orange">{{fa-icon 'check-square' fixedWidth=true}}</span>
+                {{fa-icon 'check-square' prefix='far' fixedWidth=true}}
               {{else}}
-                <span class="dcp-orange">{{fa-icon 'square' fixedWidth=true}}</span>
+                {{fa-icon 'square' prefix='far' fixedWidth=true}}
               {{/if}}
-              Show Reliability Data
-            </a>
-          </div>
+            </span>
+            Show Reliability Data
+          </a>
         {{/unless}}
       </th>
       {{#if decennial}}

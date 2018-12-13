@@ -71,8 +71,36 @@ module.exports = function(environment) {
 
     fontawesome: {
       icons: {
-        'free-regular-svg-icons': 'all',
-        'free-solid-svg-icons': 'all',
+        'free-solid-svg-icons': [
+          'arrow-left',
+          'arrow-right',
+          'arrow-up',
+          'caret-down',
+          'download',
+          'edit',
+          'exclamation-triangle',
+          'external-link-alt',
+          'file',
+          'info-circle',
+          'map',
+          'map-pin',
+          'pen',
+          'plus',
+          'question-circle',
+          'search',
+          'sliders-h',
+          'square',
+          'times',
+        ],
+        'free-regular-svg-icons': [
+          'check-square',
+          'circle',
+          'copy',
+          'dot-circle',
+          'hand-pointer',
+          'object-group',
+          'square',
+        ],
       },
     },
 
