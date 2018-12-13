@@ -274,9 +274,8 @@ button {
     color: $medium-gray;
     cursor: text;
 
-    .warning-icon {
-      color: $gold;
-      margin-top: -2px;
+    .fa-exclamation-triangle {
+      margin-top: -1px;
     }
   }
 
