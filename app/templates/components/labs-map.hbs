@@ -1,5 +1,10 @@
 {{#if glSupported}}
-  {{#if (and map sourcesHaveLoaded)}}
+  {{#if map}}
+
+    {{mapbox-gl-layer
+      map=map
+      layer=highlightedFeatureLayer}}
+
     {{yield (hash
       call=(component 'mapbox-gl-call' obj=map)
       control=(component 'mapbox-gl-control' map=map)

@@ -1,6 +1,5 @@
 import Ember from 'ember';
-import { computed } from '@ember/object'; // eslint-disable-line
-import { ParentMixin, ChildMixin } from 'ember-composability-tools';
+import { computed } from '@ember/object';
 import carto from '../utils/carto';
 import layout from '../templates/components/layer-group';
 
@@ -11,7 +10,7 @@ const { service } = Ember.inject;
 const { alias } = Ember.computed;
 const { warn } = Ember.Logger;
 
-export default Ember.Component.extend(ParentMixin, ChildMixin, {
+export default Ember.Component.extend({
   layout,
 
   init(...args) {
