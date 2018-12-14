@@ -99,11 +99,11 @@
             type='line'
             layout=(hash line-cap='butt')
             paint=(hash
-              line-color='rgba(255, 0, 185, 0.5)'
+              line-color='rgba(255, 0, 185, 0.75)'
               line-width=(hash
-                stops=(array (array 11 3) (array 12 6))
+                stops=(array (array 11 1) (array 13 3))
               )
-              line-dasharray=(array 1 0.5)
+              line-dasharray=(array 1 1)
             )
           )
           before='place_village'}}
@@ -145,10 +145,10 @@
   {{/labs-map}}
 </div>
 
-{{#map-utility-box 
-  lastreport=lastreport 
-  mode=mode 
-  drawMode=drawMode 
+{{#map-utility-box
+  lastreport=lastreport
+  mode=mode
+  drawMode=drawMode
   handleDrawButtonClick=(action "handleDrawButtonClick")
 }}
   {{drop-zone
