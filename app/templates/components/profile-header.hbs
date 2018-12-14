@@ -10,9 +10,9 @@
       <h2 class="header-medium {{if (eq mode 'change') 'dark-gray'}}">
         <a {{action 'setMode' 'current'}}>
           {{#if (eq mode 'current')}}
-            {{fa-icon 'dot-circle-o'}}
+            {{fa-icon 'dot-circle' prefix='far'}}
           {{else}}
-            <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
+            {{fa-icon 'circle' prefix='far' class='silver'}}
           {{/if}}
           {{#if (eq profile.tab 'profile.census') }}
             2010 Decennial Census
@@ -24,9 +24,9 @@
       <h2 class="header-medium {{if (eq mode 'current') 'dark-gray'}}">
         <a {{action 'setMode' 'change'}}>
           {{#if (eq mode 'change')}}
-            {{fa-icon 'dot-circle-o'}}
+            {{fa-icon 'dot-circle' prefix='far'}}
           {{else}}
-            <span class="medium-gray">{{fa-icon 'circle-thin'}}</span>
+            {{fa-icon 'circle' prefix='far' class='silver'}}
           {{/if}}
           {{#if (eq profile.tab 'profile.census') }}
             Change Over Time <small>2000 to 2010</small>
@@ -64,21 +64,25 @@
       {{#unless (eq profile.tab 'profile.census') }}
         <div class="profile-checkbox-controls">
           <a {{action 'toggleReliability'}}>
-            {{#if profile.reliability}}
-              <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
-            {{else}}
-              <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
-            {{/if}}
+            <span class="dcp-orange">
+              {{#if profile.reliability}}
+                {{fa-icon 'check-square' prefix='far' fixedWidth=true}}
+              {{else}}
+                {{fa-icon 'square' prefix='far' fixedWidth=true}}
+              {{/if}}
+            </span>
             Show Reliability Data
           </a>
           {{#if (eq mode 'current')}}
             <span class="dark-gray">&nbsp;|&nbsp;</span>
             <a {{action 'toggleCharts'}}>
-              {{#if profile.charts}}
-                <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
-              {{else}}
-                <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
-              {{/if}}
+              <span class="dcp-orange">
+                {{#if profile.charts}}
+                  {{fa-icon 'check-square' prefix='far' fixedWidth=true}}
+                {{else}}
+                  {{fa-icon 'square' prefix='far' fixedWidth=true}}
+                {{/if}}
+              </span>
               Show Charts
             </a>
           {{/if}}
@@ -88,7 +92,12 @@
     {{#unless (eq profile.tab 'profile.census')}}
       <p class="text-small no-margin">
         ACS data are derived from a survey and are subject to sampling variability.
-        Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>). {{info-tooltip tip="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."}}
+        Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
+        {{labs-ui/icon-tooltip
+          tip="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
+          icon='question-circle'
+          transform='shrink-2'
+        }}
       </p>
     {{/unless}}
     {{yield}}
@@ -109,10 +118,6 @@
 
         as |map|}}
 
-        {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
-          {{map.layer layer=bkQnMhBoundaryLayer}}
-        {{/map.source}}
-
         {{#if selection.current}}
           {{#map.source
             sourceId='selected-features'
@@ -127,7 +132,7 @@
 
         {{map.on 'resize' (action 'handleResize')}}
       {{/mapbox-gl}}
-      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon 'pencil'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
+      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon 'pen'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
     </div>
 
  </div>

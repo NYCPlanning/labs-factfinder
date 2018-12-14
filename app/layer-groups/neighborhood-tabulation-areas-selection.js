@@ -7,7 +7,7 @@ export default {
       layer: {
         id: 'neighborhood-tabulation-areas-fill',
         type: 'fill',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'fill-opacity': 0.01,
@@ -19,7 +19,7 @@ export default {
       layer: {
         id: 'neighborhood-tabulation-areas-line-glow',
         type: 'line',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'line-color': '#D96B27',
@@ -37,7 +37,7 @@ export default {
       layer: {
         id: 'neighborhood-tabulation-areas-line',
         type: 'line',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
           'line-color': '#444',
@@ -59,7 +59,7 @@ export default {
       layer: {
         id: 'neighborhood-tabulation-areas-label',
         type: 'symbol',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas-centroids',
         minzoom: 11,
         paint: {

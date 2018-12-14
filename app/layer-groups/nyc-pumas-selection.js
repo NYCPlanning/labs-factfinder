@@ -7,7 +7,7 @@ export default {
       layer: {
         id: 'nyc-pumas-selection-fill',
         type: 'fill',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'nyc-pumas',
         paint: {
           'fill-opacity': 0.01,
@@ -19,7 +19,7 @@ export default {
       layer: {
         id: 'nyc-pumas-selection-line-glow',
         type: 'line',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'nyc-pumas',
         paint: {
           'line-color': '#D96B27',
@@ -37,7 +37,7 @@ export default {
       layer: {
         id: 'nyc-pumas-selection-line',
         type: 'line',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'nyc-pumas',
         paint: {
           'line-color': '#444',
@@ -59,7 +59,7 @@ export default {
       layer: {
         id: 'nyc-pumas-selection-label',
         type: 'symbol',
-        source: 'admin-boundaries',
+        source: 'census-admin-boundaries',
         'source-layer': 'nyc-pumas-centroids',
         minzoom: 9,
         paint: {

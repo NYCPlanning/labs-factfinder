@@ -2,23 +2,24 @@
   <div class="layer-menu-item-header" {{action 'toggleVisibility'}}>
 
     {{#if (or warning titleTooltip)}}
-      <span class="layer-tooltips-container">
-        {{#if warning}}
-          {{info-tooltip
-            iconName='warning'
+      {{#if warning}}
+        <span class="float-right gold">
+          {{labs-ui/icon-tooltip
+            icon='exclamation-triangle'
             tip='Some information may not visible at this zoom level.'
-            classNames='layer-warning'
-            tooltipClass='tooltip--layer-warning'
+            side='left'
           }}
-        {{/if}}
-        {{#if titleTooltip}}
-          {{info-tooltip
+        </span>
+      {{/if}}
+      {{#if titleTooltip}}
+        <span class="float-right">
+          {{labs-ui/icon-tooltip
+            icon='question-circle'
             tip=titleTooltip
-            classNames='layer-info primary-color'
-            tooltipClass='tooltip--layer-info'
+            side='left'
           }}
-        {{/if}}
-      </span>
+        </span>
+      {{/if}}
     {{/if}}
 
     {{switch-toggle checked=visible}}

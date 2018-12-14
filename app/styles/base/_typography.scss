@@ -5,20 +5,6 @@
 //
 // Headings
 // --------------------------------------------------
-.header-xxlarge { @extend h1; }
-.header-xlarge {  @extend h2; }
-.header-large {   @extend h3; }
-.header-medium {  @extend h4; }
-.header-small {   @extend h5; }
-.header-tiny {    @extend h6; }
-
-h6,
-.header-tiny {
-  text-transform: uppercase;
-  font-weight: $global-weight-normal;
-  margin-bottom: 0.5em;
-}
-
 .content-header {
   @extend h3;
   margin-bottom: rem-calc(10);
@@ -88,10 +74,6 @@ button {
 
     &.saved .fa {
       color: $success-color;
-
-      // &:hover {
-      //   color: darken($success-color, 10%);
-      // }
     }
   }
 }
@@ -130,32 +112,6 @@ button {
 //
 // Typography helper classes
 // --------------------------------------------------
-.nowrap {
-  white-space: nowrap;
-}
-.no-margin {
-  margin: 0 !important;
-}
-.small-margin-bottom {
-  margin-bottom: rem-calc(5);
-}
-
-.text-small {
-  font-size: rem-calc(13);
-}
-
-.text-tiny {
-  font-size: rem-calc(10);
-  line-height: 1.5;
-}
-
-.text-weight-normal {
-  font-weight: $global-weight-normal;
-}
-.text-weight-bold {
-  font-weight: $global-weight-bold;
-}
-
 .pipe {
   opacity: 0.25;
   margin-right: 0.25em;
@@ -170,28 +126,6 @@ button {
     color:$anchor-color-hover;
   }
 }
-
-.primary-color { color: $primary-color; }
-.light-gray { color: $light-gray; }
-.medium-gray { color: $medium-gray; }
-.dark-gray { color: $dark-gray; }
-.black { color: $black; }
-.dcp-orange { color: $dcp-orange; }
-.dcp-yellow { color: $dcp-yellow; }
-.a11y-yellow { color: $a11y-yellow; }
-
-// Land Use colors
-.lu-peach { color: $lu-peach; }
-.lu-yellow { color: $lu-yellow; }
-.lu-magenta { color: $lu-magenta; }
-.lu-red { color: $lu-red; }
-.lu-orange { color: $lu-orange; }
-.lu-pink { color: $lu-pink; }
-.lu-green { color: $lu-green; }
-.lu-blue { color: $lu-blue; }
-.lu-lavendar { color: $lu-lavendar; }
-.lu-silver { color: $lu-silver; }
-.lu-gray { color: $lu-gray; }
 
 .comma-separated-list {
   list-style: none;
@@ -213,14 +147,6 @@ button {
 .external-nav-item {
   a { color: $light-gray !important;}
   a:hover { color: $primary-color !important; }
-}
-
-
-//
-// Ember Tooltip
-// --------------------------------------------------
-.ember-tooltip {
-  font-size: rem-calc(10);
 }
 
 
@@ -279,7 +205,7 @@ button {
   margin-bottom: $global-margin;
 
   @include breakpoint(medium) {
-    border-bottom: 1px solid $medium-gray;
+    border-bottom: 1px solid $silver;
   }
 
   @include breakpoint(large) {
@@ -307,7 +233,7 @@ button {
   @include breakpoint(small only) {
 
     li:not(:first-child) {
-      border-top: 1px solid $medium-gray;
+      border-top: 1px solid $silver;
     }
 
     a:not(.active) {
@@ -315,7 +241,7 @@ button {
     }
 
     a.active {
-      background-color: $medium-gray;
+      background-color: $silver;
       color: $body-font-color;
       box-shadow: 0 -1px 0 0 rgba(0,0,0,0.2);
     }
@@ -340,13 +266,14 @@ button {
         &:not(.active) {
           border-right-color: transparent;
           border-left-color: transparent;
-          box-shadow: inset 0 -1px 0 0 $medium-gray;
+          box-shadow: inset 0 -1px 0 0 $silver;
         }
 
         &.active {
           background-color: $body-background;
-          border-color: $medium-gray;
+          border-color: $silver;
           color: $body-font-color;
+          float: left;
         }
       }
     }
@@ -355,44 +282,36 @@ button {
   .disabled {
     color: $medium-gray;
     cursor: text;
-  }
 
-  .has-dropdown {
-    padding-right: 2rem;
-  }
-
-  .fa-caret-down {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: $medium-gray;
-    padding: 0.7rem 0.8rem 0.7rem 0.6rem;
-
-    &:hover {
-      color: $dark-gray;
-      cursor: pointer;
-    }
-
-    &.flip {
-      transform: scaleY(-1);
+    .fa-exclamation-triangle {
+      margin-top: -1px;
     }
   }
 
   .tab-dropdown {
-    font-size: rem-calc(12);
+    cursor: pointer;
+  }
 
-    @include breakpoint(medium) {
-      position: absolute;
-      top: 100%;
-      right: auto;
-      left: 1px;
-      z-index: 2;
-      width: rem-calc(240);
-      max-width: 90vw;
-      margin-top: -1px;
-      box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
-      text-align: left;
-    }
+  a.tab-dropdown-trigger {
+    margin-left: -0.7rem;
+    padding-left: 0.7rem;
+    padding-top: calc(0.7rem - 1px);
+    border-top-color: $silver !important;
+    border-right-color: $silver !important;
+    border-right-width: 1px !important;
+    border-left-width: 0 !important;
+    box-shadow: none !important;
+    background-color: $body-background;
+  }
+
+  .tab-popover {
+    top: 100% !important;
+    left: 1px !important;
+    width: rem-calc(240);
+    margin-top: -1px !important;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,0.1);
+    transform: none !important;
+    text-align: left;
 
     li {
       border-top: 1px solid #eee;
@@ -416,7 +335,6 @@ button {
     position: relative;
     top: -0.75rem;
     left: -0.5rem;
-    margin-right: -0.5rem;
     border: 0 !important;
 
     a {
@@ -426,23 +344,7 @@ button {
       padding-left: 0.5rem;
     }
 
-    .fa-long-arrow-left {
-      color: $dark-gray;
-      position: relative;
-      margin-right: -0.2em;
-      margin-left: -0.25rem;
-      z-index: 1;
-    }
-
-    .fa-map {
-      color: $dcp-orange;
-    }
-
     a:hover {
-
-      .fa-long-arrow-left {
-        color: $black;
-      }
 
       .fa-map {
         color: $a11y-orange;
@@ -460,6 +362,12 @@ button {
   min-width: 100%;
   // transform:rotateX(180deg);
   margin: 0;
+}
+
+thead th,
+tbody td,
+tbody th {
+  padding: .3125rem .4375rem .375rem;
 }
 
 .data-table {
@@ -482,7 +390,7 @@ tbody {
 }
 
 th {
-  border: 1px solid $medium-gray;
+  border: 1px solid $silver;
   vertical-align: bottom;
 }
 
@@ -521,7 +429,7 @@ tr {
 .row-divider {
   td, th {
     background-color: $body-background;
-    border-bottom: 1px solid $medium-gray;
+    border-bottom: 1px solid $silver;
     height: 1.5rem;
   }
 }
@@ -545,7 +453,7 @@ tr {
 }
 
 .cell-border-left {
-  border-left: 1px solid $medium-gray;
+  border-left: 1px solid $silver;
 }
 
 .table-copy-ui {
@@ -555,12 +463,12 @@ tr {
     bottom: 0;
     margin: 0;
     border-bottom: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-right-radius: rem-calc(4);
+    border-top-left-radius: rem-calc(4);
   }
 }
 
-.shows-signficance .insignificant { color: $medium-gray; }
+.shows-signficance .insignificant { color: $silver; }
 
 .no-compare-message {
   overflow: visible;
@@ -570,7 +478,7 @@ tr {
     // padding: 0.3125rem 0.4375rem 0.375rem;
     // margin: -0.3125rem -0.4375rem -0.375rem;
     white-space: nowrap;
-    color: $medium-gray;
+    color: $gray;
     font-style:italic;
     font-size: rem-calc(10);
   }
@@ -581,6 +489,7 @@ tr {
 // Callouts
 // --------------------------------------------------
 .callout {
+  padding: 0.625rem;
   margin-bottom: rem-calc(20);
 
   @include breakpoint(medium) {

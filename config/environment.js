@@ -51,13 +51,57 @@ module.exports = function(environment) {
         Date: false,
       },
     },
-    'mapbox-gl': {
-      accessToken: 'pk.eyJ1IjoiY3dob25nbnljIiwiYSI6ImNpczF1MXdrdjA4MXcycXA4ZGtyN2x5YXIifQ.3HGyME8tBs6BnljzUVIt4Q',
-    },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    'ember-mapbox-composer': {
+      host: 'https://layers-api-staging.planninglabs.nyc',
+      namespace: 'v1',
+    },
+
+    'mapbox-gl': {
+      accessToken: '',
+      map: {
+        style: 'https://layers-api-staging.planninglabs.nyc/v1/base/style.json',
+      },
+    },
+
+    fontawesome: {
+      icons: {
+        'free-solid-svg-icons': [
+          'arrow-left',
+          'arrow-right',
+          'arrow-up',
+          'caret-down',
+          'download',
+          'edit',
+          'exclamation-triangle',
+          'external-link-alt',
+          'file',
+          'info-circle',
+          'map',
+          'map-pin',
+          'pen',
+          'plus',
+          'question-circle',
+          'search',
+          'sliders-h',
+          'square',
+          'times',
+        ],
+        'free-regular-svg-icons': [
+          'check-square',
+          'circle',
+          'copy',
+          'dot-circle',
+          'hand-pointer',
+          'object-group',
+          'square',
+        ],
+      },
     },
 
     metricsAdapters: [
@@ -94,7 +138,7 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
   }
-  
+
   if (environment === 'staging') {
     ENV.host = 'https://factfinder-api-staging.planninglabs.nyc';
   }

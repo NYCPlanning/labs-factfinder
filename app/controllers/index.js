@@ -22,8 +22,6 @@ import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import highlightedFeature from '../layers/highlighted-feature';
 
-import bkQnMhBoundarySource from '../sources/bk-qn-mh-boundary';
-import bkQnMhBoundaryLayer from '../layers/bk-qn-mh-boundary';
 import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
@@ -54,8 +52,6 @@ export default Controller.extend({
   layerGroups,
   sources,
 
-  bkQnMhBoundarySource,
-  bkQnMhBoundaryLayer,
   subduedNtaLabels,
   choroplethsSource,
 
@@ -90,37 +86,12 @@ export default Controller.extend({
   },
 
   actions: {
-    handleClick(e) {
+    // allows geometry to be selected by clicking on shape on map
+    handleClick(feature) {
+      const selection = this.get('selection');
+
       if (!this.get('isDrawing')) {
-        const selection = this.get('selection');
-        const { summaryLevel } = selection;
-
-        let layers = [];
-
-        switch (summaryLevel) { // eslint-disable-line
-          case 'tracts':
-            layers = ['census-tracts-fill'];
-            break;
-          case 'blocks':
-            layers = ['census-blocks-fill'];
-            break;
-          case 'ntas':
-            layers = ['neighborhood-tabulation-areas-fill'];
-            break;
-          case 'pumas':
-            layers = ['nyc-pumas-selection-fill'];
-            break;
-        }
-
-        const [found] = e.target.queryRenderedFeatures(
-          e.point,
-          { layers },
-        );
-
-
-        if (found) {
-          selection.handleSelectedFeatures([found]);
-        }
+        selection.handleSelectedFeatures([feature]);
       }
     },
 
@@ -226,9 +197,6 @@ export default Controller.extend({
       map.addControl(geoLocateControl, 'top-left');
 
       this.set('selection.currentMapInstance', map);
-      if (window) {
-        window.map = map;
-      }
 
       if (this.get('selection.selectedCount')) {
         this.fitBounds(map);

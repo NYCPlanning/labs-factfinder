@@ -1,18 +1,28 @@
-{{#scroll-to href='#top' class='active has-dropdown'}}
+{{#scroll-to href='#top' class='active'}}
   {{tabName}}
   {{#if tabNameSmall}}
     <small>{{tabNameSmall}}</small>
   {{/if}}
 {{/scroll-to}}
 
-<span {{action 'toggleDropdown'}}>
-  {{fa-icon 'caret-down' class=(if (eq isOpen true) 'flip')}}
-</span>
+<div class="tab-dropdown float-right show-for-medium">
+  <a class="tab-dropdown-trigger">
+    {{fa-icon 'caret-down'
+      transform='grow-2'
+      class="light-gray"
+    }}
+  </a>
 
-<ul class="tab-dropdown menu vertical {{if (eq isOpen false) 'hide'}}">
-  {{#each dropdownItems as |item|}}
-    <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' item.title}}>
-      {{#scroll-to href=item.anchor afterScroll=(action 'closeTabDropdown')}}{{item.title}}{{/scroll-to}}
-    </li>
-  {{/each}}
-</ul>
+  {{#ember-popover
+    tooltipClassName='tab-popover'
+    as |popover|
+  }}
+    <ul class="menu vertical">
+      {{#each dropdownItems as |item|}}
+        <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' item.title}}>
+          {{#scroll-to href=item.anchor afterScroll=(action 'closeTabDropdown')}}{{item.title}}{{/scroll-to}}
+        </li>
+      {{/each}}
+    </ul>
+  {{/ember-popover}}
+</div>

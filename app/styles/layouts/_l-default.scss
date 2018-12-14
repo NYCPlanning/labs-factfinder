@@ -68,7 +68,7 @@ body {
     position: absolute;
     top: rem-calc(58);
     left: 50px;
-    background-color: $light-gray;
+    background-color: $off-white;
     border-radius: 4px;
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
 
@@ -206,10 +206,10 @@ body {
 }
 
 .advanced-options {
-  background-color: $light-gray;
+  background-color: $off-white;
   margin-right: -$global-margin;
   margin-left: -$global-margin;
-  border-top: 1px solid $medium-gray;
+  border-top: 1px solid $silver;
   transition: all 0.2s;
 
   &.closed {

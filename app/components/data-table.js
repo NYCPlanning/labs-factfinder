@@ -76,8 +76,10 @@ export default Component.extend({
     });
 
     this.get('windowResize').on('didResize', () => {
-      const tableWidth = this.$().find('.table-scroll').width();
-      this.$().find('.sticky-element--sticky').width(tableWidth);
+      if (!this.get('isDestroyed') || !this.get('isDestroying')) {
+        const tableWidth = this.$().find('.table-scroll').width();
+        this.$().find('.sticky-element--sticky').width(tableWidth);
+      }
     });
   },
 

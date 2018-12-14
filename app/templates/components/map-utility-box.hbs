@@ -4,7 +4,7 @@
 
   <div class="call-to-action grid-x align-middle text-center medium-text-left">
     <div class="cell medium-auto">
-      <p class="text-small dark-gray no-margin">{{fa-icon 'hand-pointer-o'}}&nbsp;Select individual
+      <p class="text-small dark-gray no-margin">{{fa-icon 'hand-pointer' prefix='far'}}&nbsp;Select individual
         {{if (eq summaryLevel 'tracts') 'census tracts'}}
         {{if (eq summaryLevel 'blocks') 'census blocks'}}
         {{if (eq summaryLevel 'ntas') 'NTAs'}}
@@ -13,16 +13,20 @@
     </div>
     <div class="cell medium-shrink">
       <div class="draw-tools--container">
-        <span class="draw-tools--trigger button small gray text-orange show-for-large">
-          {{fa-icon "pencil-square-o"}} Draw
+        <span class="draw-tools--trigger button small- gray text-orange show-for-large">
+          {{fa-icon 'edit'}} Draw
         </span>
         <div class="draw-tools {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
-          {{ember-tooltip delay=200 text='Create selection using drawing tool'}}
+          {{#ember-tooltip delay=200}}
+            <span class="text-tiny nowrap">Create selection using drawing tool</span>
+          {{/ember-tooltip}}
           <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
-            {{fa-icon "object-group"}} <span class="hide-for-medium">Draw</span> Polygon
+            {{fa-icon 'object-group' prefix='far'}}
+            <span class="hide-for-medium">Draw</span> Polygon
           </button>
           <button class="draw-tool draw-tools--radius button small gray text-orange {{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
-            {{fa-icon "dot-circle-o"}} <span class="hide-for-medium">Draw</span> Radius
+            {{fa-icon 'dot-circle' prefix='far'}}
+            <span class="hide-for-medium">Draw</span> Radius
           </button>
         </div>
       </div>
@@ -30,9 +34,9 @@
   </div>
 
   <div class={{profileButtonClasses}} onClick={{action 'generateProfileId'}}>
-    <span class="fa-stack fa-pull-right">
-      {{fa-icon 'file' class='fa-stack-2x'}}
-      {{fa-icon 'arrow-right' class='fa-stack-1x dcp-yellow'}}
+    <span class="fa-layers fa-2x fa-pull-right">
+      {{fa-icon 'file'}}
+      {{fa-icon 'arrow-right' class='dcp-yellow' transform='shrink-8 down-1'}}
     </span>
     View Profile
     <small><strong>
@@ -50,7 +54,7 @@
       <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
     {{/if}}
 
-    <p><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon 'sliders'}}&nbsp;Advanced Options </a></p>
+    <p><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon 'sliders-h'}}&nbsp;Advanced Options </a></p>
   </div>
 
   <div class="advanced-options {{unless advanced 'closed'}}">
@@ -77,12 +81,12 @@
                         )
                       }}>
                         {{#if (eq choroplethMode config.id)}}
-                          {{fa-icon 'dot-circle-o'}}
+                          {{fa-icon 'dot-circle' prefix='far'}}
                         {{else}}
-                          {{fa-icon 'circle-thin'}}
+                          {{fa-icon 'circle' prefix='far'}}
                         {{/if}}
                         {{config.label}}
-                        {{info-tooltip tip=config.tooltip classNames="primary-color"}}
+                        {{labs-ui/icon-tooltip tip=config.tooltip}}
                       </li>
                     {{/each}}
                   </ul>
@@ -94,7 +98,7 @@
                 <div class="legend-title">{{legendTitle}}</div>
                 {{#each stops as |stop|}}
                   <div class="legend-item">
-                    <span class="legend-color" style="color:{{stop.color}};">{{fa-icon 'square'}}</span>
+                    <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon 'square'}}</span>
                     {{stop.label}}
                   </div>
                 {{/each}}
@@ -102,18 +106,61 @@
             </div>
           </div>
         {{/layer-menu-item}}
-        {{#layer-menu-item for='subway' as |item|}}
-        {{/layer-menu-item}}
-        {{#layer-menu-item for='community-districts' as |item|}}
-        {{/layer-menu-item}}
-        {{#layer-menu-item for='nyccouncildistricts' as |item|}}
-        {{/layer-menu-item}}
-        {{#layer-menu-item for='neighborhood-tabulation-areas' as |item|}}
-        {{/layer-menu-item}}
-        {{#layer-menu-item for='nyc-pumas' as |item|}}
-        {{/layer-menu-item}}
-        {{#layer-menu-item for='boroughs' as |item|}}
-        {{/layer-menu-item}}
+
+        {{#lookup-layer-group for='subway' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='community-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='nyc-pumas' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='boroughs' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
       </div>
 
       {{yield}}
