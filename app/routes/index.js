@@ -14,12 +14,14 @@ export default Route.extend({
         { id: 'community-districts', visible: false },
         { id: 'boroughs', visible: false },
         { id: 'bk-qn-mh-boundary', visible: true, layers: [{ tooltipable: false }] },
+        { id: 'neighborhood-tabulation-areas', visible: false },
+        { id: 'nyc-pumas', visible: false },
 
         // Census selection groups
-        { id: 'nyc-pumas', visible: false, layers: [{}, {}, {}, { clickable: true }] },
-        { id: 'neighborhood-tabulation-areas', visible: false, layers: [{}, {}, {}, { clickable: true }] },
-        { id: 'census-tracts', visible: true, layers: [{ clickable: true }] },
-        { id: 'census-blocks', visible: false, layers: [{ clickable: true }] },
+        { id: 'factfinder--census-blocks', visible: false },
+        { id: 'factfinder--census-tracts', visible: true },
+        { id: 'factfinder--ntas', visible: false },
+        { id: 'factfinder--pumas', visible: false },
       ],
     });
 

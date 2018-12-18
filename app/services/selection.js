@@ -104,13 +104,13 @@ export default Service.extend({
     const layerGroupIdMap = (level) => {
       switch (level) {
         case 'tracts':
-          return 'census-tracts';
+          return 'factfinder--census-tracts';
         case 'blocks':
-          return 'census-blocks';
+          return 'factfinder--census-blocks';
         case 'ntas':
-          return 'neighborhood-tabulation-areas';
+          return 'factfinder--ntas';
         case 'pumas':
-          return 'nyc-pumas';
+          return 'factfinder--pumas';
         default:
           return null;
       }
