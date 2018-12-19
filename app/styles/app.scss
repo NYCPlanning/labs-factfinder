@@ -65,7 +65,7 @@ $table-border: 1px solid $silver;
 //
 // Custom App Modules
 // --------------------------------------------------
-// @import 'base/_typography';
+@import 'base/_typography';
 @import 'layouts/_l-default';
 @import 'modules/_m-advanced-options';
 @import 'modules/_m-charts';
