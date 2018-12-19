@@ -97,6 +97,7 @@ module.exports = function(environment) {
           'circle',
           'copy',
           'dot-circle',
+          'envelope',
           'hand-pointer',
           'object-group',
           'square',
