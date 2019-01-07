@@ -19,7 +19,7 @@ export default Route.extend({
 
         // Census selection groups
         { id: 'factfinder--census-blocks', visible: false },
-        { id: 'factfinder--census-tracts', visible: true },
+        { id: 'factfinder--census-tracts', visible: false },
         { id: 'factfinder--ntas', visible: false },
         { id: 'factfinder--pumas', visible: false },
       ],

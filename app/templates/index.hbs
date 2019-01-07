@@ -42,9 +42,6 @@
       {{/layers.tooltip}}
     {{/map.labs-layers}}
 
-    {{!-- TODO --}}
-    {{map.layer layer=subduedNtaLabels}}
-
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
         {{source.layer layer=selection.pointLayer}}

@@ -99,6 +99,7 @@ export default Service.extend({
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
+
     this.set('summaryLevel', toLevel);
 
     const layerGroupIdMap = (level) => {
@@ -156,18 +157,20 @@ export default Service.extend({
 
   // target table is the TO and filter ID is the FROM;
   explode(fromLevel, toLevel) {
-    const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
-    const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
+    if (fromLevel !== toLevel) {
+      const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
+      const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
 
-    const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
-    const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
+      const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
+      const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
 
 
-    carto.SQL(sqlQuery, 'geojson')
-      .then((json) => {
-        this.clearSelection();
-        this.set('current', json);
-      });
+      carto.SQL(sqlQuery, 'geojson')
+        .then((json) => {
+          this.clearSelection();
+          this.set('current', json);
+        });
+    }
   },
 
   explodeGeo(fromLevel, toLevel) {
