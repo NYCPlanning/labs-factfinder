@@ -165,7 +165,8 @@ export default Component.extend(ResizeAware, {
     const bottomAxis = axisBottom()
       .scale(x)
       .ticks(5)
-      .tickFormat(format('.0%'));
+      .tickFormat(format('.0%'))
+      .tickSizeOuter([0]);
 
     svg.select('.axis-bottom')
       .attr('transform', translation(0, height + 4))
