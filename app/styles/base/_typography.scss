@@ -270,7 +270,6 @@ button {
         }
 
         &.active {
-          cursor: default;
           background-color: $body-background;
           border-color: $silver;
           color: $body-font-color;
