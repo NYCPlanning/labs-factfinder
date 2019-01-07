@@ -8,7 +8,7 @@ export const highlightedFeatureLayer = {
   type: 'line',
   source: 'hovered-feature',
   paint: {
-    'line-color': '#D3D3D3',
+    'line-color': '#585858',
     'line-opacity': 0.3,
     'line-width': {
       stops: [
