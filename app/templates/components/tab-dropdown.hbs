@@ -1,9 +1,14 @@
+<div>
 {{#scroll-to href='#top' class='active'}}
   {{tabName}}
   {{#if tabNameSmall}}
     <small>{{tabNameSmall}}</small>
   {{/if}}
-  <large class="light-gray">{{fa-icon 'caret-down'}}</large>
+  {{fa-icon 'caret-down'
+    transform='grow-2'
+    class="light-gray"
+  }}
+{{/scroll-to}}
   {{#ember-popover
     tooltipClassName='tab-popover'
     as |popover|
@@ -16,4 +21,4 @@
       {{/each}}
     </ul>
   {{/ember-popover}}
-{{/scroll-to}}
+</div>
