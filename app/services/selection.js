@@ -133,6 +133,7 @@ export default Service.extend({
       }
     }
 
+
     if (this.get('selectedCount')) {
       // sigh...
       if (
@@ -143,7 +144,7 @@ export default Service.extend({
         || (toLevel === 'blocks' && fromLevel === 'pumas')
         || (toLevel === 'tracts' && fromLevel === 'pumas')
         || (toLevel === 'ntas' && fromLevel === 'blocks')
-        || (toLevel === 'pumas' && fromLevel === 'blocks')
+        || (toLevel === 'tracts' && fromLevel === 'ntas')
       ) {
         this.explodeGeo(fromLevel, toLevel);
         return;
@@ -191,7 +192,7 @@ export default Service.extend({
       toGeom = 'a.the_geom';
     }
 
-    if (fromLevel === 'ntas' && toLevel === 'blocks') {
+    if (fromLevel === 'ntas' && ((toLevel === 'blocks') || (toLevel === 'tracts'))) {
       fromGeom = 'f.the_geom';
     }
 
