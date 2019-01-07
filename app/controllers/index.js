@@ -205,6 +205,12 @@ export default Controller.extend({
       // remove default neighborhood names
       map.removeLayer('place_suburb');
       map.removeLayer('place_city_large');
+
+      map.addLayer(subduedNtaLabels);
+
+      // trigger handleSummaryLevelToggle to show the correct census geoms
+      const summaryLevel = this.get('summaryLevel');
+      this.send('handleSummaryLevelToggle', summaryLevel);
     },
 
     addedfile(file) {
