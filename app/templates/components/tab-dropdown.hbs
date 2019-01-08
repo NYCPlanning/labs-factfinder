@@ -3,16 +3,11 @@
   {{#if tabNameSmall}}
     <small>{{tabNameSmall}}</small>
   {{/if}}
+  {{fa-icon 'caret-down'
+    transform='grow-2 right-5'
+    class="light-gray tab-dropdown-trigger"
+  }}
 {{/scroll-to}}
-
-<div class="tab-dropdown float-right show-for-medium">
-  <a class="tab-dropdown-trigger">
-    {{fa-icon 'caret-down'
-      transform='grow-2'
-      class="light-gray"
-    }}
-  </a>
-
   {{#ember-popover
     tooltipClassName='tab-popover'
     as |popover|
@@ -25,4 +20,3 @@
       {{/each}}
     </ul>
   {{/ember-popover}}
-</div>
