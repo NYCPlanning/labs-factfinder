@@ -292,16 +292,8 @@ button {
     cursor: pointer;
   }
 
-  a.tab-dropdown-trigger {
-    margin-left: -0.7rem;
-    padding-left: 0.7rem;
-    padding-top: calc(0.7rem - 1px);
-    border-top-color: $silver !important;
-    border-right-color: $silver !important;
-    border-right-width: 1px !important;
-    border-left-width: 0 !important;
-    box-shadow: none !important;
-    background-color: $body-background;
+  .tab-dropdown-trigger {
+    margin-top: -1px;
   }
 
   .tab-popover {
