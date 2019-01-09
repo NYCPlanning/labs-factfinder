@@ -64,7 +64,7 @@ export default Component.extend({
   }).keepLatest(),
 
   resultsCount: computed('results.value', function() {
-    const results = this.get('results');
+    const results = this.get('results').value;
 
     if (results) return results.length;
     return 0;
