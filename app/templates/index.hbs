@@ -100,11 +100,24 @@
               line-width=(hash
                 stops=(array (array 11 2) (array 13 4))
               )
-              line-dasharray=(array 0.75 1)
+              line-dasharray=(array 0.75 2)
             )
           )
-          before='place_village'}}
-
+          before='place_village'
+        }}
+        {{source.layer
+          layer=(hash
+            type='line'
+            layout=(hash line-cap='butt')
+            paint=(hash
+              line-color='rgba(255, 0, 185, 0.05)'
+              line-width=(hash
+                stops=(array (array 11 4) (array 13 8))
+              )
+            )
+          )
+          before='place_village'
+        }}
       {{/map.source}}
     {{/if}}
 

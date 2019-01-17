@@ -9,19 +9,24 @@ export default Route.extend({
   async model() {
     const layerGroups = await this.store.query('layer-group', {
       'layer-groups': [
-        { id: 'subway', visible: false },
-        { id: 'nyc-council-districts', visible: false },
-        { id: 'community-districts', visible: false },
-        { id: 'boroughs', visible: false },
         { id: 'bk-qn-mh-boundary', visible: true, layers: [{ tooltipable: false }] },
-        { id: 'neighborhood-tabulation-areas', visible: false },
+
+        // Administrative Boundaries
+        // { id: 'assembly-districts', visible: false },
+        // { id: 'ny-senate-districts', visible: false },
+        // { id: 'boroughs', visible: false },
+        { id: 'nyc-council-districts', visible: false },
         { id: 'nyc-pumas', visible: false },
+        { id: 'community-districts', visible: false },
+        { id: 'neighborhood-tabulation-areas', visible: false },
 
         // Census selection groups
         { id: 'factfinder--census-blocks', visible: false },
         { id: 'factfinder--census-tracts', visible: false },
         { id: 'factfinder--ntas', visible: false },
         { id: 'factfinder--pumas', visible: false },
+
+        { id: 'subway', visible: false },
       ],
     });
 
