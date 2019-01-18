@@ -36,6 +36,7 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-netlify": "^0.1.0",
     "ember-cli-numeral": "^1.0.0",
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-sass": "^7.1.7",
@@ -88,9 +89,9 @@
     "@turf/buffer": "^5.0.4",
     "@turf/combine": "6.0.1",
     "@turf/line-distance": "^4.7.3",
-    "hot-formula-parser": "^2.3.1",
-    "shpjs": "3.4.2",
     "ember-fetch": "^5.0.1",
-    "numeral": "^2.0.6"
+    "hot-formula-parser": "^2.3.1",
+    "numeral": "^2.0.6",
+    "shpjs": "3.4.2"
   }
 }
