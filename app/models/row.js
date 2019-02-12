@@ -3,9 +3,12 @@ import DS from 'ember-data';
 import { computed } from '@ember/object';
 
 export default DS.Model.extend({
+  // number of geoids
+  numGeoids: DS.attr('number'),
+
   // categorical information
-  category: DS.attr('string'),
   profile: DS.attr('string'),
+  category: DS.attr('string'),
   variable: DS.attr('string'),
   variablename: DS.attr('string'),
   dataset: DS.attr('string'), // year
@@ -22,45 +25,50 @@ export default DS.Model.extend({
   */
   geotype: DS.attr('string'),
 
-  // number of geoids
-  numGeoids: DS.attr('number'),
-
   // all data
   base: DS.attr('string'),
+
+  previous_sum: DS.attr('number'),
+  previous_m: DS.attr('number'),
+  previous_cv: DS.attr('number'),
+  previous_percent: DS.attr('number'),
+  previous_percent_m: DS.attr('number'),
+  pervious_is_reliable: DS.attr('boolean'),
+
+  sum: DS.attr('number'),
+  m: DS.attr('number'),
+  cv: DS.attr('number'),
+  percent: DS.attr('number'),
+  percent_m: DS.attr('number'),
+  is_reliable: DS.attr('boolean'),
+
+  change_sum: DS.attr('number'),
+  change_m: DS.attr('number'),
+  change_reliable: DS.attr('boolean'),
+  change_percent: DS.attr('number'),
+  change_percent_m: DS.attr('number'),
+  change_percent_reliable: DS.attr('boolean'),
+  change_percentage_point: DS.attr('number'),
+  change_percentage_point_m: DS.attr('number'),
+  change_percentage_point_reliable: DS.attr('boolean'),
+
   comparison_cv: DS.attr('number'),
   comparison_m: DS.attr('number'),
   comparison_percent: DS.attr('number'),
   comparison_percent_m: DS.attr('number'),
   comparison_sum: DS.attr('number'),
-  cv: DS.attr('number'),
-  m: DS.attr('number'),
+  comparison_is_reliable: DS.attr('boolean'),
+
   difference_sum: DS.attr('number'),
   difference_percent: DS.attr('number'),
   difference_m: DS.attr('number'),
   difference_percent_m: DS.attr('number'),
 
-  previous_sum: DS.attr('number'),
-  change_sum: DS.attr('number'),
-  change_percent: DS.attr('number'),
-  change_m: DS.attr('number'),
-  change_percent_m: DS.attr('number'),
-  change_percentage_point: DS.attr('number'),
-  change_percentage_point_m: DS.attr('number'),
-  change_significant: DS.attr('number'),
-  change_percent_significant: DS.attr('number'),
-  change_percentage_point_significant: DS.attr('number'),
-
   notinprofile: DS.attr('string'),
-  percent: DS.attr('number'),
-  percent_m: DS.attr('number'),
-  previous_percent: DS.attr('number'),
   percent_significant: DS.attr('boolean'),
   producttype: DS.attr('string'),
   release_year: DS.attr('string'),
   significant: DS.attr('boolean'),
-  is_reliable: DS.attr('boolean'),
-  comparison_is_reliable: DS.attr('boolean'),
-  sum: DS.attr('number'),
   unittype: DS.attr('string'),
 
   // groupings
@@ -117,6 +125,7 @@ export default DS.Model.extend({
       };
     },
   ),
+
 
   isBase: computed('base', 'variablename', function() {
     const { base, variablename } = this.getProperties('base', 'variablename');
