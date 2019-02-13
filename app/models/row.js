@@ -33,7 +33,7 @@ export default DS.Model.extend({
   previous_cv: DS.attr('number'),
   previous_percent: DS.attr('number'),
   previous_percent_m: DS.attr('number'),
-  pervious_is_reliable: DS.attr('boolean'),
+  previous_is_reliable: DS.attr('boolean'),
 
   sum: DS.attr('number'),
   m: DS.attr('number'),
@@ -52,23 +52,23 @@ export default DS.Model.extend({
   change_percentage_point_m: DS.attr('number'),
   change_percentage_point_reliable: DS.attr('boolean'),
 
-  comparison_cv: DS.attr('number'),
+  comparison_sum: DS.attr('number'),
   comparison_m: DS.attr('number'),
+  comparison_cv: DS.attr('number'),
   comparison_percent: DS.attr('number'),
   comparison_percent_m: DS.attr('number'),
-  comparison_sum: DS.attr('number'),
   comparison_is_reliable: DS.attr('boolean'),
 
   difference_sum: DS.attr('number'),
-  difference_percent: DS.attr('number'),
   difference_m: DS.attr('number'),
+  significant: DS.attr('boolean'),
+  difference_percent: DS.attr('number'),
   difference_percent_m: DS.attr('number'),
+  percent_significant: DS.attr('boolean'),
 
   notinprofile: DS.attr('string'),
-  percent_significant: DS.attr('boolean'),
   producttype: DS.attr('string'),
   release_year: DS.attr('string'),
-  significant: DS.attr('boolean'),
   unittype: DS.attr('string'),
 
   // groupings

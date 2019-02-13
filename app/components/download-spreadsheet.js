@@ -15,6 +15,7 @@ export default Component.extend({
         eventCategory: 'Data',
         eventAction: 'Downloaded CSV',
       });
+
       const filename = this.get('filename');
       const profile = this.get('data');
       const mode = this.get('mode');
@@ -24,12 +25,17 @@ export default Component.extend({
         if (tab !== 'profile.census') {
           profile.map((row) => {
             const truncatedRow = row;
-            // if (truncatedRow.dataset === 'y2006_2010') {
-            //   delete truncatedRow;
-            // }
             delete truncatedRow.codingThresholds;
             delete truncatedRow.rowConfig;
             delete truncatedRow.notinprofile;
+            delete truncatedRow.variablename;
+            delete truncatedRow.year;
+            delete truncatedRow.is_most_recent;
+            delete truncatedRow.geotype;
+            delete truncatedRow.producttype;
+            delete truncatedRow.release_year;
+            delete truncatedRow.unittype;
+            delete truncatedRow.special;
             delete truncatedRow.previous_sum;
             delete truncatedRow.previous_m;
             delete truncatedRow.previous_cv;
@@ -54,6 +60,14 @@ export default Component.extend({
             delete truncatedRow.codingThresholds;
             delete truncatedRow.rowConfig;
             delete truncatedRow.notinprofile;
+            delete truncatedRow.variablename;
+            delete truncatedRow.year;
+            delete truncatedRow.is_most_recent;
+            delete truncatedRow.geotype;
+            delete truncatedRow.producttype;
+            delete truncatedRow.release_year;
+            delete truncatedRow.unittype;
+            delete truncatedRow.special;
             delete truncatedRow.base;
             delete truncatedRow.m;
             delete truncatedRow.cv;
@@ -75,7 +89,7 @@ export default Component.extend({
             delete truncatedRow.previous_is_reliable;
             delete truncatedRow.change_sum;
             delete truncatedRow.change_m;
-            delete truncatedRow.change_significant;
+            delete truncatedRow.change_reliable;
             delete truncatedRow.change_percent;
             delete truncatedRow.change_percent_m;
             delete truncatedRow.change_percent_reliable;
@@ -83,7 +97,8 @@ export default Component.extend({
             delete truncatedRow.change_percentage_point_m;
             delete truncatedRow.change_percentage_point_reliable;
             return truncatedRow;
-          });
+          })
+            .sortBy('dataset', 'profile', 'category').reverse();
         }
       } else if (mode === 'change') {
         if (tab !== 'profile.census') {
@@ -92,6 +107,14 @@ export default Component.extend({
             delete truncatedRow.codingThresholds;
             delete truncatedRow.rowConfig;
             delete truncatedRow.notinprofile;
+            delete truncatedRow.variablename;
+            delete truncatedRow.year;
+            delete truncatedRow.is_most_recent;
+            delete truncatedRow.geotype;
+            delete truncatedRow.producttype;
+            delete truncatedRow.release_year;
+            delete truncatedRow.unittype;
+            delete truncatedRow.special;
             delete truncatedRow.comparison_sum;
             delete truncatedRow.comparison_m;
             delete truncatedRow.comparison_cv;
@@ -113,6 +136,14 @@ export default Component.extend({
             delete truncatedRow.codingThresholds;
             delete truncatedRow.rowConfig;
             delete truncatedRow.notinprofile;
+            delete truncatedRow.variablename;
+            delete truncatedRow.year;
+            delete truncatedRow.is_most_recent;
+            delete truncatedRow.geotype;
+            delete truncatedRow.producttype;
+            delete truncatedRow.release_year;
+            delete truncatedRow.unittype;
+            delete truncatedRow.special;
             delete truncatedRow.base;
             delete truncatedRow.m;
             delete truncatedRow.cv;
@@ -135,29 +166,32 @@ export default Component.extend({
             delete truncatedRow.previous_percent_m;
             delete truncatedRow.previous_is_reliable;
             delete truncatedRow.change_m;
-            delete truncatedRow.change_significant;
+            delete truncatedRow.change_reliable;
             delete truncatedRow.change_percent_m;
-            delete truncatedRow.change_percent_significant;
+            delete truncatedRow.change_percent_reliable;
             delete truncatedRow.change_percentage_point_m;
-            delete truncatedRow.change_percentage_point_significant;
+            delete truncatedRow.change_percentage_point_reliable;
             return truncatedRow;
           })
             .sortBy('dataset', 'profile', 'category').reverse();
         }
       }
 
-      const columnNames = [Object.keys(profile.get('firstObject'))];
-      const matrixValues = profile.map(row => Object.values(row));
+      // remove all rows with years 2006-2010 from the ACS tables and year 2000 from the census table
+      function removeEarlier(prof) {
+        return prof.filter(d => d.dataset !== 'y2006_2010' && d.dataset !== 'y2000');
+      }
+
+      const recentProfile = removeEarlier(profile);
+
+      const columnNames = [Object.keys(recentProfile.get('firstObject'))];
+      const matrixValues = recentProfile.map(row => Object.values(row));
 
       const data = []
         .concat(
           columnNames,
           matrixValues,
         );
-
-      console.log(data);
-      console.log('mode', mode);
-      console.log('tab', tab);
 
       if (format === 'csv') {
         this.get('csv').export(data, { fileName: `${filename}.csv`, withSeparator: false });
