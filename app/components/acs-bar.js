@@ -84,13 +84,19 @@ export default Component.extend(ResizeAware, {
       .paddingOuter(0)
       .paddingInner(0.1);
 
+    // function to limit the maximum value to 100%
+    function limitMax(newMax) {
+      if (newMax > 1) return 1;
+      return newMax;
+    }
+
     const xMax = max([
       max(rawData, d => get(d, 'percent') + get(d, 'percent_m')),
       max(rawData, d => get(d, 'comparison_percent') + get(d, 'comparison_percent_m')),
     ]);
 
     const x = scaleLinear()
-      .domain([0, xMax])
+      .domain([0, limitMax(xMax)])
       .range([textWidth, width]);
 
     /* eslint-disable */
