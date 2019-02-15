@@ -227,6 +227,14 @@ export default Component.extend(ResizeAware, {
       return defaultWidth;
     };
 
+    svg.append('defs').append('clipPath') // define a clip path
+      .attr('id', 'chart-clip') // give the clipPath an ID
+      .append('rect') // shape it as a rectangle
+      .attr('x', x(0))
+      .attr('y', y(0))
+      .attr('width', 235)
+      .attr('height', height + 4);
+
     moebars.enter()
       .append('rect')
       .attr('class', d => `moebar ${get(d, 'classValue')}`)
@@ -242,7 +250,8 @@ export default Component.extend(ResizeAware, {
 
     moebars.transition().duration(300)
       .attr('x', xFunctionMOE)
-      .attr('width', widthFunctionMOE);
+      .attr('width', widthFunctionMOE)
+      .attr('clip-path', 'url(#chart-clip)');
 
     moebars.exit().remove();
 
