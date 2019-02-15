@@ -232,8 +232,8 @@ export default Component.extend(ResizeAware, {
       .append('rect') // shape it as a rectangle
       .attr('x', x(0))
       .attr('y', y(0))
-      .attr('width', 235)
-      .attr('height', height + 4);
+      .attr('width', 236)
+      .attr('height', 200);
 
     moebars.enter()
       .append('rect')
