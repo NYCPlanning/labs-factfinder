@@ -162,8 +162,6 @@ export default Component.extend({
 
       const recentProfile = removeEarlier(profile);
 
-      console.log('Profile!', recentProfile);
-
       const columnNames = [Object.keys(recentProfile.get('firstObject'))];
       const matrixValues = recentProfile.map(row => Object.values(row));
 
