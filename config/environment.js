@@ -145,7 +145,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'devlocal') {
-    ENV.SupportServiceHost = 'http://localhost:4000';
+    ENV.SupportServiceHost = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
