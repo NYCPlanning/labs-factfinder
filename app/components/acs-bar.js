@@ -76,7 +76,6 @@ export default Component.extend(ResizeAware, {
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);
 
-
     const rawData = mungeBarChartData(config, data);
     const y = scaleBand()
       .domain(rawData.map(d => get(d, 'group')))
@@ -227,13 +226,15 @@ export default Component.extend(ResizeAware, {
       return defaultWidth;
     };
 
+    // create a rectangular clip path that covers the full chart from left edge of bottom axis to right edge of bottom axis
+    // this assures that anything outside of the clip path is not shown, add this as an attribute to moebars.transition
     svg.append('defs').append('clipPath') // define a clip path
-      .attr('id', 'chart-clip') // give the clipPath an ID
+      .attr('id', 'moebar-clip') // give the clipPath an ID
       .append('rect') // shape it as a rectangle
       .attr('x', x(0))
       .attr('y', y(0))
-      .attr('width', 236)
-      .attr('height', 200);
+      .attr('width', width - textWidth)
+      .attr('height', height);
 
     moebars.enter()
       .append('rect')
@@ -251,7 +252,7 @@ export default Component.extend(ResizeAware, {
     moebars.transition().duration(300)
       .attr('x', xFunctionMOE)
       .attr('width', widthFunctionMOE)
-      .attr('clip-path', 'url(#chart-clip)');
+      .attr('clip-path', 'url(#moebar-clip)');
 
     moebars.exit().remove();
 
