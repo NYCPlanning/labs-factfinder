@@ -5,9 +5,9 @@ import { getProperties } from '@ember/object';
 export default Component.extend({
   tagName: '',
   data: null, // []
-  // excludedProperties is an array of properties that are excluded from each condition
+  // excludedProperties is an array of keys that are excluded from each condition
   excludedProperties: ['codingThresholds', 'rowConfig', 'notinprofile', 'variablename', 'year', 'is_most_recent', 'geotype', 'producttype', 'release_year', 'unittype'],
-  // create arrays of properties that should be included in each of the four conditions
+  // create arrays of keys that should be included in each of the four conditions
   censusCurrent: ['numGeoids', 'profile', 'category', 'variable', 'sum', 'percent', 'comparison_sum', 'comparison_percent', 'difference_sum', 'difference_percent'],
   censusChange: ['numGeoids', 'profile', 'category', 'variable', 'previous_sum', 'sum', 'percent', 'change_sum', 'change_percent', 'change_percentage_point'],
   acsCurrent: ['numGeoids', 'profile', 'category', 'variable', 'base', 'sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'difference_sum', 'difference_m', 'significant', 'difference_percent', 'difference_percent_m', 'percent_significant'],
