@@ -7,6 +7,7 @@ export default Component.extend({
   data: null, // []
   // excludedProperties is an array of properties that are excluded from each condition
   excludedProperties: ['codingThresholds', 'rowConfig', 'notinprofile', 'variablename', 'year', 'is_most_recent', 'geotype', 'producttype', 'release_year', 'unittype'],
+  // create arrays of properties that should be included in each of the four conditions
   censusCurrent: ['numGeoids', 'profile', 'category', 'variable', 'sum', 'percent', 'comparison_sum', 'comparison_percent', 'difference_sum', 'difference_percent'],
   censusChange: ['numGeoids', 'profile', 'category', 'variable', 'previous_sum', 'sum', 'percent', 'change_sum', 'change_percent', 'change_percentage_point'],
   acsCurrent: ['numGeoids', 'profile', 'category', 'variable', 'base', 'sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'difference_sum', 'difference_m', 'significant', 'difference_percent', 'difference_percent_m', 'percent_significant'],
@@ -14,7 +15,7 @@ export default Component.extend({
   mode: '',
   tab: '',
   filename: 'download',
-  csv: service('csv'),
+  csv: service('csv'), // from ember-spreadsheet-export
   metrics: service('metrics'),
   actions: {
     handleDownload(format = 'csv') {
@@ -33,17 +34,21 @@ export default Component.extend({
       const acsCurrent = this.get('acsCurrent');
       const acsChange = this.get('acsChange');
 
-      // current view AND tab is NOT census
+      // profileForPrint is set to an empty array at beginning of each profile.map
       const profileForPrint = [];
+      // current view AND tab is NOT census
       if (mode === 'current') {
         if (tab !== 'profile.census') {
           profile.map((row) => {
+            // remove properties that are listed in excludedProperties array
             excludedProperties.forEach((item) => {
               delete row[item];
             });
 
-            const properties = getProperties(row, acsCurrent);
-            profileForPrint.push(properties);
+            // create an object of properties that match array acsCurrent
+            const newProfile = getProperties(row, acsCurrent);
+            // add this object to profileForPrint array
+            profileForPrint.push(newProfile);
 
             // unused return; required by linter :(
             return row;
@@ -57,8 +62,8 @@ export default Component.extend({
               delete row[item];
             });
 
-            const properties = getProperties(row, censusCurrent);
-            profileForPrint.push(properties);
+            const newProfile = getProperties(row, censusCurrent);
+            profileForPrint.push(newProfile);
 
             // unused return; required by linter :(
             return row;
@@ -66,7 +71,7 @@ export default Component.extend({
             .sortBy('dataset', 'profile', 'category').reverse();
         }
 
-      // // change view and tab is NOT census
+      // change view and tab is NOT census
       } else if (mode === 'change') {
         if (tab !== 'profile.census') {
           profile.map((row) => {
@@ -74,8 +79,8 @@ export default Component.extend({
               delete row[item];
             });
 
-            const properties = getProperties(row, acsChange);
-            profileForPrint.push(properties);
+            const newProfile = getProperties(row, acsChange);
+            profileForPrint.push(newProfile);
 
             // unused return; required by linter :(
             return row;
@@ -88,8 +93,8 @@ export default Component.extend({
               delete row[item];
             });
 
-            const properties = getProperties(row, censusChange);
-            profileForPrint.push(properties);
+            const newProfile = getProperties(row, censusChange);
+            profileForPrint.push(newProfile);
 
             // unused return; required by linter :(
             return row;
