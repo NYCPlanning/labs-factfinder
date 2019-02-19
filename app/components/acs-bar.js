@@ -219,22 +219,22 @@ export default Component.extend(ResizeAware, {
 
     const widthFunctionMOE = (d) => {
       const defaultWidth = (x(get(d, 'percent_m')) - textWidth) * 2;
+      const axesWidth = width - textWidth;
+      const barWidth = x(get(d, 'percent')) - textWidth;
       if (get(d, 'percent_m') > get(d, 'percent')) {
         const newWidth = defaultWidth - (x(get(d, 'percent_m') - get(d, 'percent')) - textWidth);
+        console.log('new width', newWidth);
         return newWidth;
       }
+      // if the percentage bar + the MOE bar extend past 100% on the x axes, modify width of MOE bar
+      if (barWidth + (defaultWidth * 0.5) > axesWidth) {
+        const gapWidth = axesWidth - barWidth;
+        const shortenedWidth = (defaultWidth * 0.5) + gapWidth;
+        return shortenedWidth;
+      }
+
       return defaultWidth;
     };
-
-    // create a rectangular clip path that covers the full chart from left edge of bottom axis to right edge of bottom axis
-    // this assures that anything outside of the clip path is not shown, add this as an attribute to moebars.transition
-    svg.append('defs').append('clipPath') // define a clip path
-      .attr('id', 'moebar-clip') // give the clipPath an ID
-      .append('rect') // shape it as a rectangle
-      .attr('x', x(0))
-      .attr('y', y(0))
-      .attr('width', width - textWidth)
-      .attr('height', height);
 
     moebars.enter()
       .append('rect')
@@ -251,8 +251,7 @@ export default Component.extend(ResizeAware, {
 
     moebars.transition().duration(300)
       .attr('x', xFunctionMOE)
-      .attr('width', widthFunctionMOE)
-      .attr('clip-path', 'url(#moebar-clip)');
+      .attr('width', widthFunctionMOE);
 
     moebars.exit().remove();
 
