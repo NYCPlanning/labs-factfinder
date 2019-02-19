@@ -128,7 +128,7 @@ module.exports = function(environment) {
 
     SAMPLE_SELECTION,
 
-    SupportServiceHost: 'https://factfinder-api.planninglabs.nyc',
+    SupportServiceHost: 'https://factfinder-api-staging.planninglabs.nyc',
   };
 
   ENV.DEFAULT_SELECTION = {
