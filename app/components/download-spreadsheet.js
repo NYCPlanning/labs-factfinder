@@ -1,15 +1,16 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { getProperties } from '@ember/object';
 
 export default Component.extend({
   tagName: '',
   data: null, // []
+  // excludedProperties is an array of properties that are excluded from each condition
   excludedProperties: ['codingThresholds', 'rowConfig', 'notinprofile', 'variablename', 'year', 'is_most_recent', 'geotype', 'producttype', 'release_year', 'unittype'],
-  changeProperties: ['change_sum', 'change_m', 'change_reliable', 'change_percent', 'change_percent_m', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_m', 'change_percentage_point_reliable'],
-  comparisonProperties: ['comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable'],
-  diffSigProperties: ['difference_sum', 'difference_m', 'significant', 'difference_percent', 'difference_percent_m', 'percent_significant'],
-  previousProperties: ['previous_sum', 'previous_m', 'previous_cv', 'previous_percent', 'previous_percent_m', 'previous_is_reliable'],
-  censusExcludedProperties: ['special', 'base', 'm', 'cv', 'percent_m', 'is_reliable'],
+  censusCurrent: ['numGeoids', 'profile', 'category', 'variable', 'sum', 'percent', 'comparison_sum', 'comparison_percent', 'difference_sum', 'difference_percent'],
+  censusChange: ['numGeoids', 'profile', 'category', 'variable', 'previous_sum', 'sum', 'percent', 'change_sum', 'change_percent', 'change_percentage_point'],
+  acsCurrent: ['numGeoids', 'profile', 'category', 'variable', 'base', 'sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'difference_sum', 'difference_m', 'significant', 'difference_percent', 'difference_percent_m', 'percent_significant'],
+  acsChange: ['numGeoids', 'profile', 'category', 'variable', 'base', 'sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'change_sum', 'change_m', 'change_reliable', 'change_percent', 'change_percent_m', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_m', 'change_percentage_point_reliable'],
   mode: '',
   tab: '',
   filename: 'download',
@@ -27,129 +28,71 @@ export default Component.extend({
       const mode = this.get('mode');
       const tab = this.get('tab');
       const excludedProperties = this.get('excludedProperties');
-      const changeProperties = this.get('changeProperties');
-      const comparisonProperties = this.get('comparisonProperties');
-      const diffSigProperties = this.get('diffSigProperties');
-      const previousProperties = this.get('previousProperties');
-      const censusExcludedProperties = this.get('censusExcludedProperties'); // properties deleted from census download
+      const censusCurrent = this.get('censusCurrent');
+      const censusChange = this.get('censusChange');
+      const acsCurrent = this.get('acsCurrent');
+      const acsChange = this.get('acsChange');
 
       // current view AND tab is NOT census
+      const profileForPrint = [];
       if (mode === 'current') {
         if (tab !== 'profile.census') {
           profile.map((row) => {
-            const truncatedRow = row;
-
             excludedProperties.forEach((item) => {
-              delete truncatedRow[item];
+              delete row[item];
             });
 
-            delete truncatedRow.special;
+            const properties = getProperties(row, acsCurrent);
+            profileForPrint.push(properties);
 
-            previousProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            changeProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            return truncatedRow;
+            // unused return; required by linter :(
+            return row;
           })
             .sortBy('dataset', 'profile', 'category').reverse();
 
         // current view AND tab IS census
         } else if (tab === 'profile.census') {
           profile.map((row) => {
-            const truncatedRow = row;
-
             excludedProperties.forEach((item) => {
-              delete truncatedRow[item];
+              delete row[item];
             });
 
-            censusExcludedProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
+            const properties = getProperties(row, censusCurrent);
+            profileForPrint.push(properties);
 
-            delete truncatedRow.comparison_m;
-            delete truncatedRow.comparison_cv;
-            delete truncatedRow.comparison_percent_m;
-            delete truncatedRow.comparison_is_reliable;
-
-            delete truncatedRow.difference_m;
-            delete truncatedRow.significant;
-            delete truncatedRow.difference_percent_m;
-            delete truncatedRow.percent_significant;
-
-            previousProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            changeProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            return truncatedRow;
+            // unused return; required by linter :(
+            return row;
           })
             .sortBy('dataset', 'profile', 'category').reverse();
         }
 
-      // change view and tab is NOT census
+      // // change view and tab is NOT census
       } else if (mode === 'change') {
         if (tab !== 'profile.census') {
           profile.map((row) => {
-            const truncatedRow = row;
-
             excludedProperties.forEach((item) => {
-              delete truncatedRow[item];
+              delete row[item];
             });
 
-            delete truncatedRow.special;
+            const properties = getProperties(row, acsChange);
+            profileForPrint.push(properties);
 
-            comparisonProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            diffSigProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            return truncatedRow;
+            // unused return; required by linter :(
+            return row;
           })
             .sortBy('dataset', 'profile', 'category').reverse();
-
         // change view and tab IS census
         } else if (tab === 'profile.census') {
           profile.map((row) => {
-            const truncatedRow = row;
-
             excludedProperties.forEach((item) => {
-              delete truncatedRow[item];
+              delete row[item];
             });
 
-            censusExcludedProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
+            const properties = getProperties(row, censusChange);
+            profileForPrint.push(properties);
 
-            comparisonProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            diffSigProperties.forEach((item) => {
-              delete truncatedRow[item];
-            });
-
-            delete truncatedRow.previous_m;
-            delete truncatedRow.previous_cv;
-            delete truncatedRow.previous_percent_m;
-            delete truncatedRow.previous_is_reliable;
-
-            delete truncatedRow.change_m;
-            delete truncatedRow.change_reliable;
-            delete truncatedRow.change_percent_m;
-            delete truncatedRow.change_percent_reliable;
-            delete truncatedRow.change_percentage_point_m;
-            delete truncatedRow.change_percentage_point_reliable;
-            return truncatedRow;
+            // unused return; required by linter :(
+            return row;
           })
             .sortBy('dataset', 'profile', 'category').reverse();
         }
@@ -160,11 +103,10 @@ export default Component.extend({
         return prof.filter(d => d.dataset !== 'y2006_2010' && d.dataset !== 'y2000');
       }
 
-      const recentProfile = removeEarlier(profile);
+      const recentProfile = removeEarlier(profileForPrint);
 
-      const columnNames = [Object.keys(recentProfile.get('firstObject'))];
+      const columnNames = [Object.keys(recentProfile.get('firstObject'))]; // column names do not exist in our print object
       const matrixValues = recentProfile.map(row => Object.values(row));
-
       const data = []
         .concat(
           columnNames,
