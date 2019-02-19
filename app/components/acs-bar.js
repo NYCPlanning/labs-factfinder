@@ -223,7 +223,6 @@ export default Component.extend(ResizeAware, {
       const barWidth = x(get(d, 'percent')) - textWidth;
       if (get(d, 'percent_m') > get(d, 'percent')) {
         const newWidth = defaultWidth - (x(get(d, 'percent_m') - get(d, 'percent')) - textWidth);
-        console.log('new width', newWidth);
         return newWidth;
       }
       // if the percentage bar + the MOE bar extend past 100% on the x axes, modify width of MOE bar
