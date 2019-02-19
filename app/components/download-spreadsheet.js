@@ -9,9 +9,9 @@ export default Component.extend({
   excludedProperties: ['codingThresholds', 'rowConfig', 'notinprofile', 'variablename', 'year', 'is_most_recent', 'geotype', 'producttype', 'release_year', 'unittype'],
   // create arrays of keys that should be included in each of the four conditions
   censusCurrent: ['numGeoids', 'profile', 'category', 'variable', 'sum', 'percent', 'comparison_sum', 'comparison_percent', 'difference_sum', 'difference_percent'],
-  censusChange: ['numGeoids', 'profile', 'category', 'variable', 'previous_sum', 'sum', 'percent', 'change_sum', 'change_percent', 'change_percentage_point'],
+  censusChange: ['numGeoids', 'profile', 'category', 'variable', 'previous_sum', 'previous_percent', 'sum', 'percent', 'change_sum', 'change_percent', 'change_percentage_point'],
   acsCurrent: ['numGeoids', 'profile', 'category', 'variable', 'base', 'sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'comparison_sum', 'comparison_m', 'comparison_cv', 'comparison_percent', 'comparison_percent_m', 'comparison_is_reliable', 'difference_sum', 'difference_m', 'significant', 'difference_percent', 'difference_percent_m', 'percent_significant'],
-  acsChange: ['numGeoids', 'profile', 'category', 'variable', 'base', 'sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'change_sum', 'change_m', 'change_reliable', 'change_percent', 'change_percent_m', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_m', 'change_percentage_point_reliable'],
+  acsChange: ['numGeoids', 'profile', 'category', 'variable', 'base', 'previous_sum', 'previous_m', 'previous_cv', 'previous_percent', 'previous_percent_m', 'previous_is_reliable', 'sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'change_sum', 'change_m', 'change_reliable', 'change_percent', 'change_percent_m', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_m', 'change_percentage_point_reliable'],
   mode: '',
   tab: '',
   filename: 'download',
