@@ -4708,6 +4708,14 @@ ember-basic-dropdown@^1.0.5:
     ember-cli-htmlbars "^3.0.0"
     ember-maybe-in-element "^0.2.0"
 
+ember-clean-project@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ember-clean-project/-/ember-clean-project-1.0.1.tgz#40feb8f456652c52e2a00859fda368c125c1d7dc"
+  dependencies:
+    colors "^1.1.2"
+    ember-cli-babel "^6.3.0"
+    fs-extra "^4.0.2"
+
 ember-cli-accounting@2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/ember-cli-accounting/-/ember-cli-accounting-2.0.2.tgz#40fb4d00c038b26c090a4023a05a9d31efe4652f"
