@@ -8,7 +8,7 @@ export default Component.extend({
   reliability: false,
   comparison: true,
 
-  year1: 'y2012_2016',
+  year1: 'y2013_2017',
   year2: 'y2006_2010',
   category: '',
 
