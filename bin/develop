@@ -1,7 +1,6 @@
 #!/bin/sh
-trap "kill 0" EXIT
-trap "exit" INT TERM ERR
 
+# try to guess the correct editor
 if [[ $(type -t subl) == "file" ]]; then 
   subl ../labs-factfinder-api
   subl .
@@ -13,10 +12,17 @@ elif [[ $(type -t vim) == "file" ]]; then
   vim .
 fi
 
+# run the development services, FE and API
 npm run devstart --prefix ../labs-factfinder-api &
 ember s --environment=devlocal &
 
-sleep 10
+# poll local webserver until ready
+until $(curl --output /dev/null --silent --head --fail http://localhost:4200); do
+  printf '.'
+  sleep 1
+done
+
+# open when ready
 open http://localhost:4200
 
 wait
