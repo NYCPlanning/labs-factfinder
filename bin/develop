@@ -1,0 +1,22 @@
+#!/bin/sh
+trap "kill 0" EXIT
+trap "exit" INT TERM ERR
+
+if [[ $(type -t subl) == "file" ]]; then 
+  subl ../labs-factfinder-api
+  subl .
+elif [[ $(type -t atom) == "file" ]]; then 
+  atom ../labs-factfinder-api
+  atom .
+elif [[ $(type -t vim) == "file" ]]; then
+  vim ../labs-factfinder-api
+  vim .
+fi
+
+npm run devstart --prefix ../labs-factfinder-api &
+ember s --environment=devlocal &
+
+sleep 10
+open http://localhost:4200
+
+wait
