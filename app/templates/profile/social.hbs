@@ -290,6 +290,20 @@
     </div>
   </div>
 
+  <h3 class="header-medium" id="computers-and-internet-use">Computers and Internet Use</h3>
+  <div class="grid-x grid-margin-x">
+    <div class="cell large-auto">
+      {{data-table
+        options=profile
+        mode=profile.mode
+        reliability=profile.reliability
+        comparison=profile.comparison
+        config=computersAndInternetUse
+        model=model
+      }}
+    </div>
+  </div>
+
   {{profile-footer}}
 
   {{outlet}}

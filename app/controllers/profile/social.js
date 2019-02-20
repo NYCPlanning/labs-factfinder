@@ -12,6 +12,7 @@ import foreignBornChartConfig from '../../chart-config/social/foreign-born';
 
 const {
   ancestry,
+  computersAndInternetUse,
   disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
   educationalAttainmentHighestGradeCompleted,
   grandparents,
@@ -29,6 +30,7 @@ const {
 
 export default Controller.extend({
   ancestry,
+  computersAndInternetUse,
   disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
   educationalAttainmentHighestGradeCompleted,
   grandparents,
