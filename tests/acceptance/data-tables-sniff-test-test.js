@@ -3,58 +3,67 @@ import { visit, currentURL, find, findAll, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-const profiles = [
-  'demographic',
-  'economic',
-  'social',
-  'housing',
-  'census',
-];
-
-const modes = [
-  'change',
-  'current',
-];
-
-const profileIDs = [
-  18249, // Block Multi // these only get census profiles
-  4035, // Tract Multi
-  18250, // NTA Multi
-  18251, // PUMA Multi
-  15599, // Block Single // these only get census profiles
-  3256, // Tract Single
-  1259, // NTA Single
-  900, // PUMA Single
-];
-
-// Generates URLs representing different combos of states, listed above
-// this is a map/reduce exercise that creates a uniq combo of 3 sets, 
-// generates urls from those, then flattens the resulting 3d matrix
-const URLs = profileIDs
-    // map all the combinations of the 3 sets
-  .map(id =>
-    modes.map(mode =>
-      profiles.map((profile) => {
-        // block data only have census profiles, so skip
-        if ((id === 18249 || id === 15599) && profile !== 'census') return;
-        return `/profile/${id}/${profile}?reliability=true&mode=${mode}&charts=false`;
-    })))
-    // flatten the 3-dimensional matrix
-  .reduce((acc, curr) =>
-      acc.concat(curr.reduce((accNest, currNest) =>
-        accNest.concat(currNest), [])), [])
-    // filter out undefineds
-  .filter(Boolean);
-
 module('Acceptance | data tables sniff test', function(hooks) {
   setupApplicationTest(hooks);
 
   test('visiting assorted profiles, checking for content changes', async function(assert) {
-    for (const url of URLs) {
-      console.log(url);
-      await visit(url);
-      await percySnapshot(url, { scope: '#profile-content' });
-      assert.ok(true);
-    }
+    let text;
+    await visit('/profile/1/demographic?reliability=true');
+    await percySnapshot('profile/1/demographic?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/1/social?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/1/social?reliability=true');
+    await percySnapshot('profile/1/social?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/1/economic?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/1/economic?reliability=true');
+    await percySnapshot('profile/1/economic?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/1/housing?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/1/housing?reliability=true');
+    await percySnapshot('profile/1/housing?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/1/census?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/1/census?reliability=true');
+    await percySnapshot('profile/1/census?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/726/demographic?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/726/demographic?reliability=true');
+    await percySnapshot('profile/726/demographic?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/726/social?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/726/social?reliability=true');
+    await percySnapshot('profile/726/social?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/726/economic?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/726/economic?reliability=true');
+    await percySnapshot('profile/726/economic?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/726/housing?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/726/housing?reliability=true');
+    await percySnapshot('profile/726/housing?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
+  });
+
+  test('visiting /profile/726/census?reliability=true, checking for content changes', async function(assert) {
+    await visit('/profile/726/census?reliability=true');
+    await percySnapshot('profile/726/census?reliability=true', { scope: '#profile-content' });
+    assert.ok(true);
   });
 });
