@@ -7,9 +7,9 @@ export default DS.Model.extend({
   numGeoids: DS.attr('number'),
 
   // categorical information
-  profile: DS.attr('string'),
-  category: DS.attr('string'),
-  variable: DS.attr('string'),
+  profile: DS.attr('string'), // e.g. demographic, social, housing, economic, census
+  category: DS.attr('string'), // e.g. sexAndAge (demographic), placeOfBirth (social)
+  variable: DS.attr('string'), // e.g. Pop10t14 (sexAndAge)
   variablename: DS.attr('string'),
   dataset: DS.attr('string'), // year
   year: DS.attr('string'), // year
@@ -26,45 +26,50 @@ export default DS.Model.extend({
   geotype: DS.attr('string'),
 
   // all data
-  base: DS.attr('string'),
+  base: DS.attr('string'), // UNIVERSE, e.g. Pop_1 (all population), fb2 (all foreign-born population)
 
-  previous_sum: DS.attr('number'),
-  previous_m: DS.attr('number'),
-  previous_cv: DS.attr('number'),
-  previous_percent: DS.attr('number'),
-  previous_percent_m: DS.attr('number'),
-  previous_is_reliable: DS.attr('boolean'),
+  previous_sum: DS.attr('number'), // previous year estimate
+  previous_m: DS.attr('number'), // previous year margin of error
+  previous_cv: DS.attr('number'), // previous year coefficient of variation
+  previous_percent: DS.attr('number'), // previous year percentage
+  previous_percent_m: DS.attr('number'), // previous year percentage margin of error
+  previous_is_reliable: DS.attr('boolean'), // whether previous year data is reliable
 
-  sum: DS.attr('number'),
-  m: DS.attr('number'),
-  cv: DS.attr('number'),
+  sum: DS.attr('number'), // census/ACS estimate
+  m: DS.attr('number'), // moe (margin of error)
+  cv: DS.attr('number'), // coefficient of variation
   percent: DS.attr('number'),
-  percent_m: DS.attr('number'),
-  is_reliable: DS.attr('boolean'),
+  percent_m: DS.attr('number'), // percentage margin of error
+  is_reliable: DS.attr('boolean'), // whether data is reliable
 
-  change_sum: DS.attr('number'),
-  change_m: DS.attr('number'),
-  change_reliable: DS.attr('boolean'),
-  change_percent: DS.attr('number'),
-  change_percent_m: DS.attr('number'),
-  change_percent_reliable: DS.attr('boolean'),
+  // change refers to changes in values from previous year (ACS y2006-2010) to current year (ACS y2011-2016) (current year - previous year = change)
+  change_sum: DS.attr('number'), // change in estimates from previous year to current year
+  change_m: DS.attr('number'), // change in margin of error from previous year to current year
+  change_significant: DS.attr('boolean'), // these variable now reflects reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
+  change_percent: DS.attr('number'), // change in percentage from previous year to current year
+  change_percent_m: DS.attr('number'), // change in percentage margin of error from previous year to current year
+  change_percent_significant: DS.attr('boolean'), // this variable now reflects reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
   change_percentage_point: DS.attr('number'),
   change_percentage_point_m: DS.attr('number'),
-  change_percentage_point_reliable: DS.attr('boolean'),
+  change_percentage_point_significant: DS.attr('boolean'), // !!! these variable now reflects reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
 
-  comparison_sum: DS.attr('number'),
-  comparison_m: DS.attr('number'),
-  comparison_cv: DS.attr('number'),
-  comparison_percent: DS.attr('number'),
-  comparison_percent_m: DS.attr('number'),
-  comparison_is_reliable: DS.attr('boolean'),
+  // comparison refers to the geography that a user will compare to their chosen area ( e.g. Flushing vs. Queens (comparison area) )
+  comparison_sum: DS.attr('number'), // estimate of comparison area
+  comparison_m: DS.attr('number'), // margin of error of comparison area
+  comparison_cv: DS.attr('number'), // coefficient of variation of comparison area
+  comparison_percent: DS.attr('number'), // percentage of comparison area
+  comparison_percent_m: DS.attr('number'), // percentage margin of error of comparison area
+  comparison_is_reliable: DS.attr('boolean'), // whether comparison area data is reliable
 
+  // difference refers to the differnce in values between the chosen area and the comparison area (Flushing - Queens = difference)
   difference_sum: DS.attr('number'),
   difference_m: DS.attr('number'),
-  significant: DS.attr('boolean'),
+  // "significant" refers to difference significant
+  significant: DS.attr('boolean'), // !!! these variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
   difference_percent: DS.attr('number'),
   difference_percent_m: DS.attr('number'),
-  percent_significant: DS.attr('boolean'),
+  // "percent_significant" refers to difference percent significant
+  percent_significant: DS.attr('boolean'), // !!! these variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
 
   notinprofile: DS.attr('string'),
   producttype: DS.attr('string'),
