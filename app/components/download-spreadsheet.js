@@ -9,9 +9,9 @@ export default Component.extend({
   excludedProperties: ['codingThresholds', 'rowConfig', 'notinprofile', 'variablename', 'year', 'is_most_recent', 'geotype', 'producttype', 'release_year', 'unittype'],
   // create arrays of keys that should be included in each of the four conditions
   censusCurrent: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'estimate', 'percent', 'comparison_estimate', 'comparison_percent', 'difference_estimate', 'difference_percent'],
-  censusChange: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'previous_estimate', 'previous_percent', 'estimate', 'percent', 'change_estimate', 'change_percent', 'change_percentage_point'],
+  censusChange: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'previous2000_estimate', 'previous2000_percent', 'estimate', 'percent', 'change_estimate', 'change_percent', 'change_percentage_point'],
   acsCurrent: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'base', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'comparison_estimate', 'comparison_moe', 'comparison_cv', 'comparison_percent', 'comparison_percent_moe', 'comparison_is_reliable', 'difference_estimate', 'difference_moe', 'difference_reliable', 'difference_percent', 'difference_percent_moe', 'difference_percent_reliable'],
-  acsChange: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'base', 'previous_estimate', 'previous_moe', 'previous_cv', 'previous_percent', 'previous_percent_moe', 'previous_is_reliable', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'change_estimate', 'change_moe', 'change_reliable', 'change_percent', 'change_percent_moe', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_moe', 'change_percentage_point_reliable'],
+  acsChange: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'base', 'previous0610_estimate', 'previous0610_moe', 'previous0610_cv', 'previous0610_percent', 'previous0610_percent_moe', 'previous0610_is_reliable', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'change_estimate', 'change_moe', 'change_reliable', 'change_percent', 'change_percent_moe', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_moe', 'change_percentage_point_reliable'],
   mode: '', // change vs. current mode
   tab: '', // census, demographic, social, housing, and economic
   filename: 'download',
@@ -46,9 +46,12 @@ export default Component.extend({
             });
 
             // create an object of properties that match array acsCurrent
-            const newProfile = getProperties(row, acsCurrent);
+            const newProfile = getProperties(row, ...acsCurrent);
             // add this object to profileForPrint array
             profileForPrint.push(newProfile);
+
+            console.log('banana', profile);
+            console.log('newProfile chococalte chip cookies', newProfile);
 
             // unused return; required by linter :(
             return row;
@@ -62,7 +65,7 @@ export default Component.extend({
               delete row[item];
             });
 
-            const newProfile = getProperties(row, censusCurrent);
+            const newProfile = getProperties(row, ...censusCurrent);
             profileForPrint.push(newProfile);
 
             // unused return; required by linter :(
@@ -79,7 +82,7 @@ export default Component.extend({
               delete row[item];
             });
 
-            const newProfile = getProperties(row, acsChange);
+            const newProfile = getProperties(row, ...acsChange);
             profileForPrint.push(newProfile);
 
             // unused return; required by linter :(
@@ -93,7 +96,7 @@ export default Component.extend({
               delete row[item];
             });
 
-            const newProfile = getProperties(row, censusChange);
+            const newProfile = getProperties(row, ...censusChange);
             profileForPrint.push(newProfile);
 
             // unused return; required by linter :(
@@ -109,6 +112,8 @@ export default Component.extend({
       }
 
       const recentProfile = removeEarlier(profileForPrint);
+
+      console.log('profileForPrint', profileForPrint);
 
       const columnNames = [Object.keys(recentProfile.get('firstObject'))]; // column names do not exist in our print object
       const matrixValues = recentProfile.map(row => Object.values(row));

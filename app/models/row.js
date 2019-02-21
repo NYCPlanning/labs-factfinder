@@ -43,7 +43,7 @@ export default DS.Model.extend({
   percent_m: DS.attr('number'), // percentage margin of error
   is_reliable: DS.attr('boolean'), // whether data is reliable
 
-  // change refers to changes in values from previous year (ACS y2006-2010) to current year (ACS y2011-2016) (current year - previous year = change)
+  // change refers to changes in values from previous year (ACS y2006-2010) to current year (ACS y2012-2016) (current year - previous year = change)
   change_sum: DS.attr('number'), // change in estimates from previous year to current year
   change_m: DS.attr('number'), // change in margin of error from previous year to current year
   change_significant: DS.attr('boolean'), // these variable now reflects reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
