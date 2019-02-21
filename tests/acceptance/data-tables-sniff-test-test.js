@@ -48,12 +48,13 @@ const URLs = profileIDs
 
 module('Acceptance | data tables sniff test', function(hooks) {
   setupApplicationTest(hooks);
-  
-  for (const url of URLs) {
-    test('visiting assorted profiles, checking for content changes', async function(assert) {
-        await visit(url);
-        await percySnapshot(url, { scope: '#profile-content' });
-        assert.ok(true);
-    });
-  }
+
+  test('visiting assorted profiles, checking for content changes', async function(assert) {
+    for (const url of URLs) {
+      console.log(url);
+      await visit(url);
+      await percySnapshot(url, { scope: '#profile-content' });
+      assert.ok(true);
+    }
+  });
 });
