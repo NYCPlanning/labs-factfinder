@@ -8,8 +8,8 @@ export default DS.Model.extend({
 
   // categorical information
   profile: DS.attr('string'), // e.g. demographic, social, housing, economic, census
-  category: DS.attr('string'), // e.g. sexAndAge (demographic), placeOfBirth (social)
-  variable: DS.attr('string'), // e.g. Pop10t14 (sexAndAge)
+  category: DS.attr('string'), // e.g. sexAndAge (as part of profile "demographic"), placeOfBirth (as part of profile "social")
+  variable: DS.attr('string'), // e.g. Pop10t14 (as part of category "sexAndAge")
   variablename: DS.attr('string'),
   dataset: DS.attr('string'), // year
   year: DS.attr('string'), // year
@@ -28,6 +28,7 @@ export default DS.Model.extend({
   // all data
   base: DS.attr('string'), // UNIVERSE, e.g. Pop_1 (all population), fb2 (all foreign-born population)
 
+  // previous refers to values from previous year(s) (e.g. y2000 for census and y2006-2010 for ACS)
   previous_sum: DS.attr('number'), // previous year estimate
   previous_m: DS.attr('number'), // previous year margin of error
   previous_cv: DS.attr('number'), // previous year coefficient of variation
