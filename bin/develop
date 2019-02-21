@@ -12,6 +12,10 @@ elif [[ $(type -t vim) == "file" ]]; then
   vim .
 fi
 
+if [[ $(type -t gittower) == "file" ]]; then
+  gittower .
+fi
+
 # run the development services, FE and API
 npm run devstart --prefix ../labs-factfinder-api &
 ember s --environment=devlocal &
