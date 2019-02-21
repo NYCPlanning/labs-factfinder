@@ -65,17 +65,49 @@ export default DS.Model.extend({
   // difference refers to the differnce in values between the chosen area and the comparison area (Flushing - Queens = difference)
   difference_sum: DS.attr('number'),
   difference_m: DS.attr('number'),
-  // "significant" refers to difference significant
+  // "significant" belongs to "difference"
   significant: DS.attr('boolean'), // !!! these variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
   difference_percent: DS.attr('number'),
   difference_percent_m: DS.attr('number'),
-  // "percent_significant" refers to difference percent significant
+  // "percent_significant" belongs to "difference"
   percent_significant: DS.attr('boolean'), // !!! these variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
 
   notinprofile: DS.attr('string'),
   producttype: DS.attr('string'),
   release_year: DS.attr('string'),
   unittype: DS.attr('string'),
+
+  // ALIASES for CSV download use only
+  previous0610_estimate: alias('previous_sum'),
+  previous0610_moe: alias('previous_m'),
+  previous0610_cv: alias('previous_cv'),
+  previous0610_percent: alias('previous_percent'),
+  previous0610_percent_moe: alias('previous_percent_m'),
+  previous0610_is_reliable: alias('previous_is_reliable'),
+  previous2000_estimate: alias('previous_sum'),
+  previous2000_moe: alias('previous_m'),
+  previous2000_cv: alias('previous_cv'),
+  previous2000_percent: alias('previous_percent'),
+  previous2000_percent_moe: alias('previous_percent_m'),
+  previous2000_is_reliable: alias('previous_is_reliable'),
+  estimate: alias('sum'),
+  moe: alias('m'),
+  percent_moe: alias('percent_m'),
+  change_estimate: alias('change_sum'),
+  change_moe: alias('change_m'),
+  change_reliable: alias('change_significant'),
+  change_percent_moe: alias('change_percent_m'),
+  change_percent_reliable: alias('change_percent_significant'),
+  change_percentage_point_moe: alias('change_percentage_point_m'),
+  change_percentage_point_reliable: alias('change_percentage_point_significant'),
+  comparison_estimate: alias('comparison_sum'),
+  comparison_moe: alias('comparison_m'),
+  comparison_percent_moe: alias('comparison_percent_m'),
+  difference_estimate: alias('difference_sum'),
+  difference_moe: alias('difference_m'),
+  difference_reliable: alias('significant'),
+  difference_percent_moe: alias('difference_percent_m'),
+  difference_percent_reliable: alias('percent_significant'),
 
   // groupings
   // these are used to group together similar type columns
