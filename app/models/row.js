@@ -52,7 +52,7 @@ export default DS.Model.extend({
   change_percent_significant: DS.attr('boolean'), // this variable now reflects reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
   change_percentage_point: DS.attr('number'),
   change_percentage_point_m: DS.attr('number'),
-  change_percentage_point_significant: DS.attr('boolean'), // !!! these variable now reflects reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
+  change_percentage_point_significant: DS.attr('boolean'), // !!! this variable now reflects reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
 
   // comparison refers to the geography that a user will compare to their chosen area ( e.g. Flushing vs. Queens (comparison area) )
   comparison_sum: DS.attr('number'), // estimate of comparison area
@@ -66,11 +66,11 @@ export default DS.Model.extend({
   difference_sum: DS.attr('number'),
   difference_m: DS.attr('number'),
   // "significant" belongs to "difference"
-  significant: DS.attr('boolean'), // !!! these variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
+  significant: DS.attr('boolean'), // !!! this variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
   difference_percent: DS.attr('number'),
   difference_percent_m: DS.attr('number'),
   // "percent_significant" belongs to "difference"
-  percent_significant: DS.attr('boolean'), // !!! these variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
+  percent_significant: DS.attr('boolean'), // !!! this variables now reflect reliability (calculations were changed in the API but variable names have not been updated, check issue #57)
 
   notinprofile: DS.attr('string'),
   producttype: DS.attr('string'),

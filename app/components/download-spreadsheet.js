@@ -13,7 +13,7 @@ export default Component.extend({
   acsCurrent: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'base', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'comparison_estimate', 'comparison_moe', 'comparison_cv', 'comparison_percent', 'comparison_percent_moe', 'comparison_is_reliable', 'difference_estimate', 'difference_moe', 'difference_reliable', 'difference_percent', 'difference_percent_moe', 'difference_percent_reliable'],
   acsChange: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'base', 'previous0610_estimate', 'previous0610_moe', 'previous0610_cv', 'previous0610_percent', 'previous0610_percent_moe', 'previous0610_is_reliable', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'change_estimate', 'change_moe', 'change_reliable', 'change_percent', 'change_percent_moe', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_moe', 'change_percentage_point_reliable'],
   mode: '', // change vs. current mode
-  tab: '', // census, demographic, social, housing, and economic
+  tab: '', // census, demographic, social, housing, economic
   filename: 'download',
   csv: service('csv'), // from ember-spreadsheet-export
   metrics: service('metrics'), // analytics
@@ -47,9 +47,10 @@ export default Component.extend({
 
             // create an object of properties that match array acsCurrent
             const newProfile = getProperties(row, ...acsCurrent); // object
-
+            // add newProfile object to array profileForPrint
             profileForPrint.push(newProfile); // array of objects
 
+            // unused return; required by linter :(
             return row;
           })
             .sortBy('category');
@@ -103,19 +104,18 @@ export default Component.extend({
       }
 
       // filter out all rows with years 2006-2010 from the ACS tables and year 2000 from the census table
-      function filterEarlier(prof) {
+      function filterProfile(prof) {
         return prof.filter(d => d.dataset !== 'y2006_2010' && d.dataset !== 'y2000');
       }
 
-      let recentProfile = [];
-      recentProfile = filterEarlier(profileForPrint); // filterDates is now an array of objects with NO 2006-2010
+      // let recentProfile = [];
+      const recentProfile = filterProfile(profileForPrint); // recentProfile is now an array of objects with NO 2006-2010 and NO 2000
 
       // remove dataset as a column from recentProfile
       recentProfile.forEach(function(item) {
         delete item.dataset;
       });
 
-      console.log('recent profile', recentProfile);
       // sort recentProfile by category in ascending order
       recentProfile.sort(function(a, b) {
         if (a.category > b.category) {
