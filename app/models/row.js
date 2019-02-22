@@ -34,7 +34,6 @@ export default DS.Model.extend({
   previous_cv: DS.attr('number'), // previous year coefficient of variation
   previous_percent: DS.attr('number'), // previous year percentage
   previous_percent_m: DS.attr('number'), // previous year percentage margin of error
-  previous_is_reliable: DS.attr('boolean'), // whether previous year data is reliable
 
   sum: DS.attr('number'), // census/ACS estimate
   m: DS.attr('number'), // moe (margin of error)
@@ -83,7 +82,6 @@ export default DS.Model.extend({
   previous0610_cv: alias('previous_cv'),
   previous0610_percent: alias('previous_percent'),
   previous0610_percent_moe: alias('previous_percent_m'),
-  previous0610_is_reliable: alias('previous_is_reliable'),
   previous2000_estimate: alias('previous_sum'),
   previous2000_percent: alias('previous_percent'),
   estimate: alias('sum'),
