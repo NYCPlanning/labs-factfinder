@@ -8,10 +8,10 @@ export default Component.extend({
   // excludedProperties is an array of keys that are excluded from each condition (current mode Census, change mode Census, current mode ACS, change mode ACS)
   excludedProperties: ['codingThresholds', 'rowConfig', 'notinprofile', 'variablename', 'year', 'is_most_recent', 'geotype', 'producttype', 'release_year', 'unittype'],
   // create arrays of keys that should be included in each of the four conditions
-  censusCurrent: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'estimate', 'percent', 'comparison_estimate', 'comparison_percent', 'difference_estimate', 'difference_percent'],
-  censusChange: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'previous2000_estimate', 'previous2000_percent', 'estimate', 'percent', 'change_estimate', 'change_percent', 'change_percentage_point'],
+  censusCurrent: ['numGeoids', 'profile', 'category', 'variable', 'estimate', 'percent', 'comparison_estimate', 'comparison_percent', 'difference_estimate', 'difference_percent'],
+  censusChange: ['numGeoids', 'profile', 'category', 'variable', 'previous2000_estimate', 'previous2000_percent', 'estimate', 'percent', 'change_estimate', 'change_percent', 'change_percentage_point'],
   acsCurrent: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'base', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'comparison_estimate', 'comparison_moe', 'comparison_cv', 'comparison_percent', 'comparison_percent_moe', 'comparison_is_reliable', 'difference_estimate', 'difference_moe', 'difference_reliable', 'difference_percent', 'difference_percent_moe', 'difference_percent_reliable'],
-  acsChange: ['numGeoids', 'profile', 'category', 'variable', 'dataset', 'base', 'previous0610_estimate', 'previous0610_moe', 'previous0610_cv', 'previous0610_percent', 'previous0610_percent_moe', 'previous0610_is_reliable', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'change_estimate', 'change_moe', 'change_reliable', 'change_percent', 'change_percent_moe', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_moe', 'change_percentage_point_reliable'],
+  acsChange: ['numGeoids', 'profile', 'category', 'variable', 'base', 'previous0610_estimate', 'previous0610_moe', 'previous0610_cv', 'previous0610_percent', 'previous0610_percent_moe', 'previous0610_is_reliable', 'estimate', 'moe', 'cv', 'percent', 'percent_moe', 'is_reliable', 'change_estimate', 'change_moe', 'change_reliable', 'change_percent', 'change_percent_moe', 'change_percent_reliable', 'change_percentage_point', 'change_percentage_point_moe', 'change_percentage_point_reliable'],
   mode: '', // change vs. current mode
   tab: '', // census, demographic, social, housing, and economic
   filename: 'download',
@@ -46,17 +46,13 @@ export default Component.extend({
             });
 
             // create an object of properties that match array acsCurrent
-            const newProfile = getProperties(row, ...acsCurrent);
-            // add this object to profileForPrint array
-            profileForPrint.push(newProfile);
+            const newProfile = getProperties(row, ...acsCurrent); // object
 
-            console.log('banana', profile);
-            console.log('newProfile chococalte chip cookies', newProfile);
+            profileForPrint.push(newProfile); // array of objects
 
-            // unused return; required by linter :(
             return row;
           })
-            .sortBy('dataset', 'profile', 'category').reverse();
+            .sortBy('category');
 
         // current view AND tab IS census
         } else if (tab === 'profile.census') {
@@ -71,7 +67,7 @@ export default Component.extend({
             // unused return; required by linter :(
             return row;
           })
-            .sortBy('dataset', 'profile', 'category').reverse();
+            .sortBy('category');
         }
 
       // change view and tab is NOT census
@@ -88,7 +84,7 @@ export default Component.extend({
             // unused return; required by linter :(
             return row;
           })
-            .sortBy('dataset', 'profile', 'category').reverse();
+            .sortBy('profile', 'category').reverse();
         // change view and tab IS census
         } else if (tab === 'profile.census') {
           profile.map((row) => {
@@ -102,18 +98,30 @@ export default Component.extend({
             // unused return; required by linter :(
             return row;
           })
-            .sortBy('dataset', 'profile', 'category').reverse();
+            .sortBy('category');
         }
       }
 
-      // remove all rows with years 2006-2010 from the ACS tables and year 2000 from the census table
-      function removeEarlier(prof) {
+      // filter out all rows with years 2006-2010 from the ACS tables and year 2000 from the census table
+      function filterEarlier(prof) {
         return prof.filter(d => d.dataset !== 'y2006_2010' && d.dataset !== 'y2000');
       }
 
-      const recentProfile = removeEarlier(profileForPrint);
+      const recentProfile = filterEarlier(profileForPrint); // filterDates is now an array of objects with NO 2006-2010
 
-      console.log('profileForPrint', profileForPrint);
+      // remove dataset as a column from recentProfile
+      recentProfile.forEach(function(item) {
+        delete item.dataset;
+      });
+
+      // sort recentProfile by category in ascending order
+      recentProfile.sort(function(a, b) {
+        if (a.category > b.category) {
+          return 1;
+        } if (b.category > a.category) {
+          return -1;
+        } return 0;
+      });
 
       const columnNames = [Object.keys(recentProfile.get('firstObject'))]; // column names do not exist in our print object
       const matrixValues = recentProfile.map(row => Object.values(row));
