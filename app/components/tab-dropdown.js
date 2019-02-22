@@ -43,6 +43,7 @@ export default Component.extend({
     { anchor: '#year-of-entry', title: 'Year Of Entry' },
     { anchor: '#language-spoken-at-home', title: 'Language Spoken At Home' },
     { anchor: '#ancestry', title: 'Ancestry' },
+    { anchor: '#computers-and-internet-use', title: 'Computers and Internet Use' },
   ],
 
   economicItems: [

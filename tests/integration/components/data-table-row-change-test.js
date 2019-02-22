@@ -17,7 +17,7 @@ module('Integration | Component | data-table-row-change', function(hooks) {
         "base": "HH2",
         "variablename": "HHI10t14",
         "category": "incomeAndBenefits",
-        "dataset": "y2012_2016",
+        "dataset": "y2013_2017",
         "profile": "economic",
         "variable": "hhi10t14",
         "is_most_recent": true,

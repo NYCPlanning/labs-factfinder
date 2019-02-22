@@ -1,6 +1,7 @@
 // @create-index
 
 import ancestry from './ancestry';
+import computersAndInternetUse from './computers-and-internet-use';
 import uSCitizenshipStatus from './u-s--citizenship-status';
 import disabilityStatusOfTheCivilianNoninstitutionalizedPopulation from './disability-status-of-the-civilian-noninstitutionalized-population';
 import educationalAttainmentHighestGradeCompleted from './educational-attainment--highest-grade-completed';
@@ -17,6 +18,7 @@ import yearOfEntry from './year-of-entry';
 
 export default {
   ancestry,
+  computersAndInternetUse,
   uSCitizenshipStatus,
   disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
   educationalAttainmentHighestGradeCompleted,

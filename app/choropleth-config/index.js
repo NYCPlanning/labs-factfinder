@@ -20,7 +20,7 @@ const choroplethConfigs = [
     label: 'Under 18 Years',
     tooltip: 'Population under 18 years',
     legendTitle: 'Population under 18 years',
-    stops: [8000, 12000, 16000, 20000],
+    stops: [8000, 12000, 15000, 20000],
   },
   {
     group: 'Demographic (ACS)',
@@ -36,7 +36,7 @@ const choroplethConfigs = [
     label: 'Bachelor\'s Degree or Higher',
     tooltip: 'Population 25 years and over with bachelor\'s degree or higher',
     legendTitle: 'Population 25 years and over with bachelor\'s degree or higher',
-    stops: [10000, 20000, 30000, 40000],
+    stops: [10000, 20000, 30000, 45000],
   },
   {
     group: 'Social (ACS)',
@@ -79,7 +79,7 @@ const choroplethConfigs = [
     label: 'Below Poverty (percent)',
     tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
-    stops: [15, 25, 35, 50],
+    stops: [15, 25, 32, 46],
   },
   {
     group: 'Housing (ACS)',
@@ -87,7 +87,7 @@ const choroplethConfigs = [
     label: 'Median Gross Rent',
     tooltip: 'Median gross rent (in 2016 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
-    stops: [1300, 1600, 2000, 2500],
+    stops: [1200, 1600, 2000, 2400],
   },
 ];
 

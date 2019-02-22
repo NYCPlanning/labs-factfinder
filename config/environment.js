@@ -128,7 +128,7 @@ module.exports = function(environment) {
 
     SAMPLE_SELECTION,
 
-    SupportServiceHost: 'https://factfinder-api.planninglabs.nyc',
+    SupportServiceHost: 'https://factfinder-api-staging.planninglabs.nyc',
   };
 
   ENV.DEFAULT_SELECTION = {
@@ -141,16 +141,17 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV.host = 'https://factfinder-api-staging.planninglabs.nyc';
+    ENV.SupportServiceHost = 'https://factfinder-api-staging.planninglabs.nyc';
   }
 
   if (environment === 'devlocal') {
-    ENV.SupportServiceHost = 'http://localhost:4000';
+    ENV.SupportServiceHost = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
+    ENV.SupportServiceHost = 'https://factfinder-api-staging.planninglabs.nyc';
 
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
 

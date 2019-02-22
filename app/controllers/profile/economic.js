@@ -43,6 +43,6 @@ export default Controller.extend({
 
   currentData: computed('model', function() {
     const model = this.get('model');
-    return get(model, 'y2012_2016');
+    return get(model, 'y2013_2017');
   }),
 });

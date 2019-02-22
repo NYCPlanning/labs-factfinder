@@ -135,28 +135,30 @@ export default Service.extend({
 
 
     if (this.get('selectedCount')) {
-      // sigh...
+      // these transitions are all calculated using spatial queries
       if (
-        (toLevel === 'pumas' && fromLevel === 'ntas')
-        || (toLevel === 'pumas' && fromLevel === 'tracts')
-        || (toLevel === 'ntas' && fromLevel === 'pumas')
-        || (toLevel === 'blocks' && fromLevel === 'ntas')
-        || (toLevel === 'blocks' && fromLevel === 'pumas')
-        || (toLevel === 'tracts' && fromLevel === 'pumas')
-        || (toLevel === 'ntas' && fromLevel === 'blocks')
-        || (toLevel === 'tracts' && fromLevel === 'ntas')
+        (fromLevel === 'blocks' && toLevel === 'ntas')
+        || (fromLevel === 'blocks' && toLevel === 'pumas')
+        || (fromLevel === 'tracts' && toLevel === 'pumas')
+        || (fromLevel === 'ntas' && toLevel === 'blocks')
+        || (fromLevel === 'ntas' && toLevel === 'tracts')
+        || (fromLevel === 'ntas' && toLevel === 'pumas')
+        || (fromLevel === 'pumas' && toLevel === 'blocks')
+        || (fromLevel === 'pumas' && toLevel === 'tracts')
+        || (fromLevel === 'pumas' && toLevel === 'ntas')
       ) {
         this.explodeGeo(fromLevel, toLevel);
         return;
       }
 
+      // all other transitions are done using attributes (tract can be inferred from block attributes, etc..)
       this.explode(fromLevel, toLevel);
     } else {
       this.clearSelection();
     }
   },
 
-  // target table is the TO and filter ID is the FROM;
+  // transition between geometry levels using attributes
   explode(fromLevel, toLevel) {
     if (fromLevel !== toLevel) {
       const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
@@ -164,7 +166,6 @@ export default Service.extend({
 
       const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
       const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
-
 
       carto.SQL(sqlQuery, 'geojson')
         .then((json) => {
@@ -174,6 +175,7 @@ export default Service.extend({
     }
   },
 
+  // transition between geometry levels using spatial queries
   explodeGeo(fromLevel, toLevel) {
     const crossWalkFromTable = SUM_LEVEL_DICT[fromLevel].sql;
     const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;

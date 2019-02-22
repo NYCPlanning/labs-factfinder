@@ -17,7 +17,7 @@ module('Integration | Component | data-table-row-current', function(hooks) {
         base: 'LgMKhm1',
         variablename: 'LgMKhm1',
         category: 'languageSpokenAtHome',
-        dataset: 'y2012_2016',
+        dataset: 'y2013_2017',
         profile: 'social',
         variable: 'lgmkhm1',
         is_most_recent: true,

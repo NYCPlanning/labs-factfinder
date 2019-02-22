@@ -42,6 +42,11 @@ You will need the following things properly installed on your computer.
 - Install Dependencies `npm install`
 - Start the server `ember s`
 
+### Development shortcut
+
+ - Run `bin/develop`
+ - This should open the correct servers and editors, assuming you also have `labs-factfinder-api` cloned and configured
+
 ## Architecture
 Primary views:
 - Selection view - Allows the user to create a selection of geometries to view census/ACS data about.
