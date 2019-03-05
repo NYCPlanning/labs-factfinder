@@ -6,7 +6,7 @@ export default {
       id: 'neighborhood-tabulation-areas',
       sql: `
         SELECT a.the_geom_webmercator, ntaname, ntacode, ntacode AS geolabel, a.ntacode AS geoid
-        FROM support_admin_ntaboundaries a
+        FROM nta_boundaries a
         WHERE ntaname NOT ILIKE 'park-cemetery-etc%'
           AND ntaname != 'Airport'
       `,
@@ -14,7 +14,7 @@ export default {
 
     {
       id: 'neighborhood-tabulation-areas-centroids',
-      sql: 'SELECT ST_Centroid(the_geom_webmercator) as the_geom_webmercator, ntaname FROM support_admin_ntaboundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
+      sql: 'SELECT ST_Centroid(the_geom_webmercator) as the_geom_webmercator, ntaname FROM nta_boundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
     },
 
     {
