@@ -9,7 +9,7 @@ export default {
       bctcb2010,
       bctcb2010 AS geoid,
       (ct2010::float / 100)::text || ' - ' || cb2010 as geolabel
-    FROM nyc_census_blocks_2010
+    FROM nyc_census_blocks
   `,
 
   tracts: (webmercator = true) => `
@@ -20,7 +20,7 @@ export default {
       boroct2010,
       ntacode,
       boroct2010 AS geoid
-    FROM nyc_census_tracts_2010
+    FROM nyc_census_tracts
   `,
 
   ntas: (webmercator = true) => `
@@ -30,7 +30,7 @@ export default {
       ntacode,
       ntacode as geolabel,
       ntacode AS geoid
-    FROM support_admin_ntaboundaries
+    FROM nta_boundaries
     WHERE ntaname NOT ILIKE 'park-cemetery-etc%25'
       AND ntaname != 'Airport'
   `,
