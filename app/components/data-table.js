@@ -4,25 +4,15 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   media: service('media'),
+  /* arguments */
   mode: 'current',
   reliability: false,
   comparison: true,
+  config: {},
+  model: {},
+  /* end arguments */
 
-  year1: 'y2013_2017',
-  year2: 'y2006_2010',
   category: '',
-
-  t1: computed('year1', function() {
-    const { year1 } = this.getProperties('year1');
-
-    return this.get(`model.${year1}`);
-  }),
-
-  t2: computed('year2', function() {
-    const { year2 } = this.getProperties('year2');
-
-    return this.get(`model.${year2}`);
-  }),
 
   stickyTop: computed('media.isLarge', function() {
     const { 'media.isLarge': isLarge } = this.getProperties('media.isLarge');

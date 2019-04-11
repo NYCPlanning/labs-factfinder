@@ -1,5 +1,5 @@
 import Controller, { inject as controller } from '@ember/controller';
-import { computed } from '@ember/object'; // eslint-disable-line
+
 import decennial from '../../table-config/decennial';
 
 const {
@@ -17,12 +17,13 @@ const {
 } = decennial;
 
 export default Controller.extend({
+  // arguments
+  model: {},
+
+  // properties
   profile: controller('profile'),
 
-  data: computed('model.taskInstance.value', function() {
-    return this.get('model.taskInstance.value');
-  }),
-
+  // - row configs
   asianSubgroup,
   relationshipToHeadOfHouseholdHouseholder,
   hispanicSubgroup,

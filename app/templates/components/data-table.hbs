@@ -35,7 +35,7 @@
                 comparison=comparison
                 rowConfig=rowConfig
                 options=profile
-                data=(get this.t1 rowConfig.data)
+                data=(get this.model rowConfig.data)
               }}
             {{else}}
               {{data-table-row-change
@@ -45,8 +45,7 @@
                 comparison=comparison
                 rowConfig=rowConfig
                 options=profile
-                data=(get this.t1 rowConfig.data)
-                data2=(get this.t2 rowConfig.data)
+                data=(get this.model rowConfig.data)
               }}
             {{/if}}
           {{/if}}

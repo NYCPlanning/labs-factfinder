@@ -6,7 +6,6 @@
     data=rawData
   }}
   <hr>
-
   <h3 id="sex-and-age" class="header-medium">Age and Sex</h3>
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
@@ -26,10 +25,10 @@
         }}
           <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
             <span class="cell small-6 text-right">
-              Male <br>{{numeral-format model.y2013_2017.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2013_2017.male.percent_m '0.0%'}})</span>
+              Male <br>{{numeral-format model.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2013_2017.male.percent_m '0.0%'}})</span>
             </span>
             <span class="cell small-6">
-              Female <br>{{numeral-format model.y2013_2017.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2013_2017.fem.percent_m '0.0%'}})</span>
+              Female <br>{{numeral-format model.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2013_2017.fem.percent_m '0.0%'}})</span>
             </span>
           </h4>
         {{/population-pyramid}}
@@ -55,7 +54,7 @@
         {{acs-bar
           title="Percent Distribution of Race/Hispanic Origin Groups"
           config=raceGroupChartConfig
-          data=model.y2013_2017
+          data=model
           height=176}}
       </div>
     {{/if}}
@@ -79,7 +78,7 @@
         {{acs-bar
           title="Percent Distribution of Hispanic Subgroups"
           config=hispanicSubgroupChartConfig
-          data=model.y2013_2017
+          data=model
           height=204}}
       </div>
     {{/if}}
@@ -103,7 +102,7 @@
         {{acs-bar
           title="Percent Distribution of Asian Subgroups"
           config=asianSubgroupChartConfig
-          data=model.y2013_2017
+          data=model
           height=150}}
       </div>
     {{/if}}

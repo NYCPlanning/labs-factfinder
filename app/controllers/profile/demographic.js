@@ -2,6 +2,7 @@ import Controller, { inject as controller } from '@ember/controller';
 import { get, computed } from '@ember/object';
 
 import demographic from '../../table-config/demographic';
+
 import raceGroupChartConfig from '../../chart-config/demographic/race-group';
 import hispanicSubgroupChartConfig from '../../chart-config/demographic/hispanic-subgroup';
 import asianSubgroupChartConfig from '../../chart-config/demographic/asian-subgroup';
@@ -14,25 +15,27 @@ const {
 } = demographic;
 
 export default Controller.extend({
+  // arguments
+  model: {},
+
+  // properties
+  profile: controller('profile'),
+
+  // - row configs
   sexAndAge,
   mutuallyExclusiveRaceHispanicOrigin,
   hispanicSubgroup,
   asianSubgroup,
 
+  // - chart configs
   raceGroupChartConfig,
   hispanicSubgroupChartConfig,
   asianSubgroupChartConfig,
 
-  profile: controller('profile'),
-
-  currentData: computed('model', function() {
+  // computed properties
+  agePopDist: computed('model', function() {
     const model = this.get('model');
-    return get(model, 'y2013_2017');
-  }),
-
-  agePopDist: computed('currentData', function() {
-    const currentData = this.get('currentData');
-    const d = currentData;
+    const d = model;
     const variables = [
       'pop0t5',
       'pop5t9',
@@ -66,8 +69,8 @@ export default Controller.extend({
 
     return {
       totals: {
-        male: currentData.male,
-        female: currentData.fem,
+        male: model.male,
+        female: model.fem,
       },
       pyramidData,
     };
