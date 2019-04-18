@@ -3,9 +3,24 @@ import { inject as service } from '@ember/service';
 import { next } from '@ember/runloop';
 import { hash } from 'rsvp';
 
+/**
+ * The Index Route is responsible for pulling down layer groups for the
+ * summary level selection map, and binds them to the controller. It
+ * also includes a handler for resizing mapbox-gl.
+ *
+ * See https://api.emberjs.com/ember/release/classes/Route
+ */
 export default Route.extend({
+  /**
+   * layerGroupService is provided by the ember-mapbox-composer addon,
+   * and helps manage orchestration of the layer group models.
+   */
   layerGroupService: service('layerGroups'),
 
+  /**
+   * EmberJS Route model hook, which is responsible for fetching data. In this case,
+   * it's used to query for layer groups.
+   */
   async model() {
     const layerGroups = await this.store.query('layer-group', {
       'layer-groups': [
@@ -35,6 +50,10 @@ export default Route.extend({
     });
   },
 
+  /**
+   * EmberJS route hook, overridden. We use this to bind layerGroups to the controller
+   * when the controller becomes available.
+   */
   setupController(controller, model) {
     const { layerGroups } = model;
     this.get('layerGroupService').initializeObservers(layerGroups, controller);
@@ -42,15 +61,21 @@ export default Route.extend({
   },
 
   actions: {
+    /**
+     * EmberJS event hook. Used here for updating view state based on transitions,
+     * as well as a hack to help with resizing the MapboxGL map.
+     */
     didTransition() {
       const applicationController = this.controllerFor('application');
       applicationController.set('sidebarIsClosed', true);
 
       next(function() {
-        // not supported in IE 11
+        /**
+         * Hack to help the MapboxGL canvas resize properly when surrounding DOM
+         * context is repositioned. not supported in IE 11
+         */
         window.dispatchEvent(new Event('resize'));
       });
     },
   },
-
 });
