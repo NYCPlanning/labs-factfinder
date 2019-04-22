@@ -41,26 +41,11 @@ export default DS.Model.extend({
   variable: DS.attr('string'),
 
   /**
-   * Publication "year", or range of years.
+   * U.S. Census-specified "universe" for any given variable; not inferred from aggregating data,
+   * but rather an explicit value.
+   * e.g. "Pop_1" (total population), or "fb2" (total foreign-born population)
    */
-  dataset: DS.attr('string'),
-
-  /**
-   * Publication "year", or range of years.
-   * TODO: Is this still used?
-   */
-  year: DS.attr('string'),
-
-  /**
-   * Configuration used to determine if a given value should be
-   * "top" or "bottom"-coding, meaning that if beyond a certain threshold,
-   * the computed value will be presented as a rounded value followed by
-   * a plus sign.
-   *
-   * For example, if the median income is $187k, and the top coding is $150k,
-   * the value should be displayed as "$150,000+"
-   */
-  codingThresholds: DS.attr(),
+  base: DS.attr('string'),
 
   /**
    * Geotype is the Census(ish) "summary level", a pre-aggregated geography at which
@@ -76,11 +61,16 @@ export default DS.Model.extend({
   geotype: DS.attr('string'),
 
   /**
-   * Flag for whether it's a special calculation variable. Used in
-   * templates for display purposes, aliased for convenience.
+   * Flag for whether the variable is 'special'; indicated by 'base' value
+   * of 'mean', 'median', or 'rate' (the type of special calculation required for the variable).
+   * Used in templates for display purposes.
    */
-  special: DS.attr('boolean'),
-  isSpecial: alias('special'),
+  isSpecial: computed('base', function() {
+    const base = this.getProperties('base');
+    // base = mean, median, or rate indicates variable is special
+    return ['mean', 'median', 'rate'].includes(base);
+  }),
+
   /* =====  End of Row Metadata  ====== */
 
 
@@ -89,17 +79,17 @@ export default DS.Model.extend({
   ============================================= */
 
   /**
-   * U.S. Census-specified "universe" for any given variable. Not "inferred" from data.
-   *
-   * e.g. Pop_1 (all population), fb2 (all foreign-born population)
-   */
-  base: DS.attr('string'),
-
-  /**
    * Sum is the aggregate estimated value. Most of the time this is an actual "sum",
    * for special calculations, it could be a rate, median, or mean.
    */
   sum: DS.attr('number'),
+
+  /**
+   * The direction sum was coded, either 'upper' or 'lower',
+   * or undefined if the value was not top- or bottom-coded
+   * NOTE: only median values are subject to coding
+   */
+  codingThresholds: DS.attr('string'),
 
   /**
    * M is margin or error for the aggregate.
@@ -123,7 +113,7 @@ export default DS.Model.extend({
   percent_m: DS.attr('number'),
 
   /**
-   * is_reliable is a flag for determining whether the estimate is reliable as opposed to significant.
+   * is_reliable is a flag for determining whether the estimate is reliable (as opposed to significant), based on cv.
    */
   is_reliable: DS.attr('boolean'),
 
@@ -134,13 +124,18 @@ export default DS.Model.extend({
   /* =============================================
   =                  PREVIOUS_                   =
   = previous refers to values from previous      =
-  = year(s) (e.g. y2000 for census and y2006-2010 for ACS)
+  = year(s)                                      =
   ============================================= */
 
   /**
    * previous_sum is the previous year estimate
    */
   previous_sum: DS.attr('number'),
+
+  /**
+   * See "codingThreshold"
+   */
+  previous_codingThreshold: DS.attr('string'),
 
   /**
    * previous_m is the previous year margin of error
@@ -162,6 +157,8 @@ export default DS.Model.extend({
    */
   previous_percent_m: DS.attr('number'),
 
+  /**
+   * see "is_reliable"
   /* =====  End of PREVIOUS_  ====== */
 
 
@@ -272,7 +269,6 @@ export default DS.Model.extend({
   = between the chosen area and the comparison   =
   = area (Flushing - Queens = difference)        =
   ============================================= */
-
   /**
    * See "sum"
    */
@@ -282,7 +278,6 @@ export default DS.Model.extend({
    * See "m"
    */
   difference_m: DS.attr('number'),
-  // "significant" belongs to "difference"
 
   /**
    * !!! WARNING !!!
@@ -346,27 +341,42 @@ export default DS.Model.extend({
    * all un-prefix selection-specific aggregate values.
    * @returns {Object} selection
    */
-  selection: computed('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds.sum', function() {
-    const {
-      sum,
-      m: moe,
-      cv,
-      percent,
-      percent_m,
-      is_reliable,
-      codingThresholds,
-    } = this.getProperties('sum', 'm', 'cv', 'percent', 'percent_m', 'is_reliable', 'codingThresholds');
+  selection: computed(
+    'sum',
+    'm',
+    'cv',
+    'percent',
+    'percent_m',
+    'is_reliable',
+    'codingThresholds.sum',
+    function() {
+      const {
+        sum,
+        m: moe,
+        cv,
+        percent,
+        percent_m,
+        is_reliable,
+        codingThreshold: direction,
+      } = this.getProperties(
+        'sum',
+        'm',
+        'cv',
+        'percent',
+        'percent_m',
+        'is_reliable',
+        'codingThreshold',
+      );
 
-    const { sum: direction } = codingThresholds;
-
-    return {
-      sum, moe, cv, percent, percent_m, is_reliable, direction,
-    };
-  }),
+      return {
+        sum, moe, cv, percent, percent_m, is_reliable, direction,
+      };
+    },
+  ),
 
   /**
-   * Comparison is a computed property for convenience of grouping
-   * all un-prefix comparison-specific aggregate values.
+   * Comparison is a computed property that nests all 'comparison'-prefixed
+   * properties, and aliases them to their unprefixed names
    * @returns {Object} comparison
    */
   comparison: computed(
@@ -376,7 +386,7 @@ export default DS.Model.extend({
     'comparison_percent',
     'comparison_percent_m',
     'comparison_is_reliable',
-    'codingThresholds.comparison_sum',
+    'codingThreshold',
     function() {
       const {
         comparison_sum: sum,
@@ -385,7 +395,7 @@ export default DS.Model.extend({
         comparison_percent: percent,
         comparison_percent_m: percent_m,
         comparison_is_reliable: is_reliable,
-        'codingThresholds.comparison_sum': direction,
+        codingThreshold: direction,
       } = this.getProperties(
         'comparison_sum',
         'comparison_m',
@@ -393,7 +403,45 @@ export default DS.Model.extend({
         'comparison_percent',
         'comparison_percent_m',
         'comparison_is_reliable',
-        'codingThresholds.comparison_sum',
+        'comparison_codingThreshold',
+      );
+
+      return {
+        sum, moe, cv, percent, percent_m, is_reliable, direction,
+      };
+    },
+  ),
+
+  /**
+   * Previous is a computed property that nests all 'previous'-prefixed
+   * properties, and aliases them to their unprefixed names
+   * @returns {Object} previous
+   */
+  previous: computed(
+    'previous_sum',
+    'previous_m',
+    'previous_cv',
+    'previous_percent',
+    'previous_percent_m',
+    'previous_is_reliable',
+    'previous_codingThreshold',
+    function() {
+      const {
+        previous_sum: sum,
+        previous_m: moe,
+        previous_cv: cv,
+        previous_percent: percent,
+        previous_percent_m: percent_m,
+        previous_is_reliable: is_reliable,
+        previous_codingThreshold: direction,
+      } = this.getProperties(
+        'previous_sum',
+        'previous_m',
+        'previous_cv',
+        'previous_percent',
+        'previous_percent_m',
+        'previous_is_reliable',
+        'previous_codingThreshold',
       );
 
       return {

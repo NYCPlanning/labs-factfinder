@@ -35,10 +35,10 @@
         (and (eq data.sum 0) (eq data.comparison_sum 0)))
       'insignificant'}}">
     {{unless
-      (or data.codingThresholds.sum data.codingThresholds.comparison_sum)
-        (format-number
-            data.difference_sum
-            precision=rowConfig.decimal)}}
+      (or data.codingThreshold data.comparison_codingThreshold)
+      (format-number
+          data.difference_sum
+          precision=rowConfig.decimal)}}
   </td>
   {{#if reliability}}
     <td class="
@@ -48,7 +48,7 @@
           (and (eq data.sum 0) (eq data.comparison_sum 0)))
         'insignificant'}}">
       {{unless
-        (or data.codingThresholds.sum data.codingThresholds.comparison_sum)
+        (or data.codingThreshold data.comparison_codingThreshold)
           (format-number
             data.difference_m
             precision=rowConfig.decimal)}}

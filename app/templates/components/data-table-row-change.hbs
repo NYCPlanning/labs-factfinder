@@ -11,7 +11,7 @@
 
   {{!-- OLD --}}
   {{data-table-column-group
-    model=data2.selection
+    model=data.previous
     rowConfig=rowConfig
     reliabilityMode=reliability}}
 
@@ -25,7 +25,7 @@
 
   {{!-- Estimate --}}
   <td class="cell-border-left change-estimate {{unless data.change_significant 'insignificant'}}">
-    {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+    {{unless (or data.codingThreshold data.previous_codingThreshold)
       (format-number
           data.change_sum
           precision=rowConfig.decimal)}}
@@ -34,7 +34,7 @@
   {{#if reliability}}
     {{!-- MOE --}}
     <td class="{{unless data.change_significant 'insignificant'}} change-estimate-moe">
-      {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+      {{unless (or data.codingThreshold data.previous_codingThreshold)
         (format-number
             data.change_m
             precision=rowConfig.decimal)}}
@@ -47,8 +47,8 @@
       (and
         (not data.rowConfig.hidePercentChange)
         (and
-          (not data.codingThresholds.sum)
-          (not data2.codingThresholds.sum)))
+          (not data.codingThreshold)
+          (not data.previous_codingThreshold)))
         (concat
           (format-number (mult data.change_percent 100) precision=1)
           '%')}}
@@ -62,8 +62,8 @@
           data.change_percent_m
           (not data.rowConfig.hidePercentChange)
           (and
-            (not data.codingThresholds.sum)
-            (not data2.codingThresholds.sum)))
+            (not data.codingThreshold)
+            (not data.previous_codingThreshold)))
           (concat
             (format-number (mult data.change_percent_m 100) precision=1)
               '%')}}
@@ -75,7 +75,7 @@
     {{#unless
         (or
           data.isSpecial
-          (and (eq data.sum 0) (eq data2.sum 0))
+          (and (eq data.sum 0) (eq data.previous_sum 0))
           (eq data.change_percentage_point null)
         )}}
       {{format-number
@@ -90,7 +90,7 @@
       {{#unless
           (or
             data.isSpecial
-            (and (eq data.sum 0) (eq data2.sum 0))
+            (and (eq data.sum 0) (eq data.previous_sum 0))
             (eq data.change_percentage_point null)
           )}}
         {{format-number

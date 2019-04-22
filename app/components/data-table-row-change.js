@@ -9,7 +9,6 @@ export default Component.extend({
   isSelected: false,
   rowConfig: {},
   data: {},
-  data2: {},
 
   // configuration
   tagName: 'tr',
@@ -35,8 +34,8 @@ export default Component.extend({
     return classes.join(' ');
   }),
 
-  noPriorData: computed('data2.selection.sum', function() {
-    const { 'data2.selection.sum': previousSum } = this.getProperties('data2.selection.sum');
+  noPriorData: computed('data.previous.sum', function() {
+    const { 'data.previous.sum': previousSum } = this.getProperties('data.previous.sum');
     return previousSum === null;
   }),
 

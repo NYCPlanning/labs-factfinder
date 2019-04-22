@@ -1,5 +1,4 @@
 import Controller, { inject as controller } from '@ember/controller';
-import { computed } from '@ember/object';
 
 import social from '../../table-config/social';
 
@@ -29,6 +28,13 @@ const {
 } = social;
 
 export default Controller.extend({
+  // arguments
+  model: {},
+
+  // properties
+  profile: controller('profile'),
+
+  // - row configs
   ancestry,
   computersAndInternetUse,
   disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
@@ -45,18 +51,11 @@ export default Controller.extend({
   veteranStatus,
   yearOfEntry,
 
+  // - chart configs
   educationalAttainmentChartConfig,
   foreignBornChartConfig,
   householdTypeChartConfig,
   placeOfBirthChartConfig,
   residence1YearAgoChartConfig,
   schoolEnrollmentChartConfig,
-
-  profile: controller('profile'),
-
-  currentData: computed('model', function() {
-    const model = this.get('model');
-    return model.y2013_2017;
-  }),
-
 });
