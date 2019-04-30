@@ -159,6 +159,9 @@ export default DS.Model.extend({
 
   /**
    * see "is_reliable"
+   */
+  previous_is_reliable: DS.attr('boolean'),
+
   /* =====  End of PREVIOUS_  ====== */
 
 
