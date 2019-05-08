@@ -66,7 +66,7 @@ export default DS.Model.extend({
    * Used in templates for display purposes.
    */
   isSpecial: computed('base', function() {
-    const base = this.getProperties('base');
+    const base = this.get('base');
     // base = mean, median, or rate indicates variable is special
     return ['mean', 'median', 'rate'].includes(base);
   }),
