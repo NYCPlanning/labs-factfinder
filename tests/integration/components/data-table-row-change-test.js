@@ -55,6 +55,7 @@ module('Integration | Component | data-table-row-change', function(hooks) {
         },
         "numGeoids": 8,
         "codingThreshold": null,
+        "previous_codingThreshold": null,
         "is_reliable": false,
         "comparison_is_reliable": true
       });

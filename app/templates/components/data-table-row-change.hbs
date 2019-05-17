@@ -45,13 +45,14 @@
   <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent">
     {{if
       (and
-        (not data.rowConfig.hidePercentChange)
-        (and
-          (not data.codingThreshold)
-          (not data.previous_codingThreshold)))
-        (concat
-          (format-number (mult data.change_percent 100) precision=1)
-          '%')}}
+        (not (eq data.change_percent null))
+        (and (not data.codingThreshold) (not data.previous_codingThreshold))
+      )
+      (concat
+        (format-number (mult data.change_percent 100) precision=1)
+        '%'
+      )
+    }}
   </td>
 
   {{#if reliability}}
@@ -59,14 +60,14 @@
     <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent-moe">
       {{if
         (and
-          data.change_percent_m
-          (not data.rowConfig.hidePercentChange)
-          (and
-            (not data.codingThreshold)
-            (not data.previous_codingThreshold)))
-          (concat
-            (format-number (mult data.change_percent_m 100) precision=1)
-              '%')}}
+          (not (eq data.change_percent_m null))
+          (and (not data.codingThreshold) (not data.previous_codingThreshold))
+        )
+        (concat
+          (format-number (mult data.change_percent_m 100) precision=1)
+          '%'
+        )
+      }}
     </td>
   {{/if}}
 
@@ -91,7 +92,7 @@
           (or
             data.isSpecial
             (and (eq data.sum 0) (eq data.previous_sum 0))
-            (eq data.change_percentage_point null)
+            (eq data.change_percentage_point_m null)
           )}}
         {{format-number
           (mult data.change_percentage_point_m 100)
