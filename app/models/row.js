@@ -89,7 +89,7 @@ export default DS.Model.extend({
    * or undefined if the value was not top- or bottom-coded
    * NOTE: only median values are subject to coding
    */
-  codingThresholds: DS.attr('string'),
+  codingThreshold: DS.attr('string'),
 
   /**
    * M is margin or error for the aggregate.
@@ -239,6 +239,11 @@ export default DS.Model.extend({
   comparison_sum: DS.attr('number'),
 
   /**
+   * See "codingThreshold"
+   */
+  comparison_codingThreshold: DS.attr('string'),
+
+  /**
    * comparison_m: margin of error of comparison area
    */
   comparison_m: DS.attr('number'),
@@ -351,7 +356,7 @@ export default DS.Model.extend({
     'percent',
     'percent_m',
     'is_reliable',
-    'codingThresholds.sum',
+    'codingThreshold',
     function() {
       const {
         sum,
@@ -389,7 +394,7 @@ export default DS.Model.extend({
     'comparison_percent',
     'comparison_percent_m',
     'comparison_is_reliable',
-    'codingThreshold',
+    'comparison_codingThreshold',
     function() {
       const {
         comparison_sum: sum,
@@ -398,7 +403,7 @@ export default DS.Model.extend({
         comparison_percent: percent,
         comparison_percent_m: percent_m,
         comparison_is_reliable: is_reliable,
-        codingThreshold: direction,
+        comparison_codingThreshold: direction,
       } = this.getProperties(
         'comparison_sum',
         'comparison_m',

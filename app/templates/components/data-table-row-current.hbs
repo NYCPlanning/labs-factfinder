@@ -34,8 +34,7 @@
         (not data.significant)
         (and (eq data.sum 0) (eq data.comparison_sum 0)))
       'insignificant'}}">
-    {{unless
-      (or data.codingThreshold data.comparison_codingThreshold)
+    {{unless (eq data.difference_sum null)
       (format-number
           data.difference_sum
           precision=rowConfig.decimal)}}
@@ -47,8 +46,7 @@
           (not data.significant)
           (and (eq data.sum 0) (eq data.comparison_sum 0)))
         'insignificant'}}">
-      {{unless
-        (or data.codingThreshold data.comparison_codingThreshold)
+      {{unless (eq data.difference_m null)
           (format-number
             data.difference_m
             precision=rowConfig.decimal)}}
@@ -57,22 +55,15 @@
 
     <td
       class="{{unless data.percent_significant 'insignificant'}} difference-percent">
-      {{#unless (or
-          data.shouldHideDeltaPercent
-          (and (eq data.percent null) (eq data.comparison_percent null))
-        )}}
-          {{format-number
-          data.difference_percent
-          precision=1}}
-      {{/unless}}
+      {{unless (eq data.difference_percent null)
+          (format-number
+            data.difference_percent
+            precision=1)}}
     </td>
     {{#if reliability}}
       <td
         class="{{unless data.percent_significant 'insignificant'}} difference-percent-m">
-        {{unless (or
-            data.shouldHideDeltaPercent
-            (and (eq data.percent null) (eq data.comparison_percent null))
-          )
+        {{unless (eq data.difference_percent_m null)
           (format-number
             data.difference_percent_m
             precision=1)}}
