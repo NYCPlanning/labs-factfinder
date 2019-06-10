@@ -1,39 +1,46 @@
 <ul class="menu align-center menu--selector">
   <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'blocks'}}><span class="show-for-medium">Census </span>Block</a>
-    {{tooltip-on-element delay=500 text='Create selection area using census blocks'}}
+    <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
+      <span class="show-for-medium">Census </span>
+      Block
+    </a>
+    {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}} explode-tract">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'tracts'}}><span class="show-for-medium">Census </span>Tract</a>
-    {{tooltip-on-element delay=500 text='Create selection area using census tracts'}}
+    <a href="#" data-test-toggle-tracts {{action 'handleSummaryLevelToggle' 'tracts'}}>
+      <span class="show-for-medium">Census </span>
+      Tract
+    </a>
+    {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}} explode-nta">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
-    {{tooltip-on-element delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
+    <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
+    {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
   </li>
   <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}} explode-puma">
-    <a href="#" {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
-    {{tooltip-on-element delay=500 text='Create selection area using Public Use Microdata Areas'}}
+    <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
+    {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
   </li>
 </ul>
 <div class="map-container">
-  {{#jane-maps
+  {{#labs-map
     id='map'
     sources=sources
-    initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                      zoom=zoom
+    initOptions=(hash zoom=zoom
                       center=center
                       hash=true)
     mapLoaded=(action 'handleMapLoad')
     as |map|}}
 
-    {{#map.source sourceId='bk-qn-mh-boundary' options=bkQnMhBoundarySource as |source|}}
-      {{map.layer layer=bkQnMhBoundaryLayer}}
-    {{/map.source}}
-
-    {{map.source sourceId='choropleths' options=choroplethsSource}}
-
-    {{map.layer layer=subduedNtaLabels}}
+    {{#map.labs-layers
+      onLayerClick=(action 'handleClick')
+      layerGroups=model.layerGroups as |layers|}}
+      {{#layers.tooltip as |tooltip|}}
+        {{tooltip-renderer
+          feature=tooltip.feature
+          template=tooltip.layer.tooltipTemplate}}
+      {{/layers.tooltip}}
+    {{/map.labs-layers}}
 
     {{#if selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
@@ -47,27 +54,13 @@
       {{/map.source}}
     {{/if}}
 
-    {{map.layer-group config=layerGroups.subway visible=false}}
+    {{map.layer-group
+      config=layerGroups.choropleths
+      visible=false}}
 
-    {{map.layer-group config=layerGroups.communityDistricts visible=false}}
-
-    {{map.layer-group config=layerGroups.nyccouncildistricts visible=false}}
-
-    {{map.layer-group config=layerGroups.neighborhoodTabulationAreas visible=false}}
-
-    {{map.layer-group config=layerGroups.boroughs visible=false}}
-
-    {{map.layer-group config=layerGroups.nycPumas visible=false}}
-
-    {{map.layer-group config=layerGroups.censusBlocks visible=(eq selection.summaryLevel 'blocks')}}
-
-    {{map.layer-group config=layerGroups.censusTracts visible=(or (eq selection.summaryLevel 'tracts') (eq selection.summaryLevel 'blocks'))}}
-
-    {{map.layer-group config=layerGroups.neighborhoodTabulationAreasSelection visible=(eq selection.summaryLevel 'ntas')}}
-
-    {{map.layer-group config=layerGroups.nycPumasSelection visible=(eq selection.summaryLevel 'pumas')}}
-
-    {{map.layer-group config=layerGroups.choropleths visible=false}}
+    {{map.source
+      sourceId='choropleths'
+      options=choroplethsSource}}
 
     {{#if selection.current}}
       {{#map.source
@@ -103,15 +96,28 @@
             type='line'
             layout=(hash line-cap='butt')
             paint=(hash
-              line-color='rgba(255, 0, 185, 0.5)'
+              line-color='rgba(255, 0, 185, 0.75)'
               line-width=(hash
-                stops=(array (array 11 3) (array 12 6))
+                stops=(array (array 11 2) (array 13 4))
               )
-              line-dasharray=(array 1 0.5)
+              line-dasharray=(array 0.75 2)
             )
           )
-          before='place_village'}}
-
+          before='place_village'
+        }}
+        {{source.layer
+          layer=(hash
+            type='line'
+            layout=(hash line-cap='butt')
+            paint=(hash
+              line-color='rgba(255, 0, 185, 0.05)'
+              line-width=(hash
+                stops=(array (array 11 4) (array 13 8))
+              )
+            )
+          )
+          before='place_village'
+        }}
       {{/map.source}}
     {{/if}}
 
@@ -143,13 +149,18 @@
 
     {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
     {{map.on 'draw.create' (action 'handleDrawCreate')}}
-    {{map.on 'click' (action 'handleClick')}}
-    {{map.on 'mousemove' (action 'handleMousemove')}}
+    {{!-- {{map.on 'click' (action 'handleClick')}} --}}
+    {{!-- {{map.on 'mousemove' (action 'handleMousemove')}} --}}
 
-  {{/jane-maps}}
+  {{/labs-map}}
 </div>
 
-{{#map-utility-box lastreport=lastreport mode=mode drawMode=drawMode handleDrawButtonClick=(action "handleDrawButtonClick")}}
+{{#map-utility-box
+  lastreport=lastreport
+  mode=mode
+  drawMode=drawMode
+  handleDrawButtonClick=(action "handleDrawButtonClick")
+}}
   {{drop-zone
     url='#'
     addedfile=(action 'addedfile')
@@ -158,6 +169,7 @@
     createImageThumbnails=false
     acceptedFiles='application/zip'
     addRemoveLinks=true
+    autoProcessQueue=false
   }}
 {{/map-utility-box}}
 

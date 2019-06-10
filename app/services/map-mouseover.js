@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 
 const { get } = Ember;
 const { service } = Ember.inject;
@@ -15,8 +15,9 @@ export default Ember.Service.extend({
   tooltipTemplate: '',
   highlightedLayer: null,
 
-  @computed('currentEvent')
-  mousePosition(event) {
+  mousePosition: computed('currentEvent', function() {
+    const event = this.get('currentEvent');
+
     if (event) {
       const { point: { x, y } } = event;
 
@@ -27,15 +28,19 @@ export default Ember.Service.extend({
     }
 
     return null;
-  },
+  }),
 
-  @computed('mousePosition.x', 'mousePosition.y')
-  hasMousePosition(x, y) {
+  hasMousePosition: computed('mousePosition.x', 'mousePosition.y', function() {
+    const x = this.get('mousePosition.x');
+    const y = this.get('mousePosition.y');
+
     return !!(x && y);
-  },
+  }),
 
-  @computed('registeredLayers.visibleLayerIds.@each', 'currentEvent', 'mousePosition')
-  hoveredFeature(layers, currentEvent) {
+  hoveredFeature: computed('registeredLayers.visibleLayerIds.@each', 'currentEvent', 'mousePosition', function() {
+    const layers = this.get('registeredLayers.visibleLayerIds.@each');
+    const currentEvent = this.get('currentEvent');
+
     if (currentEvent) {
       const map = currentEvent.target;
 
@@ -47,15 +52,17 @@ export default Ember.Service.extend({
         .objectAt(0) || {};
     }
     return {};
-  },
+  }),
 
-  @computed('hoveredFeature')
-  tooltipText(feature) {
+  tooltipText: computed('hoveredFeature', function() {
+    const feature = this.get('hoveredFeature');
+
     return get(feature, 'properties.bbl');
-  },
+  }),
 
-  @computed('highlightedFeature')
-  highlightedFeatureSource(features) {
+  highlightedFeatureSource: computed('highlightedFeature', function() {
+    const features = this.get('highlightedFeature');
+
     return {
       type: 'geojson',
       data: {
@@ -63,7 +70,7 @@ export default Ember.Service.extend({
         features,
       },
     };
-  },
+  }),
 
   highlighter(e) {
     const map = e.target;
@@ -82,7 +89,7 @@ export default Ember.Service.extend({
       const thisFeature = features[0];
 
       const prevFeature = this.get('highlightedFeature')[0];
-      if (!prevFeature || thisFeature.id !== prevFeature.id) {
+      if (!prevFeature || thisFeature.properties.geoid !== prevFeature.properties.geoid) {
         this.set('highlightedFeature', [thisFeature]);
         // move the layer
         const layerId = thisFeature.layer.id;

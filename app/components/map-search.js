@@ -1,16 +1,14 @@
 import Component from '@ember/component';
 import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
+import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import fetch from 'fetch';
 import bbox from '@turf/bbox';
 import getBuffer from '@turf/buffer';
 import Environment from '../config/environment';
-import trackEvent from '../utils/track-event'; // eslint-disable-line
 
 const { SupportServiceHost } = Environment;
-
 const DEBOUNCE_MS = 100;
 
 export default Component.extend({
@@ -19,13 +17,15 @@ export default Component.extend({
   transitionTo: null,
   selected: 0,
   selection: service(),
+  metrics: service('metrics'),
   focused: false,
 
-  @computed('searchTerms')
-  results(searchTerms) {
+  results: computed('searchTerms', function() {
+    const searchTerms = this.get('searchTerms');
+
     const rawResults = this.get('debouncedResults').perform(searchTerms);
     return rawResults;
-  },
+  }),
 
   debouncedResults: task(function* (searchTerms) {
     if (searchTerms.length < 3) this.cancel();
@@ -63,11 +63,12 @@ export default Component.extend({
       });
   }).keepLatest(),
 
-  @computed('results.value')
-  resultsCount(results) {
+  resultsCount: computed('results.value', function() {
+    const results = this.get('results').value;
+
     if (results) return results.length;
     return 0;
-  },
+  }),
 
   keyPress(event) {
     const selected = this.get('selected');
@@ -129,8 +130,12 @@ export default Component.extend({
       selection.set('searchResultFeature', null);
     },
 
-    @trackEvent('Map Search', 'Clicked result', 'searchTerms')
     goTo(result) {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Map Search',
+        eventAction: 'Downloaded CSV',
+        eventValue: this.get('searchTerms'),
+      });
       this.$('.map-search-input').blur();
 
       this.setProperties({
@@ -188,13 +193,21 @@ export default Component.extend({
       }
     },
 
-    @trackEvent('Search', 'Focused In', 'searchTerms')
     handleFocusIn() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Search',
+        eventAction: 'Focused In',
+        eventValue: this.get('searchTerms'),
+      });
       this.set('focused', true);
     },
 
-    @trackEvent('Search', 'Focused Out', 'searchTerms')
     handleFocusOut() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Search',
+        eventAction: 'Focused Out',
+        eventValue: this.get('searchTerms'),
+      });
       this.set('focused', false);
     },
   },

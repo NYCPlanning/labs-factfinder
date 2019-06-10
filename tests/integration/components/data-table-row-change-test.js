@@ -17,10 +17,9 @@ module('Integration | Component | data-table-row-change', function(hooks) {
         "base": "HH2",
         "variablename": "HHI10t14",
         "category": "incomeAndBenefits",
-        "dataset": "y2012_2016",
+        "dataset": "y2013_2017",
         "profile": "economic",
         "variable": "hhi10t14",
-        "is_most_recent": true,
         "sum": 261,
         "m": 133.86933928275,
         "cv": 31.1798994474723,
@@ -54,17 +53,16 @@ module('Integration | Component | data-table-row-change', function(hooks) {
             "title": "$10,000 to $14,999",
             "variable": "hhi10t14"
         },
-        "special": false,
         "numGeoids": 8,
-        "codingThresholds": {},
+        "codingThreshold": null,
+        "previous_codingThreshold": null,
         "is_reliable": false,
         "comparison_is_reliable": true
       });
 
       this.set('data', model);
-      this.set('data2', model);
 
-      await render(hbs`{{data-table-row-change data=data data2=data}}`);
+      await render(hbs`{{data-table-row-change data=model}}`);
       assert.equal(this.element.querySelector('td.change-percent').textContent.trim(), '0.0%');
     });
   });

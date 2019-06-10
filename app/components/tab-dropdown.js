@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   isOpen: false,
@@ -43,6 +43,7 @@ export default Component.extend({
     { anchor: '#year-of-entry', title: 'Year Of Entry' },
     { anchor: '#language-spoken-at-home', title: 'Language Spoken At Home' },
     { anchor: '#ancestry', title: 'Ancestry' },
+    { anchor: '#computers-and-internet-use', title: 'Computers and Internet Use' },
   ],
 
   economicItems: [
@@ -74,8 +75,7 @@ export default Component.extend({
     { anchor: '#gross-rent-as-a-percentage-of-household-income', title: 'Gross Rent as a Percentage of Household Income (GRAPI)' },
   ],
 
-  @computed('dropdown')
-  dropdownItems() {
+  dropdownItems: computed('dropdown', function() {
     const censusItems = this.get('censusItems');
     const demographicItems = this.get('demographicItems');
     const socialItems = this.get('socialItems');
@@ -101,7 +101,7 @@ export default Component.extend({
     }
 
     return null;
-  },
+  }),
 
   actions: {
     closeTabDropdown() {

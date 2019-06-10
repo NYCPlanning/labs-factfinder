@@ -51,13 +51,58 @@ module.exports = function(environment) {
         Date: false,
       },
     },
-    'mapbox-gl': {
-      accessToken: 'pk.eyJ1IjoiY3dob25nbnljIiwiYSI6ImNpczF1MXdrdjA4MXcycXA4ZGtyN2x5YXIifQ.3HGyME8tBs6BnljzUVIt4Q',
-    },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    'ember-mapbox-composer': {
+      host: 'https://layers-api-staging.planninglabs.nyc',
+      namespace: 'v1',
+    },
+
+    'mapbox-gl': {
+      accessToken: '',
+      map: {
+        style: 'https://layers-api-staging.planninglabs.nyc/v1/base/style.json',
+      },
+    },
+
+    fontawesome: {
+      icons: {
+        'free-solid-svg-icons': [
+          'arrow-left',
+          'arrow-right',
+          'arrow-up',
+          'caret-down',
+          'download',
+          'edit',
+          'exclamation-triangle',
+          'external-link-alt',
+          'file',
+          'info-circle',
+          'map',
+          'map-pin',
+          'pen',
+          'plus',
+          'question-circle',
+          'search',
+          'sliders-h',
+          'square',
+          'times',
+        ],
+        'free-regular-svg-icons': [
+          'check-square',
+          'circle',
+          'copy',
+          'dot-circle',
+          'envelope',
+          'hand-pointer',
+          'object-group',
+          'square',
+        ],
+      },
     },
 
     metricsAdapters: [
@@ -67,9 +112,9 @@ module.exports = function(environment) {
         config: {
           id: 'UA-84250233-10',
           // Use `analytics_debug.js` in development
-          debug: environment === 'dev-debug-ga',
+          debug: environment === 'development-ga',
           // Use verbose tracing of GA events
-          trace: false,
+          trace: environment === 'development-ga',
           // Ensure development env hits aren't sent to GA
           sendHitTask: environment !== 'development',
         },
@@ -83,7 +128,7 @@ module.exports = function(environment) {
 
     SAMPLE_SELECTION,
 
-    SupportServiceHost: 'https://factfinder-api.planninglabs.nyc',
+    SupportServiceHost: 'https://factfinder-api-staging.planninglabs.nyc',
   };
 
   ENV.DEFAULT_SELECTION = {
@@ -94,18 +139,19 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
   }
-  
+
   if (environment === 'staging') {
-    ENV.host = 'https://factfinder-api-staging.planninglabs.nyc';
+    ENV.SupportServiceHost = 'https://factfinder-api-staging.planninglabs.nyc';
   }
 
   if (environment === 'devlocal') {
-    ENV.SupportServiceHost = 'http://localhost:4000';
+    ENV.SupportServiceHost = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
+    ENV.SupportServiceHost = 'https://factfinder-api-staging.planninglabs.nyc';
 
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
 

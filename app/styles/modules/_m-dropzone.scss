@@ -24,8 +24,8 @@
     &::after {
       @include button(
         $expand:false,
-        $background:$light-gray,
-        $background-hover:$light-gray,
+        $background: $white-smoke,
+        $background-hover: $silver,
         $color:$primary-color,
         $style:solid
       );
@@ -53,19 +53,20 @@
       position: relative;
       font-size: rem-calc(12);
       color: $black;
-      line-height: 1;
+      line-height: 1.5;
       padding: 0;
       margin: 0 0 0.5rem;
 
       .dz-size {
-        margin-bottom: 0.5em;
-        font-size: rem-calc(16);
+        display: none;
+        // margin-bottom: 0.5em;
+        // font-size: rem-calc(16);
 
-        span {
-          background-color: transparent;
-          padding: 0;
-          border-radius: 0;
-        }
+        // span {
+        //   background-color: transparent;
+        //   padding: 0;
+        //   border-radius: 0;
+        // }
       }
 
       .dz-filename {
@@ -73,20 +74,26 @@
           background-color: transparent;
           padding: 0;
           border-radius: 0;
+          outline: 0;
+          border: 0 !important;
         }
       }
+    }
+
+    .dz-progress {
+      display: none;
     }
 
     .dz-remove {
       @include button(
         $expand:false,
-        $background:$light-gray,
-        $background-hover:$light-gray,
+        $background:$white-smoke,
+        $background-hover:$silver,
         $color:$primary-color,
         $style:solid
       );
       font-size: rem-calc(12);
-      text-decoration: none;
+      text-decoration: none !important;
       margin: 0;
     }
   }

@@ -1,9 +1,12 @@
 {{#unless rowConfig.divider}}
   <td class='title-column' {{action 'showData'}}>
-    {{rowConfig.title}}
-    {{#if rowConfig.tooltip}}
-      {{info-tooltip tip=rowConfig.tooltip}}
-    {{/if}}
+    <span>
+      {{rowConfig.title}}
+      {{#if rowConfig.tooltip}}
+        {{fa-icon 'question-circle' transform='shrink-2'}}
+        {{ember-tooltip text=rowConfig.tooltip side='right'}}
+      {{/if}}
+    </span>
   </td>
 
   {{!-- SELECTED AREA --}}
@@ -31,11 +34,10 @@
         (not data.significant)
         (and (eq data.sum 0) (eq data.comparison_sum 0)))
       'insignificant'}}">
-    {{unless
-      (or data.codingThresholds.sum data.codingThresholds.comparison_sum)
-        (format-number
-            data.difference_sum
-            precision=rowConfig.decimal)}}
+    {{unless (eq data.difference_sum null)
+      (format-number
+          data.difference_sum
+          precision=rowConfig.decimal)}}
   </td>
   {{#if reliability}}
     <td class="
@@ -44,8 +46,7 @@
           (not data.significant)
           (and (eq data.sum 0) (eq data.comparison_sum 0)))
         'insignificant'}}">
-      {{unless
-        (or data.codingThresholds.sum data.codingThresholds.comparison_sum)
+      {{unless (eq data.difference_m null)
           (format-number
             data.difference_m
             precision=rowConfig.decimal)}}
@@ -54,22 +55,15 @@
 
     <td
       class="{{unless data.percent_significant 'insignificant'}} difference-percent">
-      {{#unless (or
-          data.shouldHideDeltaPercent
-          (and (eq data.percent null) (eq data.comparison_percent null))
-        )}}
-          {{format-number
-          data.difference_percent
-          precision=1}}
-      {{/unless}}
+      {{unless (eq data.difference_percent null)
+          (format-number
+            data.difference_percent
+            precision=1)}}
     </td>
     {{#if reliability}}
       <td
         class="{{unless data.percent_significant 'insignificant'}} difference-percent-m">
-        {{unless (or
-            data.shouldHideDeltaPercent
-            (and (eq data.percent null) (eq data.comparison_percent null))
-          )
+        {{unless (eq data.difference_percent_m null)
           (format-number
             data.difference_percent_m
             precision=1)}}

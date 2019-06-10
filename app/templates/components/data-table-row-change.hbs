@@ -1,14 +1,17 @@
 {{#unless (or rowConfig.divider noPriorData)}}
   <td class='title-column' {{action 'showData'}}>
-    {{rowConfig.title}}
-    {{#if rowConfig.tooltip}}
-      {{info-tooltip tip=rowConfig.tooltip}}
-    {{/if}}
+    <span>
+      {{rowConfig.title}}
+      {{#if rowConfig.tooltip}}
+        {{fa-icon 'question-circle' transform='shrink-2'}}
+        {{ember-tooltip text=rowConfig.tooltip side='right'}}
+      {{/if}}
+    </span>
   </td>
 
   {{!-- OLD --}}
   {{data-table-column-group
-    model=data2.selection
+    model=data.previous
     rowConfig=rowConfig
     reliabilityMode=reliability}}
 
@@ -22,7 +25,7 @@
 
   {{!-- Estimate --}}
   <td class="cell-border-left change-estimate {{unless data.change_significant 'insignificant'}}">
-    {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+    {{unless (eq data.change_sum null)
       (format-number
           data.change_sum
           precision=rowConfig.decimal)}}
@@ -31,7 +34,7 @@
   {{#if reliability}}
     {{!-- MOE --}}
     <td class="{{unless data.change_significant 'insignificant'}} change-estimate-moe">
-      {{unless (or data.codingThresholds.sum data2.codingThresholds.sum)
+      {{unless (eq data.change_m null)
         (format-number
             data.change_m
             precision=rowConfig.decimal)}}
@@ -40,30 +43,23 @@
 
   {{!-- percent --}}
   <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent">
-    {{if
-      (and
-        (not data.rowConfig.hidePercentChange)
-        (and
-          (not data.codingThresholds.sum)
-          (not data2.codingThresholds.sum)))
-        (concat
-          (format-number (mult data.change_percent 100) precision=1)
-          '%')}}
+    {{unless (eq data.change_percent null)
+      (concat
+        (format-number (mult data.change_percent 100) precision=1)
+        '%'
+      )
+    }}
   </td>
 
   {{#if reliability}}
     {{!-- Percent M --}}
     <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent-moe">
-      {{if
-        (and
-          data.change_percent_m
-          (not data.rowConfig.hidePercentChange)
-          (and
-            (not data.codingThresholds.sum)
-            (not data2.codingThresholds.sum)))
-          (concat
-            (format-number (mult data.change_percent_m 100) precision=1)
-              '%')}}
+      {{unless (eq data.change_percent_m null)
+        (concat
+          (format-number (mult data.change_percent_m 100) precision=1)
+          '%'
+        )
+      }}
     </td>
   {{/if}}
 
@@ -72,7 +68,6 @@
     {{#unless
         (or
           data.isSpecial
-          (and (eq data.sum 0) (eq data2.sum 0))
           (eq data.change_percentage_point null)
         )}}
       {{format-number
@@ -87,8 +82,7 @@
       {{#unless
           (or
             data.isSpecial
-            (and (eq data.sum 0) (eq data2.sum 0))
-            (eq data.change_percentage_point null)
+            (eq data.change_percentage_point_m null)
           )}}
         {{format-number
           (mult data.change_percentage_point_m 100)
@@ -100,10 +94,13 @@
   {{#if noPriorData}}
     {{!-- if 2006-2010 sum is null, just return empty cells --}}
     <td class='title-column' {{action 'showData'}}>
-      {{rowConfig.title}}
-      {{#if rowConfig.tooltip}}
-        {{info-tooltip tip=rowConfig.tooltip}}
-      {{/if}}
+      <span>
+        {{rowConfig.title}}
+        {{#if rowConfig.tooltip}}
+          {{fa-icon 'question-circle' transform='shrink-2'}}
+          {{ember-tooltip text=rowConfig.tooltip side='right'}}
+        {{/if}}
+      </span>
     </td>
     <td class="cell-border-left" class="no-compare-message">
       <div>Data for this row are not comparable or are unavailable</div>

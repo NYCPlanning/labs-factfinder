@@ -3,16 +3,16 @@
     <tr>
       <th rowspan="{{if reliability "3" "2"}}">
         {{#unless decennial}}
-          <div class="profile-checkbox-controls">
-            <a {{action (mut reliability) (not reliability)}}>
+          <a {{action (mut reliability) (not reliability)}}>
+            <span class="dcp-orange">
               {{#if reliability}}
-                <span class="dcp-orange">{{fa-icon 'check-square-o' class="fa-fw"}}</span>
+                {{fa-icon 'check-square' prefix='far' fixedWidth=true}}
               {{else}}
-                <span class="dcp-orange">{{fa-icon 'square-o' class="fa-fw"}}</span>
+                {{fa-icon 'square' prefix='far' fixedWidth=true}}
               {{/if}}
-              Show Reliability Data
-            </a>
-          </div>
+            </span>
+            Show Reliability Data
+          </a>
         {{/unless}}
       </th>
       <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">
@@ -36,21 +36,93 @@
     </tr>
       <tr>
         <th class="text-right cell-border-bottom">Estimate</th>
-        <th class="text-right cell-border-bottom">MOE {{info-tooltip tip='Margin of error'}}</th>
-        <th class="text-right cell-border-bottom">CV {{info-tooltip tip='Coefficient of variation'}}</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            MOE
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Margin of error'
+              side='left'
+            }}
+          </span>
+        </th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            CV
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Coefficient of variation'
+              side='left'
+            }}
+          </span>
+        </th>
         <th class="text-right cell-border-bottom">Estimate</th>
-        <th class="text-right cell-border-bottom">MOE {{info-tooltip tip='Margin of error'}}</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            MOE
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Margin of error'
+              side='left'
+            }}
+          </span>
+        </th>
 
         <th class="text-right cell-border-bottom">Estimate</th>
-        <th class="text-right cell-border-bottom">MOE {{info-tooltip tip='Margin of error'}}</th>
-        <th class="text-right cell-border-bottom">CV {{info-tooltip tip='Coefficient of variation'}}</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            MOE
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Margin of error'
+              side='left'
+            }}
+          </span>
+        </th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            CV
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Coefficient of variation'
+              side='left'
+            }}
+          </span>
+        </th>
         <th class="text-right cell-border-bottom">Estimate</th>
-        <th class="text-right cell-border-bottom">MOE {{info-tooltip tip='Margin of error'}}</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            MOE
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Margin of error'
+              side='left'
+            }}
+          </span>
+        </th>
 
         <th class="text-right cell-border-bottom">Estimate</th>
-        <th class="text-right cell-border-bottom">MOE {{info-tooltip tip='Margin of error'}}</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            MOE
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Margin of error'
+              side='left'
+            }}
+          </span>
+        </th>
         <th class="text-right cell-border-bottom">Estimate</th>
-        <th class="text-right cell-border-bottom">MOE {{info-tooltip tip='Margin of error'}}</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            MOE
+            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Margin of error'
+              side='left'
+            }}
+          </span>
+        </th>
       </tr>
     {{else}}
       <tr>

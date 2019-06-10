@@ -1,10 +1,8 @@
-import Service from '@ember/service';
+import Service, { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
-
-import { computed } from 'ember-decorators/object'; // eslint-disable-line
-
 import summaryLevelQueries from '../queries/summary-levels';
 import config from '../config/environment';
 
@@ -30,15 +28,17 @@ export default Service.extend({
   comparator: '0',
   reliability: false,
 
+  store: service(),
+
   currentMapInstance: null,
 
-  @computed('current')
-  selectedCount(currentSelected) {
+  selectedCount: computed('current', function() {
+    const currentSelected = this.get('current');
     return currentSelected.features.length;
-  },
+  }),
 
-  @computed('current')
-  sortedLabels(currentSelected) {
+  sortedLabels: computed('current', function() {
+    const currentSelected = this.get('current');
     const { features } = currentSelected;
 
     const bronx = features.filter(d => d.properties.borocode === '2');
@@ -69,7 +69,7 @@ export default Service.extend({
         features: statenisland,
       },
     ];
-  },
+  }),
 
   pointLayer,
   currentAddress: null,
@@ -77,8 +77,8 @@ export default Service.extend({
   searchResultFeature: null,
   searchResultLayer,
 
-  @computed('currentAddress')
-  addressSource(currentAddress) {
+  addressSource: computed('currentAddress', function() {
+    const currentAddress = this.get('currentAddress');
     return {
       type: 'geojson',
       data: {
@@ -86,20 +86,42 @@ export default Service.extend({
         coordinates: currentAddress,
       },
     };
-  },
+  }),
 
-  @computed('searchResultFeature')
-  searchResultSource(feature) {
+  searchResultSource: computed('searchResultFeature', function() {
+    const feature = this.get('searchResultFeature');
     return {
       type: 'geojson',
       data: feature,
     };
-  },
+  }),
 
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
+
     this.set('summaryLevel', toLevel);
+
+    const layerGroupIdMap = (level) => {
+      switch (level) {
+        case 'tracts':
+          return 'factfinder--census-tracts';
+        case 'blocks':
+          return 'factfinder--census-blocks';
+        case 'ntas':
+          return 'factfinder--ntas';
+        case 'pumas':
+          return 'factfinder--pumas';
+        default:
+          return null;
+      }
+    };
+
+    const fromLayerGroup = this.get('store').peekRecord('layer-group', layerGroupIdMap(fromLevel));
+    const toLayerGroup = this.get('store').peekRecord('layer-group', layerGroupIdMap(toLevel));
+
+    fromLayerGroup.set('visible', false);
+    toLayerGroup.set('visible', true);
 
     // remove mapbox neighborhood labels if current Level is NTAs
     const map = this.get('currentMapInstance');
@@ -111,44 +133,49 @@ export default Service.extend({
       }
     }
 
+
     if (this.get('selectedCount')) {
-      // sigh...
+      // these transitions are all calculated using spatial queries
       if (
-        (toLevel === 'pumas' && fromLevel === 'ntas')
-        || (toLevel === 'pumas' && fromLevel === 'tracts')
-        || (toLevel === 'ntas' && fromLevel === 'pumas')
-        || (toLevel === 'blocks' && fromLevel === 'ntas')
-        || (toLevel === 'blocks' && fromLevel === 'pumas')
-        || (toLevel === 'tracts' && fromLevel === 'pumas')
-        || (toLevel === 'ntas' && fromLevel === 'blocks')
-        || (toLevel === 'pumas' && fromLevel === 'blocks')
+        (fromLevel === 'blocks' && toLevel === 'ntas')
+        || (fromLevel === 'blocks' && toLevel === 'pumas')
+        || (fromLevel === 'tracts' && toLevel === 'pumas')
+        || (fromLevel === 'ntas' && toLevel === 'blocks')
+        || (fromLevel === 'ntas' && toLevel === 'tracts')
+        || (fromLevel === 'ntas' && toLevel === 'pumas')
+        || (fromLevel === 'pumas' && toLevel === 'blocks')
+        || (fromLevel === 'pumas' && toLevel === 'tracts')
+        || (fromLevel === 'pumas' && toLevel === 'ntas')
       ) {
         this.explodeGeo(fromLevel, toLevel);
         return;
       }
 
+      // all other transitions are done using attributes (tract can be inferred from block attributes, etc..)
       this.explode(fromLevel, toLevel);
     } else {
       this.clearSelection();
     }
   },
 
-  // target table is the TO and filter ID is the FROM;
+  // transition between geometry levels using attributes
   explode(fromLevel, toLevel) {
-    const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
-    const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
+    if (fromLevel !== toLevel) {
+      const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
+      const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
 
-    const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
-    const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
+      const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
+      const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
 
-
-    carto.SQL(sqlQuery, 'geojson')
-      .then((json) => {
-        this.clearSelection();
-        this.set('current', json);
-      });
+      carto.SQL(sqlQuery, 'geojson')
+        .then((json) => {
+          this.clearSelection();
+          this.set('current', json);
+        });
+    }
   },
 
+  // transition between geometry levels using spatial queries
   explodeGeo(fromLevel, toLevel) {
     const crossWalkFromTable = SUM_LEVEL_DICT[fromLevel].sql;
     const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
@@ -167,7 +194,7 @@ export default Service.extend({
       toGeom = 'a.the_geom';
     }
 
-    if (fromLevel === 'ntas' && toLevel === 'blocks') {
+    if (fromLevel === 'ntas' && ((toLevel === 'blocks') || (toLevel === 'tracts'))) {
       fromGeom = 'f.the_geom';
     }
 

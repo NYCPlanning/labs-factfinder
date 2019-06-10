@@ -1,5 +1,4 @@
 import Controller, { inject as controller } from '@ember/controller';
-import { computed } from 'ember-decorators/object';
 
 import housing from '../../table-config/housing';
 
@@ -26,6 +25,13 @@ const {
 } = housing;
 
 export default Controller.extend({
+  // arguments
+  model: {},
+
+  // properties
+  profile: controller('profile'),
+
+  // - row configs
   grossRent,
   grossRentAsAPercentageOfHouseholdIncomeGrapi,
   housingOccupancy,
@@ -40,18 +46,10 @@ export default Controller.extend({
   yearHouseholderMovedIntoUnit,
   yearStructureBuilt,
 
+  // - chart configs
   grossRentGrapiChartConfig,
   grossRentChartConfig,
   housingTenureChartConfig,
   valueChartConfig,
   vehiclesAvailableChartConfig,
-
-  profile: controller('profile'),
-
-  @computed('model')
-  currentData(model) {
-    return model.y2012_2016;
-  },
-
-
 });

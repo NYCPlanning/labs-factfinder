@@ -1,30 +1,24 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 
 export default Component.extend({
+  media: service('media'),
+  /* arguments */
   mode: 'current',
   reliability: false,
   comparison: true,
+  config: {},
+  model: {},
+  /* end arguments */
 
-  year1: 'y2012_2016',
-  year2: 'y2006_2010',
   category: '',
 
-  @computed('year1')
-  t1(year1) {
-    return this.get(`model.${year1}`);
-  },
+  stickyTop: computed('media.isLarge', function() {
+    const { 'media.isLarge': isLarge } = this.getProperties('media.isLarge');
 
-  @computed('year2')
-  t2(year2) {
-    return this.get(`model.${year2}`);
-  },
-
-  @computed('media.isLarge')
-  stickyTop(isLarge) {
     return isLarge ? 175 : 0;
-  },
+  }),
 
   classNames: 'data-table',
 
@@ -72,8 +66,10 @@ export default Component.extend({
     });
 
     this.get('windowResize').on('didResize', () => {
-      const tableWidth = this.$().find('.table-scroll').width();
-      this.$().find('.sticky-element--sticky').width(tableWidth);
+      if (!this.get('isDestroyed') || !this.get('isDestroying')) {
+        const tableWidth = this.$().find('.table-scroll').width();
+        this.$().find('.sticky-element--sticky').width(tableWidth);
+      }
     });
   },
 

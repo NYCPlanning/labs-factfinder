@@ -76,7 +76,6 @@ export default Component.extend(ResizeAware, {
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);
 
-
     const rawData = mungeBarChartData(config, data);
     const y = scaleBand()
       .domain(rawData.map(d => get(d, 'group')))
@@ -84,8 +83,19 @@ export default Component.extend(ResizeAware, {
       .paddingOuter(0)
       .paddingInner(0.1);
 
+    // function to limit the maximum value to 100%
+    function limitMax(newMax) {
+      if (newMax > 1) return 1;
+      return newMax;
+    }
+
+    const xMax = max([
+      max(rawData, d => get(d, 'percent') + get(d, 'percent_m')),
+      max(rawData, d => get(d, 'comparison_percent') + get(d, 'comparison_percent_m')),
+    ]);
+
     const x = scaleLinear()
-      .domain([0, this.get('xMax') ? this.get('xMax') : max(rawData, d => get(d, 'percent'))])
+      .domain([0, limitMax(xMax)])
       .range([textWidth, width]);
 
     /* eslint-disable */
@@ -160,7 +170,8 @@ export default Component.extend(ResizeAware, {
     const bottomAxis = axisBottom()
       .scale(x)
       .ticks(5)
-      .tickFormat(format('.0%'));
+      .tickFormat(format('.0%'))
+      .tickSizeOuter([0]);
 
     svg.select('.axis-bottom')
       .attr('transform', translation(0, height + 4))
@@ -208,10 +219,19 @@ export default Component.extend(ResizeAware, {
 
     const widthFunctionMOE = (d) => {
       const defaultWidth = (x(get(d, 'percent_m')) - textWidth) * 2;
+      const axesWidth = width - textWidth;
+      const barWidth = x(get(d, 'percent')) - textWidth;
       if (get(d, 'percent_m') > get(d, 'percent')) {
         const newWidth = defaultWidth - (x(get(d, 'percent_m') - get(d, 'percent')) - textWidth);
         return newWidth;
       }
+      // if the percentage bar + the MOE bar extend past 100% on the x axes, modify width of MOE bar
+      if (barWidth + (defaultWidth * 0.5) > axesWidth) {
+        const gapWidth = axesWidth - barWidth;
+        const shortenedWidth = (defaultWidth * 0.5) + gapWidth;
+        return shortenedWidth;
+      }
+
       return defaultWidth;
     };
 
