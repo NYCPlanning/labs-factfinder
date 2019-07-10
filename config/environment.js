@@ -164,6 +164,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV['mapbox-gl'].map.style = 'https://layers-api.planninglabs.nyc/v1/base/style.json';
+    ENV['ember-mapbox-composer'].host = 'https://layers-api.planninglabs.nyc';
     ENV.SupportServiceHost = 'https://factfinder-api.planninglabs.nyc';
   }
 
