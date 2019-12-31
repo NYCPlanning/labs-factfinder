@@ -141,7 +141,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV.SupportServiceHost = 'https://factfinder-api-staging.planninglabs.nyc';
+    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
   }
 
   if (environment === 'devlocal') {
