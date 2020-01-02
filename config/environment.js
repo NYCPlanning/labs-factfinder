@@ -141,7 +141,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    ENV.SupportServiceHost = 'https://factfinder-api-staging.herokuapp.com';
   }
 
   if (environment === 'devlocal') {
