@@ -58,14 +58,14 @@ module.exports = function(environment) {
     },
 
     'ember-mapbox-composer': {
-      host: 'https://layers-api-staging.planninglabs.nyc',
+      host: 'https://labs-layers-api.herokuapp.com',
       namespace: 'v1',
     },
 
     'mapbox-gl': {
       accessToken: '',
       map: {
-        style: 'https://layers-api-staging.planninglabs.nyc/v1/base/style.json',
+        style: 'https://labs-layers-api.herokuapp.com/v1/base/style.json',
       },
     },
 
@@ -164,8 +164,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV['mapbox-gl'].map.style = 'https://layers-api.planninglabs.nyc/v1/base/style.json';
-    ENV['ember-mapbox-composer'].host = 'https://layers-api.planninglabs.nyc';
+    ENV['mapbox-gl'].map.style = 'https://labs-layers-api.herokuapp.com/v1/base/style.json';
+    ENV['ember-mapbox-composer'].host = 'https://labs-layers-api.herokuapp.com';
     ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
   }
 
