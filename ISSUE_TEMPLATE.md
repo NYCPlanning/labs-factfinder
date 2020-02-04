@@ -10,7 +10,7 @@
 
 #### Is this in the change over time view or the current year view?:
 
-#### If change over time view, is it in 2000, 2010, 2006-2010, or 2013-2017 columns?:
+#### If change over time view, is it in 2000, 2010, 2006-2010, or 2014-2018 columns?:
 
 #### Which calculation is it (estimate, margin of error, cv, percent, percent margin of error, difference, change, etc?):
 
