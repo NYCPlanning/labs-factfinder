@@ -17,11 +17,7 @@ export default [
     data: 'mv90t99',
   },
   {
-    title: 'Moved in 1980 to 1989',
-    data: 'mv80t89',
-  },
-  {
-    title: 'Moved in 1979 or earlier',
-    data: 'mvbf79',
+    title: 'Moved in 1989 or earlier',
+    data: 'mvbf89',
   },
 ];

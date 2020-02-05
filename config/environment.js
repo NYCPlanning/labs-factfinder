@@ -128,7 +128,7 @@ module.exports = function(environment) {
 
     SAMPLE_SELECTION,
 
-    SupportServiceHost: 'https://factfinder-api-staging.planninglabs.nyc',
+    SupportServiceHost: 'https://factfinder-api-staging.herokuapp.com',
   };
 
   ENV.DEFAULT_SELECTION = {
@@ -151,7 +151,7 @@ module.exports = function(environment) {
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
-    ENV.SupportServiceHost = 'https://factfinder-api-staging.planninglabs.nyc';
+    ENV.SupportServiceHost = 'https://factfinder-api-staging.herokuapp.com';
 
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
 
