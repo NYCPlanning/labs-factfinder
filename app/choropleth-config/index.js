@@ -20,7 +20,7 @@ const choroplethConfigs = [
     label: 'Under 18 Years',
     tooltip: 'Population under 18 years',
     legendTitle: 'Population under 18 years',
-    stops: [8000, 12000, 15000, 20000],
+    stops: [8000, 10000, 15000, 20000],
   },
   {
     group: 'Demographic (ACS)',
