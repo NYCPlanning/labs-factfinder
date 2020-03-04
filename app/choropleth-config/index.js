@@ -85,7 +85,7 @@ const choroplethConfigs = [
     group: 'Housing (ACS)',
     id: 'mdgr',
     label: 'Median Gross Rent',
-    tooltip: 'Median gross rent (in 2016 inflation-adjusted dollars)',
+    tooltip: 'Median gross rent (in 2018 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
     stops: [1200, 1600, 2000, 2400],
   },
