@@ -39,8 +39,8 @@ You will need the following things properly installed on your computer.
 ## Local development
 
 - Clone this repo `https://github.com/NYCPlanning/labs-nyc-factfinder.git`
-- Install Dependencies `npm install`
-- Start the server `ember s`
+- Install Dependencies `yarn`
+- Start the server `yarn run start`
 
 ### Development shortcut
 
