@@ -1,5 +1,8 @@
 [build]
 command = "yarn build --environment=staging"
 
+[context.deploy-preview]
+  environment = { NODE_VERSION = "10.18.1" }
+
 [context.master]
 command = "yarn build --environment=production"

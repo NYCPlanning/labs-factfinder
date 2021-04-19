@@ -85,7 +85,7 @@
     "mapbox-gl": "^0.52.0-beta.1"
   },
   "engines": {
-    "node": "^6.14.0 || ^8.10.0 || >=9.10.0 || >=10.0.0"
+    "node": "^10.18.1"
   },
   "private": true,
   "dependencies": {
@@ -100,5 +100,21 @@
     "mustache": "3.0.1",
     "numeral": "^2.0.6",
     "shpjs": "3.4.2"
+  },
+  "resolutions": {
+    "printf": "^0.6.1",
+    "set-value": "^2.0.1",
+    "elliptic": "^6.5.4",
+    "http-proxy": "^1.18.1",
+    "serialize-javascript": "^3.1.0",
+    "ssri": "^8.0.1",
+    "dot-prop": "^4.2.1",
+    "handlebars": "^4.5.3",
+    "lodash.template": "^4.5.0",
+    "websocket-extensions": "^0.1.4",
+    "node-notifier": "^8.0.1",
+    "socket.io": "^2.4.0",
+    "esm": "^3.1.0",
+    "jquery": "^3.5.0"
   }
 }
