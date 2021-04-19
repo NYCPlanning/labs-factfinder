@@ -33,8 +33,10 @@ In the spirit of free software, everyone is encouraged to help improve this proj
 You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (with NPM)
+- [Node.js](https://nodejs.org/) (with NPM) **version ^10.18.1**
 - [Ember CLI](https://ember-cli.com/)
+
+(You can use [NVM](https://github.com/nvm-sh/nvm) to manage node versions on your computer)
 
 ## Local development
 
