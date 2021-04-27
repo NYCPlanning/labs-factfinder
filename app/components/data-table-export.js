@@ -31,14 +31,28 @@ export default Component.extend({
       downloadLink.click();
     },
     exportTableToCSV(filename = 'test.csv') {
-      var csv = [];
-      var rows = document.querySelectorAll("table tr");
+      let csv = [];
+      let rows = document.querySelectorAll("table tr");
       
       for (var i = 0; i < rows.length; i++) {
-          var row = [], cols = rows[i].querySelectorAll("td, th");
+          let row = [];
+          let headerCols = rows[i].querySelectorAll("th");
+          let cols = rows[i].querySelectorAll("td");
+          // let cols = rows[i].querySelectorAll("td, th");
           
-          for (var j = 0; j < cols.length; j++) 
-              row.push(cols[j].innerText);
+          for (var j = 0; j < headerCols.length; j++) {
+            if(headerCols[j].innerText) {
+              row.push(headerCols[j].innerText);
+              for (let e = headerCols[j].colSpan; e > 1; e-- ) {
+                row.push('x');
+              }
+            }
+          }
+          for (var j = 0; j < cols.length; j++) {
+            if(cols[j].innerText) {
+              row.push(cols[j].innerText.replace(',', ''));
+            }
+          }      
           
           csv.push(row.join(","));        
       }
