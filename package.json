@@ -15,7 +15,8 @@
     "lint:js": "eslint ./*.js app config lib server tests",
     "start": "ember serve",
     "test": "ember test",
-    "screenshot": "touch config/environment.js"
+    "screenshot": "touch config/environment.js",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
@@ -80,7 +81,9 @@
     "eslint-plugin-ember": "^6.0.1",
     "eslint-plugin-import": "^2.12.0",
     "foundation-sites": "~6.4.3",
+    "husky": "^6.0.0",
     "labs-ui": "^0.0.26",
+    "lint-staged": ">=10",
     "loader.js": "^4.7.0",
     "mapbox-gl": "^0.52.0-beta.1"
   },
@@ -117,5 +120,8 @@
     "esm": "^3.1.0",
     "jquery": "^3.5.0",
     "y18n": "^4.0.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
