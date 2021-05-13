@@ -36,34 +36,4 @@ module('Acceptance | data tables sniff test', function(hooks) {
     await percySnapshot('profile/1/census?reliability=true', { scope: '#profile-content' });
     assert.ok(true);
   });
-
-  test('visiting /profile/726/demographic?reliability=true, checking for content changes', async function(assert) {
-    await visit('/profile/726/demographic?reliability=true');
-    await percySnapshot('profile/726/demographic?reliability=true', { scope: '#profile-content' });
-    assert.ok(true);
-  });
-
-  test('visiting /profile/726/social?reliability=true, checking for content changes', async function(assert) {
-    await visit('/profile/726/social?reliability=true');
-    await percySnapshot('profile/726/social?reliability=true', { scope: '#profile-content' });
-    assert.ok(true);
-  });
-
-  test('visiting /profile/726/economic?reliability=true, checking for content changes', async function(assert) {
-    await visit('/profile/726/economic?reliability=true');
-    await percySnapshot('profile/726/economic?reliability=true', { scope: '#profile-content' });
-    assert.ok(true);
-  });
-
-  test('visiting /profile/726/housing?reliability=true, checking for content changes', async function(assert) {
-    await visit('/profile/726/housing?reliability=true');
-    await percySnapshot('profile/726/housing?reliability=true', { scope: '#profile-content' });
-    assert.ok(true);
-  });
-
-  test('visiting /profile/726/census?reliability=true, checking for content changes', async function(assert) {
-    await visit('/profile/726/census?reliability=true');
-    await percySnapshot('profile/726/census?reliability=true', { scope: '#profile-content' });
-    assert.ok(true);
-  });
 });

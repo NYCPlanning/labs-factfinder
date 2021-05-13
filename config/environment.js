@@ -128,7 +128,7 @@ module.exports = function(environment) {
 
     SAMPLE_SELECTION,
 
-    SupportServiceHost: 'https://factfinder-api-staging.herokuapp.com',
+    SupportServiceHost: 'https://factfinder-api.herokuapp.com',
   };
 
   ENV.DEFAULT_SELECTION = {
@@ -141,7 +141,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV.SupportServiceHost = 'https://factfinder-api-staging.herokuapp.com';
+    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
   }
 
   if (environment === 'devlocal') {
@@ -151,7 +151,7 @@ module.exports = function(environment) {
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
-    ENV.SupportServiceHost = 'https://factfinder-api-staging.herokuapp.com';
+    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
 
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
 
