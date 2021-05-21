@@ -56,6 +56,8 @@ export default Route.extend({
    */
   setupController(controller, model) {
     const { layerGroups } = model;
+
+    // this is usually important for hoisting internal layer state into the query params
     this.get('layerGroupService').initializeObservers(layerGroups, controller);
     this._super(controller, model);
   },

@@ -41,8 +41,13 @@ const draw = new MapboxDraw({
   }, MapboxDraw.modes),
 });
 
+// TODO: split out different functions into components (draw, shapefile, etc)
 export default Controller.extend({
   queryParams: ['lastreport'],
+
+  // stores the last report the user visited
+  // in the event that they go back to change
+  // the geography
   lastreport: 'demographic',
 
   selection: service(),

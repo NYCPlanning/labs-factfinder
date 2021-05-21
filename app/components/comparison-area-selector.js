@@ -47,6 +47,8 @@ const OPTIONS_QUERY = `
 //   WHERE geotype IN ('Boro2010', 'City2010', 'PUMA2010', 'NTA2010')
 //   ORDER BY geotype`;
 
+// Responsible for fetching the list of comparable areas. Found in the profile
+// header. This fetches a list of areas through Carto and populates a dropdown menu
 export default Component.extend({
   comparisonArea: null,
   selection: service(),

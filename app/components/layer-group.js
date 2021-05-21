@@ -10,6 +10,8 @@ const { service } = Ember.inject;
 const { alias } = Ember.computed;
 const { warn } = Ember.Logger;
 
+// This is a component avaialble in our "mapbox composer" addon...
+// we should consider replacing this with the addon or at least extending...
 export default Ember.Component.extend(ParentMixin, ChildMixin, {
   layout,
 
