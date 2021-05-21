@@ -1,14 +1,14 @@
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'labs-nyc-factfinder/config/environment';
 import trackPage from './mixins/track-page';
 
-const Router = EmberRouter.extend(trackPage, {
-  location: config.locationType,
-  rootURL: config.rootURL,
-});
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
 
-Router.map(function() { // eslint-disable-line
-  this.route('profile', { path: 'profile/:id' }, function() {
+Router.map(function () { // eslint-disable-line
+  this.route('profile', { path: 'profile/:id' }, function () {
     this.route('census');
     this.route('demographic');
     this.route('social');
@@ -20,5 +20,3 @@ Router.map(function() { // eslint-disable-line
   this.route('data');
   this.route('tutorial');
 });
-
-export default Router;

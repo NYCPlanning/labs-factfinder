@@ -7,9 +7,6 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module',
   },
-  plugins: [
-    'ember',
-  ],
   extends: [
     'airbnb-base',
   ],
@@ -33,24 +30,33 @@ module.exports = {
     'max-len': 0,
     'no-param-reassign': 0,
   },
+  rules: {},
   overrides: [
     // node files
     {
       files: [
         '.eslintrc.js',
+        '.prettierrc.js',
         '.template-lintrc.js',
         'testem.js',
         'ember-cli-build.js',
         'config/**/*.js',
         'lib/*/index.js',
+        'server/**/*.js',
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015,
       },
       env: {
         browser: false,
         node: true,
+      },
+      plugins: ['node'],
+      extends: ['plugin:node/recommended'],
+      rules: {
+        // this can be removed once the following is fixed
+        // https://github.com/mysticatea/eslint-plugin-node/issues/77
+        'node/no-unpublished-require': 'off',
       },
     },
   ],
