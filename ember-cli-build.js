@@ -7,9 +7,9 @@ module.exports = function (defaults) {
     'ember-cli-babel': {
       includePolyfill: true,
     },
-    // 'ember-cli-foundation-6-sass': {
-    //   foundationJs: 'all',
-    // },
+    'ember-cli-foundation-6-sass': {
+      foundationJs: 'all',
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

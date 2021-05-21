@@ -1,5 +1,5 @@
-import LabsMap from 'ember-mapbox-composer/components/labs-map';
-import { ParentMixin } from 'ember-composability-tools';
+import EMCLabsMap from 'ember-mapbox-composer/components/labs-map';
+import { Root } from 'ember-composability-tools';
 import { inject as service } from '@ember/service';
 import layout from '../templates/components/labs-map';
 
@@ -19,7 +19,7 @@ export const highlightedFeatureLayer = {
   },
 };
 
-export default LabsMap.extend(ParentMixin, {
+const LabsMap = EMCLabsMap.extend({
   layout,
 
   registeredLayers: service(),
@@ -29,6 +29,9 @@ export default LabsMap.extend(ParentMixin, {
   init(...args) {
     this._super(...args);
 
+    // this needs to be done differently...
     this.set('registeredLayers.layers', this.get('childComponents'));
   },
 });
+
+export default LabsMap;

@@ -6,11 +6,10 @@ import mapboxgl from 'mapbox-gl';
 import MapboxDraw from 'mapbox-gl-draw';
 
 import turfCombine from '@turf/combine';
-import shpjs from 'shpjs';
+// import shpjs from 'shpjs';
 import bbox from '@turf/bbox';
 
 import carto from '../utils/carto';
-import trackEvent from '../utils/track-event'; // eslint-disable-line
 import RadiusMode from '../utils/radius-mode';
 
 import generateIntersectionSQL from '../queries/intersection';
@@ -28,18 +27,18 @@ import subduedNtaLabels from '../layers/subdued-nta-labels';
 const selectedFillLayer = selectedFeatures.fill;
 const combine = turfCombine;
 
-const draw = new MapboxDraw({
-  displayControlsDefault: false,
-  controls: {
-    rectangle: false,
-    polygon: false,
-    trash: false,
-  },
-  styles: drawStyles,
-  modes: Object.assign({
-    draw_radius: RadiusMode,
-  }, MapboxDraw.modes),
-});
+// const draw = new MapboxDraw({
+//   displayControlsDefault: false,
+//   controls: {
+//     rectangle: false,
+//     polygon: false,
+//     trash: false,
+//   },
+//   styles: drawStyles,
+//   modes: Object.assign({
+//     draw_radius: RadiusMode,
+//   }, MapboxDraw.modes),
+// });
 
 // TODO: split out different functions into components (draw, shapefile, etc)
 export default Controller.extend({
@@ -50,10 +49,14 @@ export default Controller.extend({
   // the geography
   lastreport: 'demographic',
 
+  // global: stores user's geographic selection
   selection: service(),
+
+  // handles map highlighting
   mapMouseover: service(),
   metrics: service(),
 
+  // static layerGroups/sources...
   layerGroups,
   sources,
 

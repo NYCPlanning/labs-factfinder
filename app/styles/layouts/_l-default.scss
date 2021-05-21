@@ -90,7 +90,7 @@ body {
 }
 
 .map-container {
-  @include xy-cell-static(full,false,0);
+  @include xy-cell(full,false,0);
   position: relative;
   z-index: 1;
   height: 50vh;
