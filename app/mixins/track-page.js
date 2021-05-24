@@ -14,7 +14,7 @@ export default Mixin.create({
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
       const page = this.get('url');
-      const title = this.getWithDefault('currentRouteName', 'unknown');
+      const title = this.get('currentRouteName') || 'unknown';
       get(this, 'metrics').trackPage({ page, title });
     });
   },

@@ -14,7 +14,7 @@
           {{/link-to}}
         </li>
         <li>
-          {{#if (eq tab 'profile.census')}}
+          {{#if (eq this.tab 'profile.census')}}
             {{tab-dropdown tabName='Census' tabNameSmall='' dropdown='census'}}
           {{else}}
             {{#link-to
@@ -58,7 +58,7 @@
           </li>
         {{else}}
           <li>
-            {{#if (eq tab 'profile.demographic')}}
+            {{#if (eq this.tab 'profile.demographic')}}
               {{tab-dropdown tabName='Demographic' tabNameSmall='(ACS)' dropdown='demographic'}}
             {{else}}
               {{#link-to
@@ -72,7 +72,7 @@
             {{/if}}
           </li>
           <li>
-            {{#if (eq tab 'profile.social')}}
+            {{#if (eq this.tab 'profile.social')}}
               {{tab-dropdown tabName='Social' tabNameSmall='(ACS)' dropdown='social'}}
             {{else}}
               {{#link-to
@@ -86,7 +86,7 @@
             {{/if}}
           </li>
           <li>
-            {{#if (eq tab 'profile.economic')}}
+            {{#if (eq this.tab 'profile.economic')}}
               {{tab-dropdown tabName='Economic' tabNameSmall='(ACS)' dropdown='economic'}}
             {{else}}
               {{#link-to
@@ -100,7 +100,7 @@
             {{/if}}
           </li>
           <li>
-            {{#if (eq tab 'profile.housing')}}
+            {{#if (eq this.tab 'profile.housing')}}
               {{tab-dropdown tabName='Housing' tabNameSmall='(ACS)' dropdown='housing'}}
             {{else}}
               {{#link-to

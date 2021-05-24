@@ -30,7 +30,6 @@ module.exports = {
     'max-len': 0,
     'no-param-reassign': 0,
   },
-  rules: {},
   overrides: [
     // node files
     {
@@ -51,7 +50,9 @@ module.exports = {
         browser: false,
         node: true,
       },
-      plugins: ['node'],
+      plugins: [
+        'ember',
+      ],
       extends: ['plugin:node/recommended'],
       rules: {
         // this can be removed once the following is fixed
