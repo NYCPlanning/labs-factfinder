@@ -10,7 +10,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
 {{else}}
-  <span class="search-icon">{{fa-icon "search"}}</span>
+  <span class="search-icon">{{fa-icon icon="search"}}</span>
 {{/if}}
 <ul class="search-results no-bullet{{if resultsCount ' has-results'}}{{if focused ' focused'}}">
   {{#if (is-fulfilled results)}}
@@ -39,7 +39,7 @@
         {{else if (eq type 'puma')}}
           <span class="icon polygon large"></span>
         {{else}}
-          {{fa-icon "map-pin"}}
+          {{fa-icon icon="map-pin"}}
         {{/if}}
         {{result.label}}
       </li>

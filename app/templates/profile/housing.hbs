@@ -1,8 +1,8 @@
 <div class="shows-signficance">
   {{profile-header
-    profile=profile
+    profile=this.profile
     title="Housing Profile"
-    mode=profile.mode
+    mode=this.profile.mode
     data=rawData
   }}
 
@@ -12,10 +12,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=housingOccupancy
         model=model
       }}
@@ -28,10 +28,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=unitsInStructure
         model=model
       }}
@@ -43,10 +43,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=yearStructureBuilt
         model=model
       }}
@@ -59,10 +59,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=rooms
         model=model
       }}
@@ -75,17 +75,17 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=housingTenure
         model=model
         category='housing_tenure'
         special_variables='housing__special_variable'
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Housing Tenure"
@@ -102,10 +102,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=yearHouseholderMovedIntoUnit
         model=model
       }}
@@ -118,15 +118,15 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=vehiclesAvailable
         model=model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Households by Vehicles Available"
@@ -143,10 +143,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=occupantsPerRoom
         model=model
       }}
@@ -158,7 +158,7 @@
   <h3 class="header-medium" id="value">
     <span>
       Value
-      {{fa-icon 'question-circle' transform='shrink-6 left-4 up-2'}}
+      {{fa-icon icon='question-circle' transform='shrink-6 left-4 up-2'}}
       {{ember-tooltip
         text='In 2018 inflation-adjusted dollars'
         side='right'
@@ -168,15 +168,15 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=value
         model=model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Owner-occupied Households by Housing Value"
@@ -193,10 +193,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=mortgageStatus
         model=model
       }}
@@ -209,10 +209,10 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi
         model=model
       }}
@@ -224,7 +224,7 @@
   <h3 class="header-medium" id="gross-rent">
     <span>
       Gross Rent
-      {{fa-icon 'question-circle' transform='shrink-6 left-4 up-2'}}
+      {{fa-icon icon='question-circle' transform='shrink-6 left-4 up-2'}}
       {{ember-tooltip
         text='In 2018 inflation-adjusted dollars'
         side='right'
@@ -234,15 +234,15 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=grossRent
         model=model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Renter-occupied Households by Gross Rent"
@@ -259,15 +259,15 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=grossRentAsAPercentageOfHouseholdIncomeGrapi
         model=model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4">
         {{acs-bar
           title="Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income"

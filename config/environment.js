@@ -137,7 +137,8 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
-    ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
+    // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
+    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
   }
 
   if (environment === 'staging') {

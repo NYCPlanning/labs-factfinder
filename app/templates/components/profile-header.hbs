@@ -3,18 +3,18 @@
 
     <h1 id="top">
       {{title}}
-      {{download-spreadsheet data=data mode=mode tab=profile.tab}}
+      {{download-spreadsheet data=data mode=mode tab=this.profile.tab}}
     </h1>
 
     <div class="profile-mode">
       <h2 class="header-medium {{if (eq mode 'change') 'dark-gray'}}">
         <a {{action 'setMode' 'current'}}>
           {{#if (eq mode 'current')}}
-            {{fa-icon 'dot-circle' prefix='far'}}
+            {{fa-icon icon='dot-circle' prefix='far'}}
           {{else}}
-            {{fa-icon 'circle' prefix='far' class='silver'}}
+            {{fa-icon icon='circle' prefix='far' class='silver'}}
           {{/if}}
-          {{#if (eq profile.tab 'profile.census') }}
+          {{#if (eq this.profile.tab 'profile.census') }}
             2010 Decennial Census
           {{else}}
             2014-2018 American Community Survey <small>(ACS)</small>
@@ -24,11 +24,11 @@
       <h2 class="header-medium {{if (eq mode 'current') 'dark-gray'}}">
         <a {{action 'setMode' 'change'}}>
           {{#if (eq mode 'change')}}
-            {{fa-icon 'dot-circle' prefix='far'}}
+            {{fa-icon icon='dot-circle' prefix='far'}}
           {{else}}
-            {{fa-icon 'circle' prefix='far' class='silver'}}
+            {{fa-icon icon='circle' prefix='far' class='silver'}}
           {{/if}}
-          {{#if (eq profile.tab 'profile.census') }}
+          {{#if (eq this.profile.tab 'profile.census') }}
             Change Over Time <small>2000 to 2010</small>
           {{else}}
             Change Over Time <small>(2006-2010 to 2014-2018)</small>
@@ -61,14 +61,14 @@
       </div>
       {{/if}}
 
-      {{#unless (eq profile.tab 'profile.census') }}
+      {{#unless (eq this.profile.tab 'profile.census') }}
         <div class="profile-checkbox-controls">
           <a {{action 'toggleReliability'}}>
             <span class="dcp-orange">
-              {{#if profile.reliability}}
-                {{fa-icon 'check-square' prefix='far' fixedWidth=true}}
+              {{#if this.profile.reliability}}
+                {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
               {{else}}
-                {{fa-icon 'square' prefix='far' fixedWidth=true}}
+                {{fa-icon icon='square' prefix='far' fixedWidth=true}}
               {{/if}}
             </span>
             Show Reliability Data
@@ -77,10 +77,10 @@
             <span class="dark-gray">&nbsp;|&nbsp;</span>
             <a {{action 'toggleCharts'}}>
               <span class="dcp-orange">
-                {{#if profile.charts}}
-                  {{fa-icon 'check-square' prefix='far' fixedWidth=true}}
+                {{#if this.profile.charts}}
+                  {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
                 {{else}}
-                  {{fa-icon 'square' prefix='far' fixedWidth=true}}
+                  {{fa-icon icon='square' prefix='far' fixedWidth=true}}
                 {{/if}}
               </span>
               Show Charts
@@ -89,7 +89,7 @@
         </div>
       {{/unless}}
     </div>
-    {{#unless (eq profile.tab 'profile.census')}}
+    {{#unless (eq this.profile.tab 'profile.census')}}
       <p class="text-small no-margin">
         ACS data are derived from a survey and are subject to sampling variability.
         Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
@@ -132,7 +132,7 @@
 
         {{map.on 'resize' (action 'handleResize')}}
       {{/mapbox-gl}}
-      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon 'pen'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
+      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon icon='pen'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
     </div>
 
  </div>

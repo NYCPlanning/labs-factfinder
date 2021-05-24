@@ -4,28 +4,28 @@
 
   <div class="call-to-action grid-x align-middle text-center medium-text-left">
     <div class="cell medium-auto">
-      <p class="text-small dark-gray no-margin">{{fa-icon 'hand-pointer' prefix='far'}}&nbsp;Select individual
-        {{if (eq summaryLevel 'tracts') 'census tracts'}}
-        {{if (eq summaryLevel 'blocks') 'census blocks'}}
-        {{if (eq summaryLevel 'ntas') 'NTAs'}}
-        {{if (eq summaryLevel 'pumas') 'PUMAs'}}
+      <p class="text-small dark-gray no-margin">{{fa-icon icon='hand-pointer' prefix='far'}}&nbsp;Select individual
+        {{if (eq this.summaryLevel 'tracts') 'census tracts'}}
+        {{if (eq this.summaryLevel 'blocks') 'census blocks'}}
+        {{if (eq this.summaryLevel 'ntas') 'NTAs'}}
+        {{if (eq this.summaryLevel 'pumas') 'PUMAs'}}
         to add them to the profile.</p>
     </div>
     <div class="cell medium-shrink">
       <div class="draw-tools--container">
         <span class="draw-tools--trigger button small- gray text-orange show-for-large">
-          {{fa-icon 'edit'}} Draw
+          {{fa-icon icon='edit'}} Draw
         </span>
         <div class="draw-tools {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
           {{#ember-tooltip delay=200}}
             <span class="text-tiny nowrap">Create selection using drawing tool</span>
           {{/ember-tooltip}}
           <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
-            {{fa-icon 'object-group' prefix='far'}}
+            {{fa-icon icon='object-group' prefix='far'}}
             <span class="hide-for-medium">Draw</span> Polygon
           </button>
           <button class="draw-tool draw-tools--radius button small gray text-orange {{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
-            {{fa-icon 'dot-circle' prefix='far'}}
+            {{fa-icon icon='dot-circle' prefix='far'}}
             <span class="hide-for-medium">Draw</span> Radius
           </button>
         </div>
@@ -35,26 +35,26 @@
 
   <div class={{profileButtonClasses}} onClick={{action 'generateProfileId'}}>
     <span class="fa-layers fa-2x fa-pull-right">
-      {{fa-icon 'file'}}
-      {{fa-icon 'arrow-right' class='dcp-yellow' transform='shrink-8 down-1'}}
+      {{fa-icon icon='file'}}
+      {{fa-icon icon='arrow-right' class='dcp-yellow' transform='shrink-8 down-1'}}
     </span>
     View Profile
     <small><strong>
       <span class="count" data-test-toggle-count>{{selectionCount}}</span>
-      {{if (eq summaryLevel 'tracts') 'Tract'~}}
-      {{if (eq summaryLevel 'blocks') 'Block'~}}
-      {{if (eq summaryLevel 'ntas') 'Neighborhood'~}}
-      {{if (eq summaryLevel 'pumas') 'PUMA'~}}
+      {{if (eq this.summaryLevel 'tracts') 'Tract'~}}
+      {{if (eq this.summaryLevel 'blocks') 'Block'~}}
+      {{if (eq this.summaryLevel 'ntas') 'Neighborhood'~}}
+      {{if (eq this.summaryLevel 'pumas') 'PUMA'~}}
       {{if (eq selectionCount 0) 's'}}{{if (gt selectionCount 1) 's'}}
     </strong></small>
   </div>
 
   <div class="clearfix" style="padding-bottom:1px;">
     {{#if (gt selectionCount 0)}}
-      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon 'times'}}</span> Clear Selection</button>
+      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon icon='times'}}</span> Clear Selection</button>
     {{/if}}
 
-    <p><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon 'sliders-h'}}&nbsp;Advanced Options </a></p>
+    <p><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;Advanced Options </a></p>
   </div>
 
   <div class="advanced-options {{unless advanced 'closed'}}">
@@ -81,9 +81,9 @@
                         )
                       }}>
                         {{#if (eq choroplethMode config.id)}}
-                          {{fa-icon 'dot-circle' prefix='far'}}
+                          {{fa-icon icon='dot-circle' prefix='far'}}
                         {{else}}
-                          {{fa-icon 'circle' prefix='far'}}
+                          {{fa-icon icon='circle' prefix='far'}}
                         {{/if}}
                         {{config.label}}
                         {{labs-ui/icon-tooltip tip=config.tooltip}}
@@ -98,7 +98,7 @@
                 <div class="legend-title">{{legendTitle}}</div>
                 {{#each stops as |stop|}}
                   <div class="legend-item">
-                    <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon 'square'}}</span>
+                    <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
                     {{stop.label}}
                   </div>
                 {{/each}}
