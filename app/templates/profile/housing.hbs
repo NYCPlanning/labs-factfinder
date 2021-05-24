@@ -3,7 +3,7 @@
     profile=this.profile
     title="Housing Profile"
     mode=this.profile.mode
-    data=rawData
+    data=this.rawData
   }}
 
   <hr>
@@ -17,7 +17,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=housingOccupancy
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -33,7 +33,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=unitsInStructure
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -48,7 +48,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=yearStructureBuilt
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -64,7 +64,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=rooms
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -80,7 +80,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=housingTenure
-        model=model
+        model=this.model
         category='housing_tenure'
         special_variables='housing__special_variable'
       }}
@@ -90,7 +90,7 @@
         {{acs-bar
           title="Percent Distribution of Housing Tenure"
           config=housingTenureChartConfig
-          data=model
+          data=this.model
           height=122}}
       </div>
     {{/if}}
@@ -107,7 +107,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=yearHouseholderMovedIntoUnit
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -123,7 +123,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=vehiclesAvailable
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -131,7 +131,7 @@
         {{acs-bar
           title="Percent Distribution of Households by Vehicles Available"
           config=vehiclesAvailableChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -148,7 +148,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=occupantsPerRoom
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -173,7 +173,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=value
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -181,7 +181,7 @@
         {{acs-bar
           title="Percent Distribution of Owner-occupied Households by Housing Value"
           config=valueChartConfig
-          data=model
+          data=this.model
           height=283}}
       </div>
     {{/if}}
@@ -198,7 +198,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=mortgageStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -214,7 +214,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -239,7 +239,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=grossRent
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -247,7 +247,7 @@
         {{acs-bar
           title="Percent Distribution of Renter-occupied Households by Gross Rent"
           config=grossRentChartConfig
-          data=model
+          data=this.model
           height=264}}
       </div>
     {{/if}}
@@ -264,7 +264,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=grossRentAsAPercentageOfHouseholdIncomeGrapi
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -272,7 +272,7 @@
         {{acs-bar
           title="Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income"
           config=grossRentGrapiChartConfig
-          data=model
+          data=this.model
           height=235}}
       </div>
     {{/if}}

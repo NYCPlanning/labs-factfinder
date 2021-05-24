@@ -1,23 +1,23 @@
 <ul class="menu align-center menu--selector">
-  <li class="{{if (eq selection.summaryLevel 'blocks') 'active'}} explode-block">
+  <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
       <span class="show-for-medium">Census </span>
       Block
     </a>
     {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
   </li>
-  <li class="{{if (eq selection.summaryLevel 'tracts') 'active'}} explode-tract">
+  <li class="{{if (eq this.selection.summaryLevel 'tracts') 'active'}} explode-tract">
     <a href="#" data-test-toggle-tracts {{action 'handleSummaryLevelToggle' 'tracts'}}>
       <span class="show-for-medium">Census </span>
       Tract
     </a>
     {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
   </li>
-  <li class="{{if (eq selection.summaryLevel 'ntas') 'active'}} explode-nta">
+  <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
     <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
     {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
   </li>
-  <li class="{{if (eq selection.summaryLevel 'pumas') 'active'}} explode-puma">
+  <li class="{{if (eq this.selection.summaryLevel 'pumas') 'active'}} explode-puma">
     <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
     {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
   </li>
@@ -34,7 +34,7 @@
 
     {{#map.labs-layers
       onLayerClick=(action 'handleClick')
-      layerGroups=model.layerGroups as |layers|}}
+      layerGroups=this.model.layerGroups as |layers|}}
       {{#layers.tooltip as |tooltip|}}
         {{tooltip-renderer
           feature=tooltip.feature
@@ -42,13 +42,13 @@
       {{/layers.tooltip}}
     {{/map.labs-layers}}
 
-    {{#if selection.currentAddress}}
+    {{#if this.selection.currentAddress}}
       {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
         {{source.layer layer=selection.pointLayer}}
       {{/map.source}}
     {{/if}}
 
-    {{#if selection.searchResultFeature}}
+    {{#if this.selection.searchResultFeature}}
       {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
         {{source.layer layer=selection.searchResultLayer}}
       {{/map.source}}
@@ -62,12 +62,12 @@
       sourceId='choropleths'
       options=choroplethsSource}}
 
-    {{#if selection.current}}
+    {{#if this.selection.current}}
       {{#map.source
         sourceId='selected-features'
-        options=selectedSource as |source|}}
+        options=this.selectedSource as |source|}}
         {{source.layer
-          layer=selectedFillLayer
+          layer=this.selectedFillLayer
           before='place_other'}}
         {{source.layer
           before='place_other'}}
@@ -157,7 +157,7 @@
 
 {{#map-utility-box
   lastreport=lastreport
-  mode=mode
+  mode=this.mode
   drawMode=drawMode
   handleDrawButtonClick=(action "handleDrawButtonClick")
 }}

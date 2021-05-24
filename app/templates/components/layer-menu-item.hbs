@@ -1,7 +1,7 @@
 {{#if layer}}
   <div class="layer-menu-item-header" {{action 'toggleVisibility'}}>
 
-    {{#if (or warning titleTooltip)}}
+    {{#if (or warning this.titleTooltip)}}
       {{#if warning}}
         <span class="float-right gold">
           {{labs-ui/icon-tooltip
@@ -11,11 +11,11 @@
           }}
         </span>
       {{/if}}
-      {{#if titleTooltip}}
+      {{#if this.titleTooltip}}
         <span class="float-right">
           {{labs-ui/icon-tooltip
             icon='question-circle'
-            tip=titleTooltip
+            tip=this.titleTooltip
             side='left'
           }}
         </span>
@@ -24,7 +24,7 @@
 
     {{switch-toggle checked=visible}}
 
-    {{title}}
+    {{this.title}}
 
     {{#if visible}}
 

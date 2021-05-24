@@ -3,20 +3,20 @@
 </div>
 
 <div class="wrapper-for-copy">
-  {{#sticky-element top=stickyTop bottom=0}}
-    {{#if (eq mode 'current')}}
+  {{#sticky-element top=this.stickyTop bottom=0}}
+    {{#if (eq this.mode 'current')}}
       {{data-table-header-current
-        decennial=decennial
-        reliability=reliability
-        comparison=comparison
-        mode=mode
+        decennial=this.decennial
+        reliability=this.reliabilty
+        comparison=this.comparison
+        mode=this.mode
       }}
     {{else}}
       {{data-table-header-change
-        decennial=decennial
-        reliability=reliability
-        comparison=comparison
-        mode=mode
+        decennial=this.decennial
+        reliability=this.reliabilty
+        comparison=this.comparison
+        mode=this.mode
       }}
     {{/if}}
   {{/sticky-element}}
@@ -24,27 +24,27 @@
   <div class="table-scroll">
     <table class="body-table">
       <tbody>
-        {{#each config as |rowConfig|}}
+        {{#each this.config as |rowConfig|}}
           {{#if hasBlock}}
             {{yield}}
           {{else}}
-            {{#if (eq mode 'current')}}
+            {{#if (eq this.mode 'current')}}
               {{data-table-row-current
-                mode=mode
-                reliability=reliability
-                comparison=comparison
+                mode=this.mode
+                reliability=this.reliabilty
+                comparison=this.comparison
                 rowConfig=rowConfig
-                options=profile
+                options=this.profile
                 data=(get this.model rowConfig.data)
               }}
             {{else}}
               {{data-table-row-change
-                decennial=decennial
-                mode=mode
-                reliability=reliability
-                comparison=comparison
+                decennial=this.decennial
+                mode=this.mode
+                reliability=this.reliabilty
+                comparison=this.comparison
                 rowConfig=rowConfig
-                options=profile
+                options=this.profile
                 data=(get this.model rowConfig.data)
               }}
             {{/if}}

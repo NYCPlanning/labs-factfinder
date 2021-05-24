@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import Downloadable from '../../mixins/downloadable';
+import Downloadable from './_downloadable';
 
 /**
  * The Social Route is responsible for fetching the raw profile data for "social".
@@ -8,7 +8,7 @@ import Downloadable from '../../mixins/downloadable';
  *
  * See https://api.emberjs.com/ember/release/classes/Route
  */
-export default Route.extend(Downloadable, {
+export default Downloadable.extend({
   /**
    * EmberJS Route model hook, used here to fetch actual profile data from the
    * API endpoint.
@@ -17,7 +17,7 @@ export default Route.extend(Downloadable, {
    * @param {object} transition.queryParams - EmberJS object
    * @param {string} transition.queryParams.comparator - ID used for the profile's comparison geography
    */
-  model(params, { queryParams: { comparator = '0' } }) {
+  model(params, { to: { queryParams: { comparator = '0' } } }) {
     const selectionId = this.modelFor('profile').id;
 
     return this.store.query('row', { selectionId, comparator, type: 'social' })

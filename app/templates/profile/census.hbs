@@ -1,8 +1,8 @@
 {{#profile-header
   profile=this.profile
   title="2010 Census Profile"
-  mode=profile.mode
-  data=rawData
+  mode=this.profile.mode
+  data=this.rawData
 }}
 {{/profile-header}}
 
@@ -14,10 +14,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
       config=populationDensity
-      model=model
+      model=this.model
     }}
   </div>
 </div>
@@ -30,10 +30,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=sexAndAge
-      model=model
+      config=this.sexAndAge
+      model=this.model
     }}
   </div>
 </div>
@@ -46,10 +46,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=mutuallyExclusiveRaceHispanicOrigin
-      model=model
+      config=this.mutuallyExclusiveRaceHispanicOrigin
+      model=this.model
     }}
   </div>
 </div>
@@ -71,10 +71,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=hispanicSubgroup
-      model=model
+      config=this.hispanicSubgroup
+      model=this.model
     }}
   </div>
 </div>
@@ -87,10 +87,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=asianSubgroup
-      model=model
+      config=this.asianSubgroup
+      model=this.model
     }}
   </div>
 </div>
@@ -103,10 +103,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
       config=relationshipToHeadOfHouseholdHouseholder
-      model=model
+      model=this.model
     }}
   </div>
 </div>
@@ -119,10 +119,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
       config=householdType
-      model=model
+      model=this.model
     }}
   </div>
 </div>
@@ -135,10 +135,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
       config=housingOccupancy
-      model=model
+      model=this.model
     }}
   </div>
 </div>
@@ -151,10 +151,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
       config=housingTenure
-      model=model
+      model=this.model
     }}
   </div>
 </div>
@@ -167,10 +167,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
       config=tenureByAgeOfHouseholder
-      model=model
+      model=this.model
     }}
   </div>
 </div>
@@ -183,10 +183,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
       config=householdSize
-      model=model
+      model=this.model
     }}
   </div>
 </div>

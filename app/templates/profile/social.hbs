@@ -3,7 +3,7 @@
     profile=this.profile
     title="Social Profile"
     mode=this.profile.mode
-    data=rawData
+    data=this.rawData
   }}
 
   <hr>
@@ -17,7 +17,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=householdType
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -25,7 +25,7 @@
         {{acs-bar
           title="Percent Distribution of Household Types"
           config=householdTypeChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -42,7 +42,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=relationshipToHeadOfHouseholdHouseholder
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -58,7 +58,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=maritalStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -74,7 +74,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=grandparents
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -90,7 +90,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=schoolEnrollment
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -98,7 +98,7 @@
         {{acs-bar
           title="Percent Distribution of Population 3 and Over by School Enrollment"
           config=schoolEnrollmentChartConfig
-          data=model
+          data=this.model
           height=204}}
       </div>
     {{/if}}
@@ -115,7 +115,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=educationalAttainmentHighestGradeCompleted
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -123,7 +123,7 @@
         {{acs-bar
           title="Percent Distribution of Population 25 and Over by Educational Attainment"
           config=educationalAttainmentChartConfig
-          data=model
+          data=this.model
           height=150}}
       </div>
     {{/if}}
@@ -140,7 +140,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=veteranStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -156,7 +156,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=disabilityStatusOfTheCivilianNoninstitutionalizedPopulation
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -172,7 +172,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=residence1YearAgo
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -180,7 +180,7 @@
         {{acs-bar
           title="Percent Distribution of Population who Lived in a Different House 1 Year Ago"
           config=residence1YearAgoChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -197,7 +197,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=placeOfBirth
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -205,12 +205,12 @@
         {{acs-bar
           title="Percent Distribution of Total Population by Place of Birth"
           config=placeOfBirthChartConfig
-          data=model
+          data=this.model
           height=150}}
         {{acs-bar
           title="Percent Distribution of Foreign-Born by World Region of Birth"
           config=foreignBornChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -227,7 +227,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=uSCitizenshipStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -243,7 +243,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=yearOfEntry
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -269,7 +269,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=languageSpokenAtHome
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -285,7 +285,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=ancestry
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -301,7 +301,7 @@
         reliability=this.profile.reliability
         comparison=this.profile.comparison
         config=computersAndInternetUse
-        model=model
+        model=this.model
       }}
     </div>
   </div>

@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { task } from 'ember-concurrency';
-import Downloadable from '../../mixins/downloadable';
+import Downloadable from './_downloadable';
 
 /**
  * The Census Route is responsible for fetching the raw profile data for "census" data.
@@ -9,7 +9,7 @@ import Downloadable from '../../mixins/downloadable';
  *
  * See https://api.emberjs.com/ember/release/classes/Route
  */
-export default Route.extend(Downloadable, {
+export default Downloadable.extend({
   /**
    * EmberJS Route beforeModel hook.
    * Here this is used to unload the store to avoid the issue with duplicate ids.
@@ -27,7 +27,7 @@ export default Route.extend(Downloadable, {
    * @param {object} transition.queryParams - EmberJS object
    * @param {string} transition.queryParams.comparator - ID used for the profile's comparison geography
    */
-  model(params, { queryParams: { comparator = '0' } }) {
+  model(params, { to: { queryParams: { comparator = '0' } } }) {
     return this.get('fetchDecennialData').perform(comparator);
   },
 

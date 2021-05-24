@@ -1,7 +1,7 @@
 {{#power-select
   searchField='label'
-  selected=selected
-  options=nestedOptions
+  selected=this.selected
+  options=this.nestedOptions
   onChange=(action 'updateProperty') as |area|}}
   {{area.label}}
 {{/power-select}}

@@ -17,8 +17,7 @@ export default Downloadable.extend({
    * @param {object} transition.queryParams - EmberJS object
    * @param {string} transition.queryParams.comparator - ID used for the profile's comparison geography
    */
-  model(params, opts) {
-    const { to: { queryParams: { comparator = '0' } } } = opts;
+  model(params, { to: { queryParams: { comparator = '0' } } }) {
     const selectionId = this.modelFor('profile').id;
 
     return this.store.query('row', { selectionId, comparator, type: 'demographic' })

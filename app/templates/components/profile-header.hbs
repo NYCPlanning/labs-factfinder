@@ -2,14 +2,14 @@
   <div class="cell large-8 xlarge-shrink">
 
     <h1 id="top">
-      {{title}}
-      {{download-spreadsheet data=data mode=mode tab=this.profile.tab}}
+      {{this.title}}
+      {{download-spreadsheet data=this.data mode=this.mode tab=this.profile.tab}}
     </h1>
 
     <div class="profile-mode">
-      <h2 class="header-medium {{if (eq mode 'change') 'dark-gray'}}">
+      <h2 class="header-medium {{if (eq this.mode 'change') 'dark-gray'}}">
         <a {{action 'setMode' 'current'}}>
-          {{#if (eq mode 'current')}}
+          {{#if (eq this.mode 'current')}}
             {{fa-icon icon='dot-circle' prefix='far'}}
           {{else}}
             {{fa-icon icon='circle' prefix='far' class='silver'}}
@@ -21,9 +21,9 @@
           {{/if}}
         </a>
       </h2>
-      <h2 class="header-medium {{if (eq mode 'current') 'dark-gray'}}">
+      <h2 class="header-medium {{if (eq this.mode 'current') 'dark-gray'}}">
         <a {{action 'setMode' 'change'}}>
-          {{#if (eq mode 'change')}}
+          {{#if (eq this.mode 'change')}}
             {{fa-icon icon='dot-circle' prefix='far'}}
           {{else}}
             {{fa-icon icon='circle' prefix='far' class='silver'}}
@@ -46,17 +46,17 @@
         </h3>
         <span class="dark-gray">&nbsp;|&nbsp;</span>
         <p class="profile-geographies-list comma-separated-list">
-          {{select-geography-list selection=selection}}
+          {{select-geography-list selection=this.selection}}
         </p>
       </div>
 
-      {{#if (eq mode 'current')}}
+      {{#if (eq this.mode 'current')}}
       <div class="profile-comparison-controls grid-x align-middle">
         <div class="cell shrink">
           <strong>Compare&nbsp;to:&nbsp;&nbsp;</strong>
         </div>
         <div class="cell auto">
-          {{comparison-area-selector comparisonArea=selection.comparator}}
+          {{comparison-area-selector comparisonArea=this.selection.comparator}}
         </div>
       </div>
       {{/if}}
@@ -73,7 +73,7 @@
             </span>
             Show Reliability Data
           </a>
-          {{#if (eq mode 'current')}}
+          {{#if (eq this.mode 'current')}}
             <span class="dark-gray">&nbsp;|&nbsp;</span>
             <a {{action 'toggleCharts'}}>
               <span class="dcp-orange">
@@ -108,22 +108,22 @@
     <div class="profile-map-container relative">
       {{#mapbox-gl
         id='map'
-        sources=sources
+        sources=this.sources
         initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                          zoom=zoom
-                          center=center
+                          zoom=this.zoom
+                          center=this.center
                           hash=false
                           interactive=false)
         mapLoaded=(action 'handleMapLoad')
 
         as |map|}}
 
-        {{#if selection.current}}
+        {{#if this.selection.current}}
           {{#map.source
             sourceId='selected-features'
-            options=selectedSource as |source|}}
+            options=this.selectedSource as |source|}}
             {{source.layer
-              layer=selectedFillLayer
+              layer=this.selectedFillLayer
               before='place_other'}}
             {{source.layer
               before='place_other'}}
@@ -132,7 +132,7 @@
 
         {{map.on 'resize' (action 'handleResize')}}
       {{/mapbox-gl}}
-      {{#link-to 'index' (query-params lastreport=currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon icon='pen'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
+      {{#link-to 'index' (query-params lastreport=this.currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon icon='pen'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
     </div>
 
  </div>

@@ -1,22 +1,23 @@
 {{#scroll-to href='#top' class='active'}}
-  {{tabName}}
-  {{#if tabNameSmall}}
-    <small>{{tabNameSmall}}</small>
+  {{this.tabName}}
+  {{#if this.tabNameSmall}}
+    <small>{{this.tabNameSmall}}</small>
   {{/if}}
   {{fa-icon icon='caret-down'
     transform='grow-2 right-5'
     class="light-gray tab-dropdown-trigger"
   }}
 {{/scroll-to}}
-  {{#ember-popover
-    tooltipClassName='tab-popover'
-    as |popover|
-  }}
-    <ul class="menu vertical">
-      {{#each dropdownItems as |item|}}
-        <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' item.title}}>
-          {{#scroll-to href=item.anchor afterScroll=(action 'closeTabDropdown')}}{{item.title}}{{/scroll-to}}
-        </li>
-      {{/each}}
-    </ul>
-  {{/ember-popover}}
+
+{{#ember-popover
+  _tooltipVariantClass='tab-popover'
+  as |popover|
+}}
+  <ul class="menu vertical">
+    {{#each dropdownItems as |item|}}
+      <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' item.title}}>
+        {{#scroll-to href=item.anchor afterScroll=(action 'closeTabDropdown')}}{{item.title}}{{/scroll-to}}
+      </li>
+    {{/each}}
+  </ul>
+{{/ember-popover}}

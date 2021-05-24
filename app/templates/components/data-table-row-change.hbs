@@ -2,9 +2,9 @@
   <td class='title-column' {{action 'showData'}}>
     <span>
       {{rowConfig.title}}
-      {{#if rowConfig.tooltip}}
+      {{#if this.rowConfig.tooltip}}
         {{fa-icon icon='question-circle' transform='shrink-2'}}
-        {{ember-tooltip text=rowConfig.tooltip side='right'}}
+        {{ember-tooltip text=this.rowConfig.tooltip side='right'}}
       {{/if}}
     </span>
   </td>
@@ -13,13 +13,13 @@
   {{data-table-column-group
     model=data.previous
     rowConfig=rowConfig
-    reliabilityMode=reliability}}
+    reliabilityMode=this.reliabilty}}
 
   {{!-- CURRENT --}}
    {{data-table-column-group
     model=data.selection
     rowConfig=rowConfig
-    reliabilityMode=reliability}}
+    reliabilityMode=this.reliabilty}}
 
   {{!-- CHANGE --}}
 
@@ -31,7 +31,7 @@
           precision=rowConfig.decimal)}}
   </td>
 
-  {{#if reliability}}
+  {{#if this.reliability}}
     {{!-- MOE --}}
     <td class="{{unless data.change_significant 'insignificant'}} change-estimate-moe">
       {{unless (eq data.change_m null)
@@ -51,7 +51,7 @@
     }}
   </td>
 
-  {{#if reliability}}
+  {{#if this.reliability}}
     {{!-- Percent M --}}
     <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent-moe">
       {{unless (eq data.change_percent_m null)
@@ -76,7 +76,7 @@
     {{/unless}}
   </td>
 
-  {{#if reliability}}
+  {{#if this.reliability}}
     {{!-- percentage point m --}}
     <td class="{{unless data.change_percentage_point_significant 'insignificant'}} change-percentage-point-moe">
       {{#unless
@@ -96,9 +96,9 @@
     <td class='title-column' {{action 'showData'}}>
       <span>
         {{rowConfig.title}}
-        {{#if rowConfig.tooltip}}
+        {{#if this.rowConfig.tooltip}}
           {{fa-icon icon='question-circle' transform='shrink-2'}}
-          {{ember-tooltip text=rowConfig.tooltip side='right'}}
+          {{ember-tooltip text=this.rowConfig.tooltip side='right'}}
         {{/if}}
       </span>
     </td>
@@ -110,22 +110,22 @@
     <td class="cell-border-left">&nbsp;</td>
   {{/if}}
   <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
 
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
 
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if this.reliability}}<td>&nbsp;</td>{{/if}}
 {{/unless}}
 
 {{yield}}

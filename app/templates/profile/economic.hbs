@@ -2,8 +2,8 @@
   {{profile-header
     profile=this.profile
     title="Economic Profile"
-    data=rawData
-    mode=profile.mode
+    data=this.rawData
+    mode=this.profile.mode
   }}
 
   <hr>
@@ -13,11 +13,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=employmentStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -29,11 +29,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=commuteToWork
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -41,7 +41,7 @@
         {{acs-bar
           title="Percent Distribution of Workers by Means of Transportation to Work"
           config=commuteToWorkChartConfig
-          data=model
+          data=this.model
           height=236}}
       </div>
     {{/if}}
@@ -54,11 +54,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=occupation
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -66,7 +66,7 @@
         {{acs-bar
           title="Percent Distribution of Workers by Occupation"
           config=occupationChartConfig
-          data=model
+          data=this.model
           height=204}}
       </div>
     {{/if}}
@@ -79,11 +79,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=industry
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -95,11 +95,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=classOfWorker
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -107,7 +107,7 @@
         {{acs-bar
           title="Percent Distribution of Workers by Class of Worker"
           config=classOfWorkerChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -129,11 +129,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=incomeAndBenefits
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -141,7 +141,7 @@
         {{acs-bar
           title="Percent Distribution of Household Income"
           config=incomeAndBenefitsChartConfig
-          data=model
+          data=this.model
           height=340}}
       </div>
     {{/if}}
@@ -163,11 +163,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=earnings
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -179,11 +179,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=healthInsuranceCoverage
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -204,11 +204,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=incomeInPast12MonthsIsBelowThePovertyLevel
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -229,11 +229,11 @@
     <div class="cell large-auto">
       {{data-table
         options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=ratioOfIncomeToPovertyLevel
-        model=model
+        model=this.model
       }}
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
@@ -241,7 +241,7 @@
         {{acs-bar
           title="Percent Distribution of Population by Ratio of Income to Poverty Level"
           config=ratioOfIncomeToPovertyLevelChartConfig
-          data=model
+          data=this.model
           height=394}}
      </div>
    {{/if}}

@@ -1,4 +1,4 @@
-{{#if (eq mode 'direct-select')}}
+{{#if (eq this.mode 'direct-select')}}
 
   {{map-search transitionTo=(action 'transitionTo')}}
 
@@ -45,12 +45,12 @@
       {{if (eq this.summaryLevel 'blocks') 'Block'~}}
       {{if (eq this.summaryLevel 'ntas') 'Neighborhood'~}}
       {{if (eq this.summaryLevel 'pumas') 'PUMA'~}}
-      {{if (eq selectionCount 0) 's'}}{{if (gt selectionCount 1) 's'}}
+      {{if (eq this.selectionCount 0) 's'}}{{if (gt this.selectionCount 1) 's'}}
     </strong></small>
   </div>
 
   <div class="clearfix" style="padding-bottom:1px;">
-    {{#if (gt selectionCount 0)}}
+    {{#if (gt this.selectionCount 0)}}
       <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon icon='times'}}</span> Clear Selection</button>
     {{/if}}
 
