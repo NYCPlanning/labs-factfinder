@@ -7,14 +7,14 @@
     {{#if (eq this.mode 'current')}}
       {{data-table-header-current
         decennial=this.decennial
-        reliability=this.reliabilty
+        reliability=this.reliability
         comparison=this.comparison
         mode=this.mode
       }}
     {{else}}
       {{data-table-header-change
         decennial=this.decennial
-        reliability=this.reliabilty
+        reliability=this.reliability
         comparison=this.comparison
         mode=this.mode
       }}
@@ -31,7 +31,7 @@
             {{#if (eq this.mode 'current')}}
               {{data-table-row-current
                 mode=this.mode
-                reliability=this.reliabilty
+                reliability=this.reliability
                 comparison=this.comparison
                 rowConfig=rowConfig
                 options=this.profile
@@ -41,7 +41,7 @@
               {{data-table-row-change
                 decennial=this.decennial
                 mode=this.mode
-                reliability=this.reliabilty
+                reliability=this.reliability
                 comparison=this.comparison
                 rowConfig=rowConfig
                 options=this.profile

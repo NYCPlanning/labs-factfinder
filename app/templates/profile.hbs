@@ -19,7 +19,7 @@
           {{else}}
             {{#link-to
               'profile.census'
-              (query-params mode=this.mode comparator=this.comparator reliability=this.reliabilty charts=this.charts)
+              (query-params mode=this.mode comparator=this.comparator reliability=this.reliability charts=this.charts)
               invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'census')
             }}
               Census
@@ -63,7 +63,7 @@
             {{else}}
               {{#link-to
                 'profile.demographic'
-                (query-params mode=this.mode comparator=this.comparator reliability=this.reliabilty charts=this.charts)
+                (query-params mode=this.mode comparator=this.comparator reliability=this.reliability charts=this.charts)
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'demographic')
               }}
                 Demographic <small>(ACS)</small>
@@ -77,7 +77,7 @@
             {{else}}
               {{#link-to
                 'profile.social'
-                (query-params mode=this.mode comparator=this.comparator reliability=this.reliabilty charts=this.charts)
+                (query-params mode=this.mode comparator=this.comparator reliability=this.reliability charts=this.charts)
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'social')
               }}
                 Social <small>(ACS)</small>
@@ -91,7 +91,7 @@
             {{else}}
               {{#link-to
                 'profile.economic'
-                (query-params mode=this.mode comparator=this.comparator reliability=this.reliabilty charts=this.charts)
+                (query-params mode=this.mode comparator=this.comparator reliability=this.reliability charts=this.charts)
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'economic')
               }}
                 Economic <small>(ACS)</small>
@@ -105,7 +105,7 @@
             {{else}}
               {{#link-to
                 'profile.housing'
-                (query-params mode=this.mode comparator=this.comparator reliability=this.reliabilty charts=this.charts)
+                (query-params mode=this.mode comparator=this.comparator reliability=this.reliability charts=this.charts)
                 invokeAction=(action 'sendAnalytics' 'Changed Profile Tab' 'housing')
               }}
                 Housing <small>(ACS)</small>

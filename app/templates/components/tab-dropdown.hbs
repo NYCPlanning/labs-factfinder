@@ -14,7 +14,7 @@
   as |popover|
 }}
   <ul class="menu vertical">
-    {{#each dropdownItems as |item|}}
+    {{#each this.dropdownItems as |item|}}
       <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' item.title}}>
         {{#scroll-to href=item.anchor afterScroll=(action 'closeTabDropdown')}}{{item.title}}{{/scroll-to}}
       </li>
