@@ -1,4 +1,6 @@
-<ul class="menu align-center menu--selector">
+{{#orange-bar}}{{/orange-bar}}
+
+{{!-- <ul class="menu align-center menu--selector">
   <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
       <span class="show-for-medium">Census </span>
@@ -21,7 +23,7 @@
     <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
     {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
   </li>
-</ul>
+</ul> --}}
 <div class="map-container">
   {{#labs-map
     id='map'
@@ -155,7 +157,7 @@
   {{/labs-map}}
 </div>
 
-{{#map-utility-box
+{{!-- {{#map-utility-box
   lastreport=lastreport
   mode=this.mode
   drawMode=drawMode
@@ -171,6 +173,6 @@
     addRemoveLinks=true
     autoProcessQueue=false
   }}
-{{/map-utility-box}}
+{{/map-utility-box}} --}}
 
 {{outlet}}
