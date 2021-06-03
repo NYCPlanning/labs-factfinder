@@ -7,8 +7,23 @@ module.exports = function (defaults) {
     'ember-cli-babel': {
       includePolyfill: true,
     },
-    'ember-cli-foundation-6-sass': {
-      foundationJs: 'all',
+    postcssOptions: {
+      compile: {
+        extension: 'scss',
+        enabled: true,
+        parser: require('postcss-scss'),
+        plugins: [
+          {
+            module: require('@csstools/postcss-sass'),
+            options: {
+              includePaths: [
+                'node_modules/foundation-sites/scss',
+                'node_modules/nyc-planning-style-guide/dist/assets/scss',
+              ],
+            },
+          },
+        ],
+      },
     },
   });
 
