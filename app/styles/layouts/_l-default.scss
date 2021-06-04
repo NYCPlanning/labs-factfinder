@@ -186,7 +186,7 @@ body {
 
   @include breakpoint(large) {
     position: absolute;
-    top: 0;
+    top: 96px;
     bottom: auto;
     left: 0;
     width: rem-calc(300);

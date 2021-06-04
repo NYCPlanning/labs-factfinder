@@ -26,6 +26,8 @@
     {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
   </li>
 </ul> --}}
+
+ {{!-- // TURNING THIS OFF TO GET RID OF THE MAP  --}}
 <div class="map-container">
   {{#labs-map
     id='map'
@@ -153,8 +155,6 @@
 
     {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
     {{map.on 'draw.create' (action 'handleDrawCreate')}}
-    {{!-- {{map.on 'click' (action 'handleClick')}} --}}
-    {{!-- {{map.on 'mousemove' (action 'handleMousemove')}} --}}
 
   {{/labs-map}}
 </div>
