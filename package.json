@@ -47,6 +47,7 @@
     "ember-cli-foundation-6-sass": "^0.0.27",
     "ember-cli-htmlbars": "^5.7.1",
     "ember-cli-inject-live-reload": "^2.0.2",
+    "ember-cli-mirage": "^2.2.0",
     "ember-cli-netlify": "^0.1.0",
     "ember-cli-numeral": "^1.0.0",
     "ember-cli-sri": "^2.1.1",
