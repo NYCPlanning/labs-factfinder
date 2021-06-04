@@ -33,7 +33,7 @@ In the spirit of free software, everyone is encouraged to help improve this proj
 You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (with NPM) **version ^10.18.1**
+- [Node.js](https://nodejs.org/) (with NPM) **version ^12.18.4**
 - [Yarn](https://yarnpkg.com/)
 - [Ember CLI](https://ember-cli.com/)
 
