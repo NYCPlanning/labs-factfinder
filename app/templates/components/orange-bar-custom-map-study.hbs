@@ -1,5 +1,4 @@
 <li class="cell medium-shrink">
-{{!-- <div class="cell medium-shrink"> --}}
   <div class="draw-tools--container">
     <span class="draw-tools--trigger button small- bg-white text-orange show-for-large">
       {{fa-icon icon='edit'}} Draw
@@ -20,10 +19,8 @@
   </div>
 
   {{!-- {{#map-search}}{{/map-search}} --}}
-  {{!-- <a href="#">One</a> --}}
 </li>
 <li>
-  {{!-- <ul class="menu align-center menu--selector"> --}}
   <ul class="menu align-center orange-bar--selector">
     <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
       <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
@@ -50,12 +47,11 @@
     <li class="dropdown explode-moregeos">
       <a href="#" class="dropbtn" style="display:inline-block;">More Geographies</a>
       <div class="dropdown-content">
-        <a href="/home/">Link 1 let's make this box go on and on and on and on and on</a>
-        <a href="/2/">Link 2</a>
-        <a href="/3/">Link 3</a>
+        <a href="#">Census Block</a>
+        <a href="#">Borough</a>
+        <a href="#">New York City</a>
       </div>
     </li>
   </ul>
 </li>
-{{!-- <li><a class="button" href="#">Two</a></li> --}}
-<li class="menu align-right"><a href="#">Three</a></li>
+<li class="menu align-right"><a href="#">Right Side Placeholder</a></li>
