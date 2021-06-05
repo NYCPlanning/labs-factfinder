@@ -1,27 +1,36 @@
 <li class="cell medium-shrink">
-  <ul class="menu orange-bar--selector" id="draw-tools">
-    <li class="dropdown">
-      <a href="#" class="dropbtn" style="display: flex; justify-content: center;">{{fa-icon icon='edit'}} &nbsp;Draw</a>
-      <div class="dropsizer">
-        <div class="dropdown-content {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
-          {{#ember-tooltip delay=200}}
-            <span class="text-tiny nowrap">Create selection using drawing tool</span>
-          {{/ember-tooltip}}
-          
-          <a href="#" class="{{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
-            {{fa-icon icon='object-group' prefix='far'}}
-            <span class="hide-for-medium">Draw</span> Polygon
-          </a>
-          <a href="#" class="{{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
-            {{fa-icon icon='dot-circle' prefix='far'}}
-            <span class="hide-for-medium">Draw</span> Radius
-          </a>
-        </div>      
-      </div>
+  <ul class="menu">
+    <li style="flex-grow: 0;">
+      <ul class="menu orange-bar--selector" id="draw-tools">
+        <li class="dropdown">
+          <a href="#" class="dropbtn" style="display: flex; justify-content: center;">{{fa-icon icon='edit'}} &nbsp;Draw</a>
+          <div class="dropsizer">
+            <div class="dropdown-content {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
+              {{#ember-tooltip delay=200}}
+                <span class="text-tiny nowrap">Create selection using drawing tool</span>
+              {{/ember-tooltip}}
+              
+              <a href="#" class="{{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+                {{fa-icon icon='object-group' prefix='far'}}
+                <span class="hide-for-medium">Draw</span> Polygon
+              </a>
+              <a href="#" class="{{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
+                {{fa-icon icon='dot-circle' prefix='far'}}
+                <span class="hide-for-medium">Draw</span> Radius
+              </a>
+            </div>      
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li>
+      {{!-- Map-Search should go here, but putting it in causes page not to load --}}
+      {{!-- {{#map-search}}{{/map-search}} --}}
+      {{input type='text'
+        placeholder='Search...'
+        class='map-search-input'}}
     </li>
   </ul>
-
-  {{!-- {{#map-search}}{{/map-search}} --}}
 </li>
 <li>
   <ul class="menu align-center orange-bar--selector">
