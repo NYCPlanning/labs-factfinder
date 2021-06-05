@@ -56,4 +56,10 @@
     </li>
   </ul>
 </li>
-<li class="menu align-right"><a href="#">Right Side Placeholder</a></li>
+{{!-- <li class="menu align-right"><a href="#">Right Side Placeholder</a></li> --}}
+<li class="menu align-right">
+  <ul class="menu orange-bar--selector" id="more-options">
+    <li><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;More Options </a></li>
+  </ul>
+  
+</li>
