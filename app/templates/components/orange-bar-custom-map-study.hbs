@@ -1,5 +1,5 @@
 <li class="cell medium-shrink">
-  <div class="draw-tools--container">
+  {{!-- <div class="draw-tools--container">
     <span class="draw-tools--trigger button small- bg-white text-orange show-for-large">
       {{fa-icon icon='edit'}} Draw
     </span>
@@ -16,7 +16,54 @@
         <span class="hide-for-medium">Draw</span> Radius
       </button>
     </div>
-  </div>
+  </div> --}}
+  <ul class="menu orange-bar--selector" id="draw-tools">
+    {{!-- <li>
+      <a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;More Options </a>
+      <div class="draw-tools--container">
+        <span class="draw-tools--trigger button small- bg-white text-orange show-for-large">
+          {{fa-icon icon='edit'}} Draw
+        </span>
+        <div class="draw-tools {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
+          {{#ember-tooltip delay=200}}
+            <span class="text-tiny nowrap">Create selection using drawing tool</span>
+          {{/ember-tooltip}}
+          <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+            {{fa-icon icon='object-group' prefix='far'}}
+            <span class="hide-for-medium">Draw</span> Polygon
+          </button>
+          <button class="draw-tool draw-tools--radius button small gray text-orange {{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
+            {{fa-icon icon='dot-circle' prefix='far'}}
+            <span class="hide-for-medium">Draw</span> Radius
+          </button>
+        </div>
+      </div>
+    </li> --}}
+    <li class="dropdown">
+      <a href="#" class="dropbtn" style="display: flex; justify-content: center;">{{fa-icon icon='edit'}} Draw</a>
+      <div class="dropsizer">
+        <div class="dropdown-content draw-tools {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
+          {{#ember-tooltip delay=200}}
+            <span class="text-tiny nowrap">Create selection using drawing tool</span>
+          {{/ember-tooltip}}
+          
+          <a href="#">
+            <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+              {{fa-icon icon='object-group' prefix='far'}}
+              <span class="hide-for-medium">Draw</span> Polygon
+            </button>
+          </a>
+          <a href="#">
+            <button class="draw-tool draw-tools--radius button small gray text-orange {{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
+              {{fa-icon icon='dot-circle' prefix='far'}}
+              <span class="hide-for-medium">Draw</span> Radius
+            </button>
+          </a>
+          <a href="#">New York CityNew York CityNew York CityNew York City</a>
+        </div>      
+      </div>
+    </li>
+  </ul>
 
   {{!-- {{#map-search}}{{/map-search}} --}}
 </li>
