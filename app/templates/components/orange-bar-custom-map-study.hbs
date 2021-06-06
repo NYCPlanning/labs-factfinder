@@ -70,8 +70,32 @@
 </li>
 {{!-- <li class="menu align-right"><a href="#">Right Side Placeholder</a></li> --}}
 <li class="menu align-right">
+
+
   <ul class="menu orange-bar--selector" id="more-options">
     <li><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;More Options </a></li>
   </ul>
+
+  {{!-- {{#map-utility-box}}{{/map-utility-box}} --}}
+
+  {{!-- {{#map-utility-box
+    lastreport=lastreport
+    mode=this.mode
+    drawMode=drawMode
+    handleDrawButtonClick=(action "handleDrawButtonClick")
+  }}
+    {{drop-zone
+      url='#'
+      addedfile=(action 'addedfile')
+      removedfile=(action 'removedfile')
+      dictDefaultMessage='Drag & drop a zipped shapefile here to add it as an overlay'
+      createImageThumbnails=false
+      acceptedFiles='application/zip'
+      addRemoveLinks=true
+      autoProcessQueue=false
+    }}
+  {{/map-utility-box}} --}}
+ 
+
   
 </li>
