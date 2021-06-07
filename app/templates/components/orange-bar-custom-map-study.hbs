@@ -3,7 +3,7 @@
     <li style="flex-grow: 0;">
       <ul class="menu orange-bar--selector" id="draw-tools">
         <li class="dropdown">
-          <a href="#" class="dropbtn" style="display: flex; justify-content: center;">{{fa-icon icon='edit'}} &nbsp;Draw</a>
+          <a href="#" class="dropbtn">{{fa-icon icon='edit'}} &nbsp;Draw</a>
           <div class="dropsizer">
             <div class="dropdown-content {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
               {{#ember-tooltip delay=200}}
@@ -23,17 +23,17 @@
         </li>
       </ul>
     </li>
-    <li>
-      {{!-- Map-Search should go here, but putting it in causes page not to load --}}
-      {{!-- {{#map-search}}{{/map-search}} --}}
-      {{input type='text'
+    <li class="search">
+      {{!-- Map-Search should go here, but putting it in was causing page not to load --}}
+      {{#map-search}}{{/map-search}}
+      {{!-- {{input type='text'
         placeholder='Search...'
-        class='map-search-input'}}
+        class='map-search-input'}} --}}
     </li>
   </ul>
 </li>
 <li>
-  <ul class="menu align-center orange-bar--selector">
+  <ul class="menu align-center orange-bar--selector five-buttons">
     <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
       <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
         <span class="show-for-medium">Census </span>
@@ -49,7 +49,7 @@
       {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
     </li>
     <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-      <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
+      <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<br /><small>(NTA)</small></a>
       {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
     </li>
     <li class="{{if (eq this.selection.summaryLevel 'pumas') 'active'}} explode-puma">
@@ -57,7 +57,7 @@
       {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
     </li>
     <li class="dropdown explode-moregeos">
-      <a href="#" class="dropbtn" style="display: flex; justify-content: center;">More Geographies</a>
+      <a href="#" class="dropbtn">More Geographies</a>
       <div class="dropsizer">
         <div class="dropdown-content">
           <a href="#">Census Block</a>
@@ -73,7 +73,7 @@
 
 
   <ul class="menu orange-bar--selector" id="more-options">
-    <li><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;More Options </a></li>
+    <li><a {{action "toggleAdvancedOptions"}}>More Options</a></li>
   </ul>
 
   {{!-- {{#map-utility-box}}{{/map-utility-box}} --}}
