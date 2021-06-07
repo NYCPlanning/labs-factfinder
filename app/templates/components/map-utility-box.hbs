@@ -17,14 +17,14 @@
           {{fa-icon icon='edit'}} Draw
         </span>
         <div class="draw-tools {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
-          {{#ember-tooltip delay=200}}
+          <EmberTooltip @delay={{200}}>
             <span class="text-tiny nowrap">Create selection using drawing tool</span>
-          {{/ember-tooltip}}
-          <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+          </EmberTooltip>
+          <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" type="button" {{action "handleDrawButtonClick" 'polygon'}}>
             {{fa-icon icon='object-group' prefix='far'}}
             <span class="hide-for-medium">Draw</span> Polygon
           </button>
-          <button class="draw-tool draw-tools--radius button small gray text-orange {{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
+          <button class="draw-tool draw-tools--radius button small gray text-orange {{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" type="button" {{action "handleDrawButtonClick" 'radius'}}>
             {{fa-icon icon='dot-circle' prefix='far'}}
             <span class="hide-for-medium">Draw</span> Radius
           </button>
@@ -51,7 +51,7 @@
 
   <div class="clearfix" style="padding-bottom:1px;">
     {{#if (gt this.selectionCount 0)}}
-      <button {{action "clearSelection"}} class="button--clear-selection button tiny gray float-right"><span class="lu-red">{{fa-icon icon='times'}}</span> Clear Selection</button>
+      <button class="button--clear-selection button tiny gray float-right" type="button" {{action "clearSelection"}}><span class="lu-red">{{fa-icon icon='times'}}</span> Clear Selection</button>
     {{/if}}
 
     <p><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;Advanced Options </a></p>
@@ -64,7 +64,7 @@
       </div>
 
       <div class="layers-menu">
-        {{#layer-menu-item for='choropleths' as |item|}}
+        <LayerMenuItem @for="choropleths" as |item|>
           <div class="grid-x">
             <div class="cell small-8">
               <ul class="radio-buttons-list">
@@ -105,52 +105,32 @@
               </div>
             </div>
           </div>
-        {{/layer-menu-item}}
+        </LayerMenuItem>
 
-        {{#lookup-layer-group for='subway' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+        <LookupLayerGroup @for="subway" as |layerGroup|>
+          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+          </LabsUi::LayerGroupToggle>
+        </LookupLayerGroup>
 
-        {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+        <LookupLayerGroup @for="neighborhood-tabulation-areas" as |layerGroup|>
+          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+          </LabsUi::LayerGroupToggle>
+        </LookupLayerGroup>
 
-        {{#lookup-layer-group for='community-districts' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+        <LookupLayerGroup @for="community-districts" as |layerGroup|>
+          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+          </LabsUi::LayerGroupToggle>
+        </LookupLayerGroup>
 
-        {{#lookup-layer-group for='nyc-pumas' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+        <LookupLayerGroup @for="nyc-pumas" as |layerGroup|>
+          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+          </LabsUi::LayerGroupToggle>
+        </LookupLayerGroup>
 
-        {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+        <LookupLayerGroup @for="nyc-council-districts" as |layerGroup|>
+          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+          </LabsUi::LayerGroupToggle>
+        </LookupLayerGroup>
 
         {{!-- {{#lookup-layer-group for='boroughs' as |layerGroup|}}
           {{#labs-ui/layer-group-toggle

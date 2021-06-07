@@ -1,4 +1,4 @@
-{{#scroll-to href='#top' class='active'}}
+<ScrollTo @href="#top" @class="active">
   {{this.tabName}}
   {{#if this.tabNameSmall}}
     <small>{{this.tabNameSmall}}</small>
@@ -7,17 +7,14 @@
     transform='grow-2 right-5'
     class="light-gray tab-dropdown-trigger"
   }}
-{{/scroll-to}}
+</ScrollTo>
 
-{{#ember-popover
-  _tooltipVariantClass='tab-popover'
-  as |popover|
-}}
+<EmberPopover @_tooltipVariantClass="tab-popover" as |popover|>
   <ul class="menu vertical">
     {{#each this.dropdownItems as |item|}}
       <li onClick={{action 'sendAnalytics' 'Selected Dropdown Item' item.title}}>
-        {{#scroll-to href=item.anchor afterScroll=(action 'closeTabDropdown')}}{{item.title}}{{/scroll-to}}
+        <ScrollTo @href={{item.anchor}} @afterScroll={{action 'closeTabDropdown'}}>{{item.title}}</ScrollTo>
       </li>
     {{/each}}
   </ul>
-{{/ember-popover}}
+</EmberPopover>

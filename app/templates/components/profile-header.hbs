@@ -92,7 +92,7 @@
     {{#unless (eq this.profile.tab 'profile.census')}}
       <p class="text-small no-margin">
         ACS data are derived from a survey and are subject to sampling variability.
-        Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>).
+        Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank" rel="noopener noreferrer">guidance on ACS data</a>).
         {{labs-ui/icon-tooltip
           tip="Data associated with estimates of zero, top- and bottom-coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out."
           icon='question-circle'
@@ -106,32 +106,24 @@
   <div class="cell large-4 xlarge-auto">
 
     <div class="profile-map-container relative">
-      {{#mapbox-gl
-        id='map'
-        sources=this.sources
-        initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
+      <MapboxGl @id="map" @sources={{this.sources}} @initOptions={{hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
                           zoom=this.zoom
                           center=this.center
                           hash=false
-                          interactive=false)
-        mapLoaded=(action 'handleMapLoad')
-
-        as |map|}}
+                          interactive=false}} @mapLoaded={{action 'handleMapLoad'}} as |map|>
 
         {{#if this.selection.current}}
-          {{#map.source
-            sourceId='selected-features'
-            options=this.selectedSource as |source|}}
+          <map.source @sourceId="selected-features" @options={{this.selectedSource}} as |source|>
             {{source.layer
               layer=this.selectedFillLayer
               before='place_other'}}
             {{source.layer
               before='place_other'}}
-          {{/map.source}}
+          </map.source>
         {{/if}}
 
         {{map.on 'resize' (action 'handleResize')}}
-      {{/mapbox-gl}}
+      </MapboxGl>
       {{#link-to 'index' (query-params lastreport=this.currentProfile) classNames='edit-selection-button' invokeAction=(action 'backToSelection')}}<span>{{fa-icon icon='pen'}}&nbsp;Edit&nbsp;Selection</span>{{/link-to}}
     </div>
 
