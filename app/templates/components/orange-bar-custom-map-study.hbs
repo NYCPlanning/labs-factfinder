@@ -3,9 +3,9 @@
     <li style="flex-grow: 0;">
       <ul class="menu orange-bar--selector" id="draw-tools">
         <li class="dropdown">
-          <a href="#" class="dropbtn">{{fa-icon icon='edit'}} &nbsp;Draw</a>
+          <a href="#" class="dropbtn dropbtn-left">{{fa-icon icon='edit'}} &nbsp;Draw</a>
           <div class="dropsizer">
-            <div class="dropdown-content {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
+            <div class="dropdown-content dropdown-content-left {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
               {{#ember-tooltip delay=200}}
                 <span class="text-tiny nowrap">Create selection using drawing tool</span>
               {{/ember-tooltip}}
@@ -57,7 +57,7 @@
       {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
     </li>
     <li class="dropdown explode-moregeos">
-      <a href="#" class="dropbtn">More Geographies</a>
+      <a href="#" class="dropbtn dropbtn-centered">More Geographies</a>
       <div class="dropsizer">
         <div class="dropdown-content">
           <a href="#">Census Block</a>
