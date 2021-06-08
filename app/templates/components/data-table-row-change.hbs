@@ -1,4 +1,4 @@
-{{#unless (or @rowConfig.divider noPriorData)}}
+{{#unless (or @rowConfig.divider this.noPriorData)}}
   <td class='title-column' {{action 'showData'}}>
     <span>
       {{@rowConfig.title}}
@@ -91,7 +91,7 @@
     </td>
   {{/if}}
 {{else}}
-  {{#if noPriorData}}
+  {{#if this.noPriorData}}
     {{!-- if 2006-2010 sum is null, just return empty cells --}}
     <td class='title-column' {{action 'showData'}}>
       <span>

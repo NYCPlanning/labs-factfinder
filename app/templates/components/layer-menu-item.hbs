@@ -1,8 +1,8 @@
-{{#if layer}}
+{{#if this.layer}}
   <div class="layer-menu-item-header" {{action 'toggleVisibility'}}>
 
-    {{#if (or warning this.titleTooltip)}}
-      {{#if warning}}
+    {{#if (or this.warning this.titleTooltip)}}
+      {{#if this.warning}}
         <span class="float-right gold">
           {{labs-ui/icon-tooltip
             icon='exclamation-triangle'
@@ -22,18 +22,18 @@
       {{/if}}
     {{/if}}
 
-    {{switch-toggle checked=visible}}
+    {{switch-toggle checked=this.visible}}
 
     {{this.title}}
 
-    {{#if visible}}
+    {{#if this.visible}}
 
-      {{#with legendIcon as |legendIcon|}}
+      {{#with this.legendIcon as |legendIcon|}}
         {{#if (eq legendIcon 'admin-line')}}
-          <span class="layer-group-legend" style="border-color:{{legendColor}};"></span>
+          <span class="layer-group-legend" style="border-color:{{this.legendColor}};"></span>
         {{/if}}
         {{#if (eq legendIcon 'polygon')}}
-          <span class="icon polygon legend-icon" style="background-color:{{legendColor}};"></span>
+          <span class="icon polygon legend-icon" style="background-color:{{this.legendColor}};"></span>
         {{/if}}
       {{/with}}
     {{/if}}
@@ -41,10 +41,10 @@
 
   </div>
 
-  {{#if visible}}
+  {{#if this.visible}}
     <div class="layer-menu-item-content">
       {{~yield (hash
-        layer=layer
+        layer=this.layer
         updateSql=(action 'updateSql')
         updatePaintFor=(action 'updatePaintFor')
         )~}}
