@@ -6,8 +6,7 @@ import mapboxgl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 
 import turfCombine from '@turf/combine';
-// import shpjs from 'shpjs';
-const shpjs = () => {};
+import shpjs from 'shpjs';
 
 import bbox from '@turf/bbox';
 
