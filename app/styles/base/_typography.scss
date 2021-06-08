@@ -629,6 +629,9 @@ tr {
 // --------------------------------------------------
 .draw-tools--container {
   position: relative;
+  width: 150px;
+  height: 33.21px;
+  left: 25px;
   z-index: 2;
 
   .fa {
@@ -638,7 +641,9 @@ tr {
   }
 }
 
-.draw-tools--trigger {}
+.draw-tools--trigger {
+  border-radius: 5px;
+}
 
 .draw-tools {
 
@@ -653,7 +658,7 @@ tr {
     &.active {
       display: block;
       position: absolute;
-      top: 0;
+      top: 33.21px;
       left: 0;
     }
   }
