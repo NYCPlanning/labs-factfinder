@@ -1,20 +1,20 @@
 {{input type='text'
   placeholder='Search...'
   class='map-search-input'
-  value=searchTerms
+  value=this.searchTerms
   focus-in=(action 'handleFocusIn')
   focus-out=(action 'handleFocusOut')}}
 
-{{#if searchTerms}}
+{{#if this.searchTerms}}
   <button class="close-button" aria-label="Clear Search" type="button" {{action 'clear'}}>
     <span aria-hidden="true">&times;</span>
   </button>
 {{else}}
   <span class="search-icon">{{fa-icon icon="search"}}</span>
 {{/if}}
-<ul class="search-results no-bullet{{if resultsCount ' has-results'}}{{if focused ' focused'}}">
-  {{#if (is-fulfilled results)}}
-  {{#each-in (group-by "type" results.value) as |type rows|}}
+<ul class="search-results no-bullet{{if this.resultsCount ' has-results'}}{{if this.focused ' focused'}}">
+  {{#if (is-fulfilled this.results)}}
+  {{#each-in (group-by "type" this.results.value) as |type rows|}}
     <li>
       {{#if (eq type 'block')}}
         <h4 class="header-small results-header">2010 Census Blocks</h4>
@@ -29,7 +29,7 @@
       {{/if}}
     </li>
     {{#each rows as |result|}}
-      <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
+      <li class="result {{if (eq this.selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
         {{#if (eq type 'block')}}
           <span class="icon polygon small"></span>
         {{else if (eq type 'tract')}}
@@ -48,11 +48,11 @@
 {{/if}}
 
 </ul>
-{{#if (is-pending results)}}
+{{#if (is-pending this.results)}}
   <div class="search-results--loading">Loading...</div>
 {{/if}}
 
-{{#if (and searchTerms (not resultsCount) (is-fulfilled results))}}
+{{#if (and this.searchTerms (not this.resultsCount) (is-fulfilled this.results))}}
   <div class="search-results--loading">No Results Found</div>
 {{/if}}
 {{yield}}

@@ -29,10 +29,16 @@
 
  {{!--  TURN THIS OFF TO GET RID OF THE MAP  --}}
 <div class="map-container">
-  <LabsMap @id="map" @sources={{sources}} @initOptions={{hash zoom=zoom
-                      center=center
-                      hash=true}} @mapLoaded={{action 'handleMapLoad'}} as |map|>
-
+  <LabsMap 
+    @id="map"
+    @sources={{this.sources}}
+    @initOptions={{hash
+      zoom=this.zoom
+      center=this.center
+      hash=true
+    }}
+    @mapLoaded={{action 'handleMapLoad'}} as |map|
+  >
     <map.labs-layers @onLayerClick={{action 'handleClick'}} @layerGroups={{this.model.layerGroups}} as |layers|>
       <layers.tooltip as |tooltip|>
         {{tooltip-renderer
@@ -140,7 +146,7 @@
   </LabsMap>
 </div>
 
-<MapUtilityBox
+{{!-- <MapUtilityBox
   @lastreport={{lastreport}}
   @mode={{this.mode}}
   @drawMode={{drawMode}}
@@ -156,6 +162,6 @@
     addRemoveLinks=true
     autoProcessQueue=false
   }}
-</MapUtilityBox>
+</MapUtilityBox> --}}
 
 {{outlet}}

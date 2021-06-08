@@ -5,16 +5,16 @@
         <li class="dropdown">
           <a href="#" class="dropbtn dropbtn-left">{{fa-icon icon='edit'}} &nbsp;Draw</a>
           <div class="dropsizer">
-            <div class="dropdown-content dropdown-content-left {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
+            <div class="dropdown-content dropdown-content-left {{if (or (eq this.drawMode 'radius') (eq this.drawMode 'polygon')) 'active'}}">
               {{#ember-tooltip delay=200}}
                 <span class="text-tiny nowrap">Create selection using drawing tool</span>
               {{/ember-tooltip}}
               
-              <a href="#" class="{{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+              <a href="#" class="{{if (eq this.drawMode 'polygon') 'active'}} {{if (eq this.drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
                 {{fa-icon icon='object-group' prefix='far'}}
                 <span class="hide-for-medium">Draw</span> Polygon
               </a>
-              <a href="#" class="{{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
+              <a href="#" class="{{if (eq this.drawMode 'radius') 'active'}} {{if (eq this.drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
                 {{fa-icon icon='dot-circle' prefix='far'}}
                 <span class="hide-for-medium">Draw</span> Radius
               </a>
@@ -81,8 +81,8 @@
 {{#if (eq this.mode 'direct-select')}}
 
 
-  <div class="advanced-options {{unless advanced 'closed'}}" style="color:black">
-    {{#unless closed}}
+  <div class="advanced-options {{unless this.advanced 'closed'}}" style="color:black">
+    {{#unless this.closed}}
 
       <div class="selection-helpers">
       </div>
@@ -92,7 +92,7 @@
           <div class="grid-x">
             <div class="cell small-8">
               <ul class="radio-buttons-list">
-                {{#each-in (group-by "group" choroplethConfigs) as |group configs|}}
+                {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
                   <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
                   <ul class="no-bullet">
                     {{#each configs as |config|}}
@@ -100,11 +100,11 @@
                         action (
                           queue
                             (action 'setChoroplethMode' config.id)
-                            (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
-                            (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
+                            (action item.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
+                            (action item.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
                         )
                       }}>
-                        {{#if (eq choroplethMode config.id)}}
+                        {{#if (eq this.choroplethMode config.id)}}
                           {{fa-icon icon='dot-circle' prefix='far'}}
                         {{else}}
                           {{fa-icon icon='circle' prefix='far'}}
@@ -119,8 +119,8 @@
             </div>
             <div class="cell small-4">
               <div class="legend">
-                <div class="legend-title">{{legendTitle}}</div>
-                {{#each stops as |stop|}}
+                <div class="legend-title">{{this.legendTitle}}</div>
+                {{#each this.stops as |stop|}}
                   <div class="legend-item">
                     <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
                     {{stop.label}}
@@ -184,5 +184,5 @@
   </div>
 
 {{else}}
-  {{component mode}}
+  {{component this.mode}}
 {{/if}}
