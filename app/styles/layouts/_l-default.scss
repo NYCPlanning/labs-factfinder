@@ -159,10 +159,12 @@ body {
   @include breakpoint(large) {
     position: absolute;
     top: 10px;
-    left: 50px;
+    // left: 50px;
+    right: 20px;
     z-index: 4;
     padding-bottom: 0;
-    margin-top: rem-calc(92);
+    // margin-top: rem-calc(92);
+    margin-top: rem-calc(52);
     width: rem-calc(330);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
   }
@@ -185,13 +187,14 @@ body {
   margin-bottom: rem-calc(-40);
 
   @include breakpoint(large) {
-    position: absolute;
+    // position: absolute;
+    position: relative;
     top: 0;
     bottom: auto;
     left: 0;
     width: rem-calc(300);
     margin-left: 0;
-    margin-top: rem-calc(-92);
+    // margin-top: rem-calc(-92);
   }
 }
 
@@ -223,7 +226,7 @@ body {
     overflow: auto;
 
     &.closed {
-      display: block;
+      // display: block;
       max-height: 0;
       min-height: 0;
     }

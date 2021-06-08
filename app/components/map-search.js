@@ -28,7 +28,7 @@ export default Component.extend({
   }),
 
   debouncedResults: task(function* (searchTerms) {
-    if (searchTerms.length < 3) this.cancel();
+    if (searchTerms.length < 3) this.debouncedResults.cancelAll();
     yield timeout(DEBOUNCE_MS);
     const URL = `${SupportServiceHost}/search?q=${searchTerms}`;
 

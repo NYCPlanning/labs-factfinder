@@ -36,7 +36,7 @@ const SAMPLE_SELECTION = {
 };
 
 module.exports = function (environment) {
-  let ENV = {
+  const ENV = {
     modulePrefix: 'labs-nyc-factfinder',
     environment,
     rootURL: '/',
@@ -63,7 +63,7 @@ module.exports = function (environment) {
     },
 
     'mapbox-gl': {
-      accessToken: '',
+      accessToken: 'pk.eyJ1Ijoid21hdHRnYXJkbmVyIiwiYSI6Ii1icTRNT3MifQ.WnayxAOEoXX-jWsNmHUhyg',
       map: {
         style: 'https://labs-layers-api.herokuapp.com/v1/base/style.json',
       },
@@ -139,6 +139,9 @@ module.exports = function (environment) {
   if (environment === 'development') {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
     ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    ENV['ember-cli-mirage'] = {
+      enabled: false,
+    };
   }
 
   if (environment === 'staging') {

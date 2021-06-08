@@ -1,4 +1,8 @@
-<ul class="menu align-center menu--selector">
+{{#orange-bar}}
+  {{#orange-bar-custom-map-study}}{{/orange-bar-custom-map-study}}
+{{/orange-bar}}
+
+{{!-- <ul class="menu align-center menu--selector">
   <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
     <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
       <span class="show-for-medium">Census </span>
@@ -21,37 +25,32 @@
     <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
     {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
   </li>
-</ul>
-<div class="map-container">
-  {{#labs-map
-    id='map'
-    sources=sources
-    initOptions=(hash zoom=zoom
-                      center=center
-                      hash=true)
-    mapLoaded=(action 'handleMapLoad')
-    as |map|}}
+</ul> --}}
 
-    {{#map.labs-layers
-      onLayerClick=(action 'handleClick')
-      layerGroups=this.model.layerGroups as |layers|}}
-      {{#layers.tooltip as |tooltip|}}
+ {{!--  TURN THIS OFF TO GET RID OF THE MAP  --}}
+<div class="map-container">
+  <LabsMap @id="map" @sources={{sources}} @initOptions={{hash zoom=zoom
+                      center=center
+                      hash=true}} @mapLoaded={{action 'handleMapLoad'}} as |map|>
+
+    <map.labs-layers @onLayerClick={{action 'handleClick'}} @layerGroups={{this.model.layerGroups}} as |layers|>
+      <layers.tooltip as |tooltip|>
         {{tooltip-renderer
           feature=tooltip.feature
           template=tooltip.layer.tooltipTemplate}}
-      {{/layers.tooltip}}
-    {{/map.labs-layers}}
+      </layers.tooltip>
+    </map.labs-layers>
 
     {{#if this.selection.currentAddress}}
-      {{#map.source sourceId='currentAddress' options=selection.addressSource as |source|}}
+      <map.source @sourceId="currentAddress" @options={{selection.addressSource}} as |source|>
         {{source.layer layer=selection.pointLayer}}
-      {{/map.source}}
+      </map.source>
     {{/if}}
 
     {{#if this.selection.searchResultFeature}}
-      {{#map.source sourceId='searchResultSource' options=selection.searchResultSource as |source|}}
+      <map.source @sourceId="searchResultSource" @options={{selection.searchResultSource}} as |source|>
         {{source.layer layer=selection.searchResultLayer}}
-      {{/map.source}}
+      </map.source>
     {{/if}}
 
     {{map.layer-group
@@ -63,34 +62,26 @@
       options=choroplethsSource}}
 
     {{#if this.selection.current}}
-      {{#map.source
-        sourceId='selected-features'
-        options=this.selectedSource as |source|}}
+      <map.source @sourceId="selected-features" @options={{this.selectedSource}} as |source|>
         {{source.layer
           layer=this.selectedFillLayer
           before='place_other'}}
         {{source.layer
           before='place_other'}}
-      {{/map.source}}
+      </map.source>
     {{/if}}
 
     {{#if mapMouseover.highlightedFeature}}
-      {{#map.source
-        sourceId='highlighted-feature'
-        options=mapMouseover.highlightedFeatureSource as |source|}}
+      <map.source @sourceId="highlighted-feature" @options={{mapMouseover.highlightedFeatureSource}} as |source|>
         {{source.layer
           layer=highlightedFeature
           before='place_other'}}
-      {{/map.source}}
+      </map.source>
     {{/if}}
 
     {{#if customVisualOverlayLines}}
-      {{#map.source
-        sourceId='custom-overlay'
-        options=(hash
-          type='geojson'
-          data=customVisualOverlayData
-        ) as |source|}}
+      <map.source @sourceId="custom-overlay" @options={{hash type='geojson'
+          data=customVisualOverlayData}} as |source|>
         {{source.layer
           layer=(hash
             type='line'
@@ -118,16 +109,12 @@
           )
           before='place_village'
         }}
-      {{/map.source}}
+      </map.source>
     {{/if}}
 
     {{#if customVisualOverlayPoints}}
-      {{#map.source
-        sourceId='custom-overlay'
-        options=(hash
-          type='geojson'
-          data=customVisualOverlayData
-        ) as |source|}}
+      <map.source @sourceId="custom-overlay" @options={{hash type='geojson'
+          data=customVisualOverlayData}} as |source|>
         {{source.layer
           layer=(hash
             type='circle'
@@ -144,23 +131,21 @@
           )
           before='place_village'}}
 
-      {{/map.source}}
+      </map.source>
     {{/if}}
 
     {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
     {{map.on 'draw.create' (action 'handleDrawCreate')}}
-    {{!-- {{map.on 'click' (action 'handleClick')}} --}}
-    {{!-- {{map.on 'mousemove' (action 'handleMousemove')}} --}}
 
-  {{/labs-map}}
+  </LabsMap>
 </div>
 
-{{#map-utility-box
-  lastreport=lastreport
-  mode=this.mode
-  drawMode=drawMode
-  handleDrawButtonClick=(action "handleDrawButtonClick")
-}}
+<MapUtilityBox
+  @lastreport={{lastreport}}
+  @mode={{this.mode}}
+  @drawMode={{drawMode}}
+  @handleDrawButtonClick={{action "handleDrawButtonClick"}}
+>
   {{drop-zone
     url='#'
     addedfile=(action 'addedfile')
@@ -171,6 +156,6 @@
     addRemoveLinks=true
     autoProcessQueue=false
   }}
-{{/map-utility-box}}
+</MapUtilityBox>
 
 {{outlet}}

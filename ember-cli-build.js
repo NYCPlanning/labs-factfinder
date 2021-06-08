@@ -3,12 +3,38 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
+  const app = new EmberApp(defaults, {
     'ember-cli-babel': {
       includePolyfill: true,
     },
-    'ember-cli-foundation-6-sass': {
-      foundationJs: 'all',
+    postcssOptions: {
+      compile: {
+        extension: 'scss',
+        enabled: true,
+        parser: require('postcss-scss'),
+        plugins: [
+          {
+            module: require('@csstools/postcss-sass'),
+            options: {
+              includePaths: [
+                'node_modules/foundation-sites/scss',
+                'node_modules/nyc-planning-style-guide/dist/assets/scss',
+              ],
+            },
+          },
+        ],
+      },
+    },
+    autoImport: {
+      alias: {
+        'mapbox-gl': 'mapbox-gl/dist/mapbox-gl',
+        '@mapbox/mapbox-gl-draw': '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw',
+      },
+      webpack: {
+        node: {
+          fs: 'empty',
+        },
+      },
     },
   });
 

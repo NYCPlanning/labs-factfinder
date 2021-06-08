@@ -1,0 +1,125 @@
+.orange-bar {
+  background-color: #d96b27;
+  color: #fefefe;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 65px;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.orange-bar--selector {
+  position: relative;
+  z-index: 11;
+  background-color: #d96b27;
+  font-size: rem-calc(12);
+  font-weight: $global-weight-bold;
+  box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+
+  @include breakpoint(large) {
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px $white;
+
+    li:not(:last-child) {
+      border-right: 1px solid $white;
+    }
+  }
+
+  .dropdown-content a {
+    @include breakpoint(large) {
+      box-shadow: 0 0 0 2px $white;
+  
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 0 0 2px $white;
+        border-bottom: 1px solid $white;
+      }
+    }
+  }
+
+  a {
+    color: $white;
+    @include breakpoint(small only) {
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+    }
+  }
+  li:hover, li:active, a:hover, a:active, .dropdown:hover .dropbtn {
+    background-color: $white;
+    color: #d96b27;
+  }  
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #d96b27;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+  a {
+    background-color: #d96b27;
+  }
+}
+.dropdown-content-left {
+  a {
+    text-align: left;
+  }
+}
+.dropsizer {
+  width: auto;
+  position: relative;
+  border-radius: 4px;
+  border-right: 1px solid $white;
+}
+
+ul .menu li.dropdown {
+  display: inline-block;
+}
+.dropdown:hover div, .dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropdown-content a {
+  position: relative;
+}
+.dropbtn {
+  // display: inline-block !important;
+  display: flex !important;
+  // justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#more-options-button {
+  margin-right: 46px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 26px;
+}
+#draw-tools {
+  margin-left: 31px;
+  margin-right: 20px;
+  width:ceil($number: 100px);
+}
+.five-buttons li {
+  width: 79px;
+  // padding: 0px;
+  align-items: center;
+}
+
+.dropbtn-centered {
+  justify-content: center;
+}
+.dropbtn-left {
+  justify-content: left;
+}
+
+.orange-bar-custom-map-study {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

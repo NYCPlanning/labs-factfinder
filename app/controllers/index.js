@@ -3,10 +3,11 @@ import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import mapboxgl from 'mapbox-gl';
-import MapboxDraw from 'mapbox-gl-draw';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 
 import turfCombine from '@turf/combine';
-// import shpjs from 'shpjs';
+import shpjs from 'shpjs';
+
 import bbox from '@turf/bbox';
 
 import carto from '../utils/carto';
@@ -27,18 +28,18 @@ import subduedNtaLabels from '../layers/subdued-nta-labels';
 const selectedFillLayer = selectedFeatures.fill;
 const combine = turfCombine;
 
-// const draw = new MapboxDraw({
-//   displayControlsDefault: false,
-//   controls: {
-//     rectangle: false,
-//     polygon: false,
-//     trash: false,
-//   },
-//   styles: drawStyles,
-//   modes: Object.assign({
-//     draw_radius: RadiusMode,
-//   }, MapboxDraw.modes),
-// });
+const draw = new MapboxDraw({
+  displayControlsDefault: false,
+  controls: {
+    rectangle: false,
+    polygon: false,
+    trash: false,
+  },
+  styles: drawStyles,
+  modes: Object.assign({
+    draw_radius: RadiusMode,
+  }, MapboxDraw.modes),
+});
 
 // TODO: split out different functions into components (draw, shapefile, etc)
 export default Controller.extend({
