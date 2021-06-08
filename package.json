@@ -106,6 +106,7 @@
     "postcss-scss": "^3.0.5",
     "prettier": "^2.2.1",
     "qunit": "^2.14.1",
+    "qunit-dom": "^1.6.0",
     "sass": "^1.33.0"
   },
   "engines": {
