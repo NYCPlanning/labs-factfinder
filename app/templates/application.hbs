@@ -1,12 +1,8 @@
-{{#labs-ui/site-header
-responsiveNav=true
-responsiveSize='large'
-as |banner|
-}}
-{{#banner.title}}
+<LabsUi::SiteHeader @responsiveNav={{true}} @responsiveSize="large" as |banner|>
+<banner.title>
   {{#link-to 'index' classNames='site-title'}}Population FactFinder{{/link-to}}
-{{/banner.title}}
-{{#banner.nav}}
+</banner.title>
+<banner.nav>
   <ul class="vertical large-horizontal menu">
     <li>
       {{#link-to
@@ -27,8 +23,8 @@ as |banner|
       {{/link-to}}
     </li>
   </ul>
-{{/banner.nav}}
-{{/labs-ui/site-header}}
+</banner.nav>
+</LabsUi::SiteHeader>
 
 <div class="site-main">
   {{outlet}}

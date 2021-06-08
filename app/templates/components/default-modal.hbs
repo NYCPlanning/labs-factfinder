@@ -1,7 +1,4 @@
-{{#reveal-modal
-  open=open
-  closeModal=(action 'toggleModal')
-}}
+<RevealModal @open={{open}} @closeModal={{action 'toggleModal'}}>
   <h1 class="header-xlarge">
     A note to our users about upcoming changes:
   </h1>
@@ -10,4 +7,4 @@
     2020 Census Operations include the revision of small area geographies, such as census blocks and census tracts. Accordingly, City Planning will update Neighborhood Tabulation Areas (NTAs), which rely upon these census geographies. City Planning will also release a new geography, to be known as Community District Tabulation Areas (CDTAs), to better approximate New York City’s 59 Community Districts. Look for more details concerning NTAs and CDTAs to be posted in the coming months.
   </p>
   
-{{/reveal-modal}}
+</RevealModal>

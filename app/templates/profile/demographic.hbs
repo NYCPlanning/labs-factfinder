@@ -19,10 +19,7 @@
     </div>
     {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
-        {{#population-pyramid
-          title="Age/Sex Distribution"
-          data=this.agePopDist
-        }}
+        <PopulationPyramid @title="Age/Sex Distribution" @data={{this.agePopDist}}>
           <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
             <span class="cell small-6 text-right">
               Male <br>{{numeral-format this.model.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format this.model.y2014_2018.male.percent_m '0.0%'}})</span>
@@ -31,7 +28,7 @@
               Female <br>{{numeral-format this.model.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format this.model.y2014_2018.fem.percent_m '0.0%'}})</span>
             </span>
           </h4>
-        {{/population-pyramid}}
+        </PopulationPyramid>
       </div>
     {{/if}}
   </div>

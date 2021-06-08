@@ -1,0 +1,21 @@
+<header>
+  <a href="https://planninglabs.nyc/" class="labs-beta-notice hide-for-print">A beta project of NYC Planning Labs</a>
+  <div class="grid-x grid-padding-x">
+
+    <div {{action (mut closed) true preventDefault=false}} class="branding cell {{if responsiveNav (concat responsiveSize '-auto shrink') 'auto'}}">
+      <a class="dcp-link" href="http://www1.nyc.gov/site/planning/index.page"><img class="dcp-logo" src="https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png" alt="NYC Planning"></a>
+      {{yield (hash title = (component 'labs-ui/site-title'))}}
+    </div>
+
+    {{#if responsiveNav}}
+      <div class="cell auto hide-for-{{responsiveSize}} text-right">
+        <button class="responsive-nav-toggler hide-for-print" type="button" {{action (mut closed) (not closed)}}>Menu</button>
+      </div>
+    {{/if}}
+
+    <nav {{action (mut closed) (not closed) preventDefault=false}} class="cell {{if responsiveNav (concat responsiveSize '-shrink responsive') 'shrink'}} {{if (and responsiveNav closed) (concat 'show-for-' responsiveSize)}} hide-for-print">
+      {{yield (hash nav = (component 'labs-ui/site-nav'))}}
+    </nav>
+
+  </div>
+</header>
