@@ -2,7 +2,7 @@
 // shows a center point, radius line, and circle polygon while drawing
 // forces draw.create on creation of second vertex
 
-import MapboxDraw from 'mapbox-gl-draw';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import numeral from 'numeral';
 import lineDistance from '@turf/line-distance';
 

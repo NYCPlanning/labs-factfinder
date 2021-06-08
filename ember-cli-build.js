@@ -26,6 +26,10 @@ module.exports = function (defaults) {
       },
     },
     autoImport: {
+      alias: {
+        'mapbox-gl': 'mapbox-gl/dist/mapbox-gl',
+        '@mapbox/mapbox-gl-draw': '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw',
+      },
       webpack: {
         node: {
           fs: 'empty',
