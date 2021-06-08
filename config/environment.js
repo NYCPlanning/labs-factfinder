@@ -36,7 +36,7 @@ const SAMPLE_SELECTION = {
 };
 
 module.exports = function (environment) {
-  let ENV = {
+  const ENV = {
     modulePrefix: 'labs-nyc-factfinder',
     environment,
     rootURL: '/',
@@ -139,6 +139,9 @@ module.exports = function (environment) {
   if (environment === 'development') {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
     ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    ENV['ember-cli-mirage'] = {
+      enabled: false,
+    };
   }
 
   if (environment === 'staging') {
