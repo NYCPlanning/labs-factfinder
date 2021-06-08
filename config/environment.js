@@ -63,7 +63,7 @@ module.exports = function (environment) {
     },
 
     'mapbox-gl': {
-      accessToken: '',
+      accessToken: 'pk.eyJ1Ijoid21hdHRnYXJkbmVyIiwiYSI6Ii1icTRNT3MifQ.WnayxAOEoXX-jWsNmHUhyg',
       map: {
         style: 'https://labs-layers-api.herokuapp.com/v1/base/style.json',
       },

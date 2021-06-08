@@ -106,12 +106,18 @@
   <div class="cell large-4 xlarge-auto">
 
     <div class="profile-map-container relative">
-      <MapboxGl @id="map" @sources={{this.sources}} @initOptions={{hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                          zoom=this.zoom
-                          center=this.center
-                          hash=false
-                          interactive=false}} @mapLoaded={{action 'handleMapLoad'}} as |map|>
-
+      <MapboxGl
+        @id="map"
+        @sources={{this.sources}}
+        @initOptions={{hash
+          style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
+          zoom=this.zoom
+          center=this.center
+          hash=false
+          interactive=false
+        }}
+        @mapLoaded={{action 'handleMapLoad'}} as |map|
+      >
         {{#if this.selection.current}}
           <map.source @sourceId="selected-features" @options={{this.selectedSource}} as |source|>
             {{source.layer
