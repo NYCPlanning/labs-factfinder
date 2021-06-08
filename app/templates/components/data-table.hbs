@@ -3,7 +3,7 @@
 </div>
 
 <div class="wrapper-for-copy">
-  {{#sticky-element top=this.stickyTop bottom=0}}
+  <StickyElement @top={{this.stickyTop}} @bottom={{0}}>
     {{#if (eq this.mode 'current')}}
       {{data-table-header-current
         decennial=this.decennial
@@ -19,13 +19,13 @@
         mode=this.mode
       }}
     {{/if}}
-  {{/sticky-element}}
+  </StickyElement>
 
   <div class="table-scroll">
     <table class="body-table">
       <tbody>
         {{#each this.config as |rowConfig|}}
-          {{#if hasBlock}}
+          {{#if (has-block)}}
             {{yield}}
           {{else}}
             {{#if (eq this.mode 'current')}}

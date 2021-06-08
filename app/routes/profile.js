@@ -8,6 +8,7 @@ const { SupportServiceHost } = Environment;
 const SELECTION_API_URL = id => `${SupportServiceHost}/selection/${id}`;
 
 /**
+ * TODO: Deprecate. Migrate to 'explorer' route.
  * The Profile Route is responsible for fetching information for a given selection ID.
  * It also defines query parameters for the controller, which are used to manage
  * the state of the profile view.

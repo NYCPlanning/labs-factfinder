@@ -3,20 +3,16 @@ import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import mapboxgl from 'mapbox-gl';
-import MapboxDraw from 'mapbox-gl-draw';
 
 import turfCombine from '@turf/combine';
-// import shpjs from 'shpjs';
 import bbox from '@turf/bbox';
 
 import carto from '../utils/carto';
-import RadiusMode from '../utils/radius-mode';
 
 import generateIntersectionSQL from '../queries/intersection';
 import generateRadiusSQL from '../queries/radius';
 
 import layerGroups from '../layer-groups';
-import drawStyles from '../layers/draw-styles';
 import sources from '../sources';
 import selectedFeatures from '../layers/selected-features';
 import highlightedFeature from '../layers/highlighted-feature';

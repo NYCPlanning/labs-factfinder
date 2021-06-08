@@ -5,7 +5,9 @@ import config from 'labs-nyc-factfinder/config/environment';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
+
   podModulePrefix = config.podModulePrefix;
+
   Resolver = Resolver;
 }
 

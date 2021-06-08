@@ -1,4 +1,3 @@
-import Route from '@ember/routing/route';
 import { task } from 'ember-concurrency';
 import Downloadable from './_downloadable';
 
