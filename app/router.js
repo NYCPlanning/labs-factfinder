@@ -1,6 +1,5 @@
 import EmberRouter from '@ember/routing/router';
 import config from 'labs-nyc-factfinder/config/environment';
-import trackPage from './mixins/track-page';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
