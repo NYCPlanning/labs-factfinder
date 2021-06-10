@@ -49,105 +49,107 @@
     </strong></small>
   </div> --}}
 
-  <div class="clearfix" style="padding-bottom:1px;">
+  {{!-- Advanced Options toggle --}}
+  {{!-- <div class="clearfix" style="padding-bottom:1px;">
     {{#if (gt this.selectionCount 0)}}
       <button class="button--clear-selection button tiny gray float-right" type="button" {{action "clearSelection"}}><span class="lu-red">{{fa-icon icon='times'}}</span> Clear Selection</button>
     {{/if}}
 
     <p><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;Advanced Options </a></p>
-  </div>
+  </div> --}}
 
-  <div class="advanced-options {{unless this.advanced 'closed'}}">
-    {{#unless this.closed}}
+  <div class="map-utility-box">
+    <div class="advanced-options {{unless this.advanced 'closed'}}">
+      {{#unless this.closed}}
 
-      <div class="selection-helpers">
-      </div>
+        <div class="selection-helpers">
+        </div>
 
-      <div class="layers-menu">
-        <LayerMenuItem @for="choropleths" as |item|>
-          <div class="grid-x">
-            <div class="cell small-8">
-              <ul class="radio-buttons-list">
-                {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
-                  <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
-                  <ul class="no-bullet">
-                    {{#each configs as |config|}}
-                      <li {{
-                        action (
-                          queue
-                            (action 'setChoroplethMode' config.id)
-                            (action item.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
-                            (action item.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
-                        )
-                      }}>
-                        {{#if (eq this.choroplethMode config.id)}}
-                          {{fa-icon icon='dot-circle' prefix='far'}}
-                        {{else}}
-                          {{fa-icon icon='circle' prefix='far'}}
-                        {{/if}}
-                        {{config.label}}
-                        {{labs-ui/icon-tooltip tip=config.tooltip}}
-                      </li>
-                    {{/each}}
-                  </ul>
-                {{/each-in}}
-              </ul>
-            </div>
-            <div class="cell small-4">
-              <div class="legend">
-                <div class="legend-title">{{this.legendTitle}}</div>
-                {{#each this.stops as |stop|}}
-                  <div class="legend-item">
-                    <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
-                    {{stop.label}}
-                  </div>
-                {{/each}}
+        <div class="layers-menu">
+          <LayerMenuItem @for="choropleths" as |item|>
+            <div class="grid-x">
+              <div class="cell small-8">
+                <ul class="radio-buttons-list">
+                  {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
+                    <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
+                    <ul class="no-bullet">
+                      {{#each configs as |config|}}
+                        <li {{
+                          action (
+                            queue
+                              (action 'setChoroplethMode' config.id)
+                              (action item.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
+                              (action item.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
+                          )
+                        }}>
+                          {{#if (eq this.choroplethMode config.id)}}
+                            {{fa-icon icon='dot-circle' prefix='far'}}
+                          {{else}}
+                            {{fa-icon icon='circle' prefix='far'}}
+                          {{/if}}
+                          {{config.label}}
+                          {{labs-ui/icon-tooltip tip=config.tooltip}}
+                        </li>
+                      {{/each}}
+                    </ul>
+                  {{/each-in}}
+                </ul>
+              </div>
+              <div class="cell small-4">
+                <div class="legend">
+                  <div class="legend-title">{{this.legendTitle}}</div>
+                  {{#each this.stops as |stop|}}
+                    <div class="legend-item">
+                      <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
+                      {{stop.label}}
+                    </div>
+                  {{/each}}
+                </div>
               </div>
             </div>
-          </div>
-        </LayerMenuItem>
+          </LayerMenuItem>
 
-        <LookupLayerGroup @for="subway" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
+          <LookupLayerGroup @for="subway" as |layerGroup|>
+            <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+            </LabsUi::LayerGroupToggle>
+          </LookupLayerGroup>
 
-        <LookupLayerGroup @for="neighborhood-tabulation-areas" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
+          <LookupLayerGroup @for="neighborhood-tabulation-areas" as |layerGroup|>
+            <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+            </LabsUi::LayerGroupToggle>
+          </LookupLayerGroup>
 
-        <LookupLayerGroup @for="community-districts" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
+          <LookupLayerGroup @for="community-districts" as |layerGroup|>
+            <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+            </LabsUi::LayerGroupToggle>
+          </LookupLayerGroup>
 
-        <LookupLayerGroup @for="nyc-pumas" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
+          <LookupLayerGroup @for="nyc-pumas" as |layerGroup|>
+            <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+            </LabsUi::LayerGroupToggle>
+          </LookupLayerGroup>
 
-        <LookupLayerGroup @for="nyc-council-districts" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
+          <LookupLayerGroup @for="nyc-council-districts" as |layerGroup|>
+            <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+            </LabsUi::LayerGroupToggle>
+          </LookupLayerGroup>
 
-        {{!-- {{#lookup-layer-group for='boroughs' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}} --}}
+          {{!-- {{#lookup-layer-group for='boroughs' as |layerGroup|}}
+            {{#labs-ui/layer-group-toggle
+              label=layerGroup.model.legend.label
+              active=layerGroup.model.visible
+              icon=layerGroup.model.legend.icon
+            }}
+            {{/labs-ui/layer-group-toggle}}
+          {{/lookup-layer-group}} --}}
 
-      </div>
+        </div>
 
-      {{yield}}
+        {{yield}}
 
-    {{/unless}}
+      {{/unless}}
+    </div>
   </div>
-
 {{else}}
   {{component this.mode}}
 {{/if}}

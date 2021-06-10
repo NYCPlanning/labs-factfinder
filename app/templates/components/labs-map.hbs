@@ -1,30 +1,43 @@
-{{#if this.glSupported}}
-  {{#if this.map}}
-
-    {{mapbox-gl-layer
-      map=this.map
-      layer=this.highlightedFeatureLayer}}
+{{#if this._loader.isLoaded}}
+  {{#if this._loader.map}}
+    {{log this._loader.map}}
+    {{#mapbox-gl-source 
+      map=this._loader.map
+      options=this.hoveredFeatureSource
+      as |source|
+    }}
+      {{log 'this does not happen'}}
+      {{source.layer
+        layer=this.highlightedFeatureLayer
+      }}
+    {{/mapbox-gl-source}}
 
     {{yield (hash
-      call=(component 'mapbox-gl-call' obj=this.map)
-      control=(component 'mapbox-gl-control' map=this.map)
-      image=(component 'mapbox-gl-image' map=this.map)
-      layer=(component 'mapbox-gl-layer' map=this.map)
-      marker=(component 'mapbox-gl-marker' map=this.map)
-      on=(component 'mapbox-gl-on' eventSource=this.map)
-      popup=(component 'mapbox-gl-popup' map=this.map)
-      source=(component 'mapbox-gl-source' map=this.map)
-      labs-layers=(component 'labs-layers' map=this.map layerGroups=this.layerGroups)
+      call=(component 'mapbox-gl-call' obj=this._loader.map)
+      control=(component 'mapbox-gl-control' map=this._loader.map)
+      image=(component 'mapbox-gl-image' map=this._loader.map)
+      layer=(component 'mapbox-gl-layer' map=this._loader.map)
+      instance=this._loader.map
+      marker=(component 'mapbox-gl-marker' map=this._loader.map)
+      on=(component 'mapbox-gl-on' eventSource=this._loader.map)
+      popup=(component 'mapbox-gl-popup' map=this._loader.map)
+      source=(component 'mapbox-gl-source' map=this._loader.map)
+      labs-layers=(component 'labs-layers' map=this._loader.map layerGroups=this.layerGroups)
       layer-group=(component 'layer-group'
         parentComponent=this
         map=(hash
-          layer=(component 'mapbox-gl-layer' map=this.map)
-          source=(component 'mapbox-gl-source' map=this.map)
+          layer=(component 'mapbox-gl-layer' map=this._loader.map)
+          source=(component 'mapbox-gl-source' map=this._loader.map)
         )
       )
     )
     }}
   {{/if}}
-{{else}}
-  {{yield to='inverse'}}
+{{else if this._loader.error}}
+  {{#if (hasBlock 'inverse')}}
+    {{yield this._loader.error to='inverse'}}
+  {{else}}
+    {{! template-lint-disable no-log }}
+    {{log 'error rendering mapbox-gl' this._loader.error}}
+  {{/if}}
 {{/if}}

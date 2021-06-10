@@ -19,8 +19,6 @@ export default Component.extend({
 
   choroplethConfigs,
 
-  classNames: ['map-utility-box'],
-
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,

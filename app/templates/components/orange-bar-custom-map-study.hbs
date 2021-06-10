@@ -3,18 +3,21 @@
     <li style="flex-grow: 0;">
       <ul class="menu orange-bar--selector" id="draw-tools">
         <li class="dropdown">
-          <a href="#" class="dropbtn dropbtn-left">{{fa-icon icon='edit'}} &nbsp;Draw</a>
+          <a href="#" class="dropbtn dropbtn-left">
+            {{fa-icon icon='edit'}}
+            Draw
+          </a>
           <div class="dropsizer">
-            <div class="dropdown-content dropdown-content-left {{if (or (eq this.drawMode 'radius') (eq this.drawMode 'polygon')) 'active'}}">
+            <div class="dropdown-content dropdown-content-left">
               {{#ember-tooltip delay=200}}
                 <span class="text-tiny nowrap">Create selection using drawing tool</span>
               {{/ember-tooltip}}
-              
-              <a href="#" class="{{if (eq this.drawMode 'polygon') 'active'}} {{if (eq this.drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+
+              <a href="#" class="{{if (eq @drawMode 'polygon') 'active'}}" onclick={{fn @handleDrawButtonClick 'polygon'}}>
                 {{fa-icon icon='object-group' prefix='far'}}
                 <span class="hide-for-medium">Draw</span> Polygon
               </a>
-              <a href="#" class="{{if (eq this.drawMode 'radius') 'active'}} {{if (eq this.drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
+              <a href="#" class="{{if (eq @drawMode 'radius') 'active'}}" onclick={{fn @handleDrawButtonClick 'radius'}}>
                 {{fa-icon icon='dot-circle' prefix='far'}}
                 <span class="hide-for-medium">Draw</span> Radius
               </a>
@@ -24,11 +27,7 @@
       </ul>
     </li>
     <li class="search">
-      {{!-- Map-Search should go here, but putting it in was causing page not to load --}}
-      {{#map-search}}{{/map-search}}
-      {{!-- {{input type='text'
-        placeholder='Search...'
-        class='map-search-input'}} --}}
+      <MapSearch />
     </li>
   </ul>
 </li>
@@ -78,9 +77,7 @@
   
 </li>
 
-{{#if (eq this.mode 'direct-select')}}
-
-
+{{#if (eq @mode 'direct-select')}}
   <div class="advanced-options {{unless this.advanced 'closed'}}" style="color:black">
     {{#unless this.closed}}
 
@@ -184,5 +181,5 @@
   </div>
 
 {{else}}
-  {{component this.mode}}
+  {{component @mode}}
 {{/if}}

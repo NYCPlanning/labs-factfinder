@@ -1,6 +1,15 @@
-{{#orange-bar}}
-  {{#orange-bar-custom-map-study}}{{/orange-bar-custom-map-study}}
-{{/orange-bar}}
+{{!-- TODO: This renders before the map is ready to receive events. --}}
+
+<OrangeBar>
+  {{#if this.selection.currentMapInstance}}
+    <OrangeBarCustomMapStudy
+      @handleDrawButtonClick={{action this.handleDrawButtonClick}}
+      @drawMode={{this.drawMode}}
+      @mode={{this.mode}}
+      @lastreport={{this.lastreport}}
+    />
+  {{/if}}
+</OrangeBar>
 
 {{!-- <ul class="menu align-center menu--selector">
   <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
@@ -37,9 +46,9 @@
       center=this.center
       hash=true
     }}
-    @mapLoaded={{action 'handleMapLoad'}} as |map|
+    @mapLoaded={{action this.handleMapLoad}} as |map|
   >
-    <map.labs-layers @onLayerClick={{action 'handleClick'}} @layerGroups={{this.model.layerGroups}} as |layers|>
+    <map.labs-layers @onLayerClick={{action this.handleClick}} @layerGroups={{this.model.layerGroups}} as |layers|>
       <layers.tooltip as |tooltip|>
         {{tooltip-renderer
           feature=tooltip.feature
@@ -59,9 +68,9 @@
       </map.source>
     {{/if}}
 
-    {{map.layer-group
+    {{!-- {{map.layer-group
       config=layerGroups.choropleths
-      visible=false}}
+      visible=false}} --}}
 
     {{map.source
       sourceId='choropleths'
@@ -140,8 +149,8 @@
       </map.source>
     {{/if}}
 
-    {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
-    {{map.on 'draw.create' (action 'handleDrawCreate')}}
+    {{map.on 'draw.modechange' (action this.handleDrawModeChange)}}
+    {{map.on 'draw.create' (action this.handleDrawCreate)}}
 
   </LabsMap>
 </div>
@@ -151,8 +160,8 @@
   @mode={{this.mode}}
   @drawMode={{drawMode}}
   @handleDrawButtonClick={{action "handleDrawButtonClick"}}
->
-  {{drop-zone
+> --}}
+  {{!-- {{drop-zone
     url='#'
     addedfile=(action 'addedfile')
     removedfile=(action 'removedfile')
@@ -161,7 +170,7 @@
     acceptedFiles='application/zip'
     addRemoveLinks=true
     autoProcessQueue=false
-  }}
-</MapUtilityBox> --}}
+  }} --}}
+{{!-- </MapUtilityBox> --}}
 
 {{outlet}}
