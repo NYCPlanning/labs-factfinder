@@ -1,0 +1,35 @@
+// --------------------------------------------------
+// Module: Topic Select Dropdown
+// --------------------------------------------------
+
+.topic-select-toggle {
+  width: 250px !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 5px;
+}
+
+.topic-count {
+  color: $dark-gray;
+}
+
+.topic-menu {
+  position: absolute;
+  top: 100%;
+  margin-top: -15px;
+  right: rem-calc(-6);
+  bottom: auto;
+  left: rem-calc(0);
+  background-color: $white;
+  padding: rem-calc(6);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+  width: 250px !important;
+  color: $dark-gray;
+  border: 1px solid rgb(223, 225, 229);
+  border-radius: 0 0px 5px 5px;
+  text-align: left !important;
+}
+
+.subtopic-list-item {
+  padding-left: 10px;
+}
