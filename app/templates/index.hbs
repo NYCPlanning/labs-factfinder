@@ -4,37 +4,13 @@
   {{#if this.selection.currentMapInstance}}
     <OrangeBarCustomMapStudy
       @handleDrawButtonClick={{action this.handleDrawButtonClick}}
+      @handleSummaryLevelToggle={{action this.handleSummaryLevelToggle}}
       @drawMode={{this.drawMode}}
       @mode={{this.mode}}
       @lastreport={{this.lastreport}}
     />
   {{/if}}
 </OrangeBar>
-
-{{!-- <ul class="menu align-center menu--selector">
-  <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
-    <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
-      <span class="show-for-medium">Census </span>
-      Block
-    </a>
-    {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
-  </li>
-  <li class="{{if (eq this.selection.summaryLevel 'tracts') 'active'}} explode-tract">
-    <a href="#" data-test-toggle-tracts {{action 'handleSummaryLevelToggle' 'tracts'}}>
-      <span class="show-for-medium">Census </span>
-      Tract
-    </a>
-    {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
-  </li>
-  <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-    <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
-    {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
-  </li>
-  <li class="{{if (eq this.selection.summaryLevel 'pumas') 'active'}} explode-puma">
-    <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
-    {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
-  </li>
-</ul> --}}
 
  {{!--  TURN THIS OFF TO GET RID OF THE MAP  --}}
 <div class="map-container">
@@ -68,9 +44,9 @@
       </map.source>
     {{/if}}
 
-    {{!-- {{map.layer-group
+    {{map.layer-group
       config=layerGroups.choropleths
-      visible=false}} --}}
+      visible=false}}
 
     {{map.source
       sourceId='choropleths'
@@ -155,12 +131,12 @@
   </LabsMap>
 </div>
 
-{{!-- <MapUtilityBox
+<MapUtilityBox
   @lastreport={{lastreport}}
   @mode={{this.mode}}
-  @drawMode={{drawMode}}
-  @handleDrawButtonClick={{action "handleDrawButtonClick"}}
-> --}}
+  @drawMode={{this.drawMode}}
+  @handleDrawButtonClick={{action this.handleDrawButtonClick}}
+>
   {{!-- {{drop-zone
     url='#'
     addedfile=(action 'addedfile')
@@ -171,6 +147,6 @@
     addRemoveLinks=true
     autoProcessQueue=false
   }} --}}
-{{!-- </MapUtilityBox> --}}
+</MapUtilityBox>
 
 {{outlet}}

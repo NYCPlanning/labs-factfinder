@@ -2,13 +2,8 @@ import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { task } from 'ember-concurrency';
 import numeral from 'numeral';
-import fetch from 'fetch';
-import Environment from '../config/environment';
 import choroplethConfigs from '../choropleth-config';
-
-const { SupportServiceHost } = Environment;
 
 export default Component.extend({
   selection: service(),
@@ -87,76 +82,34 @@ export default Component.extend({
     ];
   }),
 
-  generateProfileId: task(function* (type, geoids) {
-    const postBody = {
-      type,
-      geoids,
-    };
-
-    const { id } = yield fetch(`${SupportServiceHost}/selection`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(postBody),
-    })
-      .then(d => d.json());
-
-    const lastreport = this.get('lastreport');
-    const blocks = this.get('selection.summaryLevel') === 'blocks';
-    const transitionRoute = blocks ? 'profile.census' : `profile.${lastreport}`;
-
-    yield this.get('router')
-      .transitionTo(transitionRoute, id, {
-        queryParams: {
-          mode: 'current', comparator: '0', reliability: false, charts: true,
-        },
-      });
-  }).restartable(),
-
   handleDrawButtonClick(type) {
     this.handleDrawButtonClick(type);
   },
-  
-  actions: {
-    clearSelection() {
-      this.get('selection').clearSelection();
-    },
 
-    transitionTo() {},
+  clearSelection() {
+    this.get('selection').clearSelection();
+  },
 
-    generateProfileId() {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Selection',
-        eventAction: 'Created Profile',
-        eventLabel: this.get('summaryLevel'),
-        eventValue: this.get('selection.current.features.length'),
-      });
-      const type = this.get('summaryLevel');
-      const geoids = this.get('selection.current.features')
-        .mapBy('properties.geoid');
+  transitionTo() {},
 
-      this.get('generateProfileId').perform(type, geoids);
-    },
 
-    setChoroplethMode(mode) {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: 'Selected Choropleth',
-        eventLabel: this.get('choroplethMode'),
-      });
-      this.set('choroplethMode', mode);
-    },
+  setChoroplethMode(mode) {
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Advanced Options',
+      eventAction: 'Selected Choropleth',
+      eventLabel: this.get('choroplethMode'),
+    });
+    this.set('choroplethMode', mode);
+  },
 
-    toggleAdvancedOptions() {
-      console.dir(this);
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: 'Toggle Advanced Options',
-        eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
-      });
+  toggleAdvancedOptions() {
+    console.dir(this);
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Advanced Options',
+      eventAction: 'Toggle Advanced Options',
+      eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
+    });
 
-      this.set('advanced', !this.get('advanced'));
-    },
+    this.set('advanced', !this.get('advanced'));
   },
 });

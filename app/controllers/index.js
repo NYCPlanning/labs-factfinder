@@ -156,6 +156,7 @@ export default Controller.extend({
     const selection = this.get('selection');
 
     if (!this.get('isDrawing')) {
+      console.log(feature);
       selection.handleSelectedFeatures([feature]);
     }
   },
