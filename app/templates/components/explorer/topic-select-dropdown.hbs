@@ -1,7 +1,7 @@
 <button
   class="topic-select-toggle button gray expanded no-margin"
   role="button"
-  {{action (mut this.open) (not this.open)}}
+  {{on "click" this.toggleOpen}}
 >
   <div class="grid-x full">
     <div class="cell small-11">
@@ -18,9 +18,10 @@
 
 {{#if this.open}}
   <div class="topic-menu">
-    {{#each @topics as |topic|}}
+    {{#each @topics key="id" as |topic|}}
       <Ui::NestableListItem
         @item={{topic}}
+        @onItemToggle={{this.onListItemToggle}}
       />
     {{/each}}
   </div>
