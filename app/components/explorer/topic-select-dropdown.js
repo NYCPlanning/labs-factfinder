@@ -9,6 +9,12 @@ import { tracked } from '@glimmer/tracking';
 export default class TopicSelectDropdownComponent extends Component {
   @tracked open = false;
 
+  get numSelected() {
+    return this.args.topics.reduce((prev, cur) => {
+        return prev += cur.children.filter((child) => child.selected).length;
+      }, 0);
+  }
+
   @action toggleOpen() {
     this.open = !this.open;
   }
