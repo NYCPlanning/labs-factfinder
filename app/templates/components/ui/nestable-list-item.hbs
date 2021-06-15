@@ -2,7 +2,7 @@
   class="nestable-list-item grid-x {{if this.hasChildren 'clickable'}} {{@item.type}}-list-item"
 >
   <div class="cell small-1"
-    {{action (mut @item.selected) (not @item.selected)}}
+    {{on "click" (fn @onItemToggle @item.id)}}
   >
     <span class="dcp-orange">
       {{#if @item.selected}}
@@ -15,26 +15,31 @@
 
   <div
     class="cell auto"
-    {{action (mut this.open) (not this.open)}}
+    {{on "click" this.toggleOpen}}
   >
     {{@item.label}}
   </div>
 
-  <div class="cell small-1"
-    {{action (mut this.open) (not this.open)}}
-  >
+  <div class="cell small-1">
     {{#if this.hasChildren}}
-      {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
+    <span
+      {{on "click" this.toggleOpen}}
+    >
+      {{fa-icon
+        icon=(if this.open 'caret-up' 'caret-down')
+      }}
+    </span>
     {{/if}}
   </div>
 
-  {{#if this.open}}
-    <div class="cell small-12">
-      {{#each @item.children as |child|}}
+  <div class="cell small-12">
+    {{#if this.open}}
+      {{#each @item.children key="id" as |child|}}
         <Ui::NestableListItem
           @item={{child}}
+          @onItemToggle={{@onItemToggle}}
         />
       {{/each}}
-    </div>
-  {{/if}}
+    {{/if}}
+  </div>
 </div>
