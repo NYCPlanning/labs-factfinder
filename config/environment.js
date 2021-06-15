@@ -76,6 +76,7 @@ module.exports = function (environment) {
           'arrow-right',
           'arrow-up',
           'caret-down',
+          'caret-up',
           'download',
           'edit',
           'exclamation-triangle',

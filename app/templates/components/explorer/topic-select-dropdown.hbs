@@ -1,0 +1,28 @@
+<button
+  class="topic-select-toggle button gray expanded no-margin"
+  role="button"
+  {{on "click" this.toggleOpen}}
+>
+  <div class="grid-x full">
+    <div class="cell small-11">
+      Select Topics:
+      <span class="topic-count">
+        4 Selected
+      </span>
+    </div>
+    <div class="cell auto">
+      {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
+    </div>
+  </div>
+</button>
+
+{{#if this.open}}
+  <div class="topic-menu">
+    {{#each @topics key="id" as |topic|}}
+      <Ui::NestableListItem
+        @item={{topic}}
+        @onItemToggle={{this.onListItemToggle}}
+      />
+    {{/each}}
+  </div>
+{{/if}}
