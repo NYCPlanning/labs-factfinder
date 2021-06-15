@@ -18,6 +18,28 @@
 
 {{#if this.open}}
   <div class="topic-menu">
+    <div
+      class="nestable-list-item grid-x topic-list-item"
+    >
+      <div class="cell small-1 clickable"
+        {{on "click" this.toggleAllTopics}}
+      >
+        <span class="dcp-orange">
+          {{#if this.isAllTopicsSelected}}
+            {{fa-icon icon='check-square' prefix='far'}}
+          {{else}}
+            {{fa-icon icon='square' prefix='far'}}
+          {{/if}}
+        </span>
+      </div>
+
+      <div
+        class="cell auto"
+      >
+        All Topics
+      </div>
+    </div>
+
     {{#each @topics key="id" as |topic|}}
       <Ui::NestableListItem
         @item={{topic}}

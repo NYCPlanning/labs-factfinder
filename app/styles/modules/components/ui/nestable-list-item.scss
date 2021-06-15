@@ -8,4 +8,10 @@
       user-select: none;  
     }
   }
+
+  padding: 7px 0;
+}
+
+.nestable-list-item:not(:last-child) {
+  border-bottom: 1px solid rgb(223, 225, 229);
 }
