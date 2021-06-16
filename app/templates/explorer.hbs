@@ -7,6 +7,36 @@
 
 <div class="overflow-y-grid grid-padding-x" id="explorer-wrapper">
   <div class="cell auto" id="explorer-content">
-    {{outlet}}
+    {{data-table
+      mode='current'
+      reliability=false
+      comparison=false
+      config=this.rowConfigs.sexAndAge
+      model=@model.profile
+    }}
+
+    {{data-table
+      mode='current'
+      reliability=false
+      comparison=false
+      config=this.rowConfigs.mutuallyExclusiveRaceHispanicOrigin
+      model=@model.profile
+    }}
+
+    {{data-table
+      mode='current'
+      reliability=false
+      comparison=false
+      config=this.rowConfigs.hispanicSubgroup
+      model=@model.profile
+    }}
+
+    {{data-table
+      mode='current'
+      reliability=false
+      comparison=false
+      config=this.rowConfigs.asianSubgroup
+      model=@model.profile
+    }}
   </div>
 </div>

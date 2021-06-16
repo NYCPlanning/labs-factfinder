@@ -29,6 +29,11 @@ export default function() {
     selection: selectionAllNTA,
   }));
 
+  this.get('/selection', () => selectionAllNTA);
+  this.get('/selection/:id', () => selectionAllNTA);
+
+  this.get('/profile', () => profilesAllNTA);
+  this.get('/profile/:id', () => profilesAllNTA);
 
   /*
     Passthroughs
