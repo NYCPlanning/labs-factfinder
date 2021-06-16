@@ -3,18 +3,21 @@
     <li style="flex-grow: 0;">
       <ul class="menu orange-bar--selector" id="draw-tools">
         <li class="dropdown">
-          <a href="#" class="dropbtn dropbtn-left">{{fa-icon icon='edit'}} &nbsp;Draw</a>
+          <a href="#" class="dropbtn dropbtn-left">
+            {{fa-icon icon='edit'}}
+            Draw
+          </a>
           <div class="dropsizer">
-            <div class="dropdown-content dropdown-content-left {{if (or (eq this.drawMode 'radius') (eq this.drawMode 'polygon')) 'active'}}">
+            <div class="dropdown-content dropdown-content-left">
               {{#ember-tooltip delay=200}}
                 <span class="text-tiny nowrap">Create selection using drawing tool</span>
               {{/ember-tooltip}}
-              
-              <a href="#" class="{{if (eq this.drawMode 'polygon') 'active'}} {{if (eq this.drawMode 'radius') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'polygon'}}>
+
+              <a href="#" class="{{if (eq @drawMode 'polygon') 'active'}}" onclick={{fn @handleDrawButtonClick 'polygon'}}>
                 {{fa-icon icon='object-group' prefix='far'}}
                 <span class="hide-for-medium">Draw</span> Polygon
               </a>
-              <a href="#" class="{{if (eq this.drawMode 'radius') 'active'}} {{if (eq this.drawMode 'polygon') 'hide-for-large'}}" {{action "handleDrawButtonClick" 'radius'}}>
+              <a href="#" class="{{if (eq @drawMode 'radius') 'active'}}" onclick={{fn @handleDrawButtonClick 'radius'}}>
                 {{fa-icon icon='dot-circle' prefix='far'}}
                 <span class="hide-for-medium">Draw</span> Radius
               </a>
@@ -24,36 +27,32 @@
       </ul>
     </li>
     <li class="search">
-      {{!-- Map-Search should go here, but putting it in was causing page not to load --}}
-      {{#map-search}}{{/map-search}}
-      {{!-- {{input type='text'
-        placeholder='Search...'
-        class='map-search-input'}} --}}
+      <MapSearch />
     </li>
   </ul>
 </li>
 <li>
   <ul class="menu align-center orange-bar--selector five-buttons">
     <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
-      <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
+      <a href="#" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>
         <span class="show-for-medium">Census </span>
         Block
       </a>
       {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
     </li>
     <li class="{{if (eq this.selection.summaryLevel 'tracts') 'active'}} explode-tract">
-      <a href="#" data-test-toggle-tracts {{action 'handleSummaryLevelToggle' 'tracts'}}>
+      <a href="#" data-test-toggle-tracts {{action this.handleSummaryLevelToggle 'tracts'}}>
         <span class="show-for-medium">Census </span>
         Tract
       </a>
       {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
     </li>
     <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-      <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<br /><small>(NTA)</small></a>
+      <a href="#" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood&nbsp;<br /><small>(NTA)</small></a>
       {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
     </li>
     <li class="{{if (eq this.selection.summaryLevel 'pumas') 'active'}} explode-puma">
-      <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
+      <a href="#" data-test-toggle-pumas {{action this.handleSummaryLevelToggle 'pumas'}}>PUMA</a>
       {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
     </li>
     <li class="dropdown explode-moregeos">
@@ -78,9 +77,7 @@
   
 </li>
 
-{{#if (eq this.mode 'direct-select')}}
-
-
+{{#if (eq @mode 'direct-select')}}
   <div class="advanced-options {{unless this.advanced 'closed'}}" style="color:black">
     {{#unless this.closed}}
 
@@ -99,7 +96,7 @@
                       <li {{
                         action (
                           queue
-                            (action 'setChoroplethMode' config.id)
+                            (action this.setChoroplethMode config.id)
                             (action item.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
                             (action item.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
                         )
@@ -182,7 +179,6 @@
 
     {{/unless}}
   </div>
-
 {{else}}
-  {{component this.mode}}
+  {{component @mode}}
 {{/if}}
