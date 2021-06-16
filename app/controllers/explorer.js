@@ -2,6 +2,15 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
+import demographic from '../table-config/demographic';
+
+const {
+  sexAndAge,
+  mutuallyExclusiveRaceHispanicOrigin,
+  hispanicSubgroup,
+  asianSubgroup,
+} = demographic;
+
 export default class ExplorerController extends Controller {
   showChart = true;
 
@@ -12,6 +21,15 @@ export default class ExplorerController extends Controller {
   disaggregate = false;
 
   compareTo = null;
+
+  mode = 'current';
+
+  rowConfigs = {
+    sexAndAge,
+    mutuallyExclusiveRaceHispanicOrigin,
+    hispanicSubgroup,
+    asianSubgroup,
+  };
 
   @tracked topics = [
     {
