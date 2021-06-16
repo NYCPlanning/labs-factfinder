@@ -5,38 +5,29 @@
   />
 </OrangeBar>
 
-<div class="overflow-y-grid grid-padding-x" id="explorer-wrapper">
-  <div class="cell auto" id="explorer-content">
-    {{data-table
-      mode='current'
-      reliability=false
-      comparison=false
-      config=this.rowConfigs.sexAndAge
-      model=@model.profile
-    }}
+<div class="overflow-y-grid grid-padding-x">
+  <div class="cell auto" id="explorer-wrapper">
+    {{#each this.topics as |topic|}}
+      {{#each topic.children as |subtopic|}}
+        {{#if subtopic.selected}}
+          <div class="grid-x grid-margin-x">
+            <div class="cell large-auto">
+              <h3 class="header-medium">
+                {{subtopic.label}}
+              </h3>
+              {{data-table
+                mode='current'
+                reliability=false
+                comparison=false
+                config=subtopic.config
+                model=@model.profile
+              }}
+            </div>
+          </div>
 
-    {{data-table
-      mode='current'
-      reliability=false
-      comparison=false
-      config=this.rowConfigs.mutuallyExclusiveRaceHispanicOrigin
-      model=@model.profile
-    }}
-
-    {{data-table
-      mode='current'
-      reliability=false
-      comparison=false
-      config=this.rowConfigs.hispanicSubgroup
-      model=@model.profile
-    }}
-
-    {{data-table
-      mode='current'
-      reliability=false
-      comparison=false
-      config=this.rowConfigs.asianSubgroup
-      model=@model.profile
-    }}
+          <hr>
+        {{/if}}
+      {{/each}}
+    {{/each}}
   </div>
 </div>
