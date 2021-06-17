@@ -52,6 +52,7 @@ $table-border: 1px solid $silver;
 @import "ember-power-select";
 
 // Component styles
+@import 'modules/components/explorer/toolbar';
 @import 'modules/components/explorer/topic-select-dropdown';
 @import 'modules/components/explorer/source-select-dropdown';
 @import 'modules/components/ui/nestable-list-item';
