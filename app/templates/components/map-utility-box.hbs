@@ -7,7 +7,28 @@
       <div class="map-utility-box-body">
         <p><strong>{{this.selectionCount}}</strong> {{this.selection.summaryLevel}} selected</p>
         <hr />
-        <p>Content here</p>
+        <div class="map-utility-box-data">
+          <div>
+            <span>
+              {{fa-icon icon='user-friends'}}
+            </span>
+            <div class="map-utility-box-data-text">
+              <strong>123,456</strong><br />
+              Population
+            </div>    
+          </div>
+           <div>
+            <span>
+              {{fa-icon icon='building'}}
+            </span>
+            <div class="map-utility-box-data-text">
+              <strong>123,456</strong><br />
+              Housing Units
+            </div>    
+          </div>
+        </div>
+        {{!-- {{fa-icon icon='user-friends'}}
+        {{fa-icon icon='building'}} --}}
       </div>
       <div class="map-utility-box-buttons">
         <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
@@ -18,8 +39,8 @@
         </button>
         <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateProfile}}>
           See More Data
-          <span class="off-white">
-            {{fa-icon icon='times'}}
+          <span class="off-white" style="padding-left: 0.5em;">
+            {{fa-icon icon='long-arrow-alt-right'}}
           </span>
         </button>
       </div>
