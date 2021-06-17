@@ -111,6 +111,12 @@ ul .menu li.dropdown {
   // padding: 0px;
   align-items: center;
 }
+.five-buttons li.active {
+  background-color: white;
+}
+.five-buttons li.active a {
+  color: #d96b27;
+}
 
 .dropbtn-centered {
   justify-content: center;

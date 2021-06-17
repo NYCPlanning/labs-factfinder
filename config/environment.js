@@ -75,6 +75,7 @@ module.exports = function (environment) {
           'arrow-left',
           'arrow-right',
           'arrow-up',
+          'building',
           'caret-down',
           'caret-up',
           'download',
@@ -83,6 +84,7 @@ module.exports = function (environment) {
           'external-link-alt',
           'file',
           'info-circle',
+          'long-arrow-alt-right',
           'map',
           'map-pin',
           'pen',
@@ -92,6 +94,7 @@ module.exports = function (environment) {
           'sliders-h',
           'square',
           'times',
+          'user-friends',
         ],
         'free-regular-svg-icons': [
           'check-square',
