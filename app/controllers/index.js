@@ -94,178 +94,178 @@ export default Controller.extend({
     });
   },
 
-  actions: {
-    // allows geometry to be selected by clicking on shape on map
-    handleClick(feature) {
-      const selection = this.get('selection');
+  handleDrawButtonClick(type) {
+    const isDrawing = this.get('isDrawing');
+    const map = this.get('selection').currentMapInstance; // sometimes this is never set
+    if (isDrawing) {
+      draw.trash();
+      this.set('isDrawing', false);
+      this.set('drawMode', null);
+    } else {
+      map.addControl(draw, 'top-left');
+      this.set('drawMode', type);
 
-      if (!this.get('isDrawing')) {
-        selection.handleSelectedFeatures([feature]);
+      if (type === 'polygon') {
+        draw.changeMode('draw_polygon');
       }
-    },
+      if (type === 'radius') draw.changeMode('draw_radius');
 
-    handleDrawButtonClick(type) {
-      const isDrawing = this.get('isDrawing');
-      const map = this.get('selection').currentMapInstance;
-      if (isDrawing) {
-        draw.trash();
-        this.set('isDrawing', false);
-        this.set('drawMode', null);
-      } else {
-        map.addControl(draw, 'top-left');
-        this.set('drawMode', type);
+      this.set('isDrawing', true);
+      this.get('metrics').trackEvent(
+        'GoogleAnalytics',
+        { eventCategory: 'Draw', eventAction: `Draw ${type} Start`, eventLabel: this.get('selection').summaryLevel },
+      );
+    }
+  },
 
-        if (type === 'polygon') {
-          draw.changeMode('draw_polygon');
-        }
-        if (type === 'radius') draw.changeMode('draw_radius');
+  handleMapLoad(map) {
+    this.set('map', map);
 
-        this.set('isDrawing', true);
-        this.get('metrics').trackEvent(
-          'GoogleAnalytics',
-          { eventCategory: 'Draw', eventAction: `Draw ${type} Start`, eventLabel: this.get('selection').summaryLevel },
-        );
-      }
-    },
+    // setup controls
+    const navigationControl = new mapboxgl.NavigationControl();
+    const geoLocateControl = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      trackUserLocation: true,
+    });
 
-    handleDrawCreate(e) {
-      // delete the drawn geometry
-      draw.deleteAll();
+    map.addControl(navigationControl, 'top-left');
+    map.addControl(new mapboxgl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
+    map.addControl(geoLocateControl, 'top-left');
 
-      const selection = this.get('selection');
-      const { summaryLevel } = selection;
+    this.set('selection.currentMapInstance', map);
 
-      const { geometry } = e.features[0];
+    if (this.get('selection.selectedCount')) {
+      this.fitBounds(map);
+    }
 
-      geometry.crs = {
-        type: 'name',
-        properties: {
-          name: 'EPSG:4326',
-        },
-      };
+    // remove default neighborhood names
+    map.removeLayer('place_suburb');
+    map.removeLayer('place_city_large');
 
-      let SQL;
-      if (geometry.type === 'Polygon') {
-        SQL = generateIntersectionSQL(summaryLevel, geometry);
-      } else {
-        const { radius } = e.features[0].properties;
-        SQL = generateRadiusSQL(summaryLevel, geometry, radius);
-      }
+    map.addLayer(subduedNtaLabels);
 
-      carto.SQL(SQL, 'geojson', 'post')
-        .then((FC) => {
-          selection.handleSelectedFeatures(FC.features);
+    // trigger handleSummaryLevelToggle to show the correct census geoms
+    const summaryLevel = this.get('summaryLevel');
+    this.handleSummaryLevelToggle(summaryLevel);
+  },
 
-          this.get('metrics').trackEvent('GoogleAnalytics', {
-            eventCategory: 'Draw',
-            eventAction: 'Draw Create',
-            eventLabel: this.get('selection').summaryLevel,
-            eventValue: FC.features.length,
-          });
+  // allows geometry to be selected by clicking on shape on map
+  handleClick(feature) {
+    const selection = this.get('selection');
+
+    if (!this.get('isDrawing')) {
+      console.log(feature);
+      selection.handleSelectedFeatures([feature]);
+    }
+  },
+
+  handleDrawCreate(e) {
+    console.log('did create');
+    // delete the drawn geometry
+    draw.deleteAll();
+
+    const selection = this.get('selection');
+    const { summaryLevel } = selection;
+
+    const { geometry } = e.features[0];
+
+    geometry.crs = {
+      type: 'name',
+      properties: {
+        name: 'EPSG:4326',
+      },
+    };
+
+    let SQL;
+    if (geometry.type === 'Polygon') {
+      SQL = generateIntersectionSQL(summaryLevel, geometry);
+    } else {
+      const { radius } = e.features[0].properties;
+      SQL = generateRadiusSQL(summaryLevel, geometry, radius);
+    }
+
+    carto.SQL(SQL, 'geojson', 'post')
+      .then((FC) => {
+        selection.handleSelectedFeatures(FC.features);
+
+        this.get('metrics').trackEvent('GoogleAnalytics', {
+          eventCategory: 'Draw',
+          eventAction: 'Draw Create',
+          eventLabel: this.get('selection').summaryLevel,
+          eventValue: FC.features.length,
         });
-    },
-
-    handleDrawModeChange(e) {
-      const isDrawing = e.mode === 'draw_polygon' || e.mode === 'draw_radius';
-      // delay setting isDrawing boolean so that polygon-closing click won't be handled
-      setTimeout(() => {
-        this.set('isDrawing', isDrawing);
-        if (!isDrawing) {
-          const map = this.get('selection').currentMapInstance;
-          this.set('drawMode', null);
-          map.removeControl(draw);
-        }
-      }, 200);
-    },
-
-    handleMousemove(e) {
-      if (!this.get('isDrawing')) {
-        const mapMouseover = this.get('mapMouseover');
-        mapMouseover.highlighter(e);
-      }
-    },
-
-    handleSummaryLevelToggle(summaryLevel) {
-      this.get('selection').handleSummaryLevelToggle(summaryLevel);
-    },
-
-    handleMapLoad(map) {
-      this.set('map', map);
-
-      // setup controls
-      const navigationControl = new mapboxgl.NavigationControl();
-      const geoLocateControl = new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true,
-        },
-        trackUserLocation: true,
       });
+  },
 
-      map.addControl(navigationControl, 'top-left');
-      map.addControl(new mapboxgl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
-      map.addControl(geoLocateControl, 'top-left');
-
-      this.set('selection.currentMapInstance', map);
-
-      if (this.get('selection.selectedCount')) {
-        this.fitBounds(map);
+  handleDrawModeChange(e) {
+    const isDrawing = e.mode === 'draw_polygon' || e.mode === 'draw_radius';
+    // delay setting isDrawing boolean so that polygon-closing click won't be handled
+    setTimeout(() => {
+      this.set('isDrawing', isDrawing);
+      if (!isDrawing) {
+        const map = this.get('selection').currentMapInstance;
+        this.set('drawMode', null);
+        map.removeControl(draw);
       }
+    }, 200);
+  },
 
-      // remove default neighborhood names
-      map.removeLayer('place_suburb');
-      map.removeLayer('place_city_large');
+  handleMousemove(e) {
+    if (!this.get('isDrawing')) {
+      const mapMouseover = this.get('mapMouseover');
+      mapMouseover.highlighter(e);
+    }
+  },
 
-      map.addLayer(subduedNtaLabels);
+  handleSummaryLevelToggle(summaryLevel) {
+    this.get('selection').handleSummaryLevelToggle(summaryLevel);
+  },
 
-      // trigger handleSummaryLevelToggle to show the correct census geoms
-      const summaryLevel = this.get('summaryLevel');
-      this.send('handleSummaryLevelToggle', summaryLevel);
-    },
+  addedfile(file) {
+    const reader = new FileReader();
+    // const selection = this.get('selection');
+    // const { summaryLevel } = selection;
 
-    addedfile(file) {
-      const reader = new FileReader();
-      // const selection = this.get('selection');
-      // const { summaryLevel } = selection;
+    let buffer;
+    reader.onload = (event) => {
+      buffer = event.target.result;
 
-      let buffer;
-      reader.onload = (event) => {
-        buffer = event.target.result;
+      shpjs(buffer).then((geojson) => {
+        let combined;
+        this.set('customVisualOverlayData', geojson);
+        combined = combine(geojson);
+        combined = combined.features[0].geometry;
+        combined.crs = {
+          type: 'name',
+          properties: {
+            name: 'EPSG:4326',
+          },
+        };
+        if (combined.type === 'MultiPolygon' || combined.type === 'MultiLineString') {
+          this.set('customVisualOverlayLines', true);
+        } if (combined.type === 'MultiPoint') {
+          this.set('customVisualOverlayPoints', true);
+        }
 
-        shpjs(buffer).then((geojson) => {
-          let combined;
-          this.set('customVisualOverlayData', geojson);
-          combined = combine(geojson);
-          combined = combined.features[0].geometry;
-          combined.crs = {
-            type: 'name',
-            properties: {
-              name: 'EPSG:4326',
-            },
-          };
-          if (combined.type === 'MultiPolygon' || combined.type === 'MultiLineString') {
-            this.set('customVisualOverlayLines', true);
-          } if (combined.type === 'MultiPoint') {
-            this.set('customVisualOverlayPoints', true);
-          }
+        // const SQL = generateIntersectionSQL(summaryLevel, combined);
+        // carto.SQL(SQL, 'geojson', 'post')
+        //   .then((FC) => {
+        //     selection.handleSelectedFeatures(FC.features);
+        //     this.fitBounds();
+        //   })
+        //   .catch(() => {
+        //     alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
+        //   });
+      }).catch(() => {
+        alert('Something went wrong with this Shapefile. Check that it is valid'); // eslint-disable-line
+      });
+    };
+    reader.readAsArrayBuffer(file);
+  },
 
-          // const SQL = generateIntersectionSQL(summaryLevel, combined);
-          // carto.SQL(SQL, 'geojson', 'post')
-          //   .then((FC) => {
-          //     selection.handleSelectedFeatures(FC.features);
-          //     this.fitBounds();
-          //   })
-          //   .catch(() => {
-          //     alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
-          //   });
-        }).catch(() => {
-          alert('Something went wrong with this Shapefile. Check that it is valid'); // eslint-disable-line
-        });
-      };
-      reader.readAsArrayBuffer(file);
-    },
-
-    removedfile() {
-      this.set('customVisualOverlayData', null);
-    },
+  removedfile() {
+    this.set('customVisualOverlayData', null);
   },
 });

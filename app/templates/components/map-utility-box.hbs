@@ -1,153 +1,43 @@
 {{#if (eq this.mode 'direct-select')}}
-{{!-- 
-  {{map-search transitionTo=(action 'transitionTo')}}
-
-  <div class="call-to-action grid-x align-middle text-center medium-text-left">
-    <div class="cell medium-auto">
-      <p class="text-small dark-gray no-margin">{{fa-icon icon='hand-pointer' prefix='far'}}&nbsp;Select individual
-        {{if (eq this.summaryLevel 'tracts') 'census tracts'}}
-        {{if (eq this.summaryLevel 'blocks') 'census blocks'}}
-        {{if (eq this.summaryLevel 'ntas') 'NTAs'}}
-        {{if (eq this.summaryLevel 'pumas') 'PUMAs'}}
-        to add them to the profile.</p>
+  {{#if (gt this.selectionCount 0)}}
+    <div class="map-utility-box">
+      <div class="map-utility-box-head"> 
+        Your Selection
+      </div>
+      <div class="map-utility-box-body">
+        <p><strong>{{this.selectionCount}}</strong> {{this.selection.summaryLevel}} selected</p>
+        <hr />
+        <p>Content here</p>
+      </div>
+      <div class="map-utility-box-buttons">
+        <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
+          <span class="dcp-orange">
+            {{fa-icon icon='times'}}
+          </span>
+          Clear <br />Selection
+        </button>
+        <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateProfile}}>
+          See More Data
+          <span class="off-white">
+            {{fa-icon icon='times'}}
+          </span>
+        </button>
+      </div>
+      
     </div>
-    <div class="cell medium-shrink">
-      <div class="draw-tools--container">
-        <span class="draw-tools--trigger button small- gray text-orange show-for-large">
-          {{fa-icon icon='edit'}} Draw
-        </span>
-        <div class="draw-tools {{if (or (eq drawMode 'radius') (eq drawMode 'polygon')) 'active'}}">
-          <EmberTooltip @delay={{200}}>
-            <span class="text-tiny nowrap">Create selection using drawing tool</span>
-          </EmberTooltip>
-          <button class="draw-tool draw-tools--polygon button small gray text-orange {{if (eq drawMode 'polygon') 'active'}} {{if (eq drawMode 'radius') 'hide-for-large'}}" type="button" {{action "handleDrawButtonClick" 'polygon'}}>
-            {{fa-icon icon='object-group' prefix='far'}}
-            <span class="hide-for-medium">Draw</span> Polygon
-          </button>
-          <button class="draw-tool draw-tools--radius button small gray text-orange {{if (eq drawMode 'radius') 'active'}} {{if (eq drawMode 'polygon') 'hide-for-large'}}" type="button" {{action "handleDrawButtonClick" 'radius'}}>
-            {{fa-icon icon='dot-circle' prefix='far'}}
-            <span class="hide-for-medium">Draw</span> Radius
-          </button>
-        </div>
+  {{else}}
+    <div class="map-utility-box">
+      <div class="map-utility-box-head"> 
+        Your Selection
+      </div>
+      <div class="map-utility-box-body-null">
+        <p><strong>Want To Add To Your Selection?</strong></p>
+        <p>You can build your selection by selecting the options in the <span class="orange">orange</span> menu above and clicking directly on the map</p>
       </div>
     </div>
-  </div>
-
-  <div class={{profileButtonClasses}} onClick={{action 'generateProfileId'}}>
-    <span class="fa-layers fa-2x fa-pull-right">
-      {{fa-icon icon='file'}}
-      {{fa-icon icon='arrow-right' class='dcp-yellow' transform='shrink-8 down-1'}}
-    </span>
-    View Profile
-    <small><strong>
-      <span class="count" data-test-toggle-count>{{selectionCount}}</span>
-      {{if (eq this.summaryLevel 'tracts') 'Tract'~}}
-      {{if (eq this.summaryLevel 'blocks') 'Block'~}}
-      {{if (eq this.summaryLevel 'ntas') 'Neighborhood'~}}
-      {{if (eq this.summaryLevel 'pumas') 'PUMA'~}}
-      {{if (eq this.selectionCount 0) 's'}}{{if (gt this.selectionCount 1) 's'}}
-    </strong></small>
-  </div> --}}
-
-  <div class="clearfix" style="padding-bottom:1px;">
-    {{#if (gt this.selectionCount 0)}}
-      <button class="button--clear-selection button tiny gray float-right" type="button" {{action "clearSelection"}}><span class="lu-red">{{fa-icon icon='times'}}</span> Clear Selection</button>
-    {{/if}}
-
-    <p><a {{action "toggleAdvancedOptions"}} class="text-small">{{fa-icon icon='sliders-h'}}&nbsp;Advanced Options </a></p>
-  </div>
-
-  <div class="advanced-options {{unless advanced 'closed'}}">
-    {{#unless closed}}
-
-      <div class="selection-helpers">
-      </div>
-
-      <div class="layers-menu">
-        <LayerMenuItem @for="choropleths" as |item|>
-          <div class="grid-x">
-            <div class="cell small-8">
-              <ul class="radio-buttons-list">
-                {{#each-in (group-by "group" choroplethConfigs) as |group configs|}}
-                  <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
-                  <ul class="no-bullet">
-                    {{#each configs as |config|}}
-                      <li {{
-                        action (
-                          queue
-                            (action 'setChoroplethMode' config.id)
-                            (action item.updatePaintFor 'choropleth-nta-fill' choroplethPaintFill)
-                            (action item.updatePaintFor 'choropleth-nta-line' choroplethPaintLine)
-                        )
-                      }}>
-                        {{#if (eq choroplethMode config.id)}}
-                          {{fa-icon icon='dot-circle' prefix='far'}}
-                        {{else}}
-                          {{fa-icon icon='circle' prefix='far'}}
-                        {{/if}}
-                        {{config.label}}
-                        {{labs-ui/icon-tooltip tip=config.tooltip}}
-                      </li>
-                    {{/each}}
-                  </ul>
-                {{/each-in}}
-              </ul>
-            </div>
-            <div class="cell small-4">
-              <div class="legend">
-                <div class="legend-title">{{legendTitle}}</div>
-                {{#each stops as |stop|}}
-                  <div class="legend-item">
-                    <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
-                    {{stop.label}}
-                  </div>
-                {{/each}}
-              </div>
-            </div>
-          </div>
-        </LayerMenuItem>
-
-        <LookupLayerGroup @for="subway" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
-
-        <LookupLayerGroup @for="neighborhood-tabulation-areas" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
-
-        <LookupLayerGroup @for="community-districts" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
-
-        <LookupLayerGroup @for="nyc-pumas" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
-
-        <LookupLayerGroup @for="nyc-council-districts" as |layerGroup|>
-          <LabsUi::LayerGroupToggle @label={{layerGroup.model.legend.label}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
-          </LabsUi::LayerGroupToggle>
-        </LookupLayerGroup>
-
-        {{!-- {{#lookup-layer-group for='boroughs' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}} --}}
-
-      </div>
-
-      {{yield}}
-
-    {{/unless}}
-  </div>
-
+  {{/if}}
 {{else}}
-  {{component mode}}
+  {{component this.mode}}
 {{/if}}
+
+{{yield}}

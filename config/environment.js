@@ -76,6 +76,7 @@ module.exports = function (environment) {
           'arrow-right',
           'arrow-up',
           'caret-down',
+          'caret-up',
           'download',
           'edit',
           'exclamation-triangle',
@@ -140,7 +141,7 @@ module.exports = function (environment) {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
     ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
     ENV['ember-cli-mirage'] = {
-      enabled: false,
+      enabled: true,
     };
   }
 

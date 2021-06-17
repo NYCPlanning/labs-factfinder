@@ -1,39 +1,30 @@
-{{#orange-bar}}
-  {{#orange-bar-custom-map-study}}{{/orange-bar-custom-map-study}}
-{{/orange-bar}}
+{{!-- TODO: This renders before the map is ready to receive events. --}}
 
-{{!-- <ul class="menu align-center menu--selector">
-  <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
-    <a href="#" data-test-toggle-blocks {{action 'handleSummaryLevelToggle' 'blocks'}}>
-      <span class="show-for-medium">Census </span>
-      Block
-    </a>
-    {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
-  </li>
-  <li class="{{if (eq this.selection.summaryLevel 'tracts') 'active'}} explode-tract">
-    <a href="#" data-test-toggle-tracts {{action 'handleSummaryLevelToggle' 'tracts'}}>
-      <span class="show-for-medium">Census </span>
-      Tract
-    </a>
-    {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
-  </li>
-  <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-    <a href="#" data-test-toggle-ntas {{action 'handleSummaryLevelToggle' 'ntas'}}>Neighborhood&nbsp;<small>(NTA)</small></a>
-    {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
-  </li>
-  <li class="{{if (eq this.selection.summaryLevel 'pumas') 'active'}} explode-puma">
-    <a href="#" data-test-toggle-pumas {{action 'handleSummaryLevelToggle' 'pumas'}}>PUMA</a>
-    {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
-  </li>
-</ul> --}}
+<OrangeBar>
+  {{#if this.selection.currentMapInstance}}
+    <OrangeBarCustomMapStudy
+      @handleDrawButtonClick={{action this.handleDrawButtonClick}}
+      @handleSummaryLevelToggle={{action this.handleSummaryLevelToggle}}
+      @drawMode={{this.drawMode}}
+      @mode={{this.mode}}
+      @lastreport={{this.lastreport}}
+    />
+  {{/if}}
+</OrangeBar>
 
  {{!--  TURN THIS OFF TO GET RID OF THE MAP  --}}
 <div class="map-container">
-  <LabsMap @id="map" @sources={{sources}} @initOptions={{hash zoom=zoom
-                      center=center
-                      hash=true}} @mapLoaded={{action 'handleMapLoad'}} as |map|>
-
-    <map.labs-layers @onLayerClick={{action 'handleClick'}} @layerGroups={{this.model.layerGroups}} as |layers|>
+  <LabsMap 
+    @id="map"
+    @sources={{this.sources}}
+    @initOptions={{hash
+      zoom=this.zoom
+      center=this.center
+      hash=true
+    }}
+    @mapLoaded={{action this.handleMapLoad}} as |map|
+  >
+    <map.labs-layers @onLayerClick={{action this.handleClick}} @layerGroups={{this.model.layerGroups}} as |layers|>
       <layers.tooltip as |tooltip|>
         {{tooltip-renderer
           feature=tooltip.feature
@@ -134,8 +125,8 @@
       </map.source>
     {{/if}}
 
-    {{map.on 'draw.modechange' (action 'handleDrawModeChange')}}
-    {{map.on 'draw.create' (action 'handleDrawCreate')}}
+    {{map.on 'draw.modechange' (action this.handleDrawModeChange)}}
+    {{map.on 'draw.create' (action this.handleDrawCreate)}}
 
   </LabsMap>
 </div>
@@ -143,10 +134,10 @@
 <MapUtilityBox
   @lastreport={{lastreport}}
   @mode={{this.mode}}
-  @drawMode={{drawMode}}
-  @handleDrawButtonClick={{action "handleDrawButtonClick"}}
+  @drawMode={{this.drawMode}}
+  @handleDrawButtonClick={{action this.handleDrawButtonClick}}
 >
-  {{drop-zone
+  {{!-- {{drop-zone
     url='#'
     addedfile=(action 'addedfile')
     removedfile=(action 'removedfile')
@@ -155,7 +146,7 @@
     acceptedFiles='application/zip'
     addRemoveLinks=true
     autoProcessQueue=false
-  }}
+  }} --}}
 </MapUtilityBox>
 
 {{outlet}}
