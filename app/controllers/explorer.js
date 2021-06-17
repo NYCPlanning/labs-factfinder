@@ -12,7 +12,18 @@ import acsSocial from '../table-config/social';
 export default class ExplorerController extends Controller {
   showChart = true;
 
-  source = 'decennial';
+  @tracked sources = [
+    {
+      id: 'decennial',
+      label: 'Decennial',
+      selected: true,
+    },
+    {
+      id: 'acs',
+      label: 'ACS',
+      selected: false,
+    }
+  ];
 
   topic = null;
 
@@ -197,8 +208,16 @@ export default class ExplorerController extends Controller {
     },
   ];
 
+  get source() {
+    return this.sources.find(source => source.selected);
+  }
+
+  @action setSources(newSources) {
+    this.sources = newSources;
+  }
+
   get topics() {
-    if (this.source === 'decennial') {
+    if (this.source.id === 'decennial') {
       return this.decennialTopics;
     }
 
@@ -207,10 +226,10 @@ export default class ExplorerController extends Controller {
   }
 
   set topics(newTopics) {
-    if (this.source === 'decennial') {
+    if (this.source.id === 'decennial') {
       this.decennialTopics = newTopics;
     }
-    if (this.source === 'acs') {
+    if (this.source.id === 'acs') {
       this.acsTopics = newTopics;
     }
   }
