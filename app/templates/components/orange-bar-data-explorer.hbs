@@ -1,8 +1,15 @@
-<div class="grid-x">
-  <div class="cell small-12">
+<div class="grid-x expanded">
+  <div class="cell small-6 bar-item">
+    <Explorer::SourceSelectDropdown
+      @sources={{@sources}}
+      @setSources={{@setSources}}
+    />
+  </div>
+
+  <div class="cell small-6 bar-item">
     <Explorer::TopicSelectDropdown
-      @topics={{@topics}}
-      @setTopics={{@setTopics}}
+        @topics={{@topics}}
+        @setTopics={{@setTopics}}
     />
   </div>
   <div class="cell auto">

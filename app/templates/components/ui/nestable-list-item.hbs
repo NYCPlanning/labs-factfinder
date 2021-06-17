@@ -4,7 +4,7 @@
   <div class="cell small-1"
     {{on "click" (fn @onItemToggle @item.id)}}
   >
-    <span class="dcp-orange">
+    <span class="dcp-orange clickable">
       {{#if @item.selected}}
         {{fa-icon icon='check-square' prefix='far'}}
       {{else}}
