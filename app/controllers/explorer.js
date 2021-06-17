@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 // Decennial Topics
-//import decennialTopics from '../table-config/decennial';
+import decennialTopics from '../table-config/decennial';
 
 // ACS Demographic Profile Topics
 import acsDemographic from '../table-config/demographic';
@@ -22,10 +22,99 @@ export default class ExplorerController extends Controller {
 
   mode = 'current';
 
-  // @tracked decennialTopics = []
+  @tracked decennialTopics = [
+    {
+      id: 'decennial - Population Density',
+      label: 'Population Density',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.populationDensity,
+      children: [],
+    },
+    {
+      id: 'decennial - Age and Sex',
+      label: 'Age and Sex',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.sexAndAge,
+      children: [],
+    },
+    {
+      id: 'decennial - Mutually Exclusive Race / Hispanic Origin',
+      label: 'Mutually Exclusive Race / Hispanic Origin',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.mutuallyExclusiveRaceHispanicOrigin,
+      children: [],
+    },
+    {
+      id: 'decennial - Hispanic Subgroup',
+      label: 'Hispanic Subgroup',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.hispanicSubgroup,
+      children: [],
+    },
+    {
+      id: 'decennial - Asian Subgroup',
+      label: 'Asian Subgroup',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.asianSubgroup,
+      children: [],
+    },
+    {
+      id: 'decennial - Relationship to Head of Household',
+      label: 'Relationship to Head of Household',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.relationshipToHeadOfHouseholdHouseholder,
+      children: [],
+    },
+    {
+      id: 'decennial - Household Type',
+      label: 'Household Type',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.householdType,
+      children: [],
+    },
+    {
+      id: 'decennial - Housing Occupancy',
+      label: 'Housing Occupancy',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.housingOccupancy,
+      children: [],
+    },
+    {
+      id: 'decennial - Housing Tenure',
+      label: 'Housing Tenure',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.housingTenure,
+      children: [],
+    },
+    {
+      id: 'decennial - Tenure by Age of Householder',
+      label: 'Tenure by Age of Householder',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.tenureByAgeOfHouseholder,
+      children: [],
+    },
+    {
+      id: 'decennial - Household Size',
+      label: 'Household Size',
+      selected: false,
+      type: 'subtopic',
+      config: decennialTopics.householdSize,
+      children: [],
+    },
+  ];
 
   // To be converted to acsTopics
-  @tracked topics = [
+  @tracked acsTopics = [
     {
       id: '123',
       label: 'Demographic',
@@ -107,6 +196,24 @@ export default class ExplorerController extends Controller {
       ],
     },
   ];
+
+  get topics() {
+    if (this.source === 'decennial') {
+      return this.decennialTopics;
+    }
+
+    // this.source === 'acs'
+    return this.acsTopics;
+  }
+
+  set topics(newTopics) {
+    if (this.source === 'decennial') {
+      this.decennialTopics = newTopics;
+    }
+    if (this.source === 'acs') {
+      this.acsTopics = newTopics;
+    }
+  }
 
   @action setTopics(newTopics) {
     this.topics = newTopics;

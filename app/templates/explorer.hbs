@@ -7,8 +7,8 @@
 
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
-    {{#each this.topics as |topic|}}
-      {{#each topic.children as |subtopic|}}
+    {{#if (eq this.source 'decennial')}}
+      {{#each this.topics as |subtopic|}}
         {{#if subtopic.selected}}
           <div class="grid-x grid-margin-x">
             <div class="cell large-auto">
@@ -28,6 +28,31 @@
           <hr>
         {{/if}}
       {{/each}}
-    {{/each}}
+    {{/if}}
+
+    {{#if (eq this.source 'acs')}}
+      {{#each this.topics as |topic|}}
+        {{#each topic.children as |subtopic|}}
+          {{#if subtopic.selected}}
+            <div class="grid-x grid-margin-x">
+              <div class="cell large-auto">
+                <h3 class="header-medium">
+                  {{subtopic.label}}
+                </h3>
+                {{data-table
+                  mode='current'
+                  reliability=false
+                  comparison=false
+                  config=subtopic.config
+                  model=@model.profile
+                }}
+              </div>
+            </div>
+
+            <hr>
+          {{/if}}
+        {{/each}}
+      {{/each}}
+    {{/if}}
   </div>
 </div>
