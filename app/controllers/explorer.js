@@ -2,14 +2,12 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-import demographic from '../table-config/demographic';
+// Decennial Topics
+//import decennialTopics from '../table-config/decennial';
 
-const {
-  sexAndAge,
-  mutuallyExclusiveRaceHispanicOrigin,
-  hispanicSubgroup,
-  asianSubgroup,
-} = demographic;
+// ACS Demographic Profile Topics
+import acsDemographic from '../table-config/demographic';
+import acsSocial from '../table-config/social';
 
 export default class ExplorerController extends Controller {
   showChart = true;
@@ -24,13 +22,9 @@ export default class ExplorerController extends Controller {
 
   mode = 'current';
 
-  rowConfigs = {
-    sexAndAge,
-    mutuallyExclusiveRaceHispanicOrigin,
-    hispanicSubgroup,
-    asianSubgroup,
-  };
+  // @tracked decennialTopics = []
 
+  // To be converted to acsTopics
   @tracked topics = [
     {
       id: '123',
@@ -40,16 +34,34 @@ export default class ExplorerController extends Controller {
       children: [
         {
           id: '124',
-          label: 'Demo 1',
+          label: 'Sex and Age',
           selected: true,
           type: 'subtopic',
+          config: acsDemographic.sexAndAge,
           children: [],
         },
         {
           id: '125',
-          label: 'Demo 2',
+          label: 'Mutually Exclusive Race / Hispanic Origin',
           selected: true,
           type: 'subtopic',
+          config: acsDemographic.mutuallyExclusiveRaceHispanicOrigin,
+          children: [],
+        },
+        {
+          id: '225',
+          label: 'Hispanic Subgroup',
+          selected: true,
+          type: 'subtopic',
+          config: acsDemographic.hispanicSubgroup,
+          children: [],
+        },
+        {
+          id: '224',
+          label: 'Asian Subgroup',
+          selected: true,
+          type: 'subtopic',
+          config: acsDemographic.asianSubgroup,
           children: [],
         }
       ],
@@ -61,61 +73,35 @@ export default class ExplorerController extends Controller {
       type: 'topic',
       children: [
         {
-          id: '127',
-          label: 'Social 1',
+          id: 'ancestry',
+          label: 'Ancestry',
           selected: false,
           type: 'subtopic',
+          config: acsSocial.ancestry,
           children: [],
         },
         {
-          id: '128',
-          label: 'Social 2',
+          id: 'computersAndInternetUse',
+          label: 'Computers and Internet Use',
           selected: false,
           type: 'subtopic',
-          children: [],
-        }
-      ],
-    },
-    {
-      id: '129',
-      label: 'Economic',
-      selected: false,
-      type: 'topic',
-      children: [
-        {
-          id: '130',
-          label: 'Econ 1',
-          selected: false,
-          type: 'subtopic',
+          config: acsSocial.computersAndInternetUse,
           children: [],
         },
         {
-          id: '131',
-          label: 'Econ 2',
+          id: 'uSCitizenshipStatus',
+          label: 'U.S. Citizenship Status',
           selected: false,
           type: 'subtopic',
-          children: [],
-        }
-      ],
-    },
-    {
-      id: '132',
-      label: 'Housing',
-      selected: false,
-      type: 'topic',
-      children: [
-        {
-          id: '133',
-          label: 'Housing Stat 1',
-          selected: false,
-          type: 'subtopic',
+          config: acsSocial.uSCitizenshipStatus,
           children: [],
         },
         {
-          id: '134',
-          label: 'Housing Stat 2',
+          id: 'disabilityStatusOfTheCivilianNoninstitutionalizedPopulation',
+          label: 'Disability Status Of The Civilian Noninstitutionalized Population',
           selected: false,
           type: 'subtopic',
+          config: acsSocial.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
           children: [],
         }
       ],
