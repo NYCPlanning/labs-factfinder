@@ -17,6 +17,7 @@ export default Component.extend({
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,
+  mapLayersMenu: false,
 
   choroplethMode: 'popperacre',
 
@@ -100,14 +101,25 @@ export default Component.extend({
     this.set('choroplethMode', mode);
   },
 
-  toggleAdvancedOptions() {
-    console.dir(this);
-    this.get('metrics').trackEvent('GoogleAnalytics', {
-      eventCategory: 'Advanced Options',
-      eventAction: 'Toggle Advanced Options',
-      eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
-    });
+  actions: {
+    toggleAdvancedOptions() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Toggle Advanced Options',
+        eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
+      });
 
-    this.set('advanced', !this.get('advanced'));
+      this.set('advanced', !this.get('advanced'));
+    },
+    
+    toggleMapLayersMenu() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Toggle Map Layers Menu',
+        eventLabel: this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+      });
+
+      this.set('mapLayersMenu', !this.get('mapLayersMenu'));
+    },
   },
 });

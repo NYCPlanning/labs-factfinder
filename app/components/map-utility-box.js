@@ -148,13 +148,4 @@ export default Component.extend({
     this.set('choroplethMode', mode);
   },
 
-  toggleAdvancedOptions() {
-    this.get('metrics').trackEvent('GoogleAnalytics', {
-      eventCategory: 'Advanced Options',
-      eventAction: 'Toggle Advanced Options',
-      eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
-    });
-
-    this.set('advanced', !this.get('advanced'));
-  },
 });

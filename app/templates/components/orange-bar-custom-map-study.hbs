@@ -94,6 +94,7 @@
           <div class="selection-helpers">
           </div>
 
+<<<<<<< HEAD
           <div class="layers-menu">
             {{#layer-menu-item for='choropleths' as |item|}}
               <div class="grid-x">
@@ -122,6 +123,39 @@
                         {{/each}}
                       </ul>
                     {{/each-in}}
+=======
+      <a {{action "toggleMapLayersMenu"}} class="layer-groups-container-title {{if this.mapLayersMenu 'open'}}">
+        Add Map Layers
+      </a>
+      
+      <div class="layer-groups-container {{if this.mapLayersMenu 'open'}}">
+        Here
+        {{#layer-menu-item for='choropleths' as |item|}}
+          <div class="grid-x">
+            <div class="cell small-8">
+              <ul class="radio-buttons-list">
+                {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
+                  <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
+                  <ul class="no-bullet">
+                    {{#each configs as |config|}}
+                      <li {{
+                        action (
+                          queue
+                            (action this.setChoroplethMode config.id)
+                            (action item.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
+                            (action item.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
+                        )
+                      }}>
+                        {{#if (eq this.choroplethMode config.id)}}
+                          {{fa-icon icon='dot-circle' prefix='far'}}
+                        {{else}}
+                          {{fa-icon icon='circle' prefix='far'}}
+                        {{/if}}
+                        {{config.label}}
+                        {{labs-ui/icon-tooltip tip=config.tooltip}}
+                      </li>
+                    {{/each}}
+>>>>>>> 0730663 (Parts of this box work)
                   </ul>
                 </div>
                 <div class="cell small-4">
@@ -136,6 +170,7 @@
                   </div>
                 </div>
               </div>
+<<<<<<< HEAD
             {{/layer-menu-item}}
 
             {{#lookup-layer-group for='subway' as |layerGroup|}}
@@ -146,6 +181,20 @@
               }}
               {{/labs-ui/layer-group-toggle}}
             {{/lookup-layer-group}}
+=======
+            </div>
+          </div>
+        {{/layer-menu-item}}
+There
+        {{#lookup-layer-group for='subway' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+>>>>>>> 0730663 (Parts of this box work)
 
             {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
               {{#labs-ui/layer-group-toggle
@@ -174,6 +223,7 @@
               {{/labs-ui/layer-group-toggle}}
             {{/lookup-layer-group}}
 
+<<<<<<< HEAD
             {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
               {{#labs-ui/layer-group-toggle
                 label=layerGroup.model.legend.label
@@ -184,6 +234,18 @@
             {{/lookup-layer-group}}
 
           </div>
+=======
+        {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+Everywhere
+      </div>
+>>>>>>> 0730663 (Parts of this box work)
 
           {{yield}}
 
