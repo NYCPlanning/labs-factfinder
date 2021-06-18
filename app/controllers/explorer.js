@@ -27,11 +27,13 @@ export default class ExplorerController extends Controller {
 
   topic = null;
 
-  disaggregate = false;
+  @tracked showReliability = false;
 
-  compareTo = null;
+  @tracked disaggregate = false;
 
-  mode = 'current';
+  @tracked compareTo = null;
+
+  @tracked mode = 'current';
 
   @tracked decennialTopics = [
     {
