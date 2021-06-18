@@ -84,7 +84,12 @@
       <div class="selection-helpers">
       </div>
 
-      <div class="layers-menu">
+      <a {{action "toggleMapLayersMenu"}} class="layer-groups-container-title {{if this.mapLayersMenu 'open'}}">
+        Add Map Layers
+      </a>
+      
+      <div class="layer-groups-container {{if this.mapLayersMenu 'open'}}">
+        Here
         {{#layer-menu-item for='choropleths' as |item|}}
           <div class="grid-x">
             <div class="cell small-8">
@@ -127,7 +132,7 @@
             </div>
           </div>
         {{/layer-menu-item}}
-
+There
         {{#lookup-layer-group for='subway' as |layerGroup|}}
           {{#labs-ui/layer-group-toggle
             label=layerGroup.model.legend.label
@@ -172,7 +177,7 @@
           }}
           {{/labs-ui/layer-group-toggle}}
         {{/lookup-layer-group}}
-
+Everywhere
       </div>
 
       {{yield}}

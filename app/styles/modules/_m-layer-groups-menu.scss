@@ -12,7 +12,7 @@
     background-color: rgba(107,113,123,.06);
   }
 
-  &:not(.open) .layer-groups-container-content {
+  &:not(.open) {
     display: none;
   }
 
@@ -26,6 +26,7 @@
 }
 
 .layer-groups-container-title {
+  font-size: rem-calc(20);
   font-weight: $global-weight-bold;
   padding: rem-calc(6);
   padding-right: 1em;
@@ -37,15 +38,15 @@
   }
 
   &::after {
-    @include css-triangle(0.4em, $primary-color, up);
+    @include css-triangle(0.5em, #d96b27, right);
 
     position: absolute;
     top: 50%;
-    margin-top: -0.2em;
-    right: rem-calc(6);
+    margin-top: -0.4em;
+    left: rem-calc(6);
   }
-  &.closed::after {
-    transform: rotate(180deg);
+  &.open::after {
+    transform: rotate(90deg);
   }
 }
 
