@@ -3,9 +3,11 @@ import Component from '@ember/component';
 export default Component.extend({
 
   actions: {
-    downloadCSV(csv, filename) {
+    downloadCSV(csv) {
       var csvFile;
       var downloadLink;
+      const d = new Date(Date.now());
+      var filename = ['popfactfinder.planning.nyc.gov_data', d.getFullYear(), ("0" + (d.getMonth() + 1)).slice(-2), ("0" + d.getDate()).slice(-2) ].join('-').concat('.csv');
   
       // CSV file
       csvFile = new Blob([csv], {type: "text/csv"});
@@ -28,7 +30,13 @@ export default Component.extend({
       // Click download link
       downloadLink.click();
     },
-    exportTableToCSV(filename = 'test.csv') {
+    convertStringForCSV(s) {
+      if(s.indexOf(',') !== -1) {
+        return '"'.concat(s).concat('"');
+      } 
+      return s;
+    },
+    exportTableToCSV() {
       var csv = [];
       var rows = document.querySelectorAll("table tr");
       
@@ -37,11 +45,11 @@ export default Component.extend({
         
         // If a cell spans multiple columns, repeat the contents of that cell in each additional cell
         for (var j = 0; j < cols.length; j++) {
-          row.push(cols[j].innerText);
+          row.push(this.actions.convertStringForCSV(cols[j].innerText));
           if(cols[j].colSpan>1) {
             var additionalRepetitions = cols[j].colSpan;
               while(additionalRepetitions>1) {
-                row.push(cols[j].innerText);
+                row.push(this.actions.convertStringForCSV(cols[j].innerText));
                 additionalRepetitions--;
               }
           }
@@ -50,7 +58,7 @@ export default Component.extend({
       }
   
       // Download CSV file
-      this.actions.downloadCSV(csv.join("\n"), filename);
+      this.actions.downloadCSV(csv.join("\n"));
     }
   },
 });
