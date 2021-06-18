@@ -1,10 +1,15 @@
-<div class="grid-x expanded">
-  <div class="cell small-6 bar-item">
-    <Explorer::SourceSelectDropdown
-      @sources={{@sources}}
-      @setSources={{@setSources}}
-    />
-  </div>
+<div
+  id="data-explorer-toolbar"
+  class="grid-container fluid"
+>
+  <div class="grid-x grid-margin-x">
+    <div class="cell small-6 bar-item">
+      <Explorer::SourceSelectDropdown
+          @sources={{@sources}}
+          @setSources={{@setSources}}
+      />
+    </div>
+
 
   <div class="cell small-6 bar-item">
     <Explorer::TopicSelectDropdown
