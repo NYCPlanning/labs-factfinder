@@ -4,6 +4,9 @@
     @setTopics={{this.setTopics}}
     @sources={{this.sources}}
     @setSources={{this.setSources}}
+    @showReliability={{this.showReliability}}
+    @disaggregate={{this.disaggregate}}
+    @compareTo={{this.compareTo}}
   />
 </OrangeBar>
 
@@ -19,8 +22,8 @@
               </h3>
               {{data-table
                 mode='current'
-                reliability=false
-                comparison=false
+                reliability=this.showReliability
+                comparison=this.compareTo
                 config=subtopic.config
                 model=@model.profile
               }}
@@ -43,8 +46,8 @@
                 </h3>
                 {{data-table
                   mode='current'
-                  reliability=false
-                  comparison=false
+                  reliability=this.showReliability
+                  comparison=this.compareTo
                   config=subtopic.config
                   model=@model.profile
                 }}

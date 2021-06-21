@@ -1,0 +1,58 @@
+<button
+  id="modify-tables-button"
+  class="menu orange-bar--selector"
+  {{on "click" this.toggleOpen}}
+>
+  <a>
+    {{fa-icon icon='edit'}}
+    Modify Tables
+  </a>
+</button>
+
+
+{{#if this.open}}
+  <div class="modify-tables-menu">
+    <div class="triangle">
+    </div>
+
+    <div class="grid-container fluid">
+      <div class="grid-x">
+        <div class="cell small-2">
+          <div class="switch tiny modify-tables-switch">
+            <Input
+              @id="show-reliability-switch"
+              @type="checkbox"
+              @checked={{@showReliability}}
+              name="show-reliability-switch"
+              class="switch-input"
+            />
+            <label class="switch-paddle" for="show-reliability-switch"></label>
+          </div>
+        </div>
+        <div class="cell auto">
+            Show Reliability Data
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-container fluid">
+      <div class="grid-x">
+        <div class="cell small-2">
+          <div class="switch tiny modify-tables-switch">
+            <Input
+              @id="disaggregate-switch"
+              @type="checkbox"
+              @checked={{@disaggregate}}
+              name="disaggregate-switch"
+              class="switch-input"
+            />
+            <label class="switch-paddle" for="disaggregate-switch"></label>
+          </div>
+        </div>
+        <div class="cell auto">
+            Disaggregate
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
