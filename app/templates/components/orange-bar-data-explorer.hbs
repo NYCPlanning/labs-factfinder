@@ -9,27 +9,31 @@
         @setSources={{@setSources}}
       />
     </div>
+
+    <div class="cell small-4 bar-item">
+      <Explorer::TopicSelectDropdown
+        @topics={{@topics}}
+        @setTopics={{@setTopics}}
+      />
+    </div>
+
+    <div class="cell small-4 bar-item">
+      <Explorer::ModifyTablesMenu
+        @showReliability={{@showReliability}}
+        @disaggregate={{@disaggregate}}
+        @compareTo={{@compareTo}}
+      />
+    </div>
+
+    <div class="bar-item">
+      <Explorer::DownloadDataDropdown
+        @topics={{@topics}}
+        @setTopics={{@setTopics}}
+        @sources={{@sources}}
+        @setSources={{@setSources}}
+      />
+    </div>
+
+
   </div>
-
-
-  <div class="cell small-4 bar-item">
-    <Explorer::TopicSelectDropdown
-      @topics={{@topics}}
-      @setTopics={{@setTopics}}
-    />
-  </div>
-
-  <div class="cell small-4 bar-item">
-    <Explorer::ModifyTablesMenu
-      @showReliability={{@showReliability}}
-      @disaggregate={{@disaggregate}}
-      @compareTo={{@compareTo}}
-    />
-  </div>
-
-  <div class="cell small-4 bar-item auto">
-    <OrangeBarDataExplorerDownloadCsv />
-  </div>
-
-
 </div>
