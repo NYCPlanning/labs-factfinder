@@ -1,0 +1,151 @@
+// --------------------------------------------------
+// Module: Download Data Dropdown
+// --------------------------------------------------
+
+$download-data-dropdown-margin: rem-calc(6);
+$download-data-dropdown-hover-color: rgba($dark-gray,0.08);
+
+.download-data-dropdown {
+  font-size: rem-calc(12);
+  position: fixed;
+  right: 50px;
+  top: 200px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: $off-white;
+  margin-right: -$global-margin;
+  margin-left: -$global-margin;
+  border-top: 1px solid $silver;
+  transition: all 0.2s;
+
+  &.closed {
+    display: none;
+  }
+
+  @include breakpoint(large) {
+    height: 100vh;
+    max-height: calc(100vh - #{rem-calc(472)});
+    min-height: rem-calc(200);
+    overflow: auto;
+
+    &.closed {
+      // display: block;
+      max-height: 0;
+      min-height: 0;
+    }
+  }
+}
+
+.layers-menu {}
+
+.layer-menu-item {
+  border-bottom: 1px solid $white;
+
+  &:hover {
+    background-color: $download-data-dropdown-hover-color;
+  }
+}
+
+.layer-menu-item-header {
+  padding: $download-data-dropdown-margin;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $download-data-dropdown-hover-color;
+  }
+}
+
+.layer-menu-item-content {
+  padding: $download-data-dropdown-margin;
+  padding-top: 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.radio-buttons-list {
+  list-style: none;
+  margin: $download-data-dropdown-margin*-0.5 $download-data-dropdown-margin $download-data-dropdown-margin 0;
+  font-size: rem-calc(10);
+
+  li {
+    padding: $download-data-dropdown-margin/4 $download-data-dropdown-margin;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $download-data-dropdown-hover-color;
+    }
+  }
+}
+
+
+//
+// Legends
+// --------------------------------------------------
+.legend {
+}
+
+.legend-item {
+  font-size: rem-calc(10);
+}
+
+.legend-title {
+  line-height: 1.2;
+  padding-bottom: $download-data-dropdown-margin;
+  margin-bottom: $download-data-dropdown-margin;
+  border-bottom: 1px solid $medium-gray;
+}
+
+.legend-color {
+  opacity: 0.8;
+}
+
+.layer-group-legend {
+  display: inline-block;
+  width: 1rem;
+  height: rem-calc(6);
+  vertical-align: middle;
+  position: relative;
+  top: -0.1em;
+  background-color: #444;
+  border: rem-calc(2) solid #fff;
+  border-right-width: 0;
+  border-left-width: 0;
+  opacity: 0.75;
+}
+
+.legend-icon {
+
+  &.polygon {
+    opacity: 0.6;
+    margin: 0 0.75em;
+
+    input:not(:checked):not(:indeterminate) ~ & {
+      display: none;
+    }
+  }
+}
+
+
+//
+// Toggle/Switch
+// --------------------------------------------------
+.switch {
+  margin: 0 $download-data-dropdown-margin 0 0;
+
+  .switch-paddle, .switch-paddle:after {
+    border-radius: 11px;
+  }
+
+  &.tiny .switch-paddle {
+    width: 1.25rem;
+  }
+
+  &.tiny .switch-paddle::after {
+    width: 0.5rem;
+  }
+
+  &.tiny input:checked ~ .switch-paddle::after {
+    left: 0.625rem;
+  }
+}
