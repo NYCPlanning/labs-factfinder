@@ -6,23 +6,27 @@ $download-data-dropdown-margin: rem-calc(6);
 $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
 
 .download-data-dropdown {
+  color: black;
   font-size: rem-calc(12);
   position: fixed;
   right: 50px;
-  top: 200px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 10rem;
   background-color: $off-white;
   margin-right: -$global-margin;
   margin-left: -$global-margin;
-  border-top: 1px solid $silver;
+  border: 1px solid $silver;
   transition: all 0.2s;
+  border-radius: 10px;
+  p {
+    line-height: 1;
+  }
 
   &.closed {
     display: none;
   }
 
   @include breakpoint(large) {
-    height: 100vh;
+    // height: 100vh;
     max-height: calc(100vh - #{rem-calc(472)});
     min-height: rem-calc(200);
     overflow: auto;
@@ -32,6 +36,35 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
       max-height: 0;
       min-height: 0;
     }
+  }
+}
+
+.download-data-dropdown-head {
+  color: $dcp-orange;
+  padding: 1.5rem 1.5rem;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+  font-size: rem-calc(20);
+  font-weight: bold;
+}
+.download-data-dropdown-foot {
+  background-color: $dcp-orange;
+  color: white;
+  padding: 1.5rem 1.5rem;
+  font-size: rem-calc(20);
+  font-weight: bold;
+  .small {
+    font-size: rem-calc(14);
+    font-weight: normal;
+  }
+}
+.download-data-dropdown-body {
+  padding: 2.5rem 2.5rem;
+  font-size: rem-calc(16);
+  text-align: left;
+  .head {
+    font-size: rem-calc(20);
+    font-weight: bold;
+    text-decoration-line: underline;  
   }
 }
 
