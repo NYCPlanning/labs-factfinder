@@ -98,6 +98,8 @@ module.exports = function (environment) {
           'user-friends',
         ],
         'free-regular-svg-icons': [
+          'arrow-alt-circle-down',
+          'check-square',
           'circle',
           'copy',
           'dot-circle',
