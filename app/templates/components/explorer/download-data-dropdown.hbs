@@ -1,0 +1,19 @@
+{{!-- <a class='button tiny gray text-orange text-weight-normal' {{action 'exportTableToCSV'}}>{{fa-icon 'download'}} Download Data <small>(CSV)</small></a> --}}
+
+<button
+  class="topic-select-toggle button gray expanded no-margin"
+  role="button"
+  {{on "click" this.toggleOpen}}
+>
+  <div class="grid-x full">
+    <div class="cell small-11">
+      Download Selected Tables
+      <span class="orange-bar-notification-count">
+        {{this.numSelected}}
+      </span>
+    </div>
+    <div class="cell auto">
+      {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
+    </div>
+  </div>
+</button>

@@ -8,7 +8,6 @@
         @sources={{@sources}}
         @setSource={{@setSource}}
       />
-
       <Explorer::TopicSelectDropdown
         @topics={{@topics}}
         @setTopics={{@setTopics}}
@@ -29,5 +28,25 @@
   </div>
   <div class="cell auto">
     <OrangeBarDataExplorerDownloadCsv />
+    </div>
+
+    <div class="cell small-4 bar-item">
+      <Explorer::ModifyTablesMenu
+        @showReliability={{@showReliability}}
+        @disaggregate={{@disaggregate}}
+        @compareTo={{@compareTo}}
+      />
+    </div>
+
+    <div class="bar-item">
+      <Explorer::DownloadDataDropdown
+        @topics={{@topics}}
+        @setTopics={{@setTopics}}
+        @sources={{@sources}}
+        @setSources={{@setSources}}
+      />
+    </div>
+
+
   </div>
 </div>
