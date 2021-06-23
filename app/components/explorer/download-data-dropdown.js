@@ -85,4 +85,17 @@ export default class DownloadDataDropdown extends Component{
         return prev += cur.children.filter((child) => child.selected).length;
       }, 0);
   }
+  get source() {
+    return this.args.sources.find(source => source.selected);
+  }
+
+  get selectedTopicsList() {
+    var list = this.args.topics.map(topic => {
+      return {
+        label: topic.label,
+        children: topic.children.filter(subtopic => subtopic.selected)
+      }
+    })
+    return list.filter(topiary => topiary.children.length > 0);
+  }
 }
