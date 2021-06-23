@@ -47,6 +47,7 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   font-weight: bold;
 }
 .download-data-dropdown-foot {
+  cursor: pointer;
   background-color: $dcp-orange;
   color: white;
   padding: 1.5rem 1.5rem;
