@@ -75,7 +75,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Population Density',
       label: 'Population Density',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.populationDensity,
       children: [],
@@ -83,7 +83,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Age and Sex',
       label: 'Age and Sex',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.sexAndAge,
       children: [],
@@ -91,7 +91,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Mutually Exclusive Race / Hispanic Origin',
       label: 'Mutually Exclusive Race / Hispanic Origin',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.mutuallyExclusiveRaceHispanicOrigin,
       children: [],
@@ -99,7 +99,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Hispanic Subgroup',
       label: 'Hispanic Subgroup',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.hispanicSubgroup,
       children: [],
@@ -107,7 +107,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Asian Subgroup',
       label: 'Asian Subgroup',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.asianSubgroup,
       children: [],
