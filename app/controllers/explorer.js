@@ -71,9 +71,6 @@ export default class ExplorerController extends Controller {
 
   @tracked compareTo = null;
 
-  // values are 'current' or 'change'
-  @tracked mode = 'current';
-
   @tracked decennialTopics = [
     {
       id: 'decennial - Population Density',
@@ -251,6 +248,13 @@ export default class ExplorerController extends Controller {
 
   get source() {
     return this.sources.find(source => source.selected);
+  }
+
+  // returns either 'current' or 'change'
+  get mode() {
+    if (this.source.changeOverTime) return 'change';
+
+    return 'current';
   }
 
   @action setSources(newSources) {
