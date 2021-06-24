@@ -245,25 +245,6 @@ body {
   margin-bottom: 0;
 }
 
-.search {
-  position: relative;
-  bottom: 50vh;
-  left: -$global-margin;
-  z-index: 100;
-  margin-left: 50px;
-  margin-bottom: rem-calc(-40);
-
-  @include breakpoint(large) {
-    // position: absolute;
-    position: relative;
-    top: 0;
-    bottom: auto;
-    left: 0;
-    width: rem-calc(300);
-    margin-left: 0;
-    // margin-top: rem-calc(-92);
-  }
-}
 
 .call-to-action {
   margin-bottom: $global-margin;

@@ -14,8 +14,6 @@ export default Component.extend({
 
   choroplethConfigs,
 
-  classNames: ['orange-bar-custom-map-study'],
-
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,

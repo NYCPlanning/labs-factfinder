@@ -8,7 +8,6 @@
   z-index: 10;
   display: block !important;
 
-
   .bar-item {
     position: relative !important;
     line-height: 1.5;
@@ -25,24 +24,21 @@
   font-weight: $global-weight-bold;
   box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
 
-  @include breakpoint(large) {
-    border-radius: 4px;
-    box-shadow: 0 0 0 2px $white;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px $white;
+  display: flex !important;
 
-    li:not(:last-child) {
-      border-right: 1px solid $white;
-    }
+  li:not(:last-child) {
+    border-right: 1px solid $white;
   }
 
   .dropdown-content a {
-    @include breakpoint(large) {
+    box-shadow: 0 0 0 2px $white;
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
       box-shadow: 0 0 0 2px $white;
-  
-      &:last-child {
-        border-radius: 0 0 4px 4px;
-        box-shadow: 0 0 0 2px $white;
-        border-bottom: 1px solid $white;
-      }
+      border-bottom: 1px solid $white;
     }
   }
 
@@ -76,7 +72,7 @@
   }
 }
 .dropsizer {
-  width: auto;
+  width: 100px;
   position: relative;
   border-radius: 4px;
   border-right: 1px solid $white;
@@ -84,6 +80,7 @@
 
 ul .menu li.dropdown {
   display: inline-block;
+  width: 100px;
 }
 .dropdown:hover div, .dropdown:hover .dropdown-content {
   display: block;
@@ -92,35 +89,43 @@ ul .menu li.dropdown {
   position: relative;
 }
 .dropbtn {
-  // display: inline-block !important;
-  display: flex !important;
-  // justify-content: center;
+  width: 100px;
   align-items: center;
   height: 100%;
 }
 
 #more-options-button {
-  margin-right: 46px;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 26px;
+  width: 150px !important;
+
+  ul, li {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }
+
 #draw-tools {
-  margin-left: 31px;
-  margin-right: 20px;
-  width:ceil($number: 100px);
+  width: 100px;
 }
-.five-buttons li {
-  width: 79px;
-  // padding: 0px;
-  align-items: center;
-}
-.five-buttons li.active {
-  background-color: white;
-}
-.five-buttons li.active a {
-  color: #d96b27;
+
+.five-buttons {
+  margin-top: -5px;
+
+  li {
+    width: 100px;
+    // padding: 0px;
+    align-items: center;
+  }
+  li.active {
+    background-color: white;
+  }
+  li.active a {
+    color: #d96b27;
+  }
 }
 
 .dropbtn-centered {
@@ -128,13 +133,4 @@ ul .menu li.dropdown {
 }
 .dropbtn-left {
   justify-content: left;
-}
-
-.orange-bar-custom-map-study {
-  width: 100%;
-  align-items: center;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
 }
