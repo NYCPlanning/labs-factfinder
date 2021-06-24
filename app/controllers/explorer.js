@@ -14,15 +14,53 @@ export default class ExplorerController extends Controller {
 
   @tracked sources = [
     {
-      id: 'decennial',
-      label: 'Decennial',
+      id: 'decennial-2020',
+      label: '2020 Decennial Census',
+      type: 'census',
+      year: '2020',
+      changeOverTime: false,
       selected: true,
     },
     {
-      id: 'acs',
-      label: 'ACS',
+      id: 'decennial-2010',
+      label: '2010 Decennial Census',
+      type: 'census',
+      year: '2010',
+      changeOverTime: false,
       selected: false,
-    }
+    },
+    {
+      id: 'decennial-change',
+      label: 'Change over Time: Decennial Census 2020, 2010',
+      type: 'census',
+      year: null,
+      changeOverTime: true,
+      selected: false,
+    },
+    {
+      id: 'acs-2015-2019',
+      label: '2015 - 2019 ACS',
+      type: 'acs',
+      year: '2015-2019',
+      changeOverTime: false,
+      selected: false,
+    },
+    {
+      id: 'acs-2006-2010',
+      label: '2006 - 2010 ACS',
+      type: 'acs',
+      year: '2006-2010',
+      changeOverTime: false,
+      selected: false,
+    },
+    {
+      id: 'acs-change',
+      label: 'Change over Time: ACS 2006-2010 to 2015-2019',
+      type: 'acs',
+      year: null,
+      changeOverTime: true,
+      selected: false,
+    },
   ];
 
   topic = null;
@@ -33,6 +71,7 @@ export default class ExplorerController extends Controller {
 
   @tracked compareTo = null;
 
+  // values are 'current' or 'change'
   @tracked mode = 'current';
 
   @tracked decennialTopics = [
@@ -219,7 +258,7 @@ export default class ExplorerController extends Controller {
   }
 
   get topics() {
-    if (this.source.id === 'decennial') {
+    if (this.source.type === 'census') {
       return this.decennialTopics;
     }
 
@@ -228,10 +267,10 @@ export default class ExplorerController extends Controller {
   }
 
   set topics(newTopics) {
-    if (this.source.id === 'decennial') {
+    if (this.source.type === 'census') {
       this.decennialTopics = newTopics;
     }
-    if (this.source.id === 'acs') {
+    if (this.source.type === 'acs') {
       this.acsTopics = newTopics;
     }
   }

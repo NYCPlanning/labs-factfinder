@@ -12,7 +12,7 @@
 
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
-    {{#if (eq this.source.id 'decennial')}}
+    {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
         {{#if subtopic.selected}}
           <div class="grid-x grid-margin-x">
@@ -35,7 +35,7 @@
       {{/each}}
     {{/if}}
 
-    {{#if (eq this.source.id 'acs')}}
+    {{#if (eq this.source.type 'acs')}}
       {{#each this.topics as |topic|}}
         {{#each topic.children as |subtopic|}}
           {{#if subtopic.selected}}
