@@ -22,6 +22,7 @@
               </h3>
               {{data-table
                 mode=this.mode
+                decennial=(eq this.source.type 'census')
                 reliability=this.showReliability
                 comparison=this.compareTo
                 config=subtopic.config
@@ -46,6 +47,7 @@
                 </h3>
                 {{data-table
                   mode=this.mode
+                  decennial=(eq this.source.type 'census')
                   reliability=this.showReliability
                   comparison=this.compareTo
                   config=subtopic.config

@@ -25,10 +25,26 @@
 
   {{!-- Estimate --}}
   <td class="cell-border-left change-estimate {{unless @data.change_significant 'insignificant'}}">
-    {{unless (eq @data.change_sum null)
-      (format-number
-          @data.change_sum
-          precision=@rowConfig.decimal)}}
+    {{#unless (eq @data.change_sum null)}}
+      {{format-number
+        @data.change_sum
+        precision=@rowConfig.decimal
+      }}
+
+      {{#if (and
+        (gt @data.change_sum 0)
+        (lt @data.change_moe @data.change_sum)
+      )}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (and
+        (lt @data.change_sum 0)
+        (gt @data.change_m @data.change_sum)
+      )}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
+    {{/unless}}
   </td>
 
   {{#if @reliability}}
@@ -43,12 +59,26 @@
 
   {{!-- percent --}}
   <td class="{{unless @data.change_percent_significant 'insignificant'}} change-percent">
-    {{unless (eq @data.change_percent null)
-      (concat
+    {{#unless (eq @data.change_percent null)}}
+      {{concat
         (format-number (mult @data.change_percent 100) precision=1)
         '%'
-      )
-    }}
+      }}
+
+      {{#if (and
+        (gt @data.change_percent 0)
+        (lt @data.change_percent_m @data.change_percent)
+      )}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (and
+        (lt @data.change_percent 0)
+        (gt @data.change_percent_m @data.change_percent)
+      )}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
+    {{/unless}}
   </td>
 
   {{#if @reliability}}
@@ -66,13 +96,28 @@
   {{!-- percentage point --}}
   <td class="{{unless @data.change_percentage_point_significant 'insignificant'}} change-percentage-point">
     {{#unless
-        (or
-          @data.isSpecial
-          (eq @data.change_percentage_point null)
-        )}}
+      (or
+        @data.isSpecial
+        (eq @data.change_percentage_point null)
+      )
+    }}
       {{format-number
         (mult @data.change_percentage_point 100)
         precision=1}}
+
+      {{#if (and
+        (gt @data.change_percentage_point 0)
+        (lt @data.change_percentage_point_m @data.change_percentage_point)
+      )}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (and
+        (lt @data.change_percentage_point 0)
+        (gt @data.change_percentage_point_m @data.change_percentage_point)
+      )}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
     {{/unless}}
   </td>
 

@@ -75,6 +75,7 @@ module.exports = function (environment) {
           'arrow-left',
           'arrow-right',
           'arrow-up',
+          'arrow-down',
           'building',
           'caret-down',
           'caret-up',
