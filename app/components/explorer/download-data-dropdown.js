@@ -53,6 +53,9 @@ export default class DownloadDataDropdown extends Component{
   }
   @action exportTableToCSV() {
     var csv = [];
+    var rowspanCounter = 0;
+    var rowspanText;
+
     var rows = document.querySelectorAll("h3, table tr");
     
     for (var i = 0; i < rows.length; i++) {
@@ -67,10 +70,19 @@ export default class DownloadDataDropdown extends Component{
 
       } else {
         var cols = rows[i].querySelectorAll("td, th");
+
+        //if the first cell of a row spans multiple rows, repeat that text in each row that it spans
+        if (cols[0].rowSpan>1) {
+          rowspanCounter = cols[0].rowSpan - 1;
+          rowspanText = this.actions.convertStringForCSV(cols[0].innerText);
+        } else if (rowspanCounter>0) {
+          row.push(rowspanText);
+          rowspanCounter--;
+        }
         
-        // If a cell spans multiple columns, repeat the contents of that cell in each additional cell
         for (var j = 0; j < cols.length; j++) {
           row.push(this.actions.convertStringForCSV(cols[j].innerText));
+          // If a cell spans multiple columns, repeat the contents of that cell in each additional cell
           if(cols[j].colSpan>1) {
             var additionalRepetitions = cols[j].colSpan;
               while(additionalRepetitions>1) {
