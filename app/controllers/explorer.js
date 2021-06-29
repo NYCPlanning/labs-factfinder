@@ -115,7 +115,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Relationship to Head of Household',
       label: 'Relationship to Head of Household',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.relationshipToHeadOfHouseholdHouseholder,
       children: [],
@@ -123,7 +123,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Household Type',
       label: 'Household Type',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.householdType,
       children: [],
@@ -131,7 +131,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Housing Occupancy',
       label: 'Housing Occupancy',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.housingOccupancy,
       children: [],
@@ -139,7 +139,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Housing Tenure',
       label: 'Housing Tenure',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.housingTenure,
       children: [],
@@ -147,7 +147,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Tenure by Age of Householder',
       label: 'Tenure by Age of Householder',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.tenureByAgeOfHouseholder,
       children: [],
@@ -155,7 +155,7 @@ export default class ExplorerController extends Controller {
     {
       id: 'decennial - Household Size',
       label: 'Household Size',
-      selected: false,
+      selected: true,
       type: 'subtopic',
       config: decennialTopics.householdSize,
       children: [],
