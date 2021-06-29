@@ -53,20 +53,31 @@ export default class DownloadDataDropdown extends Component{
   }
   @action exportTableToCSV() {
     var csv = [];
-    var rows = document.querySelectorAll("table tr");
+    var rows = document.querySelectorAll("h3, table tr");
     
     for (var i = 0; i < rows.length; i++) {
-      var row = [], cols = rows[i].querySelectorAll("td, th");
-      
-      // If a cell spans multiple columns, repeat the contents of that cell in each additional cell
-      for (var j = 0; j < cols.length; j++) {
-        row.push(this.actions.convertStringForCSV(cols[j].innerText));
-        if(cols[j].colSpan>1) {
-          var additionalRepetitions = cols[j].colSpan;
-            while(additionalRepetitions>1) {
-              row.push(this.actions.convertStringForCSV(cols[j].innerText));
-              additionalRepetitions--;
-            }
+      var row = [];
+
+      if (rows[i].nodeName === "H3") {
+        //add two blank rows above all but the first table
+        if (i>0) {
+          csv.push(null, null);
+        }
+        row.push(this.actions.convertStringForCSV(rows[i].innerText));
+
+      } else {
+        var cols = rows[i].querySelectorAll("td, th");
+        
+        // If a cell spans multiple columns, repeat the contents of that cell in each additional cell
+        for (var j = 0; j < cols.length; j++) {
+          row.push(this.actions.convertStringForCSV(cols[j].innerText));
+          if(cols[j].colSpan>1) {
+            var additionalRepetitions = cols[j].colSpan;
+              while(additionalRepetitions>1) {
+                row.push(this.actions.convertStringForCSV(cols[j].innerText));
+                additionalRepetitions--;
+              }
+          }
         }
       }
       csv.push(row.join(","));        
