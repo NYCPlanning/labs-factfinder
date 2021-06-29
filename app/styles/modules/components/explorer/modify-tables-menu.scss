@@ -8,7 +8,7 @@
 .modify-tables-menu {
   position: absolute;
   top: 100%;
-  left: -30px;
+  left: -42px;
   margin-top: 15px;
   bottom: auto;
   background-color: $white;
@@ -19,11 +19,12 @@
   border: 1px solid rgb(223, 225, 229);
   border-radius: 5px;
   text-align: left !important;
+  z-index: 100;
 
   .triangle {
     position: absolute;
     top: -15px;
-    left: 95px;
+    left: 105px;
     width: 0;
     height: 0;
     border-left: 15px solid transparent;

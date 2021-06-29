@@ -3,9 +3,8 @@
 // --------------------------------------------------
 
 .source-select-toggle {
-  width: 250px !important;
-  padding-top: 0;
-  padding-bottom: 0;
+  width: 500px !important;
+  padding: 0.7rem 5px !important;
   border-radius: 5px;
   padding: 11px 5px;
 }
@@ -21,13 +20,14 @@
   bottom: auto;
   left: rem-calc(0);
   background-color: $white;
-  padding: rem-calc(6) 0;
+  padding: 15px;
   box-shadow: 0 4px 0 rgba(0,0,0,0.1);
-  width: 250px !important;
+  width: 500px !important;
   color: $dark-gray;
   border: 1px solid rgb(223, 225, 229);
-  border-radius: 0 0px 5px 5px;
+  border-radius: 5px;
   text-align: left !important;
+  z-index: 100;
 
   .clickable {
     cursor: pointer;

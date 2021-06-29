@@ -13,6 +13,14 @@ export default class SourceSelectDropdownComponent extends Component {
     return this.args.sources.find(source => source.selected);
   }
 
+  get censusSources() {
+    return this.args.sources.filter(source => source.type === 'census');
+  }
+
+  get acsSources() {
+    return this.args.sources.filter(source => source.type === 'acs');
+  }
+
   toggleSourceInList = (sources, sourceId) => {
     return sources.map((source) => {
       if (source.id === sourceId) {
