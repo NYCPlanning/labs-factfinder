@@ -74,7 +74,9 @@
         </li>
       </ul>
     </div>
-    {{!-- <li class="menu align-right"><a href="#">Right Side Placeholder</a></li> --}}
+    {{!-- <li class="menu align-right"><a href="#">Right Side Placeholder</a></li>
+    <div class="cell small-1 bar-item">
+    </div> --}}
     <div class="cell small-2 bar-item">
       <div class="menu align-right">
         <ul class="menu orange-bar--selector" id="more-options-button">
@@ -90,100 +92,123 @@
     {{#if (eq @mode 'direct-select')}}
       <div class="advanced-options {{unless this.advanced 'closed'}}" style="color:black">
         {{#unless this.closed}}
-
+{{!-- 
           <div class="selection-helpers">
-          </div>
-
-          <div class="layers-menu">
-            {{#layer-menu-item for='choropleths' as |item|}}
-              <div class="grid-x">
-                <div class="cell small-8">
-                  <ul class="radio-buttons-list">
-                    {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
-                      <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
-                      <ul class="no-bullet">
-                        {{#each configs as |config|}}
-                          <li {{
-                            action (
-                              queue
-                                (action this.setChoroplethMode config.id)
-                                (action item.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
-                                (action item.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
-                            )
-                          }}>
-                            {{#if (eq this.choroplethMode config.id)}}
-                              {{fa-icon icon='dot-circle' prefix='far'}}
-                            {{else}}
-                              {{fa-icon icon='circle' prefix='far'}}
-                            {{/if}}
-                            {{config.label}}
-                            {{labs-ui/icon-tooltip tip=config.tooltip}}
-                          </li>
-                        {{/each}}
-                      </ul>
-                    {{/each-in}}
-                  </ul>
-                </div>
-                <div class="cell small-4">
-                  <div class="legend">
-                    <div class="legend-title">{{this.legendTitle}}</div>
-                    {{#each this.stops as |stop|}}
-                      <div class="legend-item">
-                        <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
-                        {{stop.label}}
-                      </div>
-                    {{/each}}
+          </div> --}}
+              {{!-- {{#layer-menu-item for='choropleths' as |item|}} --}}
+                <div class="grid-x">
+                  <div class="cell small-8">
+                    <ul class="radio-buttons-list">
+                      {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
+                        <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
+                        <ul class="no-bullet">
+                          {{#each configs as |config|}}
+                            <li>{{config.id}}</li>
+                            {{!-- <li {{
+                              action (
+                                queue
+                                  (action this.setChoroplethMode config.id)
+                                  (action item.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
+                                  (action item.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
+                              )
+                            }}> --}}
+                            <li {{
+                              action (
+                                queue
+                                  (action this.setChoroplethMode config.id)
+                              )
+                            }}>
+                              {{#if (eq this.choroplethMode config.id)}}
+                                {{fa-icon icon='dot-circle' prefix='far'}}
+                              {{else}}
+                                {{fa-icon icon='circle' prefix='far'}}
+                              {{/if}}
+                              {{config.label}}
+                              {{labs-ui/icon-tooltip tip=config.tooltip}}
+                            </li>
+                          {{/each}}
+                        </ul>
+                      {{/each-in}}
+                    </ul>
+                  </div>
+                  <div class="cell small-4">
+                    <div class="legend">
+                      <div class="legend-title">{{this.legendTitle}}</div>
+                      {{#each this.stops as |stop|}}
+                        <div class="legend-item">
+                          <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
+                          {{stop.label}}
+                        </div>
+                      {{/each}}
+                    </div>
                   </div>
                 </div>
-              </div>
-            {{/layer-menu-item}}
+              {{!-- {{/layer-menu-item}} --}}
+          <a {{action "toggleMapLayersMenu"}} class="layer-groups-container-title {{if this.mapLayersMenu 'open'}}">
+            Add Map Layers
+          </a>
 
-            {{#lookup-layer-group for='subway' as |layerGroup|}}
-              {{#labs-ui/layer-group-toggle
-                label=layerGroup.model.legend.label
-                active=layerGroup.model.visible
-                icon=layerGroup.model.legend.icon
-              }}
-              {{/labs-ui/layer-group-toggle}}
-            {{/lookup-layer-group}}
+          {{#if (eq this.mapLayersMenu true)}}
+            <div class="layers-menu">
 
-            {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
-              {{#labs-ui/layer-group-toggle
-                label=layerGroup.model.legend.label
-                active=layerGroup.model.visible
-                icon=layerGroup.model.legend.icon
-              }}
-              {{/labs-ui/layer-group-toggle}}
-            {{/lookup-layer-group}}
 
-            {{#lookup-layer-group for='community-districts' as |layerGroup|}}
-              {{#labs-ui/layer-group-toggle
-                label=layerGroup.model.legend.label
-                active=layerGroup.model.visible
-                icon=layerGroup.model.legend.icon
-              }}
-              {{/labs-ui/layer-group-toggle}}
-            {{/lookup-layer-group}}
+              {{#lookup-layer-group for='subway' as |layerGroup|}}
+                {{#labs-ui/layer-group-toggle
+                  label=layerGroup.model.legend.label
+                  active=layerGroup.model.visible
+                  icon=layerGroup.model.legend.icon
+                }}
+                {{/labs-ui/layer-group-toggle}}
+              {{/lookup-layer-group}}
 
-            {{#lookup-layer-group for='nyc-pumas' as |layerGroup|}}
-              {{#labs-ui/layer-group-toggle
-                label=layerGroup.model.legend.label
-                active=layerGroup.model.visible
-                icon=layerGroup.model.legend.icon
-              }}
-              {{/labs-ui/layer-group-toggle}}
-            {{/lookup-layer-group}}
+              {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
+                {{#labs-ui/layer-group-toggle
+                  label=layerGroup.model.legend.label
+                  active=layerGroup.model.visible
+                  icon=layerGroup.model.legend.icon
+                }}
+                {{/labs-ui/layer-group-toggle}}
+              {{/lookup-layer-group}}
 
-            {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
-              {{#labs-ui/layer-group-toggle
-                label=layerGroup.model.legend.label
-                active=layerGroup.model.visible
-                icon=layerGroup.model.legend.icon
-              }}
-              {{/labs-ui/layer-group-toggle}}
-            {{/lookup-layer-group}}
+              {{#lookup-layer-group for='community-districts' as |layerGroup|}}
+                {{#labs-ui/layer-group-toggle
+                  label=layerGroup.model.legend.label
+                  active=layerGroup.model.visible
+                  icon=layerGroup.model.legend.icon
+                }}
+                {{/labs-ui/layer-group-toggle}}
+              {{/lookup-layer-group}}
 
-          </div>
+              {{#lookup-layer-group for='nyc-pumas' as |layerGroup|}}
+                {{#labs-ui/layer-group-toggle
+                  label=layerGroup.model.legend.label
+                  active=layerGroup.model.visible
+                  icon=layerGroup.model.legend.icon
+                }}
+                {{/labs-ui/layer-group-toggle}}
+              {{/lookup-layer-group}}
+
+              {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+                {{#labs-ui/layer-group-toggle
+                  label=layerGroup.model.legend.label
+                  active=layerGroup.model.visible
+                  icon=layerGroup.model.legend.icon
+                }}
+                {{/labs-ui/layer-group-toggle}}
+              {{/lookup-layer-group}}
+
+            </div>
+          {{/if}}
+          {{drop-zone
+            url='#'
+            addedfile=(action 'addedfile')
+            removedfile=(action 'removedfile')
+            dictDefaultMessage='Drag & drop a zipped shapefile'
+            createImageThumbnails=false
+            acceptedFiles='application/zip'
+            addRemoveLinks=true
+            autoProcessQueue=false
+          }}
 
           {{yield}}
 

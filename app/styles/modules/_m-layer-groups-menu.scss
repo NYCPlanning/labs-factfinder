@@ -28,9 +28,15 @@
 .layer-groups-container-title {
   font-size: rem-calc(20);
   font-weight: $global-weight-bold;
-  padding: rem-calc(6);
+  padding: rem-calc(6) 0 rem-calc(6) rem-calc(28);
   padding-right: 1em;
   position: relative;
+  text-align: left;
+  width: 100%;
+
+  a {
+    text-align: left;
+  }
 
   &:hover {
     background-color: rgba(107,113,123,.06);
@@ -41,9 +47,9 @@
     @include css-triangle(0.5em, #d96b27, right);
 
     position: absolute;
-    top: 50%;
-    margin-top: -0.4em;
-    left: rem-calc(6);
+    top: 7px;
+    // margin-top: -0.4em;
+    left: 0;
   }
   &.open::after {
     transform: rotate(90deg);
@@ -55,7 +61,6 @@
 // Layer Group Toggle
 // --------------------------------------------------
 .layer-group-toggle {
-  border-top: 1px solid $white;
   font-size: rem-calc(12);
 }
 
@@ -70,9 +75,8 @@
   }
 
   .layer-group-toggle-label {
-    padding: rem-calc(6);
+    padding: rem-calc(6) 0 0 rem-calc(30); // left padding - switch's width (20) + margin (10)
     display: block;
-    padding-left: rem-calc(30); // switch's width (20) + margin (10)
   }
 
   .switch {

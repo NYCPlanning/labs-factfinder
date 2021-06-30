@@ -261,6 +261,7 @@ body {
   margin-right: -$global-margin;
   margin-left: -$global-margin;
   border-top: 1px solid $silver;
+  text-align: left;
   transition: all 0.2s;
 
   &.closed {

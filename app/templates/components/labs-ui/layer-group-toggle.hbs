@@ -1,6 +1,6 @@
 <div class="layer-group-toggle-header layer-{{dasherize this.label}}">
   <div class="grid-x">
-    <div class="cell auto ">
+    <div class="cell">
       <div class="switch tiny float-left">
         <input class="switch-input" type="checkbox" checked={{if this.active 'checked'}}>
         <label {{action 'toggle'}} class="switch-paddle">
@@ -16,7 +16,7 @@
         {{/if}}
       </span>
     </div>
-    <div class="cell shrink layer-group-toggle-icons">
+    {{!-- <div class="cell shrink layer-group-toggle-icons">
       {{#if (and this.activeTooltip this.active)}}
         {{labs-ui/icon-tooltip tip=this.activeTooltip icon=this.activeTooltipIcon side='left' fixedWith=true}}
       {{/if}}
@@ -26,7 +26,7 @@
       {{#if this.tooltip}}
         {{labs-ui/icon-tooltip tip=this.tooltip icon=this.tooltipIcon side='left' fixedWidth=true}}
       {{/if}}
-    </div>
+    </div> --}}
   </div>
 </div>
 {{#if this.active}}
