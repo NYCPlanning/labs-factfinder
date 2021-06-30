@@ -6,6 +6,7 @@ $download-data-dropdown-margin: rem-calc(6);
 $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
 
 .download-data-dropdown {
+  z-index: 1;
   color: black;
   font-size: rem-calc(12);
   position: fixed;
