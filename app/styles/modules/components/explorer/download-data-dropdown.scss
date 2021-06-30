@@ -27,13 +27,7 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   }
 
   @include breakpoint(large) {
-    // height: 100vh;
-    max-height: calc(100vh - #{rem-calc(472)});
-    min-height: rem-calc(200);
-    overflow: auto;
-
     &.closed {
-      // display: block;
       max-height: 0;
       min-height: 0;
     }
@@ -49,7 +43,7 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
 }
 .download-data-dropdown-foot {
   cursor: pointer;
-  background-color: $dcp-orange;
+  background-color: $green-dim;
   color: white;
   padding: 1.5rem 1.5rem;
   font-size: rem-calc(20);
@@ -63,6 +57,9 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   padding: 2.5rem 2.5rem;
   font-size: rem-calc(16);
   text-align: left;
+  min-height: rem-calc(200);
+  max-height: calc(100vh - #{rem-calc(472)});
+  overflow: auto;
   .head {
     font-size: rem-calc(20);
     font-weight: bold;
