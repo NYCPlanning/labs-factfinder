@@ -5,9 +5,11 @@ import { action } from '@ember/object';
 // Decennial Topics
 import decennialTopics from '../table-config/decennial';
 
-// ACS Demographic Profile Topics
-import acsDemographic from '../table-config/demographic';
+// ACS Profile Topics
+import acsDemographicTableConfig from '../table-config/demographic';
 import acsSocial from '../table-config/social';
+
+import acsDemographicChartConfig from '../chart-config/demographic';
 
 export default class ExplorerController extends Controller {
   showChart = true;
@@ -77,7 +79,8 @@ export default class ExplorerController extends Controller {
       label: 'Population Density',
       selected: true,
       type: 'subtopic',
-      config: decennialTopics.populationDensity,
+      tableConfig: decennialTopics.populationDensity,
+      chartConfig: null,
       children: [],
     },
     {
@@ -85,7 +88,8 @@ export default class ExplorerController extends Controller {
       label: 'Age and Sex',
       selected: true,
       type: 'subtopic',
-      config: decennialTopics.sexAndAge,
+      tableConfig: decennialTopics.sexAndAge,
+      chartConfig: null,
       children: [],
     },
     {
@@ -93,7 +97,8 @@ export default class ExplorerController extends Controller {
       label: 'Mutually Exclusive Race / Hispanic Origin',
       selected: true,
       type: 'subtopic',
-      config: decennialTopics.mutuallyExclusiveRaceHispanicOrigin,
+      tableConfig: decennialTopics.mutuallyExclusiveRaceHispanicOrigin,
+      chartConfig: null,
       children: [],
     },
     {
@@ -101,7 +106,8 @@ export default class ExplorerController extends Controller {
       label: 'Hispanic Subgroup',
       selected: true,
       type: 'subtopic',
-      config: decennialTopics.hispanicSubgroup,
+      tableConfig: decennialTopics.hispanicSubgroup,
+      chartConfig: null,
       children: [],
     },
     {
@@ -109,55 +115,62 @@ export default class ExplorerController extends Controller {
       label: 'Asian Subgroup',
       selected: true,
       type: 'subtopic',
-      config: decennialTopics.asianSubgroup,
+      tableConfig: decennialTopics.asianSubgroup,
+      chartConfig: null,
       children: [],
     },
     {
       id: 'decennial - Relationship to Head of Household',
       label: 'Relationship to Head of Household',
-      selected: false,
+      selected: true,
       type: 'subtopic',
-      config: decennialTopics.relationshipToHeadOfHouseholdHouseholder,
+      tableConfig: decennialTopics.relationshipToHeadOfHouseholdHouseholder,
+      chartConfig: null,
       children: [],
     },
     {
       id: 'decennial - Household Type',
       label: 'Household Type',
-      selected: false,
+      selected: true,
       type: 'subtopic',
-      config: decennialTopics.householdType,
+      tableConfig: decennialTopics.householdType,
+      chartConfig: null,
       children: [],
     },
     {
       id: 'decennial - Housing Occupancy',
       label: 'Housing Occupancy',
-      selected: false,
+      selected: true,
       type: 'subtopic',
-      config: decennialTopics.housingOccupancy,
+      tableConfig: decennialTopics.housingOccupancy,
+      chartConfig: null,
       children: [],
     },
     {
       id: 'decennial - Housing Tenure',
       label: 'Housing Tenure',
-      selected: false,
+      selected: true,
       type: 'subtopic',
-      config: decennialTopics.housingTenure,
+      tableConfig: decennialTopics.housingTenure,
+      chartConfig: null,
       children: [],
     },
     {
       id: 'decennial - Tenure by Age of Householder',
       label: 'Tenure by Age of Householder',
-      selected: false,
+      selected: true,
       type: 'subtopic',
-      config: decennialTopics.tenureByAgeOfHouseholder,
+      tableConfig: decennialTopics.tenureByAgeOfHouseholder,
+      chartConfig: null,
       children: [],
     },
     {
       id: 'decennial - Household Size',
       label: 'Household Size',
-      selected: false,
+      selected: true,
       type: 'subtopic',
-      config: decennialTopics.householdSize,
+      tableConfig: decennialTopics.householdSize,
+      chartConfig: null,
       children: [],
     },
   ];
@@ -175,7 +188,8 @@ export default class ExplorerController extends Controller {
           label: 'Sex and Age',
           selected: true,
           type: 'subtopic',
-          config: acsDemographic.sexAndAge,
+          tableConfig: acsDemographicTableConfig.sexAndAge,
+          chartConfig: null,
           children: [],
         },
         {
@@ -183,7 +197,9 @@ export default class ExplorerController extends Controller {
           label: 'Mutually Exclusive Race / Hispanic Origin',
           selected: true,
           type: 'subtopic',
-          config: acsDemographic.mutuallyExclusiveRaceHispanicOrigin,
+          tableConfig: acsDemographicTableConfig.mutuallyExclusiveRaceHispanicOrigin,
+          chartConfig: acsDemographicChartConfig.raceGroupChartConfig,
+          chartLabel: 'Percent Distribution of Race/Hispanic Origin Groups',
           children: [],
         },
         {
@@ -191,7 +207,9 @@ export default class ExplorerController extends Controller {
           label: 'Hispanic Subgroup',
           selected: true,
           type: 'subtopic',
-          config: acsDemographic.hispanicSubgroup,
+          tableConfig: acsDemographicTableConfig.hispanicSubgroup,
+          chartConfig: acsDemographicChartConfig.hispanicSubgroupChartConfig,
+          chartLabel: 'Percent Distribution of Hispanic Subgroups',
           children: [],
         },
         {
@@ -199,7 +217,9 @@ export default class ExplorerController extends Controller {
           label: 'Asian Subgroup',
           selected: true,
           type: 'subtopic',
-          config: acsDemographic.asianSubgroup,
+          tableConfig: acsDemographicTableConfig.asianSubgroup,
+          chartConfig: acsDemographicChartConfig.asianSubgroupChartConfig,
+          chartLabel: 'Percent Distribution of Asian Subgroups',
           children: [],
         }
       ],
@@ -215,7 +235,8 @@ export default class ExplorerController extends Controller {
           label: 'Ancestry',
           selected: false,
           type: 'subtopic',
-          config: acsSocial.ancestry,
+          tableConfig: acsSocial.ancestry,
+          chartConfig: null,
           children: [],
         },
         {
@@ -223,7 +244,8 @@ export default class ExplorerController extends Controller {
           label: 'Computers and Internet Use',
           selected: false,
           type: 'subtopic',
-          config: acsSocial.computersAndInternetUse,
+          tableConfig: acsSocial.computersAndInternetUse,
+          chartConfig: null,
           children: [],
         },
         {
@@ -231,7 +253,8 @@ export default class ExplorerController extends Controller {
           label: 'U.S. Citizenship Status',
           selected: false,
           type: 'subtopic',
-          config: acsSocial.uSCitizenshipStatus,
+          tableConfig: acsSocial.uSCitizenshipStatus,
+          chartConfig: null,
           children: [],
         },
         {
@@ -239,9 +262,10 @@ export default class ExplorerController extends Controller {
           label: 'Disability Status Of The Civilian Noninstitutionalized Population',
           selected: false,
           type: 'subtopic',
-          config: acsSocial.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
+          tableConfig: acsSocial.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
+          chartConfig: null,
           children: [],
-        }
+        },
       ],
     },
   ];

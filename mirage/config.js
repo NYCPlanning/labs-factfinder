@@ -45,6 +45,7 @@ export default function() {
   this.passthrough('https://layers-api-staging.planninglabs.nyc/**');
   this.passthrough('https://search-api.planninglabs.nyc/**');
   this.passthrough('https://tiles.planninglabs.nyc/**');
+  this.passthrough('https://factfinder-api.herokuapp.com/**')
 
   this.passthrough('https://planninglabs.carto.com/**');
 
