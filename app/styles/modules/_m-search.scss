@@ -28,6 +28,7 @@
 }
 
 .search-results {
+  z-index: 5;
   background-color: rgba($white,0.94);
   font-size: rem-calc(12);
   width: 100%;
