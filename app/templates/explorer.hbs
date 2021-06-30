@@ -25,7 +25,7 @@
                 decennial=(eq this.source.type 'census')
                 reliability=this.showReliability
                 comparison=this.compareTo
-                config=subtopic.config
+                config=subtopic.tableConfig
                 model=@model.profile
               }}
             </div>
@@ -50,10 +50,20 @@
                   decennial=(eq this.source.type 'census')
                   reliability=this.showReliability
                   comparison=this.compareTo
-                  config=subtopic.config
+                  config=subtopic.tableConfig
                   model=@model.profile
                 }}
               </div>
+
+              {{#if (and (eq this.mode 'current') subtopic.chartConfig)}}
+                <div class="cell large-4 xxlarge-3">
+                  {{acs-bar
+                    title=subtopic.chartLabel
+                    config=subtopic.chartConfig
+                    data=@model.profile
+                    height=204}}
+                </div>
+              {{/if}}
             </div>
 
             <hr>
