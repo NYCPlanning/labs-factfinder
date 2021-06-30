@@ -3,26 +3,22 @@
   class="grid-container fluid"
 >
   <div class="grid-x grid-margin-x">
-    <div class="cell small-5 large-5 bar-item">
+    <div class="cell small-10 text-left">
       <Explorer::SourceSelectDropdown
         @sources={{@sources}}
         @setSources={{@setSources}}
       />
-    </div>
 
-    <div class="cell small-3 bar-item">
       <Explorer::TopicSelectDropdown
         @topics={{@topics}}
         @setTopics={{@setTopics}}
       />
-    </div>
 
-    <div class="cell small-2 bar-item">
-     <Explorer::ModifyTablesMenu
+      <Explorer::ModifyTablesMenu
         @showReliability={{@showReliability}}
         @disaggregate={{@disaggregate}}
         @compareTo={{@compareTo}}
-     />
+      />
     </div>
 
     <div class="cell small-2 bar-item">

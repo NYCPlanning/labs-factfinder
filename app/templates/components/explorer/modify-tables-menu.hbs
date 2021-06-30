@@ -1,98 +1,103 @@
-<button
-  id="modify-tables-button"
-  class="menu orange-bar--selector"
-  {{on "click" this.toggleOpen}}
+<div
+  class="bar-item"
 >
-  <a>
-    {{fa-icon icon='edit'}}
-    Modify Tables
-  </a>
-</button>
+  <button
+    id="modify-tables-button"
+    class="menu orange-bar--selector"
+    role="button"
+    {{on "click" this.toggleOpen}}
+  >
+    <a>
+      {{fa-icon icon='edit'}}
+      Modify Tables
+    </a>
+  </button>
 
 
-{{#if this.open}}
-  <div class="modify-tables-menu">
-    <div class="triangle">
-    </div>
+  {{#if this.open}}
+    <div class="modify-tables-menu">
+      <div class="triangle">
+      </div>
 
-    <div class="grid-container fluid">
-      <div class="grid-x">
-        <div class="cell small-2">
-          <div class="switch tiny modify-tables-switch">
-            <Input
-              @id="show-reliability-switch"
-              @type="checkbox"
-              @checked={{@showReliability}}
-              name="show-reliability-switch"
-              class="switch-input"
-            />
-            <label class="switch-paddle" for="show-reliability-switch"></label>
+      <div class="grid-container fluid">
+        <div class="grid-x">
+          <div class="cell small-2">
+            <div class="switch tiny modify-tables-switch">
+              <Input
+                @id="show-reliability-switch"
+                @type="checkbox"
+                @checked={{@showReliability}}
+                name="show-reliability-switch"
+                class="switch-input"
+              />
+              <label class="switch-paddle" for="show-reliability-switch"></label>
+            </div>
+          </div>
+          <div class="cell auto">
+              Show Reliability Data
+          </div>
+          <div class="cell small-1 text-right">
+            <small>
+              {{labs-ui/icon-tooltip
+                tip=(t 'explorer.modify-tables.showReliabilityData')
+                icon='question-circle'
+                side="right"
+                fixedWith=true
+              }}
+            </small>
           </div>
         </div>
-        <div class="cell auto">
-            Show Reliability Data
-        </div>
-        <div class="cell small-1 text-right">
-          <small>
-            {{labs-ui/icon-tooltip
-              tip=(t 'explorer.modify-tables.showReliabilityData')
-              icon='question-circle'
-              side="right"
-              fixedWith=true
-            }}
-          </small>
-        </div>
       </div>
-    </div>
 
-    <div class="grid-container fluid">
-      <div class="grid-x">
-        <div class="cell small-2">
-          <div class="switch tiny modify-tables-switch">
-            <Input
-              @id="disaggregate-switch"
-              @type="checkbox"
-              @checked={{@disaggregate}}
-              name="disaggregate-switch"
-              class="switch-input"
-            />
-            <label class="switch-paddle" for="disaggregate-switch"></label>
+      <div class="grid-container fluid">
+        <div class="grid-x">
+          <div class="cell small-2">
+            <div class="switch tiny modify-tables-switch">
+              <Input
+                @id="disaggregate-switch"
+                @type="checkbox"
+                @checked={{@disaggregate}}
+                name="disaggregate-switch"
+                class="switch-input"
+              />
+              <label class="switch-paddle" for="disaggregate-switch"></label>
+            </div>
+          </div>
+          <div class="cell auto">
+              Disaggregate
+          </div>
+          <div class="cell small-1 text-right">
+            <small>
+              {{labs-ui/icon-tooltip
+                tip=(t 'explorer.modify-tables.disaggregate')
+                icon='question-circle'
+                side="right"
+                fixedWith=true
+              }}
+            </small>
           </div>
         </div>
-        <div class="cell auto">
-            Disaggregate
-        </div>
-        <div class="cell small-1 text-right">
-          <small>
-            {{labs-ui/icon-tooltip
-              tip=(t 'explorer.modify-tables.disaggregate')
-              icon='question-circle'
-              side="right"
-              fixedWith=true
-            }}
-          </small>
-        </div>
       </div>
-    </div>
 
-    <div class="grid-container fluid">
-      <div class="grid-x">
-        <div class="cell auto text-right">
-          <small>
-            Guidance on ACS Data&nbsp;&nbsp;
-          </small>
-        </div>
-        <div class="cell small-1 text-right">
-          <small>
-            {{labs-ui/icon-tooltip
-              tip=(t 'explorer.modify-tables.guidanceOnAcsData')
-              icon='question-circle'
-              side="right"
-              fixedWith=true
-            }}
-          </small>
+      <div class="grid-container fluid">
+        <div class="grid-x">
+          <div class="cell auto text-right">
+            <small>
+              Guidance on ACS Data&nbsp;&nbsp;
+            </small>
+          </div>
+          <div class="cell small-1 text-right">
+            <small>
+              {{labs-ui/icon-tooltip
+                tip=(t 'explorer.modify-tables.guidanceOnAcsData')
+                icon='question-circle'
+                side="right"
+                fixedWith=true
+              }}
+            </small>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-{{/if}}
+  {{/if}}
+</div>
