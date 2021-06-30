@@ -12,7 +12,7 @@ import acsSocial from '../table-config/social';
 import acsDemographicChartConfig from '../chart-config/demographic';
 
 export default class ExplorerController extends Controller {
-  showChart = true;
+  showCharts = true;
 
   @tracked sources = [
     {
