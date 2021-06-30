@@ -145,7 +145,7 @@ module.exports = function (environment) {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
     ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
     ENV['ember-cli-mirage'] = {
-      enabled: true,
+      enabled: false,
     };
   }
 
