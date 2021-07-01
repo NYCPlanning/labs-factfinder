@@ -31,7 +31,7 @@ export default [
         tableConfig: acsDemographicTableConfig.mutuallyExclusiveRaceHispanicOrigin,
         charts: [
           {
-            chartConfig: acsDemographicChartConfig.raceGroupChartConfig,
+            chartConfig: acsDemographicChartConfig.raceGroup,
             chartLabel: 'Percent Distribution of Race/Hispanic Origin Groups',
           },
         ],
@@ -45,7 +45,7 @@ export default [
         tableConfig: acsDemographicTableConfig.hispanicSubgroup,
         charts: [
           {
-            chartConfig: acsDemographicChartConfig.hispanicSubgroupChartConfig,
+            chartConfig: acsDemographicChartConfig.hispanicSubgroup,
             chartLabel: 'Percent Distribution of Hispanic Subgroups',
           },
         ],
@@ -59,7 +59,7 @@ export default [
         tableConfig: acsDemographicTableConfig.asianSubgroup,
         charts: [
           {
-            chartConfig: acsDemographicChartConfig.asianSubgroupChartConfig,
+            chartConfig: acsDemographicChartConfig.asianSubgroup,
             chartLabel: 'Percent Distribution of Asian Subgroups',
           },
         ],
@@ -204,7 +204,7 @@ export default [
         tableConfig: acsSocialTableConfig.householdType,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.householdTypeChartConfig,
+            chartConfig: acsSocialChartConfig.householdType,
             chartLabel: 'Percent Distribution of Household Types',
           },
         ],
@@ -245,7 +245,7 @@ export default [
         tableConfig: acsSocialTableConfig.schoolEnrollment,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.schoolEnrollmentChartConfig,
+            chartConfig: acsSocialChartConfig.schoolEnrollment,
             chartLabel: 'Percent Distribution of Population 3 and Over by School Enrollment',
           },
         ],
@@ -259,7 +259,7 @@ export default [
         tableConfig: acsSocialTableConfig.educationalAttainmentHighestGradeCompleted,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.educationalAttainmentChartConfig,
+            chartConfig: acsSocialChartConfig.educationalAttainment,
             chartLabel: 'Percent Distribution of Population 25 and Over by Educational Attainment',
           },
         ],
@@ -291,7 +291,7 @@ export default [
         tableConfig: acsSocialTableConfig.residence1YearAgo,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.residence1YearAgoChartConfig,
+            chartConfig: acsSocialChartConfig.residence1YearAgo,
             chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago"',
           },
         ],
@@ -305,11 +305,11 @@ export default [
         tableConfig: acsSocialTableConfig.placeOfBirth,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.placeOfBirthChartConfig,
+            chartConfig: acsSocialChartConfig.placeOfBirth,
             chartLabel: 'Percent Distribution of Total Population by Place of Birth',
           },
           {
-            chartConfig: acsSocialChartConfig.foreignBornChartConfig,
+            chartConfig: acsSocialChartConfig.foreignBorn,
             chartLabel: 'Percent Distribution of Foreign-Born by World Region of Birth',
           },
         ],
