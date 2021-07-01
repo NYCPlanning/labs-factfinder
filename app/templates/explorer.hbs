@@ -84,15 +84,18 @@
 
               {{#if (and
                 (eq this.mode 'current')
-                subtopic.chartConfig
+                subtopic.charts
                 this.showCharts
               )}}
                 <div class="cell large-4 xxlarge-3">
-                  {{acs-bar
-                    title=subtopic.chartLabel
-                    config=subtopic.chartConfig
-                    data=@model.profile
-                    height=204}}
+                  {{#each subtopic.charts as |chart|}}
+                    {{acs-bar
+                      title=chart.chartLabel
+                      config=chart.chartConfig
+                      data=@model.profile
+                      height=204
+                    }}
+                  {{/each}}
                 </div>
               {{/if}}
             </div>
