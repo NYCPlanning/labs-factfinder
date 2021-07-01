@@ -2,10 +2,12 @@
 import acsDemographicTableConfig from '../table-config/demographic';
 import acsEconomicTableConfig from '../table-config/economic';
 import acsSocialTableConfig from '../table-config/social';
+import acsHousingTableConfig from '../table-config/housing';
 
 import acsDemographicChartConfig from '../chart-config/demographic';
 import acsEconomicChartConfig from '../chart-config/economic';
 import acsSocialChartConfig from '../chart-config/social';
+import acsHousingChartConfig from '../chart-config/housing';
 
 export default [
   {
@@ -362,4 +364,141 @@ export default [
       },
     ],
   },
+  {
+    id: 'acs-housing',
+    label: 'Housing',
+    selected: false,
+    type: 'topic',
+    children: [
+      {
+        id: 'acs-social-housingOccupancy',
+        label: 'Housing Occupancy',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.housingOccupancy,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-unitsInStructure',
+        label: 'Units in Structure',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.unitsInStructure,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-yearStructureBuilt',
+        label: 'Year Structure Built',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.yearStructureBuilt,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-rooms',
+        label: 'Rooms',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.rooms,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-housingTenure',
+        label: 'Housing Tenure',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.housingTenure,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.housingTenure,
+            chartLabel: 'Percent Distribution of Housing Tenure',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-yearHouseholderMovedIntoUnit',
+        label: 'Year Householder Moved Into Unit',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.yearHouseholderMovedIntoUnit,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-vehiclesAvailable',
+        label: 'Vehicles Available',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.vehiclesAvailable,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.vehiclesAvailable,
+            chartLabel: 'Percent Distribution of Households by Vehicles Available',
+          },
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-occupantsPerRoom',
+        label: 'Occupants per Room',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.occupantsPerRoom,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-value',
+        label: 'Value',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.value,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.value,
+            chartLabel: 'Percent Distribution of Owner-occupied Households by Housing Value',
+          },
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-mortgageStatus',
+        label: 'Mortgage Status',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.mortgageStatus,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi',
+        label: 'Selected Monthly Owner Costs as a Percentage of Household Income',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-grossRent',
+        label: 'Gross Rent',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.grossRent,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRent,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent',
+          },
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-grossRentAsAPercentageOfHouseholdIncomeGrapi',
+        label: 'Gross Rent as a Percentage of Household Income (GRAPI)',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.grossRentAsAPercentageOfHouseholdIncomeGrapi,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRentGrapi,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income',
+          },
+        ],
+        children: [],
+      },
+    ],
+  }
 ];

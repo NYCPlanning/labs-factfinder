@@ -1,13 +1,13 @@
-import grossRentGrapiChartConfig from './gross-rent-grapi';
-import grossRentChartConfig from './gross-rent';
-import housingTenureChartConfig from './housing-tenure';
-import valueChartConfig from './value';
-import vehiclesAvailableChartConfig from './vehicles-available';
+import grossRentGrapi from './gross-rent-grapi';
+import grossRent from './gross-rent';
+import housingTenure from './housing-tenure';
+import value from './value';
+import vehiclesAvailable from './vehicles-available';
 
 export default {
-  grossRentGrapiChartConfig,
-  grossRentChartConfig,
-  housingTenureChartConfig,
-  valueChartConfig,
-  vehiclesAvailableChartConfig,
+  grossRentGrapi,
+  grossRent,
+  housingTenure,
+  value,
+  vehiclesAvailable,
 };
