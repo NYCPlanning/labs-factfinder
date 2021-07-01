@@ -1,14 +1,14 @@
-import classOfWorkerChartConfig from './class-of-worker';
-import incomeAndBenefitsChartConfig from './income-and-benefits';
-import commuteToWorkChartConfig from './commute-to-work';
-import occupationChartConfig from './occupation';
-import ratioOfIncomeToPovertyLevelChartConfig from './ratio-of-income-to-poverty-level';
+import classOfWorker from './class-of-worker';
+import incomeAndBenefits from './income-and-benefits';
+import commuteToWork from './commute-to-work';
+import occupation from './occupation';
+import ratioOfIncomeToPovertyLevel from './ratio-of-income-to-poverty-level';
 
 
 export default {
-  classOfWorkerChartConfig,
-  incomeAndBenefitsChartConfig,
-  commuteToWorkChartConfig,
-  occupationChartConfig,
-  ratioOfIncomeToPovertyLevelChartConfig,
+  classOfWorker,
+  incomeAndBenefits,
+  commuteToWork,
+  occupation,
+  ratioOfIncomeToPovertyLevel,
 };

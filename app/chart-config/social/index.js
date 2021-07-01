@@ -1,15 +1,15 @@
-import householdTypeChartConfig from './household-type';
-import schoolEnrollmentChartConfig from './school-enrollment';
-import educationalAttainmentChartConfig from './educational-attainment';
-import residence1YearAgoChartConfig from './residence-1-year-ago';
-import placeOfBirthChartConfig from './place-of-birth';
-import foreignBornChartConfig from './foreign-born';
+import householdType from './household-type';
+import schoolEnrollment from './school-enrollment';
+import educationalAttainment from './educational-attainment';
+import residence1YearAgo from './residence-1-year-ago';
+import placeOfBirth from './place-of-birth';
+import foreignBorn from './foreign-born';
 
 export default {
-  householdTypeChartConfig,
-  schoolEnrollmentChartConfig,
-  educationalAttainmentChartConfig,
-  residence1YearAgoChartConfig,
-  placeOfBirthChartConfig,
-  foreignBornChartConfig,
+  householdType,
+  schoolEnrollment,
+  educationalAttainment,
+  residence1YearAgo,
+  placeOfBirth,
+  foreignBorn,
 };

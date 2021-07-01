@@ -1,13 +1,17 @@
 // ACS Profile Topics
 import acsDemographicTableConfig from '../table-config/demographic';
-import acsSocial from '../table-config/social';
+import acsEconomicTableConfig from '../table-config/economic';
+import acsSocialTableConfig from '../table-config/social';
+import acsHousingTableConfig from '../table-config/housing';
 
 import acsDemographicChartConfig from '../chart-config/demographic';
+import acsEconomicChartConfig from '../chart-config/economic';
 import acsSocialChartConfig from '../chart-config/social';
+import acsHousingChartConfig from '../chart-config/housing';
 
 export default [
   {
-    id: '123',
+    id: 'acs-demographic-sexAndAge',
     label: 'Demographic',
     selected: true,
     type: 'topic',
@@ -22,47 +26,170 @@ export default [
         children: [],
       },
       {
-        id: '125',
+        id: 'acs-demographic-mutuallyExclusiveRaceHispanicOrigin',
         label: 'Mutually Exclusive Race / Hispanic Origin',
         selected: true,
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.mutuallyExclusiveRaceHispanicOrigin,
         charts: [
           {
-            chartConfig: acsDemographicChartConfig.raceGroupChartConfig,
+            chartConfig: acsDemographicChartConfig.raceGroup,
             chartLabel: 'Percent Distribution of Race/Hispanic Origin Groups',
           },
         ],
         children: [],
       },
       {
-        id: '225',
+        id: 'acs-demographic-hispanicSubgroup',
         label: 'Hispanic Subgroup',
         selected: true,
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.hispanicSubgroup,
         charts: [
           {
-            chartConfig: acsDemographicChartConfig.hispanicSubgroupChartConfig,
+            chartConfig: acsDemographicChartConfig.hispanicSubgroup,
             chartLabel: 'Percent Distribution of Hispanic Subgroups',
           },
         ],
         children: [],
       },
       {
-        id: '224',
+        id: 'acs-demographic-asianSubgroup',
         label: 'Asian Subgroup',
         selected: true,
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.asianSubgroup,
         charts: [
           {
-            chartConfig: acsDemographicChartConfig.asianSubgroupChartConfig,
+            chartConfig: acsDemographicChartConfig.asianSubgroup,
             chartLabel: 'Percent Distribution of Asian Subgroups',
           },
         ],
         children: [],
       }
+    ],
+  },
+  {
+    id: 'acs-economic',
+    label: 'Economic',
+    selected: false,
+    type: 'topic',
+    children: [
+      {
+        id: 'acs-economic-employmentStatus',
+        label: 'Employment Status',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.employmentStatus,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-commuteToWork',
+        label: 'Commute to Work',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.commuteToWork,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.commuteToWork,
+            chartLabel: 'Percent Distribution of Workers by Means of Transportation to Work',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-occupation',
+        label: 'Occupation',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.occupation,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.occupation,
+            chartLabel: 'Percent Distribution of Workers by Occupation',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-industry',
+        label: 'Industry',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.industry,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-classOfWorker',
+        label: 'Class of Worker',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.classOfWorker,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.classOfWorker,
+            chartLabel: 'Percent Distribution of Workers by Class of Worker',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-incomeAndBenefits',
+        label: 'Income and Benefits',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.incomeAndBenefits,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.incomeAndBenefits,
+            chartLabel: 'Percent Distribution of Household Income',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-earnings',
+        label: 'Earnings',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.earnings,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-healthInsuranceCoverage',
+        label: 'Health Insurance Coverage',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.healthInsuranceCoverage,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-incomeInPast12MonthsIsBelowThePovertyLevel',
+        label: 'Income in the Past 12 Months Below Poverty Level',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.incomeInPast12MonthsIsBelowThePovertyLevel,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-ratioOfIncomeToPovertyLevel',
+        label: 'Ratio of Income to Poverty Level',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.ratioOfIncomeToPovertyLevel,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.ratioOfIncomeToPovertyLevel,
+            chartLabel: 'Percent Distribution of Population by Ratio of Income to Poverty Level',
+          }
+        ],
+        children: [],
+      },
     ],
   },
   {
@@ -72,14 +199,14 @@ export default [
     type: 'topic',
     children: [
       {
-        id: 'acs-social-household-type',
+        id: 'acs-social-householdType',
         label: 'Household Type',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.householdType,
+        tableConfig: acsSocialTableConfig.householdType,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.householdTypeChartConfig,
+            chartConfig: acsSocialChartConfig.householdType,
             chartLabel: 'Percent Distribution of Household Types',
           },
         ],
@@ -90,7 +217,7 @@ export default [
         label: 'Relationship To Head Of Household (Householder)',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.relationshipToHeadOfHouseholdHouseholder,
+        tableConfig: acsSocialTableConfig.relationshipToHeadOfHouseholdHouseholder,
         charts: null,
         children: [],
       },
@@ -99,7 +226,7 @@ export default [
         label: 'Marital Status',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.maritalStatus,
+        tableConfig: acsSocialTableConfig.maritalStatus,
         charts: null,
         children: [],
       },
@@ -108,7 +235,7 @@ export default [
         label: 'Grandparents',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.grandparents,
+        tableConfig: acsSocialTableConfig.grandparents,
         charts: null,
         children: [],
       },
@@ -117,10 +244,10 @@ export default [
         label: 'School Enrollment',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.schoolEnrollment,
+        tableConfig: acsSocialTableConfig.schoolEnrollment,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.schoolEnrollmentChartConfig,
+            chartConfig: acsSocialChartConfig.schoolEnrollment,
             chartLabel: 'Percent Distribution of Population 3 and Over by School Enrollment',
           },
         ],
@@ -131,10 +258,10 @@ export default [
         label: 'Educational Attainment (Highest Grade Completed)',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.educationalAttainmentHighestGradeCompleted,
+        tableConfig: acsSocialTableConfig.educationalAttainmentHighestGradeCompleted,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.educationalAttainmentChartConfig,
+            chartConfig: acsSocialChartConfig.educationalAttainment,
             chartLabel: 'Percent Distribution of Population 25 and Over by Educational Attainment',
           },
         ],
@@ -145,7 +272,7 @@ export default [
         label: 'Veteran Status',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.veteranStatus,
+        tableConfig: acsSocialTableConfig.veteranStatus,
         charts: null,
         children: [],
       },
@@ -154,7 +281,7 @@ export default [
         label: 'Disability Status Of The Civilian Noninstitutionalized Population',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
+        tableConfig: acsSocialTableConfig.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
         charts: null,
         children: [],
       },
@@ -163,10 +290,10 @@ export default [
         label: 'Residence 1 Year Ago',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.residence1YearAgo,
+        tableConfig: acsSocialTableConfig.residence1YearAgo,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.residence1YearAgoChartConfig,
+            chartConfig: acsSocialChartConfig.residence1YearAgo,
             chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago"',
           },
         ],
@@ -177,14 +304,14 @@ export default [
         label: 'Place Of Birth',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.placeOfBirth,
+        tableConfig: acsSocialTableConfig.placeOfBirth,
         charts: [
           {
-            chartConfig: acsSocialChartConfig.placeOfBirthChartConfig,
+            chartConfig: acsSocialChartConfig.placeOfBirth,
             chartLabel: 'Percent Distribution of Total Population by Place of Birth',
           },
           {
-            chartConfig: acsSocialChartConfig.foreignBornChartConfig,
+            chartConfig: acsSocialChartConfig.foreignBorn,
             chartLabel: 'Percent Distribution of Foreign-Born by World Region of Birth',
           },
         ],
@@ -195,7 +322,7 @@ export default [
         label: 'U.S. Citizenship Status',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.uSCitizenshipStatus,
+        tableConfig: acsSocialTableConfig.uSCitizenshipStatus,
         charts: null,
         children: [],
       },
@@ -204,7 +331,7 @@ export default [
         label: 'Year Of Entry',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.yearOfEntry,
+        tableConfig: acsSocialTableConfig.yearOfEntry,
         charts: null,
         children: [],
       },
@@ -213,7 +340,7 @@ export default [
         label: 'Language Spoken At Home',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.languageSpokenAtHome,
+        tableConfig: acsSocialTableConfig.languageSpokenAtHome,
         charts: null,
         children: [],
       },
@@ -222,7 +349,7 @@ export default [
         label: 'Ancestry',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.ancestry,
+        tableConfig: acsSocialTableConfig.ancestry,
         charts: null,
         children: [],
       },
@@ -231,10 +358,147 @@ export default [
         label: 'Computers and Internet Use',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.computersAndInternetUse,
+        tableConfig: acsSocialTableConfig.computersAndInternetUse,
         charts: null,
         children: [],
       },
     ],
   },
+  {
+    id: 'acs-housing',
+    label: 'Housing',
+    selected: false,
+    type: 'topic',
+    children: [
+      {
+        id: 'acs-social-housingOccupancy',
+        label: 'Housing Occupancy',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.housingOccupancy,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-unitsInStructure',
+        label: 'Units in Structure',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.unitsInStructure,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-yearStructureBuilt',
+        label: 'Year Structure Built',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.yearStructureBuilt,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-rooms',
+        label: 'Rooms',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.rooms,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-housingTenure',
+        label: 'Housing Tenure',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.housingTenure,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.housingTenure,
+            chartLabel: 'Percent Distribution of Housing Tenure',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-yearHouseholderMovedIntoUnit',
+        label: 'Year Householder Moved Into Unit',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.yearHouseholderMovedIntoUnit,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-vehiclesAvailable',
+        label: 'Vehicles Available',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.vehiclesAvailable,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.vehiclesAvailable,
+            chartLabel: 'Percent Distribution of Households by Vehicles Available',
+          },
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-occupantsPerRoom',
+        label: 'Occupants per Room',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.occupantsPerRoom,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-value',
+        label: 'Value',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.value,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.value,
+            chartLabel: 'Percent Distribution of Owner-occupied Households by Housing Value',
+          },
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-mortgageStatus',
+        label: 'Mortgage Status',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.mortgageStatus,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi',
+        label: 'Selected Monthly Owner Costs as a Percentage of Household Income',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-social-grossRent',
+        label: 'Gross Rent',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.grossRent,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRent,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent',
+          },
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-social-grossRentAsAPercentageOfHouseholdIncomeGrapi',
+        label: 'Gross Rent as a Percentage of Household Income (GRAPI)',
+        type: 'subtopic',
+        tableConfig: acsHousingTableConfig.grossRentAsAPercentageOfHouseholdIncomeGrapi,
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRentGrapi,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income',
+          },
+        ],
+        children: [],
+      },
+    ],
+  }
 ];
