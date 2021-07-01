@@ -1,8 +1,10 @@
 // ACS Profile Topics
 import acsDemographicTableConfig from '../table-config/demographic';
+import acsEconomicTableConfig from '../table-config/economic';
 import acsSocialTableConfig from '../table-config/social';
 
 import acsDemographicChartConfig from '../chart-config/demographic';
+import acsEconomicChartConfig from '../chart-config/economic';
 import acsSocialChartConfig from '../chart-config/social';
 
 export default [
@@ -66,13 +68,136 @@ export default [
     ],
   },
   {
+    id: 'acs-economic',
+    label: 'Economic',
+    selected: false,
+    type: 'topic',
+    children: [
+      {
+        id: 'acs-economic-employmentStatus',
+        label: 'Employment Status',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.employmentStatus,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-commuteToWork',
+        label: 'Commute to Work',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.commuteToWork,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.commuteToWork,
+            chartLabel: 'Percent Distribution of Workers by Means of Transportation to Work',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-occupation',
+        label: 'Occupation',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.occupation,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.occupation,
+            chartLabel: 'Percent Distribution of Workers by Occupation',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-industry',
+        label: 'Industry',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.industry,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-classOfWorker',
+        label: 'Class of Worker',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.classOfWorker,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.classOfWorker,
+            chartLabel: 'Percent Distribution of Workers by Class of Worker',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-incomeAndBenefits',
+        label: 'Income and Benefits',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.incomeAndBenefits,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.incomeAndBenefits,
+            chartLabel: 'Percent Distribution of Household Income',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'acs-economic-earnings',
+        label: 'Earnings',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.earnings,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-healthInsuranceCoverage',
+        label: 'Health Insurance Coverage',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.healthInsuranceCoverage,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-incomeInPast12MonthsIsBelowThePovertyLevel',
+        label: 'Income in the Past 12 Months Below Poverty Level',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.incomeInPast12MonthsIsBelowThePovertyLevel,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'acs-economic-ratioOfIncomeToPovertyLevel',
+        label: 'Ratio of Income to Poverty Level',
+        selected: false,
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.ratioOfIncomeToPovertyLevel,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.ratioOfIncomeToPovertyLevel,
+            chartLabel: 'Percent Distribution of Population by Ratio of Income to Poverty Level',
+          }
+        ],
+        children: [],
+      },
+    ],
+  },
+  {
     id: 'acs-social',
     label: 'Social',
     selected: false,
     type: 'topic',
     children: [
       {
-        id: 'acs-social-household-type',
+        id: 'acs-social-householdType',
         label: 'Household Type',
         selected: false,
         type: 'subtopic',
