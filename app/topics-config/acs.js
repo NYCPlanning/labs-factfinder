@@ -7,7 +7,7 @@ import acsSocialChartConfig from '../chart-config/social';
 
 export default [
   {
-    id: '123',
+    id: 'acs-demographic-sexAndAge',
     label: 'Demographic',
     selected: true,
     type: 'topic',
@@ -22,7 +22,7 @@ export default [
         children: [],
       },
       {
-        id: '125',
+        id: 'acs-demographic-mutuallyExclusiveRaceHispanicOrigin',
         label: 'Mutually Exclusive Race / Hispanic Origin',
         selected: true,
         type: 'subtopic',
@@ -36,7 +36,7 @@ export default [
         children: [],
       },
       {
-        id: '225',
+        id: 'acs-demographic-hispanicSubgroup',
         label: 'Hispanic Subgroup',
         selected: true,
         type: 'subtopic',
@@ -50,7 +50,7 @@ export default [
         children: [],
       },
       {
-        id: '224',
+        id: 'acs-demographic-asianSubgroup',
         label: 'Asian Subgroup',
         selected: true,
         type: 'subtopic',
