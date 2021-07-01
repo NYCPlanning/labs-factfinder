@@ -7,7 +7,7 @@ import censusTopicsDefault from '../topics-config/census';
 import acsTopicsDefault from '../topics-config/acs';
 
 export default class ExplorerController extends Controller {
-  showChart = true;
+  showCharts = true;
 
   @tracked sources = sourcesDefault;
 
