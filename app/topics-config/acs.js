@@ -1,6 +1,6 @@
 // ACS Profile Topics
 import acsDemographicTableConfig from '../table-config/demographic';
-import acsSocial from '../table-config/social';
+import acsSocialTableConfig from '../table-config/social';
 
 import acsDemographicChartConfig from '../chart-config/demographic';
 import acsSocialChartConfig from '../chart-config/social';
@@ -76,7 +76,7 @@ export default [
         label: 'Household Type',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.householdType,
+        tableConfig: acsSocialTableConfig.householdType,
         charts: [
           {
             chartConfig: acsSocialChartConfig.householdTypeChartConfig,
@@ -90,7 +90,7 @@ export default [
         label: 'Relationship To Head Of Household (Householder)',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.relationshipToHeadOfHouseholdHouseholder,
+        tableConfig: acsSocialTableConfig.relationshipToHeadOfHouseholdHouseholder,
         charts: null,
         children: [],
       },
@@ -99,7 +99,7 @@ export default [
         label: 'Marital Status',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.maritalStatus,
+        tableConfig: acsSocialTableConfig.maritalStatus,
         charts: null,
         children: [],
       },
@@ -108,7 +108,7 @@ export default [
         label: 'Grandparents',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.grandparents,
+        tableConfig: acsSocialTableConfig.grandparents,
         charts: null,
         children: [],
       },
@@ -117,7 +117,7 @@ export default [
         label: 'School Enrollment',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.schoolEnrollment,
+        tableConfig: acsSocialTableConfig.schoolEnrollment,
         charts: [
           {
             chartConfig: acsSocialChartConfig.schoolEnrollmentChartConfig,
@@ -131,7 +131,7 @@ export default [
         label: 'Educational Attainment (Highest Grade Completed)',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.educationalAttainmentHighestGradeCompleted,
+        tableConfig: acsSocialTableConfig.educationalAttainmentHighestGradeCompleted,
         charts: [
           {
             chartConfig: acsSocialChartConfig.educationalAttainmentChartConfig,
@@ -145,7 +145,7 @@ export default [
         label: 'Veteran Status',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.veteranStatus,
+        tableConfig: acsSocialTableConfig.veteranStatus,
         charts: null,
         children: [],
       },
@@ -154,7 +154,7 @@ export default [
         label: 'Disability Status Of The Civilian Noninstitutionalized Population',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
+        tableConfig: acsSocialTableConfig.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
         charts: null,
         children: [],
       },
@@ -163,7 +163,7 @@ export default [
         label: 'Residence 1 Year Ago',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.residence1YearAgo,
+        tableConfig: acsSocialTableConfig.residence1YearAgo,
         charts: [
           {
             chartConfig: acsSocialChartConfig.residence1YearAgoChartConfig,
@@ -177,7 +177,7 @@ export default [
         label: 'Place Of Birth',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.placeOfBirth,
+        tableConfig: acsSocialTableConfig.placeOfBirth,
         charts: [
           {
             chartConfig: acsSocialChartConfig.placeOfBirthChartConfig,
@@ -195,7 +195,7 @@ export default [
         label: 'U.S. Citizenship Status',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.uSCitizenshipStatus,
+        tableConfig: acsSocialTableConfig.uSCitizenshipStatus,
         charts: null,
         children: [],
       },
@@ -204,7 +204,7 @@ export default [
         label: 'Year Of Entry',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.yearOfEntry,
+        tableConfig: acsSocialTableConfig.yearOfEntry,
         charts: null,
         children: [],
       },
@@ -213,7 +213,7 @@ export default [
         label: 'Language Spoken At Home',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.languageSpokenAtHome,
+        tableConfig: acsSocialTableConfig.languageSpokenAtHome,
         charts: null,
         children: [],
       },
@@ -222,7 +222,7 @@ export default [
         label: 'Ancestry',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.ancestry,
+        tableConfig: acsSocialTableConfig.ancestry,
         charts: null,
         children: [],
       },
@@ -231,7 +231,7 @@ export default [
         label: 'Computers and Internet Use',
         selected: false,
         type: 'subtopic',
-        tableConfig: acsSocial.computersAndInternetUse,
+        tableConfig: acsSocialTableConfig.computersAndInternetUse,
         charts: null,
         children: [],
       },
