@@ -12,6 +12,33 @@
 
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
+    <h1>
+      Your Data:
+    </h1>
+
+    <div class="grid-container fluid">
+      <div class="grid-x align-left">
+        <div class="cell shrink">
+          <div class="switch tiny show-charts-switch">
+            <Input
+              @id="show-charts-switch"
+              @type="checkbox"
+              @checked={{this.showCharts}}
+              name="show-charts-switch"
+              class="switch-input"
+            />
+            <label class="switch-paddle" for="show-charts-switch">
+            </label>
+          </div>
+        </div>
+        <div class="cell shrink text-left">
+          Show Charts
+        </div>
+      </div>
+    </div>
+
+    <br>
+
     {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
         {{#if subtopic.selected}}
@@ -55,13 +82,20 @@
                 }}
               </div>
 
-              {{#if (and (eq this.mode 'current') subtopic.chartConfig)}}
+              {{#if (and
+                (eq this.mode 'current')
+                subtopic.charts
+                this.showCharts
+              )}}
                 <div class="cell large-4 xxlarge-3">
-                  {{acs-bar
-                    title=subtopic.chartLabel
-                    config=subtopic.chartConfig
-                    data=@model.profile
-                    height=204}}
+                  {{#each subtopic.charts as |chart|}}
+                    {{acs-bar
+                      title=chart.chartLabel
+                      config=chart.chartConfig
+                      data=@model.profile
+                      height=204
+                    }}
+                  {{/each}}
                 </div>
               {{/if}}
             </div>

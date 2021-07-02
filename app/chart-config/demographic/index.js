@@ -1,9 +1,9 @@
-import raceGroupChartConfig from './race-group';
-import hispanicSubgroupChartConfig from './hispanic-subgroup';
-import asianSubgroupChartConfig from './asian-subgroup';
+import raceGroup from './race-group';
+import hispanicSubgroup from './hispanic-subgroup';
+import asianSubgroup from './asian-subgroup';
 
 export default {
-  raceGroupChartConfig,
-  hispanicSubgroupChartConfig,
-  asianSubgroupChartConfig,
+  raceGroup,
+  hispanicSubgroup,
+  asianSubgroup,
 };
