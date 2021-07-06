@@ -28,23 +28,22 @@
   </div>
   <div class="cell auto">
     <OrangeBarDataExplorerDownloadCsv />
-    </div>
+  </div>
 
-    <div class="cell small-2 bar-item">
-      <Explorer::ModifyTablesMenu
-        @showReliability={{@showReliability}}
-        @disaggregate={{@disaggregate}}
-        @compareTo={{@compareTo}}
-      />
-    </div>
+  <div class="cell small-2 bar-item">
+    <Explorer::ModifyTablesMenu
+      @showReliability={{@showReliability}}
+      @disaggregate={{@disaggregate}}
+      @compareTo={{@compareTo}}
+    />
+  </div>
 
-    <div class="bar-item">
-      <Explorer::DownloadDataDropdown
-        @topics={{@topics}}
-        @sources={{@sources}}
-      />
-    </div>
-
-
+  <div class="bar-item">
+    <Explorer::DownloadDataDropdown
+      @topics={{@topics}}
+      @sources={{@sources}}
+      @showReliability={{@showReliability}}
+      @toggleReliability={{@toggleReliability}}
+    />
   </div>
 </div>
