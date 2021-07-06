@@ -49,6 +49,9 @@ export default class DownloadDataDropdown extends Component{
     if(s.indexOf(',') !== -1) {
       return '"'.concat(s).concat('"');
     } 
+    if(s===" ") {
+      return "";
+    }
     return s;
   }
   @action exportTableToCSV() {
