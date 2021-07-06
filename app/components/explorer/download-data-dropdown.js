@@ -54,7 +54,12 @@ export default class DownloadDataDropdown extends Component{
     }
     return s;
   }
-  @action exportTableToCSV() {
+  @action async exportTableToCSV() {
+    // This toggles the reliability data on if it is not before downloading
+    const initialReliabilitySetting = this.args.showReliability;
+    if(!initialReliabilitySetting) { await this.args.toggleReliability(); }
+
+
     var csv = [];
     var rowspanCounter = 0;
     var rowspanText;
@@ -100,6 +105,9 @@ export default class DownloadDataDropdown extends Component{
 
     // Download CSV file
     this.actions.downloadCSV(csv.join("\n"));
+
+    // This toggles the reliability data back off if it was off before downloading
+    if(!initialReliabilitySetting) { this.args.toggleReliability(); }
   }
 
   get numSelected() {

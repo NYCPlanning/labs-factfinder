@@ -60,4 +60,14 @@ export default class ExplorerController extends Controller {
   @action setTopics(newTopics) {
     this.topics = newTopics;
   }
+
+  @action toggleReliability() {
+    this.showReliability = !this.showReliability;
+    /*global Promise*/
+    return new Promise(resolve => {
+      setTimeout(function() {
+        resolve("slow")
+      }, 1)
+    })
+  }
 }
