@@ -24,6 +24,10 @@ export default class ExplorerController extends Controller {
   // To be converted to acsTopics
   @tracked acsTopics = acsTopicsDefault;
 
+  @tracked geoOptions = null;
+
+  @tracked selectedGeo = null;
+
   get source() {
     return this.sources.find(source => source.selected);
   }

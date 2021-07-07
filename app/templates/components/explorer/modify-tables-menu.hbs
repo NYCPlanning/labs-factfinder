@@ -79,6 +79,24 @@
         </div>
       </div>
 
+      {{#if (eq this.args.mode 'current')}}
+        <div class="grid-container fluid">
+          <div class="profile-comparison-controls grid-x align-middle">
+            <div class="cell small-12">
+              <strong>
+                Compare&nbsp;to:&nbsp;&nbsp;
+              </strong>
+            </div>
+            <div class="cell small-12">
+              <ComparisonAreaSelector
+                @geoOptions={{@geoOptions}}
+                @selectedGeo={{@selectedGeo}}
+              />
+            </div>
+          </div>
+        </div>
+      {{/if}}
+
       <div class="grid-container fluid">
         <div class="grid-x">
           <div class="cell auto text-right">
