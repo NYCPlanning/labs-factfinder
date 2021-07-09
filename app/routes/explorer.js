@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service';
 import Environment from '../config/environment';
 import nestProfile from '../utils/nest-profile';
 import GEO_OPTIONS_QUERY from '../queries/geography-options';
-import { nest } from 'd3-collection';
 import carto from '../utils/carto';
 
 const { SupportServiceHost } = Environment;
@@ -38,19 +37,9 @@ export default class ExplorerRoute extends Route {
     };
   }
 
-  async setupController(controller, model, transition) {
+  async setupController(controller, model) {
     super.setupController(controller, model);
 
-    // console.log("transition: ", transition)
-    // console.log("transition.to.routeInfo: ", transition.to.routeInfo)
-    // const { to: {
-    //   routeInfo: {
-    //     id
-    //   }
-    // }} = transition;
-
     controller.geoOptions = await carto.SQL(GEO_OPTIONS_QUERY);
-
-    controller.selectedGeo = controller.geoOptions.findBy('geoid', "0");
   }
 }

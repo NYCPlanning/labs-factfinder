@@ -29,6 +29,6 @@ export default class ComparisonAreaSelectorComponent extends Component {
       eventLabel: label,
     });
 
-    this.selection.comparator = geoid;
+    this.args.onSelect(geoid)
   }
-};
+}

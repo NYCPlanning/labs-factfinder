@@ -7,6 +7,8 @@ import censusTopicsDefault from '../topics-config/census';
 import acsTopicsDefault from '../topics-config/acs';
 
 export default class ExplorerController extends Controller {
+  queryParams = ['compareTo'];
+
   showCharts = true;
 
   @tracked sources = sourcesDefault;
@@ -17,7 +19,8 @@ export default class ExplorerController extends Controller {
 
   @tracked disaggregate = false;
 
-  @tracked compareTo = null;
+  // Default "0" maps to NYC
+  @tracked compareTo = "0";
 
   @tracked decennialTopics = censusTopicsDefault;
 
@@ -26,7 +29,13 @@ export default class ExplorerController extends Controller {
 
   @tracked geoOptions = null;
 
-  @tracked selectedGeo = null;
+  get selectedGeo() {
+    if (this.geoOptions) {
+      return this.geoOptions.findBy('geoid', this.compareTo);
+    }
+
+    return null;
+  }
 
   get source() {
     return this.sources.find(source => source.selected);
@@ -63,5 +72,9 @@ export default class ExplorerController extends Controller {
 
   @action setTopics(newTopics) {
     this.topics = newTopics;
+  }
+
+  @action updateCompareTo(geoid) {
+    this.transitionToRoute('explorer', { queryParams: { compareTo: geoid }});
   }
 }

@@ -79,7 +79,11 @@
         </div>
       </div>
 
-      {{#if (eq this.args.mode 'current')}}
+      {{#if (and
+        (eq @mode 'current')
+        @geoOptions
+        @selectedGeo
+      )}}
         <div class="grid-container fluid">
           <div class="profile-comparison-controls grid-x align-middle">
             <div class="cell small-12">
@@ -91,6 +95,7 @@
               <ComparisonAreaSelector
                 @geoOptions={{@geoOptions}}
                 @selectedGeo={{@selectedGeo}}
+                @onSelect={{@updateCompareTo}}
               />
             </div>
           </div>
