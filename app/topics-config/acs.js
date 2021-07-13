@@ -13,13 +13,13 @@ export default [
   {
     id: 'acs-demographic-sexAndAge',
     label: 'Demographic',
-    selected: true,
+    selected: 'selected',
     type: 'topic',
     children: [
       {
         id: '124',
         label: 'Sex and Age',
-        selected: true,
+        selected: 'selected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.sexAndAge,
         charts: null,
@@ -28,7 +28,7 @@ export default [
       {
         id: 'acs-demographic-mutuallyExclusiveRaceHispanicOrigin',
         label: 'Mutually Exclusive Race / Hispanic Origin',
-        selected: true,
+        selected: 'selected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.mutuallyExclusiveRaceHispanicOrigin,
         charts: [
@@ -42,7 +42,7 @@ export default [
       {
         id: 'acs-demographic-hispanicSubgroup',
         label: 'Hispanic Subgroup',
-        selected: true,
+        selected: 'selected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.hispanicSubgroup,
         charts: [
@@ -56,7 +56,7 @@ export default [
       {
         id: 'acs-demographic-asianSubgroup',
         label: 'Asian Subgroup',
-        selected: true,
+        selected: 'selected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.asianSubgroup,
         charts: [
@@ -72,13 +72,13 @@ export default [
   {
     id: 'acs-economic',
     label: 'Economic',
-    selected: false,
+    selected: 'unselected',
     type: 'topic',
     children: [
       {
         id: 'acs-economic-employmentStatus',
         label: 'Employment Status',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.employmentStatus,
         charts: null,
@@ -87,7 +87,7 @@ export default [
       {
         id: 'acs-economic-commuteToWork',
         label: 'Commute to Work',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.commuteToWork,
         charts: [
@@ -101,7 +101,7 @@ export default [
       {
         id: 'acs-economic-occupation',
         label: 'Occupation',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.occupation,
         charts: [
@@ -115,7 +115,7 @@ export default [
       {
         id: 'acs-economic-industry',
         label: 'Industry',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.industry,
         charts: null,
@@ -124,7 +124,7 @@ export default [
       {
         id: 'acs-economic-classOfWorker',
         label: 'Class of Worker',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.classOfWorker,
         charts: [
@@ -138,7 +138,7 @@ export default [
       {
         id: 'acs-economic-incomeAndBenefits',
         label: 'Income and Benefits',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.incomeAndBenefits,
         charts: [
@@ -152,7 +152,7 @@ export default [
       {
         id: 'acs-economic-earnings',
         label: 'Earnings',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.earnings,
         charts: null,
@@ -161,7 +161,7 @@ export default [
       {
         id: 'acs-economic-healthInsuranceCoverage',
         label: 'Health Insurance Coverage',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.healthInsuranceCoverage,
         charts: null,
@@ -170,7 +170,7 @@ export default [
       {
         id: 'acs-economic-incomeInPast12MonthsIsBelowThePovertyLevel',
         label: 'Income in the Past 12 Months Below Poverty Level',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.incomeInPast12MonthsIsBelowThePovertyLevel,
         charts: null,
@@ -179,7 +179,7 @@ export default [
       {
         id: 'acs-economic-ratioOfIncomeToPovertyLevel',
         label: 'Ratio of Income to Poverty Level',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.ratioOfIncomeToPovertyLevel,
         charts: [
@@ -195,13 +195,13 @@ export default [
   {
     id: 'acs-social',
     label: 'Social',
-    selected: false,
+    selected: 'unselected',
     type: 'topic',
     children: [
       {
         id: 'acs-social-householdType',
         label: 'Household Type',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.householdType,
         charts: [
@@ -215,7 +215,7 @@ export default [
       {
         id: 'acs-social-relationshipToHeadOfHouseholdHouseholder',
         label: 'Relationship To Head Of Household (Householder)',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.relationshipToHeadOfHouseholdHouseholder,
         charts: null,
@@ -224,7 +224,7 @@ export default [
       {
         id: 'acs-social-maritalStatus',
         label: 'Marital Status',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.maritalStatus,
         charts: null,
@@ -233,7 +233,7 @@ export default [
       {
         id: 'acs-social-grandparents',
         label: 'Grandparents',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.grandparents,
         charts: null,
@@ -242,7 +242,7 @@ export default [
       {
         id: 'acs-social-schoolEnrollment',
         label: 'School Enrollment',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.schoolEnrollment,
         charts: [
@@ -256,7 +256,7 @@ export default [
       {
         id: 'acs-social-educationalAttainmentHighestGradeCompleted',
         label: 'Educational Attainment (Highest Grade Completed)',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.educationalAttainmentHighestGradeCompleted,
         charts: [
@@ -270,7 +270,7 @@ export default [
       {
         id: 'acs-social-veteranStatus',
         label: 'Veteran Status',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.veteranStatus,
         charts: null,
@@ -279,7 +279,7 @@ export default [
       {
         id: 'acs-social-disabilityStatusOfTheCivilianNoninstitutionalizedPopulation',
         label: 'Disability Status Of The Civilian Noninstitutionalized Population',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
         charts: null,
@@ -288,7 +288,7 @@ export default [
       {
         id: 'acs-social-residence1YearAgo',
         label: 'Residence 1 Year Ago',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.residence1YearAgo,
         charts: [
@@ -302,7 +302,7 @@ export default [
       {
         id: 'acs-social-placeOfBirth',
         label: 'Place Of Birth',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.placeOfBirth,
         charts: [
@@ -320,7 +320,7 @@ export default [
       {
         id: 'acs-social-uSCitizenshipStatus',
         label: 'U.S. Citizenship Status',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.uSCitizenshipStatus,
         charts: null,
@@ -329,7 +329,7 @@ export default [
       {
         id: 'acs-social-yearOfEntry',
         label: 'Year Of Entry',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.yearOfEntry,
         charts: null,
@@ -338,7 +338,7 @@ export default [
       {
         id: 'acs-social-languageSpokenAtHome',
         label: 'Language Spoken At Home',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.languageSpokenAtHome,
         charts: null,
@@ -347,7 +347,7 @@ export default [
       {
         id: 'acs-social-ancestry',
         label: 'Ancestry',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.ancestry,
         charts: null,
@@ -356,7 +356,7 @@ export default [
       {
         id: 'acs-social-computersAndInternetUse',
         label: 'Computers and Internet Use',
-        selected: false,
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.computersAndInternetUse,
         charts: null,
@@ -367,12 +367,13 @@ export default [
   {
     id: 'acs-housing',
     label: 'Housing',
-    selected: false,
+    selected: 'unselected',
     type: 'topic',
     children: [
       {
         id: 'acs-social-housingOccupancy',
         label: 'Housing Occupancy',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.housingOccupancy,
         charts: null,
@@ -381,6 +382,7 @@ export default [
       {
         id: 'acs-social-unitsInStructure',
         label: 'Units in Structure',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.unitsInStructure,
         charts: null,
@@ -389,6 +391,7 @@ export default [
       {
         id: 'acs-social-yearStructureBuilt',
         label: 'Year Structure Built',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.yearStructureBuilt,
         charts: null,
@@ -397,6 +400,7 @@ export default [
       {
         id: 'acs-social-rooms',
         label: 'Rooms',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.rooms,
         charts: null,
@@ -405,6 +409,7 @@ export default [
       {
         id: 'acs-social-housingTenure',
         label: 'Housing Tenure',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.housingTenure,
         charts: [
@@ -418,6 +423,7 @@ export default [
       {
         id: 'acs-social-yearHouseholderMovedIntoUnit',
         label: 'Year Householder Moved Into Unit',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.yearHouseholderMovedIntoUnit,
         charts: null,
@@ -426,6 +432,7 @@ export default [
       {
         id: 'acs-social-vehiclesAvailable',
         label: 'Vehicles Available',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.vehiclesAvailable,
         charts: [
@@ -439,6 +446,7 @@ export default [
       {
         id: 'acs-social-occupantsPerRoom',
         label: 'Occupants per Room',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.occupantsPerRoom,
         charts: null,
@@ -447,6 +455,7 @@ export default [
       {
         id: 'acs-social-value',
         label: 'Value',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.value,
         charts: [
@@ -460,6 +469,7 @@ export default [
       {
         id: 'acs-social-mortgageStatus',
         label: 'Mortgage Status',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.mortgageStatus,
         charts: null,
@@ -468,6 +478,7 @@ export default [
       {
         id: 'acs-social-selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi',
         label: 'Selected Monthly Owner Costs as a Percentage of Household Income',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi,
         charts: null,
@@ -476,6 +487,7 @@ export default [
       {
         id: 'acs-social-grossRent',
         label: 'Gross Rent',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRent,
         charts: [
@@ -489,6 +501,7 @@ export default [
       {
         id: 'acs-social-grossRentAsAPercentageOfHouseholdIncomeGrapi',
         label: 'Gross Rent as a Percentage of Household Income (GRAPI)',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRentAsAPercentageOfHouseholdIncomeGrapi,
         charts: [
