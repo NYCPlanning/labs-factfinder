@@ -16,22 +16,26 @@ export default class TopicSelectDropdownComponent extends Component {
 
   get numSelected() {
     return this.args.topics.reduce((prev, cur) => {
-        if (cur.type === 'subtopic' && cur.selected) {
+        if (cur.type === 'subtopic' && (cur.selected === "selected")) {
           return prev += 1;
         }
 
-        return prev += cur.children.filter((child) => child.selected).length;
+        return prev += cur.children.filter((child) => (child.selected === "selected")).length;
       }, 0);
   }
 
   get isAllTopicsSelected() {
-    return this.args.topics.reduce((prev, cur) => {
-      if (cur.type === 'subtopic') {
-        return prev.concat([cur.selected]);
-      }
+    const { topics } = this.args;
 
-      return prev.concat(cur.children.map(child => child.selected));
-    }, []).every(cur => cur);
+    if (topics.every(topic => topic.selected === "selected")) {
+      return "selected";
+    }
+
+    if (topics.every(topic => topic.selected === "unselected")) {
+      return "unselected";
+    }
+
+    return "indeterminate";
   }
 
   @action toggleOpen() {
@@ -51,7 +55,7 @@ export default class TopicSelectDropdownComponent extends Component {
   toggleTopicInList = (topics, itemId) => {
     return topics.map((topic) => {
       if (topic.id === itemId) {
-        const newSelectedValue = !topic.selected;
+        const newSelectedValue = topic.selected === "unselected" ? "selected" : "unselected";
 
         return {
           ...topic,
@@ -61,9 +65,20 @@ export default class TopicSelectDropdownComponent extends Component {
       }
 
       if (topic.children && topic.children.length > 0) {
+        const newChildren = this.toggleTopicInList(topic.children, itemId);
+        let newSelectedValue = "indeterminate";
+
+        if (newChildren.every(child => child.selected === "selected")) {
+          newSelectedValue = "selected";
+        }
+        if (newChildren.every(child => child.selected === "unselected")) {
+          newSelectedValue = "unselected";
+        }
+
         return {
           ...topic,
-          children: this.toggleTopicInList(topic.children, itemId),
+          selected: newSelectedValue,
+          children: newChildren
         }
       }
 
@@ -78,7 +93,7 @@ export default class TopicSelectDropdownComponent extends Component {
   }
 
   @action toggleAllTopics() {
-    const newSelectedValue = !this.isAllTopicsSelected;
+    const newSelectedValue = this.isAllTopicsSelected === "unselected" ? "selected" : "unselected";
 
     const newNestedListItems = this.args.topics.map(topic => {
       return {

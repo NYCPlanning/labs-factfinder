@@ -45,7 +45,7 @@
 
     {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
-        {{#if subtopic.selected}}
+        {{#if (eq subtopic.selected "selected")}}
           <div class="grid-x grid-margin-x">
             <div class="cell large-auto">
               <h3 class="header-medium">
@@ -71,7 +71,7 @@
     {{#if (eq this.source.type 'acs')}}
       {{#each this.topics as |topic|}}
         {{#each topic.children as |subtopic|}}
-          {{#if subtopic.selected}}
+          {{#if (eq subtopic.selected "selected")}}
             <div class="grid-x grid-margin-x">
               <div class="cell large-auto">
                 <h3 class="header-medium">
@@ -82,6 +82,7 @@
                   decennial=(eq this.source.type 'census')
                   reliability=this.showReliability
                   comparison=this.compareTo
+                  compareToLabel=this.selectedGeo.label
                   config=subtopic.tableConfig
                   model=@model.profile
                 }}

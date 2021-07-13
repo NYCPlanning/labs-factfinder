@@ -98,7 +98,6 @@ module.exports = function (environment) {
           'user-friends',
         ],
         'free-regular-svg-icons': [
-          'check-square',
           'circle',
           'copy',
           'dot-circle',
@@ -106,6 +105,8 @@ module.exports = function (environment) {
           'hand-pointer',
           'object-group',
           'square',
+          'check-square',
+          'minus-square'
         ],
       },
     },
