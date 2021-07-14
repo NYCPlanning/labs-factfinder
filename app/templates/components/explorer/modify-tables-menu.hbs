@@ -23,12 +23,13 @@
         <div class="grid-x">
           <div class="cell small-2">
             <div class="switch tiny modify-tables-switch">
-              <Input
-                @id="show-reliability-switch"
-                @type="checkbox"
-                @checked={{@showReliability}}
+              <input
+                id="show-reliability-switch"
+                type="checkbox"
+                checked={{@showReliability}}
                 name="show-reliability-switch"
                 class="switch-input"
+                {{on "click" (fn @toggleBooleanControl 'showReliability')}}
               />
               <label class="switch-paddle" for="show-reliability-switch"></label>
             </div>

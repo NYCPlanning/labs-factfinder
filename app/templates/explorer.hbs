@@ -10,6 +10,7 @@
     @compareTo={{this.compareTo}}
     @geoOptions={{this.geoOptions}}
     @selectedGeo={{this.selectedGeo}}
+    @toggleBooleanControl={{this.toggleBooleanControl}}
     @updateCompareTo={{this.updateCompareTo}}
   />
 </OrangeBar>
@@ -24,12 +25,13 @@
       <div class="grid-x align-left">
         <div class="cell shrink">
           <div class="switch tiny show-charts-switch">
-            <Input
-              @id="show-charts-switch"
-              @type="checkbox"
-              @checked={{this.showCharts}}
+            <input
+              id="show-charts-switch"
+              type="checkbox"
+              checked={{this.showCharts}}
               name="show-charts-switch"
               class="switch-input"
+              {{on "click" (fn this.toggleBooleanControl 'showCharts')}}
             />
             <label class="switch-paddle" for="show-charts-switch">
             </label>
