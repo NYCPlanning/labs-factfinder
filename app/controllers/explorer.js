@@ -7,13 +7,15 @@ import censusTopicsDefault from '../topics-config/census';
 import acsTopicsDefault from '../topics-config/acs';
 
 export default class ExplorerController extends Controller {
-  queryParams = ['compareTo'];
+  queryParams = [
+    'compareTo',
+    'showReliability',
+    'showCharts'
+  ];
 
-  showCharts = true;
+  @tracked showCharts = true;
 
   @tracked sources = sourcesDefault;
-
-  topic = null;
 
   @tracked showReliability = false;
 
@@ -72,6 +74,15 @@ export default class ExplorerController extends Controller {
 
   @action setTopics(newTopics) {
     this.topics = newTopics;
+  }
+
+  // acceptable controlId values include: 'showReliability', 'showCharts', 'disaggregate'
+  @action toggleBooleanControl(controlId) {
+    let { [controlId]: currentControlValue } = this;
+
+    this.transitionToRoute('explorer', { queryParams: {
+      [controlId]: !currentControlValue,
+    }});
   }
 
   @action updateCompareTo(geoid) {
