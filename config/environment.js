@@ -151,7 +151,8 @@ module.exports = function (environment) {
   }
 
   if (environment === 'staging') {
-    ENV.SupportServiceHost = 'https://factfinder-api-develop.herokuapp.com/';
+    // TODO: Eventually switch to https://factfinder-api-develop.herokuapp.com/ once it is ready
+    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
     // TODO: Disable when we have solidified API
     ENV['ember-cli-mirage'] = {
       enabled: true,
