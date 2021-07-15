@@ -70,6 +70,10 @@
   a {
     background-color: #d96b27;
   }
+  a:hover, a:active {
+    background-color: $white;
+    color: #d96b27;
+  }
 }
 .dropdown-content-left {
   a {
