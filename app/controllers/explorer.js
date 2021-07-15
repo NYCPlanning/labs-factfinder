@@ -72,6 +72,43 @@ export default class ExplorerController extends Controller {
     }
   }
 
+  get selectedCount() {
+    return this.model.selection.features.length;
+  }
+
+  get sortedLabels() {
+    const { features } = this.model.selection;
+
+    const bronx = features.filter(d => d.properties.borocode === '2');
+    const brooklyn = features.filter(d => d.properties.borocode === '3');
+    const manhattan = features.filter(d => d.properties.borocode === '1');
+    const queens = features.filter(d => d.properties.borocode === '4');
+    const statenisland = features.filter(d => d.properties.borocode === '5');
+
+    return [
+      {
+        label: 'Bronx',
+        features: bronx,
+      },
+      {
+        label: 'Brooklyn',
+        features: brooklyn,
+      },
+      {
+        label: 'Manhattan',
+        features: manhattan,
+      },
+      {
+        label: 'Queens',
+        features: queens,
+      },
+      {
+        label: 'Staten Island',
+        features: statenisland,
+      },
+    ];
+  }
+
   @action setTopics(newTopics) {
     this.topics = newTopics;
   }

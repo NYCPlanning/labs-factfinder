@@ -23,6 +23,24 @@
       Your Data:
     </h1>
 
+    <div class="grid-container fluid profile-geographies ">
+      <div class="grid-x align-left">
+        <h3 class="profile-geographies-header">
+          <SelectionDetailsText
+            @selectedCount={{this.selectedCount}}
+            @selectedType={{@model.selection.type}}
+          />
+        </h3>
+        <span class="dark-gray">&nbsp;|&nbsp;</span>
+
+        <p class="profile-geographies-list">
+          <SelectGeographyList
+            @sortedLabels={{this.sortedLabels}}
+          />
+        </p>
+      </div>
+    </div>
+
     <div class="grid-container fluid">
       <div class="grid-x align-left">
         <div class="cell shrink">
