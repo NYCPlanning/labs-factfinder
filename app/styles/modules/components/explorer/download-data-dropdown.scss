@@ -11,7 +11,7 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   font-size: rem-calc(12);
   position: fixed;
   right: 50px;
-  top: 10rem;
+  top: 10.25rem;
   background-color: $off-white;
   margin-right: -$global-margin;
   margin-left: -$global-margin;
@@ -31,6 +31,17 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
       max-height: 0;
       min-height: 0;
     }
+  }
+  .triangle {
+    position: absolute;
+    top: -15px;
+    left: 175px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+
+    border-bottom: 15px solid $white;
   }
 }
 
