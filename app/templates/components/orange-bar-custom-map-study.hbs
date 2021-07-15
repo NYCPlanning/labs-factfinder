@@ -46,7 +46,7 @@
               {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-              <a href="#" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood&nbsp;<br /><small>(NTA)</small></a>
+              <a href="#" id="neighborhood" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood<br /><small>(NTA)</small></a>
               {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'cdtas') 'active'}} explode-cdta" style="font-size: 0.75rem;">

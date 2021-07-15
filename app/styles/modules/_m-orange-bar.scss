@@ -51,11 +51,8 @@
       padding-left: 0.75rem;
     }
   }
-  li:hover, li:active, .dropdown:hover .dropbtn {
+  li:hover, li:active, a:hover, a:active, .dropdown:hover .dropbtn {
     background-color: $white;
-    color: #d96b27;
-  }  
-  a:hover, a:active {
     color: #d96b27;
   }
 }
@@ -136,6 +133,12 @@ ul .menu li.dropdown {
     color: #d96b27;
     padding: 0;
   }
+  li:not(.dropdown):hover a {
+    color: #d96b27;
+  }
+}
+#neighborhood, #neighborhood:hover {
+  padding: 0;
 }
 
 .dropbtn-centered {
