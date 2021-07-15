@@ -51,10 +51,13 @@
       padding-left: 0.75rem;
     }
   }
-  li:hover, li:active, a:hover, a:active, .dropdown:hover .dropbtn {
+  li:hover, li:active, .dropdown:hover .dropbtn {
     background-color: $white;
     color: #d96b27;
   }  
+  a:hover, a:active {
+    color: #d96b27;
+  }
 }
 
 .dropdown-content {
