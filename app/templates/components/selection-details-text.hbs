@@ -1,7 +1,7 @@
-{{this.selection.selectedCount}}
-{{if (eq this.selection.summaryLevel 'tracts') 'Census Tract'~}}
-{{if (eq this.selection.summaryLevel 'blocks') 'Census Block'~}}
-{{if (eq this.selection.summaryLevel 'ntas') 'Neighborhood'~}}
-{{if (eq this.selection.summaryLevel 'pumas') 'PUMA'~}}
-{{unless (eq this.selection.selectedCount 1) 's'}}
-{{if (eq this.selection.summaryLevel 'blocks') '(Tract Id-Block Id)'~}}
+{{@selectedCount}}
+{{if (eq @selectedType 'tracts') 'Census Tract'~}}
+{{if (eq @selectedType 'blocks') 'Census Block'~}}
+{{if (eq @selectedType 'ntas') 'Neighborhood'~}}
+{{if (eq @selectedType 'pumas') 'PUMA'~}}
+{{unless (eq @selectedCount 1) 's'}}
+{{if (eq @selectedType 'blocks') '(Tract Id-Block Id)'~}}

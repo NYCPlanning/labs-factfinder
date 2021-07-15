@@ -97,6 +97,7 @@
 }
 
 .search-results--loading {
+  z-index: 5;
   border-top: 1px solid $medium-gray;
   padding: $global-margin/2;
   color: $dark-gray;

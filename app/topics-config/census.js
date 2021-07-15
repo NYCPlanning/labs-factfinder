@@ -5,7 +5,7 @@ export default [
   {
     id: 'decennial - Population Density',
     label: 'Population Density',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.populationDensity,
     chartConfig: null,
@@ -14,7 +14,7 @@ export default [
   {
     id: 'decennial - Age and Sex',
     label: 'Age and Sex',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.sexAndAge,
     chartConfig: null,
@@ -23,7 +23,7 @@ export default [
   {
     id: 'decennial - Mutually Exclusive Race / Hispanic Origin',
     label: 'Mutually Exclusive Race / Hispanic Origin',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.mutuallyExclusiveRaceHispanicOrigin,
     chartConfig: null,
@@ -32,7 +32,7 @@ export default [
   {
     id: 'decennial - Hispanic Subgroup',
     label: 'Hispanic Subgroup',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.hispanicSubgroup,
     chartConfig: null,
@@ -41,7 +41,7 @@ export default [
   {
     id: 'decennial - Asian Subgroup',
     label: 'Asian Subgroup',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.asianSubgroup,
     chartConfig: null,
@@ -50,7 +50,7 @@ export default [
   {
     id: 'decennial - Relationship to Head of Household',
     label: 'Relationship to Head of Household',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.relationshipToHeadOfHouseholdHouseholder,
     chartConfig: null,
@@ -59,7 +59,7 @@ export default [
   {
     id: 'decennial - Household Type',
     label: 'Household Type',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.householdType,
     chartConfig: null,
@@ -68,7 +68,7 @@ export default [
   {
     id: 'decennial - Housing Occupancy',
     label: 'Housing Occupancy',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.housingOccupancy,
     chartConfig: null,
@@ -77,7 +77,7 @@ export default [
   {
     id: 'decennial - Housing Tenure',
     label: 'Housing Tenure',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.housingTenure,
     chartConfig: null,
@@ -86,7 +86,7 @@ export default [
   {
     id: 'decennial - Tenure by Age of Householder',
     label: 'Tenure by Age of Householder',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.tenureByAgeOfHouseholder,
     chartConfig: null,
@@ -95,7 +95,7 @@ export default [
   {
     id: 'decennial - Household Size',
     label: 'Household Size',
-    selected: true,
+    selected: 'selected',
     type: 'subtopic',
     tableConfig: decennialTopics.householdSize,
     chartConfig: null,

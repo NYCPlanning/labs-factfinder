@@ -1,3 +1,3 @@
-showReliabilityData: Show the reliability data! Woo!
+showReliabilityData: ACS data are derived from a survey and are subject to sampling variability. Grayed values are not statistically reliable.
 disaggregate: Disaggregate data! Yay!
-guidanceOnAcsData: ACS data are derived from a survey and are subject to sampling variability. Grayed values are not statistically reliable 
+guidanceOnAcsData: Data associated with estimates of zero, top- and bottom- coded estimates, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.

@@ -28,10 +28,12 @@
           {{on "click" this.toggleAllTopics}}
         >
           <span class="dcp-orange">
-            {{#if this.isAllTopicsSelected}}
+            {{#if (eq this.isAllTopicsSelected "selected")}}
               {{fa-icon icon='check-square' prefix='far'}}
-            {{else}}
+            {{else if (eq this.isAllTopicsSelected "unselected")}}
               {{fa-icon icon='square' prefix='far'}}
+            {{else}}
+              {{fa-icon icon='minus-square' prefix='far'}}
             {{/if}}
           </span>
         </div>
