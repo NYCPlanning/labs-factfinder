@@ -25,7 +25,7 @@
       {{#each this.censusSources key="id" as |source|}}
         <div
           class="nestable-list-item grid-x clickable"
-          {{on "click" (fn this.onSourceToggle source.id)}}
+          {{on "click" (fn @setSource source)}}
         >
           <div class="cell small-1">
             <span class="dcp-orange">
@@ -47,7 +47,7 @@
       {{#each this.acsSources key="id" as |source|}}
         <div
           class="nestable-list-item grid-x clickable"
-          {{on "click" (fn this.onSourceToggle source.id)}}
+          {{on "click" (fn @setSource source)}}
         >
           <div class="cell small-1">
             <span class="dcp-orange">

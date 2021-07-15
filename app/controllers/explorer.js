@@ -8,6 +8,9 @@ import acsTopicsDefault from '../topics-config/acs';
 
 export default class ExplorerController extends Controller {
   queryParams = [
+    {
+      sourceId: 'source',
+    },
     'compareTo',
     'showReliability',
     'showCharts'
@@ -15,7 +18,7 @@ export default class ExplorerController extends Controller {
 
   @tracked showCharts = true;
 
-  @tracked sources = sourcesDefault;
+  @tracked sourceId = 'decennial-2020';
 
   @tracked showReliability = false;
 
@@ -31,6 +34,22 @@ export default class ExplorerController extends Controller {
 
   @tracked geoOptions = null;
 
+  toggleSourceInList(sourceId) {
+    return sourcesDefault.map((source) => {
+      if (source.id === sourceId) {
+        return {
+          ...source,
+          selected: true,
+        };
+      }
+
+      return {
+        ...source,
+        selected: false,
+      }
+    });
+  }
+
   get selectedGeo() {
     if (this.geoOptions) {
       return this.geoOptions.findBy('geoid', this.compareTo);
@@ -39,8 +58,22 @@ export default class ExplorerController extends Controller {
     return null;
   }
 
+  get sources() {
+    if (this.sourceId) {
+      return this.toggleSourceInList(this.sourceId);
+    }
+
+    return sourcesDefault;
+  }
+
   get source() {
     return this.sources.find(source => source.selected);
+  }
+
+  set source(newSource) {
+    const { id } = newSource;
+
+    this.transitionToRoute('explorer', { queryParams: { source: id }});
   }
 
   // returns either 'current' or 'change'
@@ -48,10 +81,6 @@ export default class ExplorerController extends Controller {
     if (this.source.changeOverTime) return 'change';
 
     return 'current';
-  }
-
-  @action setSources(newSources) {
-    this.sources = newSources;
   }
 
   get topics() {
@@ -107,6 +136,10 @@ export default class ExplorerController extends Controller {
         features: statenisland,
       },
     ];
+  }
+
+  @action setSource(newSource) {
+    this.source = newSource;
   }
 
   @action setTopics(newTopics) {

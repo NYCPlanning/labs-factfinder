@@ -2,6 +2,11 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
+/**
+  * @param { fn(Source POJO) } setSource - (Required) Ember Action function that accepts a Source POJO. It will
+  * set the selected Explorer source to the passed Source.
+  * @param { [] } sources - array of Source objects
+*/
 export default class SourceSelectDropdownComponent extends Component {
   @tracked open = false;
 
@@ -19,27 +24,5 @@ export default class SourceSelectDropdownComponent extends Component {
 
   get acsSources() {
     return this.args.sources.filter(source => source.type === 'acs');
-  }
-
-  toggleSourceInList = (sources, sourceId) => {
-    return sources.map((source) => {
-      if (source.id === sourceId) {
-        return {
-          ...source,
-          selected: true,
-        };
-      }
-
-      return {
-        ...source,
-        selected: false,
-      }
-    });
-  }
-
-  @action onSourceToggle(sourceId) {
-    const newSources = this.toggleSourceInList(this.args.sources, sourceId);
-
-    this.args.setSources(newSources);
   }
 }
