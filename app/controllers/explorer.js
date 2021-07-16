@@ -122,6 +122,7 @@ export default class ExplorerController extends Controller {
       }, 1)
     })
   }
+  
   // acceptable controlId values include: 'showReliability', 'showCharts', 'disaggregate'
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
