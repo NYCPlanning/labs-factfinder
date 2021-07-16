@@ -6,8 +6,9 @@
     <div class="cell small-10 text-left">
       <Explorer::SourceSelectDropdown
         @sources={{@sources}}
-        @setSource={{@setSource}}
+        @setSources={{@setSources}}
       />
+
       <Explorer::TopicSelectDropdown
         @topics={{@topics}}
         @setTopics={{@setTopics}}
@@ -24,26 +25,15 @@
         @updateCompareTo={{@updateCompareTo}}
       />
     </div>
-    />
-  </div>
-  <div class="cell auto">
-    <OrangeBarDataExplorerDownloadCsv />
-  </div>
 
-  <div class="cell small-2 bar-item">
-    <Explorer::ModifyTablesMenu
-      @showReliability={{@showReliability}}
-      @disaggregate={{@disaggregate}}
-      @compareTo={{@compareTo}}
-    />
-  </div>
+    <div class="bar-item">
+      <Explorer::DownloadDataDropdown
+        @topics={{@topics}}
+        @sources={{@sources}}
+        @showReliability={{@showReliability}}
+        @toggleReliability={{@toggleReliability}}
+      />
+    </div>
 
-  <div class="bar-item">
-    <Explorer::DownloadDataDropdown
-      @topics={{@topics}}
-      @sources={{@sources}}
-      @showReliability={{@showReliability}}
-      @toggleReliability={{@toggleReliability}}
-    />
   </div>
 </div>
