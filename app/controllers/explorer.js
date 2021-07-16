@@ -158,4 +158,14 @@ export default class ExplorerController extends Controller {
   @action updateCompareTo(geoid) {
     this.transitionToRoute('explorer', { queryParams: { compareTo: geoid }});
   }
+
+  @action toggleReliability() {
+    this.showReliability = !this.showReliability;
+    /*global Promise*/
+    return new Promise(resolve => {
+      setTimeout(function() {
+        resolve("slow")
+      }, 1)
+    })
+  }
 }

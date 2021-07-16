@@ -1,0 +1,82 @@
+// --------------------------------------------------
+// Module: Download Data Dropdown
+// --------------------------------------------------
+
+$download-data-dropdown-margin: rem-calc(6);
+$download-data-dropdown-hover-color: rgba($dark-gray,0.08);
+
+.download-data-dropdown {
+  z-index: 1;
+  color: black;
+  font-size: rem-calc(12);
+  position: fixed;
+  right: 50px;
+  top: 10.25rem;
+  background-color: $off-white;
+  margin-right: -$global-margin;
+  margin-left: -$global-margin;
+  border: 1px solid $silver;
+  transition: all 0.2s;
+  border-radius: 10px;
+  p {
+    line-height: 1;
+  }
+
+  &.closed {
+    display: none;
+  }
+
+  @include breakpoint(large) {
+    &.closed {
+      max-height: 0;
+      min-height: 0;
+    }
+  }
+  .triangle {
+    position: absolute;
+    top: -15px;
+    left: 175px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+
+    border-bottom: 15px solid $white;
+  }
+}
+
+.download-data-dropdown-head {
+  color: $dcp-orange;
+  padding: 1.5rem 1.5rem;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+  font-size: rem-calc(20);
+  font-weight: bold;
+}
+.download-data-dropdown-foot {
+  cursor: pointer;
+  background-color: #129DED;
+  color: white;
+  padding: 1.5rem 1.5rem;
+  font-size: rem-calc(20);
+  font-weight: bold;
+  .small {
+    font-size: rem-calc(14);
+    font-weight: normal;
+  }
+}
+.download-data-dropdown-body {
+  padding: 2.5rem 2.5rem;
+  font-size: rem-calc(16);
+  text-align: left;
+  min-height: rem-calc(200);
+  max-height: calc(100vh - #{rem-calc(472)});
+  overflow: auto;
+  .head {
+    font-size: rem-calc(20);
+    font-weight: bold;
+    text-decoration-line: underline;  
+  }
+  .subtopic, .source-label {
+    font-weight: normal;
+  }
+}

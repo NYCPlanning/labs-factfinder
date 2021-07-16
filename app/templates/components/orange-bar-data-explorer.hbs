@@ -26,8 +26,14 @@
       />
     </div>
 
-    <div class="cell small-2 bar-item">
-      Data Download Button
+    <div class="bar-item">
+      <Explorer::DownloadDataDropdown
+        @topics={{@topics}}
+        @sources={{@sources}}
+        @showReliability={{@showReliability}}
+        @toggleReliability={{@toggleReliability}}
+      />
     </div>
+
   </div>
 </div>
