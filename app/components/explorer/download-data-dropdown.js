@@ -2,15 +2,6 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-/**
-  * @param { Object[] } topics - array of Topic objects.
-  * If explorer selected source is acs, then `topics` has
-  * TWO levels of nesting of Topic objects (Topics and Subtopics).
-  * If explorer selected source is decennial, then `topics` is a
-  * 1D array of subtopics.
-  * See controller for an example.
-*/
-
 export default class DownloadDataDropdown extends Component{
   @tracked open = false;
 
@@ -45,19 +36,23 @@ export default class DownloadDataDropdown extends Component{
     // Click download link
     downloadLink.click();
   }
+
   @action convertStringForCSV(s) {
-    if(s.indexOf(',') !== -1) {
+    if (s.indexOf(',') !== -1) {
       return '"'.concat(s).concat('"');
     } 
-    if(s===" ") {
+    if (s===" ") {
       return "";
     }
     return s;
   }
+
   @action async exportTableToCSV() {
     // This toggles the reliability data on if it is not before downloading
     const initialReliabilitySetting = this.args.showReliability;
-    if(!initialReliabilitySetting) { await this.args.toggleReliability(); }
+    if (!initialReliabilitySetting) { 
+      await this.args.toggleReliability();
+    }
 
 
     var csv = [];
@@ -107,7 +102,9 @@ export default class DownloadDataDropdown extends Component{
     this.actions.downloadCSV(csv.join("\n"));
 
     // This toggles the reliability data back off if it was off before downloading
-    if(!initialReliabilitySetting) { this.args.toggleReliability(); }
+    if (!initialReliabilitySetting) { 
+      this.args.toggleReliability();
+    }
   }
 
   get numSelected() {
@@ -119,6 +116,7 @@ export default class DownloadDataDropdown extends Component{
         return prev += cur.children.filter((child) => child.selected).length;
       }, 0);
   }
+  
   get source() {
     return this.args.sources.find(source => source.selected);
   }
