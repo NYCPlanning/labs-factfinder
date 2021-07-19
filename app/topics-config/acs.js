@@ -11,24 +11,24 @@ import acsHousingChartConfig from '../chart-config/housing';
 
 export default [
   {
-    id: 'acs-demographic-sexAndAge',
+    id: 'demographic',
     label: 'Demographic',
-    selected: 'selected',
+    selected: 'unselected',
     type: 'topic',
     children: [
       {
-        id: '124',
+        id: 'demo-sexAndAge',
         label: 'Sex and Age',
-        selected: 'selected',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.sexAndAge,
         charts: null,
         children: [],
       },
       {
-        id: 'acs-demographic-mutuallyExclusiveRaceHispanicOrigin',
+        id: 'demo-mutuallyExclusiveRaceHispanicOrigin',
         label: 'Mutually Exclusive Race / Hispanic Origin',
-        selected: 'selected',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.mutuallyExclusiveRaceHispanicOrigin,
         charts: [
@@ -40,9 +40,9 @@ export default [
         children: [],
       },
       {
-        id: 'acs-demographic-hispanicSubgroup',
+        id: 'demo-hispanicSubgroup',
         label: 'Hispanic Subgroup',
-        selected: 'selected',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.hispanicSubgroup,
         charts: [
@@ -54,9 +54,9 @@ export default [
         children: [],
       },
       {
-        id: 'acs-demographic-asianSubgroup',
+        id: 'demo-asianSubgroup',
         label: 'Asian Subgroup',
-        selected: 'selected',
+        selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.asianSubgroup,
         charts: [
@@ -70,13 +70,13 @@ export default [
     ],
   },
   {
-    id: 'acs-economic',
+    id: 'economic',
     label: 'Economic',
     selected: 'unselected',
     type: 'topic',
     children: [
       {
-        id: 'acs-economic-employmentStatus',
+        id: 'econ-employmentStatus',
         label: 'Employment Status',
         selected: 'unselected',
         type: 'subtopic',
@@ -85,7 +85,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-commuteToWork',
+        id: 'econ-commuteToWork',
         label: 'Commute to Work',
         selected: 'unselected',
         type: 'subtopic',
@@ -99,7 +99,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-occupation',
+        id: 'econ-occupation',
         label: 'Occupation',
         selected: 'unselected',
         type: 'subtopic',
@@ -113,7 +113,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-industry',
+        id: 'econ-industry',
         label: 'Industry',
         selected: 'unselected',
         type: 'subtopic',
@@ -122,7 +122,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-classOfWorker',
+        id: 'econ-classOfWorker',
         label: 'Class of Worker',
         selected: 'unselected',
         type: 'subtopic',
@@ -136,7 +136,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-incomeAndBenefits',
+        id: 'econ-incomeAndBenefits',
         label: 'Income and Benefits',
         selected: 'unselected',
         type: 'subtopic',
@@ -150,7 +150,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-earnings',
+        id: 'econ-earnings',
         label: 'Earnings',
         selected: 'unselected',
         type: 'subtopic',
@@ -159,7 +159,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-healthInsuranceCoverage',
+        id: 'econ-healthInsuranceCoverage',
         label: 'Health Insurance Coverage',
         selected: 'unselected',
         type: 'subtopic',
@@ -168,7 +168,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-incomeInPast12MonthsIsBelowThePovertyLevel',
+        id: 'econ-incomeInPast12MonthsIsBelowThePovertyLevel',
         label: 'Income in the Past 12 Months Below Poverty Level',
         selected: 'unselected',
         type: 'subtopic',
@@ -177,7 +177,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-economic-ratioOfIncomeToPovertyLevel',
+        id: 'econ-ratioOfIncomeToPovertyLevel',
         label: 'Ratio of Income to Poverty Level',
         selected: 'unselected',
         type: 'subtopic',
@@ -193,13 +193,13 @@ export default [
     ],
   },
   {
-    id: 'acs-social',
+    id: 'social',
     label: 'Social',
     selected: 'unselected',
     type: 'topic',
     children: [
       {
-        id: 'acs-social-householdType',
+        id: 'soc-householdType',
         label: 'Household Type',
         selected: 'unselected',
         type: 'subtopic',
@@ -213,7 +213,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-relationshipToHeadOfHouseholdHouseholder',
+        id: 'soc-relationshipToHeadOfHouseholdHouseholder',
         label: 'Relationship To Head Of Household (Householder)',
         selected: 'unselected',
         type: 'subtopic',
@@ -222,7 +222,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-maritalStatus',
+        id: 'soc-maritalStatus',
         label: 'Marital Status',
         selected: 'unselected',
         type: 'subtopic',
@@ -231,7 +231,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-grandparents',
+        id: 'soc-grandparents',
         label: 'Grandparents',
         selected: 'unselected',
         type: 'subtopic',
@@ -240,7 +240,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-schoolEnrollment',
+        id: 'soc-schoolEnrollment',
         label: 'School Enrollment',
         selected: 'unselected',
         type: 'subtopic',
@@ -254,7 +254,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-educationalAttainmentHighestGradeCompleted',
+        id: 'soc-educationalAttainmentHighestGradeCompleted',
         label: 'Educational Attainment (Highest Grade Completed)',
         selected: 'unselected',
         type: 'subtopic',
@@ -268,7 +268,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-veteranStatus',
+        id: 'soc-veteranStatus',
         label: 'Veteran Status',
         selected: 'unselected',
         type: 'subtopic',
@@ -277,7 +277,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-disabilityStatusOfTheCivilianNoninstitutionalizedPopulation',
+        id: 'soc-disabilityStatusOfTheCivilianNoninstitutionalizedPopulation',
         label: 'Disability Status Of The Civilian Noninstitutionalized Population',
         selected: 'unselected',
         type: 'subtopic',
@@ -286,7 +286,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-residence1YearAgo',
+        id: 'soc-residence1YearAgo',
         label: 'Residence 1 Year Ago',
         selected: 'unselected',
         type: 'subtopic',
@@ -300,7 +300,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-placeOfBirth',
+        id: 'soc-placeOfBirth',
         label: 'Place Of Birth',
         selected: 'unselected',
         type: 'subtopic',
@@ -318,7 +318,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-uSCitizenshipStatus',
+        id: 'soc-uSCitizenshipStatus',
         label: 'U.S. Citizenship Status',
         selected: 'unselected',
         type: 'subtopic',
@@ -327,7 +327,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-yearOfEntry',
+        id: 'soc-yearOfEntry',
         label: 'Year Of Entry',
         selected: 'unselected',
         type: 'subtopic',
@@ -336,7 +336,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-languageSpokenAtHome',
+        id: 'soc-languageSpokenAtHome',
         label: 'Language Spoken At Home',
         selected: 'unselected',
         type: 'subtopic',
@@ -345,7 +345,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-ancestry',
+        id: 'soc-ancestry',
         label: 'Ancestry',
         selected: 'unselected',
         type: 'subtopic',
@@ -354,7 +354,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-computersAndInternetUse',
+        id: 'soc-computersAndInternetUse',
         label: 'Computers and Internet Use',
         selected: 'unselected',
         type: 'subtopic',
@@ -365,13 +365,13 @@ export default [
     ],
   },
   {
-    id: 'acs-housing',
+    id: 'housing',
     label: 'Housing',
     selected: 'unselected',
     type: 'topic',
     children: [
       {
-        id: 'acs-social-housingOccupancy',
+        id: 'hou-housingOccupancy',
         label: 'Housing Occupancy',
         selected: 'unselected',
         type: 'subtopic',
@@ -380,7 +380,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-unitsInStructure',
+        id: 'hou-unitsInStructure',
         label: 'Units in Structure',
         selected: 'unselected',
         type: 'subtopic',
@@ -389,7 +389,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-yearStructureBuilt',
+        id: 'hou-yearStructureBuilt',
         label: 'Year Structure Built',
         selected: 'unselected',
         type: 'subtopic',
@@ -398,7 +398,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-rooms',
+        id: 'hou-rooms',
         label: 'Rooms',
         selected: 'unselected',
         type: 'subtopic',
@@ -407,7 +407,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-housingTenure',
+        id: 'hou-housingTenure',
         label: 'Housing Tenure',
         selected: 'unselected',
         type: 'subtopic',
@@ -421,7 +421,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-yearHouseholderMovedIntoUnit',
+        id: 'hou-yearHouseholderMovedIntoUnit',
         label: 'Year Householder Moved Into Unit',
         selected: 'unselected',
         type: 'subtopic',
@@ -430,7 +430,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-vehiclesAvailable',
+        id: 'hou-vehiclesAvailable',
         label: 'Vehicles Available',
         selected: 'unselected',
         type: 'subtopic',
@@ -444,7 +444,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-occupantsPerRoom',
+        id: 'hou-occupantsPerRoom',
         label: 'Occupants per Room',
         selected: 'unselected',
         type: 'subtopic',
@@ -453,7 +453,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-value',
+        id: 'hou-value',
         label: 'Value',
         selected: 'unselected',
         type: 'subtopic',
@@ -467,7 +467,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-mortgageStatus',
+        id: 'hou-mortgageStatus',
         label: 'Mortgage Status',
         selected: 'unselected',
         type: 'subtopic',
@@ -476,7 +476,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi',
+        id: 'hou-selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi',
         label: 'Selected Monthly Owner Costs as a Percentage of Household Income',
         selected: 'unselected',
         type: 'subtopic',
@@ -485,7 +485,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-grossRent',
+        id: 'hou-grossRent',
         label: 'Gross Rent',
         selected: 'unselected',
         type: 'subtopic',
@@ -499,7 +499,7 @@ export default [
         children: [],
       },
       {
-        id: 'acs-social-grossRentAsAPercentageOfHouseholdIncomeGrapi',
+        id: 'hou-grossRentAsAPercentageOfHouseholdIncomeGrapi',
         label: 'Gross Rent as a Percentage of Household Income (GRAPI)',
         selected: 'unselected',
         type: 'subtopic',
