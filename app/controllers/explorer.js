@@ -11,9 +11,8 @@ export default class ExplorerController extends Controller {
     {
       sourceId: 'source',
     },
-    {
-      rawTopicsList: 'topics',
-    },
+    'censusTopics',
+    'acsTopics',
     'compareTo',
     'showReliability',
     'showCharts'
@@ -23,7 +22,9 @@ export default class ExplorerController extends Controller {
 
   @tracked sourceId = 'decennial-2020';
 
-  @tracked rawTopicsList = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,hispanicSubgroup,asianSubgroup,relationshipToHeadOfHouseholdHouseholder,householdType,housingOccupancy,housingTenure,tenureByAgeOfHouseholder,householdSize,demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
+  @tracked censusTopics = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,hispanicSubgroup,asianSubgroup,relationshipToHeadOfHouseholdHouseholder,householdType,housingOccupancy,housingTenure,tenureByAgeOfHouseholder,householdSize';
+
+  @tracked acsTopics = 'demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
 
   @tracked showReliability = false;
 
@@ -126,7 +127,9 @@ export default class ExplorerController extends Controller {
   }
 
   get topicsIdList() {
-    if (this.rawTopicsList === 'all'){
+    const rawTopicsList = this.source.type === 'census' ? this.censusTopics : this.acsTopics;
+
+    if (rawTopicsList === 'all'){
       if (this.source.type === 'census') {
         return censusTopicsDefault.map(topic => topic.id);
       }
@@ -134,10 +137,10 @@ export default class ExplorerController extends Controller {
       return acsTopicsDefault.reduce((topicsIdList, curTopic) => {
         return topicsIdList.concat(curTopic.children.map(subtopic => subtopic.id));
       }, []);
-    } else if (this.rawTopicsList === 'none') {
+    } else if (rawTopicsList === 'none') {
       return [];
     } else {
-      return this.rawTopicsList.split(',');
+      return rawTopicsList.split(',');
     }
   }
 
@@ -158,12 +161,9 @@ export default class ExplorerController extends Controller {
   }
 
   set topics(newTopics) {
-    if (Array.isArray(newTopics) && newTopics.length > 0) {
-      this.transitionToRoute('explorer', { queryParams: { topics: newTopics }});
-    } else {
-      // newTopics === "all" || "none"
-      this.transitionToRoute('explorer', { queryParams: { topics: newTopics }});
-    }
+    const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
+
+    this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
   }
 
   get isAllTopicsSelected() {
@@ -233,11 +233,11 @@ export default class ExplorerController extends Controller {
     if (topic.type === 'topic') {
       const topicChildrenIds = topic.children.map(subtopic => subtopic.id);
 
-        if (topic.selected === "selected" || topic.selected === "indeterminate") {
-          this.topics = this.topicsIdList.filter(topicId => !topicChildrenIds.includes(topicId));
-        } else {
-          this.topics = this.topicsIdList.concat(topicChildrenIds);
-        }
+      if (topic.selected === "selected" || topic.selected === "indeterminate") {
+        this.topics = this.topicsIdList.filter(topicId => !topicChildrenIds.includes(topicId));
+      } else {
+        this.topics = this.topicsIdList.concat(topicChildrenIds);
+      }
     }
   }
 
