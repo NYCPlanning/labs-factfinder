@@ -1,5 +1,6 @@
 // Decennial Topics
 import censusTopics from '../table-config/census';
+import censusChartConfig from '../chart-config/census';
 
 export default [
   {
@@ -8,7 +9,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.populationDensity,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -17,7 +18,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.sexAndAge,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -26,7 +27,12 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.mutuallyExclusiveRaceHispanicOrigin,
-    chartConfig: null,
+    charts: [
+      {
+        chartConfig: censusChartConfig.raceGroup,
+        chartLabel: 'Percent Distribution of Race/Hispanic Origin Groups',
+      },
+    ],
     children: [],
   },
   {
@@ -35,7 +41,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.hispanicSubgroup,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -44,7 +50,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.asianSubgroup,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -53,7 +59,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.relationshipToHeadOfHouseholdHouseholder,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -62,7 +68,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.householdType,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -71,7 +77,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.housingOccupancy,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -80,7 +86,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.housingTenure,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -89,7 +95,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.tenureByAgeOfHouseholder,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
   {
@@ -98,7 +104,7 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTopics.householdSize,
-    chartConfig: null,
+    charts: null,
     children: [],
   },
 ];
