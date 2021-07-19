@@ -25,7 +25,7 @@
         class="nestable-list-item grid-x topic-list-item"
       >
         <div class="cell small-1 clickable"
-          {{on "click" this.toggleAllTopics}}
+          {{on "click" @toggleAllTopics}}
         >
           <span class="dcp-orange">
             {{#if (eq this.isAllTopicsSelected "selected")}}
@@ -48,7 +48,7 @@
       {{#each @topics key="id" as |topic|}}
         <Ui::NestableListItem
           @item={{topic}}
-          @onItemToggle={{this.onListItemToggle}}
+          @onItemToggle={{@toggleTopic}}
         />
       {{/each}}
     </div>

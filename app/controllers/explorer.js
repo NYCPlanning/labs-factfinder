@@ -11,6 +11,9 @@ export default class ExplorerController extends Controller {
     {
       sourceId: 'source',
     },
+    {
+      rawTopicsList: 'topics',
+    },
     'compareTo',
     'showReliability',
     'showCharts'
@@ -20,17 +23,14 @@ export default class ExplorerController extends Controller {
 
   @tracked sourceId = 'decennial-2020';
 
+  @tracked rawTopicsList = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,hispanicSubgroup,asianSubgroup,relationshipToHeadOfHouseholdHouseholder,householdType,housingOccupancy,housingTenure,tenureByAgeOfHouseholder,householdSize,demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
+
   @tracked showReliability = false;
 
   @tracked disaggregate = false;
 
   // Default "0" maps to NYC
   @tracked compareTo = "0";
-
-  @tracked decennialTopics = censusTopicsDefault;
-
-  // To be converted to acsTopics
-  @tracked acsTopics = acsTopicsDefault;
 
   @tracked geoOptions = null;
 
@@ -47,6 +47,48 @@ export default class ExplorerController extends Controller {
         ...source,
         selected: false,
       }
+    });
+  }
+
+  toggleChildren = (children, selectedValue) => {
+    return children.map(child => {
+      return {
+        ...child,
+        selected: selectedValue,
+        children: this.toggleChildren(child.children, selectedValue),
+      }
+    });
+  }
+
+  toggleTopicInList = (topics, itemId) => {
+    return topics.map((topic) => {
+      if (topic.id === itemId) {
+        return {
+          ...topic,
+          selected: "selected",
+          children: this.toggleChildren(topic.children, "selected"),
+        };
+      }
+
+      if (topic.children && topic.children.length > 0) {
+        const newChildren = this.toggleTopicInList(topic.children, itemId);
+        let newSelectedValue = "indeterminate";
+
+        if (newChildren.every(child => child.selected === "selected")) {
+          newSelectedValue = "selected";
+        }
+        if (newChildren.every(child => child.selected === "unselected")) {
+          newSelectedValue = "unselected";
+        }
+
+        return {
+          ...topic,
+          selected: newSelectedValue,
+          children: newChildren
+        }
+      }
+
+      return topic;
     });
   }
 
@@ -83,22 +125,59 @@ export default class ExplorerController extends Controller {
     return 'current';
   }
 
+  get topicsIdList() {
+    if (this.rawTopicsList === 'all'){
+      if (this.source.type === 'census') {
+        return censusTopicsDefault.map(topic => topic.id);
+      }
+
+      return acsTopicsDefault.reduce((topicsIdList, curTopic) => {
+        return topicsIdList.concat(curTopic.children.map(subtopic => subtopic.id));
+      }, []);
+    } else if (this.rawTopicsList === 'none') {
+      return [];
+    } else {
+      return this.rawTopicsList.split(',');
+    }
+  }
+
   get topics() {
-    if (this.source.type === 'census') {
-      return this.decennialTopics;
+    if (Array.isArray(this.topicsIdList)) {
+      if (this.source.type === 'census') {
+        return this.topicsIdList.reduce((topicsIdList, curTopicId) => {
+          return this.toggleTopicInList(topicsIdList, curTopicId);
+        }, censusTopicsDefault);
+      }
+  
+      return this.topicsIdList.reduce((topicsIdList, curTopicId) => {
+        return this.toggleTopicInList(topicsIdList, curTopicId);
+      }, acsTopicsDefault);
     }
 
-    // this.source === 'acs'
-    return this.acsTopics;
+    return [];
   }
 
   set topics(newTopics) {
-    if (this.source.type === 'census') {
-      this.decennialTopics = newTopics;
+    if (Array.isArray(newTopics) && newTopics.length > 0) {
+      this.transitionToRoute('explorer', { queryParams: { topics: newTopics }});
+    } else {
+      // newTopics === "all" || "none"
+      this.transitionToRoute('explorer', { queryParams: { topics: newTopics }});
     }
-    if (this.source.type === 'acs') {
-      this.acsTopics = newTopics;
+  }
+
+  get isAllTopicsSelected() {
+    const { topics } = this;
+
+    if (topics.every(topic => topic.selected === "selected")) {
+      return "selected";
     }
+
+    if (topics.every(topic => topic.selected === "unselected")) {
+      return "unselected";
+    }
+
+    return "indeterminate";
   }
 
   get selectedCount() {
@@ -142,8 +221,28 @@ export default class ExplorerController extends Controller {
     this.source = newSource;
   }
 
-  @action setTopics(newTopics) {
-    this.topics = newTopics;
+  @action toggleTopic(topic) {
+    if (topic.type === 'subtopic') {
+        if (this.topicsIdList.includes(topic.id)) {
+          this.topics = this.topicsIdList.filter(topicId => topicId !== topic.id);
+        } else {
+          this.topics = this.topicsIdList.concat([topic.id]);
+        }
+    }
+
+    if (topic.type === 'topic') {
+      const topicChildrenIds = topic.children.map(subtopic => subtopic.id);
+
+        if (topic.selected === "selected" || topic.selected === "indeterminate") {
+          this.topics = this.topicsIdList.filter(topicId => !topicChildrenIds.includes(topicId));
+        } else {
+          this.topics = this.topicsIdList.concat(topicChildrenIds);
+        }
+    }
+  }
+
+  @action toggleAllTopics() {
+    this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
   }
 
   // acceptable controlId values include: 'showReliability', 'showCharts', 'disaggregate'
