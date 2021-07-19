@@ -1,6 +1,6 @@
 import Controller, { inject as controller } from '@ember/controller';
 
-import decennial from '../../table-config/decennial';
+import decennial from '../../table-config/census';
 
 const {
   populationDensity,

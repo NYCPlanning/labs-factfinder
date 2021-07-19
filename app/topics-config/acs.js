@@ -1,13 +1,13 @@
 // ACS Profile Topics
-import acsDemographicTableConfig from '../table-config/demographic';
-import acsEconomicTableConfig from '../table-config/economic';
-import acsSocialTableConfig from '../table-config/social';
-import acsHousingTableConfig from '../table-config/housing';
+import acsDemographicTableConfig from '../table-config/acs/demographic';
+import acsEconomicTableConfig from '../table-config/acs/economic';
+import acsSocialTableConfig from '../table-config/acs/social';
+import acsHousingTableConfig from '../table-config/acs/housing';
 
-import acsDemographicChartConfig from '../chart-config/demographic';
-import acsEconomicChartConfig from '../chart-config/economic';
-import acsSocialChartConfig from '../chart-config/social';
-import acsHousingChartConfig from '../chart-config/housing';
+import acsDemographicChartConfig from '../chart-config/acs/demographic';
+import acsEconomicChartConfig from '../chart-config/acs/economic';
+import acsSocialChartConfig from '../chart-config/acs/social';
+import acsHousingChartConfig from '../chart-config/acs/housing';
 
 export default [
   {

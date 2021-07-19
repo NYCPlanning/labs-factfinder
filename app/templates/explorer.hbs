@@ -85,6 +85,25 @@
                 model=@model.profile
               }}
             </div>
+
+            {{#if (and
+              (or
+                (eq this.source.id 'decennial-2020')
+                (eq this.source.id 'decennial-change')
+              )
+              this.showCharts
+            )}}
+              <div class="cell large-4 xxlarge-3">
+                {{#each subtopic.charts as |chart|}}
+                  {{acs-bar
+                    title=chart.chartLabel
+                    config=chart.chartConfig
+                    data=@model.profile
+                    height=204
+                  }}
+                {{/each}}
+              </div>
+            {{/if}}
           </div>
 
           <hr>
