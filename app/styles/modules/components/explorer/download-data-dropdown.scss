@@ -18,6 +18,7 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   border: 1px solid $silver;
   transition: all 0.2s;
   border-radius: 10px;
+  text-align: center;
   p {
     line-height: 1;
   }
@@ -32,10 +33,11 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
       min-height: 0;
     }
   }
+
   .triangle {
     position: absolute;
     top: -15px;
-    left: 175px;
+    right: 125px;
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
