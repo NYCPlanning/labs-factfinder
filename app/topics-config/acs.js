@@ -175,21 +175,7 @@ export default [
         tableConfig: acsEconomicTableConfig.incomeInPast12MonthsIsBelowThePovertyLevel,
         charts: null,
         children: [],
-      },
-      {
-        id: 'econ-ratioOfIncomeToPovertyLevel',
-        label: 'Ratio of Income to Poverty Level',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.ratioOfIncomeToPovertyLevel,
-        charts: [
-          {
-            chartConfig: acsEconomicChartConfig.ratioOfIncomeToPovertyLevel,
-            chartLabel: 'Percent Distribution of Population by Ratio of Income to Poverty Level',
-          }
-        ],
-        children: [],
-      },
+      }
     ],
   },
   {
@@ -218,15 +204,6 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.relationshipToHeadOfHouseholdHouseholder,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'soc-maritalStatus',
-        label: 'Marital Status',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsSocialTableConfig.maritalStatus,
         charts: null,
         children: [],
       },
@@ -465,53 +442,7 @@ export default [
           },
         ],
         children: [],
-      },
-      {
-        id: 'hou-mortgageStatus',
-        label: 'Mortgage Status',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsHousingTableConfig.mortgageStatus,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'hou-selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi',
-        label: 'Selected Monthly Owner Costs as a Percentage of Household Income',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsHousingTableConfig.selectedMonthlyOwnerCostsAsAPercentageOfHouseholdIncomeSmocapi,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'hou-grossRent',
-        label: 'Gross Rent',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsHousingTableConfig.grossRent,
-        charts: [
-          {
-            chartConfig: acsHousingChartConfig.grossRent,
-            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent',
-          },
-        ],
-        children: [],
-      },
-      {
-        id: 'hou-grossRentAsAPercentageOfHouseholdIncomeGrapi',
-        label: 'Gross Rent as a Percentage of Household Income (GRAPI)',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsHousingTableConfig.grossRentAsAPercentageOfHouseholdIncomeGrapi,
-        charts: [
-          {
-            chartConfig: acsHousingChartConfig.grossRentGrapi,
-            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income',
-          },
-        ],
-        children: [],
-      },
+      }
     ],
   }
 ];
