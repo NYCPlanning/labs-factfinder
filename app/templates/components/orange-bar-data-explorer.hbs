@@ -3,7 +3,7 @@
   class="grid-container fluid"
 >
   <div class="grid-x grid-margin-x">
-    <div class="cell small-10 text-left">
+    <div class="cell shrink text-left">
       <Explorer::SourceSelectDropdown
         @sources={{@sources}}
         @setSource={{@setSource}}
@@ -27,13 +27,15 @@
       />
     </div>
 
-    <div class="bar-item">
-      <Explorer::DownloadDataDropdown
-        @topics={{@topics}}
-        @sources={{@sources}}
-        @showReliability={{@showReliability}}
-        @toggleReliability={{@toggleReliability}}
-      />
+    <div class="cell auto text-right">
+      <div class="bar-item">
+        <Explorer::DownloadDataDropdown
+          @topics={{@topics}}
+          @sources={{@sources}}
+          @showReliability={{@showReliability}}
+          @toggleReliability={{@toggleReliability}}
+        />
+      </div>
     </div>
 
   </div>
