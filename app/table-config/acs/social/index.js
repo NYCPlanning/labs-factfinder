@@ -8,7 +8,6 @@ import educationalAttainmentHighestGradeCompleted from './educational-attainment
 import grandparents from './grandparents';
 import householdType from './household-type';
 import languageSpokenAtHome from './language-spoken-at-home';
-import maritalStatus from './marital-status';
 import placeOfBirth from './place-of-birth';
 import relationshipToHeadOfHouseholdHouseholder from './relationship-to-head-of-household--householder';
 import residence1YearAgo from './residence-1-year-ago';
@@ -25,7 +24,6 @@ export default {
   grandparents,
   householdType,
   languageSpokenAtHome,
-  maritalStatus,
   placeOfBirth,
   relationshipToHeadOfHouseholdHouseholder,
   residence1YearAgo,
