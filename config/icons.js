@@ -34,6 +34,7 @@ module.exports = function() {
       'dot-circle',
       'envelope',
       'hand-pointer',
+      'minus-square',
       'object-group',
       'square',
     ],
