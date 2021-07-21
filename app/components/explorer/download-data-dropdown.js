@@ -125,7 +125,7 @@ export default class DownloadDataDropdown extends Component{
     var list = this.args.topics.map(topic => {
       return {
         label: topic.label,
-        children: topic.children.filter(subtopic => subtopic.selected)
+        children: topic.children.filter((subtopic) => (subtopic.selected === "selected"))
       }
     })
     return list.filter(topiary => topiary.children.length > 0);
