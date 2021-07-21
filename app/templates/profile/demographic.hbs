@@ -1,37 +1,34 @@
 <div class="shows-signficance">
   {{profile-header
-    profile=profile
+    profile=this.profile
     title="Demographic Profile"
-    mode=profile.mode
-    data=rawData
+    mode=this.profile.mode
+    data=this.rawData
   }}
   <hr>
   <h3 id="sex-and-age" class="header-medium">Age and Sex</h3>
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
-        config=sexAndAge
-        model=model
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
+        config=this.sexAndAge
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
-        {{#population-pyramid
-          title="Age/Sex Distribution"
-          data=agePopDist
-        }}
+        <PopulationPyramid @title="Age/Sex Distribution" @data={{this.agePopDist}}>
           <h4 class="no-margin grid-x grid-margin-x" style="font-size:0.75rem;">
             <span class="cell small-6 text-right">
-              Male <br>{{numeral-format model.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2014_2018.male.percent_m '0.0%'}})</span>
+              Male <br>{{numeral-format this.model.male.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format this.model.y2014_2018.male.percent_m '0.0%'}})</span>
             </span>
             <span class="cell small-6">
-              Female <br>{{numeral-format model.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format model.y2014_2018.fem.percent_m '0.0%'}})</span>
+              Female <br>{{numeral-format this.model.fem.percent '0.0%'}}&nbsp;<span class="text-weight-normal">(±{{numeral-format this.model.y2014_2018.fem.percent_m '0.0%'}})</span>
             </span>
           </h4>
-        {{/population-pyramid}}
+        </PopulationPyramid>
       </div>
     {{/if}}
   </div>
@@ -42,19 +39,19 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
-        config=mutuallyExclusiveRaceHispanicOrigin
-        model=model
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
+        config=this.mutuallyExclusiveRaceHispanicOrigin
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Race/Hispanic Origin Groups"
-          config=raceGroupChartConfig
-          data=model
+          config=this.raceGroupChartConfig
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -66,19 +63,19 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
-        config=hispanicSubgroup
-        model=model
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
+        config=this.hispanicSubgroup
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Hispanic Subgroups"
-          config=hispanicSubgroupChartConfig
-          data=model
+          config=this.hispanicSubgroupChartConfig
+          data=this.model
           height=204}}
       </div>
     {{/if}}
@@ -90,19 +87,19 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
-        config=asianSubgroup
-        model=model
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
+        config=this.asianSubgroup
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Asian Subgroups"
-          config=asianSubgroupChartConfig
-          data=model
+          config=this.asianSubgroupChartConfig
+          data=this.model
           height=150}}
       </div>
     {{/if}}

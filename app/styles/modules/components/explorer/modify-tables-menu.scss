@@ -1,0 +1,38 @@
+#modify-tables-button {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.modify-tables-menu {
+  position: absolute;
+  top: 100%;
+  left: -42px;
+  margin-top: 15px;
+  bottom: auto;
+  background-color: $white;
+  padding: rem-calc(6) 0;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+  width: 250px !important;
+  color: $dark-gray;
+  border: 1px solid rgb(223, 225, 229);
+  border-radius: 5px;
+  text-align: left !important;
+  z-index: 100;
+
+  .triangle {
+    position: absolute;
+    top: -15px;
+    left: 105px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+
+    border-bottom: 15px solid $white;
+  }
+}
+
+.modify-tables-switch, .show-charts-switch {
+  margin-top: 3px;
+}

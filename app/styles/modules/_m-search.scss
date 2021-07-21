@@ -6,7 +6,11 @@
 
   input {
     margin-bottom: 0;
+    text-indent: rem-calc(20);
     padding-right: 2.2rem;
+    border: 1px solid #B6B6B6;
+    box-sizing: border-box;
+    border-radius: 10px;
   }
 
   .close-button {
@@ -17,13 +21,14 @@
   .search-icon {
     position: absolute;
     top: rem-calc(6);
-    right: rem-calc(10);
+    left: rem-calc(10);
     color: $light-gray;
     pointer-events: none;
   }
 }
 
 .search-results {
+  z-index: 5;
   background-color: rgba($white,0.94);
   font-size: rem-calc(12);
   width: 100%;
@@ -92,6 +97,7 @@
 }
 
 .search-results--loading {
+  z-index: 5;
   border-top: 1px solid $medium-gray;
   padding: $global-margin/2;
   color: $dark-gray;

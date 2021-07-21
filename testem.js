@@ -9,6 +9,7 @@ module.exports = {
   launch_in_dev: [
     'Chrome',
   ],
+  browser_start_timeout: 120,
   browser_args: {
     Chrome: {
       mode: 'ci',
@@ -17,6 +18,9 @@ module.exports = {
         process.env.TRAVIS ? '--no-sandbox' : null,
         // '--disable-gpu',
         '--headless',
+        '--disable-dev-shm-usage',
+        '--disable-software-rasterizer',
+        '--mute-audio',
         '--remote-debugging-port=0',
         '--window-size=1440,900',
       ].filter(Boolean),

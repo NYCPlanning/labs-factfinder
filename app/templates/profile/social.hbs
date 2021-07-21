@@ -1,9 +1,9 @@
 <div class="shows-signficance">
   {{profile-header
-    profile=profile
+    profile=this.profile
     title="Social Profile"
-    mode=profile.mode
-    data=rawData
+    mode=this.profile.mode
+    data=this.rawData
   }}
 
   <hr>
@@ -12,20 +12,20 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=householdType
-        model=model
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Household Types"
           config=householdTypeChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -37,12 +37,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=relationshipToHeadOfHouseholdHouseholder
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -53,12 +53,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=maritalStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -69,12 +69,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=grandparents
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -85,20 +85,20 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=schoolEnrollment
-        model=model
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Population 3 and Over by School Enrollment"
           config=schoolEnrollmentChartConfig
-          data=model
+          data=this.model
           height=204}}
       </div>
     {{/if}}
@@ -110,20 +110,20 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=educationalAttainmentHighestGradeCompleted
-        model=model
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Population 25 and Over by Educational Attainment"
           config=educationalAttainmentChartConfig
-          data=model
+          data=this.model
           height=150}}
       </div>
     {{/if}}
@@ -135,12 +135,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=veteranStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -151,12 +151,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=disabilityStatusOfTheCivilianNoninstitutionalizedPopulation
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -167,20 +167,20 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=residence1YearAgo
-        model=model
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Population who Lived in a Different House 1 Year Ago"
           config=residence1YearAgoChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -192,25 +192,25 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=placeOfBirth
-        model=model
+        model=this.model
       }}
     </div>
-    {{#if (and (eq profile.mode 'current') profile.charts)}}
+    {{#if (and (eq this.profile.mode 'current') this.profile.charts)}}
       <div class="cell large-4 xxlarge-3">
         {{acs-bar
           title="Percent Distribution of Total Population by Place of Birth"
           config=placeOfBirthChartConfig
-          data=model
+          data=this.model
           height=150}}
         {{acs-bar
           title="Percent Distribution of Foreign-Born by World Region of Birth"
           config=foreignBornChartConfig
-          data=model
+          data=this.model
           height=176}}
       </div>
     {{/if}}
@@ -222,12 +222,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=uSCitizenshipStatus
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -238,12 +238,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=yearOfEntry
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -254,7 +254,7 @@
     Language Spoken At Home
     <span>
       <small class="dark-gray">| data are from 2011-2015 ACS</small>
-      {{fa-icon 'question-circle' transform='shrink-6 left-4 up-2'}}
+      {{fa-icon icon='question-circle' transform='shrink-6 left-4 up-2'}}
       {{ember-tooltip
         text='Detailed language data are not available from the 2014-2018 ACS Summary File'
         side='bottom'
@@ -264,12 +264,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=languageSpokenAtHome
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -280,12 +280,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=ancestry
-        model=model
+        model=this.model
       }}
     </div>
   </div>
@@ -296,12 +296,12 @@
   <div class="grid-x grid-margin-x">
     <div class="cell large-auto">
       {{data-table
-        options=profile
-        mode=profile.mode
-        reliability=profile.reliability
-        comparison=profile.comparison
+        options=this.profile
+        mode=this.profile.mode
+        reliability=this.profile.reliability
+        comparison=this.profile.comparison
         config=computersAndInternetUse
-        model=model
+        model=this.model
       }}
     </div>
   </div>

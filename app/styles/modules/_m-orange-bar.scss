@@ -1,0 +1,168 @@
+.orange-bar {
+  background-color: #d96b27;
+  color: #fefefe;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 65px;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+  display: block !important;
+
+  .bar-item {
+    display: inline-block;
+    position: relative !important;
+    line-height: 1.5;
+    font-size:  rem-calc(14);
+    font-weight: $global-weight-bold;
+    margin: 0 10px;
+  }
+}
+
+.orange-bar--selector {
+  position: relative;
+  z-index: 11;
+  background-color: #d96b27;
+  font-size: rem-calc(12);
+  font-weight: $global-weight-bold;
+  box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px $white;
+  display: flex !important;
+
+  li:not(:last-child) {
+    border-right: 1px solid $white;
+  }
+
+  .dropdown-content a {
+    box-shadow: 0 0 0 2px $white;
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 0 0 2px $white;
+      border-bottom: 1px solid $white;
+    }
+  }
+
+  a {
+    color: $white;
+    @include breakpoint(small only) {
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+    }
+  }
+  li:hover, li:active, a:hover, a:active, .dropdown:hover .dropbtn {
+    background-color: $white;
+    color: #d96b27;
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #d96b27;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+  a {
+    background-color: #d96b27;
+  }
+  a:hover, a:active {
+    background-color: $white;
+    color: #d96b27;
+  }
+}
+.dropdown-content-left {
+  a {
+    text-align: left;
+  }
+}
+.dropsizer {
+  width: 100px;
+  position: relative;
+  border-radius: 4px;
+  border-right: 1px solid $white;
+}
+
+ul .menu li.dropdown {
+  display: inline-block;
+  width: 100px;
+}
+.dropdown:hover div, .dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropdown-content a {
+  position: relative;
+}
+.dropbtn {
+  width: 100px;
+  align-items: center;
+  height: 100%;
+}
+
+#more-options-button {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 26px;
+  width: 150px !important;
+
+  ul, li {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+#draw-tools {
+  width: 100px;
+}
+
+.five-buttons {
+  margin-top: -5px;
+
+  li {
+    width: 100px;
+    // padding: 0px;
+    align-items: center;
+  }
+  li.active {
+    background-color: white;
+  }
+  li.active a {
+    color: #d96b27;
+    padding: 0;
+  }
+  li:not(.dropdown):hover a {
+    color: #d96b27;
+  }
+}
+#neighborhood, #neighborhood:hover {
+  padding: 0;
+}
+
+.dropbtn-centered {
+  justify-content: center;
+}
+.dropbtn-left {
+  justify-content: left;
+}
+
+.orange-bar-custom-map-study {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+button .orange-bar-notification-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: #FFC861;
+  color: black;
+}

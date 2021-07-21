@@ -1,46 +1,46 @@
 {{!-- Estimate --}}
-<td class="cell-border-left {{unless model.is_reliable 'insignificant'}}" {{action 'logModel'}}>
+<td class="cell-border-left {{unless this.model.is_reliable 'insignificant'}}" {{action 'logModel'}}>
   {{format-number
-      model.sum
-      precision=rowConfig.decimal}}{{render-top-bottom-coding-suffix model.direction}}
+      this.model.sum
+      precision=this.rowConfig.decimal}}{{render-top-bottom-coding-suffix this.model.direction}}
 </td>
 
-{{#if reliabilityMode}}
+{{#if this.reliabilityMode}}
   {{!-- MOE --}}
-  <td class="{{unless model.is_reliable 'insignificant'}}">
+  <td class="{{unless this.model.is_reliable 'insignificant'}}">
     {{if
-      (and (gt model.sum 0) (not model.direction))
-        (format-number model.moe precision=rowConfig.decimal)}}
+      (and (gt this.model.sum 0) (not this.model.direction))
+        (format-number this.model.moe precision=this.rowConfig.decimal)}}
   </td>
   {{!-- CV --}}
-  <td class="{{unless model.is_reliable 'insignificant'}}">
+  <td class="{{unless this.model.is_reliable 'insignificant'}}">
     {{if
-      (and (gt model.sum 0) (not model.direction))
-        (format-number model.cv precision=1)}}
+      (and (gt this.model.sum 0) (not this.model.direction))
+        (format-number this.model.cv precision=1)}}
   </td>
 {{/if}}
 
 {{!-- Percent Estimate --}}
-<td class="{{unless model.is_reliable 'insignificant'}}">
+<td class="{{unless this.model.is_reliable 'insignificant'}}">
   {{unless
     (or
-      (eq model.percent null)
-      (eq model.sum 0))
+      (eq this.model.percent null)
+      (eq this.model.sum 0))
       (concat
-        (format-number (mult model.percent 100) precision=1)
+        (format-number (mult this.model.percent 100) precision=1)
         '%')}}
 </td>
 
 {{!-- Percent MOE --}}
-{{#if reliabilityMode}}
-  <td class="{{unless model.is_reliable 'insignificant'}}">
+{{#if this.reliabilityMode}}
+  <td class="{{unless this.model.is_reliable 'insignificant'}}">
     {{unless
       (or
-        (eq model.percent null)
-        (eq model.percent 1)
-        (eq model.sum 0))
+        (eq this.model.percent null)
+        (eq this.model.percent 1)
+        (eq this.model.sum 0))
         (concat
-          (format-number (mult model.percent_m 100) precision=1)
+          (format-number (mult this.model.percent_m 100) precision=1)
           '%')}}
   </td>
 {{/if}}

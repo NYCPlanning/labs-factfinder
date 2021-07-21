@@ -35,7 +35,7 @@ const SAMPLE_SELECTION = {
   }],
 };
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   const ENV = {
     modulePrefix: 'labs-nyc-factfinder',
     environment,
@@ -44,7 +44,7 @@ module.exports = function(environment) {
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
+        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
@@ -63,45 +63,9 @@ module.exports = function(environment) {
     },
 
     'mapbox-gl': {
-      accessToken: '',
+      accessToken: 'pk.eyJ1Ijoid21hdHRnYXJkbmVyIiwiYSI6Ii1icTRNT3MifQ.WnayxAOEoXX-jWsNmHUhyg',
       map: {
         style: 'https://labs-layers-api.herokuapp.com/v1/base/style.json',
-      },
-    },
-
-    fontawesome: {
-      icons: {
-        'free-solid-svg-icons': [
-          'arrow-left',
-          'arrow-right',
-          'arrow-up',
-          'caret-down',
-          'download',
-          'edit',
-          'exclamation-triangle',
-          'external-link-alt',
-          'file',
-          'info-circle',
-          'map',
-          'map-pin',
-          'pen',
-          'plus',
-          'question-circle',
-          'search',
-          'sliders-h',
-          'square',
-          'times',
-        ],
-        'free-regular-svg-icons': [
-          'check-square',
-          'circle',
-          'copy',
-          'dot-circle',
-          'envelope',
-          'hand-pointer',
-          'object-group',
-          'square',
-        ],
       },
     },
 
@@ -137,11 +101,20 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
+    // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
+    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    ENV['ember-cli-mirage'] = {
+      enabled: true,
+    };
   }
 
   if (environment === 'staging') {
+    // TODO: Eventually switch to https://factfinder-api-develop.herokuapp.com/ once it is ready
     ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    // TODO: Disable when we have solidified API
+    ENV['ember-cli-mirage'] = {
+      enabled: true,
+    };
   }
 
   if (environment === 'devlocal') {

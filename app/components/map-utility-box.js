@@ -19,8 +19,6 @@ export default Component.extend({
 
   choroplethConfigs,
 
-  classNames: ['map-utility-box'],
-
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,
@@ -29,8 +27,8 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  profileButtonClasses: computed('selection.selectedCount', 'generateProfileId.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateProfileId.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileId.isIdle');
+  profileButtonClasses: computed('selection.selectedCount', 'generateProfileTask.isIdle', function() {
+    const { 'selection.selectedCount': count, 'generateProfileTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileTask.isIdle');
 
     return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
   }),
@@ -87,13 +85,13 @@ export default Component.extend({
     ];
   }),
 
-  generateProfileId: task(function* (type, geoids) {
+  generateProfileTask: task(function* (type, geoids) {
     const postBody = {
       type,
       geoids,
     };
 
-    const { id } = yield fetch(`${SupportServiceHost}/selection`, {
+    const { id } = yield fetch(`${SupportServiceHost}/selection`, { // eslint-disable-line
       headers: {
         'Content-Type': 'application/json',
       },
@@ -102,63 +100,57 @@ export default Component.extend({
     })
       .then(d => d.json());
 
-    const lastreport = this.get('lastreport');
-    const blocks = this.get('selection.summaryLevel') === 'blocks';
-    const transitionRoute = blocks ? 'profile.census' : `profile.${lastreport}`;
-
     yield this.get('router')
-      .transitionTo(transitionRoute, id, {
+      .transitionTo('explorer', {
         queryParams: {
           mode: 'current', comparator: '0', reliability: false, charts: true,
         },
       });
   }).restartable(),
 
-  actions: {
-    clearSelection() {
-      this.get('selection').clearSelection();
-    },
-    handleDrawButtonClick(type) {
-      const el = this.get('element').getElementsByClassName('draw-tool');
-      this.sendAction('handleDrawButtonClick', type);
-      this.$(el).blur();
-    },
-    handleDrawRadiusButtonClick() {
-      this.sendAction('handleDrawRadiusButtonClick');
-    },
-    transitionTo() {},
+  clearSelection() {
+    this.get('selection').clearSelection();
+  },
+  handleDrawButtonClick(type) {
+    const el = this.get('element').getElementsByClassName('draw-tool');
+    this.sendAction('handleDrawButtonClick', type);
+    this.$(el).blur();
+  },
+  handleDrawRadiusButtonClick() {
+    this.sendAction('handleDrawRadiusButtonClick');
+  },
+  transitionTo() {},
 
-    generateProfileId() {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Selection',
-        eventAction: 'Created Profile',
-        eventLabel: this.get('summaryLevel'),
-        eventValue: this.get('selection.current.features.length'),
-      });
-      const type = this.get('summaryLevel');
-      const geoids = this.get('selection.current.features')
-        .mapBy('properties.geoid');
+  generateProfile() {
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Selection',
+      eventAction: 'Created Profile',
+      eventLabel: this.get('summaryLevel'),
+      eventValue: this.get('selection.current.features.length'),
+    });
+    const type = this.get('summaryLevel');
+    const geoids = this.get('selection.current.features')
+      .mapBy('properties.geoid');
 
-      this.get('generateProfileId').perform(type, geoids);
-    },
+    this.get('generateProfileTask').perform(type, geoids);
+  },
 
-    setChoroplethMode(mode) {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: 'Selected Choropleth',
-        eventLabel: this.get('choroplethMode'),
-      });
-      this.set('choroplethMode', mode);
-    },
+  setChoroplethMode(mode) {
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Advanced Options',
+      eventAction: 'Selected Choropleth',
+      eventLabel: this.get('choroplethMode'),
+    });
+    this.set('choroplethMode', mode);
+  },
 
-    toggleAdvancedOptions() {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: 'Toggle Advanced Options',
-        eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
-      });
+  toggleAdvancedOptions() {
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Advanced Options',
+      eventAction: 'Toggle Advanced Options',
+      eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
+    });
 
-      this.set('advanced', !this.get('advanced'));
-    },
+    this.set('advanced', !this.get('advanced'));
   },
 });

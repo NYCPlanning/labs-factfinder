@@ -1,71 +1,71 @@
-{{#unless rowConfig.divider}}
+{{#unless this.rowConfig.divider}}
   <td class='title-column' {{action 'showData'}}>
     <span>
-      {{rowConfig.title}}
-      {{#if rowConfig.tooltip}}
-        {{fa-icon 'question-circle' transform='shrink-2'}}
-        {{ember-tooltip text=rowConfig.tooltip side='right'}}
+      {{this.rowConfig.title}}
+      {{#if this.this.rowConfig.tooltip}}
+        {{fa-icon icon='question-circle' transform='shrink-2'}}
+        {{ember-tooltip text=this.this.rowConfig.tooltip side='right'}}
       {{/if}}
     </span>
   </td>
 
   {{!-- SELECTED AREA --}}
-  {{#if (eq data.selection.sum null)}}
+  {{#if (eq this.data.selection.sum null)}}
     <td class="cell-border-left" class="no-compare-message"><div>Data are not available</div></td>
     <td>&nbsp;</td>
   {{else}}
     {{data-table-column-group
-      model=data.selection
-      rowConfig=rowConfig
-      reliabilityMode=reliability}}
+      model=this.data.selection
+      rowConfig=this.rowConfig
+      reliabilityMode=this.reliability}}
   {{/if}}
 
   {{!-- COMPARISON AREA --}}
   {{data-table-column-group
-    model=data.comparison
-    rowConfig=rowConfig
-    reliabilityMode=reliability}}
+    model=this.data.comparison
+    rowConfig=this.rowConfig
+    reliabilityMode=this.reliability}}
 
   {{!-- DIFFERENCE --}}
   <td
     class="cell-border-left
     {{if
       (or
-        (not data.significant)
-        (and (eq data.sum 0) (eq data.comparison_sum 0)))
+        (not this.data.significant)
+        (and (eq this.data.sum 0) (eq this.data.comparison_sum 0)))
       'insignificant'}}">
-    {{unless (eq data.difference_sum null)
+    {{unless (eq this.data.difference_sum null)
       (format-number
-          data.difference_sum
-          precision=rowConfig.decimal)}}
+          this.data.difference_sum
+          precision=this.rowConfig.decimal)}}
   </td>
-  {{#if reliability}}
+  {{#if this.reliability}}
     <td class="
       {{if
         (or
-          (not data.significant)
-          (and (eq data.sum 0) (eq data.comparison_sum 0)))
+          (not this.data.significant)
+          (and (eq this.data.sum 0) (eq this.data.comparison_sum 0)))
         'insignificant'}}">
-      {{unless (eq data.difference_m null)
+      {{unless (eq this.data.difference_m null)
           (format-number
-            data.difference_m
-            precision=rowConfig.decimal)}}
+            this.data.difference_m
+            precision=this.rowConfig.decimal)}}
     </td>
   {{/if}}
 
     <td
-      class="{{unless data.percent_significant 'insignificant'}} difference-percent">
-      {{unless (eq data.difference_percent null)
+      class="{{unless this.data.percent_significant 'insignificant'}} difference-percent">
+      {{unless (eq this.data.difference_percent null)
           (format-number
-            data.difference_percent
+            this.data.difference_percent
             precision=1)}}
     </td>
-    {{#if reliability}}
+    {{#if this.reliability}}
       <td
-        class="{{unless data.percent_significant 'insignificant'}} difference-percent-m">
-        {{unless (eq data.difference_percent_m null)
+        class="{{unless this.data.percent_significant 'insignificant'}} difference-percent-m">
+        {{unless (eq this.data.difference_percent_m null)
           (format-number
-            data.difference_percent_m
+            this.data.difference_percent_m
             precision=1)}}
       </td>
     {{/if}}
@@ -75,7 +75,7 @@
   <td>&nbsp;</td>
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}
+  {{#if this.reliability}}
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -83,7 +83,7 @@
 
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}
+  {{#if this.reliability}}
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -91,7 +91,7 @@
 
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}
+  {{#if this.reliability}}
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   {{/if}}

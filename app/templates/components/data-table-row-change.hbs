@@ -1,62 +1,92 @@
-{{#unless (or rowConfig.divider noPriorData)}}
+{{#unless (or @rowConfig.divider this.noPriorData)}}
   <td class='title-column' {{action 'showData'}}>
     <span>
-      {{rowConfig.title}}
-      {{#if rowConfig.tooltip}}
-        {{fa-icon 'question-circle' transform='shrink-2'}}
-        {{ember-tooltip text=rowConfig.tooltip side='right'}}
+      {{@rowConfig.title}}
+      {{#if @rowConfig.tooltip}}
+        {{fa-icon icon='question-circle' transform='shrink-2'}}
+        {{ember-tooltip text=@rowConfig.tooltip side='right'}}
       {{/if}}
     </span>
   </td>
 
   {{!-- OLD --}}
   {{data-table-column-group
-    model=data.previous
-    rowConfig=rowConfig
-    reliabilityMode=reliability}}
+    model=@data.previous
+    rowConfig=@rowConfig
+    reliabilityMode=@reliability}}
 
   {{!-- CURRENT --}}
    {{data-table-column-group
-    model=data.selection
-    rowConfig=rowConfig
-    reliabilityMode=reliability}}
+    model=@data.selection
+    rowConfig=@rowConfig
+    reliabilityMode=@reliability}}
 
   {{!-- CHANGE --}}
 
   {{!-- Estimate --}}
-  <td class="cell-border-left change-estimate {{unless data.change_significant 'insignificant'}}">
-    {{unless (eq data.change_sum null)
-      (format-number
-          data.change_sum
-          precision=rowConfig.decimal)}}
+  <td class="cell-border-left change-estimate {{unless @data.change_significant 'insignificant'}}">
+    {{#unless (eq @data.change_sum null)}}
+      {{format-number
+        @data.change_sum
+        precision=@rowConfig.decimal
+      }}
+
+      {{#if (and
+        (gt @data.change_sum 0)
+        (lt @data.change_moe @data.change_sum)
+      )}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (and
+        (lt @data.change_sum 0)
+        (gt @data.change_m @data.change_sum)
+      )}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
+    {{/unless}}
   </td>
 
-  {{#if reliability}}
+  {{#if @reliability}}
     {{!-- MOE --}}
-    <td class="{{unless data.change_significant 'insignificant'}} change-estimate-moe">
-      {{unless (eq data.change_m null)
+    <td class="{{unless @data.change_significant 'insignificant'}} change-estimate-moe">
+      {{unless (eq @data.change_m null)
         (format-number
-            data.change_m
-            precision=rowConfig.decimal)}}
+            @data.change_m
+            precision=@rowConfig.decimal)}}
     </td>
   {{/if}}
 
   {{!-- percent --}}
-  <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent">
-    {{unless (eq data.change_percent null)
-      (concat
-        (format-number (mult data.change_percent 100) precision=1)
+  <td class="{{unless @data.change_percent_significant 'insignificant'}} change-percent">
+    {{#unless (eq @data.change_percent null)}}
+      {{concat
+        (format-number (mult @data.change_percent 100) precision=1)
         '%'
-      )
-    }}
+      }}
+
+      {{#if (and
+        (gt @data.change_percent 0)
+        (lt @data.change_percent_m @data.change_percent)
+      )}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (and
+        (lt @data.change_percent 0)
+        (gt @data.change_percent_m @data.change_percent)
+      )}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
+    {{/unless}}
   </td>
 
-  {{#if reliability}}
+  {{#if @reliability}}
     {{!-- Percent M --}}
-    <td class="{{unless data.change_percent_significant 'insignificant'}} change-percent-moe">
-      {{unless (eq data.change_percent_m null)
+    <td class="{{unless @data.change_percent_significant 'insignificant'}} change-percent-moe">
+      {{unless (eq @data.change_percent_m null)
         (concat
-          (format-number (mult data.change_percent_m 100) precision=1)
+          (format-number (mult @data.change_percent_m 100) precision=1)
           '%'
         )
       }}
@@ -64,41 +94,56 @@
   {{/if}}
 
   {{!-- percentage point --}}
-  <td class="{{unless data.change_percentage_point_significant 'insignificant'}} change-percentage-point">
+  <td class="{{unless @data.change_percentage_point_significant 'insignificant'}} change-percentage-point">
     {{#unless
-        (or
-          data.isSpecial
-          (eq data.change_percentage_point null)
-        )}}
+      (or
+        @data.isSpecial
+        (eq @data.change_percentage_point null)
+      )
+    }}
       {{format-number
-        (mult data.change_percentage_point 100)
+        (mult @data.change_percentage_point 100)
         precision=1}}
+
+      {{#if (and
+        (gt @data.change_percentage_point 0)
+        (lt @data.change_percentage_point_m @data.change_percentage_point)
+      )}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (and
+        (lt @data.change_percentage_point 0)
+        (gt @data.change_percentage_point_m @data.change_percentage_point)
+      )}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
     {{/unless}}
   </td>
 
-  {{#if reliability}}
+  {{#if @reliability}}
     {{!-- percentage point m --}}
-    <td class="{{unless data.change_percentage_point_significant 'insignificant'}} change-percentage-point-moe">
+    <td class="{{unless @data.change_percentage_point_significant 'insignificant'}} change-percentage-point-moe">
       {{#unless
           (or
-            data.isSpecial
-            (eq data.change_percentage_point_m null)
+            @data.isSpecial
+            (eq @data.change_percentage_point_m null)
           )}}
         {{format-number
-          (mult data.change_percentage_point_m 100)
+          (mult @data.change_percentage_point_m 100)
           precision=1}}
       {{/unless}}
     </td>
   {{/if}}
 {{else}}
-  {{#if noPriorData}}
+  {{#if this.noPriorData}}
     {{!-- if 2006-2010 sum is null, just return empty cells --}}
     <td class='title-column' {{action 'showData'}}>
       <span>
-        {{rowConfig.title}}
-        {{#if rowConfig.tooltip}}
-          {{fa-icon 'question-circle' transform='shrink-2'}}
-          {{ember-tooltip text=rowConfig.tooltip side='right'}}
+        {{@rowConfig.title}}
+        {{#if @rowConfig.tooltip}}
+          {{fa-icon icon='question-circle' transform='shrink-2'}}
+          {{ember-tooltip text=@rowConfig.tooltip side='right'}}
         {{/if}}
       </span>
     </td>
@@ -110,22 +155,22 @@
     <td class="cell-border-left">&nbsp;</td>
   {{/if}}
   <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
 
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
 
   <td class="cell-border-left">&nbsp;</td>
   <td>&nbsp;</td>
   <td>&nbsp;</td>
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
-  {{#if reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
+  {{#if @reliability}}<td>&nbsp;</td>{{/if}}
 {{/unless}}
 
 {{yield}}

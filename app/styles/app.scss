@@ -1,66 +1,36 @@
-//
-// Labs UI variables
-// --------------------------------------------------
-@import 'labs-ui/variables';
+@import 'util/util';
+@import 'nyc-planning-variables';
 
 // HACK!!! This should be fixed in Labs UI
 $hr-width: auto;
 $table-border: 1px solid $silver;
 
-
 //
 // Foundation
 // --------------------------------------------------
-@import "foundation-sites/foundation";
-// @include foundation-everything;
+@import 'foundation';
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
-//@include foundation-grid;
-//@include foundation-flex-grid;
 @include foundation-flex-classes;
 @include foundation-typography;
 @include foundation-forms;
 @include foundation-button;
-// @include foundation-accordion;
-// @include foundation-accordion-menu;
 @include foundation-badge;
-// @include foundation-breadcrumbs;
 @include foundation-button-group;
 @include foundation-callout;
-// @include foundation-card;
 @include foundation-close-button;
 @include foundation-menu;
-// @include foundation-menu-icon;
-// @include foundation-drilldown-menu;
 @include foundation-dropdown;
 @include foundation-dropdown-menu;
 @include foundation-responsive-embed;
 @include foundation-label;
-// @include foundation-media-object;
-// @include foundation-off-canvas;
-// @include foundation-orbit;
-// @include foundation-pagination;
-// @include foundation-progress-bar;
-// @include foundation-slider;
-// @include foundation-sticky;
 @include foundation-reveal;
 @include foundation-switch;
 @include foundation-table;
-// @include foundation-tabs;
-// @include foundation-thumbnail;
-// @include foundation-title-bar;
-// @include foundation-tooltip;
 @include foundation-top-bar;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
-
-
-//
-// Labs UI Modules
-// --------------------------------------------------
-@import 'labs-ui/all-modules';
-
 
 //
 // Custom App Modules
@@ -70,13 +40,22 @@ $table-border: 1px solid $silver;
 @import 'modules/_m-advanced-options';
 @import 'modules/_m-charts';
 @import 'modules/_m-dropzone';
-// @import 'modules/_m-icons';
-// @import 'modules/_m-labs-beta-notice';
+@import 'modules/_m-colors'; // ported from labs-ui
+@import 'modules/_m-site-header'; // ported from labs-ui
 @import 'modules/_m-maps';
+@import 'modules/_m-orange-bar';
 @import 'modules/_m-reveal-modal';
+@import 'modules/m-layer-groups-menu';
 @import 'modules/_m-search';
-// @import 'modules/_m-site-header';
 @import 'modules/_m-spinner';
-// @import 'modules/_m-tooltips';
 
 @import "ember-power-select";
+
+// Component styles
+@import 'modules/components/custom-map-study/toolbar';
+@import 'modules/components/explorer/toolbar';
+@import 'modules/components/explorer/topic-select-dropdown';
+@import 'modules/components/explorer/source-select-dropdown';
+@import 'modules/components/explorer/download-data-dropdown';
+@import 'modules/components/explorer/modify-tables-menu.scss';
+@import 'modules/components/ui/nestable-list-item';

@@ -1,10 +1,5 @@
-{{#profile-header
-  profile=profile
-  title="2010 Census Profile"
-  mode=profile.mode
-  data=rawData
-}}
-{{/profile-header}}
+<ProfileHeader @profile={{this.profile}} @title="2010 Census Profile" @mode={{this.profile.mode}} @data={{this.rawData}}>
+</ProfileHeader>
 
 <hr>
 
@@ -14,10 +9,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=populationDensity
-      model=model
+      config=this.populationDensity
+      model=this.model
     }}
   </div>
 </div>
@@ -30,10 +25,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=sexAndAge
-      model=model
+      config=this.sexAndAge
+      model=this.model
     }}
   </div>
 </div>
@@ -46,10 +41,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=mutuallyExclusiveRaceHispanicOrigin
-      model=model
+      config=this.mutuallyExclusiveRaceHispanicOrigin
+      model=this.model
     }}
   </div>
 </div>
@@ -59,7 +54,7 @@
 <h3 id="hispanic-subgroup" class="header-medium">
   <span>
     Hispanic Subgroup
-    {{fa-icon 'question-circle' transform='shrink-6 left-4 up-2'}}
+    {{fa-icon icon='question-circle' transform='shrink-6 left-4 up-2'}}
     {{ember-tooltip
       text='Hispanic subgroup data from 2000 are simulated totals, prepared by the U.S. Census Bureau, 2003'
       side='bottom'
@@ -71,10 +66,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=hispanicSubgroup
-      model=model
+      config=this.hispanicSubgroup
+      model=this.model
     }}
   </div>
 </div>
@@ -87,10 +82,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=asianSubgroup
-      model=model
+      config=this.asianSubgroup
+      model=this.model
     }}
   </div>
 </div>
@@ -103,10 +98,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=relationshipToHeadOfHouseholdHouseholder
-      model=model
+      config=this.relationshipToHeadOfHouseholdHouseholder
+      model=this.model
     }}
   </div>
 </div>
@@ -119,10 +114,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=householdType
-      model=model
+      config=this.householdType
+      model=this.model
     }}
   </div>
 </div>
@@ -135,10 +130,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=housingOccupancy
-      model=model
+      config=this.housingOccupancy
+      model=this.model
     }}
   </div>
 </div>
@@ -151,10 +146,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=housingTenure
-      model=model
+      config=this.housingTenure
+      model=this.model
     }}
   </div>
 </div>
@@ -167,10 +162,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=tenureByAgeOfHouseholder
-      model=model
+      config=this.tenureByAgeOfHouseholder
+      model=this.model
     }}
   </div>
 </div>
@@ -183,10 +178,10 @@
     {{data-table
       decennial=true
       reliability=false
-      mode=profile.mode
+      mode=this.profile.mode
       comparison=true
-      config=householdSize
-      model=model
+      config=this.householdSize
+      model=this.model
     }}
   </div>
 </div>

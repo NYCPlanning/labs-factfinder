@@ -1,0 +1,127 @@
+<div
+  class="bar-item"
+>
+  <button
+    id="modify-tables-button"
+    class="menu orange-bar--selector"
+    role="button"
+    {{on "click" this.toggleOpen}}
+  >
+    <a>
+      {{fa-icon icon='edit'}}
+      Modify Tables
+    </a>
+  </button>
+
+
+  {{#if this.open}}
+    <div class="modify-tables-menu">
+      <div class="triangle">
+      </div>
+
+      <div class="grid-container fluid">
+        <div class="grid-x">
+          <div class="cell small-2">
+            <div class="switch tiny modify-tables-switch">
+              <input
+                id="show-reliability-switch"
+                type="checkbox"
+                checked={{@showReliability}}
+                name="show-reliability-switch"
+                class="switch-input"
+                {{on "click" (fn @toggleBooleanControl 'showReliability')}}
+              />
+              <label class="switch-paddle" for="show-reliability-switch"></label>
+            </div>
+          </div>
+          <div class="cell auto">
+              Show Reliability Data
+          </div>
+          <div class="cell small-1 text-left">
+            <small>
+              {{labs-ui/icon-tooltip
+                tip=(t 'explorer.modify-tables.showReliabilityData')
+                icon='question-circle'
+                side="right"
+                fixedWith=true
+              }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-container fluid">
+        <div class="grid-x">
+          <div class="cell small-2">
+            <div class="switch tiny modify-tables-switch">
+              <Input
+                @id="disaggregate-switch"
+                @type="checkbox"
+                @checked={{@disaggregate}}
+                name="disaggregate-switch"
+                class="switch-input"
+              />
+              <label class="switch-paddle" for="disaggregate-switch"></label>
+            </div>
+          </div>
+          <div class="cell auto">
+              Disaggregate
+          </div>
+          <div class="cell small-1 text-left">
+            <small>
+              {{labs-ui/icon-tooltip
+                tip=(t 'explorer.modify-tables.disaggregate')
+                icon='question-circle'
+                side="right"
+                fixedWith=true
+              }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      {{#if (and
+        (eq @mode 'current')
+        @geoOptions
+        @selectedGeo
+      )}}
+        <div class="grid-container fluid">
+          <div class="profile-comparison-controls grid-x align-middle">
+            <div class="cell small-12">
+              <strong>
+                Compare&nbsp;to:&nbsp;&nbsp;
+              </strong>
+            </div>
+            <div class="cell small-12">
+              <ComparisonAreaSelector
+                @geoOptions={{@geoOptions}}
+                @selectedGeo={{@selectedGeo}}
+                @onSelect={{@updateCompareTo}}
+              />
+            </div>
+          </div>
+        </div>
+      {{/if}}
+
+      <div class="grid-container fluid">
+        <div class="grid-x">
+          <div class="cell auto text-right">
+            <small>
+              Guidance on ACS Data&nbsp;&nbsp;
+            </small>
+          </div>
+          <div class="cell small-1 text-left">
+            <small>
+              {{labs-ui/icon-tooltip
+                tip=(t 'explorer.modify-tables.guidanceOnAcsData')
+                icon='question-circle'
+                side="right"
+                fixedWith=true
+              }}
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</div>

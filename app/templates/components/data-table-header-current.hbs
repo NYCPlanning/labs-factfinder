@@ -1,29 +1,37 @@
 <table class="header-table">
   <thead>
     <tr>
-      <th rowspan="{{if reliability "3" "2"}}">
-        {{#unless decennial}}
-          <a {{action (mut reliability) (not reliability)}}>
+      <th rowspan="{{if this.reliability "3" "2"}}">
+        {{#unless this.decennial}}
+          <a {{action (mut this.reliability) (not this.reliability)}}>
             <span class="dcp-orange">
-              {{#if reliability}}
-                {{fa-icon 'check-square' prefix='far' fixedWidth=true}}
+              {{#if this.reliability}}
+                {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
               {{else}}
-                {{fa-icon 'square' prefix='far' fixedWidth=true}}
+                {{fa-icon icon='square' prefix='far' fixedWidth=true}}
               {{/if}}
             </span>
             Show Reliability Data
           </a>
         {{/unless}}
       </th>
-      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">
+      <th colspan="{{if this.reliability "5" "2"}}" class="text-center cell-border-bottom">
         Selected Area
       </th>
-      <th colspan="{{if reliability "5" "2"}}" class="text-center cell-border-bottom">
-        {{selection.comparisonLabel}}
+      <th colspan="{{if this.reliability "5" "2"}}" class="text-center cell-border-bottom">
+        {{#if this.compareToLabel}}
+          {{this.compareToLabel}}
+        {{else}}
+          <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        {{/if}}
       </th>
-      <th colspan="{{if reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
+      <th colspan="{{if this.reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
     </tr>
-    {{#if reliability}}
+    {{#if this.reliability}}
     <tr>
       <th colspan="3" class="text-center cell-border-bottom">Number</th>
       <th colspan="2" class="text-center cell-border-bottom">Percent</th>
@@ -39,7 +47,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             MOE
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Margin of error'
               side='left'
@@ -49,7 +57,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             CV
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Coefficient of variation'
               side='left'
@@ -60,7 +68,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             MOE
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Margin of error'
               side='left'
@@ -72,7 +80,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             MOE
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Margin of error'
               side='left'
@@ -82,7 +90,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             CV
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Coefficient of variation'
               side='left'
@@ -93,7 +101,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             MOE
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Margin of error'
               side='left'
@@ -105,7 +113,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             MOE
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Margin of error'
               side='left'
@@ -116,7 +124,7 @@
         <th class="text-right cell-border-bottom">
           <span>
             MOE
-            {{fa-icon 'question-circle' transform='shrink-2'}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Margin of error'
               side='left'

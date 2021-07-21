@@ -1,3 +1,112 @@
+
+// --------------------------------------------------
+// Base: Typography
+// --------------------------------------------------
+
+//
+// Headings
+// --------------------------------------------------
+.header-xxlarge { @extend h1; }
+.header-xlarge {  @extend h2; }
+.header-large {   @extend h3; }
+.header-medium {  @extend h4; }
+.header-small {   @extend h5; }
+.header-tiny {    @extend h6; }
+
+h6,
+.header-tiny {
+  text-transform: uppercase;
+  font-weight: $global-weight-normal;
+  margin-bottom: 0.5em;
+}
+
+
+//
+// Buttons
+// --------------------------------------------------
+button {
+  cursor: pointer;
+}
+
+.button.gray {
+  background-color: $white-smoke;
+  color: darken($primary-color, 10%);
+
+  &:hover {
+    background-color: darken($white-smoke, 10%);
+    color: darken($primary-color, 20%);
+  }
+}
+
+
+//
+// Typography helper classes
+// --------------------------------------------------
+.nowrap,
+.no-wrap {
+  white-space: nowrap;
+}
+
+.text-small {
+  font-size: rem-calc(13);
+  line-height: 1.7;
+}
+
+.text-tiny {
+  font-size: rem-calc(10);
+  line-height: 1.5;
+}
+
+.text-weight-normal {
+  font-weight: $global-weight-normal;
+}
+
+.text-weight-bold {
+  font-weight: $global-weight-bold;
+}
+
+
+//
+// Margin helper classes
+// --------------------------------------------------
+.no-margin {
+  margin: 0 !important;
+}
+
+$sides: top right bottom left;
+@each $side in $sides {
+  $i: index($sides, $side);
+
+  .no-margin-#{$side} {
+    margin-#{$side}: 0 !important;
+  }
+
+  .tiny-margin-#{$side} {
+    margin-#{$side}: $global-margin/4 !important;
+  }
+
+  .small-margin-#{$side} {
+    margin-#{$side}: $global-margin/2 !important;
+  }
+
+  .medium-margin-#{$side} {
+    margin-#{$side}: $global-margin !important;
+  }
+
+  .large-margin-#{$side} {
+    margin-#{$side}: $global-margin*2 !important;
+  }
+}
+
+
+//
+// Inputs
+// --------------------------------------------------
+::-ms-clear {
+  // nix IE's default clear buttons
+  display: none;
+}
+
 // --------------------------------------------------
 // Base: Typography
 // --------------------------------------------------
@@ -150,6 +259,10 @@ button {
 }
 
 
+.active-route {
+  color: $primary-color !important;
+}
+
 //
 // Profiles
 // --------------------------------------------------
@@ -176,6 +289,7 @@ button {
 
 .profile-comparison-controls {
   font-size: rem-calc(14);
+  margin-top: $global-margin/2;
   margin-bottom: $global-margin/2;
 }
 
@@ -516,6 +630,9 @@ tr {
 // --------------------------------------------------
 .draw-tools--container {
   position: relative;
+  width: 150px;
+  height: 33.21px;
+  left: 25px;
   z-index: 2;
 
   .fa {
@@ -525,7 +642,9 @@ tr {
   }
 }
 
-.draw-tools--trigger {}
+.draw-tools--trigger {
+  border-radius: 5px;
+}
 
 .draw-tools {
 
@@ -540,7 +659,7 @@ tr {
     &.active {
       display: block;
       position: absolute;
-      top: 0;
+      top: 33.21px;
       left: 0;
     }
   }

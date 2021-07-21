@@ -1,3 +1,8 @@
-{{#power-select searchField='label' selected=selected options=nestedOptions onchange=(action 'updateProperty') as |area|}}
+<PowerSelect
+  @searchField="label"
+  @options={{this.nestedGeoOptions}}
+  @selected={{@selectedGeo}}
+  @onChange={{fn this.updateProperty}}
+as |area|>
   {{area.label}}
-{{/power-select}}
+</PowerSelect>

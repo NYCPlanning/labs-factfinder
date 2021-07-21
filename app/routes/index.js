@@ -17,6 +17,15 @@ export default Route.extend({
    */
   layerGroupService: service('layerGroups'),
 
+  intl: service(),
+
+
+  beforeModel() {
+    this._super(...arguments);
+
+    this.intl.setLocale(['en-us']);
+  },
+
   /**
    * EmberJS Route model hook, which is responsible for fetching data. In this case,
    * it's used to query for layer groups.
@@ -56,6 +65,8 @@ export default Route.extend({
    */
   setupController(controller, model) {
     const { layerGroups } = model;
+
+    // this is usually important for hoisting internal layer state into the query params
     this.get('layerGroupService').initializeObservers(layerGroups, controller);
     this._super(controller, model);
   },
