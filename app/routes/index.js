@@ -51,6 +51,7 @@ export default Route.extend({
         { id: 'factfinder--pumas', visible: false },
 
         { id: 'subway', visible: false },
+        { id: 'choropleths', visible: false},
       ],
     });
 

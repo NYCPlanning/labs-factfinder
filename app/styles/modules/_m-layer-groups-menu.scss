@@ -25,7 +25,26 @@
   }
 }
 
-.layer-groups-container-title {
+.layer-group-toggle-title {
+  
+  padding: rem-calc(6) 0 rem-calc(6);
+  padding-right: 1em;
+  position: relative;
+  text-align: left;
+  width: 100%;
+
+  .layer-group-toggle-label {
+    color: #ae561f;
+    font-size: rem-calc(20);
+    font-weight: $global-weight-bold;
+  }
+
+  .layer-group-toggle-header .switch {
+    margin: 0.75rem 0;
+  }
+}
+
+.layer-groups-accordion-toggle {
   font-size: rem-calc(20);
   font-weight: $global-weight-bold;
   padding: rem-calc(6) 0 rem-calc(6) rem-calc(28);
@@ -48,8 +67,7 @@
 
     position: absolute;
     top: 7px;
-    // margin-top: -0.4em;
-    left: 0;
+    left: 5px;
   }
   &.open::after {
     transform: rotate(90deg);

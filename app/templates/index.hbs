@@ -44,14 +44,6 @@
       </map.source>
     {{/if}}
 
-    {{map.layer-group
-      config=layerGroups.choropleths
-      visible=false}}
-
-    {{map.source
-      sourceId='choropleths'
-      options=choroplethsSource}}
-
     {{#if this.selection.current}}
       <map.source @sourceId="selected-features" @options={{this.selectedSource}} as |source|>
         {{source.layer

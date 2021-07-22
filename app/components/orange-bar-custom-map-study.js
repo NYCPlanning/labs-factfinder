@@ -23,8 +23,8 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  profileButtonClasses: computed('selection.selectedCount', 'generateProfileId.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateProfileId.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileId.isIdle');
+  profileButtonClasses: computed('selection.selectedCount', 'generateProfileTask.isIdle', function() {
+    const { 'selection.selectedCount': count, 'generateProfileTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileTask.isIdle');
 
     return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
   }),

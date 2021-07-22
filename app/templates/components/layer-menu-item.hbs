@@ -1,54 +1,16 @@
-{{#if this.layer}}
-  <div class="layer-menu-item-header" {{action 'toggleVisibility'}}>
-
-    {{#if (or this.warning this.titleTooltip)}}
-      {{#if this.warning}}
-        <span class="float-right gold">
-          {{labs-ui/icon-tooltip
-            icon='exclamation-triangle'
-            tip='Some information may not visible at this zoom level.'
-            side='left'
-          }}
-        </span>
-      {{/if}}
-      {{#if this.titleTooltip}}
-        <span class="float-right">
-          {{labs-ui/icon-tooltip
-            icon='question-circle'
-            tip=this.titleTooltip
-            side='left'
-          }}
-        </span>
-      {{/if}}
-    {{/if}}
-
-    {{switch-toggle checked=this.visible}}
-
-    {{this.title}}
-
-    {{#if this.visible}}
-
-      {{#with this.legendIcon as |legendIcon|}}
-        {{#if (eq legendIcon 'admin-line')}}
-          <span class="layer-group-legend" style="border-color:{{this.legendColor}};"></span>
-        {{/if}}
-        {{#if (eq legendIcon 'polygon')}}
-          <span class="icon polygon legend-icon" style="background-color:{{this.legendColor}};"></span>
-        {{/if}}
-      {{/with}}
-    {{/if}}
-
-
-  </div>
-
-  {{#if this.visible}}
+<div class="layer-group-toggle-title">
+  {{#labs-ui/layer-group-toggle
+    label=this.model.legend.label
+    active=this.model.visible
+    icon=this.model.legend.icon
+  }}
+  {{/labs-ui/layer-group-toggle}}
+</div>
+{{#if this.model.visible}}
     <div class="layer-menu-item-content">
       {{~yield (hash
-        layer=this.layer
-        updateSql=(action 'updateSql')
+        model=this.model
         updatePaintFor=(action 'updatePaintFor')
-        )~}}
+      )~}}
     </div>
-  {{/if}}
-
 {{/if}}
