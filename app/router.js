@@ -8,14 +8,6 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () { // eslint-disable-line
-  // TODO: Deprecate, migrate to /explorer
-  this.route('profile', { path: 'profile/:id' }, function () {
-    this.route('census');
-    this.route('demographic');
-    this.route('social');
-    this.route('economic');
-    this.route('housing');
-  });
   this.route('explorer');
   this.route('about');
   this.route('features');
