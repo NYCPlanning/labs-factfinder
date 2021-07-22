@@ -36,7 +36,7 @@
         {{/each}}
       {{else}}
         {{#each @topics as |topic|}}
-          {{#if topic.selected}}
+          {{#if (eq topic.selected 'selected')}}
             <p>{{topic.label}}</p>
           {{/if}}
         {{/each}}
