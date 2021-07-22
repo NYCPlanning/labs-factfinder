@@ -91,7 +91,7 @@ export default Component.extend({
       geoids,
     };
 
-    const { id } = yield fetch(`${SupportServiceHost}/selection`, {
+    const { id } = yield fetch(`${SupportServiceHost}/selection`, { // eslint-disable-line
       headers: {
         'Content-Type': 'application/json',
       },
@@ -100,12 +100,8 @@ export default Component.extend({
     })
       .then(d => d.json());
 
-    const lastreport = this.get('lastreport');
-    const blocks = this.get('selection.summaryLevel') === 'blocks';
-    const transitionRoute = blocks ? 'profile.census' : `profile.${lastreport}`;
-
     yield this.get('router')
-      .transitionTo(transitionRoute, id, {
+      .transitionTo('explorer', {
         queryParams: {
           mode: 'current', comparator: '0', reliability: false, charts: true,
         },

@@ -2,252 +2,121 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-// Decennial Topics
-import decennialTopics from '../table-config/decennial';
-
-// ACS Demographic Profile Topics
-import acsDemographic from '../table-config/demographic';
-import acsSocial from '../table-config/social';
+import sourcesDefault from '../sources-config';
+import censusTopicsDefault from '../topics-config/census';
+import acsTopicsDefault from '../topics-config/acs';
 
 export default class ExplorerController extends Controller {
-  showChart = true;
-
-  @tracked sources = [
+  queryParams = [
     {
-      id: 'decennial-2020',
-      label: '2020 Decennial Census',
-      type: 'census',
-      year: '2020',
-      changeOverTime: false,
-      selected: true,
+      sourceId: 'source',
     },
-    {
-      id: 'decennial-2010',
-      label: '2010 Decennial Census',
-      type: 'census',
-      year: '2010',
-      changeOverTime: false,
-      selected: false,
-    },
-    {
-      id: 'decennial-change',
-      label: 'Change over Time: Decennial Census 2020, 2010',
-      type: 'census',
-      year: null,
-      changeOverTime: true,
-      selected: false,
-    },
-    {
-      id: 'acs-2015-2019',
-      label: '2015 - 2019 ACS',
-      type: 'acs',
-      year: '2015-2019',
-      changeOverTime: false,
-      selected: false,
-    },
-    {
-      id: 'acs-2006-2010',
-      label: '2006 - 2010 ACS',
-      type: 'acs',
-      year: '2006-2010',
-      changeOverTime: false,
-      selected: false,
-    },
-    {
-      id: 'acs-change',
-      label: 'Change over Time: ACS 2006-2010 to 2015-2019',
-      type: 'acs',
-      year: null,
-      changeOverTime: true,
-      selected: false,
-    },
+    'censusTopics',
+    'acsTopics',
+    'compareTo',
+    'showReliability',
+    'showCharts'
   ];
 
-  topic = null;
+  @tracked showCharts = true;
+
+  @tracked sourceId = 'decennial-2020';
+
+  @tracked censusTopics = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,housingOccupancy';
+
+  @tracked acsTopics = 'demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
 
   @tracked showReliability = false;
 
   @tracked disaggregate = false;
 
-  @tracked compareTo = null;
+  // Default "0" maps to NYC
+  @tracked compareTo = "0";
 
-  @tracked decennialTopics = [
-    {
-      id: 'decennial - Population Density',
-      label: 'Population Density',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.populationDensity,
-      children: [],
-    },
-    {
-      id: 'decennial - Age and Sex',
-      label: 'Age and Sex',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.sexAndAge,
-      children: [],
-    },
-    {
-      id: 'decennial - Mutually Exclusive Race / Hispanic Origin',
-      label: 'Mutually Exclusive Race / Hispanic Origin',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.mutuallyExclusiveRaceHispanicOrigin,
-      children: [],
-    },
-    {
-      id: 'decennial - Hispanic Subgroup',
-      label: 'Hispanic Subgroup',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.hispanicSubgroup,
-      children: [],
-    },
-    {
-      id: 'decennial - Asian Subgroup',
-      label: 'Asian Subgroup',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.asianSubgroup,
-      children: [],
-    },
-    {
-      id: 'decennial - Relationship to Head of Household',
-      label: 'Relationship to Head of Household',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.relationshipToHeadOfHouseholdHouseholder,
-      children: [],
-    },
-    {
-      id: 'decennial - Household Type',
-      label: 'Household Type',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.householdType,
-      children: [],
-    },
-    {
-      id: 'decennial - Housing Occupancy',
-      label: 'Housing Occupancy',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.housingOccupancy,
-      children: [],
-    },
-    {
-      id: 'decennial - Housing Tenure',
-      label: 'Housing Tenure',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.housingTenure,
-      children: [],
-    },
-    {
-      id: 'decennial - Tenure by Age of Householder',
-      label: 'Tenure by Age of Householder',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.tenureByAgeOfHouseholder,
-      children: [],
-    },
-    {
-      id: 'decennial - Household Size',
-      label: 'Household Size',
-      selected: true,
-      type: 'subtopic',
-      config: decennialTopics.householdSize,
-      children: [],
-    },
-  ];
+  @tracked geoOptions = null;
 
-  // To be converted to acsTopics
-  @tracked acsTopics = [
-    {
-      id: '123',
-      label: 'Demographic',
-      selected: true,
-      type: 'topic',
-      children: [
-        {
-          id: '124',
-          label: 'Sex and Age',
+  toggleSourceInList(sourceId) {
+    return sourcesDefault.map((source) => {
+      if (source.id === sourceId) {
+        return {
+          ...source,
           selected: true,
-          type: 'subtopic',
-          config: acsDemographic.sexAndAge,
-          children: [],
-        },
-        {
-          id: '125',
-          label: 'Mutually Exclusive Race / Hispanic Origin',
-          selected: true,
-          type: 'subtopic',
-          config: acsDemographic.mutuallyExclusiveRaceHispanicOrigin,
-          children: [],
-        },
-        {
-          id: '225',
-          label: 'Hispanic Subgroup',
-          selected: true,
-          type: 'subtopic',
-          config: acsDemographic.hispanicSubgroup,
-          children: [],
-        },
-        {
-          id: '224',
-          label: 'Asian Subgroup',
-          selected: true,
-          type: 'subtopic',
-          config: acsDemographic.asianSubgroup,
-          children: [],
+        };
+      }
+
+      return {
+        ...source,
+        selected: false,
+      }
+    });
+  }
+
+  toggleChildren = (children, selectedValue) => {
+    return children.map(child => {
+      return {
+        ...child,
+        selected: selectedValue,
+        children: this.toggleChildren(child.children, selectedValue),
+      }
+    });
+  }
+
+  toggleTopicInList = (topics, itemId) => {
+    return topics.map((topic) => {
+      if (topic.id === itemId) {
+        return {
+          ...topic,
+          selected: "selected",
+          children: this.toggleChildren(topic.children, "selected"),
+        };
+      }
+
+      if (topic.children && topic.children.length > 0) {
+        const newChildren = this.toggleTopicInList(topic.children, itemId);
+        let newSelectedValue = "indeterminate";
+
+        if (newChildren.every(child => child.selected === "selected")) {
+          newSelectedValue = "selected";
         }
-      ],
-    },
-    {
-      id: '126',
-      label: 'Social',
-      selected: false,
-      type: 'topic',
-      children: [
-        {
-          id: 'ancestry',
-          label: 'Ancestry',
-          selected: false,
-          type: 'subtopic',
-          config: acsSocial.ancestry,
-          children: [],
-        },
-        {
-          id: 'computersAndInternetUse',
-          label: 'Computers and Internet Use',
-          selected: false,
-          type: 'subtopic',
-          config: acsSocial.computersAndInternetUse,
-          children: [],
-        },
-        {
-          id: 'uSCitizenshipStatus',
-          label: 'U.S. Citizenship Status',
-          selected: false,
-          type: 'subtopic',
-          config: acsSocial.uSCitizenshipStatus,
-          children: [],
-        },
-        {
-          id: 'disabilityStatusOfTheCivilianNoninstitutionalizedPopulation',
-          label: 'Disability Status Of The Civilian Noninstitutionalized Population',
-          selected: false,
-          type: 'subtopic',
-          config: acsSocial.disabilityStatusOfTheCivilianNoninstitutionalizedPopulation,
-          children: [],
+        if (newChildren.every(child => child.selected === "unselected")) {
+          newSelectedValue = "unselected";
         }
-      ],
-    },
-  ];
+
+        return {
+          ...topic,
+          selected: newSelectedValue,
+          children: newChildren
+        }
+      }
+
+      return topic;
+    });
+  }
+
+  get selectedGeo() {
+    if (this.geoOptions) {
+      return this.geoOptions.findBy('geoid', this.compareTo);
+    }
+
+    return null;
+  }
+
+  get sources() {
+    if (this.sourceId) {
+      return this.toggleSourceInList(this.sourceId);
+    }
+
+    return sourcesDefault;
+  }
 
   get source() {
     return this.sources.find(source => source.selected);
+  }
+
+  set source(newSource) {
+    const { id } = newSource;
+
+    this.transitionToRoute('explorer', { queryParams: { source: id }});
   }
 
   // returns either 'current' or 'change'
@@ -257,29 +126,145 @@ export default class ExplorerController extends Controller {
     return 'current';
   }
 
-  @action setSources(newSources) {
-    this.sources = newSources;
+  get topicsIdList() {
+    const rawTopicsList = this.source.type === 'census' ? this.censusTopics : this.acsTopics;
+
+    if (rawTopicsList === 'all'){
+      if (this.source.type === 'census') {
+        return censusTopicsDefault.map(topic => topic.id);
+      }
+
+      return acsTopicsDefault.reduce((topicsIdList, curTopic) => {
+        return topicsIdList.concat(curTopic.children.map(subtopic => subtopic.id));
+      }, []);
+    } else if (rawTopicsList === 'none') {
+      return [];
+    } else {
+      return rawTopicsList.split(',');
+    }
   }
 
   get topics() {
-    if (this.source.type === 'census') {
-      return this.decennialTopics;
+    if (Array.isArray(this.topicsIdList)) {
+      if (this.source.type === 'census') {
+        return this.topicsIdList.reduce((topicsIdList, curTopicId) => {
+          return this.toggleTopicInList(topicsIdList, curTopicId);
+        }, censusTopicsDefault);
+      }
+  
+      return this.topicsIdList.reduce((topicsIdList, curTopicId) => {
+        return this.toggleTopicInList(topicsIdList, curTopicId);
+      }, acsTopicsDefault);
     }
 
-    // this.source === 'acs'
-    return this.acsTopics;
+    return [];
   }
 
   set topics(newTopics) {
-    if (this.source.type === 'census') {
-      this.decennialTopics = newTopics;
+    const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
+
+    this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
+  }
+
+  get isAllTopicsSelected() {
+    const { topics } = this;
+
+    if (topics.every(topic => topic.selected === "selected")) {
+      return "selected";
     }
-    if (this.source.type === 'acs') {
-      this.acsTopics = newTopics;
+
+    if (topics.every(topic => topic.selected === "unselected")) {
+      return "unselected";
+    }
+
+    return "indeterminate";
+  }
+
+  get selectedCount() {
+    return this.model.selection.features.length;
+  }
+
+  get sortedLabels() {
+    const { features } = this.model.selection;
+
+    const bronx = features.filter(d => d.properties.borocode === '2');
+    const brooklyn = features.filter(d => d.properties.borocode === '3');
+    const manhattan = features.filter(d => d.properties.borocode === '1');
+    const queens = features.filter(d => d.properties.borocode === '4');
+    const statenisland = features.filter(d => d.properties.borocode === '5');
+
+    return [
+      {
+        label: 'Bronx',
+        features: bronx,
+      },
+      {
+        label: 'Brooklyn',
+        features: brooklyn,
+      },
+      {
+        label: 'Manhattan',
+        features: manhattan,
+      },
+      {
+        label: 'Queens',
+        features: queens,
+      },
+      {
+        label: 'Staten Island',
+        features: statenisland,
+      },
+    ];
+  }
+
+  @action setSource(newSource) {
+    this.source = newSource;
+  }
+
+  @action toggleTopic(topic) {
+    if (topic.type === 'subtopic') {
+        if (this.topicsIdList.includes(topic.id)) {
+          this.topics = this.topicsIdList.filter(topicId => topicId !== topic.id);
+        } else {
+          this.topics = this.topicsIdList.concat([topic.id]);
+        }
+    }
+
+    if (topic.type === 'topic') {
+      const topicChildrenIds = topic.children.map(subtopic => subtopic.id);
+
+      if (topic.selected === "selected" || topic.selected === "indeterminate") {
+        this.topics = this.topicsIdList.filter(topicId => !topicChildrenIds.includes(topicId));
+      } else {
+        this.topics = this.topicsIdList.concat(topicChildrenIds);
+      }
     }
   }
 
-  @action setTopics(newTopics) {
-    this.topics = newTopics;
+  @action toggleAllTopics() {
+    this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
+  }
+
+  // acceptable controlId values include: 'showReliability', 'showCharts', 'disaggregate'
+  @action toggleBooleanControl(controlId) {
+    let { [controlId]: currentControlValue } = this;
+
+    this.transitionToRoute('explorer', { queryParams: {
+      [controlId]: !currentControlValue,
+    }});
+  }
+
+  @action updateCompareTo(geoid) {
+    this.transitionToRoute('explorer', { queryParams: { compareTo: geoid }});
+  }
+
+  @action toggleReliability() {
+    this.showReliability = !this.showReliability;
+    /*global Promise*/
+    return new Promise(resolve => {
+      setTimeout(function() {
+        resolve("slow")
+      }, 1)
+    })
   }
 }

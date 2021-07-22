@@ -3,30 +3,40 @@
   class="grid-container fluid"
 >
   <div class="grid-x grid-margin-x">
-    <div class="cell small-5 large-5 bar-item">
+    <div class="cell shrink text-left">
       <Explorer::SourceSelectDropdown
         @sources={{@sources}}
-        @setSources={{@setSources}}
+        @setSource={{@setSource}}
       />
-    </div>
 
-    <div class="cell small-3 bar-item">
       <Explorer::TopicSelectDropdown
         @topics={{@topics}}
-        @setTopics={{@setTopics}}
+        @toggleTopic={{@toggleTopic}}
+        @toggleAllTopics={{@toggleAllTopics}}
       />
-    </div>
 
-    <div class="cell small-2 bar-item">
-     <Explorer::ModifyTablesMenu
+      <Explorer::ModifyTablesMenu
+        @mode={{@mode}}
         @showReliability={{@showReliability}}
         @disaggregate={{@disaggregate}}
         @compareTo={{@compareTo}}
-     />
+        @geoOptions={{@geoOptions}}
+        @selectedGeo={{@selectedGeo}}
+        @toggleBooleanControl={{@toggleBooleanControl}}
+        @updateCompareTo={{@updateCompareTo}}
+      />
     </div>
 
-    <div class="cell small-2 bar-item">
-      Data Download Button
+    <div class="cell auto text-right">
+      <div class="bar-item">
+        <Explorer::DownloadDataDropdown
+          @topics={{@topics}}
+          @sources={{@sources}}
+          @showReliability={{@showReliability}}
+          @toggleReliability={{@toggleReliability}}
+        />
+      </div>
     </div>
+
   </div>
 </div>

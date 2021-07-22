@@ -16,78 +16,29 @@ export default class TopicSelectDropdownComponent extends Component {
 
   get numSelected() {
     return this.args.topics.reduce((prev, cur) => {
-        if (cur.type === 'subtopic' && cur.selected) {
+        if (cur.type === 'subtopic' && (cur.selected === "selected")) {
           return prev += 1;
         }
 
-        return prev += cur.children.filter((child) => child.selected).length;
+        return prev += cur.children.filter((child) => (child.selected === "selected")).length;
       }, 0);
   }
 
   get isAllTopicsSelected() {
-    return this.args.topics.reduce((prev, cur) => {
-      if (cur.type === 'subtopic') {
-        return prev.concat([cur.selected]);
-      }
+    const { topics } = this.args;
 
-      return prev.concat(cur.children.map(child => child.selected));
-    }, []).every(cur => cur);
+    if (topics.every(topic => topic.selected === "selected")) {
+      return "selected";
+    }
+
+    if (topics.every(topic => topic.selected === "unselected")) {
+      return "unselected";
+    }
+
+    return "indeterminate";
   }
 
   @action toggleOpen() {
     this.open = !this.open;
-  }
-
-  toggleChildren = (children, selectedValue) => {
-    return children.map(child => {
-      return {
-        ...child,
-        selected: selectedValue,
-        children: this.toggleChildren(child.children, selectedValue),
-      }
-    });
-  }
-
-  toggleTopicInList = (topics, itemId) => {
-    return topics.map((topic) => {
-      if (topic.id === itemId) {
-        const newSelectedValue = !topic.selected;
-
-        return {
-          ...topic,
-          selected: newSelectedValue,
-          children: this.toggleChildren(topic.children, newSelectedValue),
-        };
-      }
-
-      if (topic.children && topic.children.length > 0) {
-        return {
-          ...topic,
-          children: this.toggleTopicInList(topic.children, itemId),
-        }
-      }
-
-      return topic;
-    });
-  }
-
-  @action onListItemToggle(itemId) {
-    const newNestedListItems = this.toggleTopicInList(this.args.topics, itemId);
-
-    this.args.setTopics(newNestedListItems);
-  }
-
-  @action toggleAllTopics() {
-    const newSelectedValue = !this.isAllTopicsSelected;
-
-    const newNestedListItems = this.args.topics.map(topic => {
-      return {
-        ...topic,
-        selected: newSelectedValue,
-        children: this.toggleChildren(topic.children, newSelectedValue),
-      };
-    });
-
-    this.args.setTopics(newNestedListItems);
   }
 }

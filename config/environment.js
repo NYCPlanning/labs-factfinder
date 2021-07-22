@@ -69,47 +69,6 @@ module.exports = function (environment) {
       },
     },
 
-    fontawesome: {
-      icons: {
-        'free-solid-svg-icons': [
-          'arrow-left',
-          'arrow-right',
-          'arrow-up',
-          'arrow-down',
-          'building',
-          'caret-down',
-          'caret-up',
-          'download',
-          'edit',
-          'exclamation-triangle',
-          'external-link-alt',
-          'file',
-          'info-circle',
-          'long-arrow-alt-right',
-          'map',
-          'map-pin',
-          'pen',
-          'plus',
-          'question-circle',
-          'search',
-          'sliders-h',
-          'square',
-          'times',
-          'user-friends',
-        ],
-        'free-regular-svg-icons': [
-          'check-square',
-          'circle',
-          'copy',
-          'dot-circle',
-          'envelope',
-          'hand-pointer',
-          'object-group',
-          'square',
-        ],
-      },
-    },
-
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',
@@ -150,7 +109,12 @@ module.exports = function (environment) {
   }
 
   if (environment === 'staging') {
+    // TODO: Eventually switch to https://factfinder-api-develop.herokuapp.com/ once it is ready
     ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    // TODO: Disable when we have solidified API
+    ENV['ember-cli-mirage'] = {
+      enabled: true,
+    };
   }
 
   if (environment === 'devlocal') {

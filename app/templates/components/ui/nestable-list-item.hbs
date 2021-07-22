@@ -2,13 +2,15 @@
   class="nestable-list-item grid-x {{if this.hasChildren 'clickable'}} {{@item.type}}-list-item"
 >
   <div class="cell small-1"
-    {{on "click" (fn @onItemToggle @item.id)}}
+    {{on "click" (fn @onItemToggle @item)}}
   >
     <span class="dcp-orange clickable">
-      {{#if @item.selected}}
+      {{#if (eq @item.selected "selected")}}
         {{fa-icon icon='check-square' prefix='far'}}
-      {{else}}
+      {{else if (eq @item.selected "unselected")}}
         {{fa-icon icon='square' prefix='far'}}
+      {{else}}
+        {{fa-icon icon='minus-square' prefix='far'}}
       {{/if}}
     </span>
   </div>

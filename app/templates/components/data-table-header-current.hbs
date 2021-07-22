@@ -19,7 +19,15 @@
         Selected Area
       </th>
       <th colspan="{{if this.reliability "5" "2"}}" class="text-center cell-border-bottom">
-        {{this.selection.comparisonLabel}}
+        {{#if this.compareToLabel}}
+          {{this.compareToLabel}}
+        {{else}}
+          <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        {{/if}}
       </th>
       <th colspan="{{if this.reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
     </tr>

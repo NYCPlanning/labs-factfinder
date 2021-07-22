@@ -1,6 +1,12 @@
 [build]
 command = "yarn build --environment=staging"
 
+[context.develop]
+  environment = { NODE_VERSION = "12.18.4" }
+
+[context.staging]
+  environment = { NODE_VERSION = "12.18.4" }
+
 [context.deploy-preview]
   environment = { NODE_VERSION = "12.18.4" }
 

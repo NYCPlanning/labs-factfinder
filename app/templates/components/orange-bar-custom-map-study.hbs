@@ -2,7 +2,7 @@
   id="custom-map-study-toolbar"
   class="grid-container fluid orange-bar-custom-map-study"
 >
-  <div class="grid-x grid-margin-x align-spaced">
+  <div class="grid-x grid-margin-x align-spaced" style="width: inherit;">
     <div class="cell small-1 bar-item">
       <ul class="menu orange-bar--selector" id="draw-tools">
         <li class="dropdown">
@@ -38,13 +38,6 @@
       <ul class="menu">
         <li style="flex-grow: 0;">
           <ul class="menu align-center orange-bar--selector five-buttons">
-            <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
-              <a href="#" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>
-                <span class="show-for-medium">Census </span>
-                Block
-              </a>
-              {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
-            </li>
             <li class="{{if (eq this.selection.summaryLevel 'tracts') 'active'}} explode-tract">
               <a href="#" data-test-toggle-tracts {{action this.handleSummaryLevelToggle 'tracts'}}>
                 <span class="show-for-medium">Census </span>
@@ -53,12 +46,19 @@
               {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-              <a href="#" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood&nbsp;<br /><small>(NTA)</small></a>
+              <a href="#" id="neighborhood" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood<br /><small>(NTA)</small></a>
               {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
             </li>
-            <li class="{{if (eq this.selection.summaryLevel 'pumas') 'active'}} explode-puma">
-              <a href="#" data-test-toggle-pumas {{action this.handleSummaryLevelToggle 'pumas'}}>PUMA</a>
-              {{ember-tooltip delay=500 text='Create selection area using Public Use Microdata Areas'}}
+            <li class="{{if (eq this.selection.summaryLevel 'cdtas') 'active'}} explode-cdta" style="font-size: 0.75rem;">
+              <a href="#" data-test-toggle-cdtas {{action this.handleSummaryLevelToggle 'cdtas'}} style="padding:0;">
+                <span class="show-for-medium">Community<br />District <br /></span>
+                Tabulation Area
+              </a>
+              {{ember-tooltip delay=500 text='Create selection area using census cdtas'}}
+            </li>
+            <li class="{{if (eq this.selection.summaryLevel 'districts') 'active'}} explode-district">
+              <a href="#" data-test-toggle-districts {{action this.handleSummaryLevelToggle 'districts'}}>Community District</a>
+              {{ember-tooltip delay=500 text='Create selection area using census districts'}}
             </li>
             <li class="dropdown explode-moregeos">
               <a href="#" class="dropbtn dropbtn-centered">More Geographies</a>

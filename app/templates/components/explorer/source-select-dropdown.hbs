@@ -1,65 +1,69 @@
-<button
-  class="source-select-toggle button gray expanded no-margin"
-  role="button"
-  {{on "click" this.toggleOpen}}
+<div
+  class="bar-item"
 >
-  <div class="grid-x full">
-    <div class="cell small-11">
-      Data Source:
-      <span class="selected-source">
-        {{this.source.label}}
-      </span>
-    </div>
-    <div class="cell auto">
-      {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
-    </div>
-  </div>
-</button>
-
-{{#if this.open}}
-  <div class="source-menu">
-    Decennial Census
-    {{#each this.censusSources key="id" as |source|}}
-      <div
-        class="nestable-list-item grid-x clickable"
-        {{on "click" (fn this.onSourceToggle source.id)}}
-      >
-        <div class="cell small-1">
-          <span class="dcp-orange">
-            {{#if source.selected}}
-              {{fa-icon icon='dot-circle' prefix='far'}}
-            {{else}}
-              {{fa-icon icon='circle' prefix='far' class='silver'}}
-            {{/if}}
-          </span>
-        </div>
-
-        <div class="cell auto">
-          {{source.label}}
-        </div>
+  <button
+    class="source-select-toggle button gray expanded no-margin"
+    role="button"
+    {{on "click" this.toggleOpen}}
+  >
+    <div class="grid-x full">
+      <div class="cell small-11">
+        Data Source:
+        <span class="selected-source">
+          {{this.source.label}}
+        </span>
       </div>
-    {{/each}}
-
-    American Community Survey (ACS)
-    {{#each this.acsSources key="id" as |source|}}
-      <div
-        class="nestable-list-item grid-x clickable"
-        {{on "click" (fn this.onSourceToggle source.id)}}
-      >
-        <div class="cell small-1">
-          <span class="dcp-orange">
-            {{#if source.selected}}
-              {{fa-icon icon='dot-circle' prefix='far'}}
-            {{else}}
-              {{fa-icon icon='circle' prefix='far' class='silver'}}
-            {{/if}}
-          </span>
-        </div>
-
-        <div class="cell auto">
-          {{source.label}}
-        </div>
+      <div class="cell auto">
+        {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
       </div>
-    {{/each}}
-  </div>
-{{/if}}
+    </div>
+  </button>
+
+  {{#if this.open}}
+    <div class="source-menu">
+      Decennial Census
+      {{#each this.censusSources key="id" as |source|}}
+        <div
+          class="nestable-list-item grid-x clickable"
+          {{on "click" (fn @setSource source)}}
+        >
+          <div class="cell small-1">
+            <span class="dcp-orange">
+              {{#if source.selected}}
+                {{fa-icon icon='dot-circle' prefix='far'}}
+              {{else}}
+                {{fa-icon icon='circle' prefix='far' class='silver'}}
+              {{/if}}
+            </span>
+          </div>
+
+          <div class="cell auto">
+            {{source.label}}
+          </div>
+        </div>
+      {{/each}}
+
+      American Community Survey (ACS)
+      {{#each this.acsSources key="id" as |source|}}
+        <div
+          class="nestable-list-item grid-x clickable"
+          {{on "click" (fn @setSource source)}}
+        >
+          <div class="cell small-1">
+            <span class="dcp-orange">
+              {{#if source.selected}}
+                {{fa-icon icon='dot-circle' prefix='far'}}
+              {{else}}
+                {{fa-icon icon='circle' prefix='far' class='silver'}}
+              {{/if}}
+            </span>
+          </div>
+
+          <div class="cell auto">
+            {{source.label}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

@@ -33,7 +33,6 @@ export default Service.extend({
   currentMapInstance: null,
 
   selectedCount: computed('current.[]', function() {
-    console.log('is computed');
     const currentSelected = this.get('current');
     return currentSelected.features.length;
   }),

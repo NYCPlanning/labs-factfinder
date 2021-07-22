@@ -1,20 +1,75 @@
 <OrangeBar>
   <OrangeBarDataExplorer
+    @mode={{this.mode}}
     @topics={{this.topics}}
-    @setTopics={{this.setTopics}}
+    @toggleTopic={{this.toggleTopic}}
+    @toggleAllTopics={{this.toggleAllTopics}}
     @sources={{this.sources}}
-    @setSources={{this.setSources}}
+    @setSource={{this.setSource}}
     @showReliability={{this.showReliability}}
+    @toggleReliability={{this.toggleReliability}}
     @disaggregate={{this.disaggregate}}
     @compareTo={{this.compareTo}}
+    @geoOptions={{this.geoOptions}}
+    @selectedGeo={{this.selectedGeo}}
+    @toggleBooleanControl={{this.toggleBooleanControl}}
+    @updateCompareTo={{this.updateCompareTo}}
   />
 </OrangeBar>
 
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
+    <br>
+
+    <h1>
+      Your Data:
+    </h1>
+
+    <div class="grid-container fluid profile-geographies ">
+      <div class="grid-x align-left">
+        <h3 class="profile-geographies-header">
+          <SelectionDetailsText
+            @selectedCount={{this.selectedCount}}
+            @selectedType={{@model.selection.type}}
+          />
+        </h3>
+        <span class="dark-gray">&nbsp;|&nbsp;</span>
+
+        <p class="profile-geographies-list">
+          <SelectGeographyList
+            @sortedLabels={{this.sortedLabels}}
+          />
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-container fluid">
+      <div class="grid-x align-left">
+        <div class="cell shrink">
+          <div class="switch tiny show-charts-switch">
+            <input
+              id="show-charts-switch"
+              type="checkbox"
+              checked={{this.showCharts}}
+              name="show-charts-switch"
+              class="switch-input"
+              {{on "click" (fn this.toggleBooleanControl 'showCharts')}}
+            />
+            <label class="switch-paddle" for="show-charts-switch">
+            </label>
+          </div>
+        </div>
+        <div class="cell shrink text-left">
+          Show Charts
+        </div>
+      </div>
+    </div>
+
+    <br>
+
     {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
-        {{#if subtopic.selected}}
+        {{#if (eq subtopic.selected "selected")}}
           <div class="grid-x grid-margin-x">
             <div class="cell large-auto">
               <h3 class="header-medium">
@@ -25,10 +80,31 @@
                 decennial=(eq this.source.type 'census')
                 reliability=this.showReliability
                 comparison=this.compareTo
-                config=subtopic.config
+                compareToLabel=this.selectedGeo.label
+                config=subtopic.tableConfig
                 model=@model.profile
               }}
             </div>
+
+            {{#if (and
+              (or
+                (eq this.source.id 'decennial-2020')
+                (eq this.source.id 'decennial-change')
+              )
+              subtopic.charts
+              this.showCharts
+            )}}
+              <div class="cell large-4 xxlarge-3">
+                {{#each subtopic.charts as |chart|}}
+                  {{acs-bar
+                    title=chart.chartLabel
+                    config=chart.chartConfig
+                    data=@model.profile
+                    height=204
+                  }}
+                {{/each}}
+              </div>
+            {{/if}}
           </div>
 
           <hr>
@@ -39,7 +115,7 @@
     {{#if (eq this.source.type 'acs')}}
       {{#each this.topics as |topic|}}
         {{#each topic.children as |subtopic|}}
-          {{#if subtopic.selected}}
+          {{#if (eq subtopic.selected "selected")}}
             <div class="grid-x grid-margin-x">
               <div class="cell large-auto">
                 <h3 class="header-medium">
@@ -50,10 +126,28 @@
                   decennial=(eq this.source.type 'census')
                   reliability=this.showReliability
                   comparison=this.compareTo
-                  config=subtopic.config
+                  compareToLabel=this.selectedGeo.label
+                  config=subtopic.tableConfig
                   model=@model.profile
                 }}
               </div>
+
+              {{#if (and
+                (eq this.mode 'current')
+                subtopic.charts
+                this.showCharts
+              )}}
+                <div class="cell large-4 xxlarge-3">
+                  {{#each subtopic.charts as |chart|}}
+                    {{acs-bar
+                      title=chart.chartLabel
+                      config=chart.chartConfig
+                      data=@model.profile
+                      height=204
+                    }}
+                  {{/each}}
+                </div>
+              {{/if}}
             </div>
 
             <hr>
