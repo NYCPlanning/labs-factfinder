@@ -34,7 +34,7 @@
     border-right: 1px solid $white;
   }
 
-  .dropdown-content a {
+  .dropdown-content a, .dropdown-content li {
     box-shadow: 0 0 0 2px $white;
 
     &:last-child {
@@ -51,7 +51,7 @@
       padding-left: 0.75rem;
     }
   }
-  li:hover, li:active, a:hover, a:active, .dropdown:hover .dropbtn {
+  li:hover, li:active, a:hover, a:active, a.active, .dropdown:hover .dropbtn {
     background-color: $white;
     color: #d96b27;
   }

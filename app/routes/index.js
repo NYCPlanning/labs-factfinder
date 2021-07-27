@@ -49,6 +49,7 @@ export default Route.extend({
         { id: 'factfinder--census-tracts', visible: false },
         { id: 'factfinder--cdtas', visible: false },
         { id: 'factfinder--districts', visible: false },
+        { id: 'factfinder--boroughs', visible: false },
         { id: 'factfinder--ntas', visible: false },
         { id: 'factfinder--pumas', visible: false },
 

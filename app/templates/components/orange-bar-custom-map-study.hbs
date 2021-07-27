@@ -63,30 +63,17 @@
             <li class="dropdown explode-moregeos">
               <a href="#" class="dropbtn dropbtn-centered">More Geographies</a>
               <div class="dropsizer">
-                <ul class="dropdown-content">
-                  <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
-                    <a href="#" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block</a>
-                    {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
-                  </li>
-                  <li class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough">
-                    <a href="#" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough</a>
-                    {{ember-tooltip delay=500 text='Create selection area using boroughs'}}
-                  </li>
-                  <li class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough">
-                    <a href="#" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough</a>
-                    {{ember-tooltip delay=500 text='Create selection area using boroughs'}}
-                  </li>
-                  {{!-- <a href="#">Census Block</a>
-                  <a href="#">Borough</a>
-                  <a href="#">New York City</a> --}}
-                </ul>
+                <div class="dropdown-content">
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block{{ember-tooltip delay=500 text='Create selection area using census blocks'}}</a>
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough{{ember-tooltip delay=500 text='Create selection area using boroughs'}}</a>
+                  <a href="#">New York City</a>
+                </div>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    {{!-- <li class="menu align-right"><a href="#">Right Side Placeholder</a></li> --}}
     <div class="cell small-2 bar-item">
       <div class="menu align-right">
         <ul class="menu orange-bar--selector" id="more-options-button">
