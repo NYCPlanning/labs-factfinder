@@ -14,13 +14,14 @@
       {{/link-to}}
     </li>
     <li>
-      {{#link-to
-        'explorer'
-        class=(if (eq this.router.currentRouteName "explorer") "active-route")
-      }}
+      <LinkTo
+        @route='explorer'
+        @model='nyc'
+        class={{(if (eq this.router.currentRouteName "explorer") "active-route")}}
+      >
         {{fa-icon icon="search" prefix="fa" transform='grow-4'}}
         Data Explorer
-      {{/link-to}}
+      </LinkTo>
     </li>
   </ul>
 </banner.nav>
