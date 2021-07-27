@@ -12,6 +12,9 @@ const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 const SUM_LEVEL_DICT = {
   blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2010' },
   tracts: { sql: summaryLevelQueries.tracts(false), ntas: 'ntacode', blocks: 'boroct2010' },
+  cdtas: { sql: summaryLevelQueries.cdtas(false), cdtas: 'cdta2020' },
+  districts: { sql: summaryLevelQueries.districts(false), districts: 'borocd' },
+  boroughs: { sql: summaryLevelQueries.boroughs(false), boroughs: 'borocode' },
   ntas: { sql: summaryLevelQueries.ntas(false), tracts: 'ntacode' },
   pumas: { sql: summaryLevelQueries.pumas(false) },
 };
@@ -99,7 +102,6 @@ export default Service.extend({
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
-
     this.set('summaryLevel', toLevel);
 
     const layerGroupIdMap = (level) => {
@@ -108,8 +110,14 @@ export default Service.extend({
           return 'factfinder--census-tracts';
         case 'blocks':
           return 'factfinder--census-blocks';
+        case 'cdtas':
+          return 'factfinder--cdtas';
+        case 'districts':
+          return 'factfinder--districts';
         case 'ntas':
           return 'factfinder--ntas';
+        case 'boroughs':
+          return 'factfinder--boroughs';
         case 'pumas':
           return 'factfinder--pumas';
         default:

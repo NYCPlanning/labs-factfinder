@@ -18,6 +18,22 @@ export default {
     },
 
     {
+      id: 'cdtas',
+      sql: 'SELECT the_geom_webmercator, cdtaname AS geolabel, cdta2020 AS geoid FROM nycdta2020',
+    },
+
+
+    {
+      id: 'districts',
+      sql: 'SELECT the_geom_webmercator, cd_short_title AS geolabel, borocd AS geoid FROM cd_boundaries_v0_dh',
+    },
+
+    {
+      id: 'boroughs',
+      sql: 'SELECT the_geom_webmercator, boroname AS geolabel, borocode AS geoid FROM cd_boundaries_v0_dh',
+    },
+
+    {
       id: 'nyc-pumas',
       sql: 'SELECT the_geom_webmercator, puma AS geolabel, puma AS geoid FROM nyc_puma',
     },

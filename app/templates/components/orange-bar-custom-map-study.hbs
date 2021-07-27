@@ -63,11 +63,23 @@
             <li class="dropdown explode-moregeos">
               <a href="#" class="dropbtn dropbtn-centered">More Geographies</a>
               <div class="dropsizer">
-                <div class="dropdown-content">
-                  <a href="#">Census Block</a>
+                <ul class="dropdown-content">
+                  <li class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block">
+                    <a href="#" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block</a>
+                    {{ember-tooltip delay=500 text='Create selection area using census blocks'}}
+                  </li>
+                  <li class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough">
+                    <a href="#" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough</a>
+                    {{ember-tooltip delay=500 text='Create selection area using boroughs'}}
+                  </li>
+                  <li class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough">
+                    <a href="#" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough</a>
+                    {{ember-tooltip delay=500 text='Create selection area using boroughs'}}
+                  </li>
+                  {{!-- <a href="#">Census Block</a>
                   <a href="#">Borough</a>
-                  <a href="#">New York City</a>
-                </div>
+                  <a href="#">New York City</a> --}}
+                </ul>
               </div>
             </li>
           </ul>
