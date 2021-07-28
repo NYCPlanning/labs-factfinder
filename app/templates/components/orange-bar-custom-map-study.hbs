@@ -64,9 +64,9 @@
               <a href="#" class="dropbtn dropbtn-centered">More Geographies</a>
               <div class="dropsizer">
                 <div class="dropdown-content">
-                  <a href="#">Census Block</a>
-                  <a href="#">Borough</a>
-                  <a href="#">New York City</a>
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block{{ember-tooltip delay=500 text='Create selection area using census blocks'}}</a>
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough{{ember-tooltip delay=500 text='Create selection area using boroughs'}}</a>
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city" data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}>New York City{{ember-tooltip delay=500 text='Create selection area using New York CIty'}}</a>
                 </div>
               </div>
             </li>
@@ -74,7 +74,6 @@
         </li>
       </ul>
     </div>
-    {{!-- <li class="menu align-right"><a href="#">Right Side Placeholder</a></li> --}}
     <div class="cell small-2 bar-item">
       <div class="menu align-right">
         <ul class="menu orange-bar--selector" id="more-options-button">

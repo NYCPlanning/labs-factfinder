@@ -1,14 +1,14 @@
 export default {
-  id: 'census-blocks',
-  title: 'Census Blocks',
+  id: 'boroughs',
+  title: 'Boroughs',
   visible: true,
   layers: [
     {
       layer: {
-        id: 'census-blocks-fill',
+        id: 'boroughs-fill',
         type: 'fill',
-        source: 'census-geoms',
-        'source-layer': 'census-geoms-blocks',
+        source: 'census-admin-boundaries',
+        'source-layer': 'boroughs',
         paint: {
           'fill-opacity': 0.01,
         },
@@ -17,10 +17,10 @@ export default {
     },
     {
       layer: {
-        id: 'census-blocks-line',
+        id: 'boroughs-line',
         type: 'line',
-        source: 'census-geoms',
-        'source-layer': 'census-geoms-blocks',
+        source: 'census-admin-boundaries',
+        'source-layer': 'boroughs',
         paint: {
           'line-color': '#444',
           'line-opacity': 0.5,
@@ -45,13 +45,13 @@ export default {
     },
     {
       layer: {
-        id: 'census-blocks-label',
+        id: 'boroughs-label',
         type: 'symbol',
-        source: 'census-geoms',
-        'source-layer': 'census-geoms-blocks',
+        source: 'census-admin-boundaries',
+        'source-layer': 'boroughs',
         minzoom: 13,
         layout: {
-          'text-field': '{cb2010}',
+          'text-field': '{boroname}',
           'text-font': [
             'Open Sans Semibold',
             'Arial Unicode MS Bold',

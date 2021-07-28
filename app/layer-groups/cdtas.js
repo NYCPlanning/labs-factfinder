@@ -1,14 +1,14 @@
 export default {
-  id: 'census-blocks',
-  title: 'Census Blocks',
+  id: 'cdtas',
+  title: 'CDTAs',
   visible: true,
   layers: [
     {
       layer: {
-        id: 'census-blocks-fill',
+        id: 'cdtas-fill',
         type: 'fill',
-        source: 'census-geoms',
-        'source-layer': 'census-geoms-blocks',
+        source: 'census-admin-boundaries',
+        'source-layer': 'cdtas',
         paint: {
           'fill-opacity': 0.01,
         },
@@ -17,10 +17,10 @@ export default {
     },
     {
       layer: {
-        id: 'census-blocks-line',
+        id: 'cdtas-line',
         type: 'line',
-        source: 'census-geoms',
-        'source-layer': 'census-geoms-blocks',
+        source: 'census-admin-boundaries',
+        'source-layer': 'cdtas',
         paint: {
           'line-color': '#444',
           'line-opacity': 0.5,
@@ -45,13 +45,13 @@ export default {
     },
     {
       layer: {
-        id: 'census-blocks-label',
+        id: 'cdtas-label',
         type: 'symbol',
-        source: 'census-geoms',
-        'source-layer': 'census-geoms-blocks',
+        source: 'census-admin-boundaries',
+        'source-layer': 'cdtas',
         minzoom: 13,
         layout: {
-          'text-field': '{cb2010}',
+          'text-field': '{cdta2020}',
           'text-font': [
             'Open Sans Semibold',
             'Arial Unicode MS Bold',

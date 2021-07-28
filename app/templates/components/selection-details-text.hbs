@@ -1,7 +1,11 @@
 {{@selectedCount}}
 {{if (eq @selectedType 'tracts') 'Census Tract'~}}
 {{if (eq @selectedType 'blocks') 'Census Block'~}}
+{{if (eq @selectedType 'cdtas') 'Community District Tabulation Area'~}}
+{{if (eq @selectedType 'districts') 'Comunity District'~}}
 {{if (eq @selectedType 'ntas') 'Neighborhood'~}}
+{{if (eq @selectedType 'boroughs') 'Borough'~}}
+{{if (eq @selectedType 'cities') 'New York City'~}}
 {{if (eq @selectedType 'pumas') 'PUMA'~}}
 {{unless (eq @selectedCount 1) 's'}}
 {{if (eq @selectedType 'blocks') '(Tract Id-Block Id)'~}}

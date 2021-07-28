@@ -23,6 +23,47 @@ export default {
     FROM nyc_census_tracts
   `,
 
+  cdtas: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      the_geom,
+      cdtaname as geolabel,
+      cdta2020,
+      cdtatype,
+      boroname,
+      cdta2020 AS geoid
+    FROM nycdta2020
+  `,
+
+  districts: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      the_geom,
+      cd_short_title as geolabel,
+      boroname,
+      borocd AS geoid
+    FROM cd_boundaries_v0_dh
+  `,
+
+  boroughs: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      the_geom,
+      boroname as geolabel,
+      boroname,
+      borocode AS geoid
+    FROM dcp_borough_boundary
+  `,
+
+  cities: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      the_geom,
+      'New York City' as geolabel,
+      id AS geoid
+    FROM nyc2020_sw_unofficial
+  `,
+
   ntas: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
