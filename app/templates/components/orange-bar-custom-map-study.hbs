@@ -160,6 +160,15 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
+              {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
+                {{#labs-ui/layer-group-toggle
+                  label=layerGroup.model.legend.label
+                  active=layerGroup.model.visible
+                  icon=layerGroup.model.legend.icon
+                }}
+                {{/labs-ui/layer-group-toggle}}
+              {{/lookup-layer-group}}
+
               {{#lookup-layer-group for='community-districts' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
