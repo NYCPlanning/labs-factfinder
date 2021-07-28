@@ -15,6 +15,7 @@ const SUM_LEVEL_DICT = {
   cdtas: { sql: summaryLevelQueries.cdtas(false), cdtas: 'cdta2020' },
   districts: { sql: summaryLevelQueries.districts(false), districts: 'borocd' },
   boroughs: { sql: summaryLevelQueries.boroughs(false), boroughs: 'borocode' },
+  cities: { sql: summaryLevelQueries.cities(false), cities: 'id' },
   ntas: { sql: summaryLevelQueries.ntas(false), tracts: 'ntacode' },
   pumas: { sql: summaryLevelQueries.pumas(false) },
 };
@@ -118,6 +119,8 @@ export default Service.extend({
           return 'factfinder--ntas';
         case 'boroughs':
           return 'factfinder--boroughs';
+        case 'cities':
+          return 'factfinder--cities';
         case 'pumas':
           return 'factfinder--pumas';
         default:

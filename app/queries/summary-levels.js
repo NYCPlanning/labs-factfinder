@@ -55,6 +55,15 @@ export default {
     FROM dcp_borough_boundary
   `,
 
+  cities: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      the_geom,
+      'New York City' as geolabel,
+      id AS geoid
+    FROM nyc2020_sw_unofficial
+  `,
+
   ntas: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},

@@ -5,6 +5,7 @@ import nycPumasSelection from './nyc-pumas-selection';
 import cdtasSelection from './cdtas';
 import districtsSelection from './districts';
 import boroughsSelection from './boroughs';
+import citiesSelection from './cities';
 
 
 export default {
@@ -15,4 +16,5 @@ export default {
   cdtasSelection,
   districtsSelection,
   boroughsSelection,
+  citiesSelection,
 };

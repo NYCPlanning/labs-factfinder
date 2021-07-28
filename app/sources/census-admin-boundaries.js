@@ -34,6 +34,11 @@ export default {
     },
 
     {
+      id: 'cities',
+      sql: 'SELECT the_geom_webmercator, "New York City" AS geolabel, id AS geoid FROM nyc2020_sw_unofficial',
+    },
+
+    {
       id: 'nyc-pumas',
       sql: 'SELECT the_geom_webmercator, puma AS geolabel, puma AS geoid FROM nyc_puma',
     },

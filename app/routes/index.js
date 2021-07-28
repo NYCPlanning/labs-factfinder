@@ -50,6 +50,7 @@ export default Route.extend({
         { id: 'factfinder--cdtas', visible: false },
         { id: 'factfinder--districts', visible: false },
         { id: 'factfinder--boroughs', visible: false },
+        { id: 'factfinder--cities', visible: false },
         { id: 'factfinder--ntas', visible: false },
         { id: 'factfinder--pumas', visible: false },
 
