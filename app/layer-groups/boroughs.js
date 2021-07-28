@@ -15,24 +15,6 @@ export default {
       },
       highlightable: true,
     },
-    // {
-    //   layer: {
-    //     id: 'boroughs-line-glow',
-    //     type: 'line',
-    //     source: 'census-geoms',
-    //     'source-layer': 'census-geoms-blocks',
-    //     paint: {
-    //       'line-color': '#76CAF5',
-    //       'line-opacity': 0.2,
-    //       'line-width': {
-    //         stops: [
-    //           [11, 3],
-    //           [16, 6],
-    //         ],
-    //       },
-    //     },
-    //   },
-    // },
     {
       layer: {
         id: 'boroughs-line',
