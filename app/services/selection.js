@@ -163,7 +163,7 @@ export default Service.extend({
       }
 
       // all other transitions are done using attributes (tract can be inferred from block attributes, etc..)
-      this.explode(fromLevel, toLevel);
+      this.explodeGeo(fromLevel, toLevel);
     } else {
       this.clearSelection();
     }
@@ -197,8 +197,8 @@ export default Service.extend({
     let toGeom = 'a.the_geom';
 
     // logic to use centroids
-    if (fromLevel !== 'pumas') fromGeom = 'ST_Centroid(f.the_geom)';
-    if (toLevel !== 'pumas') toGeom = 'ST_Centroid(a.the_geom)';
+    // if (fromLevel !== 'pumas') fromGeom = 'ST_Centroid(f.the_geom)';
+    // if (toLevel !== 'pumas') toGeom = 'ST_Centroid(a.the_geom)';
 
     // special handling for blocks to ntas and ntas to blocks
     if (fromLevel === 'blocks' && toLevel === 'ntas') {
