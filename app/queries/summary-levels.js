@@ -9,7 +9,7 @@ export default {
       bctcb2010,
       bctcb2010 AS geoid,
       (ct2010::float / 100)::text || ' - ' || cb2010 as geolabel
-    FROM nyc_census_blocks
+    FROM nyc_census_blocks_2010
   `,
 
   tracts: (webmercator = true) => `
@@ -26,7 +26,6 @@ export default {
   cdtas: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      the_geom,
       cdtaname as geolabel,
       cdta2020,
       cdtatype,
@@ -38,7 +37,6 @@ export default {
   districts: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      the_geom,
       cd_short_title as geolabel,
       boroname,
       borocd AS geoid
@@ -48,7 +46,6 @@ export default {
   boroughs: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      the_geom,
       boroname as geolabel,
       boroname,
       borocode AS geoid
@@ -58,7 +55,6 @@ export default {
   cities: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      the_geom,
       'New York City' as geolabel,
       id AS geoid
     FROM nyc2020_sw_unofficial
