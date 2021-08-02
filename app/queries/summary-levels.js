@@ -9,18 +9,18 @@ export default {
       bctcb2010,
       bctcb2010 AS geoid,
       (ct2010::float / 100)::text || ' - ' || cb2010 as geolabel
-    FROM nyc_census_blocks_2010
+    FROM nyc_census_blocks
   `,
 
   tracts: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      ct2010,
+      ct2020,
       ctlabel as geolabel,
-      boroct2010,
+      boroct2020,
       ntacode,
-      boroct2010 AS geoid
-    FROM nyc_census_tracts
+      boroct2020 AS geoid
+    FROM nyct2020
   `,
 
   cdtas: (webmercator = true) => `
@@ -67,7 +67,7 @@ export default {
       ntacode,
       ntacode as geolabel,
       ntacode AS geoid
-    FROM nta_boundaries
+    FROM nynta2020
     WHERE ntaname NOT ILIKE 'park-cemetery-etc%25'
       AND ntaname != 'Airport'
   `,

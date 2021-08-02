@@ -6,7 +6,7 @@ export default {
       id: 'neighborhood-tabulation-areas',
       sql: `
         SELECT a.the_geom_webmercator, ntaname, ntacode, ntacode AS geolabel, a.ntacode AS geoid
-        FROM nta_boundaries a
+        FROM nynta2020 a
         WHERE ntaname NOT ILIKE 'park-cemetery-etc%'
           AND ntaname != 'Airport'
       `,
@@ -14,7 +14,7 @@ export default {
 
     {
       id: 'neighborhood-tabulation-areas-centroids',
-      sql: 'SELECT ST_Centroid(the_geom_webmercator) as the_geom_webmercator, ntaname FROM nta_boundaries WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
+      sql: 'SELECT ST_Centroid(the_geom_webmercator) as the_geom_webmercator, ntaname FROM nynta2020 WHERE ntaname NOT ILIKE \'park-cemetery-etc%\'',
     },
 
     {
@@ -22,6 +22,10 @@ export default {
       sql: 'SELECT the_geom_webmercator, cdtaname AS geolabel, cdta2020 AS geoid FROM nycdta2020',
     },
 
+    {
+      id: 'tracts',
+      sql: 'SELECT the_geom_webmercator, ctlabel as geolabel, boroct2020 AS geoid FROM nyct2020',
+    },
 
     {
       id: 'districts',
@@ -30,7 +34,7 @@ export default {
 
     {
       id: 'boroughs',
-      sql: 'SELECT the_geom_webmercator, boroname AS geolabel, borocode AS geoid FROM cd_boundaries_v0_dh',
+      sql: 'SELECT the_geom_webmercator, boroname AS geolabel, borocode AS geoid FROM dcp_borough_boundary',
     },
 
     {
