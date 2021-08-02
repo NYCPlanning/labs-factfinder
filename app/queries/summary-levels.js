@@ -30,6 +30,7 @@ export default {
       cdta2020,
       cdtatype,
       boroname,
+      borocode::text,
       cdta2020 AS geoid
     FROM nycdta2020
   `,
@@ -39,6 +40,7 @@ export default {
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
       cd_short_title as geolabel,
       boroname,
+      borocode::text,
       borocd AS geoid
     FROM cd_boundaries_v0_dh
   `,
@@ -64,9 +66,9 @@ export default {
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
       ntaname,
-      ntacode,
-      ntacode as geolabel,
-      ntacode AS geoid
+      nta2020,
+      nta2020 as geolabel,
+      nta2020 AS geoid
     FROM nynta2020
     WHERE ntaname NOT ILIKE 'park-cemetery-etc%25'
       AND ntaname != 'Airport'
