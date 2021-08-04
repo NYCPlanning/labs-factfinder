@@ -116,7 +116,7 @@ export default class ExplorerController extends Controller {
   set source(newSource) {
     const { id } = newSource;
 
-    this.transitionToRoute('explorer', { queryParams: { source: id }});
+    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { source: id }});
   }
 
   // returns either 'current' or 'change'
@@ -163,7 +163,7 @@ export default class ExplorerController extends Controller {
   set topics(newTopics) {
     const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
 
-    this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
+    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { [qpKey]: newTopics }});
   }
 
   get isAllTopicsSelected() {
@@ -249,13 +249,13 @@ export default class ExplorerController extends Controller {
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
 
-    this.transitionToRoute('explorer', { queryParams: {
+    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: {
       [controlId]: !currentControlValue,
     }});
   }
 
   @action updateCompareTo(geoid) {
-    this.transitionToRoute('explorer', { queryParams: { compareTo: geoid }});
+    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { compareTo: geoid }});
   }
 
   @action toggleReliability() {

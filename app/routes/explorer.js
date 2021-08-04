@@ -32,6 +32,7 @@ export default class ExplorerRoute extends Route {
     const nestedProfileModel = nestProfile(profileResponse, 'variable');
 
     return {
+      selectionOrGeoid: id,
       selection: selectionResponse,
       profile: nestedProfileModel,
     };
