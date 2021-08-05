@@ -2,14 +2,14 @@ export default {
   blocks: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      ct2010,
-      borocode || ct2010 AS boroct2010,
-      cb2010,
+      ct2020,
+      borocode || ct2020 AS boroct2020,
+      cb2020,
       borocode,
-      bctcb2010,
-      bctcb2010 AS geoid,
-      (ct2010::float / 100)::text || ' - ' || cb2010 as geolabel
-    FROM nyc_census_blocks
+      bctcb2020,
+      geoid AS geoid,
+      bctcb2020 as geolabel
+    FROM nycb2020_fixed
   `,
 
   tracts: (webmercator = true) => `
@@ -18,7 +18,7 @@ export default {
       ct2020,
       ctlabel as geolabel,
       boroct2020,
-      ntacode,
+      nta2020,
       boroct2020 AS geoid
     FROM nyct2020
   `,
@@ -38,28 +38,25 @@ export default {
   districts: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      cd_short_title as geolabel,
-      boroname,
-      borocode::text,
+      borocd as geolabel,
       borocd AS geoid
-    FROM cd_boundaries_v0_dh
+    FROM nycd2020
   `,
 
   boroughs: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
       boroname as geolabel,
-      boroname,
       borocode AS geoid
-    FROM dcp_borough_boundary
+    FROM nybb2020
   `,
 
   cities: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
-      'New York City' as geolabel,
-      id AS geoid
-    FROM nyc2020_sw_unofficial
+      city as geolabel,
+      city AS geoid
+    FROM nycity2020
   `,
 
   ntas: (webmercator = true) => `

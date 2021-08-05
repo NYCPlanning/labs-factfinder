@@ -10,8 +10,8 @@ const { DEFAULT_SELECTION } = config;
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 
 const SUM_LEVEL_DICT = {
-  blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2010' },
-  tracts: { sql: summaryLevelQueries.tracts(false), ntas: 'ntacode', blocks: 'boroct2010' },
+  blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2020' },
+  tracts: { sql: summaryLevelQueries.tracts(false), ntas: 'ntacode', blocks: 'boroct2020' },
   cdtas: { sql: summaryLevelQueries.cdtas(false), cdtas: 'cdta2020' },
   districts: { sql: summaryLevelQueries.districts(false), districts: 'borocd' },
   boroughs: { sql: summaryLevelQueries.boroughs(false), boroughs: 'borocode' },

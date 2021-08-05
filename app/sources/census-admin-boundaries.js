@@ -5,7 +5,7 @@ export default {
     {
       id: 'neighborhood-tabulation-areas',
       sql: `
-        SELECT a.the_geom_webmercator, ntaname, ntacode, ntacode AS geolabel, a.ntacode AS geoid
+        SELECT a.the_geom_webmercator, ntaname, nta2020, nta2020 AS geolabel, a.nta2020 AS geoid
         FROM nynta2020 a
         WHERE ntaname NOT ILIKE 'park-cemetery-etc%'
           AND ntaname != 'Airport'
@@ -28,18 +28,23 @@ export default {
     },
 
     {
+      id: 'blocks',
+      sql: 'SELECT the_geom_webmercator, bctcb2020 as geolabel, geoid AS geoid FROM nycb2020_fixed',
+    },
+
+    {
       id: 'districts',
-      sql: 'SELECT the_geom_webmercator, cd_short_title AS geolabel, borocd AS geoid FROM cd_boundaries_v0_dh',
+      sql: 'SELECT the_geom_webmercator, borocd AS geolabel, borocd AS geoid FROM nycd2020',
     },
 
     {
       id: 'boroughs',
-      sql: 'SELECT the_geom_webmercator, boroname AS geolabel, borocode AS geoid FROM dcp_borough_boundary',
+      sql: 'SELECT the_geom_webmercator, boroname AS geolabel, borocode AS geoid FROM nybb2020',
     },
 
     {
       id: 'cities',
-      sql: 'SELECT the_geom_webmercator, "New York City" AS geolabel, id AS geoid FROM nyc2020_sw_unofficial',
+      sql: 'SELECT the_geom_webmercator, city AS geolabel, city AS geoid FROM nycity2020',
     },
 
     {
