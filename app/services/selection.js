@@ -20,12 +20,6 @@ const SUM_LEVEL_DICT = {
   pumas: { sql: summaryLevelQueries.pumas(false) },
 };
 
-const findUniqueBy = function(collection, id) {
-  return collection
-    .uniqBy(`properties.${id}`)
-    .mapBy(`properties.${id}`);
-};
-
 export default Service.extend({
   current: DEFAULT_SELECTION,
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
@@ -146,43 +140,10 @@ export default Service.extend({
 
 
     if (this.get('selectedCount')) {
-      // these transitions are all calculated using spatial queries
-      if (
-        (fromLevel === 'blocks' && toLevel === 'ntas')
-        || (fromLevel === 'blocks' && toLevel === 'pumas')
-        || (fromLevel === 'tracts' && toLevel === 'pumas')
-        || (fromLevel === 'ntas' && toLevel === 'blocks')
-        || (fromLevel === 'ntas' && toLevel === 'tracts')
-        || (fromLevel === 'ntas' && toLevel === 'pumas')
-        || (fromLevel === 'pumas' && toLevel === 'blocks')
-        || (fromLevel === 'pumas' && toLevel === 'tracts')
-        || (fromLevel === 'pumas' && toLevel === 'ntas')
-      ) {
-        this.explodeGeo(fromLevel, toLevel);
-        return;
-      }
-
-      // all other transitions are done using attributes (tract can be inferred from block attributes, etc..)
+      // All transitions now calculated using spatial queries
       this.explodeGeo(fromLevel, toLevel);
     } else {
       this.clearSelection();
-    }
-  },
-
-  // transition between geometry levels using attributes
-  explode(fromLevel, toLevel) {
-    if (fromLevel !== toLevel) {
-      const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
-      const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
-
-      const filterIds = findUniqueBy(this.get('current.features'), crossWalkFromColumn).join("','");
-      const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterIds}')`;
-
-      carto.SQL(sqlQuery, 'geojson')
-        .then((json) => {
-          this.clearSelection();
-          this.set('current', json);
-        });
     }
   },
 
@@ -195,10 +156,6 @@ export default Service.extend({
 
     let fromGeom = 'f.the_geom';
     let toGeom = 'a.the_geom';
-
-    // logic to use centroids
-    // if (fromLevel !== 'pumas') fromGeom = 'ST_Centroid(f.the_geom)';
-    // if (toLevel !== 'pumas') toGeom = 'ST_Centroid(a.the_geom)';
 
     // special handling for blocks to ntas and ntas to blocks
     if (fromLevel === 'blocks' && toLevel === 'ntas') {
