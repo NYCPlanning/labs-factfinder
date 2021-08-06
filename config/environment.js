@@ -102,18 +102,20 @@ module.exports = function (environment) {
 
   if (environment === 'development') {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
-    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    ENV.SupportServiceHost = 'http://localhost:3000';
     ENV['ember-cli-mirage'] = {
-      enabled: true,
+      enabled: false,
     };
   }
 
   if (environment === 'staging') {
-    // TODO: Eventually switch to https://factfinder-api-develop.herokuapp.com/ once it is ready
-    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
-    // TODO: Disable when we have solidified API
+    // The "develop" client deployment also uses this staging environment to build (to make sure assets are
+    // minified, etc.). To switch the SupportServiceHost to the develop Factfinder API, the API_URL
+    // environment variable should be set to 'https://factfinder-api-staging.herokuapp.com/'.
+    // See netlify.toml for setting netlify environment variable during build.
+    ENV.SupportServiceHost = process.env.API_URL || 'https://factfinder-api-staging.herokuapp.com/';
     ENV['ember-cli-mirage'] = {
-      enabled: true,
+      enabled: false,
     };
   }
 

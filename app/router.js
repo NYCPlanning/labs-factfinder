@@ -8,7 +8,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () { // eslint-disable-line
-  this.route('explorer');
+  this.route('explorer', { path: 'explorer/:id' });
   this.route('about');
   this.route('features');
   this.route('data');
