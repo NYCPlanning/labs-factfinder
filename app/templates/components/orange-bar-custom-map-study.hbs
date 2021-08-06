@@ -151,7 +151,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
+              {{#lookup-layer-group for='zip-codes' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
@@ -160,7 +160,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
+              {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
@@ -178,7 +178,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='nyc-pumas' as |layerGroup|}}
+              {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
