@@ -20,7 +20,7 @@ export default class ExplorerController extends Controller {
 
   @tracked showCharts = true;
 
-  @tracked sourceId = 'decennial-2020';
+  @tracked sourceId = 'decennial-current';
 
   @tracked censusTopics = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,housingOccupancy';
 
@@ -119,11 +119,9 @@ export default class ExplorerController extends Controller {
     this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { source: id }});
   }
 
-  // returns either 'current' or 'change'
+  // returns either 'current', 'previous' or 'change'
   get mode() {
-    if (this.source.changeOverTime) return 'change';
-
-    return 'current';
+    return this.source.mode;
   }
 
   get topicsIdList() {
