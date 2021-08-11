@@ -74,9 +74,6 @@
         </li>
       </ul>
     </div>
-    {{!-- <li class="menu align-right"><a href="#">Right Side Placeholder</a></li>
-    <div class="cell small-1 bar-item">
-    </div> --}}
     <div class="cell small-2 bar-item">
       <div class="menu align-right">
         <ul class="menu orange-bar--selector" id="more-options-button">
@@ -200,8 +197,8 @@
           {{/if}}
           {{drop-zone
             url='#'
-            addedfile=(action 'addedfile')
-            removedfile=(action 'removedfile')
+            addedfile=(action 'addedFile')
+            removedfile=(action 'removedFile')
             dictDefaultMessage='Drag & drop a zipped shapefile'
             createImageThumbnails=false
             acceptedFiles='application/zip'

@@ -8,6 +8,8 @@
       @drawMode={{this.drawMode}}
       @mode={{this.mode}}
       @lastreport={{this.lastreport}}
+      @addedFile={{action this.addedFile}}
+      @removedFile={{action this.removedFile}}
     />
   {{/if}}
 </OrangeBar>
@@ -63,8 +65,12 @@
     {{/if}}
 
     {{#if customVisualOverlayLines}}
-      <map.source @sourceId="custom-overlay" @options={{hash type='geojson'
-          data=customVisualOverlayData}} as |source|>
+      {{#map.source
+        sourceId='custom-overlay'
+        options=(hash
+          type='geojson'
+          data=customVisualOverlayData
+        ) as |source|}}
         {{source.layer
           layer=(hash
             type='line'
@@ -92,12 +98,16 @@
           )
           before='place_village'
         }}
-      </map.source>
+      {{/map.source}}
     {{/if}}
 
     {{#if customVisualOverlayPoints}}
-      <map.source @sourceId="custom-overlay" @options={{hash type='geojson'
-          data=customVisualOverlayData}} as |source|>
+      {{#map.source
+        sourceId='custom-overlay'
+        options=(hash
+          type='geojson'
+          data=customVisualOverlayData
+        ) as |source|}}
         {{source.layer
           layer=(hash
             type='circle'
@@ -114,7 +124,7 @@
           )
           before='place_village'}}
 
-      </map.source>
+      {{/map.source}}
     {{/if}}
 
     {{map.on 'draw.modechange' (action this.handleDrawModeChange)}}

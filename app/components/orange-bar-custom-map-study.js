@@ -121,11 +121,11 @@ export default Component.extend({
 
       this.set('mapLayersMenu', !this.get('mapLayersMenu'));
     },
-    addedfile() {
-      console.log('addedFile happened');
+    addedFile(file) {
+      this.addedFile(file)
     },
-    removedfile() {
-      console.log('removedfile happened');
+    removedFile() {
+      this.removedFile()
     }
   },
 });

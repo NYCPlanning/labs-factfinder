@@ -7,6 +7,7 @@ export default Component.extend({
 
     const recordIdentifier = this.get('for');
     const foundRecord = this.get('store').peekRecord('layer-group', recordIdentifier);
+
     if (foundRecord) {
       this.set('model', foundRecord);
     }
@@ -15,6 +16,7 @@ export default Component.extend({
   store: service(),
 
   for: '',
+  
   actions: {
     updatePaintFor(layerId, newPaintStyle) {
       const model = this.get('model')
