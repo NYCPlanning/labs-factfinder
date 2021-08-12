@@ -22,7 +22,7 @@
 
   {{!-- COMPARISON AREA --}}
   {{data-table-column-group
-    model=this.data.previous.comparison
+    model=this.data.previous_comparison
     rowConfig=this.rowConfig
     reliabilityMode=this.reliability}}
 
@@ -32,7 +32,7 @@
     {{if
       (or
         (not this.data.previous.significant)
-        (and (eq this.data.previous.sum 0) (eq this.data.previous.comparison_sum 0)))
+        (and (eq this.data.previous.sum 0) (eq this.data.previous_comparison.sum 0)))
       'insignificant'}}">
     {{unless (eq this.data.previous.difference_sum null)
       (format-number
@@ -44,7 +44,7 @@
       {{if
         (or
           (not this.data.previous.significant)
-          (and (eq this.data.previous.sum 0) (eq this.data.previous.comparison_sum 0)))
+          (and (eq this.data.previous.sum 0) (eq this.data.previous_comparison.sum 0)))
         'insignificant'}}">
       {{unless (eq this.data.previous.difference_m null)
           (format-number
