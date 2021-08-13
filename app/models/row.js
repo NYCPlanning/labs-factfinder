@@ -162,6 +162,34 @@ export default DS.Model.extend({
    */
   previous_is_reliable: DS.attr('boolean'),
 
+  // previous comparison
+  previous_comparison_sum: DS.attr('number'),
+
+  previous_comparison_codingThreshold: DS.attr('string'),
+
+  previous_comparison_m: DS.attr('number'),
+
+  previous_comparison_cv: DS.attr('number'),
+
+  previous_comparison_percent: DS.attr('number'),
+
+  previous_comparison_percent_m: DS.attr('number'),
+
+  previous_comparison_is_reliable: DS.attr('boolean'),
+
+  // previous difference
+  previous_difference_sum: DS.attr('number'),
+
+  previous_difference_m: DS.attr('number'),
+
+  previous_significant: DS.attr('boolean'),
+
+  previous_difference_percent: DS.attr('number'),
+
+  previous_difference_percent_m: DS.attr('number'),
+
+  previous_percent_significant:  DS.attr('boolean'),
+
   /* =====  End of PREVIOUS_  ====== */
 
 
@@ -427,36 +455,120 @@ export default DS.Model.extend({
    */
   previous: computed(
     'previous_sum',
+    'previous_codingThreshold',
     'previous_m',
     'previous_cv',
     'previous_percent',
     'previous_percent_m',
     'previous_is_reliable',
-    'previous_codingThreshold',
+    'previous_difference_sum',
+    'previous_difference_m',
+    'previous_significant',
+    'previous_difference_percent',
+    'previous_difference_percent_m',
+    'previous_percent_significant',
+    'previous_change_percent_significant',
+    'previous_change_percentage_point',
+    'previous_change_percentage_point_m',
+    'previous_change_percentage_point_significant',
     function() {
       const {
         previous_sum: sum,
+        previous_codingThreshold: direction, // TODO: fix naming
         previous_m: moe,
         previous_cv: cv,
         previous_percent: percent,
         previous_percent_m: percent_m,
         previous_is_reliable: is_reliable,
-        previous_codingThreshold: direction,
+        previous_difference_sum: difference_sum,
+        previous_difference_m: difference_m,
+        previous_significant: significant,
+        previous_difference_percent: difference_percent,
+        previous_difference_percent_m: difference_percent_m,
+        previous_percent_significant: percent_significant,
+        previous_change_percent_significant: change_percent_significant,
+        previous_change_percentage_point: change_percentage_point,
+        previous_change_percentage_point_m: change_percentage_point_m,
+        previous_change_percentage_point_significant: change_percentage_point_significant,
       } = this.getProperties(
         'previous_sum',
+        'previous_codingThreshold',
         'previous_m',
         'previous_cv',
         'previous_percent',
         'previous_percent_m',
         'previous_is_reliable',
-        'previous_codingThreshold',
+        'previous_difference_sum',
+        'previous_difference_m',
+        'previous_significant',
+        'previous_difference_percent',
+        'previous_difference_percent_m',
+        'previous_percent_significant',
+        'previous_change_percent_significant',
+        'previous_change_percentage_point',
+        'previous_change_percentage_point_m',
+        'previous_change_percentage_point_significant',
       );
 
       return {
-        sum, moe, cv, percent, percent_m, is_reliable, direction,
+        sum,
+        direction,
+        moe,
+        cv,
+        percent,
+        percent_m,
+        is_reliable,
+        difference_sum,
+        difference_m,
+        significant,
+        difference_percent,
+        difference_percent_m,
+        percent_significant,
+        change_percent_significant,
+        change_percentage_point,
+        change_percentage_point_m,
+        change_percentage_point_significant,
       };
-    },
-  ),
+    }),
+
+    previous_comparison: computed(
+      'previous_comparison_sum',
+      'previous_comparison_codingThreshold',
+      'previous_comparison_m',
+      'previous_comparison_cv',
+      'previous_comparison_percent',
+      'previous_comparison_percent_m',
+      'previous_comparison_is_reliable',
+      function(){
+        const {
+          previous_comparison_sum: sum,
+          previous_comparison_codingThreshold: direction,// TODO: fix namespace conflict
+          previous_comparison_m: m,
+          previous_comparison_cv: cv,
+          previous_comparison_percent: percent,
+          previous_comparison_percent_m: percent_m,
+          previous_comparison_is_reliable: is_reliable,
+        } = this.getProperties(
+          'previous_comparison_sum',
+          'previous_comparison_codingThreshold',
+          'previous_comparison_m',
+          'previous_comparison_cv',
+          'previous_comparison_percent',
+          'previous_comparison_percent_m',
+          'previous_comparison_is_reliable',
+        )
+
+        return {
+          sum,
+          direction,
+          m,
+          cv,
+          percent,
+          percent_m,
+          is_reliable,
+        }
+      }
+    ),
 
   /**
    * shouldHideDeltaPercent is a special exception to displaying the percentage change.

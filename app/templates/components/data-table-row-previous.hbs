@@ -1,0 +1,100 @@
+{{#unless this.rowConfig.divider}}
+  <td class='title-column' {{action 'showData'}}>
+    <span>
+      {{this.rowConfig.title}}
+      {{#if this.this.rowConfig.tooltip}}
+        {{fa-icon icon='question-circle' transform='shrink-2'}}
+        {{ember-tooltip text=this.this.rowConfig.tooltip side='right'}}
+      {{/if}}
+    </span>
+  </td>
+
+  {{!-- SELECTED AREA --}}
+  {{#if (eq this.data.previous.selection.sum null)}}
+    <td class="cell-border-left" class="no-compare-message"><div>Data are not available</div></td>
+    <td>&nbsp;</td>
+  {{else}}
+    {{data-table-column-group
+      model=this.data.previous
+      rowConfig=this.rowConfig
+      reliabilityMode=this.reliability}}
+  {{/if}}
+
+  {{!-- COMPARISON AREA --}}
+  {{data-table-column-group
+    model=this.data.previous_comparison
+    rowConfig=this.rowConfig
+    reliabilityMode=this.reliability}}
+
+  {{!-- DIFFERENCE --}}
+  <td
+    class="cell-border-left
+    {{if
+      (or
+        (not this.data.previous.significant)
+        (and (eq this.data.previous.sum 0) (eq this.data.previous_comparison.sum 0)))
+      'insignificant'}}">
+    {{unless (eq this.data.previous.difference_sum null)
+      (format-number
+          this.data.previous.difference_sum
+          precision=this.rowConfig.decimal)}}
+  </td>
+  {{#if this.reliability}}
+    <td class="
+      {{if
+        (or
+          (not this.data.previous.significant)
+          (and (eq this.data.previous.sum 0) (eq this.data.previous_comparison.sum 0)))
+        'insignificant'}}">
+      {{unless (eq this.data.previous.difference_m null)
+          (format-number
+            this.data.previous.difference_m
+            precision=this.rowConfig.decimal)}}
+    </td>
+  {{/if}}
+
+    <td
+      class="{{unless this.data.previous.percent_significant 'insignificant'}} difference-percent">
+      {{unless (eq this.data.previous.difference_percent null)
+          (format-number
+            this.data.previous.difference_percent
+            precision=1)}}
+    </td>
+    {{#if this.reliability}}
+      <td
+        class="{{unless this.data.previous.percent_significant 'insignificant'}} difference-percent-m">
+        {{unless (eq this.data.previous.difference_percent_m null)
+          (format-number
+            this.data.previous.difference_percent_m
+            precision=1)}}
+      </td>
+    {{/if}}
+
+{{else}}
+
+  <td>&nbsp;</td>
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if this.reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if this.reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if this.reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+{{/unless}}
+{{yield}}

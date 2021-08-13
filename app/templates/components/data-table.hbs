@@ -11,6 +11,13 @@
         mode=this.mode
         compareToLabel=this.compareToLabel
       }}
+    {{else if (eq this.mode 'previous')}}
+      {{data-table-header-previous
+        decennial=this.decennial
+        reliability=this.reliability
+        mode=this.mode
+        compareToLabel=this.compareToLabel
+      }}
     {{else}}
       {{data-table-header-change
         decennial=this.decennial
@@ -30,6 +37,15 @@
           {{else}}
             {{#if (eq this.mode 'current')}}
               {{data-table-row-current
+                mode=this.mode
+                reliability=this.reliability
+                comparison=this.comparison
+                rowConfig=rowConfig
+                options=this.profile
+                data=(get this.model rowConfig.data)
+              }}
+            {{else if (eq this.mode 'previous')}}
+              {{data-table-row-previous
                 mode=this.mode
                 reliability=this.reliability
                 comparison=this.comparison
