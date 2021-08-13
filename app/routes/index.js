@@ -40,9 +40,10 @@ export default Route.extend({
         // { id: 'ny-senate-districts', visible: false },
         { id: 'boroughs', visible: false },
         { id: 'nyc-council-districts', visible: false },
-        { id: 'nyc-pumas', visible: false },
         { id: 'community-districts', visible: false },
         { id: 'neighborhood-tabulation-areas', visible: false },
+        { id: 'community-district-tabulation-areas', visible: false },
+        { id: 'zip-codes', visible: false },
 
         // Census selection groups
         { id: 'factfinder--census-blocks', visible: false },
@@ -53,8 +54,10 @@ export default Route.extend({
         { id: 'factfinder--cities', visible: false },
         { id: 'factfinder--ntas', visible: false },
         { id: 'factfinder--pumas', visible: false },
+        { id: 'factfinder--cdtas', visible: false },
 
         { id: 'subway', visible: false },
+        { id: 'choropleths', visible: false},
       ],
     });
 

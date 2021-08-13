@@ -17,13 +17,14 @@ export default Component.extend({
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,
+  mapLayersMenu: false,
 
   choroplethMode: 'popperacre',
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  profileButtonClasses: computed('selection.selectedCount', 'generateProfileId.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateProfileId.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileId.isIdle');
+  profileButtonClasses: computed('selection.selectedCount', 'generateProfileTask.isIdle', function() {
+    const { 'selection.selectedCount': count, 'generateProfileTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileTask.isIdle');
 
     return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
   }),
@@ -110,5 +111,21 @@ export default Component.extend({
 
       this.set('advanced', !this.get('advanced'));
     },
-  }
+    
+    toggleMapLayersMenu() {
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Toggle Map Layers Menu',
+        eventLabel: this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+      });
+
+      this.set('mapLayersMenu', !this.get('mapLayersMenu'));
+    },
+    addedFile(file) {
+      this.addedFile(file)
+    },
+    removedFile() {
+      this.removedFile()
+    }
+  },
 });
