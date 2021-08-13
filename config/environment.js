@@ -58,7 +58,7 @@ module.exports = function (environment) {
     },
 
     'ember-mapbox-composer': {
-      host: 'https://labs-layers-api.herokuapp.com',
+      host: 'https://labs-layers-api-staging.herokuapp.com',
       namespace: 'v1',
     },
 
