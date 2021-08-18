@@ -102,7 +102,7 @@ module.exports = function (environment) {
 
   if (environment === 'development') {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
-    ENV.SupportServiceHost = 'http://localhost:3000';
+    ENV.SupportServiceHost = 'https://factfinder-api-develop.herokuapp.com/';
     ENV['ember-cli-mirage'] = {
       enabled: false,
     };
