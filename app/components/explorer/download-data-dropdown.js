@@ -9,6 +9,10 @@ export default class DownloadDataDropdown extends Component{
     this.open = !this.open;
   }
 
+  @action closeMenu() {
+    this.open = false;
+  }
+  
   @action downloadCSV(csv) {
     var csvFile;
     var downloadLink;

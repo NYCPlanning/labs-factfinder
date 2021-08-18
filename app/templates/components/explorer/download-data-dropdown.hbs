@@ -15,7 +15,10 @@
 </button>
 
 {{#if this.open}}
-  <div class="download-data-dropdown">
+  <div
+   class="download-data-dropdown"
+   {{on-click-outside (action "closeMenu")}}
+  >
     <div class="triangle">
     </div>
     <div class="download-data-dropdown-head">

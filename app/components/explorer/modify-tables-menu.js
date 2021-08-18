@@ -8,4 +8,8 @@ export default class ModifyTablesMenuComponent extends Component {
   @action toggleOpen() {
     this.open = !this.open;
   }
+
+  @action closeMenu() {
+    this.open = false;
+  }
 }
