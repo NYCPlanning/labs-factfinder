@@ -102,7 +102,7 @@ export default Service.extend({
     const layerGroupIdMap = (level) => {
       switch (level) {
         case 'tracts':
-          return 'factfinder--census-tracts';
+          return 'factfinder--census-tracts-2020';
         case 'blocks':
           return 'factfinder--census-blocks';
         case 'cdtas':
