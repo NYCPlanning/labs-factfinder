@@ -87,7 +87,7 @@ export default Component.extend({
 
   generateProfileTask: task(function* (type, geoids) {
     const postBody = {
-      type,
+      _type: type,
       geoids,
     };
 
@@ -101,7 +101,7 @@ export default Component.extend({
       .then(d => d.json());
 
     yield this.get('router')
-      .transitionTo('explorer', {
+      .transitionTo('explorer', id, {
         queryParams: {
           mode: 'current', comparator: '0', reliability: false, charts: true,
         },
