@@ -16,16 +16,21 @@ export default class ExplorerRoute extends Route {
 
   async model({ id, compareTo }) { // eslint-disable-line
     let selectionResponse = null;
-    let profileResponse = null;
+    let acsSurveyResponse = null;
+    let censusSurveyResponse = null;
     let selectionId = id || "0"; // "0" maps to 'nyc'
 
     selectionResponse = await fetch(SELECTION_API_URL(id));
     selectionResponse = await selectionResponse.json();
 
-    profileResponse = await this.store.query('row', { selectionId, compareTo});
-    profileResponse = profileResponse.toArray();
+    acsSurveyResponse = await this.store.query('acsRow', { selectionId, comparator: '0' });
+    acsSurveyResponse = acsSurveyResponse.toArray();
 
-    const nestedProfileModel = nestProfile(profileResponse, 'variable');
+    censusSurveyResponse = await this.store.query('censusRow', { selectionId, comparator: '0' });
+    censusSurveyResponse = censusSurveyResponse.toArray();
+
+    const nestedACSModel = nestProfile(acsSurveyResponse, 'variable');
+    const nestedCensusModel = nestProfile(censusSurveyResponse, 'variable');
 
     let comparisonGeoOptions = await fetch(COMPARISON_GEO_OPTIONS_URL);
     comparisonGeoOptions = await comparisonGeoOptions.json();
@@ -33,7 +38,8 @@ export default class ExplorerRoute extends Route {
     return {
       selectionOrGeoid: id,
       selection: selectionResponse,
-      profile: nestedProfileModel,
+      acs: nestedACSModel,
+      census: nestedCensusModel,
       comparisonGeoOptions
     };
   }

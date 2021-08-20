@@ -8,7 +8,7 @@ const { SupportServiceHost } = Environment;
 export default DS.JSONAPIAdapter.extend({
   query(store, modelType, query) {
     const { selectionId, compareTo = 0 } = query;
-    const URL = `${SupportServiceHost}/profile/${selectionId}?compareTo=${compareTo}`;
+    const URL = `${SupportServiceHost}/survey/decennial/${selectionId}?compareTo=${compareTo}`;
 
     return fetch(URL)
       .then(d => d.json());
