@@ -124,11 +124,7 @@ export default Component.extend({
       .then(d => d.json());
 
     yield this.get('router')
-      .transitionTo('explorer', id, {
-        queryParams: {
-          mode: 'current', comparator: '0', reliability: false, charts: true,
-        },
-      });
+      .transitionTo('explorer', id);
   }).restartable(),
 
   clearSelection() {
@@ -161,11 +157,7 @@ export default Component.extend({
 
       const factfinderId = `${getIdPrefixFromGeotype(type)}_${geoids[0]}`;
 
-      this.get('router').transitionTo('explorer', factfinderId, {
-        queryParams: {
-          mode: 'current', comparator: 'BORO_NYC', reliability: false, charts: true,
-        },
-      });
+      this.get('router').transitionTo('explorer', factfinderId);
     } else {
       console.log("Warning: Cannot generate profile because selected geoids array is empty.")
     }
