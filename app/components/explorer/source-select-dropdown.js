@@ -14,6 +14,10 @@ export default class SourceSelectDropdownComponent extends Component {
     this.open = !this.open;
   }
 
+  @action closeMenu() {
+    this.open = false;
+  }
+
   get source() {
     return this.args.sources.find(source => source.selected);
   }
