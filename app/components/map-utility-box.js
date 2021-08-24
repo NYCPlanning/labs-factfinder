@@ -10,6 +10,29 @@ import choroplethConfigs from '../choropleth-config';
 
 const { SupportServiceHost } = Environment;
 
+// This is the compliment of the `getGeotypeFromIdPrefix`
+// function in the Factfinder API repo (utils/geotype-from-id-prefix.js)
+function getIdPrefixFromGeotype(idPrefix) {
+  switch (idPrefix) {
+    case 'selection':
+        return 'SID';
+    case 'ntas':
+        return'NTA' ;
+    case 'tracts':
+        return 'TRACT';
+    case 'cdtas':
+        return 'CDTA';
+    case 'districts':
+        return 'DIST';
+    case 'blocks':
+        return 'BLOCK';
+    case 'boroughs':
+        return 'BORO';
+    default:
+      return null;
+  }
+}
+
 export default Component.extend({
   selection: service(),
   router: service(),
@@ -132,7 +155,20 @@ export default Component.extend({
     const geoids = this.get('selection.current.features')
       .mapBy('properties.geoid');
 
-    this.get('generateProfileTask').perform(type, geoids);
+    if (geoids.length > 1) {
+      this.get('generateProfileTask').perform(type, geoids);
+    } else if (geoids.length === 1){
+
+      const factfinderId = `${getIdPrefixFromGeotype(type)}_${geoids[0]}`;
+
+      this.get('router').transitionTo('explorer', factfinderId, {
+        queryParams: {
+          mode: 'current', comparator: 'BORO_NYC', reliability: false, charts: true,
+        },
+      });
+    } else {
+      console.log("Warning: Cannot generate profile because selected geoids array is empty.")
+    }
   },
 
   setChoroplethMode(mode) {
