@@ -9,9 +9,8 @@
     @showReliability={{this.showReliability}}
     @toggleReliability={{this.toggleReliability}}
     @disaggregate={{this.disaggregate}}
-    @compareTo={{this.compareTo}}
-    @geoOptions={{this.geoOptions}}
-    @selectedGeo={{this.selectedGeo}}
+    @comparisonGeoOptions={{this.comparisonGeoOptions}}
+    @comparisonGeo={{this.comparisonGeo}}
     @toggleBooleanControl={{this.toggleBooleanControl}}
     @updateCompareTo={{this.updateCompareTo}}
   />
@@ -80,7 +79,7 @@
                 decennial=(eq this.source.type 'census')
                 reliability=this.showReliability
                 comparison=this.compareTo
-                compareToLabel=this.selectedGeo.label
+                compareToLabel=this.comparisonGeo.label
                 config=subtopic.tableConfig
                 model=@model.profile
               }}
@@ -126,7 +125,7 @@
                   decennial=(eq this.source.type 'census')
                   reliability=this.showReliability
                   comparison=this.compareTo
-                  compareToLabel=this.selectedGeo.label
+                  compareToLabel=this.comparisonGeo.label
                   config=subtopic.tableConfig
                   model=@model.profile
                 }}

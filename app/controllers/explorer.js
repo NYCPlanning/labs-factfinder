@@ -30,10 +30,13 @@ export default class ExplorerController extends Controller {
 
   @tracked disaggregate = false;
 
-  // Default "0" maps to NYC
+  // The comparison geography ID.
+  // Must match ID of one option in comparisonGeoOptions.
+  // Default "0" maps to NYC.
   @tracked compareTo = "0";
 
-  @tracked geoOptions = null;
+  // object array representing possible geographies to compare against
+  @tracked comparisonGeoOptions = null;
 
   toggleSourceInList(sourceId) {
     return sourcesDefault.map((source) => {
@@ -93,9 +96,9 @@ export default class ExplorerController extends Controller {
     });
   }
 
-  get selectedGeo() {
-    if (this.geoOptions) {
-      return this.geoOptions.findBy('geoid', this.compareTo);
+  get comparisonGeo() {
+    if (this.comparisonGeoOptions) {
+      return this.comparisonGeoOptions.findBy('geoid', this.compareTo);
     }
 
     return null;

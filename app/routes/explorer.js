@@ -41,6 +41,6 @@ export default class ExplorerRoute extends Route {
   async setupController(controller, model) {
     super.setupController(controller, model);
 
-    controller.geoOptions = await carto.SQL(GEO_OPTIONS_QUERY);
+    controller.comparisonGeoOptions = await carto.SQL(GEO_OPTIONS_QUERY);
   }
 }
