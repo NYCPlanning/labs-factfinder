@@ -35,9 +35,6 @@ export default class ExplorerController extends Controller {
   // Default "0" maps to NYC.
   @tracked compareTo = "0";
 
-  // object array representing possible geographies to compare against
-  @tracked comparisonGeoOptions = null;
-
   toggleSourceInList(sourceId) {
     return sourcesDefault.map((source) => {
       if (source.id === sourceId) {
@@ -97,8 +94,8 @@ export default class ExplorerController extends Controller {
   }
 
   get comparisonGeo() {
-    if (this.comparisonGeoOptions) {
-      return this.comparisonGeoOptions.findBy('geoid', this.compareTo);
+    if (this.model.comparisonGeoOptions) {
+      return this.model.comparisonGeoOptions.findBy('geoid', this.compareTo);
     }
 
     return null;

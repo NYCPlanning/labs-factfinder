@@ -3,12 +3,12 @@ import { inject as service } from '@ember/service';
 
 import Environment from '../config/environment';
 import nestProfile from '../utils/nest-profile';
-import GEO_OPTIONS_QUERY from '../queries/geography-options';
-import carto from '../utils/carto';
 
 const { SupportServiceHost } = Environment;
 
 const SELECTION_API_URL = id => `${SupportServiceHost}/selection/${id}`;
+
+const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
 export default class ExplorerRoute extends Route {
   @service
@@ -31,16 +31,14 @@ export default class ExplorerRoute extends Route {
 
     const nestedProfileModel = nestProfile(profileResponse, 'variable');
 
+    let comparisonGeoOptions = await fetch(COMPARISON_GEO_OPTIONS_URL);
+    comparisonGeoOptions = await comparisonGeoOptions.json();
+
     return {
       selectionOrGeoid: id,
       selection: selectionResponse,
       profile: nestedProfileModel,
+      comparisonGeoOptions
     };
-  }
-
-  async setupController(controller, model) {
-    super.setupController(controller, model);
-
-    controller.comparisonGeoOptions = await carto.SQL(GEO_OPTIONS_QUERY);
   }
 }
