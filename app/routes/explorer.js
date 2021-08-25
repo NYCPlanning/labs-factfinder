@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 
 import Environment from '../config/environment';
 import nestProfile from '../utils/nest-profile';
@@ -11,9 +10,6 @@ const SELECTION_API_URL = id => `${SupportServiceHost}/selection/${id}`;
 const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
 export default class ExplorerRoute extends Route {
-  @service
-  selection;
-
   beforeModel() {
     this.store.unloadAll('row');
   }
