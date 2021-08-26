@@ -50,8 +50,8 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  profileButtonClasses: computed('selection.selectedCount', 'generateProfileTask.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateProfileTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileTask.isIdle');
+  profileButtonClasses: computed('selection.selectedCount', 'generateExplorerPageTask.isIdle', function() {
+    const { 'selection.selectedCount': count, 'generateExplorerPageTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateExplorerPageTask.isIdle');
 
     return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
   }),
@@ -108,7 +108,7 @@ export default Component.extend({
     ];
   }),
 
-  generateProfileTask: task(function* (type, geoids) {
+  generateExplorerPageTask: task(function* (type, geoids) {
     const postBody = {
       _type: type,
       geoids,
@@ -152,7 +152,7 @@ export default Component.extend({
       .mapBy('properties.geoid');
 
     if (geoids.length > 1) {
-      this.get('generateProfileTask').perform(type, geoids);
+      this.get('generateExplorerPageTask').perform(type, geoids);
     } else if (geoids.length === 1){
 
       const factfinderId = `${getIdPrefixFromGeotype(type)}_${geoids[0]}`;
