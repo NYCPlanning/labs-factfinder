@@ -12,10 +12,10 @@ export default class ComparisonAreaSelectorComponent extends Component {
   @service()
   metrics;
 
-  get nestedGeoOptions() {
+  get nestedComparisonGeoOptions() {
     return nest()
       .key(d => d.typelabel)
-      .entries(this.args.geoOptions)
+      .entries(this.args.comparisonGeoOptions)
       .map(d => ({
         groupName: d.key,
         options: d.values,
