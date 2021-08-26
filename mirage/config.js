@@ -41,7 +41,7 @@ export default function() {
   this.passthrough('https://labs-layers-api.herokuapp.com/**');
   this.passthrough('https://labs-layers-api-staging.herokuapp.com/v1/base/style.json');
   this.passthrough('http://localhost:3000/**');
-  this.passthrough('http://localhost:3100/**');
+  this.passthrough('http://localhost:3001/**');
 
   this.passthrough('https://layers-api.planninglabs.nyc/**');
   this.passthrough('https://layers-api-staging.planninglabs.nyc/**');

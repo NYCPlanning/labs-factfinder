@@ -19,7 +19,8 @@ export default Mixin.create({
    * Also updates the profile view's tab state with the "target".
    */
   beforeModel(transition) {
-    this.store.unloadAll('row');
+    this.store.unloadAll('census-row');
+    this.store.unloadAll('acs-row');
 
     const { targetName } = transition;
     this.controllerFor('profile').set('tab', targetName);

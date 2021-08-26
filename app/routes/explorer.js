@@ -17,7 +17,7 @@ export default class ExplorerRoute extends Route {
   async model({ id, compareTo }) { // eslint-disable-line
     let selectionResponse = null;
     let acsSurveyResponse = null;
-    let censusSurveyResponse = null;
+    let decennialSurveyResponse = null;
     let selectionId = id || "0"; // "0" maps to 'nyc'
 
     selectionResponse = await fetch(SELECTION_API_URL(id));
@@ -26,11 +26,11 @@ export default class ExplorerRoute extends Route {
     acsSurveyResponse = await this.store.query('acsRow', { selectionId, comparator: '0' });
     acsSurveyResponse = acsSurveyResponse.toArray();
 
-    censusSurveyResponse = await this.store.query('censusRow', { selectionId, comparator: '0' });
-    censusSurveyResponse = censusSurveyResponse.toArray();
+    decennialSurveyResponse = await this.store.query('decennialRow', { selectionId, comparator: '0' });
+    decennialSurveyResponse = decennialSurveyResponse.toArray();
 
     const nestedACSModel = nestProfile(acsSurveyResponse, 'variable');
-    const nestedCensusModel = nestProfile(censusSurveyResponse, 'variable');
+    const nestedDecennialModel = nestProfile(decennialSurveyResponse, 'variable');
 
     let comparisonGeoOptions = await fetch(COMPARISON_GEO_OPTIONS_URL);
     comparisonGeoOptions = await comparisonGeoOptions.json();
@@ -39,7 +39,7 @@ export default class ExplorerRoute extends Route {
       selectionOrGeoid: id,
       selection: selectionResponse,
       acs: nestedACSModel,
-      census: nestedCensusModel,
+      decennial: nestedDecennialModel,
       comparisonGeoOptions
     };
   }
