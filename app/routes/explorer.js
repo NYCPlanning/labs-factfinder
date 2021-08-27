@@ -10,12 +10,6 @@ const SELECTION_API_URL = id => `${SupportServiceHost}/selection/${id}`;
 const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
 export default class ExplorerRoute extends Route {
-  queryParams = {
-    compareTo: {
-      refreshModel: true
-    }
-  };
-
   beforeModel() {
     this.store.unloadAll('row');
   }
