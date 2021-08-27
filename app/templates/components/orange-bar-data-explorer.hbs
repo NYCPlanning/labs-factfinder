@@ -7,12 +7,14 @@
       <Explorer::SourceSelectDropdown
         @sources={{@sources}}
         @setSource={{@setSource}}
+        @isModelLoading={{@isModelLoading}}
       />
 
       <Explorer::TopicSelectDropdown
         @topics={{@topics}}
         @toggleTopic={{@toggleTopic}}
         @toggleAllTopics={{@toggleAllTopics}}
+        @isModelLoading={{@isModelLoading}}
       />
 
       <Explorer::ModifyTablesMenu
@@ -23,6 +25,7 @@
         @comparisonGeo={{@comparisonGeo}}
         @toggleBooleanControl={{@toggleBooleanControl}}
         @updateCompareTo={{@updateCompareTo}}
+        @isModelLoading={{@isModelLoading}}
       />
     </div>
 
@@ -33,6 +36,7 @@
           @sources={{@sources}}
           @showReliability={{@showReliability}}
           @toggleReliability={{@toggleReliability}}
+          @isModelLoading={{@isModelLoading}}
         />
       </div>
     </div>
