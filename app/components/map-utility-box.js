@@ -50,12 +50,6 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  profileButtonClasses: computed('selection.selectedCount', 'generateExplorerPageTask.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateExplorerPageTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateExplorerPageTask.isIdle');
-
-    return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
-  }),
-
   choroplethPaintFill: computed('choroplethMode', function() {
     const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
@@ -140,7 +134,7 @@ export default Component.extend({
   },
   transitionTo() {},
 
-  generateProfile() {
+  generateExplorerPage() {
     this.get('metrics').trackEvent('GoogleAnalytics', {
       eventCategory: 'Selection',
       eventAction: 'Created Profile',
