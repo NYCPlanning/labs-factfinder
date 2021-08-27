@@ -9,7 +9,7 @@
     @showReliability={{this.showReliability}}
     @toggleReliability={{this.toggleReliability}}
     @disaggregate={{this.disaggregate}}
-    @comparisonGeoOptions={{@model.comparisonGeoOptions}}
+    @comparisonGeoOptions={{this.model.comparisonGeoOptions}}
     @comparisonGeo={{this.comparisonGeo}}
     @toggleBooleanControl={{this.toggleBooleanControl}}
     @updateCompareTo={{this.updateCompareTo}}
@@ -29,7 +29,7 @@
         <h3 class="profile-geographies-header">
           <SelectionDetailsText
             @selectedCount={{this.selectedCount}}
-            @selectedType={{@model.selection.type}}
+            @selectedType={{this.model.selection.type}}
           />
         </h3>
         <span class="dark-gray">&nbsp;|&nbsp;</span>
@@ -81,7 +81,7 @@
                 comparison=this.compareTo
                 compareToLabel=this.comparisonGeo.label
                 config=subtopic.tableConfig
-                model=@model.profile
+                model=this.model.profile
                 isModelLoading=this.reloadExplorerModel.isRunning
               }}
             </div>
@@ -99,7 +99,7 @@
                   {{acs-bar
                     title=chart.chartLabel
                     config=chart.chartConfig
-                    data=@model.profile
+                    data=this.model.profile
                     height=204
                   }}
                 {{/each}}
@@ -128,7 +128,7 @@
                   comparison=this.compareTo
                   compareToLabel=this.comparisonGeo.label
                   config=subtopic.tableConfig
-                  model=@model.profile
+                  model=this.model.profile
                   isModelLoading=this.reloadExplorerModel.isRunning
                 }}
               </div>
@@ -143,7 +143,7 @@
                     {{acs-bar
                       title=chart.chartLabel
                       config=chart.chartConfig
-                      data=@model.profile
+                      data=this.model.profile
                       height=204
                     }}
                   {{/each}}

@@ -255,20 +255,20 @@ export default class ExplorerController extends Controller {
     }});
   }
 
-  @task({ restartable: true }) *reloadExplorerModel() {
+  @task({ restartable: true }) *reloadExplorerModel(newGeoid) {
     yield this.store.unloadAll('row');
 
-    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.selectionOrGeoid, this.compareTo);
+    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.selectionOrGeoid, newGeoid);
 
     this.model = newExplorerModel;
+
+    yield this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { compareTo: newGeoid }});
   }
 
   @action updateCompareTo(geoid) {
     // TODO: Figure out how to reload the model on compareTo queryParam update, instead of
     // manually firing off the Task here.
-    this.reloadExplorerModel.perform();
-
-    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { compareTo: geoid }});
+    this.reloadExplorerModel.perform(geoid);
   }
 
   @action toggleReliability() {
