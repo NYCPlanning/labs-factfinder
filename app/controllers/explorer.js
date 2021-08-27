@@ -256,6 +256,8 @@ export default class ExplorerController extends Controller {
   }
 
   @task({ restartable: true }) *reloadExplorerModel() {
+    yield this.store.unloadAll('row');
+
     const newExplorerModel = yield fetchExplorerModel(this.store, this.model.selectionOrGeoid, this.compareTo);
 
     this.model = newExplorerModel;
