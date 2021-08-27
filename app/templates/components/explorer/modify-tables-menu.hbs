@@ -82,7 +82,10 @@
       </div>
 
       {{#if (and
-        (eq @mode 'current')
+        (or 
+          (eq @mode 'current')
+          (eq @mode 'previous')
+        )
         @comparisonGeoOptions
         @comparisonGeo
       )}}
