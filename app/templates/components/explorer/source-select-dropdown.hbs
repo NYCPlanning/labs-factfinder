@@ -22,49 +22,55 @@
 
   {{#if this.open}}
     <div class="source-menu">
-      Decennial Census
-      {{#each this.censusSources key="id" as |source|}}
-        <div
-          class="nestable-list-item grid-x clickable"
-          {{on "click" (fn @setSource source)}}
-        >
-          <div class="cell small-1">
-            <span class="dcp-orange">
-              {{#if source.selected}}
-                {{fa-icon icon='dot-circle' prefix='far'}}
-              {{else}}
-                {{fa-icon icon='circle' prefix='far' class='silver'}}
-              {{/if}}
-            </span>
-          </div>
-
-          <div class="cell auto">
-            {{source.label}}
-          </div>
+      {{#if @isModelLoading}}
+        <div class="text-center">
+          Please wait...
         </div>
-      {{/each}}
+      {{else}}
+        Decennial Census
+        {{#each this.censusSources key="id" as |source|}}
+          <div
+            class="nestable-list-item grid-x clickable"
+            {{on "click" (fn @setSource source)}}
+          >
+            <div class="cell small-1">
+              <span class="dcp-orange">
+                {{#if source.selected}}
+                  {{fa-icon icon='dot-circle' prefix='far'}}
+                {{else}}
+                  {{fa-icon icon='circle' prefix='far' class='silver'}}
+                {{/if}}
+              </span>
+            </div>
 
-      American Community Survey (ACS)
-      {{#each this.acsSources key="id" as |source|}}
-        <div
-          class="nestable-list-item grid-x clickable"
-          {{on "click" (fn @setSource source)}}
-        >
-          <div class="cell small-1">
-            <span class="dcp-orange">
-              {{#if source.selected}}
-                {{fa-icon icon='dot-circle' prefix='far'}}
-              {{else}}
-                {{fa-icon icon='circle' prefix='far' class='silver'}}
-              {{/if}}
-            </span>
+            <div class="cell auto">
+              {{source.label}}
+            </div>
           </div>
+        {{/each}}
 
-          <div class="cell auto">
-            {{source.label}}
+        American Community Survey (ACS)
+        {{#each this.acsSources key="id" as |source|}}
+          <div
+            class="nestable-list-item grid-x clickable"
+            {{on "click" (fn @setSource source)}}
+          >
+            <div class="cell small-1">
+              <span class="dcp-orange">
+                {{#if source.selected}}
+                  {{fa-icon icon='dot-circle' prefix='far'}}
+                {{else}}
+                  {{fa-icon icon='circle' prefix='far' class='silver'}}
+                {{/if}}
+              </span>
+            </div>
+
+            <div class="cell auto">
+              {{source.label}}
+            </div>
           </div>
-        </div>
-      {{/each}}
+        {{/each}}
+      {{/if}}
     </div>
   {{/if}}
 </div>

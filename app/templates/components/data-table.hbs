@@ -10,6 +10,7 @@
         reliability=this.reliability
         mode=this.mode
         compareToLabel=this.compareToLabel
+        isModelLoading=@isModelLoading
       }}
     {{else if (eq this.mode 'previous')}}
       {{data-table-header-previous
@@ -17,6 +18,7 @@
         reliability=this.reliability
         mode=this.mode
         compareToLabel=this.compareToLabel
+        isModelLoading=@isModelLoading
       }}
     {{else}}
       {{data-table-header-change

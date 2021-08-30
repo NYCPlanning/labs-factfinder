@@ -14,7 +14,7 @@ export default class ExplorerRoute extends Route {
     this.store.unloadAll('row');
   }
 
-  async model({ id }) { // eslint-disable-line
+  async model({ id, compareTo }) { // eslint-disable-line
     let selectionResponse = null;
     let profileResponse = null;
     let selectionId = id || "0"; // "0" maps to 'nyc'
@@ -22,7 +22,7 @@ export default class ExplorerRoute extends Route {
     selectionResponse = await fetch(SELECTION_API_URL(id));
     selectionResponse = await selectionResponse.json();
 
-    profileResponse = await this.store.query('row', { selectionId, comparator: '0' });
+    profileResponse = await this.store.query('row', { selectionId, compareTo});
     profileResponse = profileResponse.toArray();
 
     const nestedProfileModel = nestProfile(profileResponse, 'variable');

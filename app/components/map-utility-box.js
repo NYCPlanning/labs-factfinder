@@ -50,12 +50,6 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  profileButtonClasses: computed('selection.selectedCount', 'generateProfileTask.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateProfileTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileTask.isIdle');
-
-    return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
-  }),
-
   choroplethPaintFill: computed('choroplethMode', function() {
     const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
@@ -108,7 +102,7 @@ export default Component.extend({
     ];
   }),
 
-  generateProfileTask: task(function* (type, geoids) {
+  generateExplorerPageTask: task(function* (type, geoids) {
     const postBody = {
       _type: type,
       geoids,
@@ -140,7 +134,7 @@ export default Component.extend({
   },
   transitionTo() {},
 
-  generateProfile() {
+  generateExplorerPage() {
     this.get('metrics').trackEvent('GoogleAnalytics', {
       eventCategory: 'Selection',
       eventAction: 'Created Profile',
@@ -152,7 +146,7 @@ export default Component.extend({
       .mapBy('properties.geoid');
 
     if (geoids.length > 1) {
-      this.get('generateProfileTask').perform(type, geoids);
+      this.get('generateExplorerPageTask').perform(type, geoids);
     } else if (geoids.length === 1){
 
       const factfinderId = `${getIdPrefixFromGeotype(type)}_${geoids[0]}`;

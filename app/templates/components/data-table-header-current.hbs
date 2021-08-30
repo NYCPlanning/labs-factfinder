@@ -19,7 +19,10 @@
         Selected Area
       </th>
       <th colspan="{{if this.reliability "5" "2"}}" class="text-center cell-border-bottom">
-        {{#if this.compareToLabel}}
+        {{#if (and
+          @compareToLabel
+          (not @isModelLoading)
+        )}}
           {{this.compareToLabel}}
         {{else}}
           <div class="spinner">

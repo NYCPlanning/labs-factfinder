@@ -1,10 +1,13 @@
-import Controller from '@ember/controller';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import Controller from '@ember/controller';
+import { task } from 'ember-concurrency';
+import { tracked } from '@glimmer/tracking';
 
-import sourcesDefault from '../sources-config';
-import censusTopicsDefault from '../topics-config/census';
 import acsTopicsDefault from '../topics-config/acs';
+import censusTopicsDefault from '../topics-config/census';
+import sourcesDefault from '../sources-config';
+
+import fetchExplorerModel from '../utils/fetch-explorer-model';
 
 export default class ExplorerController extends Controller {
   queryParams = [
@@ -252,8 +255,20 @@ export default class ExplorerController extends Controller {
     }});
   }
 
+  @task({ restartable: true }) *reloadExplorerModel(newGeoid) {
+    yield this.store.unloadAll('row');
+
+    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.selectionOrGeoid, newGeoid);
+
+    this.model = newExplorerModel;
+
+    yield this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { compareTo: newGeoid }});
+  }
+
   @action updateCompareTo(geoid) {
-    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { compareTo: geoid }});
+    // TODO: Figure out how to reload the model on compareTo queryParam update, instead of
+    // manually firing off the Task here.
+    this.reloadExplorerModel.perform(geoid);
   }
 
   @action toggleReliability() {

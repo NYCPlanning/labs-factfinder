@@ -22,36 +22,42 @@
 
   {{#if this.open}}
     <div class="topic-menu">
-      <div
-        class="nestable-list-item grid-x topic-list-item"
-      >
-        <div class="cell small-1 clickable"
-          {{on "click" @toggleAllTopics}}
-        >
-          <span class="dcp-orange">
-            {{#if (eq this.isAllTopicsSelected "selected")}}
-              {{fa-icon icon='check-square' prefix='far'}}
-            {{else if (eq this.isAllTopicsSelected "unselected")}}
-              {{fa-icon icon='square' prefix='far'}}
-            {{else}}
-              {{fa-icon icon='minus-square' prefix='far'}}
-            {{/if}}
-          </span>
+      {{#if @isModelLoading}}
+        <div class="text-center">
+          Please wait...
         </div>
-
+      {{else}}
         <div
-          class="cell auto"
+          class="nestable-list-item grid-x topic-list-item"
         >
-          All Topics
-        </div>
-      </div>
+          <div class="cell small-1 clickable"
+            {{on "click" @toggleAllTopics}}
+          >
+            <span class="dcp-orange">
+              {{#if (eq this.isAllTopicsSelected "selected")}}
+                {{fa-icon icon='check-square' prefix='far'}}
+              {{else if (eq this.isAllTopicsSelected "unselected")}}
+                {{fa-icon icon='square' prefix='far'}}
+              {{else}}
+                {{fa-icon icon='minus-square' prefix='far'}}
+              {{/if}}
+            </span>
+          </div>
 
-      {{#each @topics key="id" as |topic|}}
-        <Ui::NestableListItem
-          @item={{topic}}
-          @onItemToggle={{@toggleTopic}}
-        />
-      {{/each}}
+          <div
+            class="cell auto"
+          >
+            All Topics
+          </div>
+        </div>
+
+        {{#each @topics key="id" as |topic|}}
+          <Ui::NestableListItem
+            @item={{topic}}
+            @onItemToggle={{@toggleTopic}}
+          />
+        {{/each}}
+      {{/if}}
     </div>
   {{/if}}
 </div>
