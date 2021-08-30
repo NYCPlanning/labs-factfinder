@@ -128,7 +128,7 @@ export default class ExplorerController extends Controller {
   }
 
   get surveyData() {
-    return this.source.type === 'acs' ? this.model.acs : this.model.census;
+    return this.source.type === 'acs' ? this.model.acs : this.model.decennial;
   }
 
   get topicsIdList() {
