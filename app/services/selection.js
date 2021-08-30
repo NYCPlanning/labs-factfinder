@@ -97,6 +97,9 @@ export default Service.extend({
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
+    if(fromLevel === toLevel) {
+      return;
+    }
     this.set('summaryLevel', toLevel);
 
     const layerGroupIdMap = (level) => {
