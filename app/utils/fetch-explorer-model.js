@@ -7,18 +7,24 @@ const SELECTION_API_URL = id => `${SupportServiceHost}/selection/${id}`;
 
 const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
-export default async function fetchExplorerModel(store, id, compareTo) {
+export default async function fetchExplorerModel(store, id, compareTo = '0') {
+
   let selectionResponse = null;
-  let profileResponse = null;
+  let acsSurveyResponse = null;
+  let decennialSurveyResponse = null;
   let selectionId = id || "0"; // "0" maps to 'nyc'
 
   selectionResponse = await fetch(SELECTION_API_URL(id));
   selectionResponse = await selectionResponse.json();
 
-  profileResponse = await store.query('row', { selectionId, compareTo});
-  profileResponse = profileResponse.toArray();
+  acsSurveyResponse = await store.query('acsRow', { selectionId, compareTo });
+  acsSurveyResponse = acsSurveyResponse.toArray();
 
-  const nestedProfileModel = nestProfile(profileResponse, 'variable');
+  decennialSurveyResponse = await store.query('decennialRow', { selectionId, compareTo });
+  decennialSurveyResponse = decennialSurveyResponse.toArray();
+
+  const nestedACSModel = nestProfile(acsSurveyResponse, 'variable');
+  const nestedDecennialModel = nestProfile(decennialSurveyResponse, 'variable');
 
   let comparisonGeoOptions = await fetch(COMPARISON_GEO_OPTIONS_URL);
   comparisonGeoOptions = await comparisonGeoOptions.json();
@@ -26,7 +32,8 @@ export default async function fetchExplorerModel(store, id, compareTo) {
   return {
     selectionOrGeoid: id,
     selection: selectionResponse,
-    profile: nestedProfileModel,
+    acs: nestedACSModel,
+    decennial: nestedDecennialModel,
     comparisonGeoOptions
   };
 }
