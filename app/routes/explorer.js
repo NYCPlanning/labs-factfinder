@@ -23,10 +23,10 @@ export default class ExplorerRoute extends Route {
     selectionResponse = await fetch(SELECTION_API_URL(id));
     selectionResponse = await selectionResponse.json();
 
-    acsSurveyResponse = await this.store.query('acsRow', { selectionId, comparator: '0' });
+    acsSurveyResponse = await this.store.query('acsRow', { selectionId, compareTo: '0' });
     acsSurveyResponse = acsSurveyResponse.toArray();
 
-    decennialSurveyResponse = await this.store.query('decennialRow', { selectionId, comparator: '0' });
+    decennialSurveyResponse = await this.store.query('decennialRow', { selectionId, compareTo: '0' });
     decennialSurveyResponse = decennialSurveyResponse.toArray();
 
     const nestedACSModel = nestProfile(acsSurveyResponse, 'variable');
