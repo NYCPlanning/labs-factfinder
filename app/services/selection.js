@@ -129,10 +129,6 @@ export default Service.extend({
     fromLayerGroup.set('visible', false);
     toLayerGroup.set('visible', true);
 
-    if(fromLevel === toLevel) {
-      return;
-    }
-
     // remove mapbox neighborhood labels if current Level is NTAs
     const map = this.get('currentMapInstance');
     if (map) {
@@ -154,6 +150,10 @@ export default Service.extend({
 
   // transition between geometry levels using spatial queries
   explodeGeo(fromLevel, toLevel) {
+    if(fromLevel === toLevel) {
+      return;
+    }
+
     const crossWalkFromTable = SUM_LEVEL_DICT[fromLevel].sql;
     const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
 
