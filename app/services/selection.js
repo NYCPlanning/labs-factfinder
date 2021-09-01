@@ -97,9 +97,7 @@ export default Service.extend({
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
-    if(fromLevel === toLevel) {
-      return;
-    }
+
     this.set('summaryLevel', toLevel);
 
     const layerGroupIdMap = (level) => {
@@ -130,6 +128,10 @@ export default Service.extend({
 
     fromLayerGroup.set('visible', false);
     toLayerGroup.set('visible', true);
+
+    if(fromLevel === toLevel) {
+      return;
+    }
 
     // remove mapbox neighborhood labels if current Level is NTAs
     const map = this.get('currentMapInstance');
