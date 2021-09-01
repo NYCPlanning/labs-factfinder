@@ -9,7 +9,7 @@ module('Integration | Component | data-table-row-current', function(hooks) {
 
   test('it renders change percent of 0 as 0.0%', async function(assert) {
     const store = this.owner.lookup('service:store');
-    const model = await store.createRecord('row',  { 
+    const model = await store.createRecord('acs-row',  { 
       id: 'TGdNS2htMVkyMDEyLTIwMTY=',
       base: 'LgMKhm1',
       variablename: 'LgMKhm1',
