@@ -10,29 +10,6 @@ import choroplethConfigs from '../choropleth-config';
 
 const { SupportServiceHost } = Environment;
 
-// This is the compliment of the `getGeotypeFromIdPrefix`
-// function in the Factfinder API repo (utils/geotype-from-id-prefix.js)
-function getIdPrefixFromGeotype(idPrefix) {
-  switch (idPrefix) {
-    case 'selection':
-        return 'SID';
-    case 'ntas':
-        return'NTA' ;
-    case 'tracts':
-        return 'TRACT';
-    case 'cdtas':
-        return 'CDTA';
-    case 'districts':
-        return 'DIST';
-    case 'blocks':
-        return 'BLOCK';
-    case 'boroughs':
-        return 'BORO';
-    default:
-      return null;
-  }
-}
-
 export default Component.extend({
   selection: service(),
   router: service(),
@@ -108,7 +85,7 @@ export default Component.extend({
       geoids,
     };
 
-    const { id } = yield fetch(`${SupportServiceHost}/selection`, { // eslint-disable-line
+    const { id: selectionId } = yield fetch(`${SupportServiceHost}/selection`, { // eslint-disable-line
       headers: {
         'Content-Type': 'application/json',
       },
@@ -118,7 +95,7 @@ export default Component.extend({
       .then(d => d.json());
 
     yield this.get('router')
-      .transitionTo('explorer', id);
+      .transitionTo(`/explorer/selection/${selectionId}`);
   }).restartable(),
 
   clearSelection() {
@@ -148,10 +125,10 @@ export default Component.extend({
     if (geoids.length > 1) {
       this.get('generateExplorerPageTask').perform(type, geoids);
     } else if (geoids.length === 1){
-
-      const factfinderId = `${getIdPrefixFromGeotype(type)}_${geoids[0]}`;
-
-      this.get('router').transitionTo('explorer', factfinderId);
+      this.get('router').transitionTo('explorer', {
+        geotype: type,
+        geoid: geoids[0]
+      });
     } else {
       console.log("Warning: Cannot generate profile because selected geoids array is empty.")
     }

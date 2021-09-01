@@ -3,19 +3,18 @@ import nestProfile from '../utils/nest-profile';
 
 const { SupportServiceHost } = Environment;
 
-const SELECTION_API_URL = id => `${SupportServiceHost}/selection/${id}`;
+const SELECTION_API_URL = (geotype = 'boroughs', geoid = 'NYC') => `${SupportServiceHost}/selection/${geotype}/${geoid}`;
 
 const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
-export default async function fetchExplorerModel(store, id, compareTo) {
+export default async function fetchExplorerModel(store, geotype, geoid, compareTo) {
   let selectionResponse = null;
   let profileResponse = null;
-  let selectionId = id || "0"; // "0" maps to 'nyc'
 
-  selectionResponse = await fetch(SELECTION_API_URL(id));
+  selectionResponse = await fetch(SELECTION_API_URL(geotype, geoid));
   selectionResponse = await selectionResponse.json();
 
-  profileResponse = await store.query('row', { selectionId, compareTo});
+  profileResponse = await store.query('row', {geotype, geoid, compareTo});
   profileResponse = profileResponse.toArray();
 
   const nestedProfileModel = nestProfile(profileResponse, 'variable');
@@ -24,7 +23,7 @@ export default async function fetchExplorerModel(store, id, compareTo) {
   comparisonGeoOptions = await comparisonGeoOptions.json();
 
   return {
-    selectionOrGeoid: id,
+    selectionOrGeoid: geoid,
     selection: selectionResponse,
     profile: nestedProfileModel,
     comparisonGeoOptions
