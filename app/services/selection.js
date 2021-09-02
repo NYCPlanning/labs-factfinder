@@ -97,9 +97,7 @@ export default Service.extend({
   // methods
   handleSummaryLevelToggle(toLevel) {
     const fromLevel = this.get('summaryLevel');
-    if(fromLevel === toLevel) {
-      return;
-    }
+
     this.set('summaryLevel', toLevel);
 
     const layerGroupIdMap = (level) => {
@@ -152,6 +150,10 @@ export default Service.extend({
 
   // transition between geometry levels using spatial queries
   explodeGeo(fromLevel, toLevel) {
+    if(fromLevel === toLevel) {
+      return;
+    }
+
     const crossWalkFromTable = SUM_LEVEL_DICT[fromLevel].sql;
     const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
 
