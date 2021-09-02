@@ -81,7 +81,7 @@ export default Component.extend({
 
   generateExplorerPageTask: task(function* (type, geoids) {
     const postBody = {
-      _type: type,
+      geotype: type,
       geoids,
     };
 
