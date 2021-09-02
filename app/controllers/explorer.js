@@ -119,7 +119,7 @@ export default class ExplorerController extends Controller {
   set source(newSource) {
     const { id } = newSource;
 
-    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { source: id }});
+    this.transitionToRoute('explorer', { queryParams: { source: id }});
   }
 
   // returns either 'current', 'previous' or 'change'
@@ -164,7 +164,7 @@ export default class ExplorerController extends Controller {
   set topics(newTopics) {
     const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
 
-    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { [qpKey]: newTopics }});
+    this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
   }
 
   get isAllTopicsSelected() {
@@ -250,7 +250,7 @@ export default class ExplorerController extends Controller {
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
 
-    this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: {
+    this.transitionToRoute('explorer', { queryParams: {
       [controlId]: !currentControlValue,
     }});
   }
@@ -258,11 +258,11 @@ export default class ExplorerController extends Controller {
   @task({ restartable: true }) *reloadExplorerModel(newGeoid) {
     yield this.store.unloadAll('row');
 
-    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.selectionOrGeoid, newGeoid);
+    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.selection.type, this.model.selectionOrGeoid, newGeoid);
 
     this.model = newExplorerModel;
 
-    yield this.transitionToRoute('explorer', this.model.selectionOrGeoid, { queryParams: { compareTo: newGeoid }});
+    yield this.transitionToRoute('explorer', { queryParams: { compareTo: newGeoid }});
   }
 
   @action updateCompareTo(geoid) {

@@ -14,15 +14,13 @@
       {{/link-to}}
     </li>
     <li>
-      <LinkTo
-        @route='explorer'
-        @model='nyc'
-        class={{(if (eq this.router.currentRouteName "explorer") "active-route")}}
-      >
-        {{fa-icon icon="search" prefix="fa" transform='grow-4'}}
-        Data Explorer
-      </LinkTo>
-    </li>
+    <a href="explorer/boroughs/NYC"
+      class={{(if (eq this.router.currentRouteName "explorer") "active-route")}}
+    >
+      {{fa-icon icon="search" prefix="fa" transform='grow-4'}}
+      Data Explorer
+    </a>
+  </li>
   </ul>
 </banner.nav>
 </LabsUi::SiteHeader>
