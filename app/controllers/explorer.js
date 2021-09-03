@@ -127,7 +127,7 @@ export default class ExplorerController extends Controller {
     return this.source.mode;
   }
 
-  get surveyData() {
+  get profileData() {
     return this.source.type === 'acs' ? this.model.acs : this.model.decennial;
   }
 

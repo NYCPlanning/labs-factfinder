@@ -19,9 +19,9 @@ export default DS.Model.extend({
   numGeoids: DS.attr('number'),
 
   /**
-   * Survey Type: 'acs' or 'decennial'
+   * Profile Type: 'acs' or 'decennial'
    */
-   survey: DS.attr('string'),
+   profile: DS.attr('string'),
 
   /**
    * Category name, used to group together rows

@@ -10,20 +10,20 @@ const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
 export default async function fetchExplorerModel(store, geotype, geoid, compareTo = '0') {
   let selectionResponse = null;
-  let acsSurveyResponse = null;
-  let decennialSurveyResponse = null;
+  let acsProfileResponse = null;
+  let decennialProfileResponse = null;
 
   selectionResponse = await fetch(SELECTION_API_URL(geotype, geoid));
   selectionResponse = await selectionResponse.json();
 
-  acsSurveyResponse = await store.query('acsRow', {geotype, geoid, compareTo });
-  acsSurveyResponse = acsSurveyResponse.toArray();
+  acsProfileResponse = await store.query('acsRow', {geotype, geoid, compareTo });
+  acsProfileResponse = acsProfileResponse.toArray();
 
-  decennialSurveyResponse = await store.query('decennialRow', { geotype, geoid, compareTo });
-  decennialSurveyResponse = decennialSurveyResponse.toArray();
+  decennialProfileResponse = await store.query('decennialRow', { geotype, geoid, compareTo });
+  decennialProfileResponse = decennialProfileResponse.toArray();
 
-  const nestedACSModel = nestProfile(acsSurveyResponse, 'variable');
-  const nestedDecennialModel = nestProfile(decennialSurveyResponse, 'variable');
+  const nestedACSModel = nestProfile(acsProfileResponse, 'variable');
+  const nestedDecennialModel = nestProfile(decennialProfileResponse, 'variable');
 
   let comparisonGeoOptions = await fetch(COMPARISON_GEO_OPTIONS_URL);
   comparisonGeoOptions = await comparisonGeoOptions.json();
