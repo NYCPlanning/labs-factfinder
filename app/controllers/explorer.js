@@ -127,6 +127,10 @@ export default class ExplorerController extends Controller {
     return this.source.mode;
   }
 
+  get profileData() {
+    return this.source.type === 'acs' ? this.model.acs : this.model.decennial;
+  }
+
   get topicsIdList() {
     const rawTopicsList = this.source.type === 'census' ? this.censusTopics : this.acsTopics;
 

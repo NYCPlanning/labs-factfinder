@@ -14,8 +14,6 @@ export default class ExplorerRoute extends Route {
       }
     }
   }) { // eslint-disable-line
-    const newModel = await fetchExplorerModel(this.store, geotype, geoid, compareTo);
-
-    return newModel;
+    return await fetchExplorerModel(this.store, geotype, geoid, compareTo);
   }
 }

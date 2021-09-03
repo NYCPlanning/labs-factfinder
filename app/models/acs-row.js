@@ -19,7 +19,7 @@ export default DS.Model.extend({
   numGeoids: DS.attr('number'),
 
   /**
-   * Profile Type, e.g. demographic, social, housing, economic, census
+   * Profile Type: 'acs' or 'decennial'
    */
   profile: DS.attr('string'),
 
