@@ -3,6 +3,7 @@ import nestProfile from '../utils/nest-profile';
 
 const { SupportServiceHost } = Environment;
 
+// TODO: Rename endpoint to geography
 const SELECTION_API_URL = (geotype = 'boroughs', geoid = 'NYC') => `${SupportServiceHost}/selection/${geotype}/${geoid}`;
 
 const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
@@ -29,7 +30,8 @@ export default async function fetchExplorerModel(store, geotype, geoid, compareT
   comparisonGeoOptions = await comparisonGeoOptions.json();
 
   return {
-    selectionOrGeoid: geoid,
+    geoid,
+    geotype,
     selection: selectionResponse,
     acs: nestedACSModel,
     decennial: nestedDecennialModel,

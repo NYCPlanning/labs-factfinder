@@ -262,7 +262,7 @@ export default class ExplorerController extends Controller {
   @task({ restartable: true }) *reloadExplorerModel(newGeoid) {
     yield this.store.unloadAll('row');
 
-    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.selection.type, this.model.selectionOrGeoid, newGeoid);
+    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.geotype, this.model.geoid, newGeoid);
 
     this.model = newExplorerModel;
 
