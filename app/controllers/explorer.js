@@ -31,8 +31,6 @@ export default class ExplorerController extends Controller {
 
   @tracked showReliability = false;
 
-  @tracked disaggregate = false;
-
   // The comparison geography ID.
   // Must match ID of one option in comparisonGeoOptions.
   // Default "0" maps to NYC.
@@ -250,7 +248,7 @@ export default class ExplorerController extends Controller {
     this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
   }
 
-  // acceptable controlId values include: 'showReliability', 'showCharts', 'disaggregate'
+  // acceptable controlId values include: 'showReliability', 'showCharts'
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
 

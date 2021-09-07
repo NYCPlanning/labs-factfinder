@@ -56,36 +56,6 @@
           </div>
         </div>
 
-        <div class="grid-container fluid">
-          <div class="grid-x">
-            <div class="cell small-2">
-              <div class="switch tiny modify-tables-switch">
-                <Input
-                  @id="disaggregate-switch"
-                  @type="checkbox"
-                  @checked={{@disaggregate}}
-                  name="disaggregate-switch"
-                  class="switch-input"
-                />
-                <label class="switch-paddle" for="disaggregate-switch"></label>
-              </div>
-            </div>
-            <div class="cell auto">
-                Disaggregate
-            </div>
-            <div class="cell small-1 text-left">
-              <small>
-                {{labs-ui/icon-tooltip
-                  tip=(t 'explorer.modify-tables.disaggregate')
-                  icon='question-circle'
-                  side="right"
-                  fixedWith=true
-                }}
-              </small>
-            </div>
-          </div>
-        </div>
-
         {{#if (and
           (or
             (eq @mode 'current')
