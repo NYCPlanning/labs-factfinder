@@ -4,7 +4,7 @@ import nestSurvey from './nest-survey';
 const { SupportServiceHost } = Environment;
 
 // TODO: Rename endpoint to geography
-const SELECTION_API_URL = (geotype = 'boroughs', geoid = 'NYC') => `${SupportServiceHost}/selection/${geotype}/${geoid}`;
+const SELECTION_API_URL = (geotype = 'cities', geoid = 'NYC') => `${SupportServiceHost}/selection/${geotype}/${geoid}`;
 
 const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
