@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import nestProfile from '../utils/nest-profile';
+import nestSurvey from '../utils/nest-survey';
 
 /**
  * The Downloadable mixin is an EmberJS feature, see https://api.emberjs.com/ember/release/classes/Mixin.
@@ -34,7 +34,7 @@ export default Mixin.create({
   setupController(controller, model) {
     this._super(controller, model);
 
-    const nestedModel = nestProfile(model, 'variable');
+    const nestedModel = nestSurvey(model, 'variable');
 
     controller.setProperties({
       model: nestedModel,

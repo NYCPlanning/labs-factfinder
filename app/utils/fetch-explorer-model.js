@@ -1,5 +1,5 @@
 import Environment from '../config/environment';
-import nestProfile from '../utils/nest-profile';
+import nestSurvey from './nest-survey';
 
 const { SupportServiceHost } = Environment;
 
@@ -11,20 +11,20 @@ const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
 export default async function fetchExplorerModel(store, geotype, geoid, compareTo = '0') {
   let selectionResponse = null;
-  let acsProfileResponse = null;
-  let decennialProfileResponse = null;
+  let acsSurveyResponse = null;
+  let decennialSurveyResponse = null;
 
   selectionResponse = await fetch(SELECTION_API_URL(geotype, geoid));
   selectionResponse = await selectionResponse.json();
 
-  acsProfileResponse = await store.query('acsRow', {geotype, geoid, compareTo });
-  acsProfileResponse = acsProfileResponse.toArray();
+  acsSurveyResponse = await store.query('acsRow', {geotype, geoid, compareTo });
+  acsSurveyResponse = acsSurveyResponse.toArray();
 
-  decennialProfileResponse = await store.query('decennialRow', { geotype, geoid, compareTo });
-  decennialProfileResponse = decennialProfileResponse.toArray();
+  decennialSurveyResponse = await store.query('decennialRow', { geotype, geoid, compareTo });
+  decennialSurveyResponse = decennialSurveyResponse.toArray();
 
-  const nestedACSModel = nestProfile(acsProfileResponse, 'variable');
-  const nestedDecennialModel = nestProfile(decennialProfileResponse, 'variable');
+  const nestedACSModel = nestSurvey(acsSurveyResponse, 'variable');
+  const nestedDecennialModel = nestSurvey(decennialSurveyResponse, 'variable');
 
   let comparisonGeoOptions = await fetch(COMPARISON_GEO_OPTIONS_URL);
   comparisonGeoOptions = await comparisonGeoOptions.json();
