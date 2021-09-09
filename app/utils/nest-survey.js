@@ -1,7 +1,7 @@
 import { get } from '@ember/object';
 import { nest } from 'd3-collection';
 
-export default function nestProfile(data, ...keys) {
+export default function nestSurvey(data, ...keys) {
   const { length } = keys;
   let allKeys = ['dataset', 'category', 'variable'];
 

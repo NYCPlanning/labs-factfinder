@@ -9,7 +9,7 @@ export default DS.JSONAPIAdapter.extend({
   query(store, modelType, query) {
     const { geotype = 'boroughs', geoid = 'NYC', compareTo = 0 } = query;
 
-    const URL = `${SupportServiceHost}/profile/acs/${geotype}/${geoid}?compareTo=${compareTo}`;
+    const URL = `${SupportServiceHost}/survey/acs/${geotype}/${geoid}?compareTo=${compareTo}`;
 
     return fetch(URL)
       .then(d => d.json());
