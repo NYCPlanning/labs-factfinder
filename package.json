@@ -20,7 +20,8 @@
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
     "screenshot": "touch config/environment.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "local-api": "ember serve --environment=local-api"
   },
   "devDependencies": {
     "@csstools/postcss-sass": "^4.0.0",
