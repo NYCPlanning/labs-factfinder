@@ -126,7 +126,6 @@ export default class ExplorerController extends Controller {
   }
 
   get surveyData() {
-    console.log('TYPE',this.source.type)
     return this.source.type === 'acs' ? this.model.acs : this.model.decennial;
   }
 
