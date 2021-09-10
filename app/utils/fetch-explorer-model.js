@@ -4,12 +4,12 @@ import nestSurvey from './nest-survey';
 const { SupportServiceHost } = Environment;
 
 // TODO: Rename endpoint to geography
-const SELECTION_API_URL = (geotype = 'boroughs', geoid = 'NYC') => `${SupportServiceHost}/selection/${geotype}/${geoid}`;
+const SELECTION_API_URL = (geotype = 'cities', geoid = 'NYC') => `${SupportServiceHost}/selection/${geotype}/${geoid}`;
 
 const COMPARISON_GEO_OPTIONS_URL = `${SupportServiceHost}/geo-options`;
 
 
-export default async function fetchExplorerModel(store, geotype, geoid, compareTo = '0') {
+export default async function fetchExplorerModel(store, geotype, geoid, compareTo = '1') {
   let selectionResponse = null;
   let acsSurveyResponse = null;
   let decennialSurveyResponse = null;
