@@ -44,6 +44,7 @@ You will need the following things properly installed on your computer.
 - Clone this repo `https://github.com/NYCPlanning/labs-nyc-factfinder.git`
 - Install Dependencies `yarn`
 - Start the server `yarn run start`
+  - If running labs-factfinder-api and labs-layers-api locally, instead start the server with `yarn run local-api`
 
 ### Development shortcut
 
