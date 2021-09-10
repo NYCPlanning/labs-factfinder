@@ -27,6 +27,8 @@
   border-radius: 5px;
   text-align: left !important;
   z-index: 100;
+  max-height: calc(100vh - 29.5rem);
+  overflow: auto;
 
   .clickable {
     cursor: pointer;
