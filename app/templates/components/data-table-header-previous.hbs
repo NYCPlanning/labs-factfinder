@@ -4,7 +4,7 @@
       <th rowspan="{{if @reliability "3" "2"}}">
         {{#unless @decennial}}
           <a {{action (mut @reliability) (not @reliability)}}>
-            <span class="dcp-orange">
+            <span class="a11y-orange">
               {{#if @reliability}}
                 {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
               {{else}}

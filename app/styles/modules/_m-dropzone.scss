@@ -15,7 +15,7 @@
   }
 
   .dz-default.dz-message {
-    color: $light-gray;
+    color: $dark-gray;
     margin: 0;
 
     span {
@@ -30,7 +30,7 @@
         $style:solid
       );
       content: 'or choose a file';
-      color: #d96b27;
+      color: #ae561f;
       font-size: rem-calc(12);
       font-weight: $global-weight-normal;
       text-decoration: underline;
