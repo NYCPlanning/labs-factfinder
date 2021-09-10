@@ -22,7 +22,7 @@ export default {
         source: 'census-admin-boundaries',
         'source-layer': 'neighborhood-tabulation-areas',
         paint: {
-          'line-color': '#D96B27',
+          'line-color': '#ae561f',
           'line-opacity': 0.05,
           'line-width': {
             stops: [

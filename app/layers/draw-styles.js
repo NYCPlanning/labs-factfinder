@@ -10,7 +10,7 @@ export default [
       'line-join': 'round',
     },
     paint: {
-      'line-color': '#D96B27',
+      'line-color': '#ae561f',
       'line-dasharray': [0.2, 2],
       'line-width': 4,
     },
@@ -38,7 +38,7 @@ export default [
       'line-join': 'round',
     },
     paint: {
-      'line-color': '#D96B27',
+      'line-color': '#ae561f',
       'line-dasharray': [0.2, 2],
       'line-width': 4,
     },
@@ -60,7 +60,7 @@ export default [
     filter: ['all', ['==', 'meta', 'vertex'], ['==', '$type', 'Point'], ['!=', 'mode', 'static']],
     paint: {
       'circle-radius': 6,
-      'circle-color': '#D96B27',
+      'circle-color': '#ae561f',
     },
   },
 
