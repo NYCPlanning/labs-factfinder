@@ -49,27 +49,29 @@
           </div>
         {{/each}}
 
-        American Community Survey (ACS)
-        {{#each this.acsSources key="id" as |source|}}
-          <div
-            class="nestable-list-item grid-x clickable"
-            {{on "click" (fn @setSource source)}}
-          >
-            <div class="cell small-1">
-              <span class="a11y-orange">
-                {{#if source.selected}}
-                  {{fa-icon icon='dot-circle' prefix='far'}}
-                {{else}}
-                  {{fa-icon icon='circle' prefix='far' class='silver'}}
-                {{/if}}
-              </span>
-            </div>
+        {{#if this.showACS}}
+          American Community Survey (ACS)
+          {{#each this.acsSources key="id" as |source|}}
+            <div
+              class="nestable-list-item grid-x clickable"
+              {{on "click" (fn @setSource source)}}
+            >
+              <div class="cell small-1">
+                <span class="a11y-orange">
+                  {{#if source.selected}}
+                    {{fa-icon icon='dot-circle' prefix='far'}}
+                  {{else}}
+                    {{fa-icon icon='circle' prefix='far' class='silver'}}
+                  {{/if}}
+                </span>
+              </div>
 
-            <div class="cell auto">
-              {{source.label}}
+              <div class="cell auto">
+                {{source.label}}
+              </div>
             </div>
-          </div>
-        {{/each}}
+          {{/each}}
+        {{/if}}
       {{/if}}
     </div>
   {{/if}}

@@ -29,4 +29,11 @@ export default class SourceSelectDropdownComponent extends Component {
   get acsSources() {
     return this.args.sources.filter(source => source.type === 'acs');
   }
+
+  get showACS() {
+    if(['districts', 'blocks'].includes(this.args.geoType)) {
+      return false;
+    }
+    return true;
+  }
 }
