@@ -115,7 +115,9 @@ export default DS.Model.extend({
   /**
    * is_reliable is a flag for determining whether the estimate is reliable (as opposed to significant), based on cv.
    */
-  is_reliable: DS.attr('boolean'),
+  is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
 
   /* =====  End of Main Values  ====== */
@@ -160,7 +162,9 @@ export default DS.Model.extend({
   /**
    * see "is_reliable"
    */
-  previous_is_reliable: DS.attr('boolean'),
+  previous_is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   // previous comparison
   previous_comparison_sum: DS.attr('number'),
@@ -175,20 +179,26 @@ export default DS.Model.extend({
 
   previous_comparison_percent_m: DS.attr('number'),
 
-  previous_comparison_is_reliable: DS.attr('boolean'),
+  previous_comparison_is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   // previous difference
   previous_difference_sum: DS.attr('number'),
 
   previous_difference_m: DS.attr('number'),
 
-  previous_significant: DS.attr('boolean'),
+  previous_significant: DS.attr('boolean',  {
+    defaultValue: true, 
+  }),
 
   previous_difference_percent: DS.attr('number'),
 
   previous_difference_percent_m: DS.attr('number'),
 
-  previous_percent_significant:  DS.attr('boolean'),
+  previous_percent_significant:  DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /* =====  End of PREVIOUS_  ====== */
 
@@ -215,7 +225,9 @@ export default DS.Model.extend({
    * change_significant now reflects reliability (calculations were
    * changed in the API but variable names have not been updated, check issue #57)
    */
-  change_significant: DS.attr('boolean'),
+  change_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /**
    * change_percent is change in percentage from previous year to
@@ -233,7 +245,9 @@ export default DS.Model.extend({
    * change_percent_significant reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
   */
-  change_percent_significant: DS.attr('boolean'),
+  change_percent_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /**
    * change_percentage_point is the percentage point change as opposed to percent change
@@ -249,7 +263,9 @@ export default DS.Model.extend({
    * !!!WARNING!!!: change_percentage_point_significant now reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
    */
-  change_percentage_point_significant: DS.attr('boolean'),
+  change_percentage_point_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /* =====  End of CHANGE_  ====== */
 
@@ -294,7 +310,9 @@ export default DS.Model.extend({
   /**
    * comparison_is_reliable: whether comparison area data is reliable
    */
-  comparison_is_reliable: DS.attr('boolean'),
+  comparison_is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /* =====  End of COMPARISON_  ====== */
 
@@ -320,7 +338,9 @@ export default DS.Model.extend({
    * "significant" actually reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
    */
-  significant: DS.attr('boolean'),
+  significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /**
    * See "percent"
@@ -338,7 +358,9 @@ export default DS.Model.extend({
    * percent_significant reflects reliability (calculations were changed in the
    * API but variable names have not been updated, check issue #57)
    */
-  percent_significant: DS.attr('boolean'),
+  percent_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
   /* =====  End of DIFFERENCE_  ====== */
 
 
