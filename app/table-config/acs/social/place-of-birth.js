@@ -211,7 +211,7 @@ export default [
   },
   {
     indent: 2,
-    title: 'Macedonia',
+    title: 'North Macedonia (Macedonia)',
     data: 'mcdonia',
   },
   {
