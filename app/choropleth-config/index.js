@@ -15,8 +15,8 @@ const choroplethConfigs = [
   },
 
   {
-    group: 'Demographic (ACS)',
-    id: 'popu181',
+    group: 'Census',
+    id: 'popu18_1',
     label: 'Under 18 Years',
     tooltip: 'Population under 18 years',
     legendTitle: 'Population under 18 years',
@@ -70,7 +70,7 @@ const choroplethConfigs = [
     label: 'Below Poverty',
     tooltip: 'Population whose income is below the poverty level',
     legendTitle: 'Population below poverty level',
-    stops: [5000, 10000, 15000, 20000],
+    stops: [5000, 10000, 15000, 21000],
   },
   {
     group: 'Economic (ACS)',
@@ -79,7 +79,7 @@ const choroplethConfigs = [
     label: 'Below Poverty (percent)',
     tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
-    stops: [15, 25, 32, 46],
+    stops: [15,25,32,44]
   },
   {
     group: 'Housing (ACS)',
@@ -87,7 +87,115 @@ const choroplethConfigs = [
     label: 'Median Gross Rent',
     tooltip: 'Median gross rent (in 2018 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
-    stops: [1200, 1600, 2000, 2400],
+    stops: [1200, 1500, 2000, 2500],
+  },
+  // Racial Group
+  {
+    group: 'Census',
+    id: 'wnh',
+    label: 'White Non-Hispanic',
+    tooltip: 'White non-Hispanic population, 2020',
+    legendTitle: 'White Non-Hispanic',
+    stops: [5000,10000,20000,30000,40000],
+  },
+  {
+    group: 'Census',
+    id: 'bnh',
+    label: 'Black Non-Hispanic',
+    tooltip: 'Black non-Hispanic population, 2020',
+    legendTitle: 'Black Non-Hispanic',
+    stops: [5000,10000,20000,30000,40000],
+  },
+  {
+    group: 'Census',
+    id: 'anh',
+    label: 'Asian Non-Hispanic',
+    tooltip: 'Asian non-Hispanic population, 2020',
+    legendTitle: 'Asian Non-Hispanic',
+    stops: [5000,10000,20000,30000,40000],
+  },
+  {
+    group: 'Census',
+    id: 'hsp1',
+    label: 'Hispanic',
+    tooltip: 'Hispanic population, 2020',
+    legendTitle: 'Hispanic',
+    stops: [5000,10000,20000,30000,40000],
+  },
+  // Racial Group (percent)
+  {
+    group: 'Census',
+    id: 'wnhp',
+    label: 'White Non-Hispanic (percent)',
+    tooltip: 'Percent of the population that is White non-Hispanic, 2020',
+    legendTitle: 'White Non-Hispanic (percent)',
+    stops: [20,35,50,65,80],
+  },
+  {
+    group: 'Census',
+    id: 'bnhp',
+    label: 'Black Non-Hispanic (percent)',
+    tooltip: 'Percent of the population that is Black non-Hispanic, 2020',
+    legendTitle: 'Black Non-Hispanic (percent)',
+    stops: [20,35,50,65,80],
+  },
+  {
+    group: 'Census',
+    id: 'anhp',
+    label: 'Asian Non-Hispanic (percent)',
+    tooltip: 'Percent of the population that is Asian non-Hispanic, 2020',
+    legendTitle: 'Asian Non-Hispanic (percent)',
+    stops: [20,35,50,65,80],
+  },
+  {
+    group: 'Census',
+    id: 'hsp1p',
+    label: 'Hispanic (percent)',
+    tooltip: 'Percent of the population that is Hispanic, 2020',
+    legendTitle: 'Hispanic (percent)',
+    stops: [20,35,50,65,80],
+  },
+  // Racial Group (change)
+  {
+    group: 'Census',
+    id: 'wnh_c',
+    label: 'White Non-Hispanic (change)',
+    tooltip: 'White non-Hispanic population change, 2010 to 2020',
+    legendTitle: 'White Non-Hispanic (change)',
+    stops: [-5000,-1000,-500,500,1000,5000,10000]
+  },
+  {
+    group: 'Census',
+    id: 'bnh_c',
+    label: 'Black Non-Hispanic (change)',
+    tooltip: 'Black non-Hispanic population change, 2010 to 2020',
+    legendTitle: 'Black Non-Hispanic (change)',
+    stops: [-5000,-1000,-500,500,1000,5000,10000]
+  },
+  {
+    group: 'Census',
+    id: 'anh_c',
+    label: 'Asian Non-Hispanic (change)',
+    tooltip: 'Asian non-Hispanic population change, 2010 to 2020',
+    legendTitle: 'Asian Non-Hispanic (change)',
+    stops: [-5000,-1000,-500,500,1000,5000,10000]
+  },
+  {
+    group: 'Census',
+    id: 'hsp1_c',
+    label: 'Hispanic (change)',
+    tooltip: 'Hispanic population change, 2010 to 2020',
+    legendTitle: 'Hispanic (change)',
+    stops: [-5000,-1000,-500,500,1000,5000,10000]
+  },
+  // Racial Group (percent change)
+  {
+    group: 'Census',
+    id: 'wnh_pc',
+    label: 'White Non-Hispanic (change)',
+    tooltip: 'White non-Hispanic population change, 2010 to 2020',
+    legendTitle: 'White Non-Hispanic (change)',
+    stops: [-5000,-1000,-500,500,1000,5000,10000]
   },
 ];
 
