@@ -9,6 +9,7 @@ command = "yarn build --environment=staging"
 
 [context.deploy-preview]
   environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api.herokuapp.com" }
+  command = "yarn build --environment=production"
 
 [context.master]
   environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api.herokuapp.com" }
