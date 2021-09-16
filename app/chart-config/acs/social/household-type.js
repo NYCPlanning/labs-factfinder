@@ -4,12 +4,12 @@ export default [
     label: 'Married-couple family',
   },
   {
-    property: 'mhnw',
-    label: 'Male householder, no wife present, family',
+    property: 'mhns',
+    label: 'Male householder, no spouse present, family',
   },
   {
-    property: 'fhnh',
-    label: 'Female householder, no husband present, family',
+    property: 'fhns',
+    label: 'Female householder, no spouse present, family',
   },
   {
     property: 'nfam1',
