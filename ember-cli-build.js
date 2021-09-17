@@ -9,7 +9,7 @@ module.exports = function (defaults) {
     },
     'ember-cli-babel': {
       includePolyfill: true,
-      ignore: [ './node_modules/mapbox-gl/dist/mapbox-gl.js' ],
+      ignore: [ './node_modules/mapbox-gl/dist/mapbox-gl.js' ]
     },
     postcssOptions: {
       compile: {
