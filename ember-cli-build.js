@@ -4,8 +4,12 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
+    babel: {
+
+    },
     'ember-cli-babel': {
       includePolyfill: true,
+      ignore: [ './node_modules/mapbox-gl/dist/mapbox-gl.js' ],
     },
     postcssOptions: {
       compile: {
