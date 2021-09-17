@@ -4,7 +4,7 @@
       <th rowspan="{{if this.reliability "3" "2"}}">
         {{#unless this.decennial}}
           <a {{action (mut this.reliability) (not this.reliability)}}>
-            <span class="dcp-orange">
+            <span class="a11y-orange">
               {{#if this.reliability}}
                 {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
               {{else}}
@@ -19,7 +19,10 @@
         Selected Area
       </th>
       <th colspan="{{if this.reliability "5" "2"}}" class="text-center cell-border-bottom">
-        {{#if this.compareToLabel}}
+        {{#if (and
+          @compareToLabel
+          (not @isModelLoading)
+        )}}
           {{this.compareToLabel}}
         {{else}}
           <div class="spinner">

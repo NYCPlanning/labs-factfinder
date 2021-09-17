@@ -78,6 +78,10 @@ export default Controller.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
+  customVisualOverlayData: null,
+  customVisualOverlayLines: false,
+  customVisualOverlayPoints: false,
+
   selectedSource: computed('selection.current', function() {
     const current = this.get('selection.current');
     return {
@@ -156,13 +160,11 @@ export default Controller.extend({
     const selection = this.get('selection');
 
     if (!this.get('isDrawing')) {
-      console.log(feature);
       selection.handleSelectedFeatures([feature]);
     }
   },
 
   handleDrawCreate(e) {
-    console.log('did create');
     // delete the drawn geometry
     draw.deleteAll();
 
@@ -223,11 +225,10 @@ export default Controller.extend({
     this.get('selection').handleSummaryLevelToggle(summaryLevel);
   },
 
-  addedfile(file) {
+  addedFile(file) {
     const reader = new FileReader();
     // const selection = this.get('selection');
     // const { summaryLevel } = selection;
-
     let buffer;
     reader.onload = (event) => {
       buffer = event.target.result;
@@ -265,7 +266,11 @@ export default Controller.extend({
     reader.readAsArrayBuffer(file);
   },
 
-  removedfile() {
-    this.set('customVisualOverlayData', null);
+  removedFile() {
+    this.setProperties({
+      customVisualOverlayData: null,
+      customVisualOverlayLines: false,
+      customVisualOverlayPoints: false,
+    })
   },
 });

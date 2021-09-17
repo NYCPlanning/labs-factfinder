@@ -8,12 +8,12 @@
     @setSource={{this.setSource}}
     @showReliability={{this.showReliability}}
     @toggleReliability={{this.toggleReliability}}
-    @disaggregate={{this.disaggregate}}
-    @compareTo={{this.compareTo}}
-    @geoOptions={{this.geoOptions}}
-    @selectedGeo={{this.selectedGeo}}
+    @comparisonGeoOptions={{this.model.comparisonGeoOptions}}
+    @comparisonGeo={{this.comparisonGeo}}
     @toggleBooleanControl={{this.toggleBooleanControl}}
     @updateCompareTo={{this.updateCompareTo}}
+    @isModelLoading={{this.reloadExplorerModel.isRunning}}
+    @geotype={{this.model.selection.type}}
   />
 </OrangeBar>
 
@@ -30,7 +30,7 @@
         <h3 class="profile-geographies-header">
           <SelectionDetailsText
             @selectedCount={{this.selectedCount}}
-            @selectedType={{@model.selection.type}}
+            @selectedType={{this.model.selection.type}}
           />
         </h3>
         <span class="dark-gray">&nbsp;|&nbsp;</span>
@@ -66,7 +66,7 @@
     </div>
 
     <br>
-
+    
     {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
         {{#if (eq subtopic.selected "selected")}}
@@ -80,15 +80,16 @@
                 decennial=(eq this.source.type 'census')
                 reliability=this.showReliability
                 comparison=this.compareTo
-                compareToLabel=this.selectedGeo.label
+                compareToLabel=this.comparisonGeo.label
                 config=subtopic.tableConfig
-                model=@model.profile
+                model=this.surveyData
+                isModelLoading=this.reloadExplorerModel.isRunning
               }}
             </div>
 
             {{#if (and
               (or
-                (eq this.source.id 'decennial-2020')
+                (eq this.source.id 'decennial-current')
                 (eq this.source.id 'decennial-change')
               )
               subtopic.charts
@@ -99,7 +100,7 @@
                   {{acs-bar
                     title=chart.chartLabel
                     config=chart.chartConfig
-                    data=@model.profile
+                    data=this.surveyData
                     height=204
                   }}
                 {{/each}}
@@ -126,9 +127,10 @@
                   decennial=(eq this.source.type 'census')
                   reliability=this.showReliability
                   comparison=this.compareTo
-                  compareToLabel=this.selectedGeo.label
+                  compareToLabel=this.comparisonGeo.label
                   config=subtopic.tableConfig
-                  model=@model.profile
+                  isModelLoading=this.reloadExplorerModel.isRunning
+                  model=this.surveyData
                 }}
               </div>
 
@@ -142,7 +144,7 @@
                     {{acs-bar
                       title=chart.chartLabel
                       config=chart.chartConfig
-                      data=@model.profile
+                      data=this.surveyData
                       height=204
                     }}
                   {{/each}}

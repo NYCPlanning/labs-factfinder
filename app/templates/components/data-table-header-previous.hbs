@@ -15,37 +15,36 @@
           </a>
         {{/unless}}
       </th>
-      {{#if @decennial}}
-        <th colspan="{{if @reliability "5" "2"}}" class="text-center cell-border-bottom">2010</th>
-        <th colspan="{{if @reliability "5" "2"}}" class="text-center cell-border-bottom">2020</th>
-        <th colspan="3" class="text-center cell-border-bottom">Change, 2010 to 2020</th>
-      {{else}}{{!-- acs --}}
-        <th colspan="{{if @reliability "5" "2"}}" class="text-center cell-border-bottom">2006-2010</th>
-        <th colspan="{{if @reliability "5" "2"}}" class="text-center cell-border-bottom">2015-2019</th>
-        <th colspan="{{if @reliability "6" "3"}}" class="text-center cell-border-bottom">Change, 2006-2010 to 2015-2019</th>
-      {{/if}}
+      <th colspan="{{if @reliability "5" "2"}}" class="text-center cell-border-bottom">
+        Selected Area
+      </th>
+      <th colspan="{{if @reliability "5" "2"}}" class="text-center cell-border-bottom">
+        {{#if (and
+          @compareToLabel
+          (not @isModelLoading)
+        )}}
+          {{@compareToLabel}}
+        {{else}}
+          <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        {{/if}}
+      </th>
+      <th colspan="{{if @reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>
     </tr>
     {{#if @reliability}}
-      <tr>
-        <th colspan="3" class="text-center cell-border-bottom">Number</th>
-        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+    <tr>
+      <th colspan="3" class="text-center cell-border-bottom">Number</th>
+      <th colspan="2" class="text-center cell-border-bottom">Percent</th>
 
-        <th colspan="3" class="text-center cell-border-bottom">Number</th>
-        <th colspan="2" class="text-center cell-border-bottom">Percent</th>
+      <th colspan="3" class="text-center cell-border-bottom">Number</th>
+      <th colspan="2" class="text-center cell-border-bottom">Percent</th>
 
-        <th colspan="2" class="text-center cell-border-bottom">Number</th>
-        <th colspan="2" class="text-center cell-border-bottom">
-          <span>
-            Percent
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='2014-2018 number minus 2006-2010 number, divided by 2006-2010 number. Quotient multiplied by 100.'
-              side='left'
-            }}
-          </span>
-        </th>
-        <th colspan="2" class="text-center cell-border-bottom">Pctg. Pt.</th>
-      </tr>
+      <th colspan="2" class="text-center cell-border-bottom">Number</th>
+      <th colspan="2" class="text-center cell-border-bottom">Pctg. Pt.</th>
+    </tr>
       <tr>
         <th class="text-right cell-border-bottom">Estimate</th>
         <th class="text-right cell-border-bottom">
@@ -131,17 +130,6 @@
             {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
               text='Margin of error'
-              side='left'
-            }}
-          </span>
-        </th>
-        <th class="text-right cell-border-bottom">Estimate</th>
-        <th class="text-right cell-border-bottom">
-          <span>
-            MOE
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='2010 number minus 2000 number, divided by 2000 number. Quotient multiplied by 100.'
               side='left'
             }}
           </span>
@@ -154,16 +142,6 @@
         <th class="text-right cell-border-bottom">Number</th>
         <th class="text-right cell-border-bottom">Percent</th>
         <th class="text-right cell-border-bottom">Number</th>
-        <th class="text-right cell-border-bottom">
-          <span>
-            Percent
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='2010 number minus 2000 number, divided by 2000 number. Quotient multiplied by 100.'
-              side='left'
-            }}
-          </span>
-        </th>
         <th class="text-right cell-border-bottom">Pctg. Pt.</th>
       </tr>
     {{/if}}

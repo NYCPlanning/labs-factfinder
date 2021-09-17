@@ -14,6 +14,10 @@ export default class SourceSelectDropdownComponent extends Component {
     this.open = !this.open;
   }
 
+  @action closeMenu() {
+    this.open = false;
+  }
+
   get source() {
     return this.args.sources.find(source => source.selected);
   }
@@ -24,5 +28,12 @@ export default class SourceSelectDropdownComponent extends Component {
 
   get acsSources() {
     return this.args.sources.filter(source => source.type === 'acs');
+  }
+
+  get showACS() {
+    if(['districts', 'blocks'].includes(this.args.geotype)) {
+      return false;
+    }
+    return true;
   }
 }

@@ -9,6 +9,10 @@ export default class DownloadDataDropdown extends Component{
     this.open = !this.open;
   }
 
+  @action closeMenu() {
+    this.open = false;
+  }
+  
   @action downloadCSV(csv) {
     var csvFile;
     var downloadLink;
@@ -109,11 +113,11 @@ export default class DownloadDataDropdown extends Component{
 
   get numSelected() {
     return this.args.topics.reduce((prev, cur) => {
-        if (cur.type === 'subtopic' && cur.selected) {
+        if (cur.type === 'subtopic' && (cur.selected === "selected")) {
           return prev += 1;
         }
 
-        return prev += cur.children.filter((child) => child.selected).length;
+        return prev += cur.children.filter((child) => (child.selected === "selected")).length;
       }, 0);
   }
   
@@ -125,7 +129,7 @@ export default class DownloadDataDropdown extends Component{
     var list = this.args.topics.map(topic => {
       return {
         label: topic.label,
-        children: topic.children.filter(subtopic => subtopic.selected)
+        children: topic.children.filter((subtopic) => (subtopic.selected === "selected"))
       }
     })
     return list.filter(topiary => topiary.children.length > 0);

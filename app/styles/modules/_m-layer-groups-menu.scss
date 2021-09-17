@@ -12,7 +12,7 @@
     background-color: rgba(107,113,123,.06);
   }
 
-  &:not(.open) .layer-groups-container-content {
+  &:not(.open) {
     display: none;
   }
 
@@ -25,11 +25,37 @@
   }
 }
 
-.layer-groups-container-title {
-  font-weight: $global-weight-bold;
-  padding: rem-calc(6);
+.layer-group-toggle-title {
+  
+  padding: rem-calc(6) 0 rem-calc(6);
   padding-right: 1em;
   position: relative;
+  text-align: left;
+  width: 100%;
+
+  .layer-group-toggle-label {
+    color: #ae561f;
+    font-size: rem-calc(20);
+    font-weight: $global-weight-bold;
+  }
+
+  .layer-group-toggle-header .switch {
+    margin: 0.75rem 0;
+  }
+}
+
+.layer-groups-accordion-toggle {
+  font-size: rem-calc(20);
+  font-weight: $global-weight-bold;
+  padding: rem-calc(6) 0 rem-calc(6) rem-calc(28);
+  padding-right: 1em;
+  position: relative;
+  text-align: left;
+  width: 100%;
+
+  a {
+    text-align: left;
+  }
 
   &:hover {
     background-color: rgba(107,113,123,.06);
@@ -37,15 +63,14 @@
   }
 
   &::after {
-    @include css-triangle(0.4em, $primary-color, up);
+    @include css-triangle(0.5em, #ae561f, right);
 
     position: absolute;
-    top: 50%;
-    margin-top: -0.2em;
-    right: rem-calc(6);
+    top: 7px;
+    left: 5px;
   }
-  &.closed::after {
-    transform: rotate(180deg);
+  &.open::after {
+    transform: rotate(90deg);
   }
 }
 
@@ -54,7 +79,6 @@
 // Layer Group Toggle
 // --------------------------------------------------
 .layer-group-toggle {
-  border-top: 1px solid $white;
   font-size: rem-calc(12);
 }
 
@@ -69,13 +93,12 @@
   }
 
   .layer-group-toggle-label {
-    padding: rem-calc(6);
+    padding: rem-calc(6) 0 0 rem-calc(30); // left padding - switch's width (20) + margin (10)
     display: block;
-    padding-left: rem-calc(30); // switch's width (20) + margin (10)
   }
 
   .switch {
-    margin: rem-calc(6) rem-calc(4) 0 rem-calc(6);
+    margin: rem-calc(6) 0;
 
     &.tiny .switch-paddle {
       width: 1.25rem;

@@ -6,38 +6,15 @@
       </div>
       <div class="map-utility-box-body">
         <p><strong>{{this.selectionCount}}</strong> {{this.selection.summaryLevel}} selected</p>
-        <hr />
-        <div class="map-utility-box-data">
-          <div>
-            <span>
-              {{fa-icon icon='user-friends'}}
-            </span>
-            <div class="map-utility-box-data-text">
-              <strong>123,456</strong><br />
-              Population
-            </div>    
-          </div>
-           <div>
-            <span>
-              {{fa-icon icon='building'}}
-            </span>
-            <div class="map-utility-box-data-text">
-              <strong>123,456</strong><br />
-              Housing Units
-            </div>    
-          </div>
-        </div>
-        {{!-- {{fa-icon icon='user-friends'}}
-        {{fa-icon icon='building'}} --}}
       </div>
       <div class="map-utility-box-buttons">
         <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
-          <span class="dcp-orange">
+          <span class="a11y-orange">
             {{fa-icon icon='times'}}
           </span>
           Clear <br />Selection
         </button>
-        <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateProfile}}>
+        <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateExplorerPage}}>
           See More Data
           <span class="off-white" style="padding-left: 0.5em;">
             {{fa-icon icon='long-arrow-alt-right'}}
@@ -53,7 +30,7 @@
       </div>
       <div class="map-utility-box-body-null">
         <p><strong>Want To Add To Your Selection?</strong></p>
-        <p>You can build your selection by selecting the options in the <span class="orange">orange</span> menu above and clicking directly on the map</p>
+        <p>You can build your selection by selecting the options in the <span class="a11y-orange">orange</span> menu above and clicking directly on the map</p>
       </div>
     </div>
   {{/if}}

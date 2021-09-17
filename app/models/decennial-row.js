@@ -19,9 +19,9 @@ export default DS.Model.extend({
   numGeoids: DS.attr('number'),
 
   /**
-   * Profile Type, e.g. demographic, social, housing, economic, census
+   * Survey Type: 'acs' or 'decennial'
    */
-  profile: DS.attr('string'),
+   survey: DS.attr('string'),
 
   /**
    * Category name, used to group together rows
@@ -115,7 +115,9 @@ export default DS.Model.extend({
   /**
    * is_reliable is a flag for determining whether the estimate is reliable (as opposed to significant), based on cv.
    */
-  is_reliable: DS.attr('boolean'),
+  is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
 
   /* =====  End of Main Values  ====== */
@@ -160,7 +162,43 @@ export default DS.Model.extend({
   /**
    * see "is_reliable"
    */
-  previous_is_reliable: DS.attr('boolean'),
+  previous_is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
+
+  // previous comparison
+  previous_comparison_sum: DS.attr('number'),
+
+  previous_comparison_codingThreshold: DS.attr('string'),
+
+  previous_comparison_m: DS.attr('number'),
+
+  previous_comparison_cv: DS.attr('number'),
+
+  previous_comparison_percent: DS.attr('number'),
+
+  previous_comparison_percent_m: DS.attr('number'),
+
+  previous_comparison_is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
+
+  // previous difference
+  previous_difference_sum: DS.attr('number'),
+
+  previous_difference_m: DS.attr('number'),
+
+  previous_significant: DS.attr('boolean',  {
+    defaultValue: true, 
+  }),
+
+  previous_difference_percent: DS.attr('number'),
+
+  previous_difference_percent_m: DS.attr('number'),
+
+  previous_percent_significant:  DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /* =====  End of PREVIOUS_  ====== */
 
@@ -187,7 +225,9 @@ export default DS.Model.extend({
    * change_significant now reflects reliability (calculations were
    * changed in the API but variable names have not been updated, check issue #57)
    */
-  change_significant: DS.attr('boolean'),
+  change_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /**
    * change_percent is change in percentage from previous year to
@@ -205,7 +245,9 @@ export default DS.Model.extend({
    * change_percent_significant reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
   */
-  change_percent_significant: DS.attr('boolean'),
+  change_percent_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /**
    * change_percentage_point is the percentage point change as opposed to percent change
@@ -221,7 +263,9 @@ export default DS.Model.extend({
    * !!!WARNING!!!: change_percentage_point_significant now reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
    */
-  change_percentage_point_significant: DS.attr('boolean'),
+  change_percentage_point_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /* =====  End of CHANGE_  ====== */
 
@@ -266,7 +310,9 @@ export default DS.Model.extend({
   /**
    * comparison_is_reliable: whether comparison area data is reliable
    */
-  comparison_is_reliable: DS.attr('boolean'),
+  comparison_is_reliable: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /* =====  End of COMPARISON_  ====== */
 
@@ -292,7 +338,9 @@ export default DS.Model.extend({
    * "significant" actually reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
    */
-  significant: DS.attr('boolean'),
+  significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
 
   /**
    * See "percent"
@@ -310,7 +358,9 @@ export default DS.Model.extend({
    * percent_significant reflects reliability (calculations were changed in the
    * API but variable names have not been updated, check issue #57)
    */
-  percent_significant: DS.attr('boolean'),
+  percent_significant: DS.attr('boolean', {
+    defaultValue: true,
+  }),
   /* =====  End of DIFFERENCE_  ====== */
 
 
@@ -427,36 +477,120 @@ export default DS.Model.extend({
    */
   previous: computed(
     'previous_sum',
+    'previous_codingThreshold',
     'previous_m',
     'previous_cv',
     'previous_percent',
     'previous_percent_m',
     'previous_is_reliable',
-    'previous_codingThreshold',
+    'previous_difference_sum',
+    'previous_difference_m',
+    'previous_significant',
+    'previous_difference_percent',
+    'previous_difference_percent_m',
+    'previous_percent_significant',
+    'previous_change_percent_significant',
+    'previous_change_percentage_point',
+    'previous_change_percentage_point_m',
+    'previous_change_percentage_point_significant',
     function() {
       const {
         previous_sum: sum,
+        previous_codingThreshold: direction, // TODO: fix naming
         previous_m: moe,
         previous_cv: cv,
         previous_percent: percent,
         previous_percent_m: percent_m,
         previous_is_reliable: is_reliable,
-        previous_codingThreshold: direction,
+        previous_difference_sum: difference_sum,
+        previous_difference_m: difference_m,
+        previous_significant: significant,
+        previous_difference_percent: difference_percent,
+        previous_difference_percent_m: difference_percent_m,
+        previous_percent_significant: percent_significant,
+        previous_change_percent_significant: change_percent_significant,
+        previous_change_percentage_point: change_percentage_point,
+        previous_change_percentage_point_m: change_percentage_point_m,
+        previous_change_percentage_point_significant: change_percentage_point_significant,
       } = this.getProperties(
         'previous_sum',
+        'previous_codingThreshold',
         'previous_m',
         'previous_cv',
         'previous_percent',
         'previous_percent_m',
         'previous_is_reliable',
-        'previous_codingThreshold',
+        'previous_difference_sum',
+        'previous_difference_m',
+        'previous_significant',
+        'previous_difference_percent',
+        'previous_difference_percent_m',
+        'previous_percent_significant',
+        'previous_change_percent_significant',
+        'previous_change_percentage_point',
+        'previous_change_percentage_point_m',
+        'previous_change_percentage_point_significant',
       );
 
       return {
-        sum, moe, cv, percent, percent_m, is_reliable, direction,
+        sum,
+        direction,
+        moe,
+        cv,
+        percent,
+        percent_m,
+        is_reliable,
+        difference_sum,
+        difference_m,
+        significant,
+        difference_percent,
+        difference_percent_m,
+        percent_significant,
+        change_percent_significant,
+        change_percentage_point,
+        change_percentage_point_m,
+        change_percentage_point_significant,
       };
-    },
-  ),
+    }),
+
+    previous_comparison: computed(
+      'previous_comparison_sum',
+      'previous_comparison_codingThreshold',
+      'previous_comparison_m',
+      'previous_comparison_cv',
+      'previous_comparison_percent',
+      'previous_comparison_percent_m',
+      'previous_comparison_is_reliable',
+      function(){
+        const {
+          previous_comparison_sum: sum,
+          previous_comparison_codingThreshold: direction,// TODO: fix namespace conflict
+          previous_comparison_m: m,
+          previous_comparison_cv: cv,
+          previous_comparison_percent: percent,
+          previous_comparison_percent_m: percent_m,
+          previous_comparison_is_reliable: is_reliable,
+        } = this.getProperties(
+          'previous_comparison_sum',
+          'previous_comparison_codingThreshold',
+          'previous_comparison_m',
+          'previous_comparison_cv',
+          'previous_comparison_percent',
+          'previous_comparison_percent_m',
+          'previous_comparison_is_reliable',
+        )
+
+        return {
+          sum,
+          direction,
+          m,
+          cv,
+          percent,
+          percent_m,
+          is_reliable,
+        }
+      }
+    ),
 
   /**
    * shouldHideDeltaPercent is a special exception to displaying the percentage change.

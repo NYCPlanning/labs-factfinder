@@ -58,14 +58,14 @@ module.exports = function (environment) {
     },
 
     'ember-mapbox-composer': {
-      host: 'https://labs-layers-api.herokuapp.com',
+      host: 'https://labs-layers-api-staging.herokuapp.com',
       namespace: 'v1',
     },
 
     'mapbox-gl': {
       accessToken: 'pk.eyJ1Ijoid21hdHRnYXJkbmVyIiwiYSI6Ii1icTRNT3MifQ.WnayxAOEoXX-jWsNmHUhyg',
       map: {
-        style: 'https://labs-layers-api.herokuapp.com/v1/base/style.json',
+        style: 'https://labs-layers-api-staging.herokuapp.com/v1/base/style.json',
       },
     },
 
@@ -100,20 +100,31 @@ module.exports = function (environment) {
     features: [],
   };
 
+if (environment === 'local-api') {
+  ENV.SupportServiceHost = 'http://localhost:3000';
+  ENV['mapbox-gl'].map.style = 'http://localhost:3120/v1/base/style.json';
+  ENV['ember-mapbox-composer'].host = 'http://localhost:3120';
+  ENV['ember-cli-mirage'] = {
+    enabled: false,
+  };
+}
+
   if (environment === 'development') {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
-    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    ENV.SupportServiceHost = 'https://factfinder-api-develop.herokuapp.com';
     ENV['ember-cli-mirage'] = {
-      enabled: true,
+      enabled: false,
     };
   }
 
   if (environment === 'staging') {
-    // TODO: Eventually switch to https://factfinder-api-develop.herokuapp.com/ once it is ready
-    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
-    // TODO: Disable when we have solidified API
+    // The "develop" client deployment also uses this staging environment to build (to make sure assets are
+    // minified, etc.). To switch the SupportServiceHost to the develop Factfinder API, the API_URL
+    // environment variable should be set to 'https://factfinder-api-staging.herokuapp.com/'.
+    // See netlify.toml for setting netlify environment variable during build.
+    ENV.SupportServiceHost = process.env.API_URL || 'https://factfinder-api-staging.herokuapp.com';
     ENV['ember-cli-mirage'] = {
-      enabled: true,
+      enabled: false,
     };
   }
 

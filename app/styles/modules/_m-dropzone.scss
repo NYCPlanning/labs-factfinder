@@ -3,10 +3,11 @@
 // --------------------------------------------------
 .dropzone {
   color: $dark-gray;
-  border: rem-calc(2) dashed $medium-gray;
-  padding: $global-margin*2;
+  border: rem-calc(2) dashed $light-gray;
+  padding: rem-calc(4) 0;
   margin: $global-margin;
-  border-radius: rem-calc(4);
+  min-height: unset;
+  border-radius: rem-calc(10);
   text-align: center;
 
   &.dz-clickable {
@@ -14,7 +15,7 @@
   }
 
   .dz-default.dz-message {
-    font-weight: $global-weight-bold;
+    color: $dark-gray;
     margin: 0;
 
     span {
@@ -26,14 +27,15 @@
         $expand:false,
         $background: $white-smoke,
         $background-hover: $silver,
-        $color:$primary-color,
         $style:solid
       );
       content: 'or choose a file';
+      color: #ae561f;
       font-size: rem-calc(12);
       font-weight: $global-weight-normal;
-      text-decoration: none;
-      margin: 0.5em 0 0;
+      text-decoration: underline;
+      padding: 0;
+      margin: 0;
     }
   }
 

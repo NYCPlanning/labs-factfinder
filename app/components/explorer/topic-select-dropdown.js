@@ -41,4 +41,8 @@ export default class TopicSelectDropdownComponent extends Component {
   @action toggleOpen() {
     this.open = !this.open;
   }
+
+  @action closeMenu() {
+    this.open = false;
+  }
 }

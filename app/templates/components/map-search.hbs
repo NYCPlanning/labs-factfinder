@@ -17,13 +17,13 @@
   {{#each-in (group-by "type" this.results.value) as |type rows|}}
     <li>
       {{#if (eq type 'block')}}
-        <h4 class="header-small results-header">2010 Census Blocks</h4>
+        <h4 class="header-small results-header">2020 Census Blocks</h4>
       {{else if (eq type 'tract')}}
-        <h4 class="header-small results-header">2010 Census Tracts</h4>
+        <h4 class="header-small results-header">2020 Census Tracts</h4>
       {{else if (eq type 'nta')}}
         <h4 class="header-small results-header">Neighborhoods</h4>
-      {{else if (eq type 'puma')}}
-        <h4 class="header-small results-header">PUMAs</h4>
+      {{else if (eq type 'district')}}
+        <h4 class="header-small results-header">Community Districts</h4>
       {{else}}
         <h4 class="header-small results-header">Add Map Pin</h4>
       {{/if}}
@@ -36,7 +36,7 @@
           <span class="icon polygon"></span>
         {{else if (eq type 'nta')}}
           <span class="icon polygon large"></span>
-        {{else if (eq type 'puma')}}
+        {{else if (eq type 'district')}}
           <span class="icon polygon large"></span>
         {{else}}
           {{fa-icon icon="map-pin"}}

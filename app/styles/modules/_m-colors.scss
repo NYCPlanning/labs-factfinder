@@ -62,7 +62,7 @@
  .bg-white-smoke { background-color: $white-smoke; color: color-pick-contrast($white-smoke, ($black, $white)); }
  .bg-off-white { background-color: $off-white; color: color-pick-contrast($off-white, ($black, $white)); }
  .bg-white { background-color: $white; color: color-pick-contrast($white, ($black, $white)); }
- .bg-dcp-orange { background-color: $dcp-orange; color: color-pick-contrast($dcp-orange, ($black, $white)); }
+ .bg-a11y-orange { background-color: $a11y-orange; color: color-pick-contrast($a11y-orange, ($black, $white)); }
  .bg-a11y-orange { background-color: $a11y-orange; color: color-pick-contrast($a11y-orange, ($black, $white)); }
  .bg-dcp-yellow { background-color: $dcp-yellow; color: color-pick-contrast($dcp-yellow, ($black, $white)); }
  .bg-a11y-yellow { background-color: $a11y-yellow; color: color-pick-contrast($a11y-yellow, ($black, $white)); }
@@ -141,7 +141,7 @@
  .off-white { color: $off-white; }
  .white { color: $white; }
 
- .dcp-orange { color: $dcp-orange; }
+ .a11y-orange { color: $a11y-orange; }
  .a11y-orange { color: $a11y-orange; }
  .dcp-yellow { color: $dcp-yellow; }
  .a11y-yellow { color: $a11y-yellow; }

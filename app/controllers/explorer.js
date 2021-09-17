@@ -1,10 +1,13 @@
-import Controller from '@ember/controller';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import Controller from '@ember/controller';
+import { task } from 'ember-concurrency';
+import { tracked } from '@glimmer/tracking';
 
-import sourcesDefault from '../sources-config';
-import censusTopicsDefault from '../topics-config/census';
 import acsTopicsDefault from '../topics-config/acs';
+import censusTopicsDefault from '../topics-config/census';
+import sourcesDefault from '../sources-config';
+
+import fetchExplorerModel from '../utils/fetch-explorer-model';
 
 export default class ExplorerController extends Controller {
   queryParams = [
@@ -20,7 +23,7 @@ export default class ExplorerController extends Controller {
 
   @tracked showCharts = true;
 
-  @tracked sourceId = 'decennial-2020';
+  @tracked sourceId = 'decennial-current';
 
   @tracked censusTopics = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,housingOccupancy';
 
@@ -28,12 +31,10 @@ export default class ExplorerController extends Controller {
 
   @tracked showReliability = false;
 
-  @tracked disaggregate = false;
-
-  // Default "0" maps to NYC
+  // The comparison geography ID.
+  // Must match ID of one option in comparisonGeoOptions.
+  // Default "0" maps to NYC.
   @tracked compareTo = "0";
-
-  @tracked geoOptions = null;
 
   toggleSourceInList(sourceId) {
     return sourcesDefault.map((source) => {
@@ -93,9 +94,9 @@ export default class ExplorerController extends Controller {
     });
   }
 
-  get selectedGeo() {
-    if (this.geoOptions) {
-      return this.geoOptions.findBy('geoid', this.compareTo);
+  get comparisonGeo() {
+    if (this.model.comparisonGeoOptions) {
+      return this.model.comparisonGeoOptions.findBy('geoid', this.compareTo);
     }
 
     return null;
@@ -119,11 +120,13 @@ export default class ExplorerController extends Controller {
     this.transitionToRoute('explorer', { queryParams: { source: id }});
   }
 
-  // returns either 'current' or 'change'
+  // returns either 'current', 'previous' or 'change'
   get mode() {
-    if (this.source.changeOverTime) return 'change';
+    return this.source.mode;
+  }
 
-    return 'current';
+  get surveyData() {
+    return this.source.type === 'acs' ? this.model.acs : this.model.decennial;
   }
 
   get topicsIdList() {
@@ -245,7 +248,7 @@ export default class ExplorerController extends Controller {
     this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
   }
 
-  // acceptable controlId values include: 'showReliability', 'showCharts', 'disaggregate'
+  // acceptable controlId values include: 'showReliability', 'showCharts'
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
 
@@ -254,8 +257,20 @@ export default class ExplorerController extends Controller {
     }});
   }
 
+  @task({ restartable: true }) *reloadExplorerModel(newGeoid) {
+    yield this.store.unloadAll('row');
+
+    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.geotype, this.model.geoid, newGeoid);
+
+    this.model = newExplorerModel;
+
+    yield this.transitionToRoute('explorer', { queryParams: { compareTo: newGeoid }});
+  }
+
   @action updateCompareTo(geoid) {
-    this.transitionToRoute('explorer', { queryParams: { compareTo: geoid }});
+    // TODO: Figure out how to reload the model on compareTo queryParam update, instead of
+    // manually firing off the Task here.
+    this.reloadExplorerModel.perform(geoid);
   }
 
   @action toggleReliability() {

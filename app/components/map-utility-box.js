@@ -27,12 +27,6 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
-  profileButtonClasses: computed('selection.selectedCount', 'generateProfileTask.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateProfileTask.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileTask.isIdle');
-
-    return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
-  }),
-
   choroplethPaintFill: computed('choroplethMode', function() {
     const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
@@ -85,13 +79,13 @@ export default Component.extend({
     ];
   }),
 
-  generateProfileTask: task(function* (type, geoids) {
+  generateExplorerPageTask: task(function* (type, geoids) {
     const postBody = {
-      type,
+      geotype: type,
       geoids,
     };
 
-    const { id } = yield fetch(`${SupportServiceHost}/selection`, { // eslint-disable-line
+    const { id: selectionId } = yield fetch(`${SupportServiceHost}/selection`, { // eslint-disable-line
       headers: {
         'Content-Type': 'application/json',
       },
@@ -101,11 +95,7 @@ export default Component.extend({
       .then(d => d.json());
 
     yield this.get('router')
-      .transitionTo('explorer', {
-        queryParams: {
-          mode: 'current', comparator: '0', reliability: false, charts: true,
-        },
-      });
+      .transitionTo(`/explorer/selection/${selectionId}`);
   }).restartable(),
 
   clearSelection() {
@@ -121,7 +111,7 @@ export default Component.extend({
   },
   transitionTo() {},
 
-  generateProfile() {
+  generateExplorerPage() {
     this.get('metrics').trackEvent('GoogleAnalytics', {
       eventCategory: 'Selection',
       eventAction: 'Created Profile',
@@ -132,7 +122,13 @@ export default Component.extend({
     const geoids = this.get('selection.current.features')
       .mapBy('properties.geoid');
 
-    this.get('generateProfileTask').perform(type, geoids);
+    if (geoids.length > 1) {
+      this.get('generateExplorerPageTask').perform(type, geoids);
+    } else if (geoids.length === 1){
+      this.get('router').transitionTo(`/explorer/${type}/${geoids[0]}`);
+    } else {
+      console.log("Warning: Cannot generate profile because selected geoids array is empty.")
+    }
   },
 
   setChoroplethMode(mode) {
@@ -144,13 +140,4 @@ export default Component.extend({
     this.set('choroplethMode', mode);
   },
 
-  toggleAdvancedOptions() {
-    this.get('metrics').trackEvent('GoogleAnalytics', {
-      eventCategory: 'Advanced Options',
-      eventAction: 'Toggle Advanced Options',
-      eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
-    });
-
-    this.set('advanced', !this.get('advanced'));
-  },
 });
