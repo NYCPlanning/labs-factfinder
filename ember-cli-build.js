@@ -30,7 +30,28 @@ module.exports = function (defaults) {
         'mapbox-gl': 'mapbox-gl/dist/mapbox-gl',
         '@mapbox/mapbox-gl-draw': '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw',
       },
-      exclude: ['mapbox-gl-js'],
+      skipBabel: [
+        {
+          package: 'mapbox-gl',
+          semverRange: '*',
+        },
+        {
+          package: 'mapbox-gl-draw',
+          semverRange: '*',
+        },
+        {
+          package: 'ember-mapbox-gl',
+          semverRange: '*',
+        },
+        {
+          package: 'ember-mapbox-gl-draw',
+          semverRange: '*',
+        },
+        {
+          package: 'ember-mapbox-composter',
+          semverRange: '*',
+        },
+      ],
       webpack: {
         node: {
           fs: 'empty',
