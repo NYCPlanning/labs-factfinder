@@ -7,13 +7,20 @@ const color4 = '#e54444';
 const choroplethConfigs = [
   {
     group: 'Census',
+    id: 'pop1',
+    label: 'Population',
+    tooltip: 'Total population, 2020',
+    legendTitle: 'Total population, 2020',
+    stops: [30000,40000,55000,70000,85000],
+  },
+  {
+    group: 'Census',
     id: 'popperacre',
     label: 'Population Density',
     tooltip: 'Persons per acre',
     legendTitle: 'Persons per Acre',
     stops: [25, 50, 100, 150],
   },
-
   {
     group: 'Census',
     id: 'popu18_1',
@@ -234,5 +241,7 @@ const builtConfigs = choroplethConfigs.map((config) => {
     },
   };
 });
+
+console.log({builtConfigs})
 
 export default builtConfigs;
