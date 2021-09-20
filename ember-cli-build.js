@@ -44,7 +44,11 @@ module.exports = function (defaults) {
           semverRange: '*',
         },
         {
-          package: 'ember-mapbox-composter',
+          package: 'ember-mapbox-composer',
+          semverRange: '*',
+        },
+        {
+          package: '@mapbox/mapbox-gl-draw',
           semverRange: '*',
         },
       ],
