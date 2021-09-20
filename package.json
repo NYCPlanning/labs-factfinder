@@ -133,7 +133,8 @@
     "hot-formula-parser": "^3.0.0",
     "mustache": "3.0.1",
     "numeral": "^2.0.6",
-    "shpjs": "3.4.2"
+    "shpjs": "3.4.2",
+    "worker-loader": "^3.0.8"
   },
   "resolutions": {
     "printf": "^0.6.1",
