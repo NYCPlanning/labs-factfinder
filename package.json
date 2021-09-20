@@ -9,6 +9,15 @@
     "doc": "doc",
     "test": "tests"
   },
+  "babel": {
+    "ignore": [
+      "mapbox/dist/mapbox-gl-csp-worker",
+      "node_modules/mapbox/dist/mapbox-gl-csp-worker",
+      "node_modulues/@mapbox",
+      "node_modules/mapbox-gl",
+      "node_modules/mapbox-gl-draw"
+    ]
+  },
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel 'lint:!(fix)'",

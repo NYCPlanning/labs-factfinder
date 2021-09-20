@@ -26,7 +26,15 @@ module.exports = function (defaults) {
       },
     },
     autoImport: {
+      alias: {
+        'mapbox-gl': 'mapbox-gl/dist/mapbox-gl',
+        '@mapbox/mapbox-gl-draw': '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw',
+      },
       skipBabel: [
+        {
+          package: 'mapbox-gl-csp-worker',
+          semverRange: '*',
+        },
         {
           package: 'mapbox-gl',
           semverRange: '*',
