@@ -15,6 +15,7 @@ import RadiusMode from '../utils/radius-mode';
 
 import generateIntersectionSQL from '../queries/intersection';
 import generateRadiusSQL from '../queries/radius';
+import boop from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker"
 
 import layerGroups from '../layer-groups';
 import drawStyles from '../layers/draw-styles';
@@ -25,6 +26,7 @@ import highlightedFeature from '../layers/highlighted-feature';
 import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
+mapboxgl.workerClass = boop
 const selectedFillLayer = selectedFeatures.fill;
 const combine = turfCombine;
 
