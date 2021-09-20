@@ -9,13 +9,6 @@
     "doc": "doc",
     "test": "tests"
   },
-  "babel": {
-    "ignore": [
-      "node_modulues/@mapbox",
-      "node_modules/mapbox-gl",
-      "node_modules/mapbox-gl-draw"
-    ]
-  },
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel 'lint:!(fix)'",

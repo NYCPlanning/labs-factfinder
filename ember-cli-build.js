@@ -30,6 +30,12 @@ module.exports = function (defaults) {
         'mapbox-gl': 'mapbox-gl/dist/mapbox-gl',
         '@mapbox/mapbox-gl-draw': '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw',
       },
+      skipBabel: [
+        {
+          package: 'mapbox-gl',
+          semverRange: '*',
+        },
+      ],
       webpack: {
         node: {
           fs: 'empty',
