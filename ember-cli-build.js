@@ -6,7 +6,6 @@ module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     'ember-cli-babel': {
       includePolyfill: true,
-      ignore: [ './node_modules/mapbox-gl/dist/mapbox-gl.js' ]
     },
     postcssOptions: {
       compile: {
@@ -31,6 +30,7 @@ module.exports = function (defaults) {
         'mapbox-gl': 'mapbox-gl/dist/mapbox-gl',
         '@mapbox/mapbox-gl-draw': '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw',
       },
+      exclude: ['mapbox-gl-js'],
       webpack: {
         node: {
           fs: 'empty',
