@@ -13,7 +13,7 @@ export default class ModifyTablesMenuComponent extends Component {
     this.open = false;
   }
 
-  get acsDataSource() {
+  get isAcsDataSource() {
     return this.args.sources.find(source => source.selected).type === "acs";
   }
 }
