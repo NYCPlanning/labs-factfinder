@@ -12,4 +12,8 @@ export default class ModifyTablesMenuComponent extends Component {
   @action closeMenu() {
     this.open = false;
   }
+
+  get acsDataSource() {
+    return this.args.sources.find(source => source.selected).type === "acs";
+  }
 }
