@@ -101,7 +101,7 @@
     "jquery": "^3.6.0",
     "lint-staged": ">=10",
     "loader.js": "^4.7.0",
-    "mapbox-gl": "^2.3.0",
+    "mapbox-gl": "1.13.1",
     "mapbox-gl-draw": "^0.16.0",
     "npm-run-all": "^4.1.5",
     "nyc-planning-style-guide": "^1.0.7",
