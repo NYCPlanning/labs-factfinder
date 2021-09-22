@@ -12,6 +12,11 @@ export default class SourceSelectDropdownComponent extends Component {
 
   @action toggleOpen() {
     this.open = !this.open;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'login',
+      'loginMethod' : 'email' // this should be replaced with an actual login method
+    });
   }
 
   @action closeMenu() {

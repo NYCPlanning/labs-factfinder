@@ -97,6 +97,11 @@ export default Component.extend({
 
   actions: {
     toggleAdvancedOptions() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_more_options',
+        'toggle' : this.get('advanced') ? 'Closed' : 'Opened'
+      });
       this.get('metrics').trackEvent('GoogleAnalytics', {
         eventCategory: 'Advanced Options',
         eventAction: 'Toggle Advanced Options',
