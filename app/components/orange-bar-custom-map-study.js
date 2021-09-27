@@ -112,6 +112,11 @@ export default Component.extend({
     },
     
     toggleMapLayersMenu() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_add_map_layers',
+        'toggle' : this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+      });
       this.get('metrics').trackEvent('GoogleAnalytics', {
         eventCategory: 'Advanced Options',
         eventAction: 'Toggle Map Layers Menu',
