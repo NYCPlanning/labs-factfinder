@@ -94,12 +94,12 @@ export default DS.Model.extend({
   /**
    * M is margin or error for the aggregate.
    */
-  m: DS.attr('number'),
+  marginOfError: DS.attr('number'),
 
   /**
-   * CV is the coefficient of variation.
+   * correlationCoefficient is the coefficient of variation.
    */
-  cv: DS.attr('number'),
+  correlationCoefficient: DS.attr('number'),
 
   /**
    * Percent is the aggregate "sum" divided by the "base", which is the U.S. Census published
@@ -110,12 +110,12 @@ export default DS.Model.extend({
   /**
    * Percent_M is the percentage margin of error.
    */
-  percent_m: DS.attr('number'),
+  percentMarginOfError: DS.attr('number'),
 
   /**
-   * is_reliable is a flag for determining whether the estimate is reliable (as opposed to significant), based on cv.
+   * isReliable is a flag for determining whether the estimate is reliable (as opposed to significant), based on cv.
    */
-  is_reliable: DS.attr('boolean', {
+  isReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -130,73 +130,73 @@ export default DS.Model.extend({
   ============================================= */
 
   /**
-   * previous_sum is the previous year estimate
+   * previousSum is the previous year estimate
    */
-  previous_sum: DS.attr('number'),
+  previousSum: DS.attr('number'),
 
   /**
    * See "codingThreshold"
    */
-  previous_codingThreshold: DS.attr('string'),
+  previousCodingThreshold: DS.attr('string'),
 
   /**
-   * previous_m is the previous year margin of error
+   * previousMarginOfError is the previous year margin of error
    */
-  previous_m: DS.attr('number'),
+  previousMarginOfError: DS.attr('number'),
 
   /**
-   * previous_cv is the previous year coefficient of variation
+   * previousCorrelationCoefficient is the previous year coefficient of variation
    */
-  previous_cv: DS.attr('number'),
+  previousCorrelationCoefficient: DS.attr('number'),
 
   /**
-   * previous_percent is the previous year percentage
+   * previousPercent is the previous year percentage
    */
-  previous_percent: DS.attr('number'),
+  previousPercent: DS.attr('number'),
 
   /**
-   * previous_percent_m is the previous year percentage margin of error
+   * previousPercentMarginOfError is the previous year percentage margin of error
    */
-  previous_percent_m: DS.attr('number'),
+  previousPercentMarginOfError: DS.attr('number'),
 
   /**
-   * see "is_reliable"
+   * see "isReliable"
    */
-  previous_is_reliable: DS.attr('boolean', {
+  previousIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
   // previous comparison
-  previous_comparison_sum: DS.attr('number'),
+  previousComparisonSum: DS.attr('number'),
 
-  previous_comparison_codingThreshold: DS.attr('string'),
+  previousComparisonCodingThreshold: DS.attr('string'),
 
-  previous_comparison_m: DS.attr('number'),
+  previousComparisonMarginOfError: DS.attr('number'),
 
-  previous_comparison_cv: DS.attr('number'),
+  previousComparisonCorrelationCoefficient: DS.attr('number'),
 
-  previous_comparison_percent: DS.attr('number'),
+  previousComparisonPercent: DS.attr('number'),
 
-  previous_comparison_percent_m: DS.attr('number'),
+  previousComparisonPercentMarginOfError: DS.attr('number'),
 
-  previous_comparison_is_reliable: DS.attr('boolean', {
+  previousComparisonIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
   // previous difference
-  previous_difference_sum: DS.attr('number'),
+  previousDifferenceSum: DS.attr('number'),
 
-  previous_difference_m: DS.attr('number'),
+  previousDifferenceMarginOfError: DS.attr('number'),
 
-  previous_significant: DS.attr('boolean',  {
+  previousSignificant: DS.attr('boolean',  {
     defaultValue: true, 
   }),
 
-  previous_difference_percent: DS.attr('number'),
+  previousDifferencePercent: DS.attr('number'),
 
-  previous_difference_percent_m: DS.attr('number'),
+  previousDifferencePercentMarginOfError: DS.attr('number'),
 
-  previous_percent_significant:  DS.attr('boolean', {
+  previousPercentSignificant:  DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -210,60 +210,60 @@ export default DS.Model.extend({
   = (current year - previous year = change)
   ============================================= */
   /**
-   * change_sum is change in estimates from previous year to
+   * changeSum is change in estimates from previous year to
    * current year
    */
-  change_sum: DS.attr('number'),
+  changeSum: DS.attr('number'),
 
   /**
-   * change_m is change in margin of error from previous year to
+   * changeMarginOfError is change in margin of error from previous year to
    * current year
    */
-  change_m: DS.attr('number'),
+  changeMarginOfError: DS.attr('number'),
 
   /**
-   * change_significant now reflects reliability (calculations were
+   * changeSignificant now reflects reliability (calculations were
    * changed in the API but variable names have not been updated, check issue #57)
    */
-  change_significant: DS.attr('boolean', {
+  changeSignificant: DS.attr('boolean', {
     defaultValue: true,
   }),
 
   /**
-   * change_percent is change in percentage from previous year to
+   * changePercent is change in percentage from previous year to
    * current year
    */
-  change_percent: DS.attr('number'),
+  changePercent: DS.attr('number'),
 
   /**
-   * change_percent_m is change in percentage margin of error from
+   * changePercentMarginOfError is change in percentage margin of error from
    * previous year to current year
    */
-  change_percent_m: DS.attr('number'),
+  changePercentMarginOfError: DS.attr('number'),
 
   /**
-   * change_percent_significant reflects reliability (calculations were changed in
+   * changePercentSignificant reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
   */
-  change_percent_significant: DS.attr('boolean', {
+  changePercentSignificant: DS.attr('boolean', {
     defaultValue: true,
   }),
 
   /**
-   * change_percentage_point is the percentage point change as opposed to percent change
+   * changePercentagePoint is the percentage point change as opposed to percent change
    */
-  change_percentage_point: DS.attr('number'),
+  changePercentagePoint: DS.attr('number'),
 
   /**
-   * change_percentage_point_m is the margin of error in the percent point calculation
+   * changePercentagePointMarginOfError is the margin of error in the percent point calculation
    */
-  change_percentage_point_m: DS.attr('number'),
+  changePercentagePointMarginOfError: DS.attr('number'),
 
   /**
-   * !!!WARNING!!!: change_percentage_point_significant now reflects reliability (calculations were changed in
+   * !!!WARNING!!!: changePercentagePointSignificant now reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
    */
-  change_percentage_point_significant: DS.attr('boolean', {
+  changePercentagePointSignificant: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -278,39 +278,39 @@ export default DS.Model.extend({
   ============================================= */
 
   /**
-   * comparison_sum: estimate of comparison area
+   * comparisonSum: estimate of comparison area
    */
-  comparison_sum: DS.attr('number'),
+  comparisonSum: DS.attr('number'),
 
   /**
    * See "codingThreshold"
    */
-  comparison_codingThreshold: DS.attr('string'),
+  comparisonCodingThreshold: DS.attr('string'),
 
   /**
-   * comparison_m: margin of error of comparison area
+   * comparisonMarginOfError: margin of error of comparison area
    */
-  comparison_m: DS.attr('number'),
+  comparisonMarginOfError: DS.attr('number'),
 
   /**
-   * comparison_cv: coefficient of variation of comparison area
+   * comparisonCorrelationCoefficient: coefficient of variation of comparison area
    */
-  comparison_cv: DS.attr('number'),
+  comparisonCorrelationCoefficient: DS.attr('number'),
 
   /**
-   * comparison_percent: percentage of comparison area
+   * comparisonPercent: percentage of comparison area
    */
-  comparison_percent: DS.attr('number'),
+  comparisonPercent: DS.attr('number'),
 
   /**
-   * comparison_percent_m: percentage margin of error of comparison area
+   * comparisonPercentMarginOfError: percentage margin of error of comparison area
    */
-  comparison_percent_m: DS.attr('number'),
+  comparisonPercentMarginOfError: DS.attr('number'),
 
   /**
-   * comparison_is_reliable: whether comparison area data is reliable
+   * comparisonIsReliable: whether comparison area data is reliable
    */
-  comparison_is_reliable: DS.attr('boolean', {
+  comparisonIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -326,12 +326,12 @@ export default DS.Model.extend({
   /**
    * See "sum"
    */
-  difference_sum: DS.attr('number'),
+  differenceSum: DS.attr('number'),
 
   /**
    * See "m"
    */
-  difference_m: DS.attr('number'),
+  differenceMarginOfError: DS.attr('number'),
 
   /**
    * !!! WARNING !!!
@@ -345,20 +345,20 @@ export default DS.Model.extend({
   /**
    * See "percent"
    */
-  difference_percent: DS.attr('number'),
+  differencePercent: DS.attr('number'),
 
   /**
-   * See "percent_m"
+   * See "percentMarginOfError"
    */
-  difference_percent_m: DS.attr('number'),
-  // "percent_significant" belongs to "difference"
+  differencePercentMarginOfError: DS.attr('number'),
+  // "percentSignificant" belongs to "difference"
 
   /**
    * !!! WARNING !!!
-   * percent_significant reflects reliability (calculations were changed in the
+   * percentSignificant reflects reliability (calculations were changed in the
    * API but variable names have not been updated, check issue #57)
    */
-  percent_significant: DS.attr('boolean', {
+  percentSignificant: DS.attr('boolean', {
     defaultValue: true,
   }),
   /* =====  End of DIFFERENCE_  ====== */
@@ -367,31 +367,31 @@ export default DS.Model.extend({
   /* =============================================
   =      ALIASES for CSV download use only       =
   ============================================= */
-  previous0610_estimate: alias('previous_sum'),
-  previous0610_moe: alias('previous_m'),
-  previous0610_cv: alias('previous_cv'),
-  previous0610_percent: alias('previous_percent'),
-  previous0610_percent_moe: alias('previous_percent_m'),
-  previous2000_estimate: alias('previous_sum'),
-  previous2000_percent: alias('previous_percent'),
-  estimate: alias('sum'),
-  moe: alias('m'),
-  percent_moe: alias('percent_m'),
-  change_estimate: alias('change_sum'),
-  change_moe: alias('change_m'),
-  change_reliable: alias('change_significant'),
-  change_percent_moe: alias('change_percent_m'),
-  change_percent_reliable: alias('change_percent_significant'),
-  change_percentage_point_moe: alias('change_percentage_point_m'),
-  change_percentage_point_reliable: alias('change_percentage_point_significant'),
-  comparison_estimate: alias('comparison_sum'),
-  comparison_moe: alias('comparison_m'),
-  comparison_percent_moe: alias('comparison_percent_m'),
-  difference_estimate: alias('difference_sum'),
-  difference_moe: alias('difference_m'),
+  previous0610_estimate: alias('previousSum'),
+  previous0610MarginOfError: alias('previousMarginOfError'),
+  previous0610CorrelationCoefficient: alias('previousCorrelationCoefficient'),
+  previous0610Percent: alias('previousPercent'),
+  previous0610PercentMarginOfError: alias('previousPercentMarginOfError'),
+  previous2000_estimate: alias('previousSum'),
+  previous2000Percent: alias('previousPercent'),
+  // estimate: alias('estimate'),
+  moe: alias('marginOfError'),
+  // percentMarginOfError: alias('percentMarginOfError'),
+  change_estimate: alias('changeSum'),
+  // changeMarginOfError: alias('changeMarginOfError'),
+  change_reliable: alias('changeSignificant'),
+  // changePercentMarginOfError: alias('changePercentMarginOfError'),
+  changePercent_reliable: alias('changePercentSignificant'),
+  // changePercentagePointMarginOfError: alias('changePercentagePointMarginOfError'),
+  changePercentagePoint_reliable: alias('changePercentagePointSignificant'),
+  comparison_estimate: alias('comparisonSum'),
+  // comparisonMarginOfError: alias('comparisonMarginOfError'),
+  // comparisonPercentMarginOfError: alias('comparisonPercentMarginOfError'),
+  difference_estimate: alias('differenceSum'),
+  // differenceMarginOfError: alias('differenceMarginOfError'),
   difference_reliable: alias('significant'),
-  difference_percent_moe: alias('difference_percent_m'),
-  difference_percent_reliable: alias('percent_significant'),
+  // differencePercentMarginOfError: alias('differencePercentMarginOfError'),
+  differencePercent_reliable: alias('percentSignificant'),
   /* =====  End of ALIASES  ====== */
 
   /**
@@ -401,33 +401,33 @@ export default DS.Model.extend({
    */
   selection: computed(
     'sum',
-    'm',
+    'marginOfError',
     'cv',
     'percent',
-    'percent_m',
-    'is_reliable',
+    'percentMarginOfError',
+    'isReliable',
     'codingThreshold',
     function() {
       const {
         sum,
         m: moe,
-        cv,
+        correlationCoefficient,
         percent,
-        percent_m,
-        is_reliable,
+        percentMarginOfError,
+        isReliable,
         codingThreshold: direction,
       } = this.getProperties(
         'sum',
-        'm',
+        'marginOfError',
         'cv',
         'percent',
-        'percent_m',
-        'is_reliable',
+        'percentMarginOfError',
+        'isReliable',
         'codingThreshold',
       );
 
       return {
-        sum, moe, cv, percent, percent_m, is_reliable, direction,
+        sum, moe, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
       };
     },
   ),
@@ -438,34 +438,34 @@ export default DS.Model.extend({
    * @returns {Object} comparison
    */
   comparison: computed(
-    'comparison_sum',
-    'comparison_m',
-    'comparison_cv',
-    'comparison_percent',
-    'comparison_percent_m',
-    'comparison_is_reliable',
-    'comparison_codingThreshold',
+    'comparisonSum',
+    'comparisonMarginOfError',
+    'comparisonCorrelationCoefficient',
+    'comparisonPercent',
+    'comparisonPercentMarginOfError',
+    'comparisonIsReliable',
+    'comparisonCodingThreshold',
     function() {
       const {
-        comparison_sum: sum,
-        comparison_m: moe,
-        comparison_cv: cv,
-        comparison_percent: percent,
-        comparison_percent_m: percent_m,
-        comparison_is_reliable: is_reliable,
-        comparison_codingThreshold: direction,
+        comparisonSum: sum,
+        comparisonMarginOfError: moe,
+        comparisonCorrelationCoefficient: correlationCoefficient,
+        comparisonPercent: percent,
+        comparisonPercentMarginOfError: percentMarginOfError,
+        comparisonIsReliable: isReliable,
+        comparisonCodingThreshold: direction,
       } = this.getProperties(
-        'comparison_sum',
-        'comparison_m',
-        'comparison_cv',
-        'comparison_percent',
-        'comparison_percent_m',
-        'comparison_is_reliable',
-        'comparison_codingThreshold',
+        'comparisonSum',
+        'comparisonMarginOfError',
+        'comparisonCorrelationCoefficient',
+        'comparisonPercent',
+        'comparisonPercentMarginOfError',
+        'comparisonIsReliable',
+        'comparisonCodingThreshold',
       );
 
       return {
-        sum, moe, cv, percent, percent_m, is_reliable, direction,
+        sum, moe, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
       };
     },
   ),
@@ -476,118 +476,118 @@ export default DS.Model.extend({
    * @returns {Object} previous
    */
   previous: computed(
-    'previous_sum',
-    'previous_codingThreshold',
-    'previous_m',
-    'previous_cv',
-    'previous_percent',
-    'previous_percent_m',
-    'previous_is_reliable',
-    'previous_difference_sum',
-    'previous_difference_m',
-    'previous_significant',
-    'previous_difference_percent',
-    'previous_difference_percent_m',
-    'previous_percent_significant',
-    'previous_change_percent_significant',
-    'previous_change_percentage_point',
-    'previous_change_percentage_point_m',
-    'previous_change_percentage_point_significant',
+    'previousSum',
+    'previousCodingThreshold',
+    'previousMarginOfError',
+    'previousCorrelationCoefficient',
+    'previousPercent',
+    'previousPercentMarginOfError',
+    'previousIsReliable',
+    'previousDifferenceSum',
+    'previousDifferenceMarginOfError',
+    'previousSignificant',
+    'previousDifferencePercent',
+    'previousDifferencePercentMarginOfError',
+    'previousPercentSignificant',
+    'previousChangePercentSignificant',
+    'previousChangePercentagePoint',
+    'previousChangePercentagePointMarginOfError',
+    'previousChangePercentagePointSignificant',
     function() {
       const {
-        previous_sum: sum,
-        previous_codingThreshold: direction, // TODO: fix naming
-        previous_m: moe,
-        previous_cv: cv,
-        previous_percent: percent,
-        previous_percent_m: percent_m,
-        previous_is_reliable: is_reliable,
-        previous_difference_sum: difference_sum,
-        previous_difference_m: difference_m,
-        previous_significant: significant,
-        previous_difference_percent: difference_percent,
-        previous_difference_percent_m: difference_percent_m,
-        previous_percent_significant: percent_significant,
-        previous_change_percent_significant: change_percent_significant,
-        previous_change_percentage_point: change_percentage_point,
-        previous_change_percentage_point_m: change_percentage_point_m,
-        previous_change_percentage_point_significant: change_percentage_point_significant,
+        previousSum: sum,
+        previousCodingThreshold: direction, // TODO: fix naming
+        previousMarginOfError: moe,
+        previousCorrelationCoefficient: correlationCoefficient,
+        previousPercent: percent,
+        previousPercentMarginOfError: percentMarginOfError,
+        previousIsReliable: isReliable,
+        previousDifferenceSum: differenceSum,
+        previousDifferenceMarginOfError: differenceMarginOfError,
+        previousSignificant: significant,
+        previousDifferencePercent: differencePercent,
+        previousDifferencePercentMarginOfError: differencePercentMarginOfError,
+        previousPercentSignificant: percentSignificant,
+        previousChangePercentSignificant: changePercentSignificant,
+        previousChangePercentagePoint: changePercentagePoint,
+        previousChangePercentagePointMarginOfError: changePercentagePointMarginOfError,
+        previousChangePercentagePointSignificant: changePercentagePointSignificant,
       } = this.getProperties(
-        'previous_sum',
-        'previous_codingThreshold',
-        'previous_m',
-        'previous_cv',
-        'previous_percent',
-        'previous_percent_m',
-        'previous_is_reliable',
-        'previous_difference_sum',
-        'previous_difference_m',
-        'previous_significant',
-        'previous_difference_percent',
-        'previous_difference_percent_m',
-        'previous_percent_significant',
-        'previous_change_percent_significant',
-        'previous_change_percentage_point',
-        'previous_change_percentage_point_m',
-        'previous_change_percentage_point_significant',
+        'previousSum',
+        'previousCodingThreshold',
+        'previousMarginOfError',
+        'previousCorrelationCoefficient',
+        'previousPercent',
+        'previousPercentMarginOfError',
+        'previousIsReliable',
+        'previousDifferenceSum',
+        'previousDifferenceMarginOfError',
+        'previousSignificant',
+        'previousDifferencePercent',
+        'previousDifferencePercentMarginOfError',
+        'previousPercentSignificant',
+        'previousChangePercentSignificant',
+        'previousChangePercentagePoint',
+        'previousChangePercentagePointMarginOfError',
+        'previousChangePercentagePointSignificant',
       );
 
       return {
         sum,
         direction,
         moe,
-        cv,
+        correlationCoefficient,
         percent,
-        percent_m,
-        is_reliable,
-        difference_sum,
-        difference_m,
+        percentMarginOfError,
+        isReliable,
+        differenceSum,
+        differenceMarginOfError,
         significant,
-        difference_percent,
-        difference_percent_m,
-        percent_significant,
-        change_percent_significant,
-        change_percentage_point,
-        change_percentage_point_m,
-        change_percentage_point_significant,
+        differencePercent,
+        differencePercentMarginOfError,
+        percentSignificant,
+        changePercentSignificant,
+        changePercentagePoint,
+        changePercentagePointMarginOfError,
+        changePercentagePointSignificant,
       };
     }),
 
-    previous_comparison: computed(
-      'previous_comparison_sum',
-      'previous_comparison_codingThreshold',
-      'previous_comparison_m',
-      'previous_comparison_cv',
-      'previous_comparison_percent',
-      'previous_comparison_percent_m',
-      'previous_comparison_is_reliable',
+    previousComparison: computed(
+      'previousComparisonSum',
+      'previousComparisonCodingThreshold',
+      'previousComparisonMarginOfError',
+      'previousComparisonCorrelationCoefficient',
+      'previousComparisonPercent',
+      'previousComparisonPercentMarginOfError',
+      'previousComparisonIsReliable',
       function(){
         const {
-          previous_comparison_sum: sum,
-          previous_comparison_codingThreshold: direction,// TODO: fix namespace conflict
-          previous_comparison_m: m,
-          previous_comparison_cv: cv,
-          previous_comparison_percent: percent,
-          previous_comparison_percent_m: percent_m,
-          previous_comparison_is_reliable: is_reliable,
+          previousComparisonSum: sum,
+          previousComparisonCodingThreshold: direction,// TODO: fix namespace conflict
+          previousComparisonMarginOfError: m,
+          previousComparisonCorrelationCoefficient: correlationCoefficient,
+          previousComparisonPercent: percent,
+          previousComparisonPercentMarginOfError: percentMarginOfError,
+          previousComparisonIsReliable: isReliable,
         } = this.getProperties(
-          'previous_comparison_sum',
-          'previous_comparison_codingThreshold',
-          'previous_comparison_m',
-          'previous_comparison_cv',
-          'previous_comparison_percent',
-          'previous_comparison_percent_m',
-          'previous_comparison_is_reliable',
+          'previousComparisonSum',
+          'previousComparisonCodingThreshold',
+          'previousComparisonMarginOfError',
+          'previousComparisonCorrelationCoefficient',
+          'previousComparisonPercent',
+          'previousComparisonPercentMarginOfError',
+          'previousComparisonIsReliable',
         )
 
         return {
           sum,
           direction,
           m,
-          cv,
+          correlationCoefficient,
           percent,
-          percent_m,
-          is_reliable,
+          percentMarginOfError,
+          isReliable,
         }
       }
     ),
@@ -596,8 +596,8 @@ export default DS.Model.extend({
    * shouldHideDeltaPercent is a special exception to displaying the percentage change.
    * @returns {Boolean}
    */
-  shouldHideDeltaPercent: computed('isSpecial', 'sum', 'comparison_sum', function() {
-    const { isSpecial, sum, comparison_sum } = this.getProperties('isSpecial', 'sum', 'comparison_sum');
-    return isSpecial || (sum + comparison_sum === 0);
+  shouldHideDeltaPercent: computed('isSpecial', 'estimate', 'comparisonSum', function() {
+    const { isSpecial, sum, comparisonSum } = this.getProperties('isSpecial', 'estimate', 'comparisonSum');
+    return isSpecial || (sum + comparisonSum === 0);
   }),
 });
