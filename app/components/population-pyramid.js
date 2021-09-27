@@ -278,7 +278,6 @@ export default HorizontalBar.extend({
 
     const handleComparisonMOEs = (selection, type) => {
       const xFunction = (d) => { // eslint-disable-line
-        console.log('XFUNC',{d})
         return xScale(get(d, `${type}.comparisonPercent`)) - xScale(get(d, `${type}.comparisonPercentMarginOfError`));
       };
       const widthFunction = d => xScale(get(d, `${type}.comparisonPercentMarginOfError`)) * 2;
