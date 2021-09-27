@@ -39,6 +39,18 @@ export default Component.extend({
   actions: {
     toggle() {
       this.toggleProperty('active');
+      window.dataLayer = window.dataLayer || [];
+      if(this.get('label')==="Thematic Map") {
+        window.dataLayer.push({
+          'event' : 'toggle_thematic_map',
+          'toggle' : this.get('active')
+        });
+      } else {
+        window.dataLayer.push({
+          'event' : this.get('label'),
+          'toggle' : this.get('active')
+        });
+      }
     },
   },
 });
