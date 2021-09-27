@@ -45,6 +45,15 @@ export default Component.extend({
           'event' : 'toggle_thematic_map',
           'toggle' : this.get('active')
         });
+      } else if(["Subways", "Zipcodes", "Neighborhood Tabulation Areas", "Community Districts", "Community District Tabulation Areas (CDTAs)", "NYC Council Districts"].includes(this.get('label'))){
+        // Only count toggle on, not toggle off
+        if(this.get('active')) {
+          window.dataLayer.push({
+            'event' : 'toggle_map_layer',
+            'toggle_map_layer' : this.get('label')
+          });
+        }
+
       } else {
         window.dataLayer.push({
           'event' : this.get('label'),
