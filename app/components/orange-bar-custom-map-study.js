@@ -126,9 +126,19 @@ export default Component.extend({
       this.set('mapLayersMenu', !this.get('mapLayersMenu'));
     },
     addedFile(file) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'upload_shapefile',
+        'upload_shapefile' : 'added',
+      });
       this.addedFile(file)
     },
     removedFile() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'upload_shapefile',
+        'upload_shapefile' : 'removed',
+      });
       this.removedFile()
     }
   },
