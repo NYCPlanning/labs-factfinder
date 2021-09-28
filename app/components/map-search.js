@@ -59,6 +59,12 @@ export default Component.extend({
             },
           );
         }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event' : 'search_performed',
+          'search_query' : searchTerms,
+        });
+
         return resultList;
       });
   }).keepLatest(),
