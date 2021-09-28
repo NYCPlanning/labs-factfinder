@@ -87,6 +87,12 @@ export default Component.extend({
 
 
   setChoroplethMode(mode) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'set_choropleth',
+      'choropleth_group' : choroplethConfigs.find(d => d.id === mode).group,
+      'choropleth_label' : choroplethConfigs.find(d => d.id === mode).label,
+    });
     this.get('metrics').trackEvent('GoogleAnalytics', {
       eventCategory: 'Advanced Options',
       eventAction: 'Selected Choropleth',
@@ -97,6 +103,11 @@ export default Component.extend({
 
   actions: {
     toggleAdvancedOptions() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_more_options',
+        'toggle' : this.get('advanced') ? 'Closed' : 'Opened'
+      });
       this.get('metrics').trackEvent('GoogleAnalytics', {
         eventCategory: 'Advanced Options',
         eventAction: 'Toggle Advanced Options',
@@ -107,6 +118,11 @@ export default Component.extend({
     },
     
     toggleMapLayersMenu() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_add_map_layers',
+        'toggle' : this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+      });
       this.get('metrics').trackEvent('GoogleAnalytics', {
         eventCategory: 'Advanced Options',
         eventAction: 'Toggle Map Layers Menu',
@@ -116,9 +132,19 @@ export default Component.extend({
       this.set('mapLayersMenu', !this.get('mapLayersMenu'));
     },
     addedFile(file) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'upload_shapefile',
+        'upload_shapefile' : 'added',
+      });
       this.addedFile(file)
     },
     removedFile() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'upload_shapefile',
+        'upload_shapefile' : 'removed',
+      });
       this.removedFile()
     }
   },

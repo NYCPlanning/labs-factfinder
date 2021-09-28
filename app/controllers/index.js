@@ -99,6 +99,11 @@ export default Controller.extend({
   },
 
   handleDrawButtonClick(type) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'toggle_draw',
+      'toggle_draw_type' : type
+    });
     const isDrawing = this.get('isDrawing');
     const map = this.get('selection').currentMapInstance; // sometimes this is never set
     if (isDrawing) {
