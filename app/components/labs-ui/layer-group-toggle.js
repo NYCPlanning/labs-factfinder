@@ -40,7 +40,7 @@ export default Component.extend({
     toggle() {
       this.toggleProperty('active');
       window.dataLayer = window.dataLayer || [];
-      if (this.get('label')==="Thematic Map") {
+      if (this.get('label') === "Thematic Map") {
         window.dataLayer.push({
           'event' : 'toggle_thematic_map',
           'toggle' : this.get('active')
@@ -56,8 +56,8 @@ export default Component.extend({
       } else {
         // This should not happen, but if it does, the data will be recorded
         window.dataLayer.push({
-          'event' : this.get('label'),
-          'toggle' : this.get('active')
+          'event' : 'uncategorized_event',
+          'uncatogorized_event' : this.get('label'),
         });
       }
     },
