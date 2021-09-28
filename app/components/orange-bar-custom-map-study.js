@@ -87,6 +87,12 @@ export default Component.extend({
 
 
   setChoroplethMode(mode) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'set_choropleth',
+      'choropleth_group' : choroplethConfigs.find(d => d.id === mode).group,
+      'choropleth_label' : choroplethConfigs.find(d => d.id === mode).label,
+    });
     this.get('metrics').trackEvent('GoogleAnalytics', {
       eventCategory: 'Advanced Options',
       eventAction: 'Selected Choropleth',
