@@ -222,6 +222,11 @@ export default class ExplorerController extends Controller {
 
   @action setSource(newSource) {
     this.source = newSource;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'select_data_source',
+      'select_data_source' : newSource.label,
+    });
   }
 
   @action toggleTopic(topic) {
