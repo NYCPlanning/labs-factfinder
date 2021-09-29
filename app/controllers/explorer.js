@@ -251,6 +251,11 @@ export default class ExplorerController extends Controller {
 
   @action toggleAllTopics() {
     this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'select_all_topics',
+      'toggle' : this.isAllTopicsSelected === "unselected" ? "none" : "all",
+    });
   }
 
   // acceptable controlId values include: 'showReliability', 'showCharts'

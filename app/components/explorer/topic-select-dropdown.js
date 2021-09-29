@@ -40,6 +40,11 @@ export default class TopicSelectDropdownComponent extends Component {
 
   @action toggleOpen() {
     this.open = !this.open;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'toggle_select_topics',
+      'toggle' : this.open ? 'Opened' : 'Closed',
+    });
   }
 
   @action closeMenu() {
