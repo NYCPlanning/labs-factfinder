@@ -90,8 +90,8 @@ export default Component.extend(ResizeAware, {
     }
 
     const xMax = max([
-      max(rawData, d => get(d, 'percent') + get(d, 'percent_m')),
-      max(rawData, d => get(d, 'comparison_percent') + get(d, 'comparison_percent_m')),
+      max(rawData, d => get(d, 'percent') + get(d, 'percentMarginOfError')),
+      max(rawData, d => get(d, 'comparisonPercent') + get(d, 'comparisonPercentMarginOfError')),
     ]);
 
     const x = scaleLinear()
@@ -213,16 +213,16 @@ export default Component.extend(ResizeAware, {
 
 
     const xFunctionMOE = (d) => {
-      if (get(d, 'percent_m') > get(d, 'percent')) return x(0);
-      return x(get(d, 'percent')) - x(get(d, 'percent_m')) - -textWidth;
+      if (get(d, 'percentMarginOfError') > get(d, 'percent')) return x(0);
+      return x(get(d, 'percent')) - x(get(d, 'percentMarginOfError')) - -textWidth;
     };
 
     const widthFunctionMOE = (d) => {
-      const defaultWidth = (x(get(d, 'percent_m')) - textWidth) * 2;
+      const defaultWidth = (x(get(d, 'percentMarginOfError')) - textWidth) * 2;
       const axesWidth = width - textWidth;
       const barWidth = x(get(d, 'percent')) - textWidth;
-      if (get(d, 'percent_m') > get(d, 'percent')) {
-        const newWidth = defaultWidth - (x(get(d, 'percent_m') - get(d, 'percent')) - textWidth);
+      if (get(d, 'percentMarginOfError') > get(d, 'percent')) {
+        const newWidth = defaultWidth - (x(get(d, 'percentMarginOfError') - get(d, 'percent')) - textWidth);
         return newWidth;
       }
       // if the percentage bar + the MOE bar extend past 100% on the x axes, modify width of MOE bar
@@ -260,11 +260,11 @@ export default Component.extend(ResizeAware, {
     const comparisonMOEbars = svg.selectAll('.comparisonMoebar')
       .data(rawData, d => get(d, 'group'));
 
-    const xFunctionComparisonMOE = d => x(get(d, 'comparison_percent'))
-      - x(get(d, 'comparison_percent_m'))
+    const xFunctionComparisonMOE = d => x(get(d, 'comparisonPercent'))
+      - x(get(d, 'comparisonPercentMarginOfError'))
       - -textWidth;
 
-    const widthFunctionComparisonMOE = d => (x(get(d, 'comparison_percent_m')) - textWidth) * 2;
+    const widthFunctionComparisonMOE = d => (x(get(d, 'comparisonPercentMarginOfError')) - textWidth) * 2;
     comparisonMOEbars.enter()
       .append('rect')
       .attr('class', d => `comparisonMoebar ${get(d, 'classValue')}`)
@@ -290,7 +290,7 @@ export default Component.extend(ResizeAware, {
     const comparisonBars = svg.selectAll('.comparisonbar')
       .data(rawData, d => get(d, 'group'));
 
-    const cxFunction = d => x(get(d, 'comparison_percent'));
+    const cxFunction = d => x(get(d, 'comparisonPercent'));
     comparisonBars.enter()
       .append('circle')
       .attr('fill', '#FFF')
