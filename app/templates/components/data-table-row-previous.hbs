@@ -22,7 +22,7 @@
 
   {{!-- COMPARISON AREA --}}
   {{data-table-column-group
-    model=this.data.previous_comparison
+    model=this.data.previousComparison
     rowConfig=this.rowConfig
     reliabilityMode=this.reliability}}
 
@@ -32,11 +32,11 @@
     {{if
       (or
         (not this.data.previous.significant)
-        (and (eq this.data.previous.sum 0) (eq this.data.previous_comparison.sum 0)))
+        (and (eq this.data.previous.sum 0) (eq this.data.previousComparison.sum 0)))
       'insignificant'}}">
-    {{unless (eq this.data.previous.difference_sum null)
+    {{unless (eq this.data.previous.differenceSum null)
       (format-number
-          this.data.previous.difference_sum
+          this.data.previous.differenceSum
           precision=this.rowConfig.decimal)}}
   </td>
   {{#if this.reliability}}
@@ -44,28 +44,28 @@
       {{if
         (or
           (not this.data.previous.significant)
-          (and (eq this.data.previous.sum 0) (eq this.data.previous_comparison.sum 0)))
+          (and (eq this.data.previous.sum 0) (eq this.data.previousComparison.sum 0)))
         'insignificant'}}">
-      {{unless (eq this.data.previous.difference_m null)
+      {{unless (eq this.data.previous.differenceMarginOfError null)
           (format-number
-            this.data.previous.difference_m
+            this.data.previous.differenceMarginOfError
             precision=this.rowConfig.decimal)}}
     </td>
   {{/if}}
 
     <td
-      class="{{unless this.data.previous.percent_significant 'insignificant'}} difference-percent">
-      {{unless (eq this.data.previous.difference_percent null)
+      class="{{unless this.data.previous.percentSignificant 'insignificant'}} difference-percent">
+      {{unless (eq this.data.previous.differencePercent null)
           (format-number
-            this.data.previous.difference_percent
+            this.data.previous.differencePercent
             precision=1)}}
     </td>
     {{#if this.reliability}}
       <td
-        class="{{unless this.data.previous.percent_significant 'insignificant'}} difference-percent-m">
-        {{unless (eq this.data.previous.difference_percent_m null)
+        class="{{unless this.data.previous.percentSignificant 'insignificant'}} difference-percent-m">
+        {{unless (eq this.data.previous.differencePercentMarginOfError null)
           (format-number
-            this.data.previous.difference_percent_m
+            this.data.previous.differencePercentMarginOfError
             precision=1)}}
       </td>
     {{/if}}

@@ -32,11 +32,11 @@
     {{if
       (or
         (not this.data.significant)
-        (and (eq this.data.sum 0) (eq this.data.comparison_sum 0)))
+        (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
       'insignificant'}}">
-    {{unless (eq this.data.difference_sum null)
+    {{unless (eq this.data.differenceSum null)
       (format-number
-          this.data.difference_sum
+          this.data.differenceSum
           precision=this.rowConfig.decimal)}}
   </td>
   {{#if this.reliability}}
@@ -44,28 +44,28 @@
       {{if
         (or
           (not this.data.significant)
-          (and (eq this.data.sum 0) (eq this.data.comparison_sum 0)))
+          (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
         'insignificant'}}">
-      {{unless (eq this.data.difference_m null)
+      {{unless (eq this.data.differenceMarginOfError null)
           (format-number
-            this.data.difference_m
+            this.data.differenceMarginOfError
             precision=this.rowConfig.decimal)}}
     </td>
   {{/if}}
 
     <td
-      class="{{unless this.data.percent_significant 'insignificant'}} difference-percent">
-      {{unless (eq this.data.difference_percent null)
+      class="{{unless this.data.percentSignificant 'insignificant'}} difference-percent">
+      {{unless (eq this.data.differencePercent null)
           (format-number
-            this.data.difference_percent
+            this.data.differencePercent
             precision=1)}}
     </td>
     {{#if this.reliability}}
       <td
-        class="{{unless this.data.percent_significant 'insignificant'}} difference-percent-m">
-        {{unless (eq this.data.difference_percent_m null)
+        class="{{unless this.data.percentSignificant 'insignificant'}} difference-percent-m">
+        {{unless (eq this.data.differencePercentMarginOfError null)
           (format-number
-            this.data.difference_percent_m
+            this.data.differencePercentMarginOfError
             precision=1)}}
       </td>
     {{/if}}
