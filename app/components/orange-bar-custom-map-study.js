@@ -44,7 +44,8 @@ export default Component.extend({
 
     // return an array of objects, each with a display-ready range and color
     const config = choroplethConfigs.find(d => d.id === mode);
-    const { isPercent, stops, colors } = config;
+    const { isPercent, stops: _stops, colors } = config;
+    const stops = _stops.filter(stop => typeof stop === 'number')
 
     const format = (value) => { // eslint-disable-line
       return isPercent ? `${value}%` : numeral(value).format('0,0');
