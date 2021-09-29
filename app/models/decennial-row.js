@@ -3,7 +3,9 @@ import DS from 'ember-data';
 import { computed } from '@ember/object';
 
 /**
- * The Row model represents a row in a data profile. It contains all the data necessary
+ * The Row model represents a row in the results of getting
+ * all decennial data for a given geography selection.
+ * It contains all the data necessary
  * to display a row in a table.
  *
  * See Ember Data documentation: https://api.emberjs.com/ember-data/release/classes/DS.Model
@@ -25,7 +27,7 @@ export default DS.Model.extend({
 
   /**
    * Category name, used to group together rows
-   * e.g. sexAndAge (as part of profile "demographic"), placeOfBirth (as part of profile "social")
+   * e.g. sexAndAge (as part of domain "demographic"), placeOfBirth (as part of domain "social")
    */
   category: DS.attr('string'),
 

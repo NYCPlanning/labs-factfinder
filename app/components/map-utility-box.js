@@ -112,6 +112,13 @@ export default Component.extend({
   transitionTo() {},
 
   generateExplorerPage() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'see_more_data',
+      'selection_geotype' : this.get('summaryLevel'),
+      'selection_itemcount' : this.get('selection.current.features.length'),
+    });
+
     this.get('metrics').trackEvent('GoogleAnalytics', {
       eventCategory: 'Selection',
       eventAction: 'Created Profile',
