@@ -20,8 +20,14 @@ export default class SourceSelectDropdownComponent extends Component {
   }
 
   @action closeMenu() {
+    if (this.open) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_data_source',
+        'toggle' : 'Closed',
+      });
+    }
     this.open = false;
-    // Analytics have not been added to this function because it runs anytime the user clicks outside of the dropdown menu, regardless of whether the menu is already closed.
   }
 
   get source() {
