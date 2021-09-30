@@ -261,6 +261,15 @@ export default class ExplorerController extends Controller {
   // acceptable controlId values include: 'showReliability', 'showCharts'
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
+    if (controlId === 'showReliability') {
+      //add later
+    } else if (controlId === 'showCharts') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_show_charts',
+        'show_charts' : !currentControlValue,
+      });
+    }
 
     this.transitionToRoute('explorer', { queryParams: {
       [controlId]: !currentControlValue,
