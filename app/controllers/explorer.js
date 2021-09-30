@@ -262,7 +262,11 @@ export default class ExplorerController extends Controller {
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
     if (controlId === 'showReliability') {
-      //add later
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_show_reliability_data',
+        'show_reliability_data' : !currentControlValue,
+      });
     } else if (controlId === 'showCharts') {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
