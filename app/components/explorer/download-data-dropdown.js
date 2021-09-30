@@ -7,9 +7,21 @@ export default class DownloadDataDropdown extends Component{
 
   @action toggleOpen() {
     this.open = !this.open;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'download_data',
+      'toggle' : this.open ? 'Opened' : 'Closed',
+    });
   }
 
   @action closeMenu() {
+    if (this.open) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'download_data',
+        'toggle' : 'Closed',
+      });
+    }
     this.open = false;
   }
   
@@ -52,6 +64,12 @@ export default class DownloadDataDropdown extends Component{
   }
 
   @action async exportTableToCSV() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'download_file',
+      'filetype' : 'csv',
+    });
+
     // This toggles the reliability data on if it is not before downloading
     const initialReliabilitySetting = this.args.showReliability;
     if (!initialReliabilitySetting) { 
