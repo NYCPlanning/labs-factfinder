@@ -48,6 +48,41 @@ export default class TopicSelectDropdownComponent extends Component {
   }
 
   @action closeMenu() {
+    if (this.open) {
+      window.dataLayer = window.dataLayer || [];
+      if (this.isAllTopicsSelected === "selected") {
+        window.dataLayer.push({
+          'event' : 'toggle_select_topics',
+          'toggle' : 'Closed',
+          'selected_topics' : 'All Topics Selected'
+        });
+      } else if (this.isAllTopicsSelected === "unselected") {
+        window.dataLayer.push({
+          'event' : 'toggle_select_topics',
+          'toggle' : 'Closed',
+          'selected_topics' : 'No Topics Selected'
+        });
+      } else {
+        var selectedTopics = [];
+        this.args.topics.forEach(topic => {
+          if ((topic.type === "subtopic") && (topic.selected === "selected")) {
+            selectedTopics.push(topic.id);
+          }
+          topic.children.forEach(subtopic => {
+            if (subtopic.selected === "selected") {
+              selectedTopics.push(subtopic.id);
+            }
+          });
+        });
+        window.dataLayer.push({
+          'event' : 'toggle_select_topics',
+          'toggle' : 'Closed',
+          'selected_topics' : selectedTopics
+        });
+      }
+
+    }
     this.open = false;
+    
   }
 }
