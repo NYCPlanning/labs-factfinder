@@ -27,32 +27,34 @@
       {{else}}
         <div class="grid-container fluid">
           <div class="grid-x">
-            <div class="cell small-2">
-              <div class="switch tiny modify-tables-switch">
-                <input
-                  id="show-reliability-switch"
-                  type="checkbox"
-                  checked={{@showReliability}}
-                  name="show-reliability-switch"
-                  class="switch-input"
-                  {{on "click" (fn @toggleBooleanControl 'showReliability')}}
-                />
-                <label class="switch-paddle" for="show-reliability-switch"></label>
+            {{#if this.isAcsDataSource}}
+              <div class="cell small-2">
+                <div class="switch tiny modify-tables-switch">
+                  <input
+                    id="show-reliability-switch"
+                    type="checkbox"
+                    checked={{@showReliability}}
+                    name="show-reliability-switch"
+                    class="switch-input"
+                    {{on "click" (fn @toggleBooleanControl 'showReliability')}}
+                  />
+                  <label class="switch-paddle" for="show-reliability-switch"></label>
+                </div>
               </div>
-            </div>
-            <div class="cell auto">
-                Show Reliability Data
-            </div>
-            <div class="cell small-1 text-left">
-              <small>
-                {{labs-ui/icon-tooltip
-                  tip=(t 'explorer.modify-tables.showReliabilityData')
-                  icon='question-circle'
-                  side="right"
-                  fixedWith=true
-                }}
-              </small>
-            </div>
+              <div class="cell auto">
+                  Show Reliability Data
+              </div>
+              <div class="cell small-1 text-left">
+                <small>
+                  {{labs-ui/icon-tooltip
+                    tip=(t 'explorer.modify-tables.showReliabilityData')
+                    icon='question-circle'
+                    side="right"
+                    fixedWith=true
+                  }}
+                </small>
+              </div>
+            {{/if}}
           </div>
         </div>
 

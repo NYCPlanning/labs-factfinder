@@ -59,6 +59,12 @@ export default Component.extend({
             },
           );
         }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event' : 'search_performed',
+          'search_query' : searchTerms,
+        });
+
         return resultList;
       });
   }).keepLatest(),
@@ -131,6 +137,12 @@ export default Component.extend({
     },
 
     goTo(result) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'search_result_clicked',
+        'search_result_label' : result.label,
+        'search_result_type' : result.type,
+      });
       this.get('metrics').trackEvent('GoogleAnalytics', {
         eventCategory: 'Map Search',
         eventAction: 'Downloaded CSV',

@@ -156,7 +156,7 @@ body {
   // padding: $global-margin;
   position: relative;
   text-align: center;
-  color: $gray;
+  color: $dark-gray;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   @include breakpoint(large) {
@@ -232,13 +232,13 @@ body {
 }
 #clear-selection {
   background-color: $off-white;
-  color: $dcp-orange;
+  color: $a11y-orange;
   font-size: rem-calc(10);
   // margin-bottom: 0;
   margin: 0 $global-margin;
 }
 #see-more-data {
-  background-color: $dcp-orange;
+  background-color: $a11y-orange;
   color: $off-white;
   font-size: rem-calc(20);
   font-weight: bold;
@@ -303,7 +303,7 @@ body {
     font-weight: $global-weight-bold;
 
     &:hover {
-      color: $dcp-orange
+      color: $a11y-orange
     }
   }
 }
