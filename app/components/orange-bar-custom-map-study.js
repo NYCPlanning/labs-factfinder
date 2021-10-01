@@ -51,29 +51,33 @@ export default Component.extend({
       return isPercent ? `${value}%` : numeral(value).format('0,0');
     };
 
+    const labels = []
+    stops.forEach((stop, i) => {
+      const isPositive = (stops[i] > 0) ? true : false
+      if (i === 0) {
+        labels.push({
+          label: isPercent ? `Less than ${format(stop)}` : `Under ${format(stop)}`,
+          color: colors[0],
+        })
+      } else {
+        labels.push(isPositive
+          ? {
+            label: `${format(stops[i-1])} - ${format(stop - 1)}`,
+            color: colors[i],
+          }
+          : {
+            label: `${format(stops[i-1] + 1)} - ${format(stop)}`,
+            color: colors[i],
+          }
+        )
+      }
+    })
+    labels.push({
+      label: `${format(stops[stops.length-1])} or more`,
+      color: colors[colors.length-1],
+    })
 
-    return [
-      {
-        label: `${format(stops[3])} or more`,
-        color: colors[4],
-      },
-      {
-        label: `${format(stops[2])} - ${format(stops[3] - 1)}`,
-        color: colors[3],
-      },
-      {
-        label: `${format(stops[1])} - ${format(stops[2] - 1)}`,
-        color: colors[2],
-      },
-      {
-        label: `${format(stops[0])} - ${format(stops[1] - 1)}`,
-        color: colors[1],
-      },
-      {
-        label: isPercent ? `Less than ${format(stops[0])}` : `Under ${format(stops[0])}`,
-        color: colors[0],
-      },
-    ];
+    return labels.reverse()
   }),
 
   handleDrawButtonClick(type) {
