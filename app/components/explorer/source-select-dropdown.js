@@ -12,9 +12,21 @@ export default class SourceSelectDropdownComponent extends Component {
 
   @action toggleOpen() {
     this.open = !this.open;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'toggle_data_source',
+      'toggle' : this.open ? 'Opened' : 'Closed',
+    });
   }
 
   @action closeMenu() {
+    if (this.open) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_data_source',
+        'toggle' : 'Closed',
+      });
+    }
     this.open = false;
   }
 

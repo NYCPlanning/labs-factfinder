@@ -96,12 +96,15 @@ export default Service.extend({
 
   // methods
   handleSummaryLevelToggle(toLevel) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event' : 'selection_geotype',
-      'selection_geotype' : toLevel
-    });
     const fromLevel = this.get('summaryLevel');
+
+    if (fromLevel !== toLevel) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'selection_geotype',
+        'selection_geotype' : toLevel
+      });
+    }
 
     this.set('summaryLevel', toLevel);
 

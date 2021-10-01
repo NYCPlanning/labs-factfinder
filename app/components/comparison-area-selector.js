@@ -23,6 +23,11 @@ export default class ComparisonAreaSelectorComponent extends Component {
   }
 
   @action updateProperty({ geoid, label }) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'select_comparison_area',
+      'select_comparison_area' : label,
+    });
     this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Profile Settings',
       eventAction: 'Selected Comparison Area',

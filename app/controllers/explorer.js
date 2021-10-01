@@ -222,6 +222,11 @@ export default class ExplorerController extends Controller {
 
   @action setSource(newSource) {
     this.source = newSource;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'select_data_source',
+      'select_data_source' : newSource.label,
+    });
   }
 
   @action toggleTopic(topic) {
@@ -246,11 +251,29 @@ export default class ExplorerController extends Controller {
 
   @action toggleAllTopics() {
     this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'select_all_topics',
+      'toggle' : this.isAllTopicsSelected === "unselected" ? "none" : "all",
+    });
   }
 
   // acceptable controlId values include: 'showReliability', 'showCharts'
   @action toggleBooleanControl(controlId) {
     let { [controlId]: currentControlValue } = this;
+    if (controlId === 'showReliability') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_show_reliability_data',
+        'show_reliability_data' : !currentControlValue,
+      });
+    } else if (controlId === 'showCharts') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_show_charts',
+        'show_charts' : !currentControlValue,
+      });
+    }
 
     this.transitionToRoute('explorer', { queryParams: {
       [controlId]: !currentControlValue,
