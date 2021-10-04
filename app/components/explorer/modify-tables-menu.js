@@ -7,9 +7,21 @@ export default class ModifyTablesMenuComponent extends Component {
 
   @action toggleOpen() {
     this.open = !this.open;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'toggle_modify_tables',
+      'toggle' : this.open ? 'Opened' : 'Closed',
+    });
   }
 
   @action closeMenu() {
+    if (this.open) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_modify_tables',
+        'toggle' : 'Closed',
+      });
+    }
     this.open = false;
   }
 
