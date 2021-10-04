@@ -1,7 +1,7 @@
 export default [
   {
     id: 'decennial-current',
-    label: '2020 Decennial Census',
+    label: '2020',
     type: 'census',
     year: '2020',
     mode: 'current',
@@ -9,7 +9,7 @@ export default [
   },
   {
     id: 'decennial-previous',
-    label: '2010 Decennial Census',
+    label: '2010',
     type: 'census',
     year: '2010',
     mode: 'previous',
@@ -17,7 +17,7 @@ export default [
   },
   {
     id: 'decennial-change',
-    label: 'Change over Time: Decennial Census 2020, 2010',
+    label: 'Change Over Time (2010 to 2020)',
     type: 'census',
     year: null,
     mode: 'change',
@@ -25,7 +25,7 @@ export default [
   },
   {
     id: 'acs-current',
-    label: '2015 - 2019 ACS',
+    label: '2015 - 2019',
     type: 'acs',
     year: '2015-2019',
     mode: 'current',
@@ -33,7 +33,7 @@ export default [
   },
   {
     id: 'acs-previous',
-    label: '2006 - 2010 ACS',
+    label: '2006 - 2010',
     type: 'acs',
     year: '2006-2010',
     mode: 'previous',
@@ -41,7 +41,7 @@ export default [
   },
   {
     id: 'acs-change',
-    label: 'Change over Time: ACS 2006-2010 to 2015-2019',
+    label: 'Change Over Time (2006-2010 to 2015-2019)',
     type: 'acs',
     year: null,
     mode: 'change',
