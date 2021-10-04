@@ -27,11 +27,7 @@ export default DS.Model.extend({
 
   /**
    * Category name, used to group together rows
-<<<<<<< HEAD
    * e.g. sexAndAge (as part of data profile "demographic"), placeOfBirth (as part of data profile "social")
-=======
-   * e.g. sexAndAge (as part of domain "demographic"), placeOfBirth (as part of domain "social")
->>>>>>> develop
    */
   category: DS.attr('string'),
 
