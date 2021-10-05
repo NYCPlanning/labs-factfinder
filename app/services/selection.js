@@ -200,11 +200,25 @@ export default Service.extend({
       const inSelection = selected.features.find(selectedFeature => selectedFeature.properties.geoid === properties.geoid);
 
       if (inSelection === undefined) {
-        selected.features.push({
-          type,
-          geometry,
-          properties,
-        });
+
+      if (['boroughs', 'cdtas', 'districts', 'cities'].includes(this.get('summaryLevel'))) {
+          const currentGeographyTable = SUM_LEVEL_DICT[this.get('summaryLevel')].sql;
+          // Temporary patch: ensure entire geography geojson is used, not just the geometry within clicked tile. 
+          const sqlQuery = `
+            SELECT * FROM (${currentGeographyTable}) a WHERE geoid = '${properties.geoid}'
+          `;
+
+          carto.SQL(sqlQuery, 'geojson', 'post')
+            .then((json) => {
+              this.set('current', { ...selected, features: selected.features.concat(json.features) });
+            });
+        } else {
+          selected.features.push({
+            type,
+            geometry,
+            properties,
+          });
+        }
       } else {
         const newFeatures = selected.features.filter(selectedFeature => selectedFeature.properties.geoid !== properties.geoid);
 
