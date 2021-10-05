@@ -10,7 +10,7 @@
   <td class="{{unless this.model.isReliable 'insignificant'}}">
     {{if
       (and (gt this.model.sum 0) (not this.model.direction))
-        (format-number this.model.moe precision=this.rowConfig.decimal)}}
+        (format-number this.model.marginOfError precision=this.rowConfig.decimal)}}
   </td>
   {{!-- CV --}}
   <td class="{{unless this.model.isReliable 'insignificant'}}">

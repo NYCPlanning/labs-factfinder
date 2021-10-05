@@ -4,15 +4,15 @@ export default [
     label: 'Hispanic',
   },
   {
-    property: 'wtnh',
+    property: 'wnh',
     label: 'White nonhispanic',
   },
   {
-    property: 'blnh',
+    property: 'bnh',
     label: 'Black nonhispanic',
   },
   {
-    property: 'asnnh',
+    property: 'anh',
     label: 'Asian nonhispanic',
   },
 ];

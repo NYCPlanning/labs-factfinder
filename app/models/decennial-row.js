@@ -340,7 +340,7 @@ export default DS.Model.extend({
    * "significant" actually reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
    */
-  significant: DS.attr('boolean', {
+  differenceSignificant: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -360,7 +360,7 @@ export default DS.Model.extend({
    * percentSignificant reflects reliability (calculations were changed in the
    * API but variable names have not been updated, check issue #57)
    */
-  percentSignificant: DS.attr('boolean', {
+  differencePercentSignificant: DS.attr('boolean', {
     defaultValue: true,
   }),
   /* =====  End of DIFFERENCE_  ====== */
@@ -567,7 +567,7 @@ export default DS.Model.extend({
         const {
           previousComparisonSum: sum,
           previousComparisonCodingThreshold: direction,// TODO: fix namespace conflict
-          previousComparisonMarginOfError: m,
+          previousComparisonMarginOfError: moe,
           previousComparisonCorrelationCoefficient: correlationCoefficient,
           previousComparisonPercent: percent,
           previousComparisonPercentMarginOfError: percentMarginOfError,
@@ -585,7 +585,7 @@ export default DS.Model.extend({
         return {
           sum,
           direction,
-          m,
+          moe,
           correlationCoefficient,
           percent,
           percentMarginOfError,
