@@ -10,7 +10,7 @@ const { DEFAULT_SELECTION } = config;
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 
 const SUM_LEVEL_DICT = {
-  blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2020' },
+  blocks: { sql: summaryLevelQueries.blocks(false), id: 'bctcb2020', tracts: 'boroct2020' },
   tracts: { sql: summaryLevelQueries.tracts(false), id: 'boroct2020', ntas: 'ntacode', blocks: 'boroct2020' },
   cdtas: { sql: summaryLevelQueries.cdtas(false), id: 'cdta2020', cdtas: 'cdta2020', ntas: 'nta2020', blocks: 'boroct2020' },
   districts: { sql: summaryLevelQueries.districts(false), districts: 'borocd' },
@@ -161,11 +161,43 @@ export default Service.extend({
 
 
     if (this.get('selectedCount')) {
-      // All transitions now calculated using spatial queries
-      this.explode(fromLevel, toLevel);
+      if (toLevel === 'cities') {
+        // If to cities, select all cities
+        this.explodeToCity();
+      } else if (fromLevel === 'cities') {
+        // If from cities, select all items of toLevel
+        this.explodeFromCity(toLevel);
+      } else if ((fromLevel === 'districts') || (toLevel === 'districts')) {
+        // District transitions still require spatial queries
+        this.explodeGeo(fromLevel, toLevel);
+      } else if ((fromLevel === 'blocks') && (['cdtas', 'ntas'].includes(toLevel)) 
+        || ((toLevel === 'blocks') && (['cdtas', 'ntas'].includes(fromLevel)))) {
+        // CDTA, NTA, District not stored in block table, transitions still require spatial queries
+        this.explodeGeo(fromLevel, toLevel);
+      } else {
+        this.explode(fromLevel, toLevel);
+      }
     } else {
       this.clearSelection();
     }
+  },
+
+  explodeToCity() {
+    const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT['cities'].sql}) a`;
+    carto.SQL(sqlQuery, 'geojson')
+    .then((json) => {
+      this.clearSelection();
+      this.set('current', json);
+    });
+  },
+
+  explodeFromCity(toLevel) {
+    const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a`;
+    carto.SQL(sqlQuery, 'geojson')
+    .then((json) => {
+      this.clearSelection();
+      this.set('current', json);
+    });
   },
 
   // transition between geometry levels using attributes
@@ -176,12 +208,18 @@ export default Service.extend({
       console.log('crossWalkFromColumn', crossWalkFromColumn);
       // const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
       //Let's switch to doing all lookups in the tracts (pff_2020_census_tracts_21c) table
-      const crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
+      var crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
+      if ((fromLevel === 'blocks') || (toLevel === 'blocks')) {
+        crossWalkToTable = SUM_LEVEL_DICT['blocks'].sql;
+      }
       console.log('crossWalkToTable', crossWalkToTable);
 
       console.log("this.get('current.features')", this.get('current.features'));
       console.log("findUniqueByGeoId(this.get('current.features'))", findUniqueByGeoId(this.get('current.features')))
-      const filterFromLevelIds = findUniqueByGeoId(this.get('current.features')).join("','");
+      var filterFromLevelIds = findUniqueByGeoId(this.get('current.features')).join("','");
+      if (fromLevel === 'blocks') {
+        filterFromLevelIds = findUniqueBy(this.get('current.features'), 'bctcb2020').join("','");
+      }
       console.log('filterFromLevelIds', filterFromLevelIds);
 
       const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}')`;
@@ -208,8 +246,7 @@ export default Service.extend({
         })
     }
   },
-// Above works for NTA to CDTA
-// Need to add id field to SUM_LEVEL_DICT, may be able to remove the other random fields
+  // blocks -> ntas/cdtas/districts does not work this way
   
   // transition between geometry levels using spatial queries
   explodeGeo(fromLevel, toLevel) {

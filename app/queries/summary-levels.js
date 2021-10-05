@@ -7,7 +7,7 @@ export default {
       cb2020,
       borocode::text,
       bctcb2020,
-      geoid AS geoid,
+      bctcb2020 AS geoid,
       bctcb2020 as geolabel
     FROM pff_2020_census_blocks_21c
   `,
@@ -41,8 +41,7 @@ export default {
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
       borocd as geolabel,
-      borocd AS geoid,
-      borocode::text
+      borocd AS geoid
     FROM pff_2020_community_districts_21c
   `,
 
