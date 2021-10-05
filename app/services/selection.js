@@ -12,12 +12,24 @@ const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 const SUM_LEVEL_DICT = {
   blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2020' },
   tracts: { sql: summaryLevelQueries.tracts(false), ntas: 'ntacode', blocks: 'boroct2020' },
-  cdtas: { sql: summaryLevelQueries.cdtas(false), cdtas: 'cdta2020' },
+  cdtas: { sql: summaryLevelQueries.cdtas(false), cdtas: 'cdta2020', ntas: 'nta2020', blocks: 'boroct2020' },
   districts: { sql: summaryLevelQueries.districts(false), districts: 'borocd' },
   boroughs: { sql: summaryLevelQueries.boroughs(false), boroughs: 'borocode' },
   cities: { sql: summaryLevelQueries.cities(false), cities: 'id' },
   ntas: { sql: summaryLevelQueries.ntas(false), tracts: 'ntacode' },
   pumas: { sql: summaryLevelQueries.pumas(false) },
+};
+
+const findUniqueBy = function(collection, id) {
+  return collection
+    .uniqBy(`properties.${id}`)
+    .mapBy(`properties.${id}`);
+};
+
+const findUniqueByGeoId = function(collection) {
+  return collection
+    .uniqBy(`properties.geoid`)
+    .mapBy(`properties.geoid`);
 };
 
 export default Service.extend({
@@ -150,9 +162,48 @@ export default Service.extend({
 
     if (this.get('selectedCount')) {
       // All transitions now calculated using spatial queries
-      this.explodeGeo(fromLevel, toLevel);
+      this.explode(fromLevel, toLevel);
     } else {
       this.clearSelection();
+    }
+  },
+
+  // transition between geometry levels using attributes
+  explode(fromLevel, toLevel) {
+    if (fromLevel !== toLevel) {
+      const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
+      console.log('crossWalkFromColumn', crossWalkFromColumn);
+      // const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
+      //Let's switch to doing all lookups in the tracts (pff_2020_census_tracts_21c) table
+      const crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
+      console.log('crossWalkToTable', crossWalkToTable);
+
+      console.log("this.get('current.features')", this.get('current.features'));
+      console.log("findUniqueByGeoId(this.get('current.features'))", findUniqueByGeoId(this.get('current.features')))
+      const filterFromLevelIds = findUniqueByGeoId(this.get('current.features')).join("','");
+      console.log('filterFromLevelIds', filterFromLevelIds);
+
+      const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}')`;
+      console.log('sqlQuery', sqlQuery);
+
+      carto.SQL(sqlQuery, 'geojson')
+        .then((json) => {
+          console.log('json', json);
+          // const filterToLevelIds = findUniqueBy(json.features, crossWalkFromColumn).join("','");
+          const filterToLevelIds = findUniqueBy(json.features, 'cdta2020').join("','");
+          console.log('filterToLevelIds', filterToLevelIds);
+          const secondQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE cdta2020 IN ('${filterToLevelIds}')`;
+          console.log('secondQuery', secondQuery)
+          // this.clearSelection();
+          // this.set('current', json);
+          return secondQuery
+        })
+        .then((secondQuery) => carto.SQL(secondQuery, 'geojson'))
+        .then((secondJson)  => {
+          console.log('secondJson', secondJson);
+          this.clearSelection();
+          this.set('current', secondJson);
+        })
     }
   },
 

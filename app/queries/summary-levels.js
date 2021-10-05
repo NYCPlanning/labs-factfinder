@@ -19,6 +19,7 @@ export default {
       ctlabel as geolabel,
       boroct2020,
       nta2020,
+      cdta2020,
       boroct2020 AS geoid
     FROM pff_2020_census_tracts_21c
   `,
