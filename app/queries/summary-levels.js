@@ -5,7 +5,7 @@ export default {
       ct2020,
       borocode || ct2020 AS boroct2020,
       cb2020,
-      borocode,
+      borocode::text,
       bctcb2020,
       geoid AS geoid,
       bctcb2020 as geolabel
@@ -20,6 +20,7 @@ export default {
       boroct2020,
       nta2020,
       cdta2020,
+      borocode::text,
       boroct2020 AS geoid
     FROM pff_2020_census_tracts_21c
   `,
@@ -40,7 +41,8 @@ export default {
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
       borocd as geolabel,
-      borocd AS geoid
+      borocd AS geoid,
+      borocode::text
     FROM pff_2020_community_districts_21c
   `,
 
@@ -48,7 +50,8 @@ export default {
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
       boroname as geolabel,
-      borocode AS geoid
+      borocode AS geoid,
+      borocode::text
     FROM pff_2020_boroughs_21c
   `,
 
@@ -66,7 +69,8 @@ export default {
       ntaname,
       nta2020,
       nta2020 as geolabel,
-      nta2020 AS geoid
+      nta2020 AS geoid,
+      borocode::text
     FROM pff_2020_ntas_21c
     WHERE ntaname NOT ILIKE 'park-cemetery-etc%25'
       AND ntaname != 'Airport'

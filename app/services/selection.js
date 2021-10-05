@@ -11,12 +11,12 @@ const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
 
 const SUM_LEVEL_DICT = {
   blocks: { sql: summaryLevelQueries.blocks(false), tracts: 'boroct2020' },
-  tracts: { sql: summaryLevelQueries.tracts(false), ntas: 'ntacode', blocks: 'boroct2020' },
-  cdtas: { sql: summaryLevelQueries.cdtas(false), cdtas: 'cdta2020', ntas: 'nta2020', blocks: 'boroct2020' },
+  tracts: { sql: summaryLevelQueries.tracts(false), id: 'boroct2020', ntas: 'ntacode', blocks: 'boroct2020' },
+  cdtas: { sql: summaryLevelQueries.cdtas(false), id: 'cdta2020', cdtas: 'cdta2020', ntas: 'nta2020', blocks: 'boroct2020' },
   districts: { sql: summaryLevelQueries.districts(false), districts: 'borocd' },
-  boroughs: { sql: summaryLevelQueries.boroughs(false), boroughs: 'borocode' },
+  boroughs: { sql: summaryLevelQueries.boroughs(false),  id: 'borocode', boroughs: 'borocode' },
   cities: { sql: summaryLevelQueries.cities(false), cities: 'id' },
-  ntas: { sql: summaryLevelQueries.ntas(false), tracts: 'ntacode' },
+  ntas: { sql: summaryLevelQueries.ntas(false), id: 'nta2020', tracts: 'ntacode' },
   pumas: { sql: summaryLevelQueries.pumas(false) },
 };
 
@@ -171,7 +171,8 @@ export default Service.extend({
   // transition between geometry levels using attributes
   explode(fromLevel, toLevel) {
     if (fromLevel !== toLevel) {
-      const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
+      // const crossWalkFromColumn = SUM_LEVEL_DICT[toLevel][fromLevel];
+      const crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
       console.log('crossWalkFromColumn', crossWalkFromColumn);
       // const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
       //Let's switch to doing all lookups in the tracts (pff_2020_census_tracts_21c) table
@@ -190,9 +191,10 @@ export default Service.extend({
         .then((json) => {
           console.log('json', json);
           // const filterToLevelIds = findUniqueBy(json.features, crossWalkFromColumn).join("','");
-          const filterToLevelIds = findUniqueBy(json.features, 'cdta2020').join("','");
+          const filterToLevelIds = findUniqueBy(json.features, SUM_LEVEL_DICT[toLevel].id).join("','");
           console.log('filterToLevelIds', filterToLevelIds);
-          const secondQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE cdta2020 IN ('${filterToLevelIds}')`;
+          // const secondQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE cdta2020 IN ('${filterToLevelIds}')`;
+          const secondQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT[toLevel].id} IN ('${filterToLevelIds}')`;
           console.log('secondQuery', secondQuery)
           // this.clearSelection();
           // this.set('current', json);
@@ -206,7 +208,9 @@ export default Service.extend({
         })
     }
   },
-
+// Above works for NTA to CDTA
+// Need to add id field to SUM_LEVEL_DICT, may be able to remove the other random fields
+  
   // transition between geometry levels using spatial queries
   explodeGeo(fromLevel, toLevel) {
     if(fromLevel === toLevel) {
