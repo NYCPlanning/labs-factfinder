@@ -4,6 +4,7 @@ import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
 import summaryLevelQueries from '../queries/summary-levels';
+import { task } from 'ember-concurrency';
 import config from '../config/environment';
 
 const { DEFAULT_SELECTION } = config;
@@ -268,6 +269,11 @@ export default Service.extend({
       });
   },
 
+  getEntireGeoTask: task(function* (sqlQuery, onTaskComplete) {
+    yield carto.SQL(sqlQuery, 'geojson', 'post')
+      .then((json) => onTaskComplete(json));
+  }).restartable(),
+
   handleSelectedFeatures(features = []) {
     const selected = this.get('current');
 
@@ -277,11 +283,24 @@ export default Service.extend({
       const inSelection = selected.features.find(selectedFeature => selectedFeature.properties.geoid === properties.geoid);
 
       if (inSelection === undefined) {
-        selected.features.push({
-          type,
-          geometry,
-          properties,
-        });
+
+      if (['boroughs', 'cdtas', 'districts', 'cities'].includes(this.get('summaryLevel'))) {
+          const currentGeographyTable = SUM_LEVEL_DICT[this.get('summaryLevel')].sql;
+          // Temporary patch: ensure entire geography geojson is used, not just the geometry within clicked tile. 
+          const sqlQuery = `
+            SELECT * FROM (${currentGeographyTable}) a WHERE geoid = '${properties.geoid}'
+          `;
+
+          this.getEntireGeoTask.perform(sqlQuery, (json) => {
+            this.set('current', { ...selected, features: selected.features.concat(json.features)});
+          });
+        } else {
+          selected.features.push({
+            type,
+            geometry,
+            properties,
+          });
+        }
       } else {
         const newFeatures = selected.features.filter(selectedFeature => selectedFeature.properties.geoid !== properties.geoid);
 

@@ -27,11 +27,7 @@ export default DS.Model.extend({
 
   /**
    * Category name, used to group together rows
-<<<<<<< HEAD
    * e.g. sexAndAge (as part of data profile "demographic"), placeOfBirth (as part of data profile "social")
-=======
-   * e.g. sexAndAge (as part of domain "demographic"), placeOfBirth (as part of domain "social")
->>>>>>> develop
    */
   category: DS.attr('string'),
 
@@ -323,10 +319,10 @@ export default DS.Model.extend({
 
   /**
    * !!! WARNING !!!
-   * "significant" actually reflects reliability (calculations were changed in
+   * "differenceSignificant" actually reflects reliability (calculations were changed in
    * the API but variable names have not been updated, check issue #57)
    */
-  significant: DS.attr('boolean'),
+  differenceSignificant: DS.attr('boolean'),
 
   /**
    * See "percent"
@@ -337,14 +333,13 @@ export default DS.Model.extend({
    * See "percentMarginOfError"
    */
   differencePercentMarginOfError: DS.attr('number'),
-  // "percentSignificant" belongs to "difference"
 
   /**
    * !!! WARNING !!!
-   * percentSignificant reflects reliability (calculations were changed in the
+   * differencePercentSignificant reflects reliability (calculations were changed in the
    * API but variable names have not been updated, check issue #57)
    */
-  percentSignificant: DS.attr('boolean'),
+  differencePercentSignificant: DS.attr('boolean'),
   /* =====  End of DIFFERENCE_  ====== */
 
 
@@ -393,7 +388,7 @@ export default DS.Model.extend({
     function() {
       const {
         sum,
-        marginOfError: moe,
+        marginOfError,
         correlationCoefficient,
         percent,
         percentMarginOfError,
@@ -410,7 +405,7 @@ export default DS.Model.extend({
       );
 
       return {
-        sum, moe, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
+        sum, marginOfError, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
       };
     },
   ),
@@ -480,17 +475,17 @@ export default DS.Model.extend({
       const {
         previousSum: sum,
         previousCodingThreshold: direction, // TODO: fix naming
-        previousMarginOfError: moe,
+        previousMarginOfError: marginOfError,
         previousCorrelationCoefficient: correlationCoefficient,
         previousPercent: percent,
         previousPercentMarginOfError: percentMarginOfError,
         previousIsReliable: isReliable,
         previousDifferenceSum: differenceSum,
         previousDifferenceMarginOfError: differenceMarginOfError,
-        previousSignificant: significant,
+        previousSignificant: differenceSignificant,
         previousDifferencePercent: differencePercent,
         previousDifferencePercentMarginOfError: differencePercentMarginOfError,
-        previousPercentSignificant: percentSignificant,
+        previousPercentSignificant: differencePercentSignificant,
         previousChangePercentSignificant: changePercentSignificant,
         previousChangePercentagePoint: changePercentagePoint,
         previousChangePercentagePointMarginOfError: changePercentagePointMarginOfError,
@@ -518,17 +513,17 @@ export default DS.Model.extend({
       return {
         sum,
         direction,
-        moe,
+        marginOfError,
         correlationCoefficient,
         percent,
         percentMarginOfError,
         isReliable,
         differenceSum,
         differenceMarginOfError,
-        significant,
+        differenceSignificant,
         differencePercent,
         differencePercentMarginOfError,
-        percentSignificant,
+        differencePercentSignificant,
         changePercentSignificant,
         changePercentagePoint,
         changePercentagePointMarginOfError,

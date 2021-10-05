@@ -31,7 +31,7 @@
     class="cell-border-left
     {{if
       (or
-        (not this.data.significant)
+        (not this.data.differenceSignificant)
         (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
       'insignificant'}}">
     {{unless (eq this.data.differenceSum null)
@@ -43,7 +43,7 @@
     <td class="
       {{if
         (or
-          (not this.data.significant)
+          (not this.data.differenceSignificant)
           (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
         'insignificant'}}">
       {{unless (eq this.data.differenceMarginOfError null)
@@ -52,9 +52,8 @@
             precision=this.rowConfig.decimal)}}
     </td>
   {{/if}}
-
     <td
-      class="{{unless this.data.percentSignificant 'insignificant'}} difference-percent">
+      class="{{unless this.data.differencePercentSignificant 'insignificant'}} difference-percent">
       {{unless (eq this.data.differencePercent null)
           (format-number
             this.data.differencePercent
@@ -62,7 +61,7 @@
     </td>
     {{#if this.reliability}}
       <td
-        class="{{unless this.data.percentSignificant 'insignificant'}} difference-percent-m">
+        class="{{unless this.data.differencePercentSignificant 'insignificant'}} difference-percent-m">
         {{unless (eq this.data.differencePercentMarginOfError null)
           (format-number
             this.data.differencePercentMarginOfError

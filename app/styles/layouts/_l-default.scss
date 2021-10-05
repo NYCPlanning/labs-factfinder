@@ -263,6 +263,8 @@ body {
   border-top: 1px solid $silver;
   text-align: left;
   transition: all 0.2s;
+  max-height: 70vh;
+  overflow-y: scroll;
 
   &.closed {
     display: none;
@@ -275,7 +277,7 @@ body {
     z-index: 4;
     padding-bottom: 0;
     margin-top: rem-calc(52);
-    width: rem-calc(330);
+    width: rem-calc(350);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
 
     &.closed {
