@@ -4,6 +4,7 @@ import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
 import summaryLevelQueries from '../queries/summary-levels';
+import { task } from 'ember-concurrency';
 import config from '../config/environment';
 
 const { DEFAULT_SELECTION } = config;
@@ -191,6 +192,11 @@ export default Service.extend({
       });
   },
 
+  getEntireGeoTask: task(function* (sqlQuery, onTaskComplete) {
+    yield carto.SQL(sqlQuery, 'geojson', 'post')
+      .then((json) => onTaskComplete(json));
+  }).restartable(),
+
   handleSelectedFeatures(features = []) {
     const selected = this.get('current');
 
@@ -208,10 +214,9 @@ export default Service.extend({
             SELECT * FROM (${currentGeographyTable}) a WHERE geoid = '${properties.geoid}'
           `;
 
-          carto.SQL(sqlQuery, 'geojson', 'post')
-            .then((json) => {
-              this.set('current', { ...selected, features: selected.features.concat(json.features) });
-            });
+          this.getEntireGeoTask.perform(sqlQuery, (json) => {
+            this.set('current', { ...selected, features: selected.features.concat(json.features)});
+          });
         } else {
           selected.features.push({
             type,
