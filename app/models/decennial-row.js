@@ -567,7 +567,7 @@ export default DS.Model.extend({
         const {
           previousComparisonSum: sum,
           previousComparisonCodingThreshold: direction,// TODO: fix namespace conflict
-          previousComparisonMarginOfError: m,
+          previousComparisonMarginOfError: moe,
           previousComparisonCorrelationCoefficient: correlationCoefficient,
           previousComparisonPercent: percent,
           previousComparisonPercentMarginOfError: percentMarginOfError,
@@ -585,7 +585,7 @@ export default DS.Model.extend({
         return {
           sum,
           direction,
-          m,
+          moe,
           correlationCoefficient,
           percent,
           percentMarginOfError,
