@@ -215,18 +215,12 @@ export default Service.extend({
         filterFromLevelIds = findUniqueBy(this.get('current.features'), 'bctcb2020').join("','");
       }
 
-      const sqlQuery = `SELECT * FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}')`;
-
+      const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT[toLevel].id} IN (SELECT ${SUM_LEVEL_DICT[toLevel].id}  FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}'))`;
+      
       carto.SQL(sqlQuery, 'geojson')
         .then((json) => {
-          const filterToLevelIds = findUniqueBy(json.features, SUM_LEVEL_DICT[toLevel].id).join("','");
-          const secondQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT[toLevel].id} IN ('${filterToLevelIds}')`;
-          return secondQuery
-        })
-        .then((secondQuery) => carto.SQL(secondQuery, 'geojson'))
-        .then((secondJson)  => {
           this.clearSelection();
-          this.set('current', secondJson);
+          this.set('current', json);
         })
     }
   },
