@@ -9,6 +9,21 @@ export default Component.extend({
     const foundRecord = this.get('store').peekRecord('layer-group', recordIdentifier);
 
     if (foundRecord) {
+      foundRecord.set('layers', foundRecord.layers.map(layer => {
+        if(layer.id === 'choropleth-nta-fill') {
+          layer.paint = {
+            ...layer.paint,
+            ...this.defaultFill
+          }
+        }
+        if(layer.id === 'choropleth-nta-line') {
+          layer.paint = {
+            ...layer.paint,
+            ...this.defaultLine
+          }
+        }
+        return layer
+      }))
       this.set('model', foundRecord);
     }
   },
