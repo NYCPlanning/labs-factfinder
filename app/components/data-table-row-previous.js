@@ -31,6 +31,14 @@ export default Component.extend({
     return classes.join(' ');
   }),
 
+  noPriorData: computed('data.previous.sum', function() {
+    const { 'data.previous': previous } = this.getProperties('data.previous');
+    if ( previous && typeof previous.sum === 'undefined') {
+      return true
+    }
+    return false
+  }),
+
   actions: {
     showData() {
       window.logModel = this.get('data');
