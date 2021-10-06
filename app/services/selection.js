@@ -207,8 +207,8 @@ export default Service.extend({
     if (fromLevel !== toLevel) {
       const crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
       var crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
-      // if ((fromLevel === 'blocks') || (toLevel === 'blocks')) {
-      if (fromLevel === 'blocks') {
+      if ((fromLevel === 'blocks') || (toLevel === 'blocks')) {
+      // if (fromLevel === 'blocks') {
         crossWalkToTable = SUM_LEVEL_DICT['blocks'].sql;
       }
 
