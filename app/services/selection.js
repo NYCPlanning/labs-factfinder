@@ -171,8 +171,9 @@ export default Service.extend({
       } else if ((fromLevel === 'districts') || (toLevel === 'districts')) {
         // District transitions still require spatial queries
         this.explodeGeo(fromLevel, toLevel);
-      } else if ((fromLevel === 'blocks') && (['cdtas', 'ntas'].includes(toLevel)) 
-        || ((toLevel === 'blocks') && (['cdtas', 'ntas'].includes(fromLevel)))) {
+      } else if ((toLevel === 'blocks') && (['cdtas', 'ntas'].includes(fromLevel))) {
+        this.explodeToBlocks(fromLevel, toLevel);
+      } else if ((fromLevel === 'blocks') && (['cdtas', 'ntas'].includes(toLevel)) ) {
         // CDTA, NTA, District not stored in block table, transitions still require spatial queries
         this.explodeHardWithAVengeance(fromLevel, toLevel);
       } else {
@@ -206,7 +207,8 @@ export default Service.extend({
     if (fromLevel !== toLevel) {
       const crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
       var crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
-      if ((fromLevel === 'blocks') || (toLevel === 'blocks')) {
+      // if ((fromLevel === 'blocks') || (toLevel === 'blocks')) {
+      if (fromLevel === 'blocks') {
         crossWalkToTable = SUM_LEVEL_DICT['blocks'].sql;
       }
 
@@ -227,6 +229,32 @@ export default Service.extend({
   },
   
   // transition between geometry levels using attributes
+  explodeToBlocks(fromLevel, toLevel) {
+    if (fromLevel !== toLevel) {
+      const crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
+      var crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
+      // if ((fromLevel === 'blocks') || (toLevel === 'blocks')) {
+      if (fromLevel === 'blocks') {
+        crossWalkToTable = SUM_LEVEL_DICT['blocks'].sql;
+      }
+
+      var filterFromLevelIds = findUniqueByGeoId(this.get('current.features')).join("','");
+      if (fromLevel === 'blocks') {
+        filterFromLevelIds = findUniqueBy(this.get('current.features'), 'bctcb2020').join("','");
+      }
+
+      const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT['tracts'].id} IN (SELECT ${SUM_LEVEL_DICT['tracts'].id}  FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}'))`;
+      console.log('sqlQuery', sqlQuery);
+      
+      carto.SQL(sqlQuery, 'geojson')
+        .then((json) => {
+          this.clearSelection();
+          this.set('current', json);
+        })
+    }
+  },
+
+  // transition between geometry levels using attributes
   explodeHardWithAVengeance(fromLevel, toLevel) {
     // explode function does lookup in the fromLevel table, then in the tracts/blocks table
     // this function:
@@ -238,13 +266,15 @@ export default Service.extend({
 //       const secondQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT[toLevel].id} IN ('${filterToLevelIds}')`;
 // newadd = `SELECT ${extraSet} FROM (${SUM_LEVEL_DICT[fromLevel].sql}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}')`;
 
+    console.log('fromLevel ',  fromLevel)
+    console.log('toLevel ',  toLevel)
     if (fromLevel !== toLevel) {
       var crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
       var crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
       var extraSet = SUM_LEVEL_DICT['tracts'].id
-      if ((fromLevel === 'blocks') || (toLevel === 'blocks')) {
-        crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
-        extraSet = SUM_LEVEL_DICT['tracts'].id;
+      if (toLevel === 'blocks') {
+        crossWalkToTable = SUM_LEVEL_DICT['blocks'].sql;
+        // extraSet = SUM_LEVEL_DICT['blocks'].id;
       }
 
       var filterFromLevelIds = findUniqueByGeoId(this.get('current.features')).join("','");
