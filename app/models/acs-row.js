@@ -426,7 +426,7 @@ export default DS.Model.extend({
     function() {
       const {
         comparisonSum: sum,
-        comparisonMarginOfError: moe,
+        comparisonMarginOfError: marginOfError,
         comparisonCorrelationCoefficient: correlationCoefficient,
         comparisonPercent: percent,
         comparisonPercentMarginOfError: percentMarginOfError,
@@ -443,7 +443,7 @@ export default DS.Model.extend({
       );
 
       return {
-        sum, moe, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
+        sum, marginOfError, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
       };
     },
   ),
@@ -543,7 +543,7 @@ export default DS.Model.extend({
         const {
           previousComparisonSum: sum,
           previousComparisonCodingThreshold: direction,// TODO: fix namespace conflict
-          previousComparisonMarginOfError: moe,
+          previousComparisonMarginOfError: marginOfError,
           previousComparisonCorrelationCoefficient: correlationCoefficient,
           previousComparisonPercent: percent,
           previousComparisonPercentMarginOfError: percentMarginOfError,
@@ -561,7 +561,7 @@ export default DS.Model.extend({
         return {
           sum,
           direction,
-          moe,
+          marginOfError,
           correlationCoefficient,
           percent,
           percentMarginOfError,
