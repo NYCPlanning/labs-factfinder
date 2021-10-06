@@ -254,7 +254,6 @@ export default Service.extend({
 
       carto.SQL(sqlQuery, 'geojson')
         .then((json) => {
-          console.log(json)
           this.clearSelection();
           this.set('current', json);
         })
