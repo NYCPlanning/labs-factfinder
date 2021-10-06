@@ -6,6 +6,14 @@
   <ul class="vertical large-horizontal menu">
     <li>
       {{#link-to
+          'about'
+          class=(if (eq this.router.currentRouteName "about") "active-route")
+      }}
+        About
+      {{/link-to}}
+    </li>
+    <li>
+      {{#link-to
         'index'
         class=(if (eq this.router.currentRouteName "index") "active-route")
       }}
