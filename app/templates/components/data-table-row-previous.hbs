@@ -1,4 +1,4 @@
-{{#unless this.rowConfig.divider}}
+{{#unless (or this.rowConfig.divider this.noPriorData)}}
   <td class='title-column' {{action 'showData'}}>
     <span>
       {{this.rowConfig.title}}
@@ -71,9 +71,24 @@
     {{/if}}
 
 {{else}}
-
-  <td>&nbsp;</td>
-  <td class="cell-border-left">&nbsp;</td>
+  {{#if this.noPriorData}}
+    {{!-- if 2006-2010 sum is null, just return empty cells --}}
+    <td class='title-column' {{action 'showData'}}>
+      <span>
+        {{@rowConfig.title}}
+        {{#if @rowConfig.tooltip}}
+          {{fa-icon icon='question-circle' transform='shrink-2'}}
+          {{ember-tooltip text=@rowConfig.tooltip side='right'}}
+        {{/if}}
+      </span>
+    </td>
+    <td class="cell-border-left" class="no-compare-message">
+      <div>Data for this row are not comparable or are unavailable</div>
+    </td>
+  {{else}}
+    <td>&nbsp;</td>
+    <td class="cell-border-left">&nbsp;</td>
+  {{/if}}
   <td>&nbsp;</td>
   {{#if this.reliability}}
     <td>&nbsp;</td>

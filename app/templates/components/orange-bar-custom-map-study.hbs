@@ -89,7 +89,11 @@
     {{#if (eq @mode 'direct-select')}}
       <div class="more-options {{unless this.advanced 'closed'}}" style="color:black">
         {{#unless this.closed}}
-              {{#layer-menu-item for='choropleths' as |layerGroup|}}
+              {{#layer-menu-item
+                defaultFill=this.choroplethPaintFill
+                defaultLine=this.choroplethPaintLine
+                for='choropleths' as |layerGroup|
+              }}
                 {{#if layerGroup.model.visible}}
                   <div class="grid-x">
                     <div class="cell small-8">
