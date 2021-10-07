@@ -172,9 +172,9 @@ export default Service.extend({
         // District transitions still require spatial queries
         this.explodeGeo(fromLevel, toLevel);
       } else if ((toLevel === 'blocks') && (['cdtas', 'ntas'].includes(fromLevel))) {
-        this.explodeToBlocks(fromLevel, toLevel);
+        this.explodeToBlocks(fromLevel);
       } else if ((fromLevel === 'blocks') && (['cdtas', 'ntas'].includes(toLevel)) ) {
-        this.explodeFromBlocks(fromLevel, toLevel);
+        this.explodeFromBlocks(toLevel);
       } else {
         this.explode(fromLevel, toLevel);
       }
@@ -226,13 +226,13 @@ export default Service.extend({
   },
   
   // transition between geometry levels using attributes
-  explodeToBlocks(fromLevel, toLevel) {
-    if (fromLevel !== toLevel) {
+  explodeToBlocks(fromLevel) {
+    if (fromLevel !== 'blocks') {
       const crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
       const crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
       const filterFromLevelIds = findUniqueByGeoId(this.get('current.features')).join("','");
 
-      const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT['tracts'].id} IN (SELECT ${SUM_LEVEL_DICT['tracts'].id}  FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}'))`;
+      const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT['blocks'].sql}) a WHERE ${SUM_LEVEL_DICT['tracts'].id} IN (SELECT ${SUM_LEVEL_DICT['tracts'].id}  FROM (${crossWalkToTable}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}'))`;
       
       carto.SQL(sqlQuery, 'geojson')
         .then((json) => {
@@ -243,14 +243,14 @@ export default Service.extend({
   },
 
   // transition between geometry levels using attributes
-  explodeFromBlocks(fromLevel, toLevel) {
-    if (fromLevel !== toLevel) {
-      const crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
+  explodeFromBlocks(toLevel) {
+    if ('blocks' !== toLevel) {
+      const crossWalkFromColumn = SUM_LEVEL_DICT['blocks'].id;
       const crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
-      const extraSet = SUM_LEVEL_DICT['tracts'].id
+      const tractGeoidColumn = SUM_LEVEL_DICT['tracts'].id
       const filterFromLevelIds = findUniqueBy(this.get('current.features'), 'bctcb2020').join("','");
       
-      const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT[toLevel].id} IN (SELECT ${SUM_LEVEL_DICT[toLevel].id}  FROM (${crossWalkToTable}) a WHERE ${extraSet} IN (SELECT ${extraSet} FROM (${SUM_LEVEL_DICT[fromLevel].sql}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}')))`;
+      const sqlQuery = `SELECT * FROM (${SUM_LEVEL_DICT[toLevel].sql}) a WHERE ${SUM_LEVEL_DICT[toLevel].id} IN (SELECT ${SUM_LEVEL_DICT[toLevel].id}  FROM (${crossWalkToTable}) a WHERE ${tractGeoidColumn} IN (SELECT ${tractGeoidColumn} FROM (${SUM_LEVEL_DICT['blocks'].sql}) a WHERE ${crossWalkFromColumn} IN ('${filterFromLevelIds}')))`;
 
       carto.SQL(sqlQuery, 'geojson')
         .then((json) => {
