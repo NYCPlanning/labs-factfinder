@@ -12,6 +12,20 @@
     </div>
   {{/if}}
 </div>
+
+<div class="bar-item">
+  <div class="cell small-2" {{on "click" (fn @toggleBooleanControl 'showCharts')}}>
+    <span>
+      {{#if @showCharts}}
+        {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
+      {{else}}
+        {{fa-icon icon='square' prefix='far' fixedWidth=true}}
+      {{/if}}
+    </span>
+    Show Charts
+  </div>
+</div>
+
 {{!-- <div
   class="bar-item"
   {{on-click-outside (action "closeMenu")}}
