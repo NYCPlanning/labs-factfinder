@@ -32,4 +32,7 @@
   .clickable {
     cursor: pointer;
   }
+  .disabled {
+    color: $light-gray;
+  }
 }

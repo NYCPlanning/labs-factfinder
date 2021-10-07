@@ -71,6 +71,24 @@
               </div>
             </div>
           {{/each}}
+        {{else}}
+          <span class="disabled">American Community Survey (ACS)</span>
+          {{#each this.acsSources key="id" as |source|}}
+            <div
+              class="nestable-list-item grid-x disabled"
+              aria-disabled="true"
+            >
+              <div class="cell small-1">
+                <span class="a11y-orange disabled">
+                  {{fa-icon icon='circle' prefix='far' class='silver'}}
+                </span>
+              </div>
+
+              <div class="cell auto disabled">
+                {{source.label}}
+              </div>
+            </div>
+          {{/each}}
         {{/if}}
       {{/if}}
     </div>
