@@ -169,8 +169,8 @@ export default Service.extend({
         // If from cities, select all items of toLevel
         this.explodeFromCity(toLevel);
       } else if ((fromLevel === 'districts') || (toLevel === 'districts')) {
-        // District transitions still require spatial queries
-        this.explodeGeo(fromLevel, toLevel);
+        // District transitions should clear selection
+        this.clearSelection();
       } else if ((toLevel === 'blocks') && (['cdtas', 'ntas'].includes(fromLevel))) {
         this.explodeToBlocks(fromLevel);
       } else if ((fromLevel === 'blocks') && (['cdtas', 'ntas'].includes(toLevel)) ) {
@@ -258,44 +258,6 @@ export default Service.extend({
           this.set('current', json);
         })
     }
-  },
-
-  // transition between geometry levels using spatial queries
-  explodeGeo(fromLevel, toLevel) {
-    if(fromLevel === toLevel) {
-      return;
-    }
-
-    const crossWalkFromTable = SUM_LEVEL_DICT[fromLevel].sql;
-    const crossWalkToTable = SUM_LEVEL_DICT[toLevel].sql;
-
-    const filterIds = this.get('current.features').map(d => d.properties.geoid).join("','");
-
-    let fromGeom = 'f.the_geom';
-    let toGeom = 'a.the_geom';
-
-    // special handling for blocks to ntas and ntas to blocks
-    if (fromLevel === 'blocks' && toLevel === 'ntas') {
-      toGeom = 'a.the_geom';
-    }
-
-    if (fromLevel === 'ntas' && ((toLevel === 'blocks') || (toLevel === 'tracts'))) {
-      fromGeom = 'f.the_geom';
-    }
-
-    const sqlQuery = `
-      WITH f AS (
-        SELECT * FROM (${crossWalkFromTable}) a WHERE geoid IN ('${filterIds}')
-      )
-
-      SELECT DISTINCT ON (geoid) a.* FROM (${crossWalkToTable}) a, f WHERE ST_Intersects(${toGeom}, ${fromGeom})
-    `;
-
-    carto.SQL(sqlQuery, 'geojson', 'post')
-      .then((json) => {
-        this.clearSelection();
-        this.set('current', json);
-      });
   },
 
   getEntireGeoTask: task(function* (sqlQuery, onTaskComplete) {
