@@ -77,8 +77,8 @@
               </h3>
               {{data-table
                 mode=this.mode
-                decennial=(eq this.source.type 'census')
-                reliability=this.showReliability
+                decennial=true
+                reliability=false
                 comparison=this.compareTo
                 compareToLabel=this.comparisonGeo.label
                 config=subtopic.tableConfig
@@ -125,7 +125,7 @@
                 </h3>
                 {{data-table
                   mode=this.mode
-                  decennial=(eq this.source.type 'census')
+                  decennial=false
                   reliability=this.showReliability
                   comparison=this.compareTo
                   compareToLabel=this.comparisonGeo.label
