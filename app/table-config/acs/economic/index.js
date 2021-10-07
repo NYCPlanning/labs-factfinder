@@ -9,6 +9,7 @@ import incomeAndBenefits from './income-and-benefits';
 import incomeInPast12MonthsIsBelowThePovertyLevel from './income_in_past_12_months_is_below_the_poverty_level';
 import industry from './industry';
 import occupation from './occupation';
+import ratioOfIncomeToPovertyLevel from './ratio-of-income-to-poverty-level';
 
 export default {
   classOfWorker,
@@ -20,4 +21,5 @@ export default {
   incomeInPast12MonthsIsBelowThePovertyLevel,
   industry,
   occupation,
+  ratioOfIncomeToPovertyLevel,
 };
