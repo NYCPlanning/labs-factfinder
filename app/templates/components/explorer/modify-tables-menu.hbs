@@ -1,4 +1,18 @@
-<div
+<div class="bar-item">
+  {{#if this.isAcsDataSource}}
+    <div class="cell small-2" {{on "click" (fn @toggleBooleanControl 'showReliability')}}>
+      <span>
+        {{#if @showReliability}}
+          {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
+        {{else}}
+          {{fa-icon icon='square' prefix='far' fixedWidth=true}}
+        {{/if}}
+      </span>
+      Show Reliability Data
+    </div>
+  {{/if}}
+</div>
+{{!-- <div
   class="bar-item"
   {{on-click-outside (action "closeMenu")}}
 >
@@ -106,4 +120,4 @@
       {{/if}}
     </div>
   {{/if}}
-</div>
+</div> --}}
