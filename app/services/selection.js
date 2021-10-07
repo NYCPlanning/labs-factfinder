@@ -174,7 +174,7 @@ export default Service.extend({
       } else if ((toLevel === 'blocks') && (['cdtas', 'ntas'].includes(fromLevel))) {
         this.explodeToBlocks(fromLevel, toLevel);
       } else if ((fromLevel === 'blocks') && (['cdtas', 'ntas'].includes(toLevel)) ) {
-        this.explodeHardWithAVengeance(fromLevel, toLevel);
+        this.explodeFromBlocks(fromLevel, toLevel);
       } else {
         this.explode(fromLevel, toLevel);
       }
@@ -243,7 +243,7 @@ export default Service.extend({
   },
 
   // transition between geometry levels using attributes
-  explodeHardWithAVengeance(fromLevel, toLevel) {
+  explodeFromBlocks(fromLevel, toLevel) {
     if (fromLevel !== toLevel) {
       const crossWalkFromColumn = SUM_LEVEL_DICT[fromLevel].id;
       const crossWalkToTable = SUM_LEVEL_DICT['tracts'].sql;
