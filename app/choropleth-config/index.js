@@ -44,7 +44,7 @@ const choroplethConfigs = [
   },
   {
     group: 'Social (ACS)',
-    id: 'lgoenlep',
+    id: 'lgoenlep1',
     label: 'Limited English Proficiency (LEP)',
     tooltip: 'Population 5 years and over who speak English "less than very well"',
     legendTitle: 'Population 5 years and over who speak English "less than very well"',
