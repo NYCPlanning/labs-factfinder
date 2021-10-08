@@ -57,4 +57,35 @@ export default [
     data: 'nfama65pl',
     indent: 2,
   },
+  {
+    divider: true,
+  },
+  {
+    title: 'Households with one or more people under 18 years',
+    data: 'hh1plu18',
+  },
+  {
+    title: 'Households with one or more people 65 years and over',
+    data: 'hh1pl65pl',
+  },
+  {
+    divider: true,
+  },
+  {
+    title: 'Average household size',
+    tooltip: 'Household population divided by number of households',
+    data: 'avghhsz',
+    special: true,
+    decimal: 2,
+  },
+  {
+    title: 'Average family size',
+    tooltip: 'Population in family households, minus nonrelatives in family households, divided by number of family households',
+    data: 'avgfmsz',
+    special: true,
+    decimal: 2,
+  },
+  {
+    divider: true,
+  },
 ];
