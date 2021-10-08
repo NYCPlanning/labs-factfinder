@@ -44,28 +44,11 @@
       </div>
     </div>
 
-    <div class="grid-container fluid">
-      <div class="grid-x align-left">
-        <div class="cell shrink">
-          <div class="switch tiny show-charts-switch">
-            <input
-              id="show-charts-switch"
-              type="checkbox"
-              checked={{this.showCharts}}
-              name="show-charts-switch"
-              class="switch-input"
-              {{on "click" (fn this.toggleBooleanControl 'showCharts')}}
-            />
-            <label class="switch-paddle" for="show-charts-switch">
-            </label>
-          </div>
-        </div>
-        <div class="cell shrink text-left">
-          Show Charts
-        </div>
-      </div>
-    </div>
-
+    {{#if (eq this.source.type 'census')}}
+      <p>Decennial census data message to be provided</p>
+    {{else}}
+      <p>ACS data are derived from a survey and are subject to sampling variability. Grayed values are not statistically reliable (guidance on ACS data). </p>
+    {{/if}}
     <br>
     
     {{#if (eq this.source.type 'census')}}
