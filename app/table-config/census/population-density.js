@@ -18,6 +18,7 @@ export default [
   {
     data: 'avghhsz',
     title: 'Average household size',
+    decimal: 2,
   },
   {
     data: 'popperacre',
