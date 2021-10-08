@@ -38,7 +38,11 @@
 }
 
 .ember-power-select-trigger {
-  font-size: 14px;
-  font-weight: bold;
+  min-width: 250px !important;
+  width: fit-content;
+  padding: 6px 5px;
+  border-radius: 5px;
+  background-color: #ecedee;
   color: $dark-gray;
+  font-weight: normal;
 }
