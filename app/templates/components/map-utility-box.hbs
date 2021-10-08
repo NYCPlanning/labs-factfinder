@@ -5,7 +5,18 @@
         Your Selection
       </div>
       <div class="map-utility-box-body">
-        <p><strong>{{this.selectionCount}}</strong> {{this.selection.summaryLevel}} selected</p>
+        <p>
+          <strong>{{this.selectionCount}}</strong>
+          {{if (eq this.selection.summaryLevel 'tracts') 'Census Tract'~}}
+          {{if (eq this.selection.summaryLevel 'blocks') 'Census Block'~}}
+          {{if (eq this.selection.summaryLevel 'cdtas') 'Community District Tabulation Area (CDTA)'~}}
+          {{if (eq this.selection.summaryLevel 'districts') 'Comunity District'~}}
+          {{if (eq this.selection.summaryLevel 'ntas') 'Neighborhood'~}}
+          {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
+          {{if (eq this.selection.summaryLevel 'cities')  'City'~}}
+          {{unless (eq this.selectionCount 1) 's'}}
+          selected
+        </p>
       </div>
       <div class="map-utility-box-buttons">
         <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
