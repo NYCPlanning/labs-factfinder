@@ -33,12 +33,12 @@
 
       {{#if (and
         (gt @data.changeSum 0)
-        (lt @data.changeMarginOfError @data.changeSum)
+        (lt @data.changeMarginOfError (abs @data.changeSum))
       )}}
         {{fa-icon icon="arrow-up" class="green"}}
       {{else if (and
         (lt @data.changeSum 0)
-        (gt @data.changeMarginOfError @data.changeSum)
+        (lt @data.changeMarginOfError (abs @data.changeSum))
       )}}
         {{fa-icon icon="arrow-down" class="red"}}
       {{else}}
@@ -67,12 +67,12 @@
 
       {{#if (and
         (gt @data.changePercent 0)
-        (lt @data.changePercentMarginOfError @data.changePercent)
+        (lt @data.changePercentMarginOfError (abs @data.changePercent))
       )}}
         {{fa-icon icon="arrow-up" class="green"}}
       {{else if (and
         (lt @data.changePercent 0)
-        (gt @data.changePercentMarginOfError @data.changePercent)
+        (lt @data.changePercentMarginOfError (abs @data.changePercent))
       )}}
         {{fa-icon icon="arrow-down" class="red"}}
       {{else}}
@@ -107,12 +107,12 @@
 
       {{#if (and
         (gt @data.changePercentagePoint 0)
-        (lt @data.changePercentagePointMarginOfError @data.changePercentagePoint)
+        (lt @data.changePercentagePointMarginOfError (abs @data.changePercentagePoint))
       )}}
         {{fa-icon icon="arrow-up" class="green"}}
       {{else if (and
         (lt @data.changePercentagePoint 0)
-        (gt @data.changePercentagePointMarginOfError @data.changePercentagePoint)
+        (lt @data.changePercentagePointMarginOfError (abs @data.changePercentagePoint))
       )}}
         {{fa-icon icon="arrow-down" class="red"}}
       {{else}}
