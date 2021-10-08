@@ -20,33 +20,22 @@
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
     <br>
-
-    <h1>
-      Your Data:
-    </h1>
-
-    <div class="grid-container fluid profile-geographies ">
-      <div class="grid-x align-left">
-        <h3 class="profile-geographies-header">
-          <SelectionDetailsText
-            @selectedCount={{this.selectedCount}}
-            @selectedType={{this.model.selection.type}}
-          />
-        </h3>
-        <span class="dark-gray">&nbsp;|&nbsp;</span>
-
-        <p class="profile-geographies-list">
-          {{#if (eq this.model.selection.type 'boroughs')}}
-            <SelectGeographyListBoroughs
-              @sortedLabels={{this.sortedLabels}}
-            />
-          {{else}}
-            <SelectGeographyList
-              @sortedLabels={{this.sortedLabels}}
-            />
-          {{/if}}
-        </p>
-      </div>
+    <div class="grid-x align-left">
+      <SelectionDetailsText
+        @selectedCount={{this.selectedCount}}
+        @selectedType={{this.model.selection.type}}
+      />
+    </div>
+    <div class="profile-geographies">
+      {{#if (eq this.model.selection.type 'boroughs')}}
+        <SelectGeographyListBoroughs
+          @sortedLabels={{this.sortedLabels}}
+        />
+      {{else}}
+        <SelectGeographyList
+          @sortedLabels={{this.sortedLabels}}
+        />
+      {{/if}}
     </div>
 
     <div class="grid-container fluid">
