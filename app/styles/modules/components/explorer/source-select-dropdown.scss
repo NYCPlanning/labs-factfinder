@@ -3,7 +3,8 @@
 // --------------------------------------------------
 
 .source-select-toggle {
-  width: 500px !important;
+  width: fit-content !important;
+  white-space: nowrap;
   padding: 0.7rem 5px !important;
   border-radius: 5px;
   padding: 11px 5px;
