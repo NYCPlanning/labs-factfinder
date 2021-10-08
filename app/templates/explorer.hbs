@@ -36,9 +36,15 @@
         <span class="dark-gray">&nbsp;|&nbsp;</span>
 
         <p class="profile-geographies-list">
-          <SelectGeographyList
-            @sortedLabels={{this.sortedLabels}}
-          />
+          {{#if (eq this.model.selection.type 'boroughs')}}
+            <SelectGeographyListBoroughs
+              @sortedLabels={{this.sortedLabels}}
+            />
+          {{else}}
+            <SelectGeographyList
+              @sortedLabels={{this.sortedLabels}}
+            />
+          {{/if}}
         </p>
       </div>
     </div>
