@@ -90,7 +90,7 @@
             {{#if (and
               (or
                 (eq this.source.id 'decennial-current')
-                (eq this.source.id 'decennial-change')
+                (eq this.source.id 'decennial-previous')
               )
               subtopic.charts
               this.showCharts
@@ -136,7 +136,10 @@
               </div>
 
               {{#if (and
-                (eq this.mode 'current')
+                (or
+                  (eq this.source.id 'acs-current')
+                  (eq this.source.id 'acs-previous')
+                )
                 subtopic.charts
                 this.showCharts
               )}}
