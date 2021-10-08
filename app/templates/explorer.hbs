@@ -44,10 +44,18 @@
       </div>
     </div>
 
-    {{#if (eq this.source.type 'census')}}
-      <p>Decennial census data message to be provided</p>
-    {{else}}
-      <p>ACS data are derived from a survey and are subject to sampling variability. Grayed values are not statistically reliable (guidance on ACS data). </p>
+    {{#if (or
+      (eq this.source.id 'decennial-current')
+      (eq this.source.id 'decennial-change')
+    )}}
+      <p>2020 Census data may be adjusted to protect the privacy of Census participants. Exercise caution when considering 2020 Census counts of under 300.</p>
+    {{/if}}
+    {{#if (eq this.source.type 'acs')}}
+      <p>
+        ACS data are derived from a survey and are subject to sampling variability. Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>). 
+        {{labs-ui/icon-tooltip tip='Data associated with estimates of zero, top- and bottom-coded estimate, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.'}}
+      </p>
+      
     {{/if}}
     <br>
     
