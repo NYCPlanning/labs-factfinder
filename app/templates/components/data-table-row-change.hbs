@@ -31,18 +31,14 @@
         precision=@rowConfig.decimal
       }}
 
-      {{#if (and
-        (gt @data.changeSum 0)
-        (lt @data.changeMarginOfError @data.changeSum)
-      )}}
-        {{fa-icon icon="arrow-up" class="green"}}
-      {{else if (and
-        (lt @data.changeSum 0)
-        (gt @data.changeMarginOfError @data.changeSum)
-      )}}
-        {{fa-icon icon="arrow-down" class="red"}}
-      {{else}}
-        {{fa-icon icon=""}}
+      {{#if (lt @data.changeMarginOfError (abs @data.changeSum))}}
+        {{#if (gt @data.changeSum 0)}}
+          {{fa-icon icon="arrow-up" class="green"}}
+        {{else if (lt @data.changeSum 0)}}
+          {{fa-icon icon="arrow-down" class="red"}}
+        {{else}}
+          {{fa-icon icon=""}}
+        {{/if}}
       {{/if}}
     {{/unless}}
   </td>
@@ -65,18 +61,14 @@
         '%'
       }}
 
-      {{#if (and
-        (gt @data.changePercent 0)
-        (lt @data.changePercentMarginOfError @data.changePercent)
-      )}}
-        {{fa-icon icon="arrow-up" class="green"}}
-      {{else if (and
-        (lt @data.changePercent 0)
-        (gt @data.changePercentMarginOfError @data.changePercent)
-      )}}
-        {{fa-icon icon="arrow-down" class="red"}}
-      {{else}}
-        {{fa-icon icon=""}}
+      {{#if (lt @data.changePercentMarginOfError (abs @data.changePercent))}}
+        {{#if (gt @data.changePercent 0)}}
+          {{fa-icon icon="arrow-up" class="green"}}
+        {{else if (lt @data.changePercent 0)}}
+          {{fa-icon icon="arrow-down" class="red"}}
+        {{else}}
+          {{fa-icon icon=""}}
+        {{/if}}
       {{/if}}
     {{/unless}}
   </td>
@@ -105,18 +97,14 @@
         (mult @data.changePercentagePoint 100)
         precision=1}}
 
-      {{#if (and
-        (gt @data.changePercentagePoint 0)
-        (lt @data.changePercentagePointMarginOfError @data.changePercentagePoint)
-      )}}
-        {{fa-icon icon="arrow-up" class="green"}}
-      {{else if (and
-        (lt @data.changePercentagePoint 0)
-        (gt @data.changePercentagePointMarginOfError @data.changePercentagePoint)
-      )}}
-        {{fa-icon icon="arrow-down" class="red"}}
-      {{else}}
-        {{fa-icon icon=""}}
+      {{#if (lt @data.changePercentagePointMarginOfError (abs @data.changePercentagePoint))}}
+        {{#if (gt @data.changePercentagePoint 0)}}
+          {{fa-icon icon="arrow-up" class="green"}}
+        {{else if (lt @data.changePercentagePoint 0)}}
+          {{fa-icon icon="arrow-down" class="red"}}
+        {{else}}
+          {{fa-icon icon=""}}
+        {{/if}}
       {{/if}}
     {{/unless}}
   </td>
