@@ -45,6 +45,11 @@ export default class TopicSelectDropdownComponent extends Component {
       'event' : 'toggle_select_topics',
       'toggle' : this.open ? 'Opened' : 'Closed',
     });
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Select Topics',
+      eventAction: 'Toggle Menu',
+      eventLabel: this.open ? 'Opened' : 'Closed',
+    });
   }
 
   @action closeMenu() {
@@ -56,11 +61,21 @@ export default class TopicSelectDropdownComponent extends Component {
           'toggle' : 'Closed',
           'selected_topics' : 'All Topics Selected'
         });
+        this.get('metrics').trackEvent('GoogleAnalytics', {
+          eventCategory: 'Select Topics',
+          eventAction: 'Toggle Menu',
+          eventLabel: 'All Topics Selected',
+        });
       } else if (this.isAllTopicsSelected === "unselected") {
         window.dataLayer.push({
           'event' : 'toggle_select_topics',
           'toggle' : 'Closed',
           'selected_topics' : 'No Topics Selected'
+        });
+        this.get('metrics').trackEvent('GoogleAnalytics', {
+          eventCategory: 'Select Topics',
+          eventAction: 'Toggle Menu',
+          eventLabel: 'No Topics Selected',
         });
       } else {
         var selectedTopics = [];
@@ -78,6 +93,11 @@ export default class TopicSelectDropdownComponent extends Component {
           'event' : 'toggle_select_topics',
           'toggle' : 'Closed',
           'selected_topics' : selectedTopics
+        });
+        this.get('metrics').trackEvent('GoogleAnalytics', {
+          eventCategory: 'Select Topics',
+          eventAction: 'Toggle Menu',
+          eventLabel: selectedTopics.join(','),
         });
       }
 

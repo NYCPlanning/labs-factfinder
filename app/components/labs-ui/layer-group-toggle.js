@@ -45,12 +45,22 @@ export default Component.extend({
           'event' : 'toggle_thematic_map',
           'toggle' : this.get('active')
         });
-      } else if (["Subways", "Zipcodes", "Neighborhood Tabulation Areas", "Community Districts", "Community District Tabulation Areas (CDTAs)", "NYC Council Districts"].includes(this.get('label'))){
+        this.get('metrics').trackEvent('GoogleAnalytics', {
+          eventCategory: 'Thematic Map',
+          eventAction: 'Toggle Thematic Map',
+          eventLabel: this.get('active'),
+        });
+      } else if (["Subways", "ZIP Codes", "Neighborhood Tabulation Areas (NTAs)", "Community Districts (CDs)", "Community District Tabulation Areas (CDTAs)", "NYC Council Districts"].includes(this.get('label'))){
         // Only count toggle on, not toggle off
         if (this.get('active')) {
           window.dataLayer.push({
             'event' : 'toggle_map_layer',
             'toggle_map_layer' : this.get('label')
+          });
+          this.get('metrics').trackEvent('GoogleAnalytics', {
+            eventCategory: 'Add Map Layers',
+            eventAction: 'Toggle Map Layer',
+            eventLabel: this.get('label'),
           });
         }
       } else {
@@ -58,6 +68,11 @@ export default Component.extend({
         window.dataLayer.push({
           'event' : 'uncategorized_event',
           'uncatogorized_event' : this.get('label'),
+        });
+        this.get('metrics').trackEvent('GoogleAnalytics', {
+          eventCategory: 'Uncategorized Event',
+          eventAction: 'Uncategorized Event',
+          eventLabel: this.get('label'),
         });
       }
     },

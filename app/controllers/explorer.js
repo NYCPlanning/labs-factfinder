@@ -232,6 +232,11 @@ export default class ExplorerController extends Controller {
       'event' : 'select_data_source',
       'select_data_source' : newSource.label,
     });
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Data Source',
+      eventAction: 'Select Data Source',
+      eventLabel: newSource.label,
+    });
   }
 
   @action toggleTopic(topic) {
@@ -261,6 +266,11 @@ export default class ExplorerController extends Controller {
       'event' : 'select_all_topics',
       'toggle' : this.isAllTopicsSelected === "unselected" ? "none" : "all",
     });
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Select Topics',
+      eventAction: 'Select All Topics Toggle',
+      eventLabel: this.isAllTopicsSelected === "unselected" ? "none" : "all",
+    });
   }
 
   // acceptable controlId values include: 'showReliability', 'showCharts'
@@ -272,11 +282,21 @@ export default class ExplorerController extends Controller {
         'event' : 'toggle_show_reliability_data',
         'show_reliability_data' : !currentControlValue,
       });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Show Reliability Data',
+        eventAction: 'Toggle Reliability Data',
+        eventLabel: !currentControlValue,
+      });
     } else if (controlId === 'showCharts') {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         'event' : 'toggle_show_charts',
         'show_charts' : !currentControlValue,
+      });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Show Charts',
+        eventAction: 'Toggle Charts',
+        eventLabel: !currentControlValue,
       });
     }
 
