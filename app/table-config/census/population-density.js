@@ -2,6 +2,7 @@ export default [
   {
     data: 'pop1',
     title: 'Total Population',
+    highlight: true,
   },
   {
     data: 'popinhh',
@@ -14,6 +15,7 @@ export default [
   {
     data: 'institlzd',
     title: 'Institutionalized',
+    indent: 1,
   },
   {
     data: 'avghhsz',
