@@ -40,10 +40,10 @@ export default Route.extend({
         // { id: 'ny-senate-districts', visible: false },
         { id: 'boroughs', visible: false },
         { id: 'nyc-council-districts', visible: false },
-        { id: 'community-districts', visible: false },
-        { id: 'neighborhood-tabulation-areas', visible: false },
+        { id: 'factfinder--community-districts', visible: false },
+        { id: 'factfinder--neighborhood-tabulation-areas', visible: false },
         { id: 'community-district-tabulation-areas', visible: false },
-        { id: 'zip-codes', visible: false },
+        { id: 'factfinder--zip-codes', visible: false },
 
         // Census selection groups
         { id: 'factfinder--census-blocks', visible: false },

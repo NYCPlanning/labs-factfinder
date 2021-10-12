@@ -152,7 +152,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='zip-codes' as |layerGroup|}}
+              {{#lookup-layer-group for='factfinder--zip-codes' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
@@ -161,7 +161,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
+              {{#lookup-layer-group for='factfinder--neighborhood-tabulation-areas' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
@@ -170,7 +170,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='community-districts' as |layerGroup|}}
+              {{#lookup-layer-group for='factfinder--community-districts' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
