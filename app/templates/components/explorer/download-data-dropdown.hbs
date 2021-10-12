@@ -1,4 +1,4 @@
-<div id="download-button" class="button grid-x full no-margin {{if this.open 'active'}}" {{on "click" this.toggleOpen}}>
+<button id="download-button" class="button grid-x full no-margin {{if this.open 'active'}}" {{on "click" this.toggleOpen}}>
   {{ember-tooltip delay=500 text='Download tables on selected topics.' side='bottom'}}
   {{fa-icon icon="download" prefix="fas" transform='grow-10'}}
   <div class="cell small-11">
@@ -6,7 +6,7 @@
       {{this.numSelected}}
     </span>
   </div>
-</div>
+</button>
 
 {{#if this.open}}
   <div
