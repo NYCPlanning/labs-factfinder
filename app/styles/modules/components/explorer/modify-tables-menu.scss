@@ -36,3 +36,14 @@
 .modify-tables-switch, .show-charts-switch {
   margin-top: 3px;
 }
+
+.ember-power-select-trigger {
+  min-width: 250px !important;
+  width: fit-content;
+  max-width: 425px;
+  padding: 6px 5px;
+  border-radius: 5px;
+  background-color: #ecedee;
+  color: $dark-gray;
+  font-weight: normal;
+}

@@ -1,0 +1,8 @@
+<ul class="comma-separated-list">
+  {{#each this.sortedLabels as |boro|}}
+    {{#if boro.features.length}}
+      {{boro.label}}
+      {{~unless (eq boro.lastObject.properties.geoid boro.properties.geoid) ','}}
+    {{/if}}
+  {{/each}}
+</ul>
