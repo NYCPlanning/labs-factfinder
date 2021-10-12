@@ -37,7 +37,7 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   .triangle {
     position: absolute;
     top: -15px;
-    right: 125px;
+    right: 18px;
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
@@ -81,4 +81,18 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   .subtopic, .source-label {
     font-weight: normal;
   }
+}
+
+#download-button {
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px $white;
+
+  &:hover {
+    color: #ae561f !important;
+    background-color: $white !important;
+  }
+}
+#download-button.active {
+  color: #ae561f !important;
+  background-color: $white !important;
 }
