@@ -2,6 +2,7 @@ export default [
   {
     data: 'hunits',
     title: 'Total housing units',
+    highlight: true,
   },
   {
     data: 'ochu_1',
