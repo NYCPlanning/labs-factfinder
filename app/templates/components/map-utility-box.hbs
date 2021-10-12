@@ -7,13 +7,13 @@
       <div class="map-utility-box-body">
         <p>
           <strong>{{this.selectionCount}}</strong>
-          {{if (eq this.selection.summaryLevel 'tracts') 'Census Tract'~}}
-          {{if (eq this.selection.summaryLevel 'blocks') 'Census Block'~}}
-          {{if (eq this.selection.summaryLevel 'cdtas') 'Community District Tabulation Area'~}}
-          {{if (eq this.selection.summaryLevel 'districts') 'Comumnity District'~}}
-          {{if (eq this.selection.summaryLevel 'ntas') 'Neighborhood'~}}
+          {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
+          {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
+          {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
+          {{if (eq this.selection.summaryLevel 'districts') 'CD'~}}
+          {{if (eq this.selection.summaryLevel 'ntas') 'NTA'~}}
           {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
-          {{if (eq this.selection.summaryLevel 'cities')  'City'~}}
+          {{if (eq this.selection.summaryLevel 'cities')  'New York City'~}}
           {{unless (eq this.selectionCount 1) 's'}}
           selected
         </p>
@@ -26,7 +26,7 @@
           Clear <br />Selection
         </button>
         <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateExplorerPage}}>
-          See More Data
+          View Data
           <span class="off-white" style="padding-left: 0.5em;">
             {{fa-icon icon='long-arrow-alt-right'}}
           </span>
@@ -40,8 +40,8 @@
         Your Selection
       </div>
       <div class="map-utility-box-body-null">
-        <p><strong>Want To Add To Your Selection?</strong></p>
-        <p>You can build your selection by selecting the options in the <span class="a11y-orange">orange</span> menu above and clicking directly on the map</p>
+        <p><strong>How to Get Started</strong></p>
+        <p>You can build your selection by clicking on the map. Use the toolbar above to modify your selection method or geographic type.</p>
       </div>
     </div>
   {{/if}}

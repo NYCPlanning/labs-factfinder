@@ -40,12 +40,12 @@ export default Component.extend({
     toggle() {
       this.toggleProperty('active');
       window.dataLayer = window.dataLayer || [];
-      if (this.get('label') === "Thematic Map") {
+      if (this.get('label') === "Thematic Maps (NTA)") {
         window.dataLayer.push({
           'event' : 'toggle_thematic_map',
           'toggle' : this.get('active')
         });
-      } else if (["Subways", "Zipcodes", "Neighborhood Tabulation Areas", "Community Districts", "Community District Tabulation Areas (CDTAs)", "NYC Council Districts"].includes(this.get('label'))){
+      } else if (["Subways", "ZIP Codes", "Neighborhood Tabulation Areas (NTAs)", "Community Districts (CDs)", "Community District Tabulation Areas (CDTAs)", "NYC Council Districts"].includes(this.get('label'))){
         // Only count toggle on, not toggle off
         if (this.get('active')) {
           window.dataLayer.push({
