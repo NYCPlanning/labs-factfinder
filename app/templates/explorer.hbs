@@ -32,6 +32,14 @@
         <SelectGeographyListBoroughs
           @sortedLabels={{this.sortedLabels}}
         />
+      {{else if (eq this.model.selection.type 'ntas')}}
+        <SelectGeographyListNtas
+          @sortedLabels={{this.sortedLabels}}
+        />
+      {{else if (eq this.model.selection.type 'districts')}}
+        <SelectGeographyListDistricts
+          @sortedLabels={{this.sortedLabels}}
+        />
       {{else}}
         <SelectGeographyList
           @sortedLabels={{this.sortedLabels}}

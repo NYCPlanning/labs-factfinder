@@ -192,6 +192,9 @@ export default class ExplorerController extends Controller {
     if (['districts', 'boroughs'].includes(this.model.selection.type)) {
       for(var i = 0; i < features.length; i++) {
         features[i].properties.borocode = features[i].properties.geoid.toString().slice(0,1);
+        if (this.model.selection.type === 'districts') {
+          features[i].properties.district = features[i].properties.geoid % 100;
+        }
       }
     } 
     
