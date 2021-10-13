@@ -17,6 +17,11 @@ export default class SourceSelectDropdownComponent extends Component {
       'event' : 'toggle_data_source',
       'toggle' : this.open ? 'Opened' : 'Closed',
     });
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Data Source',
+      eventAction: 'Toggle Menu',
+      eventLabel: this.open ? 'Opened' : 'Closed',
+    });
   }
 
   @action closeMenu() {
@@ -25,6 +30,11 @@ export default class SourceSelectDropdownComponent extends Component {
       window.dataLayer.push({
         'event' : 'toggle_data_source',
         'toggle' : 'Closed',
+      });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Data Source',
+        eventAction: 'Toggle Menu',
+        eventLabel: 'Closed',
       });
     }
     this.open = false;

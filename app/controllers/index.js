@@ -104,6 +104,11 @@ export default Controller.extend({
       'event' : 'toggle_draw',
       'toggle_draw_type' : type
     });
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Draw',
+      eventAction: 'Toggle Draw Type',
+      eventLabel: type,
+    });
     const isDrawing = this.get('isDrawing');
     const map = this.get('selection').currentMapInstance; // sometimes this is never set
     if (isDrawing) {

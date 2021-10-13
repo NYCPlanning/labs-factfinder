@@ -99,9 +99,9 @@ export default Component.extend({
       'choropleth_label' : choroplethConfigs.find(d => d.id === mode).label,
     });
     this.get('metrics').trackEvent('GoogleAnalytics', {
-      eventCategory: 'Advanced Options',
-      eventAction: 'Selected Choropleth',
-      eventLabel: this.get('choroplethMode'),
+      eventCategory: 'Select Choropleth',
+      eventAction: choroplethConfigs.find(d => d.id === mode).group,
+      eventLabel: choroplethConfigs.find(d => d.id === mode).label,
     });
     this.set('choroplethMode', mode);
   },
@@ -142,6 +142,11 @@ export default Component.extend({
         'event' : 'upload_shapefile',
         'upload_shapefile' : 'added',
       });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Upload Shapefile',
+        eventLabel: 'added',
+      });
       this.addedFile(file)
     },
     removedFile() {
@@ -149,6 +154,11 @@ export default Component.extend({
       window.dataLayer.push({
         'event' : 'upload_shapefile',
         'upload_shapefile' : 'removed',
+      });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Upload Shapefile',
+        eventLabel: 'removed',
       });
       this.removedFile()
     }

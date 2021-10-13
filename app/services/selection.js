@@ -117,6 +117,11 @@ export default Service.extend({
         'event' : 'selection_geotype',
         'selection_geotype' : toLevel
       });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Geotype Selection',
+        eventAction: 'Geotype Selection',
+        eventLabel: toLevel,
+      });
     }
 
     this.set('summaryLevel', toLevel);
