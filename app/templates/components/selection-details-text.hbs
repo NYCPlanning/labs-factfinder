@@ -1,15 +1,14 @@
 <h2>
   {{#if (eq @selectedType 'cities')}}
-    All New York City
+    New York City
   {{else}}
     {{@selectedCount}}
-    {{if (eq @selectedType 'tracts') 'Census Tract'~}}
-    {{if (eq @selectedType 'blocks') 'Census Block'~}}
-    {{if (eq @selectedType 'cdtas') 'Community District Tabulation Area (CDTA)'~}}
-    {{if (eq @selectedType 'districts') 'Community District'~}}
-    {{if (eq @selectedType 'ntas') 'Neighborhood'~}}
+    {{if (eq @selectedType 'tracts') 'Tract'~}}
+    {{if (eq @selectedType 'blocks') 'Block'~}}
+    {{if (eq @selectedType 'cdtas') 'CDTA'~}}
+    {{if (eq @selectedType 'districts') 'CD'~}}
+    {{if (eq @selectedType 'ntas') 'NTA'~}}
     {{if (eq @selectedType 'boroughs') 'Borough'~}}
     {{unless (eq @selectedCount 1) 's'}}
-    {{if (eq @selectedType 'blocks') '(Tract Id-Block Id)'~}}
   {{/if}}
 </h2>
