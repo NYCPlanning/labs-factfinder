@@ -225,7 +225,7 @@ export default class ExplorerController extends Controller {
         label: 'Staten Island',
         features: statenisland,
       },
-    ];
+    ].filter(d => d.features.length > 0);
   }
 
   @action setSource(newSource) {
