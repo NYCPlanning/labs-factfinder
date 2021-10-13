@@ -188,8 +188,13 @@ export default class ExplorerController extends Controller {
   }
 
   get sortedLabels() {
-    const { features } = this.model.selection;
-
+    var { features } = this.model.selection;
+    if (['districts', 'boroughs'].includes(this.model.selection.type)) {
+      for(var i = 0; i < features.length; i++) {
+        features[i].properties.borocode = features[i].properties.geoid.toString().slice(0,1);
+      }
+    } 
+    
     const bronx = features.filter(d => d.properties.borocode === '2');
     const brooklyn = features.filter(d => d.properties.borocode === '3');
     const manhattan = features.filter(d => d.properties.borocode === '1');

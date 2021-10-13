@@ -8,7 +8,7 @@
         <li class="dropdown">
           <a href="#" class="dropbtn dropbtn-left">
             {{fa-icon icon='edit'}}
-            Draw
+            Selection Method
           </a>
           <div class="dropsizer">
             <div class="dropdown-content dropdown-content-left">
@@ -79,7 +79,7 @@
         <ul class="menu orange-bar--selector" id="more-options-button">
           <li>
             <a {{action "toggleAdvancedOptions"}}>
-              More Options
+              Add Map Layers
             </a>
           </li>
         </ul>
@@ -152,7 +152,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='zip-codes' as |layerGroup|}}
+              {{#lookup-layer-group for='factfinder--zip-codes' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
@@ -161,7 +161,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='neighborhood-tabulation-areas' as |layerGroup|}}
+              {{#lookup-layer-group for='factfinder--neighborhood-tabulation-areas' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible
@@ -170,7 +170,7 @@
                 {{/labs-ui/layer-group-toggle}}
               {{/lookup-layer-group}}
 
-              {{#lookup-layer-group for='community-districts' as |layerGroup|}}
+              {{#lookup-layer-group for='factfinder--community-districts' as |layerGroup|}}
                 {{#labs-ui/layer-group-toggle
                   label=layerGroup.model.legend.label
                   active=layerGroup.model.visible

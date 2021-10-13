@@ -272,9 +272,7 @@ button {
 }
 
 .profile-geographies {
-  max-height: 5.75em;
   overflow: auto;
-  font-size: rem-calc(12);
   margin-bottom: $global-margin/2;
 
   .profile-geographies-header {

@@ -1,16 +1,10 @@
-<button
-  class="topic-select-toggle button gray expanded no-margin"
-  style="padding-right: 0;"
-  role="button"
-  {{on "click" this.toggleOpen}}
->
-  <div class="grid-x full">
-    <div class="cell small-11">
-      Download Selected Tables
-      <span class="orange-bar-notification-count">
-        {{this.numSelected}}
-      </span>
-    </div>
+<button id="download-button" class="button grid-x full no-margin {{if this.open 'active'}}" {{on "click" this.toggleOpen}}>
+  {{ember-tooltip delay=500 text='Download tables on selected topics.' side='bottom'}}
+  {{fa-icon icon="download" prefix="fas" transform='grow-10'}}
+  <div class="cell small-11">
+    <span class="orange-bar-notification-count">
+      {{this.numSelected}}
+    </span>
   </div>
 </button>
 

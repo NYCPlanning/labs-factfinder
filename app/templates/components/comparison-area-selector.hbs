@@ -1,7 +1,8 @@
 <PowerSelect
   @searchField="label"
   @options={{this.nestedComparisonGeoOptions}}
-  @selected={{@comparisonGeo}}
+  @placeholder={{@comparisonGeo.label}}
+  @placeholderComponent='comparison-area-selector-trigger'
   @onChange={{fn this.updateProperty}}
 as |area|>
   {{area.label}}
