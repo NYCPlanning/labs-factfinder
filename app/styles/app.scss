@@ -4,6 +4,8 @@
 // HACK!!! This should be fixed in Labs UI
 $hr-width: auto;
 $table-border: 1px solid $silver;
+$topbar-background: $white;
+$topbar-padding: 0rem 1.25rem;
 
 //
 // Foundation
@@ -59,3 +61,4 @@ $table-border: 1px solid $silver;
 @import 'modules/components/explorer/download-data-dropdown';
 @import 'modules/components/explorer/modify-tables-menu.scss';
 @import 'modules/components/ui/nestable-list-item';
+

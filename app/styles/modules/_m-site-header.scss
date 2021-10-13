@@ -5,54 +5,40 @@
 $logo-height-small: rem-calc(24);
 $logo-height-medium: rem-calc(36);
 
-.labs-beta-notice {
-  display: block;
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  height: rem-calc(21);
-  line-height: 21px;
-  text-align: center;
-  background-color: #ae561f;
-  box-shadow: inset 0 -4px 0 rgba(0,0,0,0.1);
-
-  &:hover, &:focus {
-    color: #fff;
-    background-color: #b95b21;
-    text-decoration: none;
-  }
-}
-
 .site-header {
   background-color: $white;
   box-shadow: 0 4px 0 rgba(0,0,0,0.1);
   position: relative;
   z-index: 2;
+  height: rem-calc(68);
 
-  .branding {
-    padding-top: $global-margin;
-    padding-bottom: $global-margin;
-  }
+  // .branding {
+  //   padding-top: $global-margin;
+  //   padding-bottom: $global-margin;
+  // }
 
   .dcp-logo {
-    height: $logo-height-small;
-    float: left;
+    height: rem-calc(24);
+    // float: left;
     margin-right: $global-margin;
-
-    @include breakpoint(medium) {
-      height: $logo-height-medium;
-    }
   }
 
-  .site-title {
-    font-size: $logo-height-small*0.8;
+  h1 a {
+    font-size: 1rem;
+    color: $black;
     font-weight: $global-weight-bold;
-    line-height: 1.5;
-
-    @include breakpoint(medium) {
-      font-size: $logo-height-medium*0.8;
-    }
   }
+
+  // .site-title {
+  //   font-size: $logo-height-small*0.8;
+    
+  //   line-height: 1.5;
+  //   // color: $teal;
+
+  //   @include breakpoint(medium) {
+  //     // font-size: $logo-height-medium*0.8;
+  //   }
+  // }
 
   .site-subtitle {
     font-size: 0.5em;
@@ -68,39 +54,52 @@ $logo-height-medium: rem-calc(36);
     color: $anchor-color;
   }
 
-  .menu {
-    a {
-      color: $dark-gray;
-      line-height: 1.5;
-      padding: (rem-calc(11)+$global-margin) rem-calc(20);
-      font-size:  rem-calc(14);
-      font-weight: $global-weight-bold;
+  .top-bar-right {
+    height: 100%;
 
-      .active {
+    nav {
+      height: 100%;
 
-      }
+      .menu {
+        height: 100%;
+  
+        li {
+          height: 100%;
+  
+          a {
+            color: $gray;
+            // line-height: 1.5;
+            // padding: (rem-calc(11)+$global-margin) rem-calc(20);
+            font-size:  rem-calc(14);
+            font-weight: $global-weight-bold;
+            height: 100%;
+            display: flex;
+            align-items: center;
       
-      &:hover {
-        background-color: $white-smoke;
-        color: $black;
-      }
+            &.active-route, &:hover {
+              color: $charcoal;
+              box-shadow: inset 0 -2px $teal;
+            }
+          }
+        }
     }
 
-    &.dropdown > li > a {
-      padding-top: 1.6875rem;
-      padding-bottom: 1.6875rem;
-    }
-
-    .is-dropdown-submenu {
-      box-shadow: 0 2px 0 2px rgba(0,0,0,0.1);
-
-      li:not(:first-child) {
-        border-top: 1px solid lighten($medium-gray, 10%);
+      &.dropdown > li > a {
+        padding-top: 1.6875rem;
+        padding-bottom: 1.6875rem;
       }
-
-      a {
-        padding: rem-calc(10) rem-calc(16);
-        font-size: rem-calc(12);
+  
+      .is-dropdown-submenu {
+        box-shadow: 0 2px 0 2px rgba(0,0,0,0.1);
+  
+        li:not(:first-child) {
+          border-top: 1px solid lighten($medium-gray, 10%);
+        }
+  
+        a {
+          padding: rem-calc(10) rem-calc(16);
+          font-size: rem-calc(12);
+        }
       }
     }
   }
