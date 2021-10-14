@@ -38,6 +38,7 @@ export default Service.extend({
   summaryLevel: 'tracts', // tracts, blocks, ntas, pumas
   comparator: '0',
   reliability: false,
+  metrics: service('metrics'),
 
   store: service(),
 
