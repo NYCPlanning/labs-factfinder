@@ -6,15 +6,18 @@
       </div>
       <div class="map-utility-box-body">
         <p>
-          <strong>{{this.selectionCount}}</strong>
-          {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
-          {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
-          {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
-          {{if (eq this.selection.summaryLevel 'districts') 'CD'~}}
-          {{if (eq this.selection.summaryLevel 'ntas') 'NTA'~}}
-          {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
-          {{if (eq this.selection.summaryLevel 'cities')  'New York City'~}}
-          {{unless (eq this.selectionCount 1) 's'}}
+          {{#if (eq this.selection.summaryLevel 'cities')}}
+            New York City
+          {{else}}
+            <strong>{{this.selectionCount}}</strong>
+            {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
+            {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
+            {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
+            {{if (eq this.selection.summaryLevel 'districts') 'CD'~}}
+            {{if (eq this.selection.summaryLevel 'ntas') 'NTA'~}}
+            {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
+            {{unless (eq this.selectionCount 1) 's'}}
+          {{/if}}
           selected
         </p>
       </div>
