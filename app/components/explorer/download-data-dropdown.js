@@ -12,6 +12,11 @@ export default class DownloadDataDropdown extends Component{
       'event' : 'download_data',
       'toggle' : this.open ? 'Opened' : 'Closed',
     });
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Download Data',
+      eventAction: 'Toggle Menu',
+      eventLabel: this.open ? 'Opened' : 'Closed',
+    });
   }
 
   @action closeMenu() {
@@ -20,6 +25,11 @@ export default class DownloadDataDropdown extends Component{
       window.dataLayer.push({
         'event' : 'download_data',
         'toggle' : 'Closed',
+      });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Download Data',
+        eventAction: 'Toggle Menu',
+        eventLabel: 'Closed',
       });
     }
     this.open = false;
@@ -68,6 +78,11 @@ export default class DownloadDataDropdown extends Component{
     window.dataLayer.push({
       'event' : 'download_file',
       'filetype' : 'csv',
+    });
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Download Data',
+      eventAction: 'Download File',
+      eventLabel: 'CSV',
     });
 
     // This toggles the reliability data on if it is not before downloading

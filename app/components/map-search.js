@@ -145,7 +145,7 @@ export default Component.extend({
       });
       this.get('metrics').trackEvent('GoogleAnalytics', {
         eventCategory: 'Map Search',
-        eventAction: 'Downloaded CSV',
+        eventAction: 'Search Result Clicked',
         eventValue: this.get('searchTerms'),
       });
       this.$('.map-search-input').blur();

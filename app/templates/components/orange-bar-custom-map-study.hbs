@@ -7,7 +7,6 @@
       <ul class="menu orange-bar--selector" id="draw-tools">
         <li class="dropdown">
           <a href="#" class="dropbtn dropbtn-left">
-            {{fa-icon icon='edit'}}
             Selection Method
           </a>
           <div class="dropsizer">
@@ -46,18 +45,19 @@
               {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-              <a href="#" id="neighborhood" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood<br /><small>(NTA)</small></a>
+              <a href="#" id="neighborhood" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood Tabulation Area<br /><small>(NTA)</small></a>
+
               {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'cdtas') 'active'}} explode-cdta" style="font-size: 0.75rem;">
               <a href="#" data-test-toggle-cdtas {{action this.handleSummaryLevelToggle 'cdtas'}} style="padding:0;">
                 <span class="show-for-medium">Community<br />District <br /></span>
-                Tabulation Area
+                Tabulation Area<small>(CDTA)</small>
               </a>
               {{ember-tooltip delay=500 text='Create selection area using census cdtas'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'districts') 'active'}} explode-district">
-              <a href="#" data-test-toggle-districts {{action this.handleSummaryLevelToggle 'districts'}}>Community District</a>
+              <a href="#" data-test-toggle-districts {{action this.handleSummaryLevelToggle 'districts'}}>Community District<br /><small>(CD)</small></a>
               {{ember-tooltip delay=500 text='Create selection area using census districts'}}
             </li>
             <li class="dropdown explode-moregeos">
