@@ -171,7 +171,7 @@ export default Component.extend({
         this.set('searchTerms', result.feature.properties.fips);
         this.fitBounds(result.feature, 0.5);
       }
-      //
+
       if (result.type === 'nta') {
         selection.set('searchResultFeature', result.feature);
         this.set('searchTerms', result.feature.properties.ntacode);
@@ -189,7 +189,6 @@ export default Component.extend({
         selection.set('currentAddress', center);
 
         this.set('searchTerms', result.label);
-        this.transitionTo('index');
 
         if (map) {
           map.flyTo({
