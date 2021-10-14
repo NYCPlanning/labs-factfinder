@@ -1,8 +1,12 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class DownloadDataDropdown extends Component{
+  @service()
+  metrics;
+
   @tracked open = false;
 
   @action toggleOpen() {
@@ -12,7 +16,7 @@ export default class DownloadDataDropdown extends Component{
       'event' : 'download_data',
       'toggle' : this.open ? 'Opened' : 'Closed',
     });
-    this.get('metrics').trackEvent('GoogleAnalytics', {
+    this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Download Data',
       eventAction: 'Toggle Menu',
       eventLabel: this.open ? 'Opened' : 'Closed',
@@ -26,7 +30,7 @@ export default class DownloadDataDropdown extends Component{
         'event' : 'download_data',
         'toggle' : 'Closed',
       });
-      this.get('metrics').trackEvent('GoogleAnalytics', {
+      this.metrics.trackEvent('GoogleAnalytics', {
         eventCategory: 'Download Data',
         eventAction: 'Toggle Menu',
         eventLabel: 'Closed',
@@ -79,7 +83,7 @@ export default class DownloadDataDropdown extends Component{
       'event' : 'download_file',
       'filetype' : 'csv',
     });
-    this.get('metrics').trackEvent('GoogleAnalytics', {
+    this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Download Data',
       eventAction: 'Download File',
       eventLabel: 'CSV',
