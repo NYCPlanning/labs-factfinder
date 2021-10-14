@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   init(...args) {
@@ -8,6 +9,8 @@ export default Component.extend({
 
     this.set('icon', []);
   },
+
+  metrics: service('metrics'),
 
   classNames: ['layer-group-toggle'],
   classNameBindings: ['active'],

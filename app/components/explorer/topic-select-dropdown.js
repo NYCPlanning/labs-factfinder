@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-
+import { inject as service } from '@ember/service';
 
 /**
   * @param { Object[] } topics - array of Topic objects.
@@ -12,6 +12,9 @@ import { tracked } from '@glimmer/tracking';
   * See controller for an example.
 */
 export default class TopicSelectDropdownComponent extends Component {
+  @service()
+  metrics;
+  
   @tracked open = false;
 
   get numSelected() {
@@ -45,7 +48,7 @@ export default class TopicSelectDropdownComponent extends Component {
       'event' : 'toggle_select_topics',
       'toggle' : this.open ? 'Opened' : 'Closed',
     });
-    this.get('metrics').trackEvent('GoogleAnalytics', {
+    this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Select Topics',
       eventAction: 'Toggle Menu',
       eventLabel: this.open ? 'Opened' : 'Closed',
@@ -61,7 +64,7 @@ export default class TopicSelectDropdownComponent extends Component {
           'toggle' : 'Closed',
           'selected_topics' : 'All Topics Selected'
         });
-        this.get('metrics').trackEvent('GoogleAnalytics', {
+        this.metrics.trackEvent('GoogleAnalytics', {
           eventCategory: 'Select Topics',
           eventAction: 'Toggle Menu',
           eventLabel: 'All Topics Selected',
@@ -72,7 +75,7 @@ export default class TopicSelectDropdownComponent extends Component {
           'toggle' : 'Closed',
           'selected_topics' : 'No Topics Selected'
         });
-        this.get('metrics').trackEvent('GoogleAnalytics', {
+        this.metrics.trackEvent('GoogleAnalytics', {
           eventCategory: 'Select Topics',
           eventAction: 'Toggle Menu',
           eventLabel: 'No Topics Selected',
@@ -94,7 +97,7 @@ export default class TopicSelectDropdownComponent extends Component {
           'toggle' : 'Closed',
           'selected_topics' : selectedTopics
         });
-        this.get('metrics').trackEvent('GoogleAnalytics', {
+        this.metrics.trackEvent('GoogleAnalytics', {
           eventCategory: 'Select Topics',
           eventAction: 'Toggle Menu',
           eventLabel: selectedTopics.join(','),

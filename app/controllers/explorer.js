@@ -2,6 +2,7 @@ import { action } from '@ember/object';
 import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 import acsTopicsDefault from '../topics-config/acs';
 import censusTopicsDefault from '../topics-config/census';
@@ -10,6 +11,9 @@ import sourcesDefault from '../sources-config';
 import fetchExplorerModel from '../utils/fetch-explorer-model';
 
 export default class ExplorerController extends Controller {
+  @service()
+  metrics;
+
   queryParams = [
     {
       sourceId: 'source',
@@ -235,7 +239,7 @@ export default class ExplorerController extends Controller {
       'event' : 'select_data_source',
       'select_data_source' : newSource.label,
     });
-    this.get('metrics').trackEvent('GoogleAnalytics', {
+    this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Data Source',
       eventAction: 'Select Data Source',
       eventLabel: newSource.label,
@@ -269,7 +273,7 @@ export default class ExplorerController extends Controller {
       'event' : 'select_all_topics',
       'toggle' : this.isAllTopicsSelected === "unselected" ? "none" : "all",
     });
-    this.get('metrics').trackEvent('GoogleAnalytics', {
+    this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Select Topics',
       eventAction: 'Select All Topics Toggle',
       eventLabel: this.isAllTopicsSelected === "unselected" ? "none" : "all",
@@ -285,7 +289,7 @@ export default class ExplorerController extends Controller {
         'event' : 'toggle_show_reliability_data',
         'show_reliability_data' : !currentControlValue,
       });
-      this.get('metrics').trackEvent('GoogleAnalytics', {
+      this.metrics.trackEvent('GoogleAnalytics', {
         eventCategory: 'Show Reliability Data',
         eventAction: 'Toggle Reliability Data',
         eventLabel: !currentControlValue,
@@ -296,7 +300,7 @@ export default class ExplorerController extends Controller {
         'event' : 'toggle_show_charts',
         'show_charts' : !currentControlValue,
       });
-      this.get('metrics').trackEvent('GoogleAnalytics', {
+      this.metrics.trackEvent('GoogleAnalytics', {
         eventCategory: 'Show Charts',
         eventAction: 'Toggle Charts',
         eventLabel: !currentControlValue,

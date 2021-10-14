@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 /**
   * @param { fn(Source POJO) } setSource - (Required) Ember Action function that accepts a Source POJO. It will
@@ -8,6 +9,9 @@ import { tracked } from '@glimmer/tracking';
   * @param { [] } sources - array of Source objects
 */
 export default class SourceSelectDropdownComponent extends Component {
+  @service()
+  metrics;
+  
   @tracked open = false;
 
   @action toggleOpen() {
@@ -17,7 +21,7 @@ export default class SourceSelectDropdownComponent extends Component {
       'event' : 'toggle_data_source',
       'toggle' : this.open ? 'Opened' : 'Closed',
     });
-    this.get('metrics').trackEvent('GoogleAnalytics', {
+    this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Data Source',
       eventAction: 'Toggle Menu',
       eventLabel: this.open ? 'Opened' : 'Closed',
@@ -31,7 +35,7 @@ export default class SourceSelectDropdownComponent extends Component {
         'event' : 'toggle_data_source',
         'toggle' : 'Closed',
       });
-      this.get('metrics').trackEvent('GoogleAnalytics', {
+      this.metrics.trackEvent('GoogleAnalytics', {
         eventCategory: 'Data Source',
         eventAction: 'Toggle Menu',
         eventLabel: 'Closed',
