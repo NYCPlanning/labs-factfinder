@@ -174,6 +174,8 @@ export default Service.extend({
       } else if (fromLevel === 'cities') {
         // If from cities, select all items of toLevel
         this.explodeFromCity(toLevel);
+      } else if ((fromLevel === 'districts') && (toLevel === 'districts')) {
+        // This is to maintain the selection of districts when switching back to the map page from the data explorer page
       } else if ((fromLevel === 'districts') || (toLevel === 'districts')) {
         // District transitions should clear selection
         this.clearSelection();
