@@ -31,7 +31,13 @@
         precision=@rowConfig.decimal
       }}
 
-      {{#if (lt @data.changeMarginOfError (abs @data.changeSum))}}
+      {{#if (and 
+        (lt @data.changeMarginOfError (abs @data.changeSum))
+        (not (or
+          (eq @data.previous.sum 0)
+          (eq @data.selection.sum 0)
+        ))
+      )}}
         {{#if (gt @data.changeSum 0)}}
           {{fa-icon icon="arrow-up" class="green"}}
         {{else if (lt @data.changeSum 0)}}
@@ -61,7 +67,13 @@
         '%'
       }}
 
-      {{#if (lt @data.changePercentMarginOfError (abs @data.changePercent))}}
+      {{#if (and
+        (lt @data.changePercentMarginOfError (abs @data.changePercent))
+        (not (or
+          (eq @data.previous.sum 0)
+          (eq @data.selection.sum 0)
+        ))
+      )}}
         {{#if (gt @data.changePercent 0)}}
           {{fa-icon icon="arrow-up" class="green"}}
         {{else if (lt @data.changePercent 0)}}
@@ -97,7 +109,13 @@
         (mult @data.changePercentagePoint 100)
         precision=1}}
 
-      {{#if (lt @data.changePercentagePointMarginOfError (abs @data.changePercentagePoint))}}
+      {{#if (and
+        (lt @data.changePercentagePointMarginOfError (abs @data.changePercentagePoint))
+        (not (or
+          (eq @data.previous.sum 0)
+          (eq @data.selection.sum 0)
+        ))
+      )}}
         {{#if (gt @data.changePercentagePoint 0)}}
           {{fa-icon icon="arrow-up" class="green"}}
         {{else if (lt @data.changePercentagePoint 0)}}
