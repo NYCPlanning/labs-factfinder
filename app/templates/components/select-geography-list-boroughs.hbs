@@ -2,7 +2,7 @@
   {{#each this.sortedLabels as |boro|}}
     {{#if boro.features.length}}
       {{boro.label}}
-      {{~unless (eq boro.lastObject.properties.geoid boro.properties.geoid) ','}}
+      {{~unless (eq this.sortedLabels.lastObject.label boro.label) ','}}
     {{/if}}
   {{/each}}
 </ul>
