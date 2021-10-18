@@ -159,7 +159,7 @@ export default Service.extend({
     // remove mapbox neighborhood labels if current Level is NTAs
     const map = this.get('currentMapInstance');
     if (map) {
-      if (toLevel === 'ntas') {
+      if (toLevel === 'ntas' || toLevel === 'cdtas') {
         map.setLayoutProperty('subdued_nta_labels', 'visibility', 'none');
       } else {
         map.setLayoutProperty('subdued_nta_labels', 'visibility', 'visible');
