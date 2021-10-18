@@ -1,4 +1,4 @@
-<div class="bar-item">
+{{!-- <div class="bar-item"> --}}
   {{#if (and
     (or
       (eq @mode 'current')
@@ -7,23 +7,23 @@
     @comparisonGeoOptions
     @comparisonGeo
   )}}
-    <div class="grid-container fluid nowrap">
+    {{!-- <div class="grid-container fluid nowrap">
       <div class="grid-x align-middle">
-        <div class="cell small-11">
+        <div class="cell small-11"> --}}
           <ComparisonAreaSelector
             @comparisonGeoOptions={{@comparisonGeoOptions}}
             @comparisonGeo={{@comparisonGeo}}
             @onSelect={{@updateCompareTo}}
           />
-        </div>
+        {{!-- </div>
       </div>
-    </div>
+    </div> --}}
   {{/if}}
-</div>
+{{!-- </div> --}}
 
-<div class="bar-item">
+{{!-- <div class="bar-item"> --}}
   {{#if this.isAcsDataSource}}
-    <div class="cell small-2" {{on "click" (fn @toggleBooleanControl 'showReliability')}}>
+    <div {{on "click" (fn @toggleBooleanControl 'showReliability')}}>
       <span>
         {{#if @showReliability}}
           {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
@@ -34,10 +34,10 @@
       Show Reliability Data
     </div>
   {{/if}}
-</div>
+{{!-- </div> --}}
 
-<div class="bar-item">
-  <div class="cell small-2" {{on "click" (fn @toggleBooleanControl 'showCharts')}}>
+{{!-- <div class="bar-item"> --}}
+  <div {{on "click" (fn @toggleBooleanControl 'showCharts')}}>
     <span>
       {{#if @showCharts}}
         {{fa-icon icon='check-square' prefix='far' fixedWidth=true}}
@@ -47,4 +47,4 @@
     </span>
     Show Charts
   </div>
-</div>
+{{!-- </div> --}}

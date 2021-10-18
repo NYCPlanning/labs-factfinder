@@ -8,10 +8,13 @@ $logo-height-medium: rem-calc(36);
 .site-header {
   background-color: $white;
   border-bottom: 1px solid #AAAFB5;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.1);
   position: relative;
   z-index: 2;
   height: rem-calc(68);
+
+  &.top-bar {
+    padding: 0 0.75rem;
+  }
 
   // .branding {
   //   padding-top: $global-margin;

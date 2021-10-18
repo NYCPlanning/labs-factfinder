@@ -27,7 +27,7 @@ body {
 .site-main {
   position: relative;
   z-index: 2;
-  height: calc(100vh - 6rem);
+  height: 100vh;
   background-color: $body-background;
 
   @include breakpoint(large) {
@@ -181,17 +181,26 @@ body {
   .map-utility-box-head {
     background: $white-smoke;
     padding: 0.5rem 0.5rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-size: rem-calc(20);
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $charcoal;
   }
+
   .map-utility-box-body {
     color: black;
     padding: 1.5rem 2rem;
-    font-size: rem-calc(16);
-    p {
-      line-height: 1;
+    font-size: 0.875rem;
+    font-weight: 400;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+
+    strong {
+      font-weight: 700;
     }
+
     .map-utility-box-data {
       display: flex;
       flex-direction: row;
@@ -215,6 +224,8 @@ body {
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: flex-start;
+    height: 40px;
+    border-top: 1px solid #AAAFB5;
     > :last-child {
       flex-grow: 1;
     }
@@ -232,17 +243,19 @@ body {
 }
 #clear-selection {
   background-color: $off-white;
-  color: $a11y-orange;
-  font-size: rem-calc(10);
+  color: $charcoal;
+  font-size: 0.625rem;
+  padding: 0 0.625rem;
   // margin-bottom: 0;
-  margin: 0 $global-margin;
+  // margin: 0 $global-margin;
 }
 #see-more-data {
-  background-color: $a11y-orange;
+  background-color: $teal;
   color: $off-white;
-  font-size: rem-calc(20);
-  font-weight: bold;
-  margin-bottom: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.625rem;
+  margin: 0;
 }
 
 

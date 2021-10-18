@@ -6,9 +6,15 @@ import numeral from 'numeral';
 import choroplethConfigs from '../choropleth-config';
 
 export default Component.extend({
+  tagName: "div",
+  // classNames: ['grid-container fluid orange-bar-custom-map-study'],
+  classNames: ['top-bar map-toolbar'],
   selection: service(),
   router: service(),
   metrics: service(),
+  didInsertElement: function() {
+    this.$().foundation();
+  },
 
   lastreport: null,
 
@@ -122,20 +128,20 @@ export default Component.extend({
       this.set('advanced', !this.get('advanced'));
     },
     
-    toggleMapLayersMenu() {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event' : 'toggle_add_map_layers',
-        'toggle' : this.get('mapLayersMenu') ? 'Closed' : 'Opened',
-      });
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: 'Toggle Map Layers Menu',
-        eventLabel: this.get('mapLayersMenu') ? 'Closed' : 'Opened',
-      });
+    // toggleMapLayersMenu() {
+    //   window.dataLayer = window.dataLayer || [];
+    //   window.dataLayer.push({
+    //     'event' : 'toggle_add_map_layers',
+    //     'toggle' : this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+    //   });
+    //   this.get('metrics').trackEvent('GoogleAnalytics', {
+    //     eventCategory: 'Advanced Options',
+    //     eventAction: 'Toggle Map Layers Menu',
+    //     eventLabel: this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+    //   });
 
-      this.set('mapLayersMenu', !this.get('mapLayersMenu'));
-    },
+    //   this.set('mapLayersMenu', !this.get('mapLayersMenu'));
+    // },
     addedFile(file) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({

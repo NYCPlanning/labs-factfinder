@@ -37,15 +37,15 @@ $topbar-padding: 0rem 1.25rem;
 //
 // Custom App Modules
 // --------------------------------------------------
+@import 'modules/_m-colors'; // ported from labs-ui
+@import 'modules/_m-site-header'; // ported from labs-ui
 @import 'base/_typography';
 @import 'layouts/_l-default';
 @import 'modules/_m-more-options';
 @import 'modules/_m-charts';
 @import 'modules/_m-dropzone';
-@import 'modules/_m-colors'; // ported from labs-ui
-@import 'modules/_m-site-header'; // ported from labs-ui
 @import 'modules/_m-maps';
-@import 'modules/_m-orange-bar';
+@import 'modules/_m-toolbar';
 @import 'modules/_m-reveal-modal';
 @import 'modules/m-layer-groups-menu';
 @import 'modules/_m-search';

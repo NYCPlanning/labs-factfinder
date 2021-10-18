@@ -1,9 +1,9 @@
-<div
+{{!-- <div
   id="data-explorer-toolbar"
   class="grid-container fluid"
->
-  <div class="grid-x grid-margin-x">
-    <div class="cell shrink text-left">
+> --}}
+  <div class="top-bar explorer-toolbar">
+    <div class="top-bar-left grid-x align-middle">
       <Explorer::SourceSelectDropdown
         @sources={{@sources}}
         @setSource={{@setSource}}
@@ -31,8 +31,8 @@
       />
     </div>
 
-    <div class="cell auto text-right">
-      <div class="bar-item">
+    <div class="top-bar-right">
+      {{!-- <div class="bar-item"> --}}
         <Explorer::DownloadDataDropdown
           @topics={{@topics}}
           @sources={{@sources}}
@@ -40,8 +40,8 @@
           @toggleReliability={{@toggleReliability}}
           @isModelLoading={{@isModelLoading}}
         />
-      </div>
+      {{!-- </div> --}}
     </div>
 
   </div>
-</div>
+{{!-- </div> --}}

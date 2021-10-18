@@ -3,14 +3,27 @@
 // --------------------------------------------------
 
 .search {
-
-  input {
-    margin-bottom: 0;
-    text-indent: rem-calc(20);
-    padding-right: 2.2rem;
-    border: 1px solid #B6B6B6;
-    box-sizing: border-box;
-    border-radius: 10px;
+  width: 275px;
+  height: 40px;
+  
+  input.map-search-input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    // border: 1px solid #ECEDEE;
+    border-radius: 5px;
+    background-color: #ECEDEE;
+    margin: 0;
+    max-width: unset;
+    border: none;
+    // margin-bottom: 0;
+    // text-indent: rem-calc(20);
+    // padding-right: 2.2rem;
+    // border: 1px solid #B6B6B6;
+    // box-sizing: border-box;
+    // border-radius: 5px;
   }
 
   .close-button {
@@ -20,8 +33,10 @@
 
   .search-icon {
     position: absolute;
-    top: rem-calc(6);
-    left: rem-calc(10);
+    top: 5px;
+    left: 5px;
+    // top: rem-calc(6);
+    // left: rem-calc(10);
     color: $light-gray;
     pointer-events: none;
   }

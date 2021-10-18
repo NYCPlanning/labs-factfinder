@@ -4,11 +4,14 @@
 .dropzone {
   color: $dark-gray;
   border: rem-calc(2) dashed $light-gray;
-  padding: rem-calc(4) 0;
-  margin: $global-margin;
+  background-color: #F5F5F5; 
+  font-size: 0.625rem;
+  padding: 0.75rem 0;
+  margin: 0.75rem;
   min-height: unset;
   border-radius: rem-calc(10);
   text-align: center;
+
 
   &.dz-clickable {
     cursor: pointer;
@@ -30,8 +33,7 @@
         $style:solid
       );
       content: 'or choose a file';
-      color: #ae561f;
-      font-size: rem-calc(12);
+      font-size: 0.625rem;
       font-weight: $global-weight-normal;
       text-decoration: underline;
       padding: 0;

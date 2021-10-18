@@ -1,10 +1,219 @@
-<div
+{{!-- <div
   id="custom-map-study-toolbar"
   class="grid-container fluid orange-bar-custom-map-study"
->
+> --}}
+
+<div class="top-bar-left grid-x align-middle">
+  <button class="button" data-toggle="selection-method-dropdown">
+    Selection Method
+  </button>
+  <div
+    id="selection-method-dropdown"
+    class="dropdown-pane stacked button-group"
+    data-dropdown
+    data-hover="true"
+    data-hover-pane="true"
+  >
+    {{#ember-tooltip delay=200}}
+      <span class="text-tiny nowrap">Create selection using drawing tool</span>
+    {{/ember-tooltip}}
+    <button class="button {{if (eq @drawMode 'polygon') 'active'}}">
+      {{fa-icon icon='object-group' prefix='far'}}
+      Polygon
+    </button>
+    <button class="button {{if (eq @drawMode 'radius') 'active'}}">
+      {{fa-icon icon='dot-circle' prefix='far'}}
+      Radius
+    </button>
+  </div>
+  <MapSearch />
+  <div class="button-group">
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'tracts') 'active'}}"
+      {{action this.handleSummaryLevelToggle 'tracts'}}
+    >
+      Census Tract
+      {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
+    </button>
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'ntas') 'active'}}"
+      {{action this.handleSummaryLevelToggle 'ntas'}}
+    >
+      Neighborhood Tabulation Area (NTA)
+      {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
+    </button>
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'cdtas') 'active'}}"
+      {{action this.handleSummaryLevelToggle 'cdtas'}}
+    >
+      Community District Tabulation Area (CDTA)
+      {{ember-tooltip delay=500 text='Create selection area using census cdtas'}}
+    </button>
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'districts') 'active'}}"
+      {{action this.handleSummaryLevelToggle 'districts'}}
+    >
+      Community District (CD)
+      {{ember-tooltip delay=500 text='Create selection area using census districts'}}
+    </button>
+    <button
+      class="button"
+    >
+      More Geographies
+    </button>
+  </div>
+</div>
+<div class="top-bar-right">
+  <button
+    class="button"
+    data-toggle="add-layers-dropdown"
+    {{action "toggleMapLayersMenu"}}
+  >
+    Add Map Layers
+  </button>
+  <div
+    id="add-layers-dropdown"
+    class="dropdown-pane stacked button-group"
+    data-dropdown
+    data-alignment="right"
+  >
+    {{#layer-menu-item
+      defaultFill=this.choroplethPaintFill
+      defaultLine=this.choroplethPaintLine
+      for='choropleths' as |layerGroup|
+    }}
+      {{#if layerGroup.model.visible}}
+        {{!-- <div class="grid-x">
+          <div class="cell small-8"> --}}
+            <div class="legend">
+              <div class="legend-title">{{this.legendTitle}}</div>
+              {{#each this.stops as |stop|}}
+                <div class="legend-item">
+                  <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon transform="grow-6" icon='square'}}</span>
+                  {{stop.label}}
+                </div>
+              {{/each}}
+            </div>
+            <ul class="thematic-map-options">
+              {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
+                <h5>{{group}}</h5>
+                <ul class="no-bullet">
+                  {{#each configs as |config|}}
+                    <li {{
+                      action (
+                        queue
+                          (action this.setChoroplethMode config.id)
+                          (action layerGroup.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
+                          (action layerGroup.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
+                      )
+                    }}>
+                      {{#if (eq this.choroplethMode config.id)}}
+                        {{fa-icon icon='dot-circle' prefix='far'}}
+                      {{else}}
+                        {{fa-icon icon='circle' prefix='far'}}
+                      {{/if}}
+                      {{config.label}}
+                      {{labs-ui/icon-tooltip tip=config.tooltip}}
+                    </li>
+                  {{/each}}
+                </ul>
+              {{/each-in}}
+            </ul>
+          {{!-- </div>
+          <div class="cell small-4"> --}}
+            {{!-- <div class="legend">
+              <div class="legend-title">{{this.legendTitle}}</div>
+              {{#each this.stops as |stop|}}
+                <div class="legend-item">
+                  <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
+                  {{stop.label}}
+                </div>
+              {{/each}}
+            </div> --}}
+          {{!-- </div>
+        </div> --}}
+      {{/if}}
+    {{/layer-menu-item}}
+    {{!-- <button {{action "toggleMapLayersMenu"}} class="layer-groups-accordion-toggle {{if this.mapLayersMenu 'open'}}">
+      Add Map Layers
+    </button> --}}
+    {{!-- {{#if (eq this.mapLayersMenu true)}} --}}
+      <div class="overlays">
+        {{#lookup-layer-group for='subway' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='factfinder--zip-codes' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='factfinder--neighborhood-tabulation-areas' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='factfinder--community-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+        {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+          {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            active=layerGroup.model.visible
+            icon=layerGroup.model.legend.icon
+          }}
+          {{/labs-ui/layer-group-toggle}}
+        {{/lookup-layer-group}}
+
+      </div>
+    {{!-- {{/if}} --}}
+    {{drop-zone
+      url='#'
+      addedfile=(action 'addedFile')
+      removedfile=(action 'removedFile')
+      dictDefaultMessage='Drag & drop a zipped shapefile'
+      createImageThumbnails=false
+      acceptedFiles='application/zip'
+      addRemoveLinks=true
+      autoProcessQueue=false
+    }}
+  </div>
+  {{!-- <button class="button" type="button" data-toggle="example-dropdown-1">Hoverable Dropdown</button>
+  <div class="dropdown-pane" id="example-dropdown-1" data-dropdown data-hover="true" data-hover-pane="true">
+    Just some junk that needs to be said. Or not. Your choice.
+  </div> --}}
+{{!-- </div>
   <div class="grid-x grid-margin-x align-spaced" style="width: inherit;">
     <div class="cell small-1 bar-item">
-      <ul class="menu orange-bar--selector" id="draw-tools">
+      <ul class="menu toolbar--selector" id="draw-tools">
         <li class="dropdown">
           <a href="#" class="dropbtn dropbtn-left">
             Selection Method
@@ -36,7 +245,7 @@
     <div class="cell shrink bar-item">
       <ul class="menu">
         <li style="flex-grow: 0;">
-          <ul class="menu align-center orange-bar--selector five-buttons">
+          <ul class="menu align-center toolbar--selector five-buttons">
             <li class="{{if (eq this.selection.summaryLevel 'tracts') 'active'}} explode-tract">
               <a href="#" data-test-toggle-tracts {{action this.handleSummaryLevelToggle 'tracts'}}>
                 <span class="show-for-medium">Census </span>
@@ -76,7 +285,7 @@
     </div>
     <div class="cell small-2 bar-item">
       <div class="menu align-right">
-        <ul class="menu orange-bar--selector" id="more-options-button">
+        <ul class="menu toolbar--selector" id="more-options-button">
           <li>
             <a {{action "toggleAdvancedOptions"}}>
               Add Map Layers
@@ -216,6 +425,6 @@
       </div>
     {{else}}
       {{component @mode}}
-    {{/if}}
+    {{/if}} --}}
   </div>
-</div>
+{{!-- </div> --}}
