@@ -274,7 +274,7 @@ export default Service.extend({
   }).restartable(),
 
   handleSelectedFeatures(features = []) {
-    const selected = this.get('current');
+    var selected = this.get('current');
 
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
@@ -291,7 +291,8 @@ export default Service.extend({
           `;
 
           this.getEntireGeoTask.perform(sqlQuery, (json) => {
-            this.set('current', { ...selected, features: selected.features.concat(json.features)});
+            selected.features.push(json.features[0]);
+            // this.set('current', { ...selected, features: selected.features.concat(json.features)});
           });
         } else {
           selected.features.push({
@@ -307,10 +308,17 @@ export default Service.extend({
       }
     });
 
-    this.set(
-      'current',
-      { type: 'FeatureCollection', features: selected.features },
-    );
+    setTimeout(() => {  console.log(selected.features);
+      this.set(
+        'current',
+        { type: 'FeatureCollection', features: selected.features },
+      )
+    }, 1000);
+
+    // this.set(
+    //   'current',
+    //   { type: 'FeatureCollection', features: selected.features },
+    // );
   },
 
   clearSelection() {
