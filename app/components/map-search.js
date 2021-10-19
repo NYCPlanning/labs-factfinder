@@ -130,78 +130,80 @@ export default Component.extend({
 
   actions: {
     clear() {
+      console.log("CLEAR")
       this.set('searchTerms', '');
 
       const selection = this.get('selection');
       selection.set('searchResultFeature', null);
     },
 
-    goTo(result) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event' : 'search_result_clicked',
-        'search_result_label' : result.label,
-        'search_result_type' : result.type,
-      });
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Map Search',
-        eventAction: 'Search Result Clicked',
-        eventValue: this.get('searchTerms'),
-      });
-      this.$('.map-search-input').blur();
+    goTo() {
+      console.log('GO TO');
+      // window.dataLayer = window.dataLayer || [];
+      // window.dataLayer.push({
+      //   'event' : 'search_result_clicked',
+      //   'search_result_label' : result.label,
+      //   'search_result_type' : result.type,
+      // });
+      // this.get('metrics').trackEvent('GoogleAnalytics', {
+      //   eventCategory: 'Map Search',
+      //   eventAction: 'Search Result Clicked',
+      //   eventValue: this.get('searchTerms'),
+      // });
+      // this.$('.map-search-input').blur();
 
-      this.setProperties({
-        selected: 0,
-        focused: false,
-      });
+      // this.setProperties({
+      //   selected: 0,
+      //   focused: false,
+      // });
 
-      const selection = this.get('selection');
-      const map = selection.currentMapInstance;
+      // const selection = this.get('selection');
+      // const map = selection.currentMapInstance;
 
-      this.set('searchTerms', '');
+      // this.set('searchTerms', '');
 
-      if (result.type === 'tract') {
-        selection.set('searchResultFeature', result.feature);
-        this.set('searchTerms', result.feature.properties.fips);
-        this.fitBounds(result.feature, 1.2);
-      }
+      // if (result.type === 'tract') {
+      //   selection.set('searchResultFeature', result.feature);
+      //   this.set('searchTerms', result.feature.properties.fips);
+      //   this.fitBounds(result.feature, 1.2);
+      // }
 
-      if (result.type === 'block') {
-        selection.set('searchResultFeature', result.feature);
-        this.set('searchTerms', result.feature.properties.fips);
-        this.fitBounds(result.feature, 0.5);
-      }
+      // if (result.type === 'block') {
+      //   selection.set('searchResultFeature', result.feature);
+      //   this.set('searchTerms', result.feature.properties.fips);
+      //   this.fitBounds(result.feature, 0.5);
+      // }
 
-      if (result.type === 'nta') {
-        selection.set('searchResultFeature', result.feature);
-        this.set('searchTerms', result.feature.properties.ntacode);
-        this.fitBounds(result.feature, 3);
-      }
+      // if (result.type === 'nta') {
+      //   selection.set('searchResultFeature', result.feature);
+      //   this.set('searchTerms', result.feature.properties.ntacode);
+      //   this.fitBounds(result.feature, 3);
+      // }
 
-      if (result.type === 'puma') {
-        selection.set('searchResultFeature', result.feature);
-        this.set('searchTerms', result.feature.properties.puma);
-        this.fitBounds(result.feature, 3);
-      }
+      // if (result.type === 'puma') {
+      //   selection.set('searchResultFeature', result.feature);
+      //   this.set('searchTerms', result.feature.properties.puma);
+      //   this.fitBounds(result.feature, 3);
+      // }
 
-      if (result.type === 'address') {
-        const center = result.coordinates;
-        selection.set('currentAddress', center);
+      // if (result.type === 'address') {
+      //   const center = result.coordinates;
+      //   selection.set('currentAddress', center);
 
-        this.set('searchTerms', result.label);
+      //   this.set('searchTerms', result.label);
 
-        if (map) {
-          map.flyTo({
-            center,
-            zoom: 15,
-          });
-        }
-      }
+      //   if (map) {
+      //     map.flyTo({
+      //       center,
+      //       zoom: 15,
+      //     });
+      //   }
+      // }
 
-      if (result.type === 'special-purpose-district') {
-        this.set('searchTerms', result.sdname);
-        this.transitionTo('special-purpose-district', result.cartodb_id);
-      }
+      // if (result.type === 'special-purpose-district') {
+      //   this.set('searchTerms', result.sdname);
+      //   this.transitionTo('special-purpose-district', result.cartodb_id);
+      // }
     },
 
     handleFocusIn() {

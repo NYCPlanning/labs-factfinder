@@ -3,21 +3,21 @@
   {{on-click-outside (action "closeMenu")}}
 >
   <button
-    class="source-select-toggle button gray expanded no-margin"
+    class="source-select-toggle button gray"
     role="button"
     {{on "click" this.toggleOpen}}
   >
-    <div class="grid-x full">
-      <div class="cell small-11">
+    {{!-- <div class="grid-x full">
+      <div class="cell small-11"> --}}
         Data Source:
         <span class="selected-source">
           {{this.source.label}}
         </span>
-      </div>
-      <div class="cell auto" style="padding-left: 5px;">
+      {{!-- </div>
+      <div class="cell auto" style="padding-left: 5px;"> --}}
         {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
-      </div>
-    </div>
+      {{!-- </div> --}}
+    {{!-- </div> --}}
   </button>
 
   {{#if this.open}}

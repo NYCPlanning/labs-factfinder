@@ -38,11 +38,17 @@
     align-items: center;
     height: 40px;
     font-size: 0.875rem;
-    max-width: 148px;
+    max-width: 170px;
     padding: 0 0.75rem;
 
     &:after {
-      border-color: $charcoal;
+      margin-left: 0.75rem;
+      top: 0.05rem;
+      border-color: #AAAFB5 transparent transparent;
+    }
+
+    &[aria-expanded="true"]:after {
+      transform: rotate(180deg);
     }
 
     &:hover, &.active {
@@ -58,12 +64,42 @@
       border-radius: 0;
       font-size: 0.625rem;
       
-      &:first-child {
+      &:first-of-type {
         border-radius: 5px 0 0 5px;
       }
 
       &:last-of-type {
         border-radius: 0 5px 5px 0;
+      }
+
+      &:hover, &.active {
+        background-color: #ECEDEE;
+      }
+    }
+  }
+
+  .dropdown-pane {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+
+    &.button-group .button {
+      border: none;
+      border-radius: 0;
+      width: 100%;
+      font-size: 0.875rem;
+
+      &:first-of-type {
+        border-radius: 5px 5px 0 0;
+      }
+
+      &:last-of-type {
+        border-radius: 0 0 5px 5px;
+      }
+
+      svg {
+        margin: 0 5px 0 0;
+        color: $a11y-orange;
       }
     }
   }
@@ -207,30 +243,18 @@ ul .menu li.dropdown {
   // flex-wrap: wrap;
   // flex-direction: row;
 
-  .dropdown-pane {
-    border-radius: 0 0 5px 5px;
-
-    button {
-      border-radius: 0;
-      width: 100%;
-
-      svg {
-        margin: 0 5px 0 0;
-      }
-    }
-
-    &:first-child {
-      border-radius: 5px 5px 0 0;
-    }
-
-    &:last-child {
-      border-radius: 0 0 5px 5px;
-    }
-  }
+  
 
   div#selection-method-dropdown {
-    width: 143px;
+    width: 162px;
     padding: 0;
+    border-radius: 5px;
+  }
+
+  div#more-geographies-dropdown {
+    width: 134px;
+    padding: 0;
+    border-radius: 5px;
   }
 
   div#add-layers-dropdown {
@@ -254,6 +278,12 @@ ul .menu li.dropdown {
     //   width: 100%;
     //   height: 2.25rem;
     // }
+  }
+}
+
+.explorer-toolbar {
+  & .top-bar-left, & .top-bar-right {
+    position: relative;
   }
 }
 

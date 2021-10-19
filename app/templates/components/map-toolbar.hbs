@@ -4,7 +4,7 @@
 > --}}
 
 <div class="top-bar-left grid-x align-middle">
-  <button class="button" data-toggle="selection-method-dropdown">
+  <button class="button dropdown" data-toggle="selection-method-dropdown">
     Selection Method
   </button>
   <div
@@ -33,34 +33,46 @@
       {{action this.handleSummaryLevelToggle 'tracts'}}
     >
       Census Tract
-      {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
+      {{ember-tooltip side='bottom' delay=500 text='Create selection area using census tracts'}}
     </button>
     <button
       class="button {{if (eq this.selection.summaryLevel 'ntas') 'active'}}"
       {{action this.handleSummaryLevelToggle 'ntas'}}
     >
       Neighborhood Tabulation Area (NTA)
-      {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
+      {{ember-tooltip side='bottom' delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
     </button>
     <button
       class="button {{if (eq this.selection.summaryLevel 'cdtas') 'active'}}"
       {{action this.handleSummaryLevelToggle 'cdtas'}}
     >
       Community District Tabulation Area (CDTA)
-      {{ember-tooltip delay=500 text='Create selection area using census cdtas'}}
+      {{ember-tooltip side='bottom' delay=500 text='Create selection area using census cdtas'}}
     </button>
     <button
       class="button {{if (eq this.selection.summaryLevel 'districts') 'active'}}"
       {{action this.handleSummaryLevelToggle 'districts'}}
     >
       Community District (CD)
-      {{ember-tooltip delay=500 text='Create selection area using census districts'}}
+      {{ember-tooltip side='bottom' delay=500 text='Create selection area using census districts'}}
     </button>
     <button
-      class="button"
+       class="button dropdown"
+       data-toggle="more-geographies-dropdown"
     >
       More Geographies
     </button>
+    <div
+      id="more-geographies-dropdown"
+      class="dropdown-pane stacked button-group"
+      data-dropdown
+      data-hover="true"
+      data-hover-pane="true"
+    >
+      <button class="button {{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block{{ember-tooltip side='bottom' delay=500 text='Create selection area using census blocks'}}</button>
+      <button class="button {{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough{{ember-tooltip side='bottom' delay=500 text='Create selection area using boroughs'}}</button>
+      <button class="button {{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city" data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}>New York City{{ember-tooltip side='bottom' delay=500 text='Create selection area using New York CIty'}}</button>
+    </div>
   </div>
 </div>
 <div class="top-bar-right">
@@ -206,10 +218,6 @@
       autoProcessQueue=false
     }}
   </div>
-  {{!-- <button class="button" type="button" data-toggle="example-dropdown-1">Hoverable Dropdown</button>
-  <div class="dropdown-pane" id="example-dropdown-1" data-dropdown data-hover="true" data-hover-pane="true">
-    Just some junk that needs to be said. Or not. Your choice.
-  </div> --}}
 {{!-- </div>
   <div class="grid-x grid-margin-x align-spaced" style="width: inherit;">
     <div class="cell small-1 bar-item">
@@ -251,31 +259,31 @@
                 <span class="show-for-medium">Census </span>
                 Tract
               </a>
-              {{ember-tooltip delay=500 text='Create selection area using census tracts'}}
+              {{ember-tooltip side='bottom' delay=500 text='Create selection area using census tracts'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
               <a href="#" id="neighborhood" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood Tabulation Area<br /><small>(NTA)</small></a>
 
-              {{ember-tooltip delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
+              {{ember-tooltip side='bottom' delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'cdtas') 'active'}} explode-cdta" style="font-size: 0.75rem;">
               <a href="#" data-test-toggle-cdtas {{action this.handleSummaryLevelToggle 'cdtas'}} style="padding:0;">
                 <span class="show-for-medium">Community<br />District <br /></span>
                 Tabulation Area <small>(CDTA)</small>
               </a>
-              {{ember-tooltip delay=500 text='Create selection area using census cdtas'}}
+              {{ember-tooltip side='bottom' delay=500 text='Create selection area using census cdtas'}}
             </li>
             <li class="{{if (eq this.selection.summaryLevel 'districts') 'active'}} explode-district">
               <a href="#" data-test-toggle-districts {{action this.handleSummaryLevelToggle 'districts'}}>Community District<br /><small>(CD)</small></a>
-              {{ember-tooltip delay=500 text='Create selection area using census districts'}}
+              {{ember-tooltip side='bottom' delay=500 text='Create selection area using census districts'}}
             </li>
             <li class="dropdown explode-moregeos">
               <a href="#" class="dropbtn dropbtn-centered">More Geographies</a>
               <div class="dropsizer">
                 <div class="dropdown-content">
-                  <a href="#" class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block{{ember-tooltip delay=500 text='Create selection area using census blocks'}}</a>
-                  <a href="#" class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough{{ember-tooltip delay=500 text='Create selection area using boroughs'}}</a>
-                  <a href="#" class="{{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city" data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}>New York City{{ember-tooltip delay=500 text='Create selection area using New York CIty'}}</a>
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block{{ember-tooltip side='bottom' delay=500 text='Create selection area using census blocks'}}</a>
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough{{ember-tooltip side='bottom' delay=500 text='Create selection area using boroughs'}}</a>
+                  <a href="#" class="{{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city" data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}>New York City{{ember-tooltip side='bottom' delay=500 text='Create selection area using New York CIty'}}</a>
                 </div>
               </div>
             </li>

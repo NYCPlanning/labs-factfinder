@@ -7,17 +7,17 @@
     role="button"
     {{on "click" this.toggleOpen}}
   >
-    <div class="grid-x full">
-      <div class="cell small-11">
+    {{!-- <div class="grid-x full">
+      <div class="cell small-11"> --}}
         Select Topics:
         <span class="topic-count">
           {{this.numSelected}} Selected
         </span>
-      </div>
-      <div class="cell auto">
+      {{!-- </div>
+      <div class="cell auto"> --}}
         {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
-      </div>
-    </div>
+      {{!-- </div> --}}
+    {{!-- </div> --}}
   </button>
 
   {{#if this.open}}

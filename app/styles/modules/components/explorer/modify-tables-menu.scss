@@ -38,12 +38,13 @@
 }
 
 .ember-power-select-trigger {
-  min-width: 250px !important;
-  width: fit-content;
-  max-width: 425px;
-  padding: 6px 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 40px;
+  padding: 0 0.75rem;
   border-radius: 5px;
-  background-color: #ecedee;
-  color: $dark-gray;
-  font-weight: normal;
+  font-size: 0.875rem;
+  background-color: $off-white;
+  color: $charcoal;
 }
