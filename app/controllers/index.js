@@ -170,7 +170,7 @@ export default Controller.extend({
     const selection = this.get('selection');
 
     if (!this.get('isDrawing')) {
-      selection.handleSelectedFeatures([feature]);
+      selection.handleSelectedFeatures.perform([feature]);
     }
   },
 
@@ -200,7 +200,7 @@ export default Controller.extend({
 
     carto.SQL(SQL, 'geojson', 'post')
       .then((FC) => {
-        selection.handleSelectedFeatures(FC.features);
+        selection.handleSelectedFeatures.perform(FC.features);
 
         this.get('metrics').trackEvent('GoogleAnalytics', {
           eventCategory: 'Draw',
