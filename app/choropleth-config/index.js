@@ -6,15 +6,27 @@ const choroplethConfigs = [
     label: 'Population Density',
     tooltip: 'Persons per acre',
     legendTitle: 'Persons per Acre',
-    stops: ['#e54444',25,'#e56d44', 50,'#e99963', 100,'#efc68a', 150,'#f2f2a2'],
-  },  
+    stops: [
+      '#f2f2a2', 25,
+      '#efc68a', 50,
+      '#e99963', 100,
+      '#e56d44', 150,
+      '#e54444'
+    ],
+  },
   {
     group: 'Demographic (ACS)',
     id: 'pop65pl1',
     label: '65 Years and Over',
     tooltip: 'Population 65 years and over',
     legendTitle: 'Population 65 years and over',
-    stops: ['#e54444',5000,'#e56d44',8000,'#e99963', 11000, '#efc68a',14000,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 5000,
+      '#efc68a', 8000,
+      '#e99963',11000,
+      '#e56d44', 14000,
+      '#e54444'
+    ],
   },
   {
     group: 'Social (ACS)',
@@ -22,7 +34,13 @@ const choroplethConfigs = [
     label: 'Bachelor\'s Degree or Higher',
     tooltip: 'Population 25 years and over with bachelor\'s degree or higher',
     legendTitle: 'Population 25 years and over with bachelor\'s degree or higher',
-    stops: ['#e54444',10000,'#e56d44',20000,'#e99963', 30000, '#efc68a',45000,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 10000,
+      '#efc68a', 20000,
+      '#e99963', 30000,
+      '#e56d44', 45000,
+      '#e54444'
+    ],
   },
   {
     group: 'Social (ACS)',
@@ -31,7 +49,13 @@ const choroplethConfigs = [
     label: 'Bachelor\'s Degree or Higher (percent)',
     tooltip: 'Percent of population 25 years and over with bachelor\'s degree or higher',
     legendTitle: 'Percent of population 25 years and over with bachelor\'s degree or higher',
-    stops: ['#e54444',25,'#e56d44',40,'#e99963', 50, '#efc68a',80,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 25,
+      '#efc68a', 40,
+      '#e99963', 50,
+      '#e56d44', 80,
+      '#e54444'
+    ],
   },
   {
     group: 'Social (ACS)',
@@ -40,7 +64,13 @@ const choroplethConfigs = [
     label: 'Foreign-born (percent)',
     tooltip: 'Percent of population that is foreign-born',
     legendTitle: 'Percent foreign-born population',
-    stops: ['#e54444',30,'#e56d44',40,'#e99963', 50, '#efc68a',60,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 30,
+      '#efc68a', 40,
+      '#e99963', 50,
+      '#e56d44', 60,
+      '#e54444'
+    ],
   },
   {
     group: 'Social (ACS)',
@@ -48,7 +78,13 @@ const choroplethConfigs = [
     label: 'Limited English Proficiency (LEP)',
     tooltip: 'Population 5 years and over who speak English "less than very well"',
     legendTitle: 'Population 5 years and over who speak English "less than very well"',
-    stops: ['#e54444',8000,'#e56d44',16000,'#e99963', 24000, '#efc68a',32000,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 8000,
+      '#efc68a', 16000,
+      '#e99963', 24000,
+      '#e56d44', 32000,
+      '#e54444'
+    ],
   },
   {
     group: 'Economic (ACS)',
@@ -56,8 +92,13 @@ const choroplethConfigs = [
     label: 'Below Poverty',
     tooltip: 'Population whose income is below the poverty level',
     legendTitle: 'Population below poverty level',
-    stops: ['#e54444',5000,'#e56d44',10000,'#e99963', 15000, '#efc68a',21000,'#f2f2a2'],
-
+    stops: [
+      '#f2f2a2', 5000,
+      '#efc68a', 10000,
+      '#e99963', 15000,
+      '#e56d44', 21000,
+      '#e54444'
+    ],
   },
   {
     group: 'Economic (ACS)',
@@ -66,7 +107,13 @@ const choroplethConfigs = [
     label: 'Below Poverty (percent)',
     tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
-    stops: ['#e54444',15,'#e56d44',25,'#e99963', 32, '#efc68a',44,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 15,
+      '#efc68a', 25,
+      '#e99963', 32,
+      '#e56d44', 44,
+      '#e54444'
+    ],
   },
   {
     group: 'Housing (ACS)',
@@ -74,7 +121,13 @@ const choroplethConfigs = [
     label: 'Median Gross Rent',
     tooltip: 'Median gross rent (in 2018 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
-    stops: ['#e54444',1200,'#e56d44',1500,'#e99963', 2000, '#efc68a',2500,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 1200,
+      '#efc68a', 1500,
+      '#e99963', 2000,
+      '#e56d44', 2500,
+      '#e54444'
+    ],
   },
   // Count
   {
@@ -83,7 +136,7 @@ const choroplethConfigs = [
     label: 'Population',
     tooltip: 'Total population, 2020',
     legendTitle: 'Total population, 2020',
-    stops: ['#cb1d00',30000,'#e54444',40000,'#e56d44',55000,'#e99963',70000,'#efc68a',85000,'#f2f2a2'],
+    stops: ['#f2f2a2',30000,'#efc68a',40000,'#e99963',55000,'#e56d44',70000,'#e54444',85000,'#cb1d00']
   },
   {
     group: 'Census',
@@ -91,7 +144,13 @@ const choroplethConfigs = [
     label: 'Under 18',
     tooltip: 'Population under 18 years, 2020',
     legendTitle: 'Under 18',
-    stops: ['#e54444',10000,'#e56d44',15000,'#e99963',20000,'#efc68a',25000,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 10000,
+      '#efc68a', 15000,
+      '#e99963', 20000,
+      '#e56d44', 25000,
+      '#e54444'
+    ],
   },
   {
     group: 'Census',
@@ -99,8 +158,14 @@ const choroplethConfigs = [
     label: 'White Non-Hispanic',
     tooltip: 'White non-Hispanic population, 2020',
     legendTitle: 'White Non-Hispanic',
-    stops: ['#cb1d00',5000,'#e54444',10000,'#e56d44',20000,'#e99963',30000,'#efc68a',40000,'#f2f2a2'],
-
+    stops: [
+      '#f2f2a2', 5000,
+      '#efc68a', 10000,
+      '#e99963', 20000,
+      '#e56d44', 30000,
+      '#e54444', 40000,
+      '#cb1d00'
+    ]
   },
   {
     group: 'Census',
@@ -108,7 +173,14 @@ const choroplethConfigs = [
     label: 'Black Non-Hispanic',
     tooltip: 'Black non-Hispanic population, 2020',
     legendTitle: 'Black Non-Hispanic',
-    stops: ['#cb1d00',5000,'#e54444',10000,'#e56d44',20000,'#e99963',30000,'#efc68a',40000,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 5000,
+      '#efc68a', 10000,
+      '#e99963', 20000,
+      '#e56d44', 30000,
+      '#e54444', 40000,
+      '#cb1d00'
+    ]
   },
   {
     group: 'Census',
@@ -116,7 +188,14 @@ const choroplethConfigs = [
     label: 'Asian Non-Hispanic',
     tooltip: 'Asian non-Hispanic population, 2020',
     legendTitle: 'Asian Non-Hispanic',
-    stops: ['#cb1d00',5000,'#e54444',10000,'#e56d44',20000,'#e99963',30000,'#efc68a',40000,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 5000,
+      '#efc68a', 10000,
+      '#e99963', 20000,
+      '#e56d44', 30000,
+      '#e54444', 40000,
+      '#cb1d00'
+    ],
   },
   {
     group: 'Census',
@@ -124,7 +203,14 @@ const choroplethConfigs = [
     label: 'Hispanic',
     tooltip: 'Hispanic population, 2020',
     legendTitle: 'Hispanic',
-    stops: ['#cb1d00',5000,'#e54444',10000,'#e56d44',20000,'#e99963',30000,'#efc68a',40000,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 5000,
+      '#efc68a', 10000,
+      '#e99963', 20000,
+      '#e56d44', 30000,
+      '#e54444', 40000,
+      '#cb1d00'
+    ],
   },
   // Percent
   {
@@ -133,7 +219,13 @@ const choroplethConfigs = [
     label: 'Under 18 (percent)',
     tooltip: 'Percent of the population under 18 years, 2020',
     legendTitle: 'Under 18 (percent)',
-    stops: ['#e54444',15,'#e56d44',20,'#e99963',25,'#efc68a',30,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 15,
+      '#efc68a', 20,
+      '#e99963', 25,
+      '#e56d44', 30,
+      '#e54444'
+    ],
     isPercent: true,
   },
   {
@@ -142,7 +234,14 @@ const choroplethConfigs = [
     label: 'White Non-Hispanic (percent)',
     tooltip: 'Percent of the population that is White non-Hispanic, 2020',
     legendTitle: 'White Non-Hispanic (percent)',
-    stops: ['#cb1d00',20,'#e54444',35,'#e56d44',50,'#e99963',65,'#efc68a',80,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 20,
+      '#efc68a', 35,
+      '#e99963', 50,
+      '#e56d44', 65,
+      '#e54444', 80,
+      '#cb1d00'
+    ],
     isPercent: true,
   },
   {
@@ -151,7 +250,14 @@ const choroplethConfigs = [
     label: 'Black Non-Hispanic (percent)',
     tooltip: 'Percent of the population that is Black non-Hispanic, 2020',
     legendTitle: 'Black Non-Hispanic (percent)',
-    stops: ['#cb1d00',20,'#e54444',35,'#e56d44',50,'#e99963',65,'#efc68a',80,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 20,
+      '#efc68a', 35,
+      '#e99963', 50,
+      '#e56d44', 65,
+      '#e54444', 80,
+      '#cb1d00'
+    ],
     isPercent: true,
   },
   {
@@ -160,7 +266,14 @@ const choroplethConfigs = [
     label: 'Asian Non-Hispanic (percent)',
     tooltip: 'Percent of the population that is Asian non-Hispanic, 2020',
     legendTitle: 'Asian Non-Hispanic (percent)',
-    stops: ['#cb1d00',20,'#e54444',35,'#e56d44',50,'#e99963',65,'#efc68a',80,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 20,
+      '#efc68a', 35,
+      '#e99963', 50,
+      '#e56d44', 65,
+      '#e54444', 80,
+      '#cb1d00'
+    ],
     isPercent: true,
   },
   {
@@ -169,7 +282,14 @@ const choroplethConfigs = [
     label: 'Hispanic (percent)',
     tooltip: 'Percent of the population that is Hispanic, 2020',
     legendTitle: 'Hispanic (percent)',
-    stops: ['#cb1d00',20,'#e54444',35,'#e56d44',50,'#e99963',65,'#efc68a',80,'#f2f2a2'],
+    stops: [
+      '#f2f2a2', 20,
+      '#efc68a', 35,
+      '#e99963', 50,
+      '#e56d44', 65,
+      '#e54444', 80,
+      '#cb1d00'
+    ],
     isPercent: true,
   },
   // Change
