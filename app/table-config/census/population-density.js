@@ -25,6 +25,7 @@ export default [
   {
     data: 'popperacre',
     title: 'Population per acre',
+    tooltip: 'Total population divided by land area (in acres)',
     decimal: 1,
     special: true,
   }

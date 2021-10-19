@@ -117,6 +117,15 @@
               <div class="cell large-auto">
                 <h3 class="header-medium">
                   {{subtopic.label}}
+                  {{#if subtopic.tooltip}}
+                    <span>
+                      {{fa-icon icon='question-circle' transform='shrink-2'}}
+                      {{ember-tooltip
+                        text=subtopic.tooltip
+                        side='right'
+                      }}
+                    </span>
+                  {{/if}}
                 </h3>
                 {{data-table
                   mode=this.mode

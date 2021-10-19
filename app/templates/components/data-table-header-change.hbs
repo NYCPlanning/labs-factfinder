@@ -153,18 +153,36 @@
         <th class="text-right cell-border-bottom">Percent</th>
         <th class="text-right cell-border-bottom">Number</th>
         <th class="text-right cell-border-bottom">Percent</th>
-        <th class="text-right cell-border-bottom">Number</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            Number
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
+              side='left'
+            }}
+          </span>
+        </th>
         <th class="text-right cell-border-bottom">
           <span>
             Percent
             {{fa-icon icon='question-circle' transform='shrink-2'}}
             {{ember-tooltip
-              text='2020 number minus 2010 number, divided by 2010 number. Quotient multiplied by 100.'
+              text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow). 2020 number minus 2010 number, divided by 2010 number. Quotient multiplied by 100.'
+              side='bottom'
+            }}
+          </span>
+        </th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            Pctg. Pt.
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
               side='left'
             }}
           </span>
         </th>
-        <th class="text-right cell-border-bottom">Pctg. Pt.</th>
       </tr>
     {{/if}}
   </thead>
