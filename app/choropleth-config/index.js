@@ -398,9 +398,15 @@ const builtConfigs = choroplethConfigs.map((config) => {
     stops,
     paintFill: {
       'fill-color': [
-        'step',
-        ['get', id],
-        ...stops,
+        "match",
+        ['typeof', ['get', id]],
+        "number",
+        [
+          'step',
+          ['get', id],
+          ...stops,
+        ],
+        ["rgba", 0, 0, 0, 0]
       ],
     },
     paintLine: {
