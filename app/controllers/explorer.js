@@ -25,7 +25,7 @@ export default class ExplorerController extends Controller {
     'showCharts'
   ];
 
-  @tracked showCharts = true;
+  @tracked showCharts = false;
 
   @tracked sourceId = 'decennial-current';
 

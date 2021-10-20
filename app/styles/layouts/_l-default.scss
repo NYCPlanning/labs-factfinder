@@ -30,6 +30,14 @@ body {
   height: 100vh;
   background-color: $body-background;
 
+  .about a {
+    color: $teal;
+
+    &:hover {
+      color: #005053;
+    }
+  }
+
   @include breakpoint(large) {
     z-index: 1;
     overflow: hidden;

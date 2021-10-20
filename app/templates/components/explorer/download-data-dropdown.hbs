@@ -1,21 +1,16 @@
-<button id="download-button" class="button grid-x full no-margin {{if this.open 'active'}}" {{on "click" this.toggleOpen}}>
-  {{ember-tooltip delay=500 text='Download tables on selected topics.' side='bottom'}}
+<button id="download-button" class="button" {{on "click" this.toggleOpen}}>
+  {{ember-tooltip delay=500 text='Download tables for selected geographies and topics.' side='bottom-end'}}
   {{fa-icon icon="download" prefix="fas" transform='grow-10'}}
-  <div class="cell small-11">
-    <span class="notification-count">
-      {{this.numSelected}}
-    </span>
-  </div>
+  <span class="notification-count">
+    {{this.numSelected}}
+  </span>
 </button>
 
 {{#if this.open}}
   <div
-   class="download-data-dropdown"
+   id="download-data-dropdown"
    {{on-click-outside (action "closeMenu")}}
   >
-    <div class="triangle">
-    </div>
-
     <div class="download-data-dropdown-head">
       Data Download Summary
     </div>

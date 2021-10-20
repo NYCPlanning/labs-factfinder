@@ -16,33 +16,23 @@ $logo-height-medium: rem-calc(36);
     padding: 0 0.75rem;
   }
 
-  // .branding {
-  //   padding-top: $global-margin;
-  //   padding-bottom: $global-margin;
-  // }
-
   .dcp-logo {
     height: rem-calc(24);
-    // float: left;
     margin-right: $global-margin;
   }
 
-  h1 a {
+  h1 {
     font-size: 1rem;
-    color: $black;
-    font-weight: $global-weight-bold;
+    line-height: 1rem;
+    margin-bottom: 0;
+
+    a {
+      font-size: 1rem;
+      color: $black;
+      font-weight: $global-weight-bold;
+    }
   }
-
-  // .site-title {
-  //   font-size: $logo-height-small*0.8;
-    
-  //   line-height: 1.5;
-  //   // color: $teal;
-
-  //   @include breakpoint(medium) {
-  //     // font-size: $logo-height-medium*0.8;
-  //   }
-  // }
+  
 
   .site-subtitle {
     font-size: 0.5em;
@@ -76,8 +66,7 @@ $logo-height-medium: rem-calc(36);
   
           a {
             color: $gray;
-            // line-height: 1.5;
-            // padding: (rem-calc(11)+$global-margin) rem-calc(20);
+            padding: 0 1rem;
             font-size:  rem-calc(14);
             font-weight: $global-weight-bold;
             height: 100%;

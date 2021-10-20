@@ -1,8 +1,3 @@
-{{!-- <div
-  id="custom-map-study-toolbar"
-  class="grid-container fluid orange-bar-custom-map-study"
-> --}}
-
 <div class="top-bar-left grid-x align-middle">
   <button class="button dropdown" data-toggle="selection-method-dropdown">
     Selection Method
@@ -14,8 +9,8 @@
     data-hover="true"
     data-hover-pane="true"
   >
-    {{#ember-tooltip delay=200}}
-      <span class="text-tiny nowrap">Create selection using drawing tool</span>
+    {{#ember-tooltip side="bottom" delay=200}}
+      <span class="text-tiny nowrap">Create a selection using drawing tools</span>
     {{/ember-tooltip}}
     <button class="button {{if (eq @drawMode 'polygon') 'active'}}">
       {{fa-icon icon='object-group' prefix='far'}}
@@ -33,28 +28,28 @@
       {{action this.handleSummaryLevelToggle 'tracts'}}
     >
       Census Tract
-      {{ember-tooltip side='bottom' delay=500 text='Create selection area using census tracts'}}
+      {{ember-tooltip side='bottom-start' delay=500 text=' Avoid using data for an individual tract, best used in aggregate.'}}
     </button>
     <button
       class="button {{if (eq this.selection.summaryLevel 'ntas') 'active'}}"
       {{action this.handleSummaryLevelToggle 'ntas'}}
     >
       Neighborhood Tabulation Area (NTA)
-      {{ember-tooltip side='bottom' delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
+      {{ember-tooltip side='bottom' delay=500 text='Approximations of NYC neighborhoods. NTAs are built out of tracts, and fit within CDTAs.'}}
     </button>
     <button
       class="button {{if (eq this.selection.summaryLevel 'cdtas') 'active'}}"
       {{action this.handleSummaryLevelToggle 'cdtas'}}
     >
       Community District Tabulation Area (CDTA)
-      {{ember-tooltip side='bottom' delay=500 text='Create selection area using census cdtas'}}
+      {{ember-tooltip side='bottom' delay=500 text='Approximations of NYC Community Districts, built out of tracts. Best used for accessing ACS data. For official NYC Community District data, use CDs. '}}
     </button>
     <button
       class="button {{if (eq this.selection.summaryLevel 'districts') 'active'}}"
       {{action this.handleSummaryLevelToggle 'districts'}}
     >
       Community District (CD)
-      {{ember-tooltip side='bottom' delay=500 text='Create selection area using census districts'}}
+      {{ember-tooltip side='bottom' delay=500 text='Official NYC Community Districts. Only decennial census data are available. For ACS data, use CDTAs, which are approximations of CDs.'}}
     </button>
     <button
        class="button dropdown"
@@ -69,15 +64,32 @@
       data-hover="true"
       data-hover-pane="true"
     >
-      <button class="button {{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block{{ember-tooltip side='bottom' delay=500 text='Create selection area using census blocks'}}</button>
-      <button class="button {{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough{{ember-tooltip side='bottom' delay=500 text='Create selection area using boroughs'}}</button>
-      <button class="button {{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city" data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}>New York City{{ember-tooltip side='bottom' delay=500 text='Create selection area using New York CIty'}}</button>
+      <button
+        class="button {{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block"
+        data-test-toggle-blocks
+        {{action this.handleSummaryLevelToggle 'blocks'}}
+      >
+        Census Block
+        {{ember-tooltip side='bottom' delay=500 text='Only decennial census data are available. Avoid using data for an individual block, best used in aggregate.'}}
+      </button>
+      <button
+        class="button {{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough"
+        data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}
+      >
+        Borough
+      </button>
+      <button
+        class="button {{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city"
+        data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}
+      >
+        New York City
+      </button>
     </div>
   </div>
 </div>
 <div class="top-bar-right">
   <button
-    class="button"
+    class="button dropdown"
     data-toggle="add-layers-dropdown"
     {{action "toggleMapLayersMenu"}}
   >
@@ -95,118 +107,97 @@
       for='choropleths' as |layerGroup|
     }}
       {{#if layerGroup.model.visible}}
-        {{!-- <div class="grid-x">
-          <div class="cell small-8"> --}}
-            <div class="legend">
-              <div class="legend-title">{{this.legendTitle}}</div>
-              {{#each this.stops as |stop|}}
-                <div class="legend-item">
-                  <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon transform="grow-6" icon='square'}}</span>
-                  {{stop.label}}
-                </div>
-              {{/each}}
+        <div class="legend">
+          <div class="legend-title">{{this.legendTitle}}</div>
+          {{#each this.stops as |stop|}}
+            <div class="legend-item">
+              <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon transform="grow-6" icon='square'}}</span>
+              {{stop.label}}
             </div>
-            <ul class="thematic-map-options">
-              {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
-                <h5>{{group}}</h5>
-                <ul class="no-bullet">
-                  {{#each configs as |config|}}
-                    <li {{
-                      action (
-                        queue
-                          (action this.setChoroplethMode config.id)
-                          (action layerGroup.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
-                          (action layerGroup.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
-                      )
-                    }}>
-                      {{#if (eq this.choroplethMode config.id)}}
-                        {{fa-icon icon='dot-circle' prefix='far'}}
-                      {{else}}
-                        {{fa-icon icon='circle' prefix='far'}}
-                      {{/if}}
-                      {{config.label}}
-                      {{labs-ui/icon-tooltip tip=config.tooltip}}
-                    </li>
-                  {{/each}}
-                </ul>
-              {{/each-in}}
-            </ul>
-          {{!-- </div>
-          <div class="cell small-4"> --}}
-            {{!-- <div class="legend">
-              <div class="legend-title">{{this.legendTitle}}</div>
-              {{#each this.stops as |stop|}}
-                <div class="legend-item">
-                  <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
-                  {{stop.label}}
-                </div>
+          {{/each}}
+        </div>
+        <ul class="thematic-map-options">
+          {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
+            <h5>{{group}}</h5>
+            <ul class="no-bullet">
+              {{#each configs as |config|}}
+                <li {{
+                  action (
+                    queue
+                      (action this.setChoroplethMode config.id)
+                      (action layerGroup.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
+                      (action layerGroup.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
+                  )
+                }}>
+                  {{#if (eq this.choroplethMode config.id)}}
+                    {{fa-icon icon='dot-circle' prefix='far'}}
+                  {{else}}
+                    {{fa-icon icon='circle' prefix='far'}}
+                  {{/if}}
+                  {{config.label}}
+                  {{labs-ui/icon-tooltip tip=config.tooltip}}
+                </li>
               {{/each}}
-            </div> --}}
-          {{!-- </div>
-        </div> --}}
+            </ul>
+          {{/each-in}}
+        </ul>
       {{/if}}
     {{/layer-menu-item}}
-    {{!-- <button {{action "toggleMapLayersMenu"}} class="layer-groups-accordion-toggle {{if this.mapLayersMenu 'open'}}">
-      Add Map Layers
-    </button> --}}
-    {{!-- {{#if (eq this.mapLayersMenu true)}} --}}
-      <div class="overlays">
-        {{#lookup-layer-group for='subway' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+    <div>
+      {{#lookup-layer-group for='subway' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
 
-        {{#lookup-layer-group for='factfinder--zip-codes' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+      {{#lookup-layer-group for='factfinder--zip-codes' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
 
-        {{#lookup-layer-group for='factfinder--neighborhood-tabulation-areas' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+      {{#lookup-layer-group for='factfinder--neighborhood-tabulation-areas' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
 
-        {{#lookup-layer-group for='factfinder--community-districts' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+      {{#lookup-layer-group for='factfinder--community-districts' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
 
-        {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
+      {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
 
-        {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
-          {{#labs-ui/layer-group-toggle
-            label=layerGroup.model.legend.label
-            active=layerGroup.model.visible
-            icon=layerGroup.model.legend.icon
-          }}
-          {{/labs-ui/layer-group-toggle}}
-        {{/lookup-layer-group}}
-
-      </div>
-    {{!-- {{/if}} --}}
+      {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+    </div>
     {{drop-zone
       url='#'
       addedfile=(action 'addedFile')
@@ -218,221 +209,4 @@
       autoProcessQueue=false
     }}
   </div>
-{{!-- </div>
-  <div class="grid-x grid-margin-x align-spaced" style="width: inherit;">
-    <div class="cell small-1 bar-item">
-      <ul class="menu toolbar--selector" id="draw-tools">
-        <li class="dropdown">
-          <a href="#" class="dropbtn dropbtn-left">
-            Selection Method
-          </a>
-          <div class="dropsizer">
-            <div class="dropdown-content dropdown-content-left">
-              {{#ember-tooltip delay=200}}
-                <span class="text-tiny nowrap">Create selection using drawing tool</span>
-              {{/ember-tooltip}}
-
-              <a href="#" class="{{if (eq @drawMode 'polygon') 'active'}}" onclick={{fn @handleDrawButtonClick 'polygon'}}>
-                {{fa-icon icon='object-group' prefix='far'}}
-                <span class="hide-for-medium">Draw</span> Polygon
-              </a>
-              <a href="#" class="{{if (eq @drawMode 'radius') 'active'}}" onclick={{fn @handleDrawButtonClick 'radius'}}>
-                {{fa-icon icon='dot-circle' prefix='far'}}
-                <span class="hide-for-medium">Draw</span> Radius
-              </a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="cell small-3 bar-item">
-      <div class="search">
-        <MapSearch />
-      </div>
-    </div>
-    <div class="cell shrink bar-item">
-      <ul class="menu">
-        <li style="flex-grow: 0;">
-          <ul class="menu align-center toolbar--selector five-buttons">
-            <li class="{{if (eq this.selection.summaryLevel 'tracts') 'active'}} explode-tract">
-              <a href="#" data-test-toggle-tracts {{action this.handleSummaryLevelToggle 'tracts'}}>
-                <span class="show-for-medium">Census </span>
-                Tract
-              </a>
-              {{ember-tooltip side='bottom' delay=500 text='Create selection area using census tracts'}}
-            </li>
-            <li class="{{if (eq this.selection.summaryLevel 'ntas') 'active'}} explode-nta">
-              <a href="#" id="neighborhood" data-test-toggle-ntas {{action this.handleSummaryLevelToggle 'ntas'}}>Neighborhood Tabulation Area<br /><small>(NTA)</small></a>
-
-              {{ember-tooltip side='bottom' delay=500 text='Create selection area using Neighborhood Tabulation Areas'}}
-            </li>
-            <li class="{{if (eq this.selection.summaryLevel 'cdtas') 'active'}} explode-cdta" style="font-size: 0.75rem;">
-              <a href="#" data-test-toggle-cdtas {{action this.handleSummaryLevelToggle 'cdtas'}} style="padding:0;">
-                <span class="show-for-medium">Community<br />District <br /></span>
-                Tabulation Area <small>(CDTA)</small>
-              </a>
-              {{ember-tooltip side='bottom' delay=500 text='Create selection area using census cdtas'}}
-            </li>
-            <li class="{{if (eq this.selection.summaryLevel 'districts') 'active'}} explode-district">
-              <a href="#" data-test-toggle-districts {{action this.handleSummaryLevelToggle 'districts'}}>Community District<br /><small>(CD)</small></a>
-              {{ember-tooltip side='bottom' delay=500 text='Create selection area using census districts'}}
-            </li>
-            <li class="dropdown explode-moregeos">
-              <a href="#" class="dropbtn dropbtn-centered">More Geographies</a>
-              <div class="dropsizer">
-                <div class="dropdown-content">
-                  <a href="#" class="{{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block" data-test-toggle-blocks {{action this.handleSummaryLevelToggle 'blocks'}}>Census Block{{ember-tooltip side='bottom' delay=500 text='Create selection area using census blocks'}}</a>
-                  <a href="#" class="{{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough" data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}>Borough{{ember-tooltip side='bottom' delay=500 text='Create selection area using boroughs'}}</a>
-                  <a href="#" class="{{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city" data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}>New York City{{ember-tooltip side='bottom' delay=500 text='Create selection area using New York CIty'}}</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="cell small-2 bar-item">
-      <div class="menu align-right">
-        <ul class="menu toolbar--selector" id="more-options-button">
-          <li>
-            <a {{action "toggleAdvancedOptions"}}>
-              Add Map Layers
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    {{#if (eq @mode 'direct-select')}}
-      <div class="more-options {{unless this.advanced 'closed'}}" style="color:black">
-        {{#unless this.closed}}
-              {{#layer-menu-item
-                defaultFill=this.choroplethPaintFill
-                defaultLine=this.choroplethPaintLine
-                for='choropleths' as |layerGroup|
-              }}
-                {{#if layerGroup.model.visible}}
-                  <div class="grid-x">
-                    <div class="cell small-8">
-                      <ul class="radio-buttons-list">
-                        {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
-                          <h5 style="margin:0.5rem 0 0;font-size:1em;">{{group}}</h5>
-                          <ul class="no-bullet">
-                            {{#each configs as |config|}}
-                              <li {{
-                                action (
-                                  queue
-                                    (action this.setChoroplethMode config.id)
-                                    (action layerGroup.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
-                                    (action layerGroup.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
-                                )
-                              }}>
-                                {{#if (eq this.choroplethMode config.id)}}
-                                  {{fa-icon icon='dot-circle' prefix='far'}}
-                                {{else}}
-                                  {{fa-icon icon='circle' prefix='far'}}
-                                {{/if}}
-                                {{config.label}}
-                                {{labs-ui/icon-tooltip tip=config.tooltip}}
-                              </li>
-                            {{/each}}
-                          </ul>
-                        {{/each-in}}
-                      </ul>
-                    </div>
-                    <div class="cell small-4">
-                      <div class="legend">
-                        <div class="legend-title">{{this.legendTitle}}</div>
-                        {{#each this.stops as |stop|}}
-                          <div class="legend-item">
-                            <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon icon='square'}}</span>
-                            {{stop.label}}
-                          </div>
-                        {{/each}}
-                      </div>
-                    </div>
-                  </div>
-                {{/if}}
-              {{/layer-menu-item}}
-          <a {{action "toggleMapLayersMenu"}} class="layer-groups-accordion-toggle {{if this.mapLayersMenu 'open'}}">
-            Add Map Layers
-          </a>
-
-          {{#if (eq this.mapLayersMenu true)}}
-            <div>
-              {{#lookup-layer-group for='subway' as |layerGroup|}}
-                {{#labs-ui/layer-group-toggle
-                  label=layerGroup.model.legend.label
-                  active=layerGroup.model.visible
-                  icon=layerGroup.model.legend.icon
-                }}
-                {{/labs-ui/layer-group-toggle}}
-              {{/lookup-layer-group}}
-
-              {{#lookup-layer-group for='factfinder--zip-codes' as |layerGroup|}}
-                {{#labs-ui/layer-group-toggle
-                  label=layerGroup.model.legend.label
-                  active=layerGroup.model.visible
-                  icon=layerGroup.model.legend.icon
-                }}
-                {{/labs-ui/layer-group-toggle}}
-              {{/lookup-layer-group}}
-
-              {{#lookup-layer-group for='factfinder--neighborhood-tabulation-areas' as |layerGroup|}}
-                {{#labs-ui/layer-group-toggle
-                  label=layerGroup.model.legend.label
-                  active=layerGroup.model.visible
-                  icon=layerGroup.model.legend.icon
-                }}
-                {{/labs-ui/layer-group-toggle}}
-              {{/lookup-layer-group}}
-
-              {{#lookup-layer-group for='factfinder--community-districts' as |layerGroup|}}
-                {{#labs-ui/layer-group-toggle
-                  label=layerGroup.model.legend.label
-                  active=layerGroup.model.visible
-                  icon=layerGroup.model.legend.icon
-                }}
-                {{/labs-ui/layer-group-toggle}}
-              {{/lookup-layer-group}}
-
-              {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
-                {{#labs-ui/layer-group-toggle
-                  label=layerGroup.model.legend.label
-                  active=layerGroup.model.visible
-                  icon=layerGroup.model.legend.icon
-                }}
-                {{/labs-ui/layer-group-toggle}}
-              {{/lookup-layer-group}}
-
-              {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
-                {{#labs-ui/layer-group-toggle
-                  label=layerGroup.model.legend.label
-                  active=layerGroup.model.visible
-                  icon=layerGroup.model.legend.icon
-                }}
-                {{/labs-ui/layer-group-toggle}}
-              {{/lookup-layer-group}}
-
-            </div>
-          {{/if}}
-          {{drop-zone
-            url='#'
-            addedfile=(action 'addedFile')
-            removedfile=(action 'removedFile')
-            dictDefaultMessage='Drag & drop a zipped shapefile'
-            createImageThumbnails=false
-            acceptedFiles='application/zip'
-            addRemoveLinks=true
-            autoProcessQueue=false
-          }}
-
-          {{yield}}
-
-        {{/unless}}
-      </div>
-    {{else}}
-      {{component @mode}}
-    {{/if}} --}}
-  </div>
-{{!-- </div> --}}
+</div>

@@ -29,7 +29,7 @@
       {{/if}}
     </li>
     {{#each rows as |result|}}
-      <button class="result {{if (eq this.selected result.id) 'highlighted-result'}}" {{action 'clear'}}>
+      <li role="button" class="result {{if (eq this.selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
         {{#if (eq type 'block')}}
           <span class="icon polygon small"></span>
         {{else if (eq type 'tract')}}
@@ -42,7 +42,7 @@
           {{fa-icon icon="map-pin"}}
         {{/if}}
         {{result.label}}
-      </button>
+      </li>
     {{/each}}
   {{/each-in}}
 {{/if}}

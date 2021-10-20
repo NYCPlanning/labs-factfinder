@@ -1,30 +1,8 @@
-{{!-- <div class="top-bar"> --}}
-  <div class="top-bar-left grid-x grid-padding-x align-middle">
-    {{!-- <div {{action (mut this.closed) true preventDefault=false}} class="branding cell {{if this.responsiveNav (concat this.responsiveSize '-auto shrink') 'auto'}}"> --}}
-      <a class="dcp-link" href="http://www1.nyc.gov/site/planning/index.page"><img class="dcp-logo" src="https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png" alt="NYC Planning"></a>
-      {{yield (hash title = (component 'labs-ui/site-title'))}}
-    {{!-- </div> --}}
-  </div>
-  <div class="top-bar-right">
-    {{#if this.responsiveNav}}
-      <div class="cell auto hide-for-{{this.responsiveSize}} text-right">
-        <button class="responsive-nav-toggler hide-for-print" type="button" {{action (mut this.closed) (not this.closed)}}>Menu</button>
-      </div>
-    {{/if}}
-
-    <nav {{action (mut this.closed) (not this.closed) preventDefault=false}} class="cell {{if this.responsiveNav (concat this.responsiveSize '-shrink responsive') 'shrink'}} {{if (and this.responsiveNav this.closed) (concat 'show-for-' this.responsiveSize)}} hide-for-print">
-      {{yield (hash nav = (component 'labs-ui/site-nav'))}}
-    </nav>
-  </div>
-{{!-- </div> --}}
-
-  {{!-- <div class="grid-x grid-padding-x align-middle">
-
-  <div {{action (mut this.closed) true preventDefault=false}} class="branding cell {{if this.responsiveNav (concat this.responsiveSize '-auto shrink') 'auto'}}">
-    <a class="dcp-link" href="http://www1.nyc.gov/site/planning/index.page"><img class="dcp-logo" src="https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png" alt="NYC Planning"></a>
-    {{yield (hash title = (component 'labs-ui/site-title'))}}
-  </div>
-
+<div class="top-bar-left grid-x grid-padding-x align-middle">
+  <a class="dcp-link" href="http://www1.nyc.gov/site/planning/index.page"><img class="dcp-logo" src="https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png" alt="NYC Planning"></a>
+  {{yield (hash title = (component 'labs-ui/site-title'))}}
+</div>
+<div class="top-bar-right">
   {{#if this.responsiveNav}}
     <div class="cell auto hide-for-{{this.responsiveSize}} text-right">
       <button class="responsive-nav-toggler hide-for-print" type="button" {{action (mut this.closed) (not this.closed)}}>Menu</button>
@@ -34,5 +12,5 @@
   <nav {{action (mut this.closed) (not this.closed) preventDefault=false}} class="cell {{if this.responsiveNav (concat this.responsiveSize '-shrink responsive') 'shrink'}} {{if (and this.responsiveNav this.closed) (concat 'show-for-' this.responsiveSize)}} hide-for-print">
     {{yield (hash nav = (component 'labs-ui/site-nav'))}}
   </nav>
+</div>
 
-</div> --}}

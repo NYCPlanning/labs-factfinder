@@ -4,14 +4,24 @@
 
 .source-select-toggle {
   gap: 0.5rem;
+  color: $teal;
+
+  svg {
+    color: #AAAFB5;
+  }
 }
 
 .selected-source {
-  color: $dark-gray;
+  color: $charcoal;
+
+  svg {
+    color: #AAAFB5;
+  }
 }
 
 .source-menu {
   position: absolute;
+  font-size: 0.875rem;
   top: 100%;
   right: rem-calc(-6);
   bottom: auto;
@@ -19,11 +29,11 @@
   background-color: $white;
   padding: 15px;
   box-shadow: 0 4px 0 rgba(0,0,0,0.1);
-  width: 500px !important;
+  width: 400px;
   color: $dark-gray;
   border: 1px solid rgb(223, 225, 229);
   border-radius: 5px;
-  text-align: left !important;
+  text-align: left;
   z-index: 100;
 
   .clickable {

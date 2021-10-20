@@ -3,29 +3,28 @@
 // --------------------------------------------------
 
 .topic-select-toggle {
-  width: 250px !important;
-  padding: 11px 5px;
-  border-radius: 5px;
-}
+  gap: 0.5rem;
 
-.topic-count {
-  color: $dark-gray;
+  svg {
+    color: #AAAFB5;
+  }
 }
 
 .topic-menu {
+  font-size: 0.875rem;
   position: absolute;
   top: 100%;
   right: rem-calc(-6);
   bottom: auto;
   left: rem-calc(0);
-  background-color: $white;
+  background-color: $off-white;
   padding: rem-calc(6) 0;
   box-shadow: 0 4px 0 rgba(0,0,0,0.1);
-  width: 250px !important;
+  width: 250px;
   color: $dark-gray;
   border: 1px solid rgb(223, 225, 229);
   border-radius: 5px;
-  text-align: left !important;
+  text-align: left;
   z-index: 100;
   max-height: calc(100vh - 15rem);
   overflow: auto;
@@ -40,10 +39,10 @@
 
   .nestable-list-item:not(:last-child) {
     border-bottom: 1px solid rgb(223, 225, 229);
-  }
-}
 
-.subtopic-list-item {
-  padding-left: 10px !important;
-  border-bottom: 0 !important;
+    &.subtopic-list-item {
+      padding-left: 10px;
+      border-bottom: 0;
+    }
+  }
 }

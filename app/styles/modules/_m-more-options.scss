@@ -20,15 +20,6 @@ $more-options-hover-color: rgba($dark-gray,0.08);
   }
 }
 
-.layer-menu-item-header {
-  padding: $more-options-margin;
-
-  &:hover {
-    cursor: pointer;
-    background-color: $more-options-hover-color;
-  }
-}
-
 .layer-menu-item-content {
   padding: 0;
 
@@ -39,9 +30,8 @@ $more-options-hover-color: rgba($dark-gray,0.08);
 
 ul.thematic-map-options {
   list-style: none;
-  // margin: $more-options-margin*-0.5 $more-options-margin $more-options-margin 0;
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   padding: 0.75rem;
   display: flex;
   flex-direction: column;
@@ -53,7 +43,7 @@ ul.thematic-map-options {
   overflow-y: scroll;
 
   h5 {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 500;
     margin: 0;
   }
@@ -65,8 +55,9 @@ ul.thematic-map-options {
     flex-direction: column;
     gap: 0.75rem;
 
-    li:hover {
+    li {
       cursor: pointer;
+      font-size: 0.875rem;
     }
   }
 }
@@ -85,15 +76,11 @@ ul.thematic-map-options {
 }
 
 .legend-item {
-  font-size: 0.625rem;
+  font-size: 0.875rem;
 }
 
 .legend-title {
-  // line-height: 1.2;
-  // padding-bottom: $more-options-margin;
-  // margin-bottom: $more-options-margin;
-  // border-bottom: 1px solid $medium-gray;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
 }
 
@@ -120,7 +107,7 @@ ul.thematic-map-options {
 
   &.polygon {
     opacity: 0.6;
-    margin: 0 0.75em;
+    min-width: 0.75rem;
 
     input:not(:checked):not(:indeterminate) ~ & {
       display: none;
@@ -137,6 +124,14 @@ ul.thematic-map-options {
 
   .switch-paddle, .switch-paddle:after {
     border-radius: 11px;
+  }
+
+  .switch-paddle:after {
+    background-color: $off-white;
+  }
+
+  .switch-paddle {
+    background-color: $dark-gray
   }
 
   &.tiny .switch-paddle {

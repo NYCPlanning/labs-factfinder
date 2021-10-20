@@ -33,10 +33,6 @@
   }
 }
 
-.modify-tables-switch, .show-charts-switch {
-  margin-top: 3px;
-}
-
 .ember-power-select-trigger {
   display: flex;
   align-items: center;
@@ -47,4 +43,13 @@
   font-size: 0.875rem;
   background-color: $off-white;
   color: $charcoal;
+}
+
+.ember-power-select-options {
+  color: $charcoal;
+  font-size: 0.875rem;
+
+  .ember-power-select-option[aria-current=true] {
+    background-color: $teal;
+  }
 }

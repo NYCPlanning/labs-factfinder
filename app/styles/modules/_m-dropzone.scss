@@ -5,7 +5,7 @@
   color: $dark-gray;
   border: rem-calc(2) dashed $light-gray;
   background-color: #F5F5F5; 
-  font-size: 0.625rem;
+  font-size: 0.875rem;
   padding: 0.75rem 0;
   margin: 0.75rem;
   min-height: unset;
@@ -33,7 +33,7 @@
         $style:solid
       );
       content: 'or choose a file';
-      font-size: 0.625rem;
+      font-size: 0.875rem;
       font-weight: $global-weight-normal;
       text-decoration: underline;
       padding: 0;

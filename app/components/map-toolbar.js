@@ -23,7 +23,6 @@ export default Component.extend({
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,
-  mapLayersMenu: false,
 
   choroplethMode: 'popperacre',
 
@@ -128,20 +127,19 @@ export default Component.extend({
       this.set('advanced', !this.get('advanced'));
     },
     
-    // toggleMapLayersMenu() {
-    //   window.dataLayer = window.dataLayer || [];
-    //   window.dataLayer.push({
-    //     'event' : 'toggle_add_map_layers',
-    //     'toggle' : this.get('mapLayersMenu') ? 'Closed' : 'Opened',
-    //   });
-    //   this.get('metrics').trackEvent('GoogleAnalytics', {
-    //     eventCategory: 'Advanced Options',
-    //     eventAction: 'Toggle Map Layers Menu',
-    //     eventLabel: this.get('mapLayersMenu') ? 'Closed' : 'Opened',
-    //   });
+    toggleMapLayersMenu() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'toggle_add_map_layers',
+        'toggle' : this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+      });
+      this.get('metrics').trackEvent('GoogleAnalytics', {
+        eventCategory: 'Advanced Options',
+        eventAction: 'Toggle Map Layers Menu',
+        eventLabel: this.get('mapLayersMenu') ? 'Closed' : 'Opened',
+      });
+    },
 
-    //   this.set('mapLayersMenu', !this.get('mapLayersMenu'));
-    // },
     addedFile(file) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
