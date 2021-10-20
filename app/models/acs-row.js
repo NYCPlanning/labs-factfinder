@@ -184,13 +184,13 @@ export default DS.Model.extend({
 
   previousDifferenceMarginOfError: DS.attr('number'),
 
-  previousSignificant: DS.attr('boolean'),
+  previousDifferenceSignificant: DS.attr('boolean'),
 
   previousDifferencePercent: DS.attr('number'),
 
   previousDifferencePercentMarginOfError: DS.attr('number'),
 
-  previousPercentSignificant:  DS.attr('boolean'),
+  previousDifferencePercentSignificant:  DS.attr('boolean'),
 
   /* =====  End of PREVIOUS_  ====== */
 
@@ -463,10 +463,10 @@ export default DS.Model.extend({
     'previousIsReliable',
     'previousDifferenceSum',
     'previousDifferenceMarginOfError',
-    'previousSignificant',
+    'previousDifferenceSignificant',
     'previousDifferencePercent',
     'previousDifferencePercentMarginOfError',
-    'previousPercentSignificant',
+    'previousDifferencePercentSignificant',
     'previousChangePercentSignificant',
     'previousChangePercentagePoint',
     'previousChangePercentagePointMarginOfError',
@@ -482,10 +482,10 @@ export default DS.Model.extend({
         previousIsReliable: isReliable,
         previousDifferenceSum: differenceSum,
         previousDifferenceMarginOfError: differenceMarginOfError,
-        previousSignificant: differenceSignificant,
+        previousDifferenceSignificant: differenceSignificant,
         previousDifferencePercent: differencePercent,
         previousDifferencePercentMarginOfError: differencePercentMarginOfError,
-        previousPercentSignificant: differencePercentSignificant,
+        previousDifferencePercentSignificant: differencePercentSignificant,
         previousChangePercentSignificant: changePercentSignificant,
         previousChangePercentagePoint: changePercentagePoint,
         previousChangePercentagePointMarginOfError: changePercentagePointMarginOfError,
@@ -500,10 +500,10 @@ export default DS.Model.extend({
         'previousIsReliable',
         'previousDifferenceSum',
         'previousDifferenceMarginOfError',
-        'previousSignificant',
+        'previousDifferenceSignificant',
         'previousDifferencePercent',
         'previousDifferencePercentMarginOfError',
-        'previousPercentSignificant',
+        'previousDifferencePercentSignificant',
         'previousChangePercentSignificant',
         'previousChangePercentagePoint',
         'previousChangePercentagePointMarginOfError',
