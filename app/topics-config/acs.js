@@ -138,6 +138,7 @@ export default [
       {
         id: 'econ-incomeAndBenefits',
         label: 'Income and Benefits',
+        tooltip: 'In 2019 inflation-adjusted dollars',
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.incomeAndBenefits,
@@ -450,6 +451,7 @@ export default [
       {
         id: 'hou-value',
         label: 'Value',
+        tooltip: 'In 2019 inflation-adjusted dollars',
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.value,
@@ -482,6 +484,7 @@ export default [
       {
         id: 'hou-grossRent',
         label: 'Gross Rent',
+        tooltip: 'In 2019 inflation-adjusted dollars',
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRent,
