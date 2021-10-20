@@ -43,6 +43,12 @@
   font-size: 0.875rem;
   background-color: $off-white;
   color: $charcoal;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 123, 128, 0.15);
+    border: 1px solid $teal;
+  }
 }
 
 .ember-power-select-options {
