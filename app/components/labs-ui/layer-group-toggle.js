@@ -42,7 +42,7 @@ export default Component.extend({
   click() {
     this.toggleProperty('active');
     window.dataLayer = window.dataLayer || [];
-    if (this.get('label') === "Thematic Map") {
+    if (this.get('label') === "Thematic Maps (NTAs)") {
       window.dataLayer.push({
         'event' : 'toggle_thematic_map',
         'toggle' : this.get('active')
