@@ -5,7 +5,7 @@ import censusChartConfig from '../chart-config/census';
 export default [
   {
     id: 'populationDensity',
-    label: 'Population Density',
+    label: 'Population',
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.populationDensity,
@@ -14,7 +14,7 @@ export default [
   },
   {
     id: 'sexAndAge',
-    label: 'Age and Sex',
+    label: 'Age',
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.sexAndAge,
