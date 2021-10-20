@@ -7,7 +7,6 @@ import choroplethConfigs from '../choropleth-config';
 
 export default Component.extend({
   tagName: "div",
-  // classNames: ['grid-container fluid orange-bar-custom-map-study'],
   classNames: ['top-bar map-toolbar'],
   selection: service(),
   router: service(),
