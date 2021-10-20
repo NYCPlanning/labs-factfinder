@@ -4,7 +4,11 @@
       {{this.rowConfig.title}}
       {{#if this.rowConfig.tooltip}}
         {{fa-icon icon='question-circle' transform='shrink-2'}}
-        {{ember-tooltip text=this.rowConfig.tooltip side='right'}}
+        {{#if (eq this.rowConfig.title 'Median earnings for workers (dollars)')}}
+          {{ember-tooltip text=this.rowConfig.tooltip side='right'}}
+        {{else}}
+          {{ember-tooltip text=this.rowConfig.tooltip side='top-start'}}
+        {{/if}}
       {{/if}}
     </span>
   </td>

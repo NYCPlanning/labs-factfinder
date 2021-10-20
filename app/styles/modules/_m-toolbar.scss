@@ -1,0 +1,198 @@
+.toolbar {
+  background-color: $off-white;
+  color: $charcoal;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+  height: 60px;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+  display: block;
+  padding: 0 0.75rem;
+
+  .top-bar {
+    padding: 0;
+    height: 100%;
+  }
+
+  .top-bar-left, .top-bar-right {
+    gap: 0.75rem;
+  }
+
+  .button {
+    background-color: $off-white;
+    color: $charcoal;
+    margin: 0;
+    border: 1px solid #AAAFB5;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-size: 0.875rem;
+    padding: 0 0.75rem;
+
+    span.button-caption {
+      color: $teal;
+      font-weight: 500;
+    }
+
+    &:after {
+      margin-left: 0.75rem;
+      top: 0.05rem;
+      border-color: #AAAFB5 transparent transparent;
+    }
+
+    &[aria-expanded="true"]:after {
+      transform: rotate(180deg);
+    }
+
+    &:hover, &.active {
+      background-color: rgba(0, 123, 128, 0.15);
+      border: 1px solid $teal;
+    }
+  }
+
+  .button-group {
+    margin: 0;
+
+    .button {
+      border-radius: 0;
+      font-size: 0.625rem;
+      
+      &:first-of-type {
+        border-radius: 5px 0 0 5px;
+      }
+
+      &:last-of-type {
+        border-radius: 0 5px 5px 0;
+      }
+    }
+  }
+
+  .dropdown-pane {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+
+    &.button-group .button {
+      border: none;
+      border-radius: 0;
+      width: 100%;
+      font-size: 0.875rem;
+
+      &:hover, &.active {
+        background-color: #ECEDEE;
+      }
+
+      &:first-of-type {
+        border-radius: 5px 5px 0 0;
+      }
+
+      &:last-of-type {
+        border-radius: 0 0 5px 5px;
+      }
+
+      svg {
+        margin: 0 5px 0 0;
+        color: $a11y-orange;
+      }
+    }
+  }
+}
+
+#more-options-button {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 26px;
+  width: 150px !important;
+
+  ul, li {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+#draw-tools {
+  width: 100px;
+}
+
+.five-buttons {
+  margin-top: -5px;
+
+  li {
+    width: 100px;
+    // padding: 0px;
+    align-items: center;
+  }
+  li.active {
+    background-color: white;
+  }
+  li.active a {
+    color: #ae561f;
+    padding: 0;
+  }
+  li:not(.dropdown):hover a {
+    color: #ae561f;
+  }
+}
+#neighborhood, #neighborhood:hover {
+  padding: 0;
+}
+
+.dropbtn-centered {
+  justify-content: center;
+}
+.dropbtn-left {
+  justify-content: left;
+}
+
+.map-toolbar {
+  background-color: $off-white;
+
+  .button {
+    max-width: 170px;
+  }
+
+  div#selection-method-dropdown {
+    width: 162px;
+    padding: 0;
+    border-radius: 5px;
+  }
+
+  div#more-geographies-dropdown {
+    width: 134px;
+    padding: 0;
+    border-radius: 5px;
+
+    button.button {
+      font-size: 0.625rem;
+    }
+  }
+
+  div#add-layers-dropdown {
+    width: 350px;
+    padding: 0;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border: none;
+    max-height: calc(100vh - 150px);
+    overflow-y: scroll;
+  }
+}
+
+.explorer-toolbar {
+  background-color: $off-white;
+
+  & .top-bar-left > div, & .top-bar-right > div {
+    position: relative;
+  }
+
+  div.reliability-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+}
+

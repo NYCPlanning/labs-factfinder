@@ -4,7 +4,7 @@ import carto from '../utils/carto';
 import pointLayer from '../layers/point-layer';
 import searchResultLayer from '../layers/search-result-layer';
 import summaryLevelQueries from '../queries/summary-levels';
-import { task } from 'ember-concurrency';
+import { all, task } from 'ember-concurrency';
 import config from '../config/environment';
 
 const { DEFAULT_SELECTION } = config;
@@ -273,13 +273,13 @@ export default Service.extend({
       .then((json) => onTaskComplete(json));
   }).restartable(),
 
-  handleSelectedFeatures(features = []) {
-    const selected = this.get('current');
+  handleSelectedFeatures: task(function* (features = []) {
+    let getGeoTasks = [];
 
     features.forEach((feature) => {
       const { type, geometry, properties } = feature;
 
-      const inSelection = selected.features.find(selectedFeature => selectedFeature.properties.geoid === properties.geoid);
+      const inSelection = this.get('current').features.find(selectedFeature => selectedFeature.properties.geoid === properties.geoid);
 
       if (inSelection === undefined) {
 
@@ -290,28 +290,30 @@ export default Service.extend({
             SELECT * FROM (${currentGeographyTable}) a WHERE geoid = '${properties.geoid}'
           `;
 
-          this.getEntireGeoTask.perform(sqlQuery, (json) => {
-            this.set('current', { ...selected, features: selected.features.concat(json.features)});
-          });
+          getGeoTasks.push(this.getEntireGeoTask.perform(sqlQuery, (json) => {
+            this.set('current', { ...this.get('current'), features: this.get('current').features.concat(json.features)});
+          }));
         } else {
-          selected.features.push({
+          this.get('current').features.push({
             type,
             geometry,
             properties,
           });
         }
       } else {
-        const newFeatures = selected.features.filter(selectedFeature => selectedFeature.properties.geoid !== properties.geoid);
+        const newFeatures = this.get('current').features.filter(selectedFeature => selectedFeature.properties.geoid !== properties.geoid);
 
         this.set('current.features', newFeatures);
       }
     });
 
+    yield all(getGeoTasks);
+
     this.set(
       'current',
-      { type: 'FeatureCollection', features: selected.features },
+      { type: 'FeatureCollection', features: this.get('current').features },
     );
-  },
+  }).restartable(),
 
   clearSelection() {
     // not sure why we have to do both of these lines, but it works

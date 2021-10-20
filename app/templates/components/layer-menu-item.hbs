@@ -3,7 +3,10 @@
     label=this.model.legend.label
     active=this.model.visible
     icon=this.model.legend.icon
+    hideIcon=true
   }}
+    {{fa-icon icon='question-circle' transform='shrink-2'}}
+    {{ember-tooltip side="bottom" text='Neighborhood Tabulation Area maps for selected variables'}}
   {{/labs-ui/layer-group-toggle}}
 </div>
 {{#if this.model.visible}}

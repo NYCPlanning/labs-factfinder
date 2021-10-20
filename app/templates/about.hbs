@@ -1,35 +1,18 @@
-<div class="overflow-y-grid grid-padding-x grid-padding-y">
+<div class="overflow-y-grid grid-padding-x grid-padding-y about">
   <div class="cell auto" id="profile-content">
 
     <div class="grid-container" style="max-width:65em;">
       <div class="grid-x grid-padding-x">
         <div class="cell medium-9">
 
-          <h1>About Population FactFinder</h1>
+          <h2>About New York City Population FactFinder</h2>
 
         </div>
-        <div class="cell medium-9">
-
-          <p class="lead">Population FactFinder allows you to easily define study areas within New York City and examine detailed population profiles showing critical demographic, social, economic, and housing statistics, and how these statistics have changed over time.</p>
-
-        </div>
-
-        <div class="cell medium-3">
-
-          {{#link-to 'index' classNames='button large expanded'}}{{fa-icon icon="plus"}} Define your study&nbsp;area{{/link-to}}
-
-        </div>
-
         <div class="cell medium-8 large-7">
-
-          <p class="responsive-embed widescreen">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/iSeJ-APuiH8" frameborder="0" allowfullscreen></iframe>
-          </p>
-
-          <p>New York City Population FactFinder (NYC PFF) provides detailed population and housing profiles for user defined areas within New York City. Using data from decennial censuses and the American Community Survey, the profiles are comprehensive, covering the most basic population statistics, along with detailed social, economic, and housing information. Data for user-defined areas can be easily contrasted against New York City, City boroughs, City Community Districts (approximate equivalents are used), and City neighborhoods (Neighborhood Tabulation Areas). Along with count statistics (like total Spanish-speaking population), users are provided with percent values (like percent of the population with a bachelor’s degree or higher), arithmetic means (like mean travel time to work), rates (like rental housing vacancy rate), and medians (like median household income). NYC PFF profiles can also show how a selected area has changed over time. Further, each profile contains charts allowing users to visualize the distribution of selected statistics, comparing user-defined study areas with a contrast area. All NYC PFF estimates are evaluated for data reliability – unreliable data are grayed out, alerting users of unsuitability for general use. Background reliability statistics can also be further explored.</p>
-          <p>Beyond core profiles, users can easily define study areas by drawing boundaries on top of an interactive map of New York City. With the map feature, you can search for particular addresses, places (like City Hall or Chinatown), or allow the application to find your current location. Advanced mapping functions are also available, allowing you to overlay features so you can now map things like the subway network over population density, or the location of a particular school in relation to Community District boundaries. Once a study area has been defined and a profile selected, users can share and save links to their research.</p>
-          <p>NYC PFF has been designed for use in mobile devices, so analyses can be conducted on-the-go, and the application has tooltips throughout, providing guidance without necessitating the use of a Help document. Further, the Department of City Planning is committed to transparency in NYC PFF, and has built the application using Open Data and Open Source coding.</p>
-
+          <p>New York City Population FactFinder (NYC PFF) is a tool that allows users to easily create study areas, or choose a pre-defined geography (like a Community District), and examine associated population data showing the latest demographic, social, economic, and housing characteristics, and how these characteristics have changed over time.</p>
+          <p>Using data from decennial censuses and the American Community Survey, NYC PFF output profiles are comprehensive, covering the most basic population statistics, along with detailed social, economic, and housing information. Data for selected areas can be easily contrasted against New York City, boroughs, Community Districts Tabulation Areas, and Neighborhood Tabulation Areas. Along with count statistics (like the total Spanish-speaking population), users are provided with percent values (like percent of the population with a bachelor’s degree or higher), arithmetic means (like mean travel time to work), rates (like rental housing vacancy rate), and medians (like median household income). NYC PFF profiles can also show how a selected area has changed over time, showing the change in counts, the percent change, and the change in percent shares. Each profile contains charts allowing users to visualize the distribution of selected statistics, comparing the user’s selected area with a contrast area. Importantly, all NYC PFF estimates are evaluated for data reliability – unreliable data are grayed out, alerting users of unsuitability for general use. Background reliability statistics can also be explored, should users choose to further examine data reliability.</p>
+          <p>A key feature that makes NYC PFF such a powerful analytical tool is that users can easily define study areas using an interactive map of New York City. Study areas can be created by simply selecting component geographies one-by-one (via mouse clicks), by drawing the outlines of a study area, or by creating a search radius. With the map feature, users can also search for an address or places (like City Hall or Chinatown). Advanced mapping functions are also available, allowing users to overlay map features on top of the base map to see things like the subway network, or population density, or the location of a particular school in relation to areas of interest. Once a study area has been defined and data topics selected, users can share and save links to their research.</p>
+          <p>NYC PFF has tooltips throughout, providing guidance at each step. NYC PFF has been built using Open Data and Open Source coding, a reflection of the Department of City Planning commitment to transparency.</p>
         </div>
         <div class="cell medium-4 large-5">
 
@@ -50,7 +33,7 @@
 
           <h3 class="header-medium">Feedback</h3>
 
-          <p>To let NYC Planning know how this app could be better, fill out our <a href="https://docs.google.com/forms/d/e/1FAIpQLSe89pYgxjef01x3RYHw-fKqHcELjewRSU8u2ulAf-Jq1iTWEA/viewform" target="_blank" rel="noopener noreferrer"><strong>Feedback Form</strong></a>. You can also <a href="https://github.com/NYCPlanning/labs-nyc-factfinder/issues/" target="_blank" rel="noopener noreferrer"><strong>add a GitHub Issue</strong></a> or send a Tweet to <a href="https://twitter.com/nycplanninglabs" target="_blank" rel="noopener noreferrer"><strong>@NYCPlanningLabs</strong></a>.</p>
+          <p>For questions or to let NYC Planning know how this app could be better, send us an email to <a href="mailto:pff_dl@planning.nyc.gov">pff_dl@planning.nyc.gov</a>. You can also <a href="https://github.com/NYCPlanning/labs-factfinder/issues/" target="_blank" rel="noopener noreferrer"><strong>add a GitHub Issue</strong></a> or send a Tweet to <a href="https://twitter.com/nycplanninglabs" target="_blank" rel="noopener noreferrer"><strong>@NYCPlanningLabs</strong></a>.</p>
 
           <hr>
 
@@ -60,11 +43,190 @@
 
           <p class="text-small">We make use of the <a href="http://foundation.zurb.com/" target="_blank" rel="noopener noreferrer">Foundation for Sites</a> framework for layout and styling. Web maps on the profiles are built using <a href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank" rel="noopener noreferrer">Mapbox GL</a>, creating smooth-scaling vector-based maps with intricate control of styling. Interactive charts are built using <a href="https://d3js.org/" target="_blank" rel="noopener noreferrer">D3.js</a>.</p>
 
-          <p class="text-small">The <a href="https://github.com/nycplanning/labs-nyc-factfinder/" target="_blank" rel="noopener noreferrer">project repository</a> is on GitHub, where we encourage users to report bugs and feature requests by <a href="https://github.com/nycplanning/labs-nyc-factfinder/issues" target="_blank" rel="noopener noreferrer">creating new issues</a>.</p>
+          <p class="text-small">The <a href="https://github.com/nycplanning/labs-factfinder/" target="_blank" rel="noopener noreferrer">project repository</a> is on GitHub, where we encourage users to report bugs and feature requests by <a href="https://github.com/nycplanning/labs-factfinder/issues" target="_blank" rel="noopener noreferrer">creating new issues</a>.</p>
 
 
           {{outlet}}
 
+        </div>
+
+        {{!-- <div class="cell medium-3">
+
+          {{#link-to 'index' classNames='button large expanded'}}{{fa-icon icon="plus"}} Define your study&nbsp;area{{/link-to}}
+
+        </div> --}}
+
+        <div class="cell medium-12">
+          <h2>The Data</h2>
+          <h3>Decennial Census</h3>
+          <p>Every ten years the U. S. Census Bureau conducts a decennial census, primarily for purposes of congressional reapportionment. These censuses count every person in the country and collect only the most basic demographic and housing characteristics (topics like, age, sex, race, and housing tenure). The decennial census provides the most accurate and geographically detailed understanding about the count and distribution of the U. S. population.</p>
+          <p>It is also important to note that private information (such as names and addresses) collected through the census is protected under Title 13 of U. S. Code. To adhere to the law and to avoid the disclosure of information about individual respondents, the Census Bureau has historically applied a host of techniques, such as top- and bottom-coding, imputation, table- and cell-suppression, and data swapping. The Census Bureau is employing a new technique with the 2020 Census, referred to as the Disclosure Avoidance System (DAS), based on differential privacy. With this approach, the Census Bureau “infuses noise” systematically across census data and sets a quantified disclosure risk, referred to as the Privacy Loss Budget (PLB).</p>
+          <p>While the new DAS approach may diminish the risk of disclosure concerns, it comes at a cost to data accuracy. Consequently, 2020 Census data users should be aware that all sub-state counts, except for housing units (which are unaffected by the DAS), may be adjusted to protect the privacy of Census participants and may be subject to reduced accuracy. Because DAS noise infusion is randomized, it is impossible for data users to know the degree to which any individual statistic is altered. However, it is possible to say that in general the relative size of errors decreases as counts increase. Consequently, data users should have greater confidence in the accuracy of the data as counts get larger. Further, an evaluation of a Privacy-Protected Microdata File (PPMF), treated with a Disclosure Avoidance System like the one applied to 2020 redistricting data, showed that counts of 300 or more rarely have sizable errors (error beyond +/- 10% of the count). Therefore, while data users need to be cognizant of data accuracy limitations, they should have confidence in conclusions based on sizable counts, which are relatively unaffected by the Census Bureau’s latest disclosure avoidance method.</p>
+          <p>The Census Bureau has not yet released data on population under 18 years, population in households, and average household size. These variables were derived from published data by DCP and are considered draft calculations. The data are provided for information purposes only and should not be relied on for analyses until verified by the Census Bureau.</p>
+
+          <h3>American Community Survey</h3>
+          <p>The American Community Survey (ACS) is the most extensive nationwide survey currently available. From its annual releases users are able to examine the city’s detailed demographic, social, economic, and housing characteristics. Each month, questionnaires are sent to a sample of approximately 300,000 addresses across the country, so households are continuously receiving and responding to the ACS. In order to have a large enough sample from which to create estimates of characteristics for small areas, the ACS “rolls-up” the sample for five-year periods. New York City Population FactFinder (PFF) relies on these five-year period estimates to produce all of its ACS profile content. Because these estimates span a five-year period, they are represented with a start-year and end-year (for example, 2014-2018). These do not represent change over that five-year period, but rather something akin to a five-year average. It is also important to note that ACS estimates are derived from a survey and are subject to sampling error. Consequently, all ACS estimates are published with Margins of Error (MOEs) at a 90% confidence interval. These MOEs are available in PFF in data reliability views.</p>
+          <h3>The Geographies</h3>
+          <p>Geographic summary levels included in NYC Population FactFinder:</p>
+          <ul>
+            <li><strong>Census Blocks</strong>: Census Bureau geography. Smallest unit of analysis. Only decennial census data are available. Avoid using data for an individual block, the Census Bureau recommends that blocks are best used to build a larger selection. </li>
+            <li><strong>Census Tracts</strong>: Census Bureau geography. Comprised of census blocks. Average population in New York City is 4,000. Decennial census and American Community Survey data are available.  Avoid using ACS data for an individual tract. It is best to use census tracts to build a larger selection when examining ACS data. </li>
+            <li><strong>Neighborhood Tabulation Areas (NTAs)</strong>: City Planning-developed geography. NTAs are built using census tracts and nest perfectly within CDTAs. NTAs act as “subdistricts” of CDs and can provide more granular information about what’s going on in communities. NTA boundaries and their associated names may not definitively represent neighborhoods, nor are they meant to be exhaustive of all possible neighborhood names. Decennial census and American Community Survey data are available for NTAs.</li>
+            <li><strong>Community District Tabulation Areas (CDTAs)</strong>: City Planning-developed geography. Closely approximate Community Districts (CDs). Built out of census tracts, CDTAs have access to the rich array of annual American Community Survey (ACS) data, making them a useful proxy for examining CDs. This fills an important need as ACS data are unavailable for CDs.</li>
+            <li><strong>Community Districts (CDs)</strong>: NYC-created geography. Data from census block aggregations. The New York City Charter mandates that the Department of City Planning (DCP) produce decennial census data, including total population, for CDs. The decennial census is the only data source that provides detailed demographic information at the census block level, which is needed to precisely represent CDs and produce their official population numbers.  </li>
+            <li><strong>Borough</strong>: Includes the Bronx, Brooklyn, Manhattan, Queens, and Staten Island. Decennial census and American Community Survey data are available. Although ACS 5-year data are included in PFF, the 1-year ACS data should be used for the best, most recent data for NYC boroughs. The 1-year ACS data are available from data.census.gov.</li>
+            <li><strong>New York City</strong>: Decennial census and American Community Survey data are available. Although ACS 5-year data are included in PFF, the 1-year ACS data should be used for the best, most recent data for New York City. The 1-year ACS data are available from data.census.gov.</li>
+          </ul>
+          <p>For more information, see our guide to NYC’s 2020 geographies: <a href="https://storymaps.arcgis.com/stories/d30850ba28944619b94e8ee4f746d5c4" target="_blank" rel="noopener noreferrer">https://storymaps.arcgis.com/stories/d30850ba28944619b94e8ee4f746d5c4</a></p>
+
+          <h3>Data Comparability Over Time</h3>
+          <p>With the 2020 Census, New York City's census geographies were updated, which included changes to census blocks and census tracts. To make data comparable across sources and years, we have taken steps to convert all data that were previously released (in 2010 geographies), to the latest 2020 geographies.</p>
+          <p></p>
+          <div class="cell" style="margin: 0rem 1rem 0rem 1rem">
+            <p><strong>Decennial Census data</strong>: census block to census block equivalency was used to convert 2010 Decennial Census data to 2020 geographies.</p>
+            <p><strong>American Community Survey (ACS) data</strong>: The Census Bureau does not have an officially endorsed solution to convert previously released ACS data to new geographic terms, therefore we created an approach to deal with the geographic mismatch. While additional error is introduced to the data using this approach, error is minimized once census tracts are aggregated, which is the general recommendation when using ACS data at the census tract level. This methodology is explained in a presentation given at the <a href="https://acsdatacommunity.prb.org/p/conferences" target="_blank" rel="noopener noreferrer">2021 American Community Survey Data Users Conference</a>.</p>
+            <p>Proportions of the 2010 census tract population allocated to each 2020 census tract were created based on the 2010 Decennial Census population of census blocks within each census tract. The calculated proportions were applied to the ACS data. MOEs were recalculated for the data in 2020 geographies.</p>
+            <p><strong>Inflation</strong>: data presented in dollar values for previous ACS timepoints have been converted to the equivalent dollar values of the current ACS data based on the U.S. Bureau of Labor Statistics’ Consumer Price Index (CPI). This includes:</p>
+            <ul>
+              <li>median household income </li>
+              <li>mean household income </li>
+              <li>median family income </li>
+              <li>median nonfamily income </li>
+              <li>per capita income </li>
+              <li>median earnings for workers </li>
+              <li>median earnings for male full-time, year-round workers </li>
+              <li>median earning for female full-time, year-round workers </li>
+              <li>median value </li>
+              <li>median gross rent</li>
+            </ul>
+          <p><strong>Data for this row are not comparable or are unavailable</strong>: variables included for each data source are based on the latest data release. If data were previously not available or are deemed not comparable with the latest data, we have included a note in place of data in each variable row.</p>
+          </div>
+
+          <h3>Special Calculations</h3>
+          <p>Throughout the ACS data, there are special calculations such as medians, means, and rates. See tooltips throughout PFF or the Census Bureau’s website for more information on special calculations.</p>
+          <div class="cell" style="margin: 0rem 1rem 0rem 1rem">
+            <p><strong>Medians</strong>: calculated using linear interpolation, which may result in top- and bottom-coded values.</p>
+            <ul>
+              <li>median age</li>
+              <li>median household income</li>
+              <li>median family income</li>
+              <li>median nonfamily income</li>
+              <li>median earnings for workers</li>
+              <li>median earnings for male full-time, year-round workers</li>
+              <li>median earning for female full-time, year-round workers</li>
+              <li>median rooms</li>
+              <li>median value</li>
+              <li>median gross rent</li>
+            </ul>
+            <p><strong>Means</strong>: calculated as a variable divided by a base variable.</p>
+            <ul>
+              <li>average household size</li>
+              <li>average family size</li>
+              <li>mean travel time to work</li>
+              <li>mean household income</li>
+              <li>per capita income</li>
+              <li>average household size of owner-occupied unit</li>
+              <li>average household size of renter-occupied unit</li>
+            </ul>
+            <p><strong>Rates</strong>: calculated as a variable divided by a base variable, multiplied by 100.</p>
+            <ul>
+              <li>homeowner vacancy rate</li>
+              <li>rental vacancy rate</li>
+            </ul>
+          </div>
+
+          <h2>Features</h2>
+          <h3>Map View</h3>
+          <p>The Map View allows you to select geographies.</p>
+          <div class="cell" style="margin: 0rem 1rem 0rem 1rem">
+            <h4>Geographic Summary Level</h4>
+            <p>There are seven types of geographic summary levels from which to build your selection:</p>
+            <ul>
+              <li>Census Blocks</li>
+              <li>Census Tracts</li>
+              <li>Neighborhood Tabulation Areas (NTAs)</li>
+              <li>Community District Tabulation Areas (CDTAs)</li>
+              <li>Community Districts (CDs)</li>
+              <li>Boroughs</li>
+              <li>New York City</li>
+            </ul>
+
+            <h4>Search for Location</h4>
+            <p>The Search input provides results as you type. Search for any New York City address or specific buildings (like ”20 West 34th Street” or “Museum of Natural History").</p>
+
+            <h4>Draw</h4>
+            <p>The Draw tool consists of different methods for selecting geographies on the map.</p>
+            <ul>
+              <li>Click (on geography): default option. You can add or remove geographies by clicking on them.</li>
+              <li>Polygon: create a polygon by clicking to add vertices. Clicking an existing vertex will finish the drawing. All geographies intersecting with the polygon will be added to your selection.</li>
+              <li>Radius: create a selection based on a radius around a point. Click on the map and spread the selection to the desired radius. All geographies intersecting with the radius will be added to your selection.</li>
+            </ul>
+            <p>Once a selection has been made, you can click on ‘View Data’ to go to the Data Explorer view and explore the population, socioeconomic, and housing characteristics.</p>
+
+            <h4>Clear Selection</h4>
+            <p>The Clear Selection feature removes all geographies from your selection.</p>
+
+            <h4>Advanced Map Controls</h4>
+
+            <h4>Zoom, Tilt, Rotate</h4>
+            <p>Next-generation web mapping technology used in NYC Population FactFinder allows you to fine tune the map's zoom, tilt, and rotation. Use the scrollwheel to zoom, hold Ctrl while dragging the map to adjust pitch and bearing. Click the compass icon to reset north.</p>
+
+            <h4>Find my Location</h4>
+            <p>Click the locator control and the map will zoom in on your current location (you may need to give permission via your web browser). This feature works great on mobile, so you can quickly lookup population and housing data on the go.</p>
+
+            <h4>Add Map Layers</h4>
+            <p>Add Map Layers encompass features that can inform your geographic selection. The Thematic Maps feature provides you with Neighborhood Tabulation Area overlay maps for selected variables. Other overlay features include: Subway System (showing an overlay of all subway lines and stations), Community District Tabulation Area (CDTA) boundaries, Community District (CD) boundaries, New York City Council District (CD) boundaries, Neighborhood Tabulation Area (NTA) boundaries, and ZIP Code boundaries. You can also drag &amp; drop a zipped shapefile to display other boundaries within NYC on the map.</p>
+          </div>
+
+          <h3>Data Explorer View</h3>
+          <p>The Data Explorer view allows you to examine all data output for the selected area.</p>
+          <div class="cell" style="margin: 0rem 1rem 0rem 1rem">
+            <h4>Data Source:</h4>
+            <p>The Data Source lets you switch between Decennial Census and American Community Survey (ACS) sources. There is also an option to view change over time for each data source.</p>
+
+            <h4>Select Topics:</h4>
+            <p>The Select Topic feature lets you view different profiles of data or view individual sub-topics of interest. </p>
+            <div class="cell" style="margin: 0rem 3rem 0rem 3rem">
+              <p><strong>Census</strong> - Basic demographic and housing data from the decennial censuses</p>
+              <p><strong>Demographic (ACS)</strong> - Basic population statistics from the American Community Survey</p>
+              <p><strong>Social (ACS)</strong> - Social characteristics from the American Community Survey</p>
+              <p><strong>Economic (ACS)</strong> - Economic characteristics from the American Community Survey</p>
+              <p><strong>Housing (ACS)</strong> - Detailed housing characteristics from the American Community Survey</p>
+            </div>
+
+            <h4>Comparison Area</h4>
+            <p>The Comparison Area is the geography chosen to provide a contrast to the Selected Area. This Comparison Area is selected through the Compare to drop-down menu.</p>
+
+            <h4>Show Data Reliability</h4>
+            <p>This feature expands the ACS tables to reveal reliability measures associated with estimates—margins of error (MOEs) and Coefficients of Variation (CVs). ACS data are subject to sampling variability, so these measures of reliability help you gauge the consistency of the ACS and the degree to which they can trust any given statistic.</p>
+
+            <h4>Grayed Values</h4>
+            <p>ACS profiles may include grayed values which mean that they are not statistically reliable enough for most applications. For estimates and MOEs with a Coefficient of Variation (CV), graying is an indication that the CV is greater than or equal to 20%. Data associated with count estimates of zero and top- and bottom-coded median estimates are also grayed to alert you that data are either unreliable, or of indeterminate reliability. Estimates, and associated MOEs, of differences between two areas and of change over time for a selected area may also be grayed, indicating that the estimates are not statistically reliable (CVs are greater than or equal to 20%).</p>
+
+            <h4>Change Over Time Arrows</h4>
+            <p>ACS change over time profile includes green or red arrows when change for your selection is statistically significant. This is shown separately for number, percent, and percentage point change for each variable. The significant arrows are shown when change is significantly different from zero (ie, MOEs do not overlap with zero and difference is significant at a 90% confidence level). With these arrows, you can report that your selected area saw a statistically significant increase (green up-arrow), decrease (red down-arrow), or no significant change (no arrow) between the two ACS time periods.</p>
+
+            <h4>Charts</h4>
+            <p>The charts show a distribution for the Selected Area in contrast to the Comparison Area. Charts appearing in ACS tabs include Margins of Error bars. In general, if error bars around an estimate for the Selected Area does not overlap with the error bars around an estimate for the Comparison Area, then the difference between the two estimates is statistically significant at a 90% confidence level.</p>
+
+            <h4>Tooltips</h4>
+            <p>Tooltips can be found throughout NYC Population FactFinder to provide guidance on selected aspects.</p>
+
+            <h4>Back to Map View</h4>
+            <p>You can return to the Map View by clicking on ‘Map’, or by clicking on ‘Population FactFinder’ at the top of the screen. You can also use your web browser's back button.</p>
+
+            <h4>Copy to Clipboard</h4>
+            <p>The Copy Table to Clipboard feature allows you to copy a table in a profile and paste it into other applications.</p>
+
+            <h4>Download Data</h4>
+            <p>You can download a comma-delimited file (CSV) for your selected area and topics. To download data for all individual NTAs or CDTAs, please see the NYC Planning Population Division website. To download data for all census tracts, please see data.census.gov.</p>
+          </div>
+          
+          <h3>Shareable Links</h3>
+          <p>Every user-defined Selected Area has a unique URL, specific to selected topics. You can share these links with others, or save them to view the tables later.</p>
+
+          <h3>Feedback</h3>
+          <p>The feedback button is located on the top-right side of the main toolbar. Please provide your feedback by clicking on the mail icon or by emailing <a href="mailto:pff_dl@planning.nyc.gov">pff_dl@planning.nyc.gov</a></p>
         </div>
       </div>
 

@@ -4,7 +4,11 @@
       {{this.rowConfig.title}}
       {{#if this.rowConfig.tooltip}}
         {{fa-icon icon='question-circle' transform='shrink-2'}}
-        {{ember-tooltip text=this.rowConfig.tooltip side='right'}}
+        {{#if (eq this.rowConfig.title 'Median earnings for workers (dollars)')}}
+          {{ember-tooltip text=this.rowConfig.tooltip side='right'}}
+        {{else}}
+          {{ember-tooltip text=this.rowConfig.tooltip side='top-start'}}
+        {{/if}}
       {{/if}}
     </span>
   </td>
@@ -31,7 +35,7 @@
     class="cell-border-left
     {{if
       (or
-        (not this.data.previous.significant)
+        (not this.data.previous.differenceSignificant)
         (and (eq this.data.previous.sum 0) (eq this.data.previousComparison.sum 0)))
       'insignificant'}}">
     {{unless (eq this.data.previous.differenceSum null)
@@ -43,7 +47,7 @@
     <td class="
       {{if
         (or
-          (not this.data.previous.significant)
+          (not this.data.previous.differenceSignificant)
           (and (eq this.data.previous.sum 0) (eq this.data.previousComparison.sum 0)))
         'insignificant'}}">
       {{unless (eq this.data.previous.differenceMarginOfError null)
@@ -54,7 +58,7 @@
   {{/if}}
 
     <td
-      class="{{unless this.data.previous.percentSignificant 'insignificant'}} difference-percent">
+      class="{{unless this.data.previous.differencePercentSignificant 'insignificant'}} difference-percent">
       {{unless (eq this.data.previous.differencePercent null)
           (format-number
             this.data.previous.differencePercent
@@ -62,7 +66,7 @@
     </td>
     {{#if this.reliability}}
       <td
-        class="{{unless this.data.previous.percentSignificant 'insignificant'}} difference-percent-m">
+        class="{{unless this.data.previous.differencePercentSignificant 'insignificant'}} difference-percent-m">
         {{unless (eq this.data.previous.differencePercentMarginOfError null)
           (format-number
             this.data.previous.differencePercentMarginOfError

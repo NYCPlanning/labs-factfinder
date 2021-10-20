@@ -1,23 +1,14 @@
 <div
-  class="bar-item"
   {{on-click-outside (action "closeMenu")}}
 >
   <button
-    class="source-select-toggle button gray expanded no-margin"
+    class="source-select-toggle button"
     role="button"
     {{on "click" this.toggleOpen}}
   >
-    <div class="grid-x full">
-      <div class="cell small-11">
-        Data Source:
-        <span class="selected-source">
-          {{this.source.label}}
-        </span>
-      </div>
-      <div class="cell auto" style="padding-left: 5px;">
-        {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
-      </div>
-    </div>
+    <span class="button-caption">Data Source:</span>
+    {{this.source.label}}
+    {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
   </button>
 
   {{#if this.open}}
@@ -34,7 +25,7 @@
             {{on "click" (fn @setSource source)}}
           >
             <div class="cell small-1">
-              <span class="a11y-orange">
+              <span>
                 {{#if source.selected}}
                   {{fa-icon icon='dot-circle' prefix='far'}}
                 {{else}}
@@ -57,7 +48,7 @@
               {{on "click" (fn @setSource source)}}
             >
               <div class="cell small-1">
-                <span class="a11y-orange">
+                <span>
                   {{#if source.selected}}
                     {{fa-icon icon='dot-circle' prefix='far'}}
                   {{else}}
@@ -79,7 +70,7 @@
               aria-disabled="true"
             >
               <div class="cell small-1">
-                <span class="a11y-orange disabled">
+                <span class="disabled">
                   {{fa-icon icon='circle' prefix='far' class='silver'}}
                 </span>
               </div>

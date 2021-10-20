@@ -6,9 +6,14 @@ import numeral from 'numeral';
 import choroplethConfigs from '../choropleth-config';
 
 export default Component.extend({
+  tagName: "div",
+  classNames: ['top-bar map-toolbar'],
   selection: service(),
   router: service(),
   metrics: service(),
+  didInsertElement: function() {
+    this.$().foundation();
+  },
 
   lastreport: null,
 
@@ -17,7 +22,6 @@ export default Component.extend({
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,
-  mapLayersMenu: false,
 
   choroplethMode: 'popperacre',
 
@@ -133,9 +137,8 @@ export default Component.extend({
         eventAction: 'Toggle Map Layers Menu',
         eventLabel: this.get('mapLayersMenu') ? 'Closed' : 'Opened',
       });
-
-      this.set('mapLayersMenu', !this.get('mapLayersMenu'));
     },
+
     addedFile(file) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({

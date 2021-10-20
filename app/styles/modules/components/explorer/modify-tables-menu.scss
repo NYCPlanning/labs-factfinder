@@ -33,17 +33,32 @@
   }
 }
 
-.modify-tables-switch, .show-charts-switch {
-  margin-top: 3px;
+.ember-power-select-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 40px;
+  padding: 0 0.75rem;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  background-color: $off-white;
+  color: $charcoal;
 }
 
-.ember-power-select-trigger {
-  min-width: 250px !important;
-  width: fit-content;
-  max-width: 425px;
-  padding: 6px 5px;
+.ember-power-select-options {
+  color: $charcoal;
+  font-size: 0.875rem;
+
+  .ember-power-select-option[aria-current=true] {
+    background-color: $teal;
+  }
+}
+
+.ember-power-select-search-input {
+  font-size: 0.875rem;
   border-radius: 5px;
-  background-color: #ecedee;
-  color: $dark-gray;
-  font-weight: normal;
+  height: auto;
+  margin: 0 0 0.75rem;
+  color: $charcoal;
+  background-color: $off-white;
 }

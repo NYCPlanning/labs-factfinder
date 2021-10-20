@@ -1,5 +1,5 @@
-<OrangeBar>
-  <OrangeBarDataExplorer
+<Toolbar>
+  <ExplorerToolbar
     @mode={{this.mode}}
     @topics={{this.topics}}
     @toggleTopic={{this.toggleTopic}}
@@ -16,7 +16,7 @@
     @isModelLoading={{this.reloadExplorerModel.isRunning}}
     @geotype={{this.model.selection.type}}
   />
-</OrangeBar>
+</Toolbar>
 
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
@@ -60,14 +60,12 @@
       </p>
       
     {{/if}}
-    <br>
-    
     {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
         {{#if (eq subtopic.selected "selected")}}
           <div class="grid-x grid-margin-x">
             <div class="cell large-auto">
-              <h3 class="header-medium">
+              <h3 class="header-small">
                 {{subtopic.label}}
               </h3>
               {{data-table
@@ -117,6 +115,15 @@
               <div class="cell large-auto">
                 <h3 class="header-medium">
                   {{subtopic.label}}
+                  {{#if subtopic.tooltip}}
+                    <span>
+                      {{fa-icon icon='question-circle' transform='shrink-2'}}
+                      {{ember-tooltip
+                        text=subtopic.tooltip
+                        side='right'
+                      }}
+                    </span>
+                  {{/if}}
                 </h3>
                 {{data-table
                   mode=this.mode
