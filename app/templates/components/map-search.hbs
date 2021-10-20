@@ -15,21 +15,21 @@
 <ul class="search-results no-bullet{{if this.resultsCount ' has-results'}}{{if this.focused ' focused'}}">
   {{#if (is-fulfilled this.results)}}
   {{#each-in (group-by "type" this.results.value) as |type rows|}}
-    <li>
+    <li class="results-header">
       {{#if (eq type 'block')}}
-        <h4 class="header-small results-header">2020 Census Blocks</h4>
+        <h4 class="header-small">2020 Census Blocks</h4>
       {{else if (eq type 'tract')}}
-        <h4 class="header-small results-header">2020 Census Tracts</h4>
+        <h4 class="header-small">2020 Census Tracts</h4>
       {{else if (eq type 'nta')}}
-        <h4 class="header-small results-header">Neighborhoods</h4>
+        <h4 class="header-small">Neighborhoods</h4>
       {{else if (eq type 'district')}}
-        <h4 class="header-small results-header">Community Districts</h4>
+        <h4 class="header-small">Community Districts</h4>
       {{else}}
-        <h4 class="header-small results-header">Add Map Pin</h4>
+        <h4 class="header-small">Add Map Pin</h4>
       {{/if}}
     </li>
     {{#each rows as |result|}}
-      <li class="result {{if (eq this.selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
+      <li role="button" class="result {{if (eq this.selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
         {{#if (eq type 'block')}}
           <span class="icon polygon small"></span>
         {{else if (eq type 'tract')}}

@@ -4,6 +4,8 @@
 // HACK!!! This should be fixed in Labs UI
 $hr-width: auto;
 $table-border: 1px solid $silver;
+$topbar-background: $white;
+$topbar-padding: 0rem 1.25rem;
 
 //
 // Foundation
@@ -35,15 +37,15 @@ $table-border: 1px solid $silver;
 //
 // Custom App Modules
 // --------------------------------------------------
+@import 'modules/_m-colors'; // ported from labs-ui
+@import 'modules/_m-site-header'; // ported from labs-ui
 @import 'base/_typography';
 @import 'layouts/_l-default';
 @import 'modules/_m-more-options';
 @import 'modules/_m-charts';
 @import 'modules/_m-dropzone';
-@import 'modules/_m-colors'; // ported from labs-ui
-@import 'modules/_m-site-header'; // ported from labs-ui
 @import 'modules/_m-maps';
-@import 'modules/_m-orange-bar';
+@import 'modules/_m-toolbar';
 @import 'modules/_m-reveal-modal';
 @import 'modules/m-layer-groups-menu';
 @import 'modules/_m-search';
@@ -52,10 +54,9 @@ $table-border: 1px solid $silver;
 @import "ember-power-select";
 
 // Component styles
-@import 'modules/components/custom-map-study/toolbar';
-@import 'modules/components/explorer/toolbar';
 @import 'modules/components/explorer/topic-select-dropdown';
 @import 'modules/components/explorer/source-select-dropdown';
 @import 'modules/components/explorer/download-data-dropdown';
 @import 'modules/components/explorer/modify-tables-menu.scss';
 @import 'modules/components/ui/nestable-list-item';
+

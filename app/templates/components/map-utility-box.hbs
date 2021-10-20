@@ -5,28 +5,26 @@
         Your Selection
       </div>
       <div class="map-utility-box-body">
-        <p>
-          {{#if (eq this.selection.summaryLevel 'cities')}}
-            New York City
-          {{else}}
-            <strong>{{this.selectionCount}}</strong>
-            {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
-            {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
-            {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
-            {{if (eq this.selection.summaryLevel 'districts') 'CD'~}}
-            {{if (eq this.selection.summaryLevel 'ntas') 'NTA'~}}
-            {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
-            {{unless (eq this.selectionCount 1) 's'}}
-          {{/if}}
-          selected
-        </p>
+        {{#if (eq this.selection.summaryLevel 'cities')}}
+          New York City
+        {{else}}
+          <strong>{{this.selectionCount}}&nbsp;</strong>
+          {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
+          {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
+          {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
+          {{if (eq this.selection.summaryLevel 'districts') 'CD'~}}
+          {{if (eq this.selection.summaryLevel 'ntas') 'NTA'~}}
+          {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
+          {{unless (eq this.selectionCount 1) 's'}}
+        {{/if}}
+        selected
       </div>
       <div class="map-utility-box-buttons">
         <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
           <span class="a11y-orange">
             {{fa-icon icon='times'}}
           </span>
-          Clear <br />Selection
+          Clear Selection
         </button>
         <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateExplorerPage}}>
           View Data
@@ -35,7 +33,6 @@
           </span>
         </button>
       </div>
-      
     </div>
   {{else}}
     <div class="map-utility-box">

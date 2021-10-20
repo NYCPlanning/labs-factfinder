@@ -26,17 +26,20 @@
 }
 
 .layer-group-toggle-title {
-  
-  padding: rem-calc(6) 0 rem-calc(6);
-  padding-right: 1em;
   position: relative;
   text-align: left;
   width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #AAAFB5;
+  line-height: 0.875rem;
 
-  .layer-group-toggle-label {
-    color: #ae561f;
-    font-size: rem-calc(20);
-    font-weight: $global-weight-bold;
+  .layer-group-toggle {
+    color: $charcoal;
+    font-weight: 500;
+    height: 100%;
+    width: 100%;
   }
 
   .layer-group-toggle-header .switch {
@@ -44,80 +47,60 @@
   }
 }
 
-.layer-groups-accordion-toggle {
-  font-size: rem-calc(20);
-  font-weight: $global-weight-bold;
-  padding: rem-calc(6) 0 rem-calc(6) rem-calc(28);
-  padding-right: 1em;
-  position: relative;
-  text-align: left;
-  width: 100%;
-
-  a {
-    text-align: left;
-  }
-
-  &:hover {
-    background-color: rgba(107,113,123,.06);
-    cursor: pointer;
-  }
-
-  &::after {
-    @include css-triangle(0.5em, #ae561f, right);
-
-    position: absolute;
-    top: 7px;
-    left: 5px;
-  }
-  &.open::after {
-    transform: rotate(90deg);
-  }
-}
-
-
 //
 // Layer Group Toggle
 // --------------------------------------------------
 .layer-group-toggle {
-  font-size: rem-calc(12);
-}
-
-.layer-group-toggle-header {
+  font-size: 0.875rem;
+  padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
 
   &:hover {
+    cursor: pointer;
     background-color: rgba(107,113,123,.06);
   }
 
-  .cell:first-child:hover {
-    cursor: pointer;
-  }
+  .layer-group-toggle-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 
-  .layer-group-toggle-label {
-    padding: rem-calc(6) 0 0 rem-calc(30); // left padding - switch's width (20) + margin (10)
-    display: block;
-  }
-
-  .switch {
-    margin: rem-calc(6) 0;
-
-    &.tiny .switch-paddle {
-      width: 1.25rem;
+    .cell:first-child:hover {
+      cursor: pointer;
     }
 
-    &.tiny .switch-paddle::after {
-      width: 0.5rem;
+    .layer-group-toggle-label {
+      display: block;
+      text-align: left;
     }
 
-    &.tiny input:checked ~ .switch-paddle::after {
-      left: 0.625rem;
-    }
-  }
+    .switch {
+      margin: 0;
 
-  .layer-group-toggle-icons {
-    padding: rem-calc(6);
+      input:checked ~ .switch-paddle {
+        background-color: $teal;
+      }
+
+      &.tiny .switch-paddle {
+        width: 1.25rem;
+      }
+
+      &.tiny .switch-paddle::after {
+        width: 0.5rem;
+      }
+
+      &.tiny input:checked ~ .switch-paddle::after {
+        left: 0.625rem;
+      }
+    }
+
+    .layer-group-toggle-icons {
+      padding: rem-calc(6);
+    }
   }
 }
-
 
 //
 // Legends
@@ -126,14 +109,10 @@
   padding: 0 0 rem-calc(6);
 }
 
-.legend-item {
-  font-size: rem-calc(12);
-  padding: 0 rem-calc(6);
-}
-
 .legend-icon {
-  width: 2.5em;
-  height: 1.5em;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 2px;
   display: inline-block;
   vertical-align: top;
   margin: 0 rem-calc(2) 0 0;

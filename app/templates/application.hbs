@@ -1,6 +1,6 @@
 <LabsUi::SiteHeader @responsiveNav={{true}} @responsiveSize="large" as |banner|>
 <banner.title>
-  {{#link-to 'index' classNames='site-title'}}Population FactFinder{{/link-to}}
+  {{#link-to 'index'}}Population FactFinder{{/link-to}}
 </banner.title>
 <banner.nav>
   <ul class="vertical large-horizontal menu">
@@ -17,7 +17,7 @@
         'index'
         class=(if (eq this.router.currentRouteName "index") "active-route")
       }}
-        {{fa-icon icon="map" prefix="fa" transform='grow-4'}}
+        {{fa-icon icon="map" prefix="fa"}}
         Map
       {{/link-to}}
     </li>
@@ -25,7 +25,7 @@
       <a href="/explorer/cities/NYC?compareTo=1"
         class={{(if (eq this.router.currentRouteName "explorer") "active-route")}}
       >
-        {{fa-icon icon="search" prefix="fa" transform='grow-4'}}
+        {{fa-icon icon="search" prefix="fa"}}
         Data Explorer
       </a>
     </li>

@@ -5,20 +5,21 @@
 $download-data-dropdown-margin: rem-calc(6);
 $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
 
-.download-data-dropdown {
+#download-data-dropdown {
   z-index: 1;
-  color: black;
-  font-size: rem-calc(12);
+  color: $charcoal;
+  font-size: 1rem;
   position: fixed;
-  right: 50px;
-  top: 9rem;
+  right: 26px;
+  top: 6.5rem;
   background-color: $off-white;
   margin-right: -$global-margin;
   margin-left: -$global-margin;
-  border: 1px solid $silver;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px 2px;
   transition: all 0.2s;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
+
   p {
     line-height: 1;
   }
@@ -33,48 +34,38 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
       min-height: 0;
     }
   }
-
-  .triangle {
-    position: absolute;
-    top: -15px;
-    right: 18px;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-
-    border-bottom: 15px solid $white;
-  }
 }
 
 .download-data-dropdown-head {
-  color: $a11y-orange;
-  padding: 1.5rem 1.5rem;
+  color: $charcoal;
+  padding: 0.75rem;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
-  font-size: rem-calc(20);
+  font-size: 1rem;
   font-weight: bold;
 }
 .download-data-dropdown-foot {
   cursor: pointer;
-  background-color: #129DED;
+  background-color: $teal;
   color: white;
-  padding: 1.5rem 1.5rem;
-  font-size: rem-calc(20);
+  padding: 0.75rem;
+  font-size: 0.875rem;
   font-weight: bold;
+  border-radius: 0 0 5px 5px;
+
   .small {
     font-size: rem-calc(14);
     font-weight: normal;
   }
 }
 .download-data-dropdown-body {
-  padding: 2.5rem 2.5rem;
-  font-size: rem-calc(16);
+  padding: 0.75rem;
+  font-size: 0.875rem;
   text-align: left;
   min-height: rem-calc(200);
   max-height: calc(100vh - #{rem-calc(472)});
   overflow: auto;
   .head {
-    font-size: rem-calc(20);
+    font-size: 1rem;
     font-weight: bold;
     text-decoration-line: underline;  
   }
@@ -84,15 +75,23 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
 }
 
 #download-button {
-  border-radius: 4px;
-  box-shadow: 0 0 0 2px $white;
+  width: 40px;
+  justify-content: center;
+  color: $off-white;
+  background-color: $teal;
+  border: none;
 
-  &:hover {
-    color: #ae561f !important;
-    background-color: $white !important;
+  .notification-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #F19457;
+    color: $charcoal;
   }
-}
-#download-button.active {
-  color: #ae561f !important;
-  background-color: $white !important;
 }
