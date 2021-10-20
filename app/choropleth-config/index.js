@@ -344,42 +344,42 @@ const choroplethConfigs = [
     isPercent: true,
     stops: ['#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
   },
-  {
-    group: 'Census',
-    id: 'wnh_pc',
-    label: 'White Non-Hispanic (percent change)',
-    tooltip: 'Percent change in the White Non-Hispanic population, 2010 to 2020',
-    legendTitle: 'White Non-Hispanic (percent change)',
-    isPercent: true,
-    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
-  },
-  {
-    group: 'Census',
-    id: 'bnh_pc',
-    label: 'Black Non-Hispanic (percent change)',
-    tooltip: 'Percent change in the Black Non-Hispanic population, 2010 to 2020',
-    legendTitle: 'Black Non-Hispanic (percent change)',
-    isPercent: true,
-    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476']
-  },
-  {
-    group: 'Census',
-    id: 'anh_pc',
-    label: 'Asian Non-Hispanic (percent change)',
-    tooltip: 'Percent change in the Asian Non-Hispanic population, 2010 to 2020',
-    legendTitle: 'Asian Non-Hispanic (percent change)',
-    isPercent: true,
-    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
-  },
-  {
-    group: 'Census',
-    id: 'hsp1_pc',
-    label: 'Hispanic (percent change)',
-    tooltip: 'Percent change in the Hispanic population, 2010 to 2020',
-    legendTitle: 'Hispanic (percent change)',
-    isPercent: true,
-    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
-  },
+  // {
+  //   group: 'Census',
+  //   id: 'wnh_pc',
+  //   label: 'White Non-Hispanic (percent change)',
+  //   tooltip: 'Percent change in the White Non-Hispanic population, 2010 to 2020',
+  //   legendTitle: 'White Non-Hispanic (percent change)',
+  //   isPercent: true,
+  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
+  // },
+  // {
+  //   group: 'Census',
+  //   id: 'bnh_pc',
+  //   label: 'Black Non-Hispanic (percent change)',
+  //   tooltip: 'Percent change in the Black Non-Hispanic population, 2010 to 2020',
+  //   legendTitle: 'Black Non-Hispanic (percent change)',
+  //   isPercent: true,
+  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476']
+  // },
+  // {
+  //   group: 'Census',
+  //   id: 'anh_pc',
+  //   label: 'Asian Non-Hispanic (percent change)',
+  //   tooltip: 'Percent change in the Asian Non-Hispanic population, 2010 to 2020',
+  //   legendTitle: 'Asian Non-Hispanic (percent change)',
+  //   isPercent: true,
+  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
+  // },
+  // {
+  //   group: 'Census',
+  //   id: 'hsp1_pc',
+  //   label: 'Hispanic (percent change)',
+  //   tooltip: 'Percent change in the Hispanic population, 2010 to 2020',
+  //   legendTitle: 'Hispanic (percent change)',
+  //   isPercent: true,
+  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
+  // },
 ];
 
 const builtConfigs = choroplethConfigs.map((config) => {
