@@ -1,5 +1,4 @@
 <div
-  {{!-- class="bar-item" --}}
   {{on-click-outside (action "closeMenu")}}
 >
   <button
@@ -7,15 +6,9 @@
     role="button"
     {{on "click" this.toggleOpen}}
   >
-    {{!-- <div class="grid-x full">
-      <div class="cell small-11"> --}}
-        <span class="button-caption">Data Source:</span>
-        {{this.source.label}}
-      {{!-- </div>
-      <div class="cell auto" style="padding-left: 5px;"> --}}
-        {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
-      {{!-- </div> --}}
-    {{!-- </div> --}}
+    <span class="button-caption">Data Source:</span>
+    {{this.source.label}}
+    {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
   </button>
 
   {{#if this.open}}

@@ -54,8 +54,6 @@ $topbar-padding: 0rem 1.25rem;
 @import "ember-power-select";
 
 // Component styles
-@import 'modules/components/custom-map-study/toolbar';
-@import 'modules/components/explorer/toolbar';
 @import 'modules/components/explorer/topic-select-dropdown';
 @import 'modules/components/explorer/source-select-dropdown';
 @import 'modules/components/explorer/download-data-dropdown';

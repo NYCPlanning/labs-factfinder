@@ -1,5 +1,4 @@
 <div
-  {{!-- class="bar-item" --}}
   {{on-click-outside (action "closeMenu")}}
 >
   <button
@@ -7,17 +6,10 @@
     role="button"
     {{on "click" this.toggleOpen}}
   >
-    {{!-- <div class="grid-x full">
-      <div class="cell small-11"> --}}
-        <span class="button-caption">Select Topics:</span>
-        {{this.numSelected}} Selected
-      {{!-- </div>
-      <div class="cell auto"> --}}
-        {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
-      {{!-- </div> --}}
-    {{!-- </div> --}}
+    <span class="button-caption">Select Topics:</span>
+    {{this.numSelected}} Selected
+    {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
   </button>
-
   {{#if this.open}}
     <div class="topic-menu">
       {{#if @isModelLoading}}
