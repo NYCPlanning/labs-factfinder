@@ -6,6 +6,12 @@
   z-index: 3;
 }
 
+@include breakpoint(1280px up) {
+  #reveal-modal-container {
+    display: none;
+  }
+}
+
 .reveal-overlay {
   padding: 1rem;
 
@@ -27,6 +33,7 @@
   border: 0;
   box-shadow: 0 0 0 rem-calc(4) rgba(0,0,0,0.1);
   top: 0;
+  border-radius: 5px;
 
   &:focus {
     outline: none;
