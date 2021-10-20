@@ -35,6 +35,10 @@
 
   .nestable-list-item {
     padding-left: 10px;
+
+    svg {
+      color: $teal;
+    }
   }
 
   .nestable-list-item:not(:last-child) {

@@ -25,7 +25,7 @@
             {{on "click" (fn @setSource source)}}
           >
             <div class="cell small-1">
-              <span class="a11y-orange">
+              <span>
                 {{#if source.selected}}
                   {{fa-icon icon='dot-circle' prefix='far'}}
                 {{else}}
@@ -48,7 +48,7 @@
               {{on "click" (fn @setSource source)}}
             >
               <div class="cell small-1">
-                <span class="a11y-orange">
+                <span>
                   {{#if source.selected}}
                     {{fa-icon icon='dot-circle' prefix='far'}}
                   {{else}}
@@ -70,7 +70,7 @@
               aria-disabled="true"
             >
               <div class="cell small-1">
-                <span class="a11y-orange disabled">
+                <span class="disabled">
                   {{fa-icon icon='circle' prefix='far' class='silver'}}
                 </span>
               </div>

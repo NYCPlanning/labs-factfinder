@@ -23,7 +23,7 @@
           <div class="cell small-1 clickable"
             {{on "click" @toggleAllTopics}}
           >
-            <span class="a11y-orange">
+            <span>
               {{#if (eq this.isAllTopicsSelected "selected")}}
                 {{fa-icon icon='check-square' prefix='far'}}
               {{else if (eq this.isAllTopicsSelected "unselected")}}

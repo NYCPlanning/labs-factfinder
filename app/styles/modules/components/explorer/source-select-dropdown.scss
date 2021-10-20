@@ -36,9 +36,14 @@
   text-align: left;
   z-index: 100;
 
+  svg {
+    color: $teal;
+  }
+
   .clickable {
     cursor: pointer;
   }
+  
   .disabled {
     color: $light-gray;
   }

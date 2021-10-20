@@ -1,6 +1,7 @@
 <div class="top-bar-left grid-x align-middle">
   <button class="button dropdown" data-toggle="selection-method-dropdown">
     Selection Method
+    {{ember-tooltip text="Create a selection using drawing tools" side="right" delay=200}}
   </button>
   <div
     id="selection-method-dropdown"
@@ -9,9 +10,6 @@
     data-hover="true"
     data-hover-pane="true"
   >
-    {{#ember-tooltip side="bottom" delay=200}}
-      <span class="text-tiny nowrap">Create a selection using drawing tools</span>
-    {{/ember-tooltip}}
     <button class="button {{if (eq @drawMode 'polygon') 'active'}}">
       {{fa-icon icon='object-group' prefix='far'}}
       Polygon
