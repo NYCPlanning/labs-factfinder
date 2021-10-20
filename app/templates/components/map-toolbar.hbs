@@ -10,11 +10,17 @@
     data-hover="true"
     data-hover-pane="true"
   >
-    <button class="button {{if (eq @drawMode 'polygon') 'active'}}">
+    <button
+      class="button {{if (eq @drawMode 'polygon') 'active'}}"
+      onclick={{fn @handleDrawButtonClick 'polygon'}}
+    >
       {{fa-icon icon='object-group' prefix='far'}}
       Polygon
     </button>
-    <button class="button {{if (eq @drawMode 'radius') 'active'}}">
+    <button
+      class="button {{if (eq @drawMode 'radius') 'active'}}"
+      onclick={{fn @handleDrawButtonClick 'radius'}}
+    >
       {{fa-icon icon='dot-circle' prefix='far'}}
       Radius
     </button>
