@@ -36,11 +36,13 @@
       }}
 
       {{#if (and 
-        (lt @data.changeMarginOfError (abs @data.changeSum))
-        (not (or
-          (eq @data.previous.sum 0)
-          (eq @data.selection.sum 0)
-        ))
+          (lt @data.changeMarginOfError (abs @data.changeSum))
+          (not (or
+            (eq @data.previous.sum 0)
+            (eq @data.selection.sum 0)
+          )
+          @data.changeSignificant
+        )
       )}}
         {{#if (gt @data.changeSum 0)}}
           {{fa-icon icon="arrow-up" class="green"}}
@@ -77,6 +79,7 @@
           (eq @data.previous.sum 0)
           (eq @data.selection.sum 0)
         ))
+        @data.changePercentSignificant
       )}}
         {{#if (gt @data.changePercent 0)}}
           {{fa-icon icon="arrow-up" class="green"}}
@@ -119,6 +122,7 @@
           (eq @data.previous.sum 0)
           (eq @data.selection.sum 0)
         ))
+        @data.changePercentagePointSignificant
       )}}
         {{#if (gt @data.changePercentagePoint 0)}}
           {{fa-icon icon="arrow-up" class="green"}}
