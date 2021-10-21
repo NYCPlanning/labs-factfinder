@@ -17,7 +17,7 @@ export default Component.extend({
   stickyTop: computed('media.isLarge', function() {
     const { 'media.isLarge': isLarge } = this.getProperties('media.isLarge');
 
-    return isLarge ? 130 : 0;
+    return isLarge ? 127 : 0;
   }),
 
   classNames: 'data-table',
