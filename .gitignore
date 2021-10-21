@@ -27,3 +27,5 @@ public/.DS_Store
 bower.json.ember-try
 package.json.ember-try
 /.eslintcache
+.eslintcache
+.husky
