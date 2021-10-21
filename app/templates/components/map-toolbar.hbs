@@ -139,7 +139,11 @@
                     {{fa-icon icon='circle' prefix='far'}}
                   {{/if}}
                   {{config.label}}
-                  {{labs-ui/icon-tooltip tip=config.tooltip}}
+                  {{fa-icon icon='question-circle' transform='shrink-2'}}
+                  {{ember-tooltip
+                    text=config.tooltip
+                    side='top-start'
+                  }}
                 </li>
               {{/each}}
             </ul>
