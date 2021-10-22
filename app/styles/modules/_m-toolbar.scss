@@ -117,51 +117,26 @@
   width: 100px;
 }
 
-.five-buttons {
-  margin-top: -5px;
-
-  li {
-    width: 100px;
-    // padding: 0px;
-    align-items: center;
-  }
-  li.active {
-    background-color: white;
-  }
-  li.active a {
-    color: #ae561f;
-    padding: 0;
-  }
-  li:not(.dropdown):hover a {
-    color: #ae561f;
-  }
-}
 #neighborhood, #neighborhood:hover {
   padding: 0;
 }
 
-.dropbtn-centered {
-  justify-content: center;
-}
-.dropbtn-left {
-  justify-content: left;
-}
-
 .map-toolbar {
   background-color: $off-white;
+  gap: 0.75rem;
 
   .button {
-    max-width: 155px;
+    max-width: 150px;
   }
 
   div#selection-method-dropdown {
-    width: 162px;
+    width: 150px;
     padding: 0;
     border-radius: 5px;
   }
 
   div#more-geographies-dropdown {
-    width: 134px;
+    width: 150px;
     padding: 0;
     border-radius: 5px;
 
