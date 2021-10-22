@@ -21,13 +21,11 @@
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
     <br>
-    <div class="grid-x align-left">
+    <div class="profile-geographies">
       <SelectionDetailsText
         @selectedCount={{this.selectedCount}}
         @selectedType={{this.model.selection.type}}
       />
-    </div>
-    <div class="profile-geographies">
       {{#if (eq this.model.selection.type 'boroughs')}}
         <SelectGeographyListBoroughs
           @sortedLabels={{this.sortedLabels}}
@@ -51,12 +49,15 @@
       (eq this.source.id 'decennial-current')
       (eq this.source.id 'decennial-change')
     )}}
-      <p>2020 Census data may be adjusted to protect the privacy of Census participants. Exercise caution when considering 2020 Census counts of under 300.</p>
+      <p class="text-small">2020 Census data may be adjusted to protect the privacy of Census participants. Exercise caution when considering 2020 Census counts of under 300.</p>
     {{/if}}
     {{#if (eq this.source.type 'acs')}}
-      <p>
+      <p class="text-small">
         ACS data are derived from a survey and are subject to sampling variability. Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>). 
-        {{labs-ui/icon-tooltip tip='Data associated with estimates of zero, top- and bottom-coded estimate, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.'}}
+        <span>
+          {{fa-icon icon='question-circle' transform='shrink-2'}}
+          {{ember-tooltip side="bottom" text='Data associated with estimates of zero, top- and bottom-coded estimate, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.'}}
+        </span>
       </p>
       
     {{/if}}

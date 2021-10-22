@@ -101,9 +101,7 @@ export default class DownloadDataDropdown extends Component{
     var rowspanText;
 
     var rows = document.querySelectorAll("h3, table tr");
-    const geoCount = document.querySelector("h2");
-    const geoSelection = document.querySelector(".profile-geographies .comma-separated-list");
-    if (geoCount) { csv.push(this.actions.convertStringForCSV(geoCount.innerText)); }
+    const geoSelection = document.querySelector(".profile-geographies");
     if (geoSelection) { csv.push(this.actions.convertStringForCSV(geoSelection.innerText)); }
     
     for (var i = 0; i < rows.length; i++) {
