@@ -34,15 +34,13 @@
         @data.changeSum
         precision=@rowConfig.decimal
       }}
-
       {{#if (and 
           (lt @data.changeMarginOfError (abs @data.changeSum))
           (not (or
             (eq @data.previous.sum 0)
             (eq @data.selection.sum 0)
-          )
+          ))
           @data.changeSignificant
-        )
       )}}
         {{#if (gt @data.changeSum 0)}}
           {{fa-icon icon="arrow-up" class="green"}}
