@@ -43,6 +43,7 @@
     </button>
     <button
       class="button {{if (eq this.selection.summaryLevel 'cdtas') 'active'}}"
+      style="max-width: 160px;"
       {{action this.handleSummaryLevelToggle 'cdtas'}}
     >
       Community District Tabulation Area (CDTA)
@@ -139,7 +140,11 @@
                     {{fa-icon icon='circle' prefix='far'}}
                   {{/if}}
                   {{config.label}}
-                  {{labs-ui/icon-tooltip tip=config.tooltip}}
+                  {{fa-icon icon='question-circle' transform='shrink-2'}}
+                  {{ember-tooltip
+                    text=config.tooltip
+                    side='top-start'
+                  }}
                 </li>
               {{/each}}
             </ul>

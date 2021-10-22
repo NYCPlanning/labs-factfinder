@@ -1,4 +1,4 @@
-<h2 class="header-medium">
+<strong>
   {{#if (eq @selectedType 'cities')}}
     New York City
   {{else}}
@@ -11,4 +11,7 @@
     {{if (eq @selectedType 'boroughs') 'Borough'~}}
     {{unless (eq @selectedCount 1) 's'}}
   {{/if}}
-</h2>
+</strong>
+{{#unless (eq @selectedType 'cities')}}
+   | 
+{{/unless}}

@@ -1,4 +1,4 @@
-<ul class="comma-separated-list">
+<span class="comma-separated-list">
   {{#each this.sortedLabels as |boro|}}
     {{#if boro.features.length}}
       <strong>{{boro.label}}:</strong>
@@ -8,4 +8,4 @@
       {{~unless (eq boro.features.lastObject.properties.geoid feature.properties.geoid) ','}}
     {{/each}}
   {{/each}}
-</ul>
+</span>
