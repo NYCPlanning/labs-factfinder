@@ -41,6 +41,7 @@ ul.thematic-map-options {
   border-top: 1px solid #AAAFB5;
   border-bottom: 1px solid #AAAFB5;
   overflow-y: auto;
+  width: 100%;
 
   h5 {
     font-size: 0.875rem;
@@ -54,10 +55,19 @@ ul.thematic-map-options {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
 
     li {
       cursor: pointer;
       font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      
+      span.thematic-map-options__tooltip {
+        margin-left: auto;
+      }
     }
   }
 }
