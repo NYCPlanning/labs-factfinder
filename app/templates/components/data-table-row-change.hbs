@@ -36,7 +36,10 @@
           (eq @data.changeSum undefined)
         )}}
 
-          {{roundedChangeSum}}
+          {{format-number
+            @data.changeSum
+            precision=@rowConfig.decimal
+          }}
 
           {{#if (and
             (lte @data.changeMarginOfError (abs @data.changeSum))
@@ -67,7 +70,7 @@
             (eq @data.changeMarginOfError null)
             (eq @data.changeMarginOfError undefined)
           )}}
-            {{roundedChangeMarginOfError}}
+            {{format-number @data.changeMarginOfError precision=@rowConfig.decimal}}
           {{/unless}}
         </td>
       {{/if}}
@@ -85,7 +88,7 @@
         )}}
 
           {{concat
-            roundedChangePercentage
+            (format-number (mult @data.changePercent 100) precision=1)
             '%'
           }}
 
@@ -119,7 +122,7 @@
             (eq @data.changePercentMarginOfError undefined)
           )}}
             {{concat
-              roundedChangePercentageMarginOfError
+              (format-number (mult @data.changePercentMarginOfError 100) precision=1)
               '%'}}
           {{/unless}}
         </td>
@@ -144,7 +147,9 @@
             (eq @data.changePercentagePoint undefined)
           )}}
 
-          {{roundedChangePercentagePoint}}
+          {{format-number
+            (mult @data.changePercentagePoint 100)
+            precision=1}}
 
           {{#if (and
             (lte @data.changePercentagePointMarginOfError (abs @data.changePercentagePoint))
@@ -178,7 +183,9 @@
             (eq @data.changePercentagePointMarginOfError undefined)
           )}}
 
-            {{roundedChangePercentagePointMarginOfError}}
+            {{format-number
+              (mult @data.changePercentagePointMarginOfError 100)
+              precision=1}}
 
           {{/unless}}
         </td>
