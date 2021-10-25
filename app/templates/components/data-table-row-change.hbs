@@ -28,8 +28,8 @@
   {{!-- CHANGE --}}
 
   {{!-- Estimate --}}
-  {{#with (format-number @data.changeSum precision=@rowConfig.decimal) as |roundedChangeSum|}}
-    {{#with (format-number @data.changeMarginOfError precision=@rowConfig.decimal) as |roundedChangeMarginOfError|}}
+  {{#with (format-number (abs @data.changeSum) precision=@rowConfig.decimal) as |roundedChangeSum|}}
+    {{#with (format-number (abs @data.changeMarginOfError) precision=@rowConfig.decimal) as |roundedChangeMarginOfError|}}
       <td class="cell-border-left change-estimate {{unless @data.changeSignificant 'insignificant'}}">
         {{#unless (eq @data.changeSum null)}}
 
@@ -67,8 +67,8 @@
   {{/with}}
 
   {{!-- percent --}}
-  {{#with (format-number (mult @data.changePercent 100) precision=1) as |roundedChangePercentage|}}
-    {{#with (format-number (mult @data.changePercentMarginOfError 100) precision=1) as |roundedChangePercentageMarginOfError|}}
+  {{#with (format-number (mult (abs @data.changePercent) 100) precision=1) as |roundedChangePercentage|}}
+    {{#with (format-number (mult (abs @data.changePercentMarginOfError) 100) precision=1) as |roundedChangePercentageMarginOfError|}}
 
       <td class="{{unless @data.changePercentSignificant 'insignificant'}} change-percent">
         {{#unless (eq @data.changePercent null)}}
@@ -117,10 +117,10 @@
   {{!-- percentage point --}}
 
   {{#with (format-number
-    (mult @data.changePercentagePoint 100)
+    (mult (abs @data.changePercentagePoint) 100)
     precision=1) as |roundedChangePercentagePoint|}}
     {{#with (format-number
-      (mult @data.changePercentagePointMarginOfError 100)
+      (mult (abs @data.changePercentagePointMarginOfError) 100)
       precision=1) as |roundedChangePercentagePointMarginOfError|}}
 
       <td class="{{unless @data.changePercentagePointSignificant 'insignificant'}} change-percentage-point">
