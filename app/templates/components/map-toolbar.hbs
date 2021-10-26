@@ -140,11 +140,14 @@
                     {{fa-icon icon='circle' prefix='far'}}
                   {{/if}}
                   {{config.label}}
-                  {{fa-icon icon='question-circle' transform='shrink-2'}}
-                  {{ember-tooltip
-                    text=config.tooltip
-                    side='top-start'
-                  }}
+                  <span id="{{config.id}}_tooltip" class="thematic-map-options__tooltip">
+                    {{fa-icon icon='question-circle' transform='shrink-2'}}
+                  </span>
+                  <EmberTooltip
+                    @text={{config.tooltip}}
+                    @side='top-end'
+                    @targetId="{{config.id}}_tooltip"
+                  />
                 </li>
               {{/each}}
             </ul>
