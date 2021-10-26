@@ -36,10 +36,13 @@
   line-height: 0.875rem;
 
   .layer-group-toggle {
-    color: $charcoal;
-    font-weight: 500;
     height: 100%;
     width: 100%;
+
+    .layer-group-toggle-label  {
+      color: $charcoal;
+      font-weight: 500;
+    }
   }
 
   .layer-group-toggle-header .switch {
@@ -66,6 +69,11 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    width: 100%;
+
+    .layer-group-toggle-content {
+      margin-left: auto;
+    }
 
     .cell:first-child:hover {
       cursor: pointer;
