@@ -15,8 +15,12 @@
 
   {{!-- SELECTED AREA --}}
   {{#if (eq this.data.previous.selection.sum null)}}
-    <td class="cell-border-left" class="no-compare-message"><div>Data are not available</div></td>
-    <td>&nbsp;</td>
+    <td
+      class="cell-border-left no-compare-message"
+      colspan={{if this.reliability "5" "2"}}
+    >
+      Data are not available
+    </td>
   {{else}}
     {{data-table-column-group
       model=this.data.previous
@@ -86,8 +90,10 @@
         {{/if}}
       </span>
     </td>
-    <td class="cell-border-left" class="no-compare-message">
-      <div>Data for this row are not comparable or are unavailable</div>
+    <td
+      class="cell-border-left no-compare-message"
+    >
+      Data for this row are not comparable or are unavailable
     </td>
   {{else}}
     <td>&nbsp;</td>
