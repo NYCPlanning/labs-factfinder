@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { get } from '@ember/object';
+import { get, getWithDefault } from '@ember/object';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
 import { select } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -64,6 +64,7 @@ export default Component.extend(ResizeAware, {
     const svg = this.get('svg');
     const data = this.get('data');
     const config = this.get('config');
+    const isDecennial = this.get('survey') === 'census'
 
     const el = this.$();
     const elWidth = el.width();
@@ -90,8 +91,8 @@ export default Component.extend(ResizeAware, {
     }
 
     const xMax = max([
-      max(rawData, d => get(d, 'percent') + get(d, 'percent_m')),
-      max(rawData, d => get(d, 'comparison_percent') + get(d, 'comparison_percent_m')),
+      max(rawData, d => get(d, 'percent') + getWithDefault(d, 'percentMarginOfError', 0)),
+      max(rawData, d => get(d, 'comparisonPercent') + getWithDefault(d, 'comparisonPercentMarginOfError', 0)),
     ]);
 
     const x = scaleLinear()
@@ -207,90 +208,90 @@ export default Component.extend(ResizeAware, {
 
 
     // draw MOE
-
-    const moebars = svg.selectAll('.moebar')
-      .data(rawData, d => get(d, 'group'));
-
-
-    const xFunctionMOE = (d) => {
-      if (get(d, 'percent_m') > get(d, 'percent')) return x(0);
-      return x(get(d, 'percent')) - x(get(d, 'percent_m')) - -textWidth;
-    };
-
-    const widthFunctionMOE = (d) => {
-      const defaultWidth = (x(get(d, 'percent_m')) - textWidth) * 2;
-      const axesWidth = width - textWidth;
-      const barWidth = x(get(d, 'percent')) - textWidth;
-      if (get(d, 'percent_m') > get(d, 'percent')) {
-        const newWidth = defaultWidth - (x(get(d, 'percent_m') - get(d, 'percent')) - textWidth);
-        return newWidth;
-      }
-      // if the percentage bar + the MOE bar extend past 100% on the x axes, modify width of MOE bar
-      if (barWidth + (defaultWidth * 0.5) > axesWidth) {
-        const gapWidth = axesWidth - barWidth;
-        const shortenedWidth = (defaultWidth * 0.5) + gapWidth;
-        return shortenedWidth;
-      }
-
-      return defaultWidth;
-    };
-
-    moebars.enter()
-      .append('rect')
-      .attr('class', d => `moebar ${get(d, 'classValue')}`)
-      .attr('fill', (d) => {
-        if (get(d, 'color')) return get(d, 'color');
-        return '#2e6472';
-      })
-      .attr('opacity', 0.4)
-      .attr('x', xFunctionMOE)
-      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -3)
-      .attr('height', 6)
-      .attr('width', widthFunctionMOE);
-
-    moebars.transition().duration(300)
-      .attr('x', xFunctionMOE)
-      .attr('width', widthFunctionMOE);
-
-    moebars.exit().remove();
-
-
-    // draw Comparison MOE
-
-    const comparisonMOEbars = svg.selectAll('.comparisonMoebar')
-      .data(rawData, d => get(d, 'group'));
-
-    const xFunctionComparisonMOE = d => x(get(d, 'comparison_percent'))
-      - x(get(d, 'comparison_percent_m'))
-      - -textWidth;
-
-    const widthFunctionComparisonMOE = d => (x(get(d, 'comparison_percent_m')) - textWidth) * 2;
-    comparisonMOEbars.enter()
-      .append('rect')
-      .attr('class', d => `comparisonMoebar ${get(d, 'classValue')}`)
-      .attr('fill', (d) => {
-        if (get(d, 'color')) return get(d, 'color');
-        return '#000000';
-      })
-      .attr('opacity', 1)
-      .attr('x', xFunctionComparisonMOE)
-      .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -0.5)
-      .attr('height', 1)
-      .attr('width', widthFunctionComparisonMOE);
-
-    comparisonMOEbars.transition().duration(300)
-      .attr('x', xFunctionComparisonMOE)
-      .attr('width', widthFunctionComparisonMOE);
-
-    comparisonMOEbars.exit().remove();
-
+    if (!isDecennial) {
+      const moebars = svg.selectAll('.moebar')
+        .data(rawData, d => get(d, 'group'));
+  
+  
+      const xFunctionMOE = (d) => {
+        if (get(d, 'percentMarginOfError') > get(d, 'percent')) return x(0);
+        return x(get(d, 'percent')) - x(get(d, 'percentMarginOfError')) - -textWidth;
+      };
+  
+      const widthFunctionMOE = (d) => {
+        const defaultWidth = (x(get(d, 'percentMarginOfError')) - textWidth) * 2;
+        const axesWidth = width - textWidth;
+        const barWidth = x(get(d, 'percent')) - textWidth;
+        if (get(d, 'percentMarginOfError') > get(d, 'percent')) {
+          const newWidth = defaultWidth - (x(get(d, 'percentMarginOfError') - get(d, 'percent')) - textWidth);
+          return newWidth;
+        }
+        // if the percentage bar + the MOE bar extend past 100% on the x axes, modify width of MOE bar
+        if (barWidth + (defaultWidth * 0.5) > axesWidth) {
+          const gapWidth = axesWidth - barWidth;
+          const shortenedWidth = (defaultWidth * 0.5) + gapWidth;
+          return shortenedWidth;
+        }
+  
+        return defaultWidth;
+      };
+  
+      moebars.enter()
+        .append('rect')
+        .attr('class', d => `moebar ${get(d, 'classValue')}`)
+        .attr('fill', (d) => {
+          if (get(d, 'color')) return get(d, 'color');
+          return '#2e6472';
+        })
+        .attr('opacity', 0.4)
+        .attr('x', xFunctionMOE)
+        .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -3)
+        .attr('height', 6)
+        .attr('width', widthFunctionMOE);
+  
+      moebars.transition().duration(300)
+        .attr('x', xFunctionMOE)
+        .attr('width', widthFunctionMOE);
+  
+      moebars.exit().remove();
+  
+  
+      // draw Comparison MOE
+  
+      const comparisonMOEbars = svg.selectAll('.comparisonMoebar')
+        .data(rawData, d => get(d, 'group'));
+  
+      const xFunctionComparisonMOE = d => x(get(d, 'comparisonPercent'))
+        - x(get(d, 'comparisonPercentMarginOfError'))
+        - -textWidth;
+  
+      const widthFunctionComparisonMOE = d => (x(get(d, 'comparisonPercentMarginOfError')) - textWidth) * 2;
+      comparisonMOEbars.enter()
+        .append('rect')
+        .attr('class', d => `comparisonMoebar ${get(d, 'classValue')}`)
+        .attr('fill', (d) => {
+          if (get(d, 'color')) return get(d, 'color');
+          return '#000000';
+        })
+        .attr('opacity', 1)
+        .attr('x', xFunctionComparisonMOE)
+        .attr('y', d => y(get(d, 'group')) + (y.bandwidth() / 2) + -0.5)
+        .attr('height', 1)
+        .attr('width', widthFunctionComparisonMOE);
+  
+      comparisonMOEbars.transition().duration(300)
+        .attr('x', xFunctionComparisonMOE)
+        .attr('width', widthFunctionComparisonMOE);
+  
+      comparisonMOEbars.exit().remove();
+    }
 
     // draw comparison dots
 
     const comparisonBars = svg.selectAll('.comparisonbar')
       .data(rawData, d => get(d, 'group'));
 
-    const cxFunction = d => x(get(d, 'comparison_percent'));
+    const cxFunction = d => x(get(d, 'comparisonPercent'));
     comparisonBars.enter()
       .append('circle')
       .attr('fill', '#FFF')

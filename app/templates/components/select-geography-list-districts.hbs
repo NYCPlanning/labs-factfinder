@@ -1,0 +1,11 @@
+<span class="comma-separated-list">
+  {{#each this.sortedLabels as |boro|}}
+    {{#each boro.features as |feature|}}
+      {{boro.label}} Community District {{feature.properties.district}}
+      {{~unless (and 
+        (eq boro.features.lastObject.properties.geoid feature.properties.geoid)
+        (eq this.sortedLabels.lastObject.label boro.label)
+       ) ','}}
+    {{/each}}
+  {{/each}}
+</span>

@@ -1,0 +1,87 @@
+<div
+  {{on-click-outside (action "closeMenu")}}
+>
+  <button
+    class="source-select-toggle button"
+    role="button"
+    {{on "click" this.toggleOpen}}
+  >
+    <span class="button-caption">Data Source:</span>
+    {{this.source.label}}
+    {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
+  </button>
+
+  {{#if this.open}}
+    <div class="source-menu">
+      {{#if @isModelLoading}}
+        <div class="text-center">
+          Please wait...
+        </div>
+      {{else}}
+        Decennial Census
+        {{#each this.censusSources key="id" as |source|}}
+          <div
+            class="nestable-list-item grid-x clickable"
+            {{on "click" (fn @setSource source)}}
+          >
+            <div class="cell small-1">
+              <span>
+                {{#if source.selected}}
+                  {{fa-icon icon='dot-circle' prefix='far'}}
+                {{else}}
+                  {{fa-icon icon='circle' prefix='far' class='silver'}}
+                {{/if}}
+              </span>
+            </div>
+
+            <div class="cell auto">
+              {{source.label}}
+            </div>
+          </div>
+        {{/each}}
+
+        {{#if this.showACS}}
+          American Community Survey (ACS)
+          {{#each this.acsSources key="id" as |source|}}
+            <div
+              class="nestable-list-item grid-x clickable"
+              {{on "click" (fn @setSource source)}}
+            >
+              <div class="cell small-1">
+                <span>
+                  {{#if source.selected}}
+                    {{fa-icon icon='dot-circle' prefix='far'}}
+                  {{else}}
+                    {{fa-icon icon='circle' prefix='far' class='silver'}}
+                  {{/if}}
+                </span>
+              </div>
+
+              <div class="cell auto">
+                {{source.label}}
+              </div>
+            </div>
+          {{/each}}
+        {{else}}
+          <span class="disabled">American Community Survey (ACS)</span>
+          {{#each this.acsSources key="id" as |source|}}
+            <div
+              class="nestable-list-item grid-x disabled"
+              aria-disabled="true"
+            >
+              <div class="cell small-1">
+                <span class="disabled">
+                  {{fa-icon icon='circle' prefix='far' class='silver'}}
+                </span>
+              </div>
+
+              <div class="cell auto disabled">
+                {{source.label}}
+              </div>
+            </div>
+          {{/each}}
+        {{/if}}
+      {{/if}}
+    </div>
+  {{/if}}
+</div>

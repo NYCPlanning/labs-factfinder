@@ -1,13 +1,9 @@
-{{#reveal-modal
-  open=open
-  closeModal=(action 'toggleModal')
-}}
-  <h1 class="header-xlarge">
-    A note to our users about upcoming changes:
+<RevealModal @open={{this.open}} @closeModal={{action 'toggleModal'}}>
+  <h1 class="header-large">
+    NYC Population FactFinder is optimized for desktop screen widths. 
   </h1>
 
   <p class="lead">
-    Coming in October! NYC Population FactFinder will be updated with 2020 Census data & 2015-2019 ACS data in 2020 geographies. <a href="https://www1.nyc.gov/site/planning/planning-level/nyc-population/2020-census.page" target="_blank">Click here for more information on the 2020 Census.</a>
+    Mobile support for NYC Population FactFinder will be added in the future. For the best experience, please use a browser with a minimum width of 1280px. 
   </p>
-  
-{{/reveal-modal}}
+</RevealModal>

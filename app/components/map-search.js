@@ -28,7 +28,7 @@ export default Component.extend({
   }),
 
   debouncedResults: task(function* (searchTerms) {
-    if (searchTerms.length < 3) this.cancel();
+    if (searchTerms.length < 3) this.debouncedResults.cancelAll();
     yield timeout(DEBOUNCE_MS);
     const URL = `${SupportServiceHost}/search?q=${searchTerms}`;
 
@@ -59,6 +59,12 @@ export default Component.extend({
             },
           );
         }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event' : 'search_performed',
+          'search_query' : searchTerms,
+        });
+
         return resultList;
       });
   }).keepLatest(),
@@ -131,9 +137,15 @@ export default Component.extend({
     },
 
     goTo(result) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event' : 'search_result_clicked',
+        'search_result_label' : result.label,
+        'search_result_type' : result.type,
+      });
       this.get('metrics').trackEvent('GoogleAnalytics', {
         eventCategory: 'Map Search',
-        eventAction: 'Downloaded CSV',
+        eventAction: 'Search Result Clicked',
         eventValue: this.get('searchTerms'),
       });
       this.$('.map-search-input').blur();
@@ -159,7 +171,7 @@ export default Component.extend({
         this.set('searchTerms', result.feature.properties.fips);
         this.fitBounds(result.feature, 0.5);
       }
-      //
+
       if (result.type === 'nta') {
         selection.set('searchResultFeature', result.feature);
         this.set('searchTerms', result.feature.properties.ntacode);
@@ -177,7 +189,6 @@ export default Component.extend({
         selection.set('currentAddress', center);
 
         this.set('searchTerms', result.label);
-        this.transitionTo('index');
 
         if (map) {
           map.flyTo({

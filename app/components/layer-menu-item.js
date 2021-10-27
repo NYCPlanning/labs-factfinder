@@ -1,47 +1,52 @@
 import Component from '@ember/component';
-import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object'; // eslint-disable-line
 
 export default Component.extend({
-  registeredLayers: service(),
-  metrics: service(),
+  init(...args) {
+    this._super(...args);
 
-  visible: alias('layer.visible'),
-  // tagName: 'li',
-  classNames: 'layer-menu-item',
+    const recordIdentifier = this.get('for');
+    const foundRecord = this.get('store').peekRecord('layer-group', recordIdentifier);
 
-  layer: computed('for', 'registeredLayers.layers.@each', function() {
-    const { for: layerId, 'registeredLayers.layers': layers } = this.getProperties('for', 'registeredLayers.layers');
-
-    return layers.findBy('config.id', layerId);
-  }),
-
-  title: alias('layer.config.title'),
-
-  legendIcon: alias('layer.config.legendIcon'),
-
-  legendColor: alias('layer.config.legendColor'),
-
-  titleTooltip: alias('layer.config.titleTooltip'),
-
-  actions: {
-
-    toggleVisibility() {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: `${this.get('visible') ? 'Turned off' : 'Turned on'} ${this.get('layer.config.title')}`,
-      });
-
-      this.toggleProperty('visible');
-    },
-    updateSql(method, column, value) {
-      const layer = this.get('layer');
-      layer.send('updateSql', method, column, value);
-    },
-    updatePaintFor(id, paintObject) {
-      const layer = this.get('layer');
-      layer.send('updatePaintFor', id, paintObject);
-    },
+    if (foundRecord) {
+      foundRecord.set('layers', foundRecord.layers.map(layer => {
+        if(layer.id === 'choropleth-nta-fill') {
+          layer.paint = {
+            ...layer.paint,
+            ...this.defaultFill
+          }
+        }
+        if(layer.id === 'choropleth-nta-line') {
+          layer.paint = {
+            ...layer.paint,
+            ...this.defaultLine
+          }
+        }
+        return layer
+      }))
+      this.set('model', foundRecord);
+    }
   },
+
+  store: service(),
+
+  for: '',
+  
+  actions: {
+    updatePaintFor(layerId, newPaintStyle) {
+      const model = this.get('model')
+      model.set('layers', model.layers.map(layer => {
+        if(layer.id === layerId) {
+          layer.paint = {
+            ...layer.paint,
+            ...newPaintStyle
+          }
+        }
+        return layer
+      }))
+    },
+    toggle() {
+      this.get('model').toggleProperty('visible')
+    }
+  }
 });

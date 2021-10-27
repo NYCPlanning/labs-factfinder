@@ -1,0 +1,8 @@
+<span class="comma-separated-list">
+  {{#each this.sortedLabels as |boro|}}
+    {{#if boro.features.length}}
+      {{boro.label}}
+      {{~unless (eq this.sortedLabels.lastObject.label boro.label) ','}}
+    {{/if}}
+  {{/each}}
+</span>

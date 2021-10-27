@@ -35,7 +35,7 @@ const SAMPLE_SELECTION = {
   }],
 };
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   const ENV = {
     modulePrefix: 'labs-nyc-factfinder',
     environment,
@@ -44,7 +44,7 @@ module.exports = function(environment) {
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
+        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
@@ -58,50 +58,14 @@ module.exports = function(environment) {
     },
 
     'ember-mapbox-composer': {
-      host: 'https://labs-layers-api.herokuapp.com',
+      host: 'https://labs-layers-api-staging.herokuapp.com',
       namespace: 'v1',
     },
 
     'mapbox-gl': {
-      accessToken: '',
+      accessToken: 'pk.eyJ1Ijoid21hdHRnYXJkbmVyIiwiYSI6Ii1icTRNT3MifQ.WnayxAOEoXX-jWsNmHUhyg',
       map: {
-        style: 'https://labs-layers-api.herokuapp.com/v1/base/style.json',
-      },
-    },
-
-    fontawesome: {
-      icons: {
-        'free-solid-svg-icons': [
-          'arrow-left',
-          'arrow-right',
-          'arrow-up',
-          'caret-down',
-          'download',
-          'edit',
-          'exclamation-triangle',
-          'external-link-alt',
-          'file',
-          'info-circle',
-          'map',
-          'map-pin',
-          'pen',
-          'plus',
-          'question-circle',
-          'search',
-          'sliders-h',
-          'square',
-          'times',
-        ],
-        'free-regular-svg-icons': [
-          'check-square',
-          'circle',
-          'copy',
-          'dot-circle',
-          'envelope',
-          'hand-pointer',
-          'object-group',
-          'square',
-        ],
+        style: 'https://labs-layers-api-staging.herokuapp.com/v1/base/style.json',
       },
     },
 
@@ -128,7 +92,7 @@ module.exports = function(environment) {
 
     SAMPLE_SELECTION,
 
-    SupportServiceHost: 'https://factfinder-api-staging.herokuapp.com',
+    SupportServiceHost: 'https://factfinder-api.herokuapp.com',
   };
 
   ENV.DEFAULT_SELECTION = {
@@ -136,22 +100,42 @@ module.exports = function(environment) {
     features: [],
   };
 
+if (environment === 'local-api') {
+  ENV.SupportServiceHost = 'http://localhost:3001';
+  ENV['mapbox-gl'].map.style = 'http://localhost:3000/v1/base/style.json';
+  ENV['ember-mapbox-composer'].host = 'http://localhost:3000';
+  ENV['ember-cli-mirage'] = {
+    enabled: false,
+  };
+}
+
   if (environment === 'development') {
-    ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
+    // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
+    ENV.SupportServiceHost = 'https://factfinder-api-develop.herokuapp.com';
+    ENV['ember-cli-mirage'] = {
+      enabled: false,
+    };
   }
 
   if (environment === 'staging') {
-    ENV.SupportServiceHost = 'https://factfinder-api-staging.herokuapp.com';
+    // The "develop" client deployment also uses this staging environment to build (to make sure assets are
+    // minified, etc.). To switch the SupportServiceHost to the develop Factfinder API, the API_URL
+    // environment variable should be set to 'https://factfinder-api-staging.herokuapp.com/'.
+    // See netlify.toml for setting netlify environment variable during build.
+    ENV.SupportServiceHost = process.env.API_URL || 'https://factfinder-api-staging.herokuapp.com';
+    ENV['ember-cli-mirage'] = {
+      enabled: false,
+    };
   }
 
   if (environment === 'devlocal') {
-    ENV.SupportServiceHost = 'http://localhost:3000';
+    ENV.SupportServiceHost = 'http://localhost:3001';
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
-    ENV.SupportServiceHost = 'https://factfinder-api-staging.herokuapp.com';
+    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
 
     ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
 
@@ -166,7 +150,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV['mapbox-gl'].map.style = 'https://labs-layers-api.herokuapp.com/v1/base/style.json';
     ENV['ember-mapbox-composer'].host = 'https://labs-layers-api.herokuapp.com';
-    ENV.SupportServiceHost = 'https://factfinder-api.herokuapp.com';
+    ENV.SupportServiceHost = process.env.API_URL || 'https://factfinder-api.herokuapp.com';
   }
 
   return ENV;

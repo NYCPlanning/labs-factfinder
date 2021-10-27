@@ -3,10 +3,22 @@
 // --------------------------------------------------
 
 .search {
-
-  input {
-    margin-bottom: 0;
-    padding-right: 2.2rem;
+  width: 200px;
+  height: 40px;
+  position: relative;
+  
+  input.map-search-input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 2.5rem 0 0.75rem;
+    border-radius: 5px;
+    background-color: #ECEDEE;
+    margin: 0;
+    max-width: unset;
+    border: none;
+    font-size: 0.875rem;
   }
 
   .close-button {
@@ -16,22 +28,24 @@
 
   .search-icon {
     position: absolute;
-    top: rem-calc(6);
-    right: rem-calc(10);
-    color: $light-gray;
+    color: $charcoal;
     pointer-events: none;
+    right: 12px;
+    top: 8px;
   }
 }
 
 .search-results {
+  z-index: 5;
   background-color: rgba($white,0.94);
+  color: $charcoal;
+  text-align: left;
   font-size: rem-calc(12);
   width: 100%;
   position: absolute;
-  top: 100%;
   right: auto;
   bottom: auto;
-  left: -200%; // hide by default, show with .focused
+  left: -9999px; // hide by default, show with .focused
   box-shadow: 0 2px 0 rgba(0,0,0,0.1);
   opacity: 0;
   transition: opacity 0.5s, left 0;
@@ -40,7 +54,6 @@
   @include breakpoint(large) {
     width: 22rem;
     box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
-    padding: 0 rem-calc(6) rem-calc(6);
     max-height: calc(100vh - 9.375rem);
     overflow: auto;
   }
@@ -54,45 +67,42 @@
   }
 
   .results-header {
-    margin: rem-calc(10) 0 0;
+    border-bottom: 1px solid #ECEDEE;
+
+    h4 {
+      margin: rem-calc(10) 0 0;
+    }
   }
+
   li:first-child .results-header {
     margin-top: 0;
   }
 
   li {
-    padding: $global-margin/2;
-  }
-
-  li:not(:first-child) {
-    border-top: 1px solid $medium-gray;
+    padding: 0.75rem;
   }
 
   .result {
-    color: $anchor-color;
     cursor: pointer;
     transition: $button-transition;
 
+    &[data-ember-action]:not(:disabled) {
+      cursor: pointer;
+    }
+
     &:hover,
     &.highlighted-result {
-      color: $anchor-color-hover;
-      background-color: $a11y-yellow;
-      // box-shadow: inset rem-calc(-6) 0 0 $primary-color;
+      background-color: #ECEDEE;
     }
-  }
-
-  .subdued {
-    color: $dark-gray;
   }
 }
 
 .highlighted-result {
-  color: $anchor-color-hover;
   background-color: $medium-gray;
 }
 
 .search-results--loading {
-  border-top: 1px solid $medium-gray;
+  z-index: 5;
   padding: $global-margin/2;
   color: $dark-gray;
   background-color: rgba($white,0.94);
@@ -106,7 +116,6 @@
   box-shadow: 0 2px 0 rgba(0,0,0,0.1);
 
   @include breakpoint(large) {
-    border-top: 0;
     width: auto;
     padding: rem-calc(6);
     color: $body-font-color;

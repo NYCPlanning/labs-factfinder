@@ -1,0 +1,97 @@
+// --------------------------------------------------
+// Module: Download Data Dropdown
+// --------------------------------------------------
+
+$download-data-dropdown-margin: rem-calc(6);
+$download-data-dropdown-hover-color: rgba($dark-gray,0.08);
+
+#download-data-dropdown {
+  z-index: 1;
+  color: $charcoal;
+  font-size: 1rem;
+  position: fixed;
+  right: 26px;
+  top: 6.5rem;
+  background-color: $off-white;
+  margin-right: -$global-margin;
+  margin-left: -$global-margin;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px 2px;
+  transition: all 0.2s;
+  border-radius: 5px;
+  text-align: center;
+
+  p {
+    line-height: 1;
+  }
+
+  &.closed {
+    display: none;
+  }
+
+  @include breakpoint(large) {
+    &.closed {
+      max-height: 0;
+      min-height: 0;
+    }
+  }
+}
+
+.download-data-dropdown-head {
+  color: $charcoal;
+  padding: 0.75rem;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+  font-size: 1rem;
+  font-weight: bold;
+}
+.download-data-dropdown-foot {
+  cursor: pointer;
+  background-color: $teal;
+  color: white;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  border-radius: 0 0 5px 5px;
+
+  .small {
+    font-size: rem-calc(14);
+    font-weight: normal;
+  }
+}
+.download-data-dropdown-body {
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  text-align: left;
+  min-height: rem-calc(200);
+  max-height: calc(100vh - #{rem-calc(472)});
+  overflow: auto;
+  .head {
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration-line: underline;  
+  }
+  .subtopic, .source-label {
+    font-weight: normal;
+  }
+}
+
+#download-button {
+  width: 40px;
+  justify-content: center;
+  color: $off-white;
+  background-color: $teal;
+  border: none;
+
+  .notification-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #F19457;
+    color: $charcoal;
+  }
+}

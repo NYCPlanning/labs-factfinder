@@ -1,0 +1,51 @@
+<button id="download-button" class="button" {{on "click" this.toggleOpen}}>
+  {{ember-tooltip delay=500 text='Download tables for selected geographies and topics.' side='bottom-end'}}
+  {{fa-icon icon="download" prefix="fas" transform='grow-10'}}
+  <span class="notification-count">
+    {{this.numSelected}}
+  </span>
+</button>
+
+{{#if this.open}}
+  <div
+   id="download-data-dropdown"
+   {{on-click-outside (action "closeMenu")}}
+  >
+    <div class="download-data-dropdown-head">
+      Data Download Summary
+    </div>
+    <div class="download-data-dropdown-body">
+      {{#if @isModelLoading}}
+        <div class="text-center">
+          Please wait...
+        </div>
+      {{else}}
+        <p class="head">Data Source</p>
+        <p class="source-label">{{this.source.label}}</p>
+        <p class="head">Topics</p>
+        {{#if (eq this.source.type 'acs')}}
+          {{#each this.selectedTopicsList as |topic|}}
+            <p><strong>{{topic.label}}:</strong></p>
+            {{#each topic.children as |subtopic|}}
+              {{#if subtopic.selected}}
+                <p class="subtopic">{{subtopic.label}}</p>
+              {{/if}}
+            {{/each}}
+          {{/each}}
+        {{else}}
+          {{#each @topics as |topic|}}
+            {{#if (eq topic.selected 'selected')}}
+              <p>{{topic.label}}</p>
+            {{/if}}
+          {{/each}}
+        {{/if}}
+      {{/if}}
+    </div>
+
+    {{#if (not @isModelLoading)}}
+      <div class="download-data-dropdown-foot" {{on "click" this.exportTableToCSV}}>
+        {{fa-icon icon='arrow-alt-circle-down' prefix='far' class='white'}} Download Data <span class="small">(.csv)</span>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}

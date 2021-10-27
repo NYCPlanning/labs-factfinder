@@ -1,0 +1,38 @@
+<div class="top-bar explorer-toolbar">
+  <div class="top-bar-left grid-x align-middle">
+    <Explorer::SourceSelectDropdown
+      @sources={{@sources}}
+      @setSource={{@setSource}}
+      @isModelLoading={{@isModelLoading}}
+      @geotype={{@geotype}}
+    />
+
+    <Explorer::TopicSelectDropdown
+      @topics={{@topics}}
+      @toggleTopic={{@toggleTopic}}
+      @toggleAllTopics={{@toggleAllTopics}}
+      @isModelLoading={{@isModelLoading}}
+    />
+
+    <Explorer::ModifyTablesMenu
+      @mode={{@mode}}
+      @sources={{@sources}}
+      @showReliability={{@showReliability}}
+      @showCharts={{@showCharts}}
+      @comparisonGeoOptions={{@comparisonGeoOptions}}
+      @comparisonGeo={{@comparisonGeo}}
+      @toggleBooleanControl={{@toggleBooleanControl}}
+      @updateCompareTo={{@updateCompareTo}}
+      @isModelLoading={{@isModelLoading}}
+    />
+  </div>
+  <div class="top-bar-right">
+    <Explorer::DownloadDataDropdown
+      @topics={{@topics}}
+      @sources={{@sources}}
+      @showReliability={{@showReliability}}
+      @toggleReliability={{@toggleReliability}}
+      @isModelLoading={{@isModelLoading}}
+    />
+  </div>
+</div>

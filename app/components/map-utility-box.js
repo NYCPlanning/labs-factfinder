@@ -19,8 +19,6 @@ export default Component.extend({
 
   choroplethConfigs,
 
-  classNames: ['map-utility-box'],
-
   selectionCount: alias('selection.selectedCount'),
   mode: 'direct-select',
   advanced: false,
@@ -28,12 +26,6 @@ export default Component.extend({
   choroplethMode: 'popperacre',
 
   summaryLevel: alias('selection.summaryLevel'),
-
-  profileButtonClasses: computed('selection.selectedCount', 'generateProfileId.isIdle', function() {
-    const { 'selection.selectedCount': count, 'generateProfileId.isIdle': isIdle } = this.getProperties('selection.selectedCount', 'generateProfileId.isIdle');
-
-    return (count > 0 && isIdle) ? 'button large expanded view-profile-button' : 'button large expanded disabled view-profile-button';
-  }),
 
   choroplethPaintFill: computed('choroplethMode', function() {
     const { choroplethMode: mode } = this.getProperties('choroplethMode');
@@ -87,13 +79,13 @@ export default Component.extend({
     ];
   }),
 
-  generateProfileId: task(function* (type, geoids) {
+  generateExplorerPageTask: task(function* (type, geoids) {
     const postBody = {
-      type,
+      geotype: type,
       geoids,
     };
 
-    const { id } = yield fetch(`${SupportServiceHost}/selection`, {
+    const { id: selectionId } = yield fetch(`${SupportServiceHost}/selection`, { // eslint-disable-line
       headers: {
         'Content-Type': 'application/json',
       },
@@ -102,63 +94,57 @@ export default Component.extend({
     })
       .then(d => d.json());
 
-    const lastreport = this.get('lastreport');
-    const blocks = this.get('selection.summaryLevel') === 'blocks';
-    const transitionRoute = blocks ? 'profile.census' : `profile.${lastreport}`;
-
     yield this.get('router')
-      .transitionTo(transitionRoute, id, {
-        queryParams: {
-          mode: 'current', comparator: '0', reliability: false, charts: true,
-        },
-      });
+      .transitionTo(`/explorer/selection/${selectionId}`);
   }).restartable(),
 
-  actions: {
-    clearSelection() {
-      this.get('selection').clearSelection();
-    },
-    handleDrawButtonClick(type) {
-      const el = this.get('element').getElementsByClassName('draw-tool');
-      this.sendAction('handleDrawButtonClick', type);
-      this.$(el).blur();
-    },
-    handleDrawRadiusButtonClick() {
-      this.sendAction('handleDrawRadiusButtonClick');
-    },
-    transitionTo() {},
-
-    generateProfileId() {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Selection',
-        eventAction: 'Created Profile',
-        eventLabel: this.get('summaryLevel'),
-        eventValue: this.get('selection.current.features.length'),
-      });
-      const type = this.get('summaryLevel');
-      const geoids = this.get('selection.current.features')
-        .mapBy('properties.geoid');
-
-      this.get('generateProfileId').perform(type, geoids);
-    },
-
-    setChoroplethMode(mode) {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: 'Selected Choropleth',
-        eventLabel: this.get('choroplethMode'),
-      });
-      this.set('choroplethMode', mode);
-    },
-
-    toggleAdvancedOptions() {
-      this.get('metrics').trackEvent('GoogleAnalytics', {
-        eventCategory: 'Advanced Options',
-        eventAction: 'Toggle Advanced Options',
-        eventLabel: this.get('advanced') ? 'Closed' : 'Opened',
-      });
-
-      this.set('advanced', !this.get('advanced'));
-    },
+  clearSelection() {
+    this.get('selection').clearSelection();
   },
+  handleDrawButtonClick(type) {
+    const el = this.get('element').getElementsByClassName('draw-tool');
+    this.sendAction('handleDrawButtonClick', type);
+    this.$(el).blur();
+  },
+  handleDrawRadiusButtonClick() {
+    this.sendAction('handleDrawRadiusButtonClick');
+  },
+  transitionTo() {},
+
+  generateExplorerPage() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event' : 'see_more_data',
+      'selection_geotype' : this.get('summaryLevel'),
+      'selection_itemcount' : this.get('selection.current.features.length'),
+    });
+
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Selection',
+      eventAction: 'Created Profile',
+      eventLabel: this.get('summaryLevel'),
+      eventValue: this.get('selection.current.features.length'),
+    });
+    const type = this.get('summaryLevel');
+    const geoids = this.get('selection.current.features')
+      .mapBy('properties.geoid');
+
+    if (geoids.length > 1) {
+      this.get('generateExplorerPageTask').perform(type, geoids);
+    } else if (geoids.length === 1){
+      this.get('router').transitionTo(`/explorer/${type}/${geoids[0]}`);
+    } else {
+      console.log("Warning: Cannot generate profile because selected geoids array is empty.")
+    }
+  },
+
+  setChoroplethMode(mode) {
+    this.get('metrics').trackEvent('GoogleAnalytics', {
+      eventCategory: 'Advanced Options',
+      eventAction: 'Selected Choropleth',
+      eventLabel: this.get('choroplethMode'),
+    });
+    this.set('choroplethMode', mode);
+  },
+
 });

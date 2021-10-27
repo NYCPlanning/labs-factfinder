@@ -9,7 +9,10 @@
 /bower_components
 
 # misc
+/.env*
+/.pnp*
 /.sass-cache
+/.eslintcache
 /connect.lock
 /coverage/*
 /libpeerconnection.log
@@ -23,6 +26,6 @@ public/.DS_Store
 .node_modules.ember-try/
 bower.json.ember-try
 package.json.ember-try
-
+/.eslintcache
 .eslintcache
 .husky

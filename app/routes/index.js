@@ -17,6 +17,15 @@ export default Route.extend({
    */
   layerGroupService: service('layerGroups'),
 
+  intl: service(),
+
+
+  beforeModel() {
+    this._super(...arguments);
+
+    this.intl.setLocale(['en-us']);
+  },
+
   /**
    * EmberJS Route model hook, which is responsible for fetching data. In this case,
    * it's used to query for layer groups.
@@ -29,19 +38,25 @@ export default Route.extend({
         // Administrative Boundaries
         // { id: 'assembly-districts', visible: false },
         // { id: 'ny-senate-districts', visible: false },
-        // { id: 'boroughs', visible: false },
+        { id: 'boroughs', visible: false },
         { id: 'nyc-council-districts', visible: false },
-        { id: 'nyc-pumas', visible: false },
-        { id: 'community-districts', visible: false },
-        { id: 'neighborhood-tabulation-areas', visible: false },
+        { id: 'factfinder--community-districts', visible: false },
+        { id: 'factfinder--neighborhood-tabulation-areas', visible: false },
+        { id: 'community-district-tabulation-areas', visible: false },
+        { id: 'factfinder--zip-codes', visible: false },
 
         // Census selection groups
         { id: 'factfinder--census-blocks', visible: false },
-        { id: 'factfinder--census-tracts', visible: false },
+        { id: 'factfinder--census-tracts-2020', visible: false },
+        { id: 'factfinder--districts', visible: false },
+        { id: 'factfinder--boroughs', visible: false },
+        { id: 'factfinder--cities', visible: false },
         { id: 'factfinder--ntas', visible: false },
         { id: 'factfinder--pumas', visible: false },
+        { id: 'factfinder--cdtas', visible: false },
 
         { id: 'subway', visible: false },
+        { id: 'choropleths', visible: false},
       ],
     });
 
@@ -56,6 +71,8 @@ export default Route.extend({
    */
   setupController(controller, model) {
     const { layerGroups } = model;
+
+    // this is usually important for hoisting internal layer state into the query params
     this.get('layerGroupService').initializeObservers(layerGroups, controller);
     this._super(controller, model);
   },

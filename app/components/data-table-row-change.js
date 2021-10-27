@@ -35,8 +35,11 @@ export default Component.extend({
   }),
 
   noPriorData: computed('data.previous.sum', function() {
-    const { 'data.previous.sum': previousSum } = this.getProperties('data.previous.sum');
-    return previousSum === null;
+    const { 'data.previous': previous } = this.getProperties('data.previous');
+    if ( previous && typeof previous.sum === 'undefined') {
+      return true
+    }
+    return false
   }),
 
   actions: {

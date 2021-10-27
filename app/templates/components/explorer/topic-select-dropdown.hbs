@@ -1,0 +1,53 @@
+<div
+  {{on-click-outside (action "closeMenu")}}
+>
+  <button
+    class="topic-select-toggle button gray expanded no-margin"
+    role="button"
+    {{on "click" this.toggleOpen}}
+  >
+    <span class="button-caption">Select Topics:</span>
+    {{this.numSelected}} Selected
+    {{fa-icon icon=(if this.open 'caret-up' 'caret-down')}}
+  </button>
+  {{#if this.open}}
+    <div class="topic-menu">
+      {{#if @isModelLoading}}
+        <div class="text-center">
+          Please wait...
+        </div>
+      {{else}}
+        <div
+          class="nestable-list-item grid-x topic-list-item"
+        >
+          <div class="cell small-1 clickable"
+            {{on "click" @toggleAllTopics}}
+          >
+            <span>
+              {{#if (eq this.isAllTopicsSelected "selected")}}
+                {{fa-icon icon='check-square' prefix='far'}}
+              {{else if (eq this.isAllTopicsSelected "unselected")}}
+                {{fa-icon icon='square' prefix='far'}}
+              {{else}}
+                {{fa-icon icon='minus-square' prefix='far'}}
+              {{/if}}
+            </span>
+          </div>
+
+          <div
+            class="cell auto"
+          >
+            All Topics
+          </div>
+        </div>
+
+        {{#each @topics key="id" as |topic|}}
+          <Ui::NestableListItem
+            @item={{topic}}
+            @onItemToggle={{@toggleTopic}}
+          />
+        {{/each}}
+      {{/if}}
+    </div>
+  {{/if}}
+</div>

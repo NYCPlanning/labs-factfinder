@@ -1,54 +1,19 @@
-{{#if layer}}
-  <div class="layer-menu-item-header" {{action 'toggleVisibility'}}>
-
-    {{#if (or warning titleTooltip)}}
-      {{#if warning}}
-        <span class="float-right gold">
-          {{labs-ui/icon-tooltip
-            icon='exclamation-triangle'
-            tip='Some information may not visible at this zoom level.'
-            side='left'
-          }}
-        </span>
-      {{/if}}
-      {{#if titleTooltip}}
-        <span class="float-right">
-          {{labs-ui/icon-tooltip
-            icon='question-circle'
-            tip=titleTooltip
-            side='left'
-          }}
-        </span>
-      {{/if}}
-    {{/if}}
-
-    {{switch-toggle checked=visible}}
-
-    {{title}}
-
-    {{#if visible}}
-
-      {{#with legendIcon as |legendIcon|}}
-        {{#if (eq legendIcon 'admin-line')}}
-          <span class="layer-group-legend" style="border-color:{{legendColor}};"></span>
-        {{/if}}
-        {{#if (eq legendIcon 'polygon')}}
-          <span class="icon polygon legend-icon" style="background-color:{{legendColor}};"></span>
-        {{/if}}
-      {{/with}}
-    {{/if}}
-
-
-  </div>
-
-  {{#if visible}}
+<div class="layer-group-toggle-title">
+  {{#labs-ui/layer-group-toggle
+    label=this.model.legend.label
+    active=this.model.visible
+    icon=this.model.legend.icon
+    hideIcon=true
+  }}
+    {{fa-icon icon='question-circle' transform='shrink-2'}}
+    {{ember-tooltip side="bottom-end" text='Neighborhood Tabulation Area maps for selected variables'}}
+  {{/labs-ui/layer-group-toggle}}
+</div>
+{{#if this.model.visible}}
     <div class="layer-menu-item-content">
       {{~yield (hash
-        layer=layer
-        updateSql=(action 'updateSql')
+        model=this.model
         updatePaintFor=(action 'updatePaintFor')
-        )~}}
+      )~}}
     </div>
-  {{/if}}
-
 {{/if}}

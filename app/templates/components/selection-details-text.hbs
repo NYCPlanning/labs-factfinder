@@ -1,7 +1,17 @@
-{{selection.selectedCount}}
-{{if (eq selection.summaryLevel 'tracts') 'Census Tract'~}}
-{{if (eq selection.summaryLevel 'blocks') 'Census Block'~}}
-{{if (eq selection.summaryLevel 'ntas') 'Neighborhood'~}}
-{{if (eq selection.summaryLevel 'pumas') 'PUMA'~}}
-{{unless (eq selection.selectedCount 1) 's'}}
-{{if (eq selection.summaryLevel 'blocks') '(Tract Id-Block Id)'~}}
+<strong>
+  {{#if (eq @selectedType 'cities')}}
+    New York City
+  {{else}}
+    {{@selectedCount}}
+    {{if (eq @selectedType 'tracts') 'Tract'~}}
+    {{if (eq @selectedType 'blocks') 'Block'~}}
+    {{if (eq @selectedType 'cdtas') 'CDTA'~}}
+    {{if (eq @selectedType 'districts') 'CD'~}}
+    {{if (eq @selectedType 'ntas') 'NTA'~}}
+    {{if (eq @selectedType 'boroughs') 'Borough'~}}
+    {{unless (eq @selectedCount 1) 's'}}
+  {{/if}}
+</strong>
+{{#unless (eq @selectedType 'cities')}}
+   | 
+{{/unless}}

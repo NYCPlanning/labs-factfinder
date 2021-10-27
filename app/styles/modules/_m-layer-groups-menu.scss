@@ -1,0 +1,179 @@
+// --------------------------------------------------
+// Module: Layer Groups Menu
+// --------------------------------------------------
+
+//
+// Layer Group Container
+// --------------------------------------------------
+.layer-groups-container {
+  border-bottom: 1px solid $silver;
+
+  &:hover {
+    background-color: rgba(107,113,123,.06);
+  }
+
+  &:not(.open) {
+    display: none;
+  }
+
+  .fa-info-circle {
+    color: $blue-dark;
+  }
+
+  .fa-exclamation-triangle {
+    color: $orange;
+  }
+}
+
+.layer-group-toggle-title {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #AAAFB5;
+  line-height: 0.875rem;
+
+  .layer-group-toggle {
+    height: 100%;
+    width: 100%;
+
+    .layer-group-toggle-label  {
+      color: $charcoal;
+      font-weight: 500;
+    }
+  }
+
+  .layer-group-toggle-header .switch {
+    margin: 0.75rem 0;
+  }
+}
+
+//
+// Layer Group Toggle
+// --------------------------------------------------
+.layer-group-toggle {
+  font-size: 0.875rem;
+  padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(107,113,123,.06);
+  }
+
+  .layer-group-toggle-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+
+    .layer-group-toggle-content {
+      margin-left: auto;
+    }
+
+    .cell:first-child:hover {
+      cursor: pointer;
+    }
+
+    .layer-group-toggle-label {
+      display: block;
+      text-align: left;
+    }
+
+    .switch {
+      margin: 0;
+
+      input:checked ~ .switch-paddle {
+        background-color: $teal;
+      }
+
+      &.tiny .switch-paddle {
+        width: 1.25rem;
+      }
+
+      &.tiny .switch-paddle::after {
+        width: 0.5rem;
+      }
+
+      &.tiny input:checked ~ .switch-paddle::after {
+        left: 0.625rem;
+      }
+    }
+
+    .layer-group-toggle-icons {
+      padding: rem-calc(6);
+    }
+  }
+}
+
+//
+// Legends
+// --------------------------------------------------
+.legend-items {
+  padding: 0 0 rem-calc(6);
+}
+
+.legend-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 2px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 rem-calc(2) 0 0;
+  position: relative;
+  text-align: center;
+}
+
+.legend-icon-layer {
+  display: inline-block;
+
+  &.line + &.line {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+svg.legend-icon-layer {
+  height: 1.5em;
+  width: 2.5em;
+}
+
+.polygon-stacked {
+  position: relative;
+
+  .fa + .fa {
+    position: absolute;
+    top: -0.2em;
+    left: 0.2em;
+  }
+}
+
+.polygon-fill-dash {
+  opacity: 0.5;
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  position: relative;
+
+  .fill, .dash {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .fill {
+    opacity: 0.3;
+  }
+
+  .dash {
+    border-width: 2px;
+    border-style: dotted;
+  }
+}

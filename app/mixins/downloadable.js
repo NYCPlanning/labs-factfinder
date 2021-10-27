@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import nestProfile from '../utils/nest-profile';
+import nestSurvey from '../utils/nest-survey';
 
 /**
  * The Downloadable mixin is an EmberJS feature, see https://api.emberjs.com/ember/release/classes/Mixin.
@@ -19,7 +19,8 @@ export default Mixin.create({
    * Also updates the profile view's tab state with the "target".
    */
   beforeModel(transition) {
-    this.store.unloadAll('row');
+    this.store.unloadAll('census-row');
+    this.store.unloadAll('acs-row');
 
     const { targetName } = transition;
     this.controllerFor('profile').set('tab', targetName);
@@ -33,7 +34,7 @@ export default Mixin.create({
   setupController(controller, model) {
     this._super(controller, model);
 
-    const nestedModel = nestProfile(model, 'variable');
+    const nestedModel = nestSurvey(model, 'variable');
 
     controller.setProperties({
       model: nestedModel,

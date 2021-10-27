@@ -2,6 +2,7 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
 import numeral from 'numeral';
+import Promise from 'rsvp';
 
 import { select } from 'd3-selection';
 import { scaleBand, scaleLinear } from 'd3-scale';

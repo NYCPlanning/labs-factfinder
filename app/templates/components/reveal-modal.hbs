@@ -1,6 +1,6 @@
-{{#if open}}
+{{#if @open}}
   <div class="reveal-overlay" style="display:block;">
-    <div class="reveal-overlay-target" {{action this.closeModal}}></div>
+    <div class="reveal-overlay-target" {{action @closeModal}}></div>
     <div
       class="reveal"
       role="dialog"
@@ -10,7 +10,7 @@
       data-test-confirmation-modal
     >
       {{yield}}
-      <button {{action this.closeModal}} class="close-button" aria-label="Close modal" type="button">
+      <button {{action @closeModal}} class="close-button" aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>

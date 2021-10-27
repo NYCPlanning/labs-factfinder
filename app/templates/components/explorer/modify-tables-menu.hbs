@@ -1,0 +1,29 @@
+{{#if (and
+  (or
+    (eq @mode 'current')
+    (eq @mode 'previous')
+  )
+  @comparisonGeoOptions
+  @comparisonGeo
+)}}
+  <ComparisonAreaSelector
+    @comparisonGeoOptions={{@comparisonGeoOptions}}
+    @comparisonGeo={{@comparisonGeo}}
+    @onSelect={{@updateCompareTo}}
+  />
+{{/if}}
+{{#if this.isAcsDataSource}}
+  <div class="reliability-toggle" {{on "click" (fn @toggleBooleanControl 'showReliability')}}>
+    {{#if @showReliability}}
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="16" height="16" rx="4" fill="#007B80"/>
+        <path d="M13.209 3.9444L7.84755 12.8138C7.65056 13.1392 7.31995 13.3334 6.96233 13.3334C6.64596 13.3334 6.3463 13.181 6.14096 12.9152L2.84323 8.65956C2.57992 8.31959 2.6148 7.82023 2.9233 7.52263C3.22296 7.2326 3.72649 7.22705 4.03303 7.51103L6.83509 10.1057L11.8497 3.00672C12.0993 2.65364 12.6166 2.5583 12.9703 2.80244C13.3377 3.05615 13.4428 3.55803 13.209 3.9444V3.9444Z" fill="white"/>
+      </svg>
+    {{else}}
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="15" height="15" rx="3.5" stroke="#AAAFB5"/>
+      </svg>
+    {{/if}}
+    Show Reliability Data
+  </div>
+{{/if}}

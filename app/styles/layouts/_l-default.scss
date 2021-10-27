@@ -27,8 +27,16 @@ body {
 .site-main {
   position: relative;
   z-index: 2;
-  height: calc(100vh - 6rem);
+  height: 100vh;
   background-color: $body-background;
+
+  .about a {
+    color: $teal;
+
+    &:hover {
+      color: #005053;
+    }
+  }
 
   @include breakpoint(large) {
     z-index: 1;
@@ -90,7 +98,7 @@ body {
 }
 
 .map-container {
-  @include xy-cell-static(full,false,0);
+  @include xy-cell(full,false,0);
   position: relative;
   z-index: 1;
   height: 50vh;
@@ -152,17 +160,20 @@ body {
 }
 
 .map-utility-box {
-  background-color: $white;
-  padding: $global-margin;
+  background-color: $off-white;
+  // padding: $global-margin;
   position: relative;
+  text-align: center;
+  color: $dark-gray;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   @include breakpoint(large) {
     position: absolute;
-    top: 10px;
+    top: 25px;
     left: 50px;
     z-index: 4;
     padding-bottom: 0;
-    margin-top: rem-calc(92);
+    margin-top: rem-calc(52);
     width: rem-calc(330);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
   }
@@ -172,28 +183,90 @@ body {
   }
 
   .button--clear-selection {
-    margin: 0 0 0 $global-margin;
+    margin: 0 0 0 0;
+  }
+
+  .map-utility-box-head {
+    background: $white-smoke;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $charcoal;
+  }
+
+  .map-utility-box-body {
+    color: black;
+    padding: 1.5rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+
+    strong {
+      font-weight: 700;
+    }
+
+    .map-utility-box-data {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin-top: 2em;
+
+      span {
+        padding: 0.75em;
+        background-color: #129DED;
+        border-radius: 50%;
+        color: white;
+        font-size: 1.25em;
+      }
+      .map-utility-box-data-text {
+        padding-top: 1em; //set the same as the span above
+      }
+    }
+  }
+
+  .map-utility-box-buttons {
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 40px;
+    border-top: 1px solid #AAAFB5;
+    > :last-child {
+      flex-grow: 1;
+    }
+  }
+
+  .map-utility-box-body-null {
+    padding: 1.5rem 2rem;
+    font-size: rem-calc(14);
+    p {
+      line-height: 1;
+    }
+    > :last-child {
+      margin-bottom: 0;
+    }
   }
 }
-
-.search {
-  position: relative;
-  bottom: 50vh;
-  left: -$global-margin;
-  z-index: 100;
-  margin-left: 50px;
-  margin-bottom: rem-calc(-40);
-
-  @include breakpoint(large) {
-    position: absolute;
-    top: 0;
-    bottom: auto;
-    left: 0;
-    width: rem-calc(300);
-    margin-left: 0;
-    margin-top: rem-calc(-92);
-  }
+#clear-selection {
+  background-color: $off-white;
+  color: $charcoal;
+  font-size: 0.625rem;
+  padding: 0 0.625rem;
 }
+#see-more-data {
+  background-color: $teal;
+  color: $off-white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0 0.625rem;
+  margin: 0;
+}
+
 
 .call-to-action {
   margin-bottom: $global-margin;
@@ -205,25 +278,32 @@ body {
   }
 }
 
-.advanced-options {
+.more-options {
   background-color: $off-white;
   margin-right: -$global-margin;
   margin-left: -$global-margin;
   border-top: 1px solid $silver;
+  text-align: left;
   transition: all 0.2s;
+  max-height: 70vh;
+  overflow-y: scroll;
 
   &.closed {
     display: none;
   }
 
   @include breakpoint(large) {
-    height: 100vh;
-    max-height: calc(100vh - #{rem-calc(472)});
-    min-height: rem-calc(200);
-    overflow: auto;
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    z-index: 4;
+    padding-bottom: 0;
+    margin-top: rem-calc(52);
+    width: rem-calc(350);
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
 
     &.closed {
-      display: block;
+      // display: block;
       max-height: 0;
       min-height: 0;
     }
@@ -245,7 +325,7 @@ body {
     font-weight: $global-weight-bold;
 
     &:hover {
-      color: $dcp-orange
+      color: $a11y-orange
     }
   }
 }

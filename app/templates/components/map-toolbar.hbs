@@ -1,0 +1,224 @@
+<div class="top-bar-left grid-x align-middle">
+  <button class="button dropdown" data-toggle="selection-method-dropdown">
+    Selection Method
+    {{ember-tooltip text="Create a selection using drawing tools" side="right" delay=200}}
+  </button>
+  <div
+    id="selection-method-dropdown"
+    class="dropdown-pane stacked button-group"
+    data-dropdown
+    data-hover="true"
+    data-hover-pane="true"
+  >
+    <button
+      class="button {{if (eq @drawMode 'polygon') 'active'}}"
+      onclick={{fn @handleDrawButtonClick 'polygon'}}
+    >
+      {{fa-icon icon='object-group' prefix='far'}}
+      Polygon
+    </button>
+    <button
+      class="button {{if (eq @drawMode 'radius') 'active'}}"
+      onclick={{fn @handleDrawButtonClick 'radius'}}
+    >
+      {{fa-icon icon='dot-circle' prefix='far'}}
+      Radius
+    </button>
+  </div>
+  <MapSearch />
+  <div class="button-group">
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'tracts') 'active'}}"
+      {{action this.handleSummaryLevelToggle 'tracts'}}
+    >
+      Census Tract
+      {{ember-tooltip side='bottom-start' delay=500 text=' Avoid using data for an individual tract, best used in aggregate.'}}
+    </button>
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'ntas') 'active'}}"
+      {{action this.handleSummaryLevelToggle 'ntas'}}
+    >
+      Neighborhood Tabulation Area (NTA)
+      {{ember-tooltip side='bottom' delay=500 text='Approximations of NYC neighborhoods. NTAs are built out of tracts, and fit within CDTAs.'}}
+    </button>
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'cdtas') 'active'}}"
+      style="max-width: 160px;"
+      {{action this.handleSummaryLevelToggle 'cdtas'}}
+    >
+      Community District Tabulation Area (CDTA)
+      {{ember-tooltip side='bottom' delay=500 text='Approximations of NYC Community Districts, built out of tracts. Best used for accessing ACS data. For official NYC Community District data, use CDs. '}}
+    </button>
+    <button
+      class="button {{if (eq this.selection.summaryLevel 'districts') 'active'}}"
+      {{action this.handleSummaryLevelToggle 'districts'}}
+    >
+      Community District (CD)
+      {{ember-tooltip side='bottom' delay=500 text='Official NYC Community Districts. Only decennial census data are available. For ACS data, use CDTAs, which are approximations of CDs.'}}
+    </button>
+    <button
+       class="button dropdown"
+       data-toggle="more-geographies-dropdown"
+    >
+      More Geographies
+    </button>
+    <div
+      id="more-geographies-dropdown"
+      class="dropdown-pane stacked button-group"
+      data-dropdown
+      data-hover="true"
+      data-hover-pane="true"
+    >
+      <button
+        class="button {{if (eq this.selection.summaryLevel 'blocks') 'active'}} explode-block"
+        data-test-toggle-blocks
+        {{action this.handleSummaryLevelToggle 'blocks'}}
+      >
+        Census Block
+        {{ember-tooltip side='bottom' delay=500 text='Only decennial census data are available. Avoid using data for an individual block, best used in aggregate.'}}
+      </button>
+      <button
+        class="button {{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough"
+        data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}
+      >
+        Borough
+      </button>
+      <button
+        class="button {{if (eq this.selection.summaryLevel 'cities') 'active'}} explode-city"
+        data-test-toggle-cities {{action this.handleSummaryLevelToggle 'cities'}}
+      >
+        New York City
+      </button>
+    </div>
+  </div>
+</div>
+<div class="top-bar-right">
+  <button
+    class="button dropdown"
+    data-toggle="add-layers-dropdown"
+    {{action "toggleMapLayersMenu"}}
+  >
+    Add Map Layers
+  </button>
+  <div
+    id="add-layers-dropdown"
+    class="dropdown-pane stacked button-group"
+    data-dropdown
+    data-alignment="right"
+  >
+    {{#layer-menu-item
+      defaultFill=this.choroplethPaintFill
+      defaultLine=this.choroplethPaintLine
+      for='choropleths' as |layerGroup|
+    }}
+      {{#if layerGroup.model.visible}}
+        <div class="legend">
+          <div class="legend-title">{{this.legendTitle}}</div>
+          {{#each this.stops as |stop|}}
+            <div class="legend-item">
+              <span class="legend-color" style={{sanitize-style (hash color=stop.color)}}>{{fa-icon transform="grow-6" icon='square'}}</span>
+              {{stop.label}}
+            </div>
+          {{/each}}
+        </div>
+        <ul class="thematic-map-options">
+          {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
+            <h5>{{group}}</h5>
+            <ul class="no-bullet">
+              {{#each configs as |config|}}
+                <li {{
+                  action (
+                    queue
+                      (action this.setChoroplethMode config.id)
+                      (action layerGroup.updatePaintFor 'choropleth-nta-fill' this.choroplethPaintFill)
+                      (action layerGroup.updatePaintFor 'choropleth-nta-line' this.choroplethPaintLine)
+                  )
+                }}>
+                  {{#if (eq this.choroplethMode config.id)}}
+                    {{fa-icon icon='dot-circle' prefix='far'}}
+                  {{else}}
+                    {{fa-icon icon='circle' prefix='far'}}
+                  {{/if}}
+                  {{config.label}}
+                  <span id="{{config.id}}_tooltip" class="thematic-map-options__tooltip">
+                    {{fa-icon icon='question-circle' transform='shrink-2'}}
+                  </span>
+                  <EmberTooltip
+                    @text={{config.tooltip}}
+                    @side='top-end'
+                    @targetId="{{config.id}}_tooltip"
+                  />
+                </li>
+              {{/each}}
+            </ul>
+          {{/each-in}}
+        </ul>
+      {{/if}}
+    {{/layer-menu-item}}
+    <div>
+      {{#lookup-layer-group for='subway' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='factfinder--zip-codes' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='factfinder--neighborhood-tabulation-areas' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='factfinder--community-districts' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='community-district-tabulation-areas' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='nyc-council-districts' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+    </div>
+    {{drop-zone
+      url='#'
+      addedfile=(action 'addedFile')
+      removedfile=(action 'removedFile')
+      dictDefaultMessage='Drag & drop a zipped shapefile'
+      createImageThumbnails=false
+      acceptedFiles='application/zip'
+      addRemoveLinks=true
+      autoProcessQueue=false
+    }}
+  </div>
+</div>

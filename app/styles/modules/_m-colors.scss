@@ -1,0 +1,168 @@
+// --------------------------------------------------
+ // Module: Color
+ // --------------------------------------------------
+
+  //
+ // Override style guide repo colors
+ // --------------------------------------------------
+ $teal: #007B80;
+ $gray: #828892;
+ $charcoal: #393C41;
+ $dark-gray: #5D626A;
+
+ //
+ // Background colors
+ // --------------------------------------------------
+ .bg-aqua { background-color: $aqua; color: color-pick-contrast($aqua, ($black, $white)); }
+ .bg-aqua-light { background-color: $aqua-light; color: color-pick-contrast($aqua-light, ($black, $white)); }
+ .bg-aqua-dark { background-color: $aqua-dark; color: color-pick-contrast($aqua-dark, ($black, $white)); }
+ .bg-aqua-muted { background-color: $aqua-muted; color: color-pick-contrast($aqua-muted, ($black, $white)); }
+ .bg-teal { background-color: $teal; color: color-pick-contrast($teal, ($black, $white)); }
+ .bg-teal-light { background-color: $teal-light; color: color-pick-contrast($teal-light, ($black, $white)); }
+ .bg-teal-dark { background-color: $teal-dark; color: color-pick-contrast($teal-dark, ($black, $white)); }
+ .bg-teal-muted { background-color: $teal-muted; color: color-pick-contrast($teal-muted, ($black, $white)); }
+ .bg-green { background-color: $green; color: color-pick-contrast($green, ($black, $white)); }
+ .bg-green-light { background-color: $green-light; color: color-pick-contrast($green-light, ($black, $white)); }
+ .bg-green-dark { background-color: $green-dark; color: color-pick-contrast($green-dark, ($black, $white)); }
+ .bg-green-muted { background-color: $green-muted; color: color-pick-contrast($green-muted, ($black, $white)); }
+ .bg-chartreuse { background-color: $chartreuse; color: color-pick-contrast($chartreuse, ($black, $white)); }
+ .bg-chartreuse-light { background-color: $chartreuse-light; color: color-pick-contrast($chartreuse-light, ($black, $white)); }
+ .bg-chartreuse-dark { background-color: $chartreuse-dark; color: color-pick-contrast($chartreuse-dark, ($black, $white)); }
+ .bg-chartreuse-muted { background-color: $chartreuse-muted; color: color-pick-contrast($chartreuse-muted, ($black, $white)); }
+ .bg-yellow { background-color: $yellow; color: color-pick-contrast($yellow, ($black, $white)); }
+ .bg-yellow-light { background-color: $yellow-light; color: color-pick-contrast($yellow-light, ($black, $white)); }
+ .bg-yellow-dark { background-color: $yellow-dark; color: color-pick-contrast($yellow-dark, ($black, $white)); }
+ .bg-yellow-muted { background-color: $yellow-muted; color: color-pick-contrast($yellow-muted, ($black, $white)); }
+ .bg-gold { background-color: $gold; color: color-pick-contrast($gold, ($black, $white)); }
+ .bg-gold-light { background-color: $gold-light; color: color-pick-contrast($gold-light, ($black, $white)); }
+ .bg-gold-dark { background-color: $gold-dark; color: color-pick-contrast($gold-dark, ($black, $white)); }
+ .bg-gold-muted { background-color: $gold-muted; color: color-pick-contrast($gold-muted, ($black, $white)); }
+ .bg-orange { background-color: $orange; color: color-pick-contrast($orange, ($black, $white)); }
+ .bg-orange-light { background-color: $orange-light; color: color-pick-contrast($orange-light, ($black, $white)); }
+ .bg-orange-dark { background-color: $orange-dark; color: color-pick-contrast($orange-dark, ($black, $white)); }
+ .bg-orange-muted { background-color: $orange-muted; color: color-pick-contrast($orange-muted, ($black, $white)); }
+ .bg-red { background-color: $red; color: color-pick-contrast($red, ($black, $white)); }
+ .bg-red-light { background-color: $red-light; color: color-pick-contrast($red-light, ($black, $white)); }
+ .bg-red-dark { background-color: $red-dark; color: color-pick-contrast($red-dark, ($black, $white)); }
+ .bg-red-muted { background-color: $red-muted; color: color-pick-contrast($red-muted, ($black, $white)); }
+ .bg-fuchsia { background-color: $fuchsia; color: color-pick-contrast($fuchsia, ($black, $white)); }
+ .bg-fuchsia-light { background-color: $fuchsia-light; color: color-pick-contrast($fuchsia-light, ($black, $white)); }
+ .bg-fuchsia-dark { background-color: $fuchsia-dark; color: color-pick-contrast($fuchsia-dark, ($black, $white)); }
+ .bg-fuchsia-muted { background-color: $fuchsia-muted; color: color-pick-contrast($fuchsia-muted, ($black, $white)); }
+ .bg-purple { background-color: $purple; color: color-pick-contrast($purple, ($black, $white)); }
+ .bg-purple-light { background-color: $purple-light; color: color-pick-contrast($purple-light, ($black, $white)); }
+ .bg-purple-dark { background-color: $purple-dark; color: color-pick-contrast($purple-dark, ($black, $white)); }
+ .bg-purple-muted { background-color: $purple-muted; color: color-pick-contrast($purple-muted, ($black, $white)); }
+ .bg-indigo { background-color: $indigo; color: color-pick-contrast($indigo, ($black, $white)); }
+ .bg-indigo-light { background-color: $indigo-light; color: color-pick-contrast($indigo-light, ($black, $white)); }
+ .bg-indigo-dark { background-color: $indigo-dark; color: color-pick-contrast($indigo-dark, ($black, $white)); }
+ .bg-indigo-muted { background-color: $indigo-muted; color: color-pick-contrast($indigo-muted, ($black, $white)); }
+ .bg-blue { background-color: $blue; color: color-pick-contrast($blue, ($black, $white)); }
+ .bg-blue-light { background-color: $blue-light; color: color-pick-contrast($blue-light, ($black, $white)); }
+ .bg-blue-dark { background-color: $blue-dark; color: color-pick-contrast($blue-dark, ($black, $white)); }
+ .bg-blue-muted { background-color: $blue-muted; color: color-pick-contrast($blue-muted, ($black, $white)); }
+ .bg-black { background-color: $black; color: color-pick-contrast($black, ($black, $white)); }
+ .bg-charcoal { background-color: $charcoal; color: color-pick-contrast($charcoal, ($black, $white)); }
+ .bg-dark-gray { background-color: $dark-gray; color: color-pick-contrast($dark-gray, ($black, $white)); }
+ .bg-gray { background-color: $gray; color: color-pick-contrast($gray, ($black, $white)); }
+ .bg-light-gray { background-color: $light-gray; color: color-pick-contrast($light-gray, ($black, $white)); }
+ .bg-silver { background-color: $silver; color: color-pick-contrast($silver, ($black, $white)); }
+ .bg-white-smoke { background-color: $white-smoke; color: color-pick-contrast($white-smoke, ($black, $white)); }
+ .bg-off-white { background-color: $off-white; color: color-pick-contrast($off-white, ($black, $white)); }
+ .bg-white { background-color: $white; color: color-pick-contrast($white, ($black, $white)); }
+ .bg-a11y-orange { background-color: $a11y-orange; color: color-pick-contrast($a11y-orange, ($black, $white)); }
+ .bg-a11y-orange { background-color: $a11y-orange; color: color-pick-contrast($a11y-orange, ($black, $white)); }
+ .bg-dcp-yellow { background-color: $dcp-yellow; color: color-pick-contrast($dcp-yellow, ($black, $white)); }
+ .bg-a11y-yellow { background-color: $a11y-yellow; color: color-pick-contrast($a11y-yellow, ($black, $white)); }
+ .bg-lu-peach { background-color: $lu-peach; color: color-pick-contrast($lu-peach, ($black, $white)); }
+ .bg-lu-yellow { background-color: $lu-yellow; color: color-pick-contrast($lu-yellow, ($black, $white)); }
+ .bg-lu-magenta { background-color: $lu-magenta; color: color-pick-contrast($lu-magenta, ($black, $white)); }
+ .bg-lu-red { background-color: $lu-red; color: color-pick-contrast($lu-red, ($black, $white)); }
+ .bg-lu-orange { background-color: $lu-orange; color: color-pick-contrast($lu-orange, ($black, $white)); }
+ .bg-lu-pink { background-color: $lu-pink; color: color-pick-contrast($lu-pink, ($black, $white)); }
+ .bg-lu-green { background-color: $lu-green; color: color-pick-contrast($lu-green, ($black, $white)); }
+ .bg-lu-blue { background-color: $lu-blue; color: color-pick-contrast($lu-blue, ($black, $white)); }
+ .bg-lu-lavendar { background-color: $lu-lavendar; color: color-pick-contrast($lu-lavendar, ($black, $white)); }
+ .bg-lu-silver { background-color: $lu-silver; color: color-pick-contrast($lu-silver, ($black, $white)); }
+ .bg-lu-gray { background-color: $lu-gray; color: color-pick-contrast($lu-gray, ($black, $white)); }
+
+
+ //
+ // Font colors
+ // --------------------------------------------------
+ .aqua { color: $aqua; }
+ .aqua-light { color: $aqua-light; }
+ .aqua-dark { color: $aqua-dark; }
+ .aqua-muted { color: $aqua-muted; }
+ .teal { color: $teal; }
+ .teal-light { color: $teal-light; }
+ .teal-dark { color: $teal-dark; }
+ .teal-muted { color: $teal-muted; }
+ .green { color: $green; }
+ .green-light { color: $green-light; }
+ .green-dark { color: $green-dark; }
+ .green-muted { color: $green-muted; }
+ .chartreuse { color: $chartreuse; }
+ .chartreuse-light { color: $chartreuse-light; }
+ .chartreuse-dark { color: $chartreuse-dark; }
+ .chartreuse-muted { color: $chartreuse-muted; }
+ .yellow { color: $yellow; }
+ .yellow-light { color: $yellow-light; }
+ .yellow-dark { color: $yellow-dark; }
+ .yellow-muted { color: $yellow-muted; }
+ .gold { color: $gold; }
+ .gold-light { color: $gold-light; }
+ .gold-dark { color: $gold-dark; }
+ .gold-muted { color: $gold-muted; }
+ .orange { color: $orange; }
+ .orange-light { color: $orange-light; }
+ .orange-dark { color: $orange-dark; }
+ .orange-muted { color: $orange-muted; }
+ .red { color: $red; }
+ .red-light { color: $red-light; }
+ .red-dark { color: $red-dark; }
+ .red-muted { color: $red-muted; }
+ .fuchsia { color: $fuchsia; }
+ .fuchsia-light { color: $fuchsia-light; }
+ .fuchsia-dark { color: $fuchsia-dark; }
+ .fuchsia-muted { color: $fuchsia-muted; }
+ .purple { color: $purple; }
+ .purple-light { color: $purple-light; }
+ .purple-dark { color: $purple-dark; }
+ .purple-muted { color: $purple-muted; }
+ .indigo { color: $indigo; }
+ .indigo-light { color: $indigo-light; }
+ .indigo-dark { color: $indigo-dark; }
+ .indigo-muted { color: $indigo-muted; }
+ .blue { color: $blue; }
+ .blue-light { color: $blue-light; }
+ .blue-dark { color: $blue-dark; }
+ .blue-muted { color: $blue-muted; }
+
+ .black { color: $black; }
+ .charcoal { color: $charcoal; }
+ .dark-gray { color: $dark-gray; }
+ .gray { color: $gray; }
+ .light-gray { color: $light-gray; }
+ .silver { color: $silver; }
+ .white-smoke { color: $white-smoke; }
+ .off-white { color: $off-white; }
+ .white { color: $white; }
+
+ .a11y-orange { color: $a11y-orange; }
+ .a11y-orange { color: $a11y-orange; }
+ .dcp-yellow { color: $dcp-yellow; }
+ .a11y-yellow { color: $a11y-yellow; }
+
+ .lu-peach { color: $lu-peach; }
+ .lu-yellow { color: $lu-yellow; }
+ .lu-magenta { color: $lu-magenta; }
+ .lu-red { color: $lu-red; }
+ .lu-orange { color: $lu-orange; }
+ .lu-pink { color: $lu-pink; }
+ .lu-green { color: $lu-green; }
+ .lu-blue { color: $lu-blue; }
+ .lu-lavendar { color: $lu-lavendar; }
+ .lu-silver { color: $lu-silver; }
+ .lu-gray { color: $lu-gray; }
+ 
