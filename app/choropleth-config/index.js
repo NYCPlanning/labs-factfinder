@@ -335,15 +335,15 @@ const choroplethConfigs = [
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476'],
   },
   // Percent Change
-  {
-    group: 'Census',
-    id: 'popu18_1_pc',
-    label: 'Population (percent change)',
-    tooltip: 'Percent change in population, 2010 to 2020',
-    legendTitle: 'Population (percent change)',
-    isPercent: true,
-    stops: ['#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
-  },
+  // {
+  //   group: 'Census',
+  //   id: 'popu18_1_pc',
+  //   label: 'Population (percent change)',
+  //   tooltip: 'Percent change in population, 2010 to 2020',
+  //   legendTitle: 'Population (percent change)',
+  //   isPercent: true,
+  //   stops: ['#ffc0b4',-5,'#ffffff', 5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476', 50,'#012661']
+  // },
   // {
   //   group: 'Census',
   //   id: 'wnh_pc',
