@@ -1,4 +1,3 @@
-import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 
@@ -309,36 +308,6 @@ export default DS.Model.extend({
 
   differencePercentReliable: DS.attr('boolean'),
   /* =====  End of DIFFERENCE_  ====== */
-
-
-  /* =============================================
-  =      ALIASES for CSV download use only       =
-  ============================================= */
-  previous0610_estimate: alias('previousSum'),
-  previous0610_moe: alias('previousMarginOfError'),
-  previous0610_cv: alias('previousCorrelationCoefficient'),
-  previous0610_percent: alias('previousPercent'),
-  previous0610_percent_moe: alias('previousPercentMarginOfError'),
-  previous2000_estimate: alias('previousSum'),
-  previous2000_percent: alias('previousPercent'),
-  moe: alias('marginOfError'),
-  percent_moe: alias('percentMarginOfError'),
-  change_estimate: alias('changeSum'),
-  change_moe: alias('changeMarginOfError'),
-  change_reliable: alias('changeSignificant'),
-  change_percent_moe: alias('changePercentMarginOfError'),
-  change_percent_reliable: alias('changePercentSignificant'),
-  change_percentage_point_moe: alias('changePercentagePointMarginOfError'),
-  change_percentage_point_reliable: alias('changePercentagePointMarginOfError'),
-  comparison_estimate: alias('comparisonSum'),
-  comparison_moe: alias('comparisonMarginOfError'),
-  comparison_percent_moe: alias('comparisonPercentMarginOfError'),
-  difference_estimate: alias('differenceSum'),
-  difference_moe: alias('differenceMarginOfError'),
-  difference_reliable: alias('significant'),
-  difference_percent_moe: alias('differencePercentMarginOfError'),
-  difference_percent_reliable: alias('percentSignificant'),
-  /* =====  End of ALIASES  ====== */
 
   /**
    * Selection is a computed property for convenience of grouping
