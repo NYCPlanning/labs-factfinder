@@ -1,5 +1,5 @@
 {{!-- Estimate --}}
-<td class="cell-border-left {{unless this.model.isReliable 'insignificant'}}" {{action 'logModel'}}>
+<td class="cell-border-left {{unless this.model.reliable 'insignificant'}}" {{action 'logModel'}}>
   {{format-number
       this.model.sum
       precision=this.rowConfig.decimal}}{{render-top-bottom-coding-suffix this.model.direction}}
@@ -7,13 +7,13 @@
 
 {{#if this.reliabilityMode}}
   {{!-- MOE --}}
-  <td class="{{unless this.model.isReliable 'insignificant'}}">
+  <td class="{{unless this.model.reliable 'insignificant'}}">
     {{if
       (and (gt this.model.sum 0) (not this.model.direction))
         (format-number this.model.marginOfError precision=this.rowConfig.decimal)}}
   </td>
   {{!-- CV --}}
-  <td class="{{unless this.model.isReliable 'insignificant'}}">
+  <td class="{{unless this.model.reliable 'insignificant'}}">
     {{if
       (and (gt this.model.sum 0) (not this.model.direction))
         (format-number this.model.correlationCoefficient precision=1)}}
@@ -21,7 +21,7 @@
 {{/if}}
 
 {{!-- Percent Estimate --}}
-<td class="{{unless this.model.isReliable 'insignificant'}}">
+<td class="{{unless this.model.reliable 'insignificant'}}">
   {{unless
     (or
       (eq this.model.percent null)
@@ -33,7 +33,7 @@
 
 {{!-- Percent MOE --}}
 {{#if this.reliabilityMode}}
-  <td class="{{unless this.model.isReliable 'insignificant'}}">
+  <td class="{{unless this.model.reliable 'insignificant'}}">
     {{unless
       (or
         (eq this.model.percent null)

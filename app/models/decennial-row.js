@@ -114,10 +114,7 @@ export default DS.Model.extend({
    */
   percentMarginOfError: DS.attr('number'),
 
-  /**
-   * isReliable is a flag for determining whether the estimate is reliable (as opposed to significant), based on cv.
-   */
-  isReliable: DS.attr('boolean', {
+  reliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -161,10 +158,7 @@ export default DS.Model.extend({
    */
   previousPercentMarginOfError: DS.attr('number'),
 
-  /**
-   * see "isReliable"
-   */
-  previousIsReliable: DS.attr('boolean', {
+  previousReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -181,7 +175,7 @@ export default DS.Model.extend({
 
   previousComparisonPercentMarginOfError: DS.attr('number'),
 
-  previousComparisonIsReliable: DS.attr('boolean', {
+  previousComparisonReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -190,7 +184,7 @@ export default DS.Model.extend({
 
   previousDifferenceMarginOfError: DS.attr('number'),
 
-  previousDifferenceSignificant: DS.attr('boolean',  {
+  previousDifferenceReliable: DS.attr('boolean',  {
     defaultValue: true, 
   }),
 
@@ -198,7 +192,7 @@ export default DS.Model.extend({
 
   previousDifferencePercentMarginOfError: DS.attr('number'),
 
-  previousDifferencePercentSignificant:  DS.attr('boolean', {
+  previousDifferencePercentReliable:  DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -223,11 +217,7 @@ export default DS.Model.extend({
    */
   changeMarginOfError: DS.attr('number'),
 
-  /**
-   * changeSignificant now reflects reliability (calculations were
-   * changed in the API but variable names have not been updated, check issue #57)
-   */
-  changeSignificant: DS.attr('boolean', {
+  changeReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -243,11 +233,7 @@ export default DS.Model.extend({
    */
   changePercentMarginOfError: DS.attr('number'),
 
-  /**
-   * changePercentSignificant reflects reliability (calculations were changed in
-   * the API but variable names have not been updated, check issue #57)
-  */
-  changePercentSignificant: DS.attr('boolean', {
+  changePercentReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -261,11 +247,7 @@ export default DS.Model.extend({
    */
   changePercentagePointMarginOfError: DS.attr('number'),
 
-  /**
-   * !!!WARNING!!!: changePercentagePointSignificant now reflects reliability (calculations were changed in
-   * the API but variable names have not been updated, check issue #57)
-   */
-  changePercentagePointSignificant: DS.attr('boolean', {
+  changePercentagePointReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -309,10 +291,8 @@ export default DS.Model.extend({
    */
   comparisonPercentMarginOfError: DS.attr('number'),
 
-  /**
-   * comparisonIsReliable: whether comparison area data is reliable
-   */
-  comparisonIsReliable: DS.attr('boolean', {
+
+  comparisonReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -335,12 +315,7 @@ export default DS.Model.extend({
    */
   differenceMarginOfError: DS.attr('number'),
 
-  /**
-   * !!! WARNING !!!
-   * "significant" actually reflects reliability (calculations were changed in
-   * the API but variable names have not been updated, check issue #57)
-   */
-  differenceSignificant: DS.attr('boolean', {
+  differenceReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -353,14 +328,8 @@ export default DS.Model.extend({
    * See "percentMarginOfError"
    */
   differencePercentMarginOfError: DS.attr('number'),
-  // "percentSignificant" belongs to "difference"
 
-  /**
-   * !!! WARNING !!!
-   * percentSignificant reflects reliability (calculations were changed in the
-   * API but variable names have not been updated, check issue #57)
-   */
-  differencePercentSignificant: DS.attr('boolean', {
+  differencePercentReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
   /* =====  End of DIFFERENCE_  ====== */
@@ -407,7 +376,7 @@ export default DS.Model.extend({
     'cv',
     'percent',
     'percentMarginOfError',
-    'isReliable',
+    'reliable',
     'codingThreshold',
     function() {
       const {
@@ -416,7 +385,7 @@ export default DS.Model.extend({
         correlationCoefficient,
         percent,
         percentMarginOfError,
-        isReliable,
+        reliable,
         codingThreshold: direction,
       } = this.getProperties(
         'sum',
@@ -424,12 +393,12 @@ export default DS.Model.extend({
         'cv',
         'percent',
         'percentMarginOfError',
-        'isReliable',
+        'reliable',
         'codingThreshold',
       );
 
       return {
-        sum, marginOfError, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
+        sum, marginOfError, correlationCoefficient, percent, percentMarginOfError, reliable, direction,
       };
     },
   ),
@@ -445,7 +414,7 @@ export default DS.Model.extend({
     'comparisonCorrelationCoefficient',
     'comparisonPercent',
     'comparisonPercentMarginOfError',
-    'comparisonIsReliable',
+    'comparisonReliable',
     'comparisonCodingThreshold',
     function() {
       const {
@@ -454,7 +423,7 @@ export default DS.Model.extend({
         comparisonCorrelationCoefficient: correlationCoefficient,
         comparisonPercent: percent,
         comparisonPercentMarginOfError: percentMarginOfError,
-        comparisonIsReliable: isReliable,
+        comparisonReliable: reliable,
         comparisonCodingThreshold: direction,
       } = this.getProperties(
         'comparisonSum',
@@ -462,12 +431,12 @@ export default DS.Model.extend({
         'comparisonCorrelationCoefficient',
         'comparisonPercent',
         'comparisonPercentMarginOfError',
-        'comparisonIsReliable',
+        'comparisonReliable',
         'comparisonCodingThreshold',
       );
 
       return {
-        sum, marginOfError, correlationCoefficient, percent, percentMarginOfError, isReliable, direction,
+        sum, marginOfError, correlationCoefficient, percent, percentMarginOfError, reliable, direction,
       };
     },
   ),
@@ -484,17 +453,17 @@ export default DS.Model.extend({
     'previousCorrelationCoefficient',
     'previousPercent',
     'previousPercentMarginOfError',
-    'previousIsReliable',
+    'previousReliable',
     'previousDifferenceSum',
     'previousDifferenceMarginOfError',
-    'previousDifferenceSignificant',
+    'previousDifferenceReliable',
     'previousDifferencePercent',
     'previousDifferencePercentMarginOfError',
-    'previousDifferencePercentSignificant',
-    'previousChangePercentSignificant',
+    'previousDifferencePercentReliable',
+    'previousChangePercentReliable',
     'previousChangePercentagePoint',
     'previousChangePercentagePointMarginOfError',
-    'previousChangePercentagePointSignificant',
+    'previousChangePercentagePointReliable',
     function() {
       const {
         previousSum: sum,
@@ -503,17 +472,17 @@ export default DS.Model.extend({
         previousCorrelationCoefficient: correlationCoefficient,
         previousPercent: percent,
         previousPercentMarginOfError: percentMarginOfError,
-        previousIsReliable: isReliable,
+        previousReliable: reliable,
         previousDifferenceSum: differenceSum,
         previousDifferenceMarginOfError: differenceMarginOfError,
-        previousDifferenceSignificant: differenceSignificant,
+        previousDifferenceReliable: differenceReliable,
         previousDifferencePercent: differencePercent,
         previousDifferencePercentMarginOfError: differencePercentMarginOfError,
-        previousDifferencePercentSignificant: differencePercentSignificant,
-        previousChangePercentSignificant: changePercentSignificant,
+        previousDifferencePercentReliable: differencePercentReliable,
+        previousChangePercentReliable: changePercentReliable,
         previousChangePercentagePoint: changePercentagePoint,
         previousChangePercentagePointMarginOfError: changePercentagePointMarginOfError,
-        previousChangePercentagePointSignificant: changePercentagePointSignificant,
+        previousChangePercentagePointReliable: changePercentagePointReliable,
       } = this.getProperties(
         'previousSum',
         'previousCodingThreshold',
@@ -521,17 +490,17 @@ export default DS.Model.extend({
         'previousCorrelationCoefficient',
         'previousPercent',
         'previousPercentMarginOfError',
-        'previousIsReliable',
+        'previousReliable',
         'previousDifferenceSum',
         'previousDifferenceMarginOfError',
-        'previousDifferenceSignificant',
+        'previousDifferenceReliable',
         'previousDifferencePercent',
         'previousDifferencePercentMarginOfError',
-        'previousDifferencePercentSignificant',
-        'previousChangePercentSignificant',
+        'previousDifferencePercentReliable',
+        'previousChangePercentReliable',
         'previousChangePercentagePoint',
         'previousChangePercentagePointMarginOfError',
-        'previousChangePercentagePointSignificant',
+        'previousChangePercentagePointReliable',
       );
 
       return {
@@ -541,17 +510,17 @@ export default DS.Model.extend({
         correlationCoefficient,
         percent,
         percentMarginOfError,
-        isReliable,
+        reliable,
         differenceSum,
         differenceMarginOfError,
-        differenceSignificant,
+        differenceReliable,
         differencePercent,
         differencePercentMarginOfError,
-        differencePercentSignificant,
-        changePercentSignificant,
+        differencePercentReliable,
+        changePercentReliable,
         changePercentagePoint,
         changePercentagePointMarginOfError,
-        changePercentagePointSignificant,
+        changePercentagePointReliable,
       };
     }),
 
@@ -562,7 +531,7 @@ export default DS.Model.extend({
       'previousComparisonCorrelationCoefficient',
       'previousComparisonPercent',
       'previousComparisonPercentMarginOfError',
-      'previousComparisonIsReliable',
+      'previousComparisonReliable',
       function(){
         const {
           previousComparisonSum: sum,
@@ -571,7 +540,7 @@ export default DS.Model.extend({
           previousComparisonCorrelationCoefficient: correlationCoefficient,
           previousComparisonPercent: percent,
           previousComparisonPercentMarginOfError: percentMarginOfError,
-          previousComparisonIsReliable: isReliable,
+          previousComparisonReliable: reliable,
         } = this.getProperties(
           'previousComparisonSum',
           'previousComparisonCodingThreshold',
@@ -579,7 +548,7 @@ export default DS.Model.extend({
           'previousComparisonCorrelationCoefficient',
           'previousComparisonPercent',
           'previousComparisonPercentMarginOfError',
-          'previousComparisonIsReliable',
+          'previousComparisonReliable',
         )
 
         return {
@@ -589,7 +558,7 @@ export default DS.Model.extend({
           correlationCoefficient,
           percent,
           percentMarginOfError,
-          isReliable,
+          reliable,
         }
       }
     ),
