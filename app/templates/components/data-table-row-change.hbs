@@ -30,7 +30,7 @@
   {{!-- Estimate --}}
   {{#with (format-number (abs @data.changeSum) precision=@rowConfig.decimal) as |roundedChangeSum|}}
     {{#with (format-number (abs @data.changeMarginOfError) precision=@rowConfig.decimal) as |roundedChangeMarginOfError|}}
-      <td class="cell-border-left change-estimate {{unless @data.changeReliable 'insignificant'}}">
+      <td class="cell-border-left change-estimate {{unless @data.changeIsReliable 'insignificant'}}">
         {{#unless (or
           (eq @data.changeSum null)
           (eq @data.changeSum undefined)
@@ -65,7 +65,7 @@
 
       {{#if @reliability}}
         {{!-- MOE --}}
-        <td class="{{unless @data.changeReliable 'insignificant'}} change-estimate-moe">
+        <td class="{{unless @data.changeIsReliable 'insignificant'}} change-estimate-moe">
           {{#unless (or
             (eq @data.changeMarginOfError null)
             (eq @data.changeMarginOfError undefined)
@@ -81,7 +81,7 @@
   {{#with (format-number (mult (abs @data.changePercent) 100) precision=1) as |roundedChangePercentage|}}
     {{#with (format-number (mult (abs @data.changePercentMarginOfError) 100) precision=1) as |roundedChangePercentageMarginOfError|}}
 
-      <td class="{{unless @data.changePercentReliable 'insignificant'}} change-percent">
+      <td class="{{unless @data.changePercentIsReliable 'insignificant'}} change-percent">
         {{#unless (or
           (eq @data.changePercent null)
           (eq @data.changePercent undefined)
@@ -116,7 +116,7 @@
 
       {{#if @reliability}}
         {{!-- Percent M --}}
-        <td class="{{unless @data.changePercentReliable 'insignificant'}} change-percent-moe">
+        <td class="{{unless @data.changePercentIsReliable 'insignificant'}} change-percent-moe">
           {{#unless (or
             (eq @data.changePercentMarginOfError null)
             (eq @data.changePercentMarginOfError undefined)
@@ -139,7 +139,7 @@
       (mult (abs @data.changePercentagePointMarginOfError) 100)
       precision=1) as |roundedChangePercentagePointMarginOfError|}}
 
-      <td class="{{unless @data.changePercentagePointReliable 'insignificant'}} change-percentage-point">
+      <td class="{{unless @data.changePercentagePointIsReliable 'insignificant'}} change-percentage-point">
         {{#unless
           (or
             @data.isSpecial
@@ -175,7 +175,7 @@
 
       {{#if @reliability}}
         {{!-- percentage point m --}}
-        <td class="{{unless @data.changePercentagePointReliable 'insignificant'}} change-percentage-point-moe">
+        <td class="{{unless @data.changePercentagePointIsReliable 'insignificant'}} change-percentage-point-moe">
         {{#unless
           (or
             @data.isSpecial
