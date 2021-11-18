@@ -1,4 +1,3 @@
-import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 
@@ -114,9 +113,6 @@ export default DS.Model.extend({
    */
   percentMarginOfError: DS.attr('number'),
 
-  /**
-   * isReliable is a flag for determining whether the estimate is reliable (as opposed to significant), based on cv.
-   */
   isReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
@@ -161,9 +157,6 @@ export default DS.Model.extend({
    */
   previousPercentMarginOfError: DS.attr('number'),
 
-  /**
-   * see "isReliable"
-   */
   previousIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
@@ -190,7 +183,7 @@ export default DS.Model.extend({
 
   previousDifferenceMarginOfError: DS.attr('number'),
 
-  previousDifferenceSignificant: DS.attr('boolean',  {
+  previousDifferenceIsReliable: DS.attr('boolean',  {
     defaultValue: true, 
   }),
 
@@ -198,7 +191,7 @@ export default DS.Model.extend({
 
   previousDifferencePercentMarginOfError: DS.attr('number'),
 
-  previousDifferencePercentSignificant:  DS.attr('boolean', {
+  previousDifferencePercentIsReliable:  DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -223,11 +216,7 @@ export default DS.Model.extend({
    */
   changeMarginOfError: DS.attr('number'),
 
-  /**
-   * changeSignificant now reflects reliability (calculations were
-   * changed in the API but variable names have not been updated, check issue #57)
-   */
-  changeSignificant: DS.attr('boolean', {
+  changeIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -243,11 +232,7 @@ export default DS.Model.extend({
    */
   changePercentMarginOfError: DS.attr('number'),
 
-  /**
-   * changePercentSignificant reflects reliability (calculations were changed in
-   * the API but variable names have not been updated, check issue #57)
-  */
-  changePercentSignificant: DS.attr('boolean', {
+  changePercentIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -261,11 +246,7 @@ export default DS.Model.extend({
    */
   changePercentagePointMarginOfError: DS.attr('number'),
 
-  /**
-   * !!!WARNING!!!: changePercentagePointSignificant now reflects reliability (calculations were changed in
-   * the API but variable names have not been updated, check issue #57)
-   */
-  changePercentagePointSignificant: DS.attr('boolean', {
+  changePercentagePointIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -309,9 +290,7 @@ export default DS.Model.extend({
    */
   comparisonPercentMarginOfError: DS.attr('number'),
 
-  /**
-   * comparisonIsReliable: whether comparison area data is reliable
-   */
+
   comparisonIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
@@ -335,12 +314,7 @@ export default DS.Model.extend({
    */
   differenceMarginOfError: DS.attr('number'),
 
-  /**
-   * !!! WARNING !!!
-   * "significant" actually reflects reliability (calculations were changed in
-   * the API but variable names have not been updated, check issue #57)
-   */
-  differenceSignificant: DS.attr('boolean', {
+  differenceIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
 
@@ -353,48 +327,11 @@ export default DS.Model.extend({
    * See "percentMarginOfError"
    */
   differencePercentMarginOfError: DS.attr('number'),
-  // "percentSignificant" belongs to "difference"
 
-  /**
-   * !!! WARNING !!!
-   * percentSignificant reflects reliability (calculations were changed in the
-   * API but variable names have not been updated, check issue #57)
-   */
-  differencePercentSignificant: DS.attr('boolean', {
+  differencePercentIsReliable: DS.attr('boolean', {
     defaultValue: true,
   }),
   /* =====  End of DIFFERENCE_  ====== */
-
-
-  /* =============================================
-  =      ALIASES for CSV download use only       =
-  ============================================= */
-  previous0610_estimate: alias('previousSum'),
-  previous0610MarginOfError: alias('previousMarginOfError'),
-  previous0610CorrelationCoefficient: alias('previousCorrelationCoefficient'),
-  previous0610Percent: alias('previousPercent'),
-  previous0610PercentMarginOfError: alias('previousPercentMarginOfError'),
-  previous2000_estimate: alias('previousSum'),
-  previous2000Percent: alias('previousPercent'),
-  // estimate: alias('estimate'),
-  moe: alias('marginOfError'),
-  // percentMarginOfError: alias('percentMarginOfError'),
-  change_estimate: alias('changeSum'),
-  // changeMarginOfError: alias('changeMarginOfError'),
-  change_reliable: alias('changeSignificant'),
-  // changePercentMarginOfError: alias('changePercentMarginOfError'),
-  changePercent_reliable: alias('changePercentSignificant'),
-  // changePercentagePointMarginOfError: alias('changePercentagePointMarginOfError'),
-  changePercentagePoint_reliable: alias('changePercentagePointSignificant'),
-  comparison_estimate: alias('comparisonSum'),
-  // comparisonMarginOfError: alias('comparisonMarginOfError'),
-  // comparisonPercentMarginOfError: alias('comparisonPercentMarginOfError'),
-  difference_estimate: alias('differenceSum'),
-  // differenceMarginOfError: alias('differenceMarginOfError'),
-  difference_reliable: alias('significant'),
-  // differencePercentMarginOfError: alias('differencePercentMarginOfError'),
-  differencePercent_reliable: alias('percentSignificant'),
-  /* =====  End of ALIASES  ====== */
 
   /**
    * Selection is a computed property for convenience of grouping
@@ -487,14 +424,14 @@ export default DS.Model.extend({
     'previousIsReliable',
     'previousDifferenceSum',
     'previousDifferenceMarginOfError',
-    'previousDifferenceSignificant',
+    'previousDifferenceIsReliable',
     'previousDifferencePercent',
     'previousDifferencePercentMarginOfError',
-    'previousDifferencePercentSignificant',
-    'previousChangePercentSignificant',
+    'previousDifferencePercentIsReliable',
+    'previousChangePercentIsReliable',
     'previousChangePercentagePoint',
     'previousChangePercentagePointMarginOfError',
-    'previousChangePercentagePointSignificant',
+    'previousChangePercentagePointIsReliable',
     function() {
       const {
         previousSum: sum,
@@ -506,14 +443,14 @@ export default DS.Model.extend({
         previousIsReliable: isReliable,
         previousDifferenceSum: differenceSum,
         previousDifferenceMarginOfError: differenceMarginOfError,
-        previousDifferenceSignificant: differenceSignificant,
+        previousDifferenceIsReliable: differenceIsReliable,
         previousDifferencePercent: differencePercent,
         previousDifferencePercentMarginOfError: differencePercentMarginOfError,
-        previousDifferencePercentSignificant: differencePercentSignificant,
-        previousChangePercentSignificant: changePercentSignificant,
+        previousDifferencePercentIsReliable: differencePercentIsReliable,
+        previousChangePercentIsReliable: changePercentIsReliable,
         previousChangePercentagePoint: changePercentagePoint,
         previousChangePercentagePointMarginOfError: changePercentagePointMarginOfError,
-        previousChangePercentagePointSignificant: changePercentagePointSignificant,
+        previousChangePercentagePointIsReliable: changePercentagePointIsReliable,
       } = this.getProperties(
         'previousSum',
         'previousCodingThreshold',
@@ -524,14 +461,14 @@ export default DS.Model.extend({
         'previousIsReliable',
         'previousDifferenceSum',
         'previousDifferenceMarginOfError',
-        'previousDifferenceSignificant',
+        'previousDifferenceIsReliable',
         'previousDifferencePercent',
         'previousDifferencePercentMarginOfError',
-        'previousDifferencePercentSignificant',
-        'previousChangePercentSignificant',
+        'previousDifferencePercentIsReliable',
+        'previousChangePercentIsReliable',
         'previousChangePercentagePoint',
         'previousChangePercentagePointMarginOfError',
-        'previousChangePercentagePointSignificant',
+        'previousChangePercentagePointIsReliable',
       );
 
       return {
@@ -544,14 +481,14 @@ export default DS.Model.extend({
         isReliable,
         differenceSum,
         differenceMarginOfError,
-        differenceSignificant,
+        differenceIsReliable,
         differencePercent,
         differencePercentMarginOfError,
-        differencePercentSignificant,
-        changePercentSignificant,
+        differencePercentIsReliable,
+        changePercentIsReliable,
         changePercentagePoint,
         changePercentagePointMarginOfError,
-        changePercentagePointSignificant,
+        changePercentagePointIsReliable,
       };
     }),
 

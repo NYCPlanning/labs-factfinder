@@ -19,12 +19,6 @@ You will need the following things properly installed on your computer.
 - Install Dependencies `yarn`
 - Start the server `yarn run start`
   - If running labs-factfinder-api and labs-layers-api locally, instead start the server with `yarn run local-api`
-
-### Development shortcut
-
- - Run `bin/develop`
- - This should open the correct servers and editors, assuming you also have `labs-factfinder-api` cloned and configured
-
 ## Architecture
 Primary views:
 - Selection - Allows the user to create a selection of geometries to view census/ACS data about.
@@ -32,9 +26,7 @@ Primary views:
 
 ## Backend services
 
-- **Carto** - A carto instance serves as the primary datastore for census and ACS data, and a map tiler
 - **[factfinder-api](https://github.com/NYCPlanning/labs-factfinder-api)** - An express api that handles search AND maps collections of selected geoids to an integer.  Useful for persisting selections across browser sessions (also makes reports shareable)
-
 
 ## Contact us
 
