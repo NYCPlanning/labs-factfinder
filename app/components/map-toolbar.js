@@ -43,6 +43,14 @@ export default Component.extend({
     return choroplethConfigs.find(d => d.id === mode).legendTitle;
   }),
 
+  insignificantLegendLabel: computed('choroplethMode', function() {
+    const { choroplethMode: mode } = this.getProperties('choroplethMode');
+    const config = choroplethConfigs.find(d => d.id === mode);
+    return (config && typeof config.insignificantLegendLabel !== 'undefined')
+      ? config.insignificantLegendLabel
+      : false
+  }),
+
   stops: computed('choroplethMode', function() {
     const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
