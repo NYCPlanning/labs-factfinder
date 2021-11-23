@@ -56,19 +56,28 @@ export default Component.extend({
 
     // return an array of objects, each with a display-ready range and color
     const config = choroplethConfigs.find(d => d.id === mode);
-    const { isPercent, stops: _stops, colors } = config;
+    const { isPercent, isChange, stops: _stops, colors } = config;
     const stops = _stops.filter(stop => typeof stop === 'number')
 
     const format = (value) => { // eslint-disable-line
       return isPercent ? `${value}%` : numeral(value).format('0,0');
     };
 
+    const buildBottomLabel = (stop) => {
+      if (isChange)  {
+        return `Loss of ${format(Math.abs(stop))} or more`
+      } else if (isPercent) {
+        return `Less than ${format(stop)}`
+      }
+      return `Under ${format(stop)}`
+    }
+
     const labels = []
     stops.forEach((stop, i) => {
       const isPositive = (stops[i] > 0) ? true : false
       if (i === 0) {
         labels.push({
-          label: isPercent ? `Less than ${format(stop)}` : `Under ${format(stop)}`,
+          label: buildBottomLabel(stop),
           color: colors[0],
         })
       } else {

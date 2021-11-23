@@ -299,6 +299,7 @@ const choroplethConfigs = [
     label: 'Population (change)',
     tooltip: 'Population change, 2010 to 2020',
     legendTitle: 'Population (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476',10000,'#012661'],
   },
   {
@@ -307,6 +308,7 @@ const choroplethConfigs = [
     label: 'White Non-Hispanic (change)',
     tooltip: 'White non-Hispanic population change, 2010 to 2020',
     legendTitle: 'White Non-Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476',10000,'#012661'],
   },
   {
@@ -315,6 +317,7 @@ const choroplethConfigs = [
     label: 'Black Non-Hispanic (change)',
     tooltip: 'Black non-Hispanic population change, 2010 to 2020',
     legendTitle: 'Black Non-Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad'],
 
   },
@@ -324,6 +327,7 @@ const choroplethConfigs = [
     label: 'Asian Non-Hispanic (change)',
     tooltip: 'Asian non-Hispanic population change, 2010 to 2020',
     legendTitle: 'Asian Non-Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476',10000,'#012661'],
   },
   {
@@ -332,15 +336,17 @@ const choroplethConfigs = [
     label: 'Hispanic (change)',
     tooltip: 'Hispanic population change, 2010 to 2020',
     legendTitle: 'Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476'],
   },
   // Percent Change
   {
     group: 'Census',
-    id: 'popu18_1_pc',
+    id: 'pop1_pc',
     label: 'Population (percent change)',
     tooltip: 'Percent change in population, 2010 to 2020',
     legendTitle: 'Population (percent change)',
+    isChange: true,
     isPercent: true,
     stops: ['#ffc0b4',-5,'#ffffff', 5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476', 50,'#012661']
   },
@@ -351,6 +357,7 @@ const choroplethConfigs = [
     tooltip: 'Percent change in the White Non-Hispanic population, 2010 to 2020',
     legendTitle: 'White Non-Hispanic (percent change)',
     isPercent: true,
+    isChange: true,
     insignificantLegendLabel: 'Less than 5,000 White Non-Hispanic in 2020',
     stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
   },
@@ -360,6 +367,7 @@ const choroplethConfigs = [
     label: 'Black Non-Hispanic (percent change)',
     tooltip: 'Percent change in the Black Non-Hispanic population, 2010 to 2020',
     legendTitle: 'Black Non-Hispanic (percent change)',
+    isChange: true,
     isPercent: true,
     insignificantLegendLabel: 'Less than 5,000 Black Non-Hispanic in 2020',
     stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476']
@@ -370,6 +378,7 @@ const choroplethConfigs = [
     label: 'Asian Non-Hispanic (percent change)',
     tooltip: 'Percent change in the Asian Non-Hispanic population, 2010 to 2020',
     legendTitle: 'Asian Non-Hispanic (percent change)',
+    isChange: true,
     isPercent: true,
     insignificantLegendLabel: 'Less than 5,000 Asian Non-Hispanic in 2020',
     stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
@@ -380,6 +389,7 @@ const choroplethConfigs = [
     label: 'Hispanic (percent change)',
     tooltip: 'Percent change in the Hispanic population, 2010 to 2020',
     legendTitle: 'Hispanic (percent change)',
+    isChange: true,
     isPercent: true,
     insignificantLegendLabel: 'Less than 5,000 Hispanic in 2020',
     stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
@@ -438,6 +448,7 @@ const builtConfigs = choroplethConfigs.map((config) => {
     label,
     legendTitle,
     isPercent,
+    isChange,
     stops,
     tooltip,
     insignificantLegendLabel = false,
@@ -450,6 +461,7 @@ const builtConfigs = choroplethConfigs.map((config) => {
     legendTitle,
     tooltip,
     isPercent,
+    isChange,
     insignificantLegendLabel,
     colors: stops.filter(stop => typeof stop === 'string'),
     stops,
