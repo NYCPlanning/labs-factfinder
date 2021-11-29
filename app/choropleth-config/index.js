@@ -409,23 +409,23 @@ const buildPaintFill = (id, minimum, stops) => {
 
   return racialPercentChangeIds.includes(id)
   ? {
-      'fill-color': [
+    'fill-color': [
+      "match",
+      ['typeof', ['get', id]],
+      "number",
+      [
         "case",
         ['<', ['get',id.split("_")[0]], minimum],
         ["rgba", 220, 220, 220, 1],
         [
-          "match",
-          ['typeof', ['get', id]],
-          "number",
-          [
-            'step',
-            ['get', id],
-            ...stops,
-          ],
-          ["rgba", 0, 0, 0, 0]
+          'step',
+          ['get', id],
+          ...stops,
         ],
       ],
-    }
+      ["rgba", 0, 0, 0, 0]
+    ],
+  }
   : {
     'fill-color': [
       "match",
