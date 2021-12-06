@@ -120,6 +120,12 @@
               {{stop.label}}
             </div>
           {{/each}}
+          {{#if this.insignificantLegendLabel}}
+            <div class="legend-item">
+              <span class="legend-color" style={{sanitize-style (hash color='#dcdcdc')}}>{{fa-icon transform="grow-6" icon='square'}}</span>
+              {{this.insignificantLegendLabel}}
+            </div>
+          {{/if}}
         </div>
         <ul class="thematic-map-options">
           {{#each-in (group-by "group" this.choroplethConfigs) as |group configs|}}
