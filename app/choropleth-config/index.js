@@ -299,6 +299,7 @@ const choroplethConfigs = [
     label: 'Population (change)',
     tooltip: 'Population change, 2010 to 2020',
     legendTitle: 'Population (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476',10000,'#012661'],
   },
   {
@@ -307,6 +308,7 @@ const choroplethConfigs = [
     label: 'White Non-Hispanic (change)',
     tooltip: 'White non-Hispanic population change, 2010 to 2020',
     legendTitle: 'White Non-Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476',10000,'#012661'],
   },
   {
@@ -315,6 +317,7 @@ const choroplethConfigs = [
     label: 'Black Non-Hispanic (change)',
     tooltip: 'Black non-Hispanic population change, 2010 to 2020',
     legendTitle: 'Black Non-Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad'],
 
   },
@@ -324,6 +327,7 @@ const choroplethConfigs = [
     label: 'Asian Non-Hispanic (change)',
     tooltip: 'Asian non-Hispanic population change, 2010 to 2020',
     legendTitle: 'Asian Non-Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476',10000,'#012661'],
   },
   {
@@ -332,59 +336,122 @@ const choroplethConfigs = [
     label: 'Hispanic (change)',
     tooltip: 'Hispanic population change, 2010 to 2020',
     legendTitle: 'Hispanic (change)',
+    isChange: true,
     stops: ['#c81d00',-5000,'#f46c59',-1000,'#ffc0b4',-500,'#ffffff',500,'#b5d5e5',1000,'#0473ad',5000,'#0b5476'],
   },
   // Percent Change
-  // {
-  //   group: 'Census',
-  //   id: 'popu18_1_pc',
-  //   label: 'Population (percent change)',
-  //   tooltip: 'Percent change in population, 2010 to 2020',
-  //   legendTitle: 'Population (percent change)',
-  //   isPercent: true,
-  //   stops: ['#ffc0b4',-5,'#ffffff', 5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476', 50,'#012661']
-  // },
-  // {
-  //   group: 'Census',
-  //   id: 'wnh_pc',
-  //   label: 'White Non-Hispanic (percent change)',
-  //   tooltip: 'Percent change in the White Non-Hispanic population, 2010 to 2020',
-  //   legendTitle: 'White Non-Hispanic (percent change)',
-  //   isPercent: true,
-  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
-  // },
-  // {
-  //   group: 'Census',
-  //   id: 'bnh_pc',
-  //   label: 'Black Non-Hispanic (percent change)',
-  //   tooltip: 'Percent change in the Black Non-Hispanic population, 2010 to 2020',
-  //   legendTitle: 'Black Non-Hispanic (percent change)',
-  //   isPercent: true,
-  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476']
-  // },
-  // {
-  //   group: 'Census',
-  //   id: 'anh_pc',
-  //   label: 'Asian Non-Hispanic (percent change)',
-  //   tooltip: 'Percent change in the Asian Non-Hispanic population, 2010 to 2020',
-  //   legendTitle: 'Asian Non-Hispanic (percent change)',
-  //   isPercent: true,
-  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
-  // },
-  // {
-  //   group: 'Census',
-  //   id: 'hsp1_pc',
-  //   label: 'Hispanic (percent change)',
-  //   tooltip: 'Percent change in the Hispanic population, 2010 to 2020',
-  //   legendTitle: 'Hispanic (percent change)',
-  //   isPercent: true,
-  //   stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
-  // },
+  {
+    group: 'Census',
+    id: 'pop1_pc',
+    label: 'Population (percent change)',
+    tooltip: 'Percent change in population, 2010 to 2020',
+    legendTitle: 'Population (percent change)',
+    isChange: true,
+    isPercent: true,
+    stops: ['#ffc0b4',-5,'#ffffff', 5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476', 50,'#012661']
+  },
+  {
+    group: 'Census',
+    id: 'wnh_pc',
+    label: 'White Non-Hispanic (percent change)',
+    tooltip: 'Percent change in the White Non-Hispanic population, 2010 to 2020',
+    legendTitle: 'White Non-Hispanic (percent change)',
+    isPercent: true,
+    isChange: true,
+    insignificantLegendLabel: 'Less than 5,000 White Non-Hispanic in 2020',
+    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
+  },
+  {
+    group: 'Census',
+    id: 'bnh_pc',
+    label: 'Black Non-Hispanic (percent change)',
+    tooltip: 'Percent change in the Black Non-Hispanic population, 2010 to 2020',
+    legendTitle: 'Black Non-Hispanic (percent change)',
+    isChange: true,
+    isPercent: true,
+    insignificantLegendLabel: 'Less than 5,000 Black Non-Hispanic in 2020',
+    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476']
+  },
+  {
+    group: 'Census',
+    id: 'anh_pc',
+    label: 'Asian Non-Hispanic (percent change)',
+    tooltip: 'Percent change in the Asian Non-Hispanic population, 2010 to 2020',
+    legendTitle: 'Asian Non-Hispanic (percent change)',
+    isChange: true,
+    isPercent: true,
+    insignificantLegendLabel: 'Less than 5,000 Asian Non-Hispanic in 2020',
+    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
+  },
+  {
+    group: 'Census',
+    id: 'hsp1_pc',
+    label: 'Hispanic (percent change)',
+    tooltip: 'Percent change in the Hispanic population, 2010 to 2020',
+    legendTitle: 'Hispanic (percent change)',
+    isChange: true,
+    isPercent: true,
+    insignificantLegendLabel: 'Less than 5,000 Hispanic in 2020',
+    stops: ['#c81d00', -15, '#f46c59',-10,'#ffc0b4',-5,'#ffffff',5,'#b5d5e5',10,'#5fa4cb',15,'#0473ad',25,'#0b5476',50,'#012661']
+  },
 ];
+
+// Constant under which the racial group percent change variables should be considered insignificant
+const MINIMUM_RACIAL_COUNT = 5000;
+
+// The logic for NTA fill color is different for racial group percent change variables.
+// When the corresponding population count for those values is below a certain minimum
+// (5000 in our case), the NTA will show as a light grey when the percent change is selected
+// For all other variables, or for racial group percent change when the count is above the minimum,
+// fill color is simply determined by the "steps" array
+const buildPaintFill = (id, minimum, stops) => {
+  const racialPercentChangeIds = ['wnh_pc','bnh_pc','anh_pc','hsp1_pc']
+
+  return racialPercentChangeIds.includes(id)
+  ? {
+    'fill-color': [
+      "match",
+      ['typeof', ['get', id]],
+      "number",
+      [
+        "case",
+        ['<', ['get',id.split("_")[0]], minimum],
+        ["rgba", 220, 220, 220, 1],
+        [
+          'step',
+          ['get', id],
+          ...stops,
+        ],
+      ],
+      ["rgba", 0, 0, 0, 0]
+    ],
+  }
+  : {
+    'fill-color': [
+      "match",
+      ['typeof', ['get', id]],
+      "number",
+      [
+        'step',
+        ['get', id],
+        ...stops,
+      ],
+      ["rgba", 0, 0, 0, 0]
+    ],
+  }
+}
 
 const builtConfigs = choroplethConfigs.map((config) => {
   const {
-    group, id, label, legendTitle, isPercent, stops, tooltip,
+    group,
+    id,
+    label,
+    legendTitle,
+    isPercent,
+    isChange,
+    stops,
+    tooltip,
+    insignificantLegendLabel = false,
   } = config;
 
   return {
@@ -394,21 +461,11 @@ const builtConfigs = choroplethConfigs.map((config) => {
     legendTitle,
     tooltip,
     isPercent,
+    isChange,
+    insignificantLegendLabel,
     colors: stops.filter(stop => typeof stop === 'string'),
     stops,
-    paintFill: {
-      'fill-color': [
-        "match",
-        ['typeof', ['get', id]],
-        "number",
-        [
-          'step',
-          ['get', id],
-          ...stops,
-        ],
-        ["rgba", 0, 0, 0, 0]
-      ],
-    },
+    paintFill: buildPaintFill(id, MINIMUM_RACIAL_COUNT, stops),
     paintLine: {
       'line-color': '#994d4d',
     },
