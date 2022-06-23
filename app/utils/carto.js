@@ -1,7 +1,8 @@
 import { Promise } from 'rsvp';
 import fetch from 'fetch';
+import Environment from '../../config/environment';
 
-const cartoUsername = 'planninglabs';
+let { cartoUsername = 'planninglabs'} = Environment;
 
 const buildTemplate = (config, type='mvt') => { // eslint-disable-line
   const protocol = location.protocol.slice(0, -1); // eslint-disable-line
