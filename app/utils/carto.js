@@ -1,6 +1,6 @@
 import { Promise } from 'rsvp';
 import fetch from 'fetch';
-import Environment from '../../config/environment';
+import Environment from 'labs-nyc-factfinder/config/environment';
 
 let { cartoUsername = 'planninglabs'} = Environment;
 
