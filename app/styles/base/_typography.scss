@@ -259,6 +259,7 @@ button {
 .profile-geographies {
   overflow: auto;
   margin-bottom: $global-margin/2;
+  max-height: 7.5rem;
 
   .profile-geographies-header {
     display: inline;
