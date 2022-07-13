@@ -1,6 +1,6 @@
 import { Promise } from 'rsvp';
 import fetch from 'fetch';
-import Environment from '../config/environment';
+import Environment from '../../config/environment';
 
 let { cartoUsername = 'planninglabs'} = Environment;
 
