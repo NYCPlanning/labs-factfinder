@@ -43,6 +43,7 @@
     </div>
 
     {{#if (not @isModelLoading)}}
+      <p>For more data tables, click <a href="https://www1.nyc.gov/site/planning/planning-level/nyc-population/american-community-survey.page">here!</a></p>
       <div class="download-data-dropdown-foot" {{on "click" this.exportTableToCSV}}>
         {{fa-icon icon='arrow-alt-circle-down' prefix='far' class='white'}} Download Data <span class="small">(.csv)</span>
       </div>
