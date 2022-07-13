@@ -46,6 +46,21 @@
       (format-number
           this.data.previous.differenceSum
           precision=this.rowConfig.decimal)}}
+    {{#if (and
+      (lte @this.data.previous.differenceMarginOfError (abs @this.data.previous.differenceSum))
+      (not (or
+        (eq @this.data.previous.sum 0)
+        (eq @this.data.previousComparison.sum 0)
+      ))
+    )}}
+      {{#if (gt @this.data.previous.differenceSum 0)}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (lt @this.data.previous.differenceSum 0)}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
+    {{/if}}
   </td>
   {{#if this.reliability}}
     <td class="
@@ -67,6 +82,21 @@
           (format-number
             this.data.previous.differencePercent
             precision=1)}}
+      {{#if (and
+        (lte @this.data.previous.differencePercentMarginOfError (abs @this.data.previous.differencePercent))
+        (not (or
+          (eq @this.data.previous.sum 0)
+          (eq @this.data.previousComparison.sum 0)
+        ))
+      )}}
+        {{#if (gt @this.data.previous.differencePercent 0)}}
+          {{fa-icon icon="arrow-up" class="green"}}
+        {{else if (lt @this.data.previous.differencePercent 0)}}
+          {{fa-icon icon="arrow-down" class="red"}}
+        {{else}}
+          {{fa-icon icon=""}}
+        {{/if}}
+      {{/if}}
     </td>
     {{#if this.reliability}}
       <td
