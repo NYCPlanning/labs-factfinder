@@ -64,8 +64,8 @@ export default Controller.extend({
   subduedNtaLabels,
   choroplethsSource,
 
-  zoom: 9.7,
-  center: [-73.9868, 40.665],
+  zoom: 11.67,
+  center: [-73.9515, 40.7198],
   mode: 'direct-select',
 
   isDrawing: false,
