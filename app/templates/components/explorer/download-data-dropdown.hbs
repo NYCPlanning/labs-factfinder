@@ -41,12 +41,18 @@
         {{/if}}
       {{/if}}
     </div>
+    <div class="download-data-external-links">
+      <p><strong>To download data for all individual geographies, navigate to the Population Division webpage:</strong></p>
+      <div class="link-container">
+        <p><a href="https://www1.nyc.gov/site/planning/planning-level/nyc-population/2020-census.page" target="_blank">Census data (all geographies)</a></p>
+        <p><a href="https://www1.nyc.gov/site/planning/planning-level/nyc-population/american-community-survey.page" target="_blank">ACS data (NTAs or CDTAs)</a></p>
+      </div>
+    </div>
 
     {{#if (not @isModelLoading)}}
-      <p>For more data tables, click <a href="https://www1.nyc.gov/site/planning/planning-level/nyc-population/american-community-survey.page">here!</a></p>
-      <div class="download-data-dropdown-foot" {{on "click" this.exportTableToCSV}}>
-        {{fa-icon icon='arrow-alt-circle-down' prefix='far' class='white'}} Download Data <span class="small">(.csv)</span>
-      </div>
+    <div class="download-data-dropdown-foot" {{on "click" this.exportTableToCSV}}>
+      {{fa-icon icon='arrow-alt-circle-down' prefix='far' class='white'}} Download Data <span class="small">(.csv)</span>
+    </div>
     {{/if}}
   </div>
 {{/if}}
