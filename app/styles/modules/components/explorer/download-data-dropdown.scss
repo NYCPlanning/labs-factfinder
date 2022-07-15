@@ -74,13 +74,13 @@ $download-data-dropdown-hover-color: rgba($dark-gray,0.08);
   }
 }
 
-.download-data-external-links {
+#download-data-external-links {
   padding: 0 0.75rem;
   font-size: 0.875rem;
   text-align: left;
   max-width: 450px;
 
-  .link-container {
+  #link-container {
     display: flex;
     justify-content: space-between;
   }
