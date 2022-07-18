@@ -51,6 +51,8 @@
       (not (or
         (eq @this.data.sum 0)
         (eq @this.dataComparison.sum 0)
+        (eq @this.data.sum undefined)
+        (eq @this.dataComparison.sum undefined)
       ))
       (not (eq
         (format-number (abs this.data.differenceSum) precision=@rowConfig.decimal)
@@ -90,6 +92,8 @@
         (not (or
           (eq @this.data.sum 0)
           (eq @this.dataComparison.sum 0)
+          (eq @this.data.sum undefined)
+          (eq @this.dataComparison.sum undefined)
         ))
         (not (eq
           (format-number this.data.differencePercent precision=1)
