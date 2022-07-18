@@ -52,6 +52,10 @@
         (eq @this.data.previous.sum 0)
         (eq @this.data.previousComparison.sum 0)
       ))
+      (not (eq
+        (format-number (abs this.data.previous.differenceSum) precision=@rowConfig.decimal)
+        (format-number (abs this.data.previous.differenceMarginOfError) precision=@rowConfig.decimal)
+      ))
     )}}
       {{#if (gt @this.data.previous.differenceSum 0)}}
         {{fa-icon icon="arrow-up" class="green"}}
@@ -87,6 +91,10 @@
         (not (or
           (eq @this.data.previous.sum 0)
           (eq @this.data.previousComparison.sum 0)
+        ))
+        (not (eq
+          (format-number this.data.previous.differencePercent precision=1)
+          (format-number this.data.previous.differencePercentMarginOfError precision=1)
         ))
       )}}
         {{#if (gt @this.data.previous.differencePercent 0)}}
