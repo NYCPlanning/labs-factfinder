@@ -47,7 +47,7 @@
           Number
           {{fa-icon icon='question-circle' transform='shrink-2'}}
           {{ember-tooltip
-            text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
+            text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
             side='left'
           }}
         </span>
@@ -57,7 +57,7 @@
           Pctg. Pt.
           {{fa-icon icon='question-circle' transform='shrink-2'}}
           {{ember-tooltip
-            text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
+            text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
             side='left'
           }}
         </span>
@@ -159,8 +159,26 @@
         <th class="text-right cell-border-bottom">Percent</th>
         <th class="text-right cell-border-bottom">Number</th>
         <th class="text-right cell-border-bottom">Percent</th>
-        <th class="text-right cell-border-bottom">Number</th>
-        <th class="text-right cell-border-bottom">Pctg. Pt.</th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            Number
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
+              side='left'
+            }}
+          </span>
+        </th>
+        <th class="text-right cell-border-bottom">
+          <span>
+            Pctg. Pt.
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
+              side='left'
+            }}
+          </span>
+        </th>
       </tr>
     {{/if}}
   </thead>
