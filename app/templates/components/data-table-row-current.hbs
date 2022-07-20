@@ -96,8 +96,8 @@
           (eq @this.data.comparisonSum undefined)
         ))
         (not (eq
-          (format-number this.data.differencePercent precision=1)
-          (format-number this.data.differencePercentMarginOfError precision=1)
+          (format-number (abs this.data.differencePercent) precision=1)
+          (format-number (abs this.data.differencePercentMarginOfError) precision=1)
         ))
       )}}
         {{#if (gt @this.data.differencePercent 0)}}
