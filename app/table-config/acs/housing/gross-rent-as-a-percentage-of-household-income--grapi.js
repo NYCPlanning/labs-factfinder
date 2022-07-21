@@ -20,14 +20,9 @@ export default [
     title: '25.0 to 29.9 percent',
     data: 'grpi25t29',
   },
-
   {
-    title: '30.0 to 34.9 percent',
-    data: 'grpi30t34',
-  },
-  {
-    title: '35.0 percent or more',
-    data: 'grpi35pl',
+    title: "30.0 percent or more",
+    data: "grpi30pl"
   },
   {
     indent: 1,
