@@ -6,7 +6,7 @@ export default [
     data: 'fb4',
   },
   {
-    title: "Entered 2010 or later",
-    data: "fb2010ltr"
+    title: 'Entered 2010 or later',
+    data: 'fb2010ltr'
   },
 ];
