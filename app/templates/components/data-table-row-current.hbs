@@ -46,6 +46,27 @@
       (format-number
           this.data.differenceSum
           precision=this.rowConfig.decimal)}}
+    {{#if (and
+      (lte @this.data.differenceMarginOfError (abs @this.data.differenceSum))
+      (not (or
+        (eq @this.data.sum 0)
+        (eq @this.data.comparisonSum 0)
+        (eq @this.data.sum undefined)
+        (eq @this.data.comparisonSum undefined)
+      ))
+      (not (eq
+        (format-number (abs this.data.differenceSum) precision=@rowConfig.decimal)
+        (format-number (abs this.data.differenceMarginOfError) precision=@rowConfig.decimal)
+      ))
+    )}}
+      {{#if (gt @this.data.differenceSum 0)}}
+        {{fa-icon icon="arrow-up" class="green"}}
+      {{else if (lt @this.data.differenceSum 0)}}
+        {{fa-icon icon="arrow-down" class="red"}}
+      {{else}}
+        {{fa-icon icon=""}}
+      {{/if}}
+    {{/if}}
   </td>
   {{#if this.reliability}}
     <td class="
@@ -66,6 +87,27 @@
           (format-number
             this.data.differencePercent
             precision=1)}}
+      {{#if (and
+        (lte @this.data.differencePercentMarginOfError (abs @this.data.differencePercent))
+        (not (or
+          (eq @this.data.sum 0)
+          (eq @this.data.comparisonSum 0)
+          (eq @this.data.sum undefined)
+          (eq @this.data.comparisonSum undefined)
+        ))
+        (not (eq
+          (format-number (abs this.data.differencePercent) precision=1)
+          (format-number (abs this.data.differencePercentMarginOfError) precision=1)
+        ))
+      )}}
+        {{#if (gt @this.data.differencePercent 0)}}
+          {{fa-icon icon="arrow-up" class="green"}}
+        {{else if (lt @this.data.differencePercent 0)}}
+          {{fa-icon icon="arrow-down" class="red"}}
+        {{else}}
+          {{fa-icon icon=""}}
+        {{/if}}
+      {{/if}}
     </td>
     {{#if this.reliability}}
       <td
