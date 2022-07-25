@@ -22,7 +22,7 @@
       {{/link-to}}
     </li>
     <li>
-      <a href="/explorer/cities/NYC?compareTo=1"
+      <a onclick={{action this.openExplorerURL}}
         class={{(if (eq this.router.currentRouteName "explorer") "active-route")}}
       >
         {{fa-icon icon="search" prefix="fa"}}

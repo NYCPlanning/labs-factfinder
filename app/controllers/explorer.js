@@ -38,7 +38,7 @@ export default class ExplorerController extends Controller {
   // The comparison geography ID.
   // Must match ID of one option in comparisonGeoOptions.
   // Default "0" maps to NYC.
-  @tracked compareTo = "0";
+  @tracked compareTo = "1";
 
   toggleSourceInList(sourceId) {
     return sourcesDefault.map((source) => {
@@ -121,7 +121,9 @@ export default class ExplorerController extends Controller {
   set source(newSource) {
     const { id } = newSource;
 
-    this.transitionToRoute('explorer', { queryParams: { source: id }});
+    sessionStorage.setItem('source', newSource.id)
+
+    this.transitionToRoute({ queryParams: { source: id }});
   }
 
   // returns either 'current', 'previous' or 'change'
@@ -170,6 +172,7 @@ export default class ExplorerController extends Controller {
   set topics(newTopics) {
     const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
 
+    sessionStorage.setItem([qpKey], newTopics)
     this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
   }
 
@@ -307,6 +310,8 @@ export default class ExplorerController extends Controller {
       });
     }
 
+    sessionStorage.setItem([controlId], !currentControlValue)
+
     this.transitionToRoute('explorer', { queryParams: {
       [controlId]: !currentControlValue,
     }});
@@ -318,6 +323,8 @@ export default class ExplorerController extends Controller {
     const newExplorerModel = yield fetchExplorerModel(this.store, this.model.geotype, this.model.geoid, newGeoid);
 
     this.model = newExplorerModel;
+
+    sessionStorage.setItem('compareTo', newGeoid)
 
     yield this.transitionToRoute('explorer', { queryParams: { compareTo: newGeoid }});
   }
