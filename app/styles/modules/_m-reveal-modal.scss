@@ -6,13 +6,6 @@
   z-index: 3;
 }
 
-@include breakpoint(1280px down) {
-  .desktop-header,
-  .desktop-body {
-    display: none;
-  }
-}
-
 @include breakpoint(1280px up) {
   .mobile-header,
   .mobile-body {
