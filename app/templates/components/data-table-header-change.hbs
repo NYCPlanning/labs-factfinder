@@ -156,31 +156,37 @@
         <th class="text-right cell-border-bottom">
           <span>
             Number
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
-              side='left'
-            }}
+            {{#unless @decennial}}
+              {{fa-icon icon='question-circle' transform='shrink-2'}}
+              {{ember-tooltip
+                text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
+                side='left'
+              }}
+            {{/unless}}
           </span>
         </th>
         <th class="text-right cell-border-bottom">
           <span>
             Percent
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow). 2020 number minus 2010 number, divided by 2010 number. Quotient multiplied by 100.'
-              side='bottom'
-            }}
+            {{#unless @decennial}}
+              {{fa-icon icon='question-circle' transform='shrink-2'}}
+              {{ember-tooltip
+                text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow). 2020 number minus 2010 number, divided by 2010 number. Quotient multiplied by 100.'
+                side='bottom'
+              }}
+            {{/unless}}
           </span>
         </th>
         <th class="text-right cell-border-bottom">
           <span>
             Pctg. Pt.
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
-              side='left'
-            }}
+            {{#unless @decennial}}
+              {{fa-icon icon='question-circle' transform='shrink-2'}}
+              {{ember-tooltip
+                text='Significant increase (green up-arrow), significant decrease (red down-arrow), no significant change (no arrow)'
+                side='left'
+              }}
+            {{/unless}}
           </span>
         </th>
       </tr>
