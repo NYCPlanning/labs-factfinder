@@ -25,7 +25,7 @@
             {{fa-icon icon='user-friends'}}
           </span>
           <div class="map-utility-box-data-text">
-            <strong>123,456</strong><br />
+            <strong>{{format-number this.selectionSummaryData.pop1 precision=0}}</strong><br />
             Population
           </div>    
         </div>
@@ -34,7 +34,7 @@
             {{fa-icon icon='building'}}
           </span>
           <div class="map-utility-box-data-text">
-            <strong>123,456</strong><br />
+            <strong>{{format-number this.selectionSummaryData.hunits precision=0}}</strong><br />
             Housing Units
           </div>    
         </div>

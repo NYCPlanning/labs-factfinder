@@ -6,6 +6,7 @@ import searchResultLayer from '../layers/search-result-layer';
 import summaryLevelQueries from '../queries/summary-levels';
 import { all, task } from 'ember-concurrency';
 import config from '../config/environment';
+import fetchSelectionSummary from '../utils/fetch-selection-summary';
 
 const { DEFAULT_SELECTION } = config;
 const EMPTY_GEOJSON = { type: 'FeatureCollection', features: [] };
@@ -47,6 +48,13 @@ export default Service.extend({
   selectedCount: computed('current.[]', function() {
     const currentSelected = this.get('current');
     return currentSelected.features.length;
+  }),
+
+  selectedSummary: computed('current.[]', function() {
+    const currentSelectedSummary = this.get('current');
+    // City level returns 'New York City' but database id is 0
+    const output = currentSelectedSummary.features.map(({ properties }) => properties.geoid);
+    return (output[0] === "New York City" ? ['0'] : output);
   }),
 
   sortedLabels: computed('current', function() {
@@ -107,6 +115,11 @@ export default Service.extend({
       data: feature,
     };
   }),
+
+  handleSelectedSummaryDataExplode: task(function* ()  {
+    yield fetchSelectionSummary('decennial', 'pop1,hunits', this.selectedSummary)
+      .then((selectionSummary) => this.set('current', { ...this.get('current'), selectionSummary: selectionSummary }))
+  }).restartable(),
 
   // methods
   handleSummaryLevelToggle(toLevel) {
@@ -197,7 +210,8 @@ export default Service.extend({
     .then((json) => {
       this.clearSelection();
       this.set('current', json);
-    });
+    })
+    .then(() => {this.handleSelectedSummaryDataExplode.perform()});
   },
 
   explodeFromCity(toLevel) {
@@ -206,7 +220,8 @@ export default Service.extend({
     .then((json) => {
       this.clearSelection();
       this.set('current', json);
-    });
+    })
+    .then(() => {this.handleSelectedSummaryDataExplode.perform()});
   },
 
   // transition between geometry levels using attributes
@@ -230,6 +245,7 @@ export default Service.extend({
           this.clearSelection();
           this.set('current', json);
         })
+        .then(() => {this.handleSelectedSummaryDataExplode.perform()});
     }
   },
   
@@ -247,6 +263,7 @@ export default Service.extend({
           this.clearSelection();
           this.set('current', json);
         })
+        .then(() => {this.handleSelectedSummaryDataExplode.perform()});
     }
   },
 
@@ -265,6 +282,7 @@ export default Service.extend({
           this.clearSelection();
           this.set('current', json);
         })
+        .then(() => {this.handleSelectedSummaryDataExplode.perform()});
     }
   },
 
@@ -309,10 +327,11 @@ export default Service.extend({
 
     yield all(getGeoTasks);
 
-    this.set(
-      'current',
-      { type: 'FeatureCollection', features: this.get('current').features },
-    );
+    yield fetchSelectionSummary('decennial', 'pop1,hunits', this.selectedSummary)
+      .then((selectionSummary) => this.set(
+        'current',
+        { type: 'FeatureCollection', features: this.get('current').features, selectionSummary: selectionSummary },
+      ));
   }).restartable(),
 
   clearSelection() {

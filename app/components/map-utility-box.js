@@ -27,6 +27,8 @@ export default Component.extend({
 
   summaryLevel: alias('selection.summaryLevel'),
 
+  selectionSummaryData: alias('selection.current.selectionSummary.totals'),
+
   choroplethPaintFill: computed('choroplethMode', function() {
     const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
