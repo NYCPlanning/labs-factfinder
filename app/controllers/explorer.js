@@ -38,7 +38,7 @@ export default class ExplorerController extends Controller {
   // The comparison geography ID.
   // Must match ID of one option in comparisonGeoOptions.
   // Default "0" maps to NYC.
-  @tracked compareTo = "1";
+  @tracked compareTo = "0";
 
   toggleSourceInList(sourceId) {
     return sourcesDefault.map((source) => {

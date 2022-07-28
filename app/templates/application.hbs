@@ -22,12 +22,13 @@
       {{/link-to}}
     </li>
     <li>
-      <a onclick={{action this.openExplorerURL}}
-        class={{(if (eq this.router.currentRouteName "explorer") "active-route")}}
-      >
+      {{#link-to
+        'explorer' 'cities' 'NYC'
+        class=(if (eq this.router.currentRouteName "explorer") "active-route")
+      }}
         {{fa-icon icon="search" prefix="fa"}}
         Data Explorer
-      </a>
+      {{/link-to}}
     </li>
     <li class="external-nav-item">
       <a href="mailto:pff_dl@planning.nyc.gov?subject=Population%20FactFinder%20Feedback">{{fa-icon "envelope" prefix="far" transform='grow-4'}}</a>

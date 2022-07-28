@@ -1,9 +1,28 @@
 import Route from '@ember/routing/route';
 import fetchExplorerModel from '../utils/fetch-explorer-model';
+import { inject as service } from '@ember/service';
 
-export default class ExplorerRoute extends Route {
+export default class ExplorerRoute extends Route { 
+  @service router;
+
   beforeModel() {
     this.store.unloadAll('row');
+    if (sessionStorage.length) {
+      let queryParams = {}
+      let queryKeys = [
+          'source',
+          'censusTopics',
+          'acsTopics',
+          'compareTo',
+          'showReliability',
+        ];
+        
+        queryKeys.forEach((key) => {
+            if(sessionStorage[key]) queryParams[key] = sessionStorage[key]
+          })
+
+      this.transitionTo({ queryParams })
+    }
   }
 
   async model({ compareTo }, {
