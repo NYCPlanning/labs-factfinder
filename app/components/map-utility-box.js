@@ -132,7 +132,7 @@ export default Component.extend({
     if (geoids.length > 1) {
       this.get('generateExplorerPageTask').perform(type, geoids);
     } else if (geoids.length === 1){
-      this.get('router').transitionTo(`/explorer/${type}/${geoids[0]}`);
+      this.get('router').transitionTo('explorer', type, geoids[0]);
     } else {
       console.log("Warning: Cannot generate profile because selected geoids array is empty.")
     }

@@ -121,8 +121,6 @@ export default class ExplorerController extends Controller {
   set source(newSource) {
     const { id } = newSource;
 
-    sessionStorage.setItem('source', newSource.id)
-
     this.transitionToRoute({ queryParams: { source: id }});
   }
 
@@ -172,7 +170,6 @@ export default class ExplorerController extends Controller {
   set topics(newTopics) {
     const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
 
-    sessionStorage.setItem([qpKey], newTopics)
     this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
   }
 
@@ -310,8 +307,6 @@ export default class ExplorerController extends Controller {
       });
     }
 
-    sessionStorage.setItem([controlId], !currentControlValue)
-
     this.transitionToRoute('explorer', { queryParams: {
       [controlId]: !currentControlValue,
     }});
@@ -323,8 +318,6 @@ export default class ExplorerController extends Controller {
     const newExplorerModel = yield fetchExplorerModel(this.store, this.model.geotype, this.model.geoid, newGeoid);
 
     this.model = newExplorerModel;
-
-    sessionStorage.setItem('compareTo', newGeoid)
 
     yield this.transitionToRoute('explorer', { queryParams: { compareTo: newGeoid }});
   }
