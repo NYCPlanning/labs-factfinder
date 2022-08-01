@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th rowspan="{{if this.reliability "3" "2"}}">
-        {{#unless this.decennial}}
+        {{#unless @decennial}}
           <a {{action (mut this.reliability) (not this.reliability)}}>
             <span class="a11y-orange">
               {{#if this.reliability}}
@@ -45,21 +45,25 @@
       <th colspan="2" class="text-center cell-border-bottom">
         <span>
           Number
-          {{fa-icon icon='question-circle' transform='shrink-2'}}
-          {{ember-tooltip
-            text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
-            side='left'
-          }}
+          {{#unless @decennial}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
+              side='left'
+            }}
+          {{/unless}}
         </span>
       </th>
       <th colspan="2" class="text-center cell-border-bottom">
         <span>
           Pctg. Pt.
-          {{fa-icon icon='question-circle' transform='shrink-2'}}
-          {{ember-tooltip
-            text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
-            side='left'
-          }}
+          {{#unless @decennial}}
+            {{fa-icon icon='question-circle' transform='shrink-2'}}
+            {{ember-tooltip
+              text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
+              side='left'
+            }}
+          {{/unless}}
         </span>
       </th>
     </tr>
@@ -162,21 +166,25 @@
         <th class="text-right cell-border-bottom">
           <span>
             Number
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
-              side='left'
-            }}
+            {{#unless @decennial}}
+              {{fa-icon icon='question-circle' transform='shrink-2'}}
+              {{ember-tooltip
+                text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
+                side='left'
+              }}
+            {{/unless}}
           </span>
         </th>
         <th class="text-right cell-border-bottom">
           <span>
             Pctg. Pt.
-            {{fa-icon icon='question-circle' transform='shrink-2'}}
-            {{ember-tooltip
-              text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
-              side='left'
-            }}
+            {{#unless @decennial}}
+              {{fa-icon icon='question-circle' transform='shrink-2'}}
+              {{ember-tooltip
+                text='Significantly higher (green up-arrow), significantly lower (red down-arrow), no significant difference (no arrow)'
+                side='left'
+              }}
+            {{/unless}}
           </span>
         </th>
       </tr>
