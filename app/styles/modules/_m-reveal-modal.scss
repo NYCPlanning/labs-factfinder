@@ -7,10 +7,12 @@
 }
 
 @include breakpoint(1280px up) {
-  #reveal-modal-container {
+  .mobile-header,
+  .mobile-body {
     display: none;
   }
 }
+
 
 .reveal-overlay {
   padding: 1rem;
