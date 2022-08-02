@@ -65,6 +65,7 @@ export default Component.extend(ResizeAware, {
     const data = this.get('data');
     const config = this.get('config');
     const isDecennial = this.get('survey') === 'census'
+    const mode = this.get('mode');
 
     const el = this.$();
     const elWidth = el.width();
@@ -77,7 +78,7 @@ export default Component.extend(ResizeAware, {
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);
 
-    const rawData = mungeBarChartData(config, data);
+    const rawData = mungeBarChartData(config, data, mode);
     const y = scaleBand()
       .domain(rawData.map(d => get(d, 'group')))
       .range([0, height])

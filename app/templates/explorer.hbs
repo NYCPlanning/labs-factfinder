@@ -61,6 +61,27 @@
       </p>
       
     {{/if}}
+    <div class="grid-container fluid">
+      <div class="grid-x align-left">
+        <div class="cell shrink">
+          <div class="switch tiny show-charts-switch">
+            <input
+              id="show-charts-switch"
+              type="checkbox"
+              checked={{this.showCharts}}
+              name="show-charts-switch"
+              class="switch-input"
+              {{on "click" (fn this.toggleBooleanControl 'showCharts')}}
+            />
+            <label class="switch-paddle" for="show-charts-switch">
+            </label>
+          </div>
+        </div>
+        <div class="cell shrink text-left">
+          Show Charts
+        </div>
+      </div>
+    </div>
     {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
         {{#if (eq subtopic.selected "selected")}}
@@ -95,6 +116,7 @@
                     title=chart.chartLabel
                     config=chart.chartConfig
                     survey=this.source.type
+                    mode=this.source.mode
                     data=this.surveyData
                     height=204
                   }}
@@ -152,6 +174,7 @@
                       title=chart.chartLabel
                       config=chart.chartConfig
                       survey=this.source.type
+                      mode=this.source.mode
                       data=this.surveyData
                       height=204
                     }}
