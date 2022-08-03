@@ -16,11 +16,11 @@ export default [
     label: '25.0 to 29.9 percent',
   },
   {
-    property: 'grpi30t34',
-    label: '30.0 to 34.9 percent',
+    property: 'grpi30pl',
+    label: '30.0 percent or more',
   },
   {
-    property: 'grpi35pl',
-    label: '35.0 percent or more',
+    property: 'grpi50pl',
+    label: '50.0 percent or more',
   },
 ];
