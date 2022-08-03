@@ -70,7 +70,10 @@ export default Component.extend(ResizeAware, {
     const el = this.$();
     const elWidth = el.width();
 
-    const height = this.get('height') - margin.top - margin.bottom;
+    const rawData = mungeBarChartData(config, data, mode);
+    const additionalHeight = (rawData.length > 7) ? (16 * (rawData.length - 7)) : 0;
+
+    const height = this.get('height') - margin.top - margin.bottom + additionalHeight;
     const width = elWidth - margin.left - margin.right;
     const textWidth = width * 0.35;
 
@@ -78,7 +81,6 @@ export default Component.extend(ResizeAware, {
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);
 
-    const rawData = mungeBarChartData(config, data, mode);
     const y = scaleBand()
       .domain(rawData.map(d => get(d, 'group')))
       .range([0, height])

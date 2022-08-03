@@ -171,7 +171,7 @@ export default [
         charts: [
           {
             chartConfig: acsSocialChartConfig.residence1YearAgo,
-            chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago"',
+            chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago',
           },
         ],
         children: [],
