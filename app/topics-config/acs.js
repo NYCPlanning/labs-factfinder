@@ -499,7 +499,7 @@ export default [
         charts: [
           {
             chartConfig: acsHousingChartConfig.grossRent,
-            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent (2016-2020 only)',
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent',
           },
         ],
         children: [],
