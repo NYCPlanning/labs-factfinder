@@ -171,7 +171,7 @@ export default [
         charts: [
           {
             chartConfig: acsSocialChartConfig.residence1YearAgo,
-            chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago"',
+            chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago',
           },
         ],
         children: [],
@@ -358,7 +358,12 @@ export default [
         tooltip: "Ratio of income in the past 12 months to poverty level",
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.ratioOfIncomeToPovertyLevel,
-        charts: [],
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.ratioOfIncomeToPovertyLevel,
+            chartLabel: 'Percent Distribution of Population by Ratio of Income to Poverty Level'
+          }
+        ],
         children: [],
       },
     ],
@@ -491,7 +496,12 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRent,
-        charts: [],
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRent,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent (2016-2020 only)',
+          },
+        ],
         children: [],
       },
       {
@@ -500,7 +510,12 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRentAsAPercentageOfHouseholdIncomeGrapi,
-        charts: [],
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRentGrapi,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income',
+          },
+        ],
         children: [],
       },
     ],
