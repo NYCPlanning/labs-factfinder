@@ -145,20 +145,26 @@
                   (eq this.source.id 'acs-current')
                   (eq this.source.id 'acs-previous')
                 )
-                subtopic.charts
                 this.showCharts
               )}}
                 <div class="cell large-4 xxlarge-3">
-                  {{#each subtopic.charts as |chart|}}
-                    {{acs-bar
-                      title=chart.chartLabel
-                      config=chart.chartConfig
-                      survey=this.source.type
-                      mode=this.source.mode
-                      data=this.surveyData
-                      height=204
+                  {{#if (eq subtopic.id 'demo-sexAndAge')}}
+                    {{population-pyramid
+                      title="Age/Sex Distribution"
+                      data=this.agePopDist
                     }}
-                  {{/each}}
+                  {{else}}
+                    {{#each subtopic.charts as |chart|}}
+                      {{acs-bar
+                        title=chart.chartLabel
+                        config=chart.chartConfig
+                        survey=this.source.type
+                        mode=this.source.mode
+                        data=this.surveyData
+                        height=204
+                      }}
+                    {{/each}}
+                  {{/if}}
                 </div>
               {{/if}}
             </div>
