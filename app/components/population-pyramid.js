@@ -61,17 +61,25 @@ export default HorizontalBar.extend({
 
   updateChart() {
     const svg = this.get('svg');
-    const data = this.get('data.pyramidData');
+    const data = this.get('data');
+    const isPrevious = this.get('mode') === 'previous';
+
+    function getByMode(row, maleFemale, variable) {
+      const variableAsSuffix = variable[0].toUpperCase() + variable.slice(1,variable.length);
+      const variableFullname = isPrevious ? 'previous' + variableAsSuffix : variable;
+
+      return row[maleFemale][variableFullname];
+    }
 
     // get the largest of largest (percent + percentMarginOfError)
     const maxValue = max([
       max([
-        max(data, d => get(d, 'male.percent') + get(d, 'male.percentMarginOfError')),
-        max(data, d => get(d, 'female.percent') + get(d, 'female.percentMarginOfError')),
+        max(data, row => getByMode(row, 'male', 'percent') + getByMode(row, 'male', 'percentMarginOfError')),
+        max(data, row => getByMode(row, 'female', 'percent') + getByMode(row, 'female', 'percentMarginOfError')),
       ]),
       max([
-        max(data, d => get(d, 'male.comparisonPercent') + get(d, 'male.comparisonPercentMarginOfError')),
-        max(data, d => get(d, 'female.comparisonPercent') + get(d, 'female.comparisonPercentMarginOfError')),
+        max(data, row => getByMode(row, 'male', 'comparisonPercent') + getByMode(row, 'male', 'comparisonPercentMarginOfError')),
+        max(data, row => getByMode(row, 'female', 'comparisonPercent') + getByMode(row, 'female', 'comparisonPercentMarginOfError')),
       ]),
     ]);
 
@@ -84,10 +92,10 @@ export default HorizontalBar.extend({
 
     // tooltip renderer
     const toolTip = (d, type) => {
-      const percent = get(d, `${type}.percent`);
-      const percentM = get(d, `${type}.percentMarginOfError`);
-      const estimate = get(d, `${type}.sum`);
-      const moe = get(d, `${type}.marginOfError`);
+      const percent = getByMode(d, type, 'percent');
+      const percentM = getByMode(d, type, 'percentMarginOfError');
+      const estimate = getByMode(d, type, 'sum');
+      const moe = getByMode(d, type, 'marginOfError');
 
       return `
         The ${type} population aged ${yAxisFormat(get(d, 'group'))}
@@ -232,14 +240,14 @@ export default HorizontalBar.extend({
 
     const handleMOEs = (selection, type) => {
       const xFunction = (d) => {
-        if (get(d, `${type}.percentMarginOfError`) > get(d, `${type}.percent`)) return 0;
-        return xScale(get(d, `${type}.percent`)) - xScale(get(d, `${type}.percentMarginOfError`));
+        if (getByMode(d, type, 'percentMarginOfError') > getByMode(d, type, 'percent')) return 0;
+        return xScale(getByMode(d, type, 'percent')) - xScale(getByMode(d, type, 'percentMarginOfError'));
       };
 
       const widthFunction = (d) => {
-        const defaultWidth = xScale(get(d, `${type}.percentMarginOfError`)) * 2;
-        if (get(d, `${type}.percentMarginOfError`) > get(d, `${type}.percent`)) {
-          const newWidth = (defaultWidth - (xScale(get(d, `${type}.percentMarginOfError`) - get(d, `${type}.percent`))));
+        const defaultWidth = xScale(getByMode(d, type, 'percentMarginOfError')) * 2;
+        if (getByMode(d, type, 'percentMarginOfError') > getByMode(d, type, 'percent')) {
+          const newWidth = (defaultWidth - (xScale(getByMode(d, type, 'percentMarginOfError') - getByMode(d, type, 'percent'))));
           return newWidth;
         }
         return defaultWidth;
@@ -278,9 +286,9 @@ export default HorizontalBar.extend({
 
     const handleComparisonMOEs = (selection, type) => {
       const xFunction = (d) => { // eslint-disable-line
-        return xScale(get(d, `${type}.comparisonPercent`)) - xScale(get(d, `${type}.comparisonPercentMarginOfError`));
+        return xScale(getByMode(d, type, 'comparisonPercent')) - xScale(getByMode(d, type, 'comparisonPercentMarginOfError'));
       };
-      const widthFunction = d => xScale(get(d, `${type}.comparisonPercentMarginOfError`)) * 2;
+      const widthFunction = d => xScale(getByMode(d, type, 'comparisonPercentMarginOfError')) * 2;
 
       selection.enter()
         .append('rect')
@@ -312,7 +320,7 @@ export default HorizontalBar.extend({
       .data(data, d => get(d, 'group'));
 
     const handleComparisons = (selection, type) => {
-      const cxFunction = d => xScale(get(d, `${type}.comparisonPercent`));
+      const cxFunction = d => xScale(getByMode(d, type, 'comparisonPercent'));
       selection.enter()
         .append('circle')
         .attr('class', d => `comparison ${type} ${get(d, 'group')}`)

@@ -232,6 +232,44 @@ export default class ExplorerController extends Controller {
     ].filter(d => d.features.length > 0);
   }
 
+  get agePopDist() {
+    const { surveyData } = this;
+
+    const variables = [
+      'pop0t5',
+      'pop5t9',
+      'pop10t14',
+      'pop15t19',
+      'pop20t24',
+      'pop25t29',
+      'pop30t34',
+      'pop35t39',
+      'pop40t44',
+      'pop45t49',
+      'pop50t54',
+      'pop55t59',
+      'pop60t64',
+      'pop65t69',
+      'pop70t74',
+      'pop75t79',
+      'pop80t84',
+      'pop85pl',
+    ];
+
+    const pyramidData = variables.map((variable) => {
+      const male = surveyData[`m${variable}`];
+      const female = surveyData[`f${variable}`];
+
+      return {
+        group: variable,
+        male,
+        female,
+      };
+    });
+
+    return pyramidData;
+  }
+
   @action setSource(newSource) {
     this.source = newSource;
     window.dataLayer = window.dataLayer || [];
