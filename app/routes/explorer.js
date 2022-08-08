@@ -1,9 +1,10 @@
 import Route from '@ember/routing/route';
 import fetchExplorerModel from '../utils/fetch-explorer-model';
-import { inject as service } from '@ember/service';
 
 export default class ExplorerRoute extends Route { 
-  @service router;
+  beforeModel() {
+    this.store.unloadAll('row');
+  }
 
   async model({ compareTo }, {
     to: {

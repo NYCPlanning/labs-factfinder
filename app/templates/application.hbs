@@ -23,7 +23,7 @@
     </li>
     <li>
       {{#link-to
-        'explorer' 'cities' 'NYC'
+        'explorer' 'cities' 'NYC' (if (this.currentCompareTo) (query-params compareTo=this.currentCompareTo) (query-params compareTo="1"))
         class=(if (eq this.router.currentRouteName "explorer") "active-route")
       }}
         {{fa-icon icon="search" prefix="fa"}}
