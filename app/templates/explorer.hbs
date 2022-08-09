@@ -18,6 +18,14 @@
   />
 </Toolbar>
 
+{{#if this.isLoading}}
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+{{/if}}
+
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
     <br>
@@ -137,6 +145,7 @@
                   config=subtopic.tableConfig
                   isModelLoading=this.reloadExplorerModel.isRunning
                   model=this.surveyData
+                  selectionStatus=subtopic.selected
                 }}
               </div>
 

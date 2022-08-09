@@ -35,10 +35,16 @@ export default class ExplorerController extends Controller {
 
   @tracked showReliability = false;
 
+  @tracked isLoading = false;
+
   // The comparison geography ID.
   // Must match ID of one option in comparisonGeoOptions.
   // Default "0" maps to NYC.
   @tracked compareTo = "0";
+
+  pauseToRerender(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
 
   toggleSourceInList(sourceId) {
     return sourcesDefault.map((source) => {
@@ -284,7 +290,10 @@ export default class ExplorerController extends Controller {
     });
   }
 
-  @action toggleTopic(topic) {
+  @action async toggleTopic(topic) {
+    this.isLoading = true;
+    await this.pauseToRerender(1);
+
     if (topic.type === 'subtopic') {
         if (this.topicsIdList.includes(topic.id)) {
           this.topics = this.topicsIdList.filter(topicId => topicId !== topic.id);
@@ -302,10 +311,18 @@ export default class ExplorerController extends Controller {
         this.topics = this.topicsIdList.concat(topicChildrenIds);
       }
     }
+
+    this.isLoading = false;
   }
 
-  @action toggleAllTopics() {
+  @action async toggleAllTopics() {
+    this.isLoading = true;
+    await this.pauseToRerender(1);
+
     this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
+
+    this.isLoading = false;
+
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       'event' : 'select_all_topics',
