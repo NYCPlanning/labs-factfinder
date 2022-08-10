@@ -68,129 +68,7 @@ export default [
         children: [],
       }
     ],
-  },
-  {
-    id: 'economic',
-    label: 'Economic',
-    selected: 'unselected',
-    type: 'topic',
-    children: [
-      {
-        id: 'econ-employmentStatus',
-        label: 'Employment Status',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.employmentStatus,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'econ-commuteToWork',
-        label: 'Commute to Work',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.commuteToWork,
-        charts: [
-          {
-            chartConfig: acsEconomicChartConfig.commuteToWork,
-            chartLabel: 'Percent Distribution of Workers by Means of Transportation to Work',
-          }
-        ],
-        children: [],
-      },
-      {
-        id: 'econ-occupation',
-        label: 'Occupation',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.occupation,
-        charts: [
-          {
-            chartConfig: acsEconomicChartConfig.occupation,
-            chartLabel: 'Percent Distribution of Workers by Occupation',
-          }
-        ],
-        children: [],
-      },
-      {
-        id: 'econ-industry',
-        label: 'Industry',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.industry,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'econ-classOfWorker',
-        label: 'Class of Worker',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.classOfWorker,
-        charts: [
-          {
-            chartConfig: acsEconomicChartConfig.classOfWorker,
-            chartLabel: 'Percent Distribution of Workers by Class of Worker',
-          }
-        ],
-        children: [],
-      },
-      {
-        id: 'econ-incomeAndBenefits',
-        label: 'Income and Benefits',
-        tooltip: 'In 2019 inflation-adjusted dollars',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.incomeAndBenefits,
-        charts: [
-          {
-            chartConfig: acsEconomicChartConfig.incomeAndBenefits,
-            chartLabel: 'Percent Distribution of Household Income',
-          }
-        ],
-        children: [],
-      },
-      {
-        id: 'econ-earnings',
-        label: 'Earnings',
-        selected: 'unselected',
-        type: 'subtopic',
-        tooltip: 'In 2019 inflation-adjusted dollars',
-        tableConfig: acsEconomicTableConfig.earnings,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'econ-healthInsuranceCoverage',
-        label: 'Health Insurance Coverage',
-        selected: 'unselected',
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.healthInsuranceCoverage,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'econ-incomeInPast12MonthsIsBelowThePovertyLevel',
-        label: 'Income in the Past 12 Months Below Poverty Level',
-        selected: 'unselected',
-        tooltip: "For alternative NYC poverty measure, please see website of the Mayor's Office for Economic Opportunity",
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.incomeInPast12MonthsIsBelowThePovertyLevel,
-        charts: null,
-        children: [],
-      },
-      {
-        id: 'econ-ratioOfIncomeToPovertyLevel',
-        label: 'Ratio of Income to Poverty Level',
-        selected: 'unselected',
-        tooltip: "Ratio of income in the past 12 months to poverty level",
-        type: 'subtopic',
-        tableConfig: acsEconomicTableConfig.ratioOfIncomeToPovertyLevel,
-        charts: [],
-        children: [],
-      },
-    ],
-  },
+  }, 
   {
     id: 'social',
     label: 'Social',
@@ -293,7 +171,7 @@ export default [
         charts: [
           {
             chartConfig: acsSocialChartConfig.residence1YearAgo,
-            chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago"',
+            chartLabel: 'Percent Distribution of Population who Lived in a Different House 1 Year Ago',
           },
         ],
         children: [],
@@ -359,6 +237,133 @@ export default [
         type: 'subtopic',
         tableConfig: acsSocialTableConfig.computersAndInternetUse,
         charts: null,
+        children: [],
+      },
+    ],
+  },
+  {
+    id: 'economic',
+    label: 'Economic',
+    selected: 'unselected',
+    type: 'topic',
+    children: [
+      {
+        id: 'econ-employmentStatus',
+        label: 'Employment Status',
+        selected: 'unselected',
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.employmentStatus,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'econ-commuteToWork',
+        label: 'Commute to Work',
+        selected: 'unselected',
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.commuteToWork,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.commuteToWork,
+            chartLabel: 'Percent Distribution of Workers by Means of Transportation to Work',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'econ-occupation',
+        label: 'Occupation',
+        selected: 'unselected',
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.occupation,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.occupation,
+            chartLabel: 'Percent Distribution of Workers by Occupation',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'econ-industry',
+        label: 'Industry',
+        selected: 'unselected',
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.industry,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'econ-classOfWorker',
+        label: 'Class of Worker',
+        selected: 'unselected',
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.classOfWorker,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.classOfWorker,
+            chartLabel: 'Percent Distribution of Workers by Class of Worker',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'econ-incomeAndBenefits',
+        label: 'Income and Benefits',
+        tooltip: 'In 2020 inflation-adjusted dollars',
+        selected: 'unselected',
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.incomeAndBenefits,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.incomeAndBenefits,
+            chartLabel: 'Percent Distribution of Household Income',
+          }
+        ],
+        children: [],
+      },
+      {
+        id: 'econ-earnings',
+        label: 'Earnings',
+        selected: 'unselected',
+        type: 'subtopic',
+        tooltip: 'In 2020 inflation-adjusted dollars',
+        tableConfig: acsEconomicTableConfig.earnings,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'econ-healthInsuranceCoverage',
+        label: 'Health Insurance Coverage',
+        selected: 'unselected',
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.healthInsuranceCoverage,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'econ-incomeInPast12MonthsIsBelowThePovertyLevel',
+        label: 'Income in the Past 12 Months Below Poverty Level',
+        selected: 'unselected',
+        tooltip: "For alternative NYC poverty measure, please see website of the Mayor's Office for Economic Opportunity",
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.incomeInPast12MonthsIsBelowThePovertyLevel,
+        charts: null,
+        children: [],
+      },
+      {
+        id: 'econ-ratioOfIncomeToPovertyLevel',
+        label: 'Ratio of Income to Poverty Level',
+        selected: 'unselected',
+        tooltip: "Ratio of income in the past 12 months to poverty level",
+        type: 'subtopic',
+        tableConfig: acsEconomicTableConfig.ratioOfIncomeToPovertyLevel,
+        charts: [
+          {
+            chartConfig: acsEconomicChartConfig.ratioOfIncomeToPovertyLevel,
+            chartLabel: 'Percent Distribution of Population by Ratio of Income to Poverty Level'
+          }
+        ],
         children: [],
       },
     ],
@@ -454,7 +459,7 @@ export default [
       {
         id: 'hou-value',
         label: 'Value',
-        tooltip: 'In 2019 inflation-adjusted dollars',
+        tooltip: 'In 2020 inflation-adjusted dollars',
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.value,
@@ -487,11 +492,16 @@ export default [
       {
         id: 'hou-grossRent',
         label: 'Gross Rent',
-        tooltip: 'In 2019 inflation-adjusted dollars',
+        tooltip: 'In 2020 inflation-adjusted dollars',
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRent,
-        charts: [],
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRent,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent',
+          },
+        ],
         children: [],
       },
       {
@@ -500,7 +510,12 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRentAsAPercentageOfHouseholdIncomeGrapi,
-        charts: [],
+        charts: [
+          {
+            chartConfig: acsHousingChartConfig.grossRentGrapi,
+            chartLabel: 'Percent Distribution of Renter-occupied Households by Gross Rent as a Percentage of Household Income',
+          },
+        ],
         children: [],
       },
     ],
