@@ -53,7 +53,7 @@
     {{/if}}
     {{#if (eq this.source.type 'acs')}}
       <p class="text-small">
-        ACS data are derived from a survey and are subject to sampling variability. Grayed values are not statistically reliable (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>). 
+        ACS data are derived from a survey and are subject to sampling variability. Data shown in gray have poor statistical reliability (<a href="https://www.census.gov/programs-surveys/acs/guidance.html" target="_blank">guidance on ACS data</a>). 
         <span>
           {{fa-icon icon='question-circle' transform='shrink-2'}}
           {{ember-tooltip side="bottom" text='Data associated with estimates of zero, top- and bottom-coded estimate, or Coefficients of Variation (CVs) of 20% or more are grayed out to signify poor statistical reliability. Comparisons and changes over time that are not statistically significant at a 90% confidence level are also grayed out.'}}
@@ -61,6 +61,7 @@
       </p>
       
     {{/if}}
+
     {{#if (eq this.source.type 'census')}}
       {{#each this.topics as |subtopic|}}
         {{#if (eq subtopic.selected "selected")}}
@@ -95,6 +96,7 @@
                     title=chart.chartLabel
                     config=chart.chartConfig
                     survey=this.source.type
+                    mode=this.source.mode
                     data=this.surveyData
                     height=204
                   }}
@@ -141,7 +143,10 @@
               {{#if (and
                 (or
                   (eq this.source.id 'acs-current')
-                  (eq this.source.id 'acs-previous')
+                  (and
+                    (eq this.source.id 'acs-previous')
+                    (not subtopic.hidePreviousChart)
+                  )
                 )
                 subtopic.charts
                 this.showCharts
@@ -152,6 +157,7 @@
                       title=chart.chartLabel
                       config=chart.chartConfig
                       survey=this.source.type
+                      mode=this.source.mode
                       data=this.surveyData
                       height=204
                     }}

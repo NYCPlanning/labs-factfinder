@@ -1,5 +1,5 @@
 <button id="download-button" class="button" {{on "click" this.toggleOpen}}>
-  {{ember-tooltip delay=500 text='Download tables for selected geographies and topics.' side='bottom-end'}}
+  {{ember-tooltip delay=500 text='Download data' side='bottom-end'}}
   {{fa-icon icon="download" prefix="fas" transform='grow-10'}}
   <span class="notification-count">
     {{this.numSelected}}
@@ -43,9 +43,22 @@
     </div>
 
     {{#if (not @isModelLoading)}}
-      <div class="download-data-dropdown-foot" {{on "click" this.exportTableToCSV}}>
-        {{fa-icon icon='arrow-alt-circle-down' prefix='far' class='white'}} Download Data <span class="small">(.csv)</span>
-      </div>
+    <div class="download-data-dropdown-foot" {{on "click" this.exportTableToCSV}}>
+      {{fa-icon icon='arrow-alt-circle-down' prefix='far' class='white'}} Download Data <span class="small">(.csv)</span>
+    </div>
     {{/if}}
-  </div>
+    <div id="download-data-external-links">
+        <p>
+          <strong>To download data for all individual geographies, navigate to the Population Division webpage:</strong>
+        </p>
+        <div id="link-container">
+          <p>
+            <a href="https://www1.nyc.gov/site/planning/planning-level/nyc-population/2020-census.page" target="_blank">Census data (all geographies)</a>
+          </p>
+          <p>
+            <a href="https://www1.nyc.gov/site/planning/planning-level/nyc-population/american-community-survey.page" target="_blank">ACS data (NTAs or CDTAs)</a>
+          </p>
+        </div>
+      </div>
+    </div>
 {{/if}}

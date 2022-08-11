@@ -57,6 +57,8 @@ module.exports = function (environment) {
       // when it is created
     },
 
+    cartoUsername: process.env.CARTO_USERNAME || 'planninglabs',
+
     'ember-mapbox-composer': {
       host: 'https://labs-layers-api-staging.herokuapp.com',
       namespace: 'v1',
@@ -123,6 +125,16 @@ if (environment === 'local-api') {
     // environment variable should be set to 'https://factfinder-api-staging.herokuapp.com/'.
     // See netlify.toml for setting netlify environment variable during build.
     ENV.SupportServiceHost = process.env.API_URL || 'https://factfinder-api-staging.herokuapp.com';
+    ENV['ember-cli-mirage'] = {
+      enabled: false,
+    };
+  }
+
+  if (environment === 'carto-staging') {
+    ENV.SupportServiceHost = process.env.API_URL || 'https://factfinder-api-carto-staging.herokuapp.com';
+
+    ENV['mapbox-gl'].map.style = 'https://labs-layers-api-data-qa.herokuapp.com/v1/base/style.json';
+    ENV['ember-mapbox-composer'].host = 'https://labs-layers-api-data-qa.herokuapp.com';
     ENV['ember-cli-mirage'] = {
       enabled: false,
     };
