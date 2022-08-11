@@ -59,6 +59,7 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsDemographicTableConfig.asianSubgroup,
+        hidePreviousChart: true,
         charts: [
           {
             chartConfig: acsDemographicChartConfig.asianSubgroup,
@@ -314,6 +315,7 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsEconomicTableConfig.incomeAndBenefits,
+        hidePreviousChart: true,
         charts: [
           {
             chartConfig: acsEconomicChartConfig.incomeAndBenefits,
@@ -463,6 +465,7 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.value,
+        hidePreviousChart: true,
         charts: [
           {
             chartConfig: acsHousingChartConfig.value,
@@ -496,6 +499,7 @@ export default [
         selected: 'unselected',
         type: 'subtopic',
         tableConfig: acsHousingTableConfig.grossRent,
+        hidePreviousChart: true,
         charts: [
           {
             chartConfig: acsHousingChartConfig.grossRent,

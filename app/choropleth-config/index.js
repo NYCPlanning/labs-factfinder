@@ -645,6 +645,7 @@ const MINIMUM_RACIAL_COUNT = 5000;
 // For all other variables, or for racial group percent change when the count is above the minimum,
 // fill color is simply determined by the "steps" array
 const buildPaintFill = (id, minimum, stops) => {
+
   const racialPercentChangeIds = ['wnh_pc', 'bnh_pc', 'anh_pc', 'hsp1_pc'];
 
   return racialPercentChangeIds.includes(id)

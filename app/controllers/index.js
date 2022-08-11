@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { action, computed } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 
@@ -283,4 +284,11 @@ export default Controller.extend({
       customVisualOverlayPoints: false,
     })
   },
+  
+  @tracked openModal: true,
+
+  @action toggleModal() {
+    this.openModal = !this.openModal
+  }
 });
+
