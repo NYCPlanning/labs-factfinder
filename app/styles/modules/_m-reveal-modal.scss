@@ -7,10 +7,12 @@
 }
 
 @include breakpoint(1280px up) {
-  #reveal-modal-container {
+  .mobile-header,
+  .mobile-body {
     display: none;
   }
 }
+
 
 .reveal-overlay {
   padding: 1rem;
@@ -34,6 +36,7 @@
   box-shadow: 0 0 0 rem-calc(4) rgba(0,0,0,0.1);
   top: 0;
   border-radius: 5px;
+  padding-top: 40px;
 
   &:focus {
     outline: none;
