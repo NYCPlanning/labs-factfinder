@@ -6926,10 +6926,10 @@ ember-load-initializers@^2.1.2:
     ember-cli-babel "^7.13.0"
     ember-cli-typescript "^2.0.2"
 
-ember-mapbox-composer@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/ember-mapbox-composer/-/ember-mapbox-composer-0.2.3.tgz#6ab2e1d5081764cd6560274a086b925b96dc4ab2"
-  integrity sha512-DjAB6ZMCYHoZq55ODB3XFLMedocTOwPpjn0apqNfFY1Ov8hI9EyJradJ1DzYES0PD6b4FsbcBEP772YD3KuxAg==
+ember-mapbox-composer@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/ember-mapbox-composer/-/ember-mapbox-composer-0.2.4.tgz#8286627ee71fcdef8cebe1f86d48b90e31f0c202"
+  integrity sha512-P/SDyH2lPCSiup6I/wr5vhsEXyoqBiYARQo3QMYV8RTqKzBHynSoSg1SoIsnF2shMa2vkQSIUKVpyCncCmwT8A==
   dependencies:
     "@turf/union" "^6.0.0"
     cartobox-promises-utility "1.0.2"
