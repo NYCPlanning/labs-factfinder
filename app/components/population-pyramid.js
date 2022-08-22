@@ -37,7 +37,7 @@ export default HorizontalBar.extend({
         .attr('height', margin.top + height + margin.bottom)
         .append('g')
         .attr('class', 'padding-group')
-        .attr('transform', translation(margin.left, margin.top));
+        .attr('transform', translation(margin.left, 15));
 
       svg.append('g')
         .attr('class', 'male');
@@ -141,9 +141,6 @@ export default HorizontalBar.extend({
       .attr('width', margin.left + width + margin.right)
       .attr('height', margin.top + height + margin.bottom);
 
-    svg.select('.padding-group')
-      .attr('transform', translation(margin.left, margin.top));
-
     // set x and y scale
 
     const xScale = scaleLinear()
@@ -188,11 +185,10 @@ export default HorizontalBar.extend({
       .attr('transform', translation(pointB, height))
       .call(xAxisRight);
 
-    // update positioning and text of top-labels
 
     // draw main bars
     const leftBars = svg.select('.male')
-      .attr('transform', `${translation(pointA, 0)}scale(-1,1)`)
+      .attr('transform', translation(pointA, 0))
       .selectAll('.bar.male')
       .data(data, d => get(d, 'group'));
 
