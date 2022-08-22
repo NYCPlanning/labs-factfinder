@@ -160,8 +160,8 @@ if (environment === 'local-api') {
   }
 
   if (environment === 'production') {
-    ENV['mapbox-gl'].map.style = 'https://layers-api.planninglabs.nyc/v1/base/style.json';
-    ENV['ember-mapbox-composer'].host = 'https://layers-api.planninglabs.nyc';
+    ENV['mapbox-gl'].map.style = 'https://labs-layers-api.herokuapp.com/v1/base/style.json';
+    ENV['ember-mapbox-composer'].host = 'https://labs-layers-api.herokuapp.com';
     ENV.SupportServiceHost = process.env.API_URL || 'https://factfinder-api.herokuapp.com';
   }
 
