@@ -19,6 +19,26 @@
         {{/if}}
         selected
       </div>
+      <div class="map-utility-box-data">
+        <div>
+          <span>
+            {{fa-icon icon='user-friends'}}
+          </span>
+          <div class="map-utility-box-data-text">
+            <strong>{{format-number this.selectionSummaryData.pop1 precision=0}}</strong><br />
+            Population
+          </div>    
+        </div>
+          <div>
+          <span>
+            {{fa-icon icon='building'}}
+          </span>
+          <div class="map-utility-box-data-text">
+            <strong>{{format-number this.selectionSummaryData.hunits precision=0}}</strong><br />
+            Housing Units
+          </div>    
+        </div>
+      </div>
       <div class="map-utility-box-buttons">
         <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
           <span class="a11y-orange">

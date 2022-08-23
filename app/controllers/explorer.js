@@ -35,10 +35,16 @@ export default class ExplorerController extends Controller {
 
   @tracked showReliability = false;
 
+  @tracked isLoading = false;
+
   // The comparison geography ID.
   // Must match ID of one option in comparisonGeoOptions.
   // Default "0" maps to NYC.
   @tracked compareTo = "0";
+
+  pauseToRerender(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
 
   toggleSourceInList(sourceId) {
     return sourcesDefault.map((source) => {
@@ -121,6 +127,8 @@ export default class ExplorerController extends Controller {
   set source(newSource) {
     const { id } = newSource;
 
+    sessionStorage.setItem('source', id)
+
     this.transitionToRoute('explorer', { queryParams: { source: id }});
   }
 
@@ -169,6 +177,8 @@ export default class ExplorerController extends Controller {
 
   set topics(newTopics) {
     const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
+
+    sessionStorage.setItem([qpKey], newTopics)
 
     this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
   }
@@ -232,6 +242,44 @@ export default class ExplorerController extends Controller {
     ].filter(d => d.features.length > 0);
   }
 
+  get agePopDist() {
+    const { surveyData } = this;
+
+    const variables = [
+      'pop0t5',
+      'pop5t9',
+      'pop10t14',
+      'pop15t19',
+      'pop20t24',
+      'pop25t29',
+      'pop30t34',
+      'pop35t39',
+      'pop40t44',
+      'pop45t49',
+      'pop50t54',
+      'pop55t59',
+      'pop60t64',
+      'pop65t69',
+      'pop70t74',
+      'pop75t79',
+      'pop80t84',
+      'pop85pl',
+    ];
+
+    const pyramidData = variables.map((variable) => {
+      const male = surveyData[`m${variable}`];
+      const female = surveyData[`f${variable}`];
+
+      return {
+        group: variable,
+        male,
+        female,
+      };
+    });
+
+    return pyramidData;
+  }
+
   @action setSource(newSource) {
     this.source = newSource;
     window.dataLayer = window.dataLayer || [];
@@ -246,7 +294,10 @@ export default class ExplorerController extends Controller {
     });
   }
 
-  @action toggleTopic(topic) {
+  @action async toggleTopic(topic) {
+    this.isLoading = true;
+    await this.pauseToRerender(1);
+
     if (topic.type === 'subtopic') {
         if (this.topicsIdList.includes(topic.id)) {
           this.topics = this.topicsIdList.filter(topicId => topicId !== topic.id);
@@ -264,10 +315,18 @@ export default class ExplorerController extends Controller {
         this.topics = this.topicsIdList.concat(topicChildrenIds);
       }
     }
+
+    this.isLoading = false;
   }
 
-  @action toggleAllTopics() {
+  @action async toggleAllTopics() {
+    this.isLoading = true;
+    await this.pauseToRerender(1);
+
     this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
+
+    this.isLoading = false;
+
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       'event' : 'select_all_topics',
@@ -307,6 +366,8 @@ export default class ExplorerController extends Controller {
       });
     }
 
+    sessionStorage.setItem([controlId], !currentControlValue)
+
     this.transitionToRoute('explorer', { queryParams: {
       [controlId]: !currentControlValue,
     }});
@@ -318,6 +379,8 @@ export default class ExplorerController extends Controller {
     const newExplorerModel = yield fetchExplorerModel(this.store, this.model.geotype, this.model.geoid, newGeoid);
 
     this.model = newExplorerModel;
+
+    sessionStorage.setItem('compareTo', newGeoid)
 
     yield this.transitionToRoute('explorer', { queryParams: { compareTo: newGeoid }});
   }
