@@ -18,6 +18,14 @@
   />
 </Toolbar>
 
+{{#if this.isLoading}}
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+{{/if}}
+
 <div class="overflow-y-grid grid-padding-x">
   <div class="cell auto" id="explorer-wrapper">
     <br>
@@ -148,21 +156,32 @@
                     (not subtopic.hidePreviousChart)
                   )
                 )
-                subtopic.charts
                 this.showCharts
               )}}
-                <div class="cell large-4 xxlarge-3">
-                  {{#each subtopic.charts as |chart|}}
-                    {{acs-bar
-                      title=chart.chartLabel
-                      config=chart.chartConfig
-                      survey=this.source.type
-                      mode=this.source.mode
-                      data=this.surveyData
-                      height=204
+                {{#if (eq subtopic.id 'demo-sexAndAge')}}
+                  <div class="cell large-4 xxlarge-3">
+                    {{population-pyramid
+                      title="Age/Sex Distribution"
+                      data=this.agePopDist
+                      mode=this.mode
                     }}
-                  {{/each}}
-                </div>
+                  </div>
+                {{else}}
+                  {{#if subtopic.charts}}
+                    <div class="cell large-4 xxlarge-3">
+                      {{#each subtopic.charts as |chart|}}
+                        {{acs-bar
+                          title=chart.chartLabel
+                          config=chart.chartConfig
+                          survey=this.source.type
+                          mode=this.source.mode
+                          data=this.surveyData
+                          height=204
+                        }}
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                {{/if}}
               {{/if}}
             </div>
 

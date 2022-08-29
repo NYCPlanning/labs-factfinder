@@ -193,65 +193,74 @@ body {
     font-weight: 500;
     color: $charcoal;
   }
+}
 
-  .map-utility-box-body {
-    color: black;
-    padding: 1.5rem 2rem;
+.map-utility-box-body {
+  color: black;
+  padding: 1.5rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.map-utility-box-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  > div > span {
+    padding: 0.75em;
+    background-color: #129DED;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.25em;
+  }
+  .map-utility-box-data-text {
     font-size: 0.875rem;
-    font-weight: 400;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
+    padding-top: 1.25em; //set the same as the span above
 
-    strong {
-      font-weight: 700;
-    }
-
-    .map-utility-box-data {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      margin-top: 2em;
-
-      span {
-        padding: 0.75em;
-        background-color: #129DED;
-        border-radius: 50%;
-        color: white;
-        font-size: 1.25em;
-      }
-      .map-utility-box-data-text {
-        padding-top: 1em; //set the same as the span above
-      }
-    }
-  }
-
-  .map-utility-box-buttons {
-    padding: 0;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    height: 40px;
-    border-top: 1px solid #AAAFB5;
-    > :last-child {
-      flex-grow: 1;
-    }
-  }
-
-  .map-utility-box-body-null {
-    padding: 1.5rem 2rem;
-    font-size: rem-calc(14);
-    p {
-      line-height: 1;
-    }
-    > :last-child {
-      margin-bottom: 0;
+    > span {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: $dark-gray;
     }
   }
 }
+
+.map-utility-box-buttons {
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 40px;
+  border-top: 1px solid #AAAFB5;
+  > :last-child {
+    flex-grow: 1;
+  }
+}
+
+.map-utility-box-body-null {
+  padding: 1.5rem 2rem;
+  font-size: rem-calc(14);
+  p {
+    line-height: 1;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
 #clear-selection {
   background-color: $off-white;
   color: $charcoal;
