@@ -2,9 +2,11 @@
 command = "yarn build --environment=staging"
 
 [context.develop]
+  command = "yarn build --environment=development"
   environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api-develop.herokuapp.com" }
 
 [context.staging]
+  command = "yarn build --environment=staging"
   environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api-staging.herokuapp.com" }
 
 [context.carto-staging]

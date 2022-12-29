@@ -81,7 +81,7 @@ export default Component.extend({
     ];
   }),
 
-  generateExplorerPageTask: task(function* (type, geoids) {
+  generateExplorerPageTask: task(function* (type, geoids, queryParams) {
     const postBody = {
       geotype: type,
       geoids,
@@ -97,7 +97,7 @@ export default Component.extend({
       .then(d => d.json());
 
     yield this.get('router')
-      .transitionTo(`/explorer/selection/${selectionId}`);
+      .transitionTo('explorer', 'selection', selectionId, { queryParams });
   }).restartable(),
 
   clearSelection() {
@@ -131,10 +131,25 @@ export default Component.extend({
     const geoids = this.get('selection.current.features')
       .mapBy('properties.geoid');
 
+    let queryParams = {}
+    if (sessionStorage.length) {
+      let queryKeys = [
+          'source',
+          'censusTopics',
+          'acsTopics',
+          'compareTo',
+          'showReliability',
+        ];
+
+        queryKeys.forEach((key) => {
+            if(sessionStorage[key]) queryParams[key] = sessionStorage[key]
+          })
+    }
+
     if (geoids.length > 1) {
-      this.get('generateExplorerPageTask').perform(type, geoids);
+      this.get('generateExplorerPageTask').perform(type, geoids, queryParams);
     } else if (geoids.length === 1){
-      this.get('router').transitionTo(`/explorer/${type}/${geoids[0]}`);
+      this.get('router').transitionTo('explorer', type, geoids[0], { queryParams });
     } else {
       console.log("Warning: Cannot generate profile because selected geoids array is empty.")
     }
