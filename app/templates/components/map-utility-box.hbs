@@ -5,10 +5,15 @@
         Your Selection
       </div>
       <div class="map-utility-box-body">
-        {{#if (eq this.selection.summaryLevel 'cities')}}
+        {{log 'this.selectionCount in map utility box' this.selectionCount }}
+        {{#if (gt this.selectionCount 1000 )}}
+          You have selected
+          <strong>{{this.selectionCount}}</strong>
+          {{this.selection.summaryLevel}}, the maximum allowed selection size is 1,000 {{this.selection.summaryLevel}}.
+        {{else if (eq this.selection.summaryLevel 'cities')}}
           New York City
         {{else}}
-          <strong>{{this.selectionCount}}&nbsp;</strong>
+          <strong>{{this.selectionCount}}</strong>
           {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
           {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
           {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
@@ -17,7 +22,9 @@
           {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
           {{unless (eq this.selectionCount 1) 's'}}
         {{/if}}
-        selected
+        {{#if (lt this.selectionCount 1000 )}}
+          selected
+        {{/if}}
       </div>
       <div class="map-utility-box-data">
         <div>
@@ -48,7 +55,7 @@
           </span>
           Clear Selection
         </button>
-        <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateExplorerPage}}>
+        <button id="see-more-data" class="button orange" type="button" disabled={{if (gt this.selectionCount 1000 ) true false}} onClick={{action this.generateExplorerPage}}>
           View Data
           <span class="off-white" style="padding-left: 0.5em;">
             {{fa-icon icon='long-arrow-alt-right'}}
