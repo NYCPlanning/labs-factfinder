@@ -8,7 +8,7 @@ const SELECTION_SUMMARY_API_URL_POST = (survey = 'decennial', summaryVars = 'pop
 export default async function fetchSelectionSummary(survey, summaryVars, geoid) {
   let selectionResponse = {totals: { hunits: 0, pop1: 0 }};
   // to ensure we don't receive errors from the URLs being too long, we limit the selections to 1500 geoids
-  if (geoid.length > 1000) {
+  if (geoid.length > 5000) {
     selectionResponse = null;
 
     return selectionResponse;
