@@ -1,19 +1,19 @@
 {{#if (eq this.mode 'direct-select')}}
   {{#if (gt this.selectionCount 0)}}
     <div class="map-utility-box">
-      <div class="map-utility-box-head" style={{if (gt this.selectionCount 5000 ) 'margin-bottom: 1.5rem;'}}>
+      <div class="map-utility-box-head" style={{if (gt this.selectionCount 500 ) 'margin-bottom: 1.5rem;'}}>
         Your Selection
         <hr class="light-gray map-utility-box-head-bottom-border">
       </div>
       <div class="map-utility-box-body">
-        {{#if (gt this.selectionCount 5000 )}}
+        {{#if (gt this.selectionCount 500 )}}
           <p class="map-utility-box-selection-error">
             <span class="map-utility-box-error-header">
               <strong>{{this.selectionCount}}</strong> {{this.selection.summaryLevel}} selected
               <br />
             </span>
             <span class="map-utility-box-error-body">
-              The number of selected {{this.selection.summaryLevel}} is more than the permitted selection size of 5,000 {{this.selection.summaryLevel}}.
+              The number of selected {{this.selection.summaryLevel}} is more than the permitted selection size of 500 {{this.selection.summaryLevel}}.
             </span>
           </p>
         {{else if (eq this.selection.summaryLevel 'cities')}}
@@ -68,7 +68,7 @@
         <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
            Clear Selection
         </button>
-        <button id="see-more-data" class="button orange" type="button" disabled={{if (gt this.selectionCount 5000 ) true false}} onClick={{action this.generateExplorerPage}}>
+        <button id="see-more-data" class="button orange" type="button" disabled={{if (gt this.selectionCount 500 ) true false}} onClick={{action this.generateExplorerPage}}>
           <div class="see-more-data-text-wrapper">
             View Data
           </div>
