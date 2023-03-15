@@ -28,7 +28,7 @@
           {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
           {{unless (eq this.selectionCount 1) 's'}}
         {{/if}}
-        {{#if (lt this.selectionCount 1000 )}}
+        {{#if (lt this.selectionCount 500 )}}
           selected
         {{/if}}
       </div>
@@ -65,10 +65,19 @@
         </div>
       </div>
       <div class="map-utility-box-buttons">
-        <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
+        <button
+          id="clear-selection"
+          class="button--clear-selection button"
+          type="button" {{action this.clearSelection}}
+        >
            Clear Selection
         </button>
-        <button id="see-more-data" class="button orange" type="button" disabled={{if (gt this.selectionCount 500 ) true false}} onClick={{action this.generateExplorerPage}}>
+        <button
+          id="see-more-data"
+          class="button orange" type="button"
+          disabled={{if (gt this.selectionCount 500 ) true false}}
+          onClick={{action this.generateExplorerPage}}
+        >
           <div class="see-more-data-text-wrapper">
             View Data
           </div>
