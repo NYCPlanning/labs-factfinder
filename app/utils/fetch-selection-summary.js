@@ -32,9 +32,11 @@ export default async function fetchSelectionSummary(survey, summaryVars, geoid) 
 
   } catch (e) {
     if (geoid.length > maxGeoidLength) {
+      // record errors where users are selecting more geoids than the max
       throw RangeError(`geoid selection of ${geoid.length} is greater than than permitted maximum of ${maxGeoidLength}`)
     } else {
-      throw Error(`Error in fetching selection summary`, e, e.message);
+      // catch all other errors
+      throw Error(`Error in fetching selection summary`, e);
     }
   }
 }
