@@ -273,7 +273,7 @@ body {
 #clear-selection {
   background-color: $off-white;
   font-family: $body-font-family;
-  color: $teal;
+  color: $dark-teal;
   text-decoration: underline;
   font-size: 0.875rem;
   padding: .75rem 1.5rem;
@@ -282,7 +282,7 @@ body {
 #see-more-data {
   display: flex;
   align-items: center;
-  background-color: $teal;
+  background-color: $dark-teal;
   font-family: $body-font-family;
   color: $off-white;
   font-size: 0.875rem;
