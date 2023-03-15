@@ -111,6 +111,7 @@ export default Component.extend({
   handleDrawRadiusButtonClick() {
     this.sendAction('handleDrawRadiusButtonClick');
   },
+
   transitionTo() {},
 
   generateExplorerPage() {

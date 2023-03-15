@@ -94,5 +94,8 @@ export default Route.extend({
         window.dispatchEvent(new Event('resize'));
       });
     },
+    willTransition(transition) {
+      this.transitionTo('map-to-explorer');
+    },
   },
 });
