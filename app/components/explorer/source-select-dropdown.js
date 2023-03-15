@@ -62,4 +62,8 @@ export default class SourceSelectDropdownComponent extends Component {
     }
     return true;
   }
-}
+
+  get showDistrictACSWarning() {
+      return this.args.geotype === 'districts';
+    }
+  }
