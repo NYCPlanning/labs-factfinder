@@ -1,7 +1,10 @@
 {{#if (eq this.mode 'direct-select')}}
   {{#if (gt this.selectionCount 0)}}
     <div class="map-utility-box">
-      <div class="map-utility-box-head" style={{if (gt this.selectionCount 500 ) 'margin-bottom: 1.5rem;'}}>
+      <div
+        class="map-utility-box-head"
+        style={{if (gt this.selectionCount 500 ) 'margin-bottom: 1.5rem;'}}
+      >
         Your Selection
         <hr class="light-gray map-utility-box-head-bottom-border">
       </div>
