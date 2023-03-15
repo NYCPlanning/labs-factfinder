@@ -12,7 +12,12 @@ export default async function fetchSelectionSummary(survey, summaryVars, geoid) 
     // to ensure we don't receive errors from the URLs being too long, we limit the selections to 500 geoids
     // The limit can be increased when indices are added to the geoids in the pff db
     if (geoid.length > maxGeoidLength) {
-      throw RangeError(`geoid selection of ${geoid.length} is greater than than permitted maximum of ${maxGeoidLength}`)
+      selectionResponse = null;
+
+      /* eslint-disable-next-line no-console */
+      console.log(`geoid selection of ${geoid.length} is greater than than permitted maximum of ${maxGeoidLength}`);
+
+      return selectionResponse
 
     } else if (geoid.length) {
       const response = await fetch(SELECTION_SUMMARY_API_URL(survey, summaryVars), {
@@ -31,12 +36,6 @@ export default async function fetchSelectionSummary(survey, summaryVars, geoid) 
     return null;
 
   } catch (e) {
-    if (geoid.length > maxGeoidLength) {
-      // record errors where users are selecting more geoids than the max
-      throw RangeError(`geoid selection of ${geoid.length} is greater than than permitted maximum of ${maxGeoidLength}`)
-    } else {
-      // catch all other errors
-      throw Error(`Error in fetching selection summary`, e);
-    }
+    throw Error(`Error in fetching selection summary`, e);
   }
 }
