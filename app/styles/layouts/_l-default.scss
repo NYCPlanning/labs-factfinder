@@ -161,11 +161,12 @@ body {
 
 .map-utility-box {
   background-color: $off-white;
-  // padding: $global-margin;
+  font-family: $body-font-family;
   position: relative;
   text-align: center;
-  color: $dark-gray;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: $gray-600;
+  background-color: $gray-100;
+  border-radius: 0.75rem;
 
   @include breakpoint(large) {
     position: absolute;
@@ -178,61 +179,69 @@ body {
     box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
   }
 
-  > :last-child {
-    margin-bottom: 0;
-  }
-
   .button--clear-selection {
     margin: 0 0 0 0;
   }
 
   .map-utility-box-head {
-    background: $white-smoke;
-    padding: 0.5rem 0.5rem;
-    font-size: 1rem;
+    padding: 1rem 0 0 1rem;
+    font-size: 1.25rem;
     font-weight: 500;
-    color: $charcoal;
+    color: $gray-600;
+    text-align: left;
+    margin-bottom: 0.5rem;
+
+    .map-utility-box-head-bottom-border {
+      padding-top: .1rem;
+      margin: 0;
+    }
+  }
+
+  .map-utility-box-body {
+    color: black;
+    font-size: 1rem;
+    font-weight: 400;
+    min-height: 3.75rem;
+    max-height: 6.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem 0 1rem;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  .map-utility-box-selection-error {
+    .map-utility-box-error-header {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .map-utility-box-error-body {
+      font-size: 0.875rem;
+      color: $red;
+
+    }
   }
 }
-
-.map-utility-box-body {
-  color: black;
-  padding: 1.5rem 2rem;
-  font-size: 0.875rem;
-  font-weight: 400;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1rem;
-
-  strong {
-    font-weight: 700;
-  }
-}
-
 .map-utility-box-data {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 
   > div > span {
-    padding: 0.75em;
-    background-color: #129DED;
-    border-radius: 50%;
-    color: white;
-    font-size: 1.25em;
+    font-size: 1.5em;
   }
   .map-utility-box-data-text {
-    font-size: 0.875rem;
-    padding-top: 1.25em; //set the same as the span above
+    font-size: 1rem;
 
     > span {
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       font-style: italic;
-      color: $dark-gray;
+      color: $gray-600;
     }
   }
 }
@@ -242,11 +251,12 @@ body {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   height: 40px;
-  border-top: 1px solid #AAAFB5;
+  margin-bottom: .75rem;
+
   > :last-child {
-    flex-grow: 1;
+    align-self: flex-end;
   }
 }
 
@@ -263,17 +273,34 @@ body {
 
 #clear-selection {
   background-color: $off-white;
-  color: $charcoal;
-  font-size: 0.625rem;
-  padding: 0 0.625rem;
+  font-family: $body-font-family;
+  color: $dark-teal;
+  text-decoration: underline;
+  font-size: 0.875rem;
+  padding: .75rem 1.5rem;
 }
+
 #see-more-data {
-  background-color: $teal;
+  display: flex;
+  align-items: center;
+  background-color: $dark-teal;
+  font-family: $body-font-family;
   color: $off-white;
   font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0 0.625rem;
+  padding: .75rem 1.5rem;
+  border-radius: .75rem;
   margin: 0;
+  width: 9.3125rem;
+  height: 2.75rem;
+
+  .see-more-data-button-left-carat {
+    margin-top: 0.2rem;
+    padding-left: 0.5rem;
+  }
+
+  .see-more-data-text-wrapper {
+    padding-left: 0.5rem;
+  }
 }
 
 
