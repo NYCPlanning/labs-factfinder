@@ -9,30 +9,39 @@
         <hr class="light-gray map-utility-box-head-bottom-border">
       </div>
       <div class="map-utility-box-body">
-        {{#if (gt this.selectionCount 500 )}}
+        {{#if (gt this.selectionCount 500)}}
           <p class="map-utility-box-selection-error">
             <span class="map-utility-box-error-header">
               <strong>{{this.selectionCount}}</strong> {{this.selection.summaryLevel}} selected
               <br />
             </span>
-            <span class="map-utility-box-error-body">
+            <span class="map-utility-box-warning-copy">
               The number of selected {{this.selection.summaryLevel}} is more than the permitted selection size of 500 {{this.selection.summaryLevel}}.
             </span>
           </p>
         {{else if (eq this.selection.summaryLevel 'cities')}}
           New York City
         {{else}}
-          <strong>{{this.selectionCount}}&nbsp;</strong>
-          {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
-          {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
-          {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
-          {{if (eq this.selection.summaryLevel 'districts') 'CD'~}}
-          {{if (eq this.selection.summaryLevel 'ntas') 'NTA'~}}
-          {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
-          {{unless (eq this.selectionCount 1) 's'}}
-        {{/if}}
-        {{#if (lt this.selectionCount 500 )}}
-          selected
+          <p>
+            <strong>{{this.selectionCount}}&nbsp;</strong>
+            {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
+            {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
+            {{if (eq this.selection.summaryLevel 'cdtas') 'CDTA'~}}
+            {{if (eq this.selection.summaryLevel 'districts') 'CD'~}}
+            {{if (eq this.selection.summaryLevel 'ntas') 'NTA'~}}
+            {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
+            {{unless (eq this.selectionCount 1) 's'}}
+            <span>
+              {{#if (lt this.selectionCount 500 )}}
+                selected
+              {{/if}}
+            </span>
+          </p>
+          {{/if}}
+        {{#if (and (gt this.selectionCount 20) (lt this.selectionCount 500))}}
+          <span class="selection-count-warning map-utility-box-warning-copy">
+            Data loading may take longer with selections larger than 20 {{this.selection.summaryLevel}}.
+          </span>
         {{/if}}
       </div>
       <div class="map-utility-box-data">
