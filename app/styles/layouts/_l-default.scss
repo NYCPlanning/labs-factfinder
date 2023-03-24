@@ -2,6 +2,11 @@
 // Default Layout
 // --------------------------------------------------
 
+@mixin set-grid-styles {
+  display: grid;
+  place-items: center;
+}
+
 body {
   max-width: 100vw;
   overflow-x: hidden;
@@ -198,13 +203,12 @@ body {
   }
 
   .map-utility-box-body {
+    @include set-grid-styles;
     color: black;
     font-size: 1rem;
     font-weight: 400;
     min-height: 3.75rem;
     max-height: 6.25rem;
-    display: grid;
-    align-items: center;
     justify-content: center;
     padding: .5rem 1rem 0 1rem;
 
@@ -215,6 +219,10 @@ body {
     p {
       margin-bottom: .25rem;
     }
+  }
+
+  .selection-summary-count-wrapper {
+    margin-bottom: .25rem;
   }
 
   .map-utility-box-selection-error {
@@ -417,22 +425,18 @@ body {
 //
 // loading screen
 //
-
 .loading-wrapper {
-  display: grid;
-  place-items: center;
-}
+  @include set-grid-styles;
 
+  .explorer-loading-copy {
+    h1 {
+      font-size: 1.25rem;
+    }
 
-.explorer-loading {
-  display: grid;
-  place-items: center center;
-
-  h1 {
-    font-size: 1.25rem;
-  }
-
-  p {
-    font-size: 1rem;
+    p {
+      font-size: 1rem;
+    }
   }
 }
+
+

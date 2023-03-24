@@ -22,7 +22,7 @@
         {{else if (eq this.selection.summaryLevel 'cities')}}
           New York City
         {{else}}
-          <p>
+          <p class="selection-summary-count-wrapper">
             <strong>{{this.selectionCount}}&nbsp;</strong>
             {{if (eq this.selection.summaryLevel 'tracts') 'Tract'~}}
             {{if (eq this.selection.summaryLevel 'blocks') 'Block'~}}
