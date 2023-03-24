@@ -25,18 +25,7 @@
         )}}
           {{this.compareToLabel}}
         {{else}}
-          <div class="loading-wrapper">
-            <lottie-player
-              src="/dcp-loading-screen.json"
-              background="transparent"
-              speed="1"
-              style="width:500px; height:500px;"
-              mode="normal"
-              loop
-              autoplay
-            >
-            </lottie-player>
-          </div>
+          <PageLoadAnimation />
         {{/if}}
       </th>
       <th colspan="{{if this.reliability "4" "2"}}" class="text-center cell-border-bottom">Difference</th>

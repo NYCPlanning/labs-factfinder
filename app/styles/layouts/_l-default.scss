@@ -427,16 +427,6 @@ body {
 //
 .loading-wrapper {
   @include set-grid-styles;
-
-  .explorer-loading-copy {
-    h1 {
-      font-size: 1.25rem;
-    }
-
-    p {
-      font-size: 1rem;
-    }
-  }
 }
 
 

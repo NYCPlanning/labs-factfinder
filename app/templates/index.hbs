@@ -17,18 +17,7 @@
  {{!--  TURN THIS OFF TO GET RID OF THE MAP  --}}
 <div class="map-container">
   {{#if this.selection.getEntireGeoTask.isRunning}}
-    <div class="loading-wrapper">
-      <lottie-player
-        src="/dcp-loading-screen.json"
-        background="transparent"
-        speed="1"
-        style="width:500px; height:500px;"
-        mode="normal"
-        loop
-        autoplay
-      >
-      </lottie-player>
-    </div>
+    <PageLoadAnimation />
   {{/if}}
   <LabsMap 
     @id="map"
