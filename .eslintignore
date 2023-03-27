@@ -15,6 +15,7 @@ tests/*
 # misc
 /coverage/
 !.*
+.*/
 .eslintcache
 
 # ember-try
