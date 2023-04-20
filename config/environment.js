@@ -60,14 +60,14 @@ module.exports = function (environment) {
     cartoUsername: process.env.CARTO_USERNAME || 'planninglabs',
 
     'ember-mapbox-composer': {
-      host: 'https://labs-layers-api-staging.herokuapp.com',
+      host: 'https://layers-api-staging.planninglabs.nyc',
       namespace: 'v1',
     },
 
     'mapbox-gl': {
       accessToken: 'pk.eyJ1Ijoid21hdHRnYXJkbmVyIiwiYSI6Ii1icTRNT3MifQ.WnayxAOEoXX-jWsNmHUhyg',
       map: {
-        style: 'https://labs-layers-api-staging.herokuapp.com/v1/base/style.json',
+        style: 'https://layers-api-staging.planninglabs.nyc/v1/base/style.json',
       },
     },
 

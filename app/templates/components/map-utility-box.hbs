@@ -1,11 +1,25 @@
 {{#if (eq this.mode 'direct-select')}}
   {{#if (gt this.selectionCount 0)}}
     <div class="map-utility-box">
-      <div class="map-utility-box-head"> 
+      <div
+        class="map-utility-box-head"
+        style={{if (gt this.selectionCount 500 ) 'margin-bottom: 1.5rem;'}}
+      >
         Your Selection
+        <hr class="light-gray map-utility-box-head-bottom-border">
       </div>
       <div class="map-utility-box-body">
-        {{#if (eq this.selection.summaryLevel 'cities')}}
+        {{#if (gt this.selectionCount 500 )}}
+          <p class="map-utility-box-selection-error">
+            <span class="map-utility-box-error-header">
+              <strong>{{this.selectionCount}}</strong> {{this.selection.summaryLevel}} selected
+              <br />
+            </span>
+            <span class="map-utility-box-error-body">
+              The number of selected {{this.selection.summaryLevel}} is more than the permitted selection size of 500 {{this.selection.summaryLevel}}.
+            </span>
+          </p>
+        {{else if (eq this.selection.summaryLevel 'cities')}}
           New York City
         {{else}}
           <strong>{{this.selectionCount}}&nbsp;</strong>
@@ -17,12 +31,20 @@
           {{if (eq this.selection.summaryLevel 'boroughs') 'Borough'~}}
           {{unless (eq this.selectionCount 1) 's'}}
         {{/if}}
-        selected
+        {{#if (lt this.selectionCount 500 )}}
+          selected
+        {{/if}}
       </div>
       <div class="map-utility-box-data">
         <div>
           <span>
-            {{fa-icon icon='user-friends'}}
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="30" fill="#FBE4D7"/>
+              <path d="M27.8267 17.0016C27.0782 16.9838 26.3337 17.1153 25.637 17.3885C24.9402 17.6618 24.3053 18.0711 23.7696 18.5926C23.2339 19.114 22.8082 19.737 22.5175 20.4249C22.2269 21.1128 22.0771 21.8516 22.0771 22.598C22.0771 23.3444 22.2269 24.0833 22.5175 24.7712C22.8082 25.459 23.2339 26.082 23.7696 26.6035C24.3053 27.1249 24.9402 27.5343 25.637 27.8075C26.3337 28.0807 27.0782 28.2123 27.8267 28.1945C28.5753 28.2123 29.3198 28.0807 30.0165 27.8075C30.7133 27.5343 31.3482 27.1249 31.8839 26.6035C32.4196 26.082 32.8453 25.459 33.136 24.7712C33.4266 24.0833 33.5763 23.3444 33.5763 22.598C33.5763 21.8516 33.4266 21.1128 33.136 20.4249C32.8453 19.737 32.4196 19.114 31.8839 18.5926C31.3482 18.0711 30.7133 17.6618 30.0165 17.3885C29.3198 17.1153 28.5753 16.9838 27.8267 17.0016V17.0016Z" fill="#D96B27"/>
+              <path d="M24.617 31.3911C23.1273 31.3911 21.6986 31.981 20.6452 33.0311C19.5918 34.0813 19 35.5056 19 36.9907V40.9856H36.6533V36.9907C36.6533 35.5056 36.0615 34.0813 35.0081 33.0311C33.9548 31.981 32.5261 31.3911 31.0364 31.3911H24.617Z" fill="#D96B27"/>
+              <path d="M39.0606 33.0005H38.2582V41H43.0727V37.0003C43.0727 35.9395 42.65 34.9221 41.8976 34.172C41.1452 33.4219 40.1247 33.0005 39.0606 33.0005Z" fill="#D96B27"/>
+              <path d="M37.4558 23.4012C36.3918 23.4012 35.3713 23.8226 34.6188 24.5727C33.8664 25.3228 33.4437 26.3401 33.4437 27.4009C33.4437 28.4617 33.8664 29.4791 34.6188 30.2292C35.3713 30.9793 36.3918 31.4007 37.4558 31.4007C38.5199 31.4007 39.5404 30.9793 40.2928 30.2292C41.0453 29.4791 41.468 28.4617 41.468 27.4009C41.468 26.3401 41.0453 25.3228 40.2928 24.5727C39.5404 23.8226 38.5199 23.4012 37.4558 23.4012V23.4012Z" fill="#D96B27"/>
+            </svg>
           </span>
           <div class="map-utility-box-data-text">
             <strong>{{format-number this.selectionSummaryData.pop1 precision=0}}</strong><br />
@@ -32,7 +54,11 @@
         </div>
           <div>
           <span>
-            {{fa-icon icon='building' class='fa-w-20'}}
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="30" fill="#FBE4D7"/>
+              <path d="M38.2738 18H26.3479C25.0325 18 23.9627 19.0764 23.9627 20.4V27.1032L18.3492 32.7516C18.1824 32.9194 18.0689 33.1332 18.0229 33.366C17.9769 33.5987 18.0005 33.8399 18.0908 34.0592C18.181 34.2784 18.3338 34.4658 18.5299 34.5977C18.726 34.7295 18.9565 34.7999 19.1923 34.8V40.8C19.1923 41.1183 19.318 41.4235 19.5416 41.6485C19.7653 41.8736 20.0686 42 20.3849 42H39.4664C39.7827 42 40.086 41.8736 40.3097 41.6485C40.5334 41.4235 40.659 41.1183 40.659 40.8V20.4C40.659 19.0764 39.5892 18 38.2738 18ZM28.7331 39.6H21.5775V32.8968L25.1553 29.2968L28.7331 32.8968V39.6ZM38.2738 39.6H31.1183V34.8C31.3544 34.8005 31.5853 34.7305 31.7817 34.5987C31.9782 34.4669 32.1313 34.2794 32.2216 34.0599C32.312 33.8405 32.3355 33.5989 32.2891 33.366C32.2428 33.133 32.1287 32.9192 31.9614 32.7516L26.3479 27.1032V20.4H38.2738V39.6Z" fill="#D96B27"/>
+              <path d="M28.7334 22.7999H31.1186V25.1999H28.7334V22.7999ZM33.5038 22.7999H35.8889V25.1999H33.5038V22.7999ZM33.5038 27.6371H35.8889V29.9999H33.5038V27.6371ZM33.5038 32.3999H35.8889V34.7999H33.5038V32.3999ZM23.963 33.5999H26.3482V35.9999H23.963V33.5999Z" fill="#D96B27"/>
+            </svg>
           </span>
           <div class="map-utility-box-data-text">
             <strong>{{format-number this.selectionSummaryData.hunits precision=0}}</strong><br />
@@ -42,17 +68,27 @@
         </div>
       </div>
       <div class="map-utility-box-buttons">
-        <button id="clear-selection" class="button--clear-selection button" type="button" {{action this.clearSelection}}>
-          <span class="a11y-orange">
-            {{fa-icon icon='times'}}
-          </span>
-          Clear Selection
+        <button
+          id="clear-selection"
+          class="button--clear-selection button"
+          type="button" {{action this.clearSelection}}
+        >
+           Clear Selection
         </button>
-        <button id="see-more-data" class="button orange" type="button" onClick={{action this.generateExplorerPage}}>
-          View Data
-          <span class="off-white" style="padding-left: 0.5em;">
-            {{fa-icon icon='long-arrow-alt-right'}}
-          </span>
+        <button
+          id="see-more-data"
+          class="button orange" type="button"
+          disabled={{if (gt this.selectionCount 500 ) true false}}
+          onClick={{action this.generateExplorerPage}}
+        >
+          <div class="see-more-data-text-wrapper">
+            View Data
+          </div>
+          <div class="see-more-data-button-left-carat">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.9766 9.99999L6.85159 5.87499L8.02993 4.69666L13.3333 9.99999L8.02993 15.3033L6.85159 14.125L10.9766 9.99999Z" fill="white"/>
+            </svg>
+          </div>
         </button>
       </div>
     </div>
