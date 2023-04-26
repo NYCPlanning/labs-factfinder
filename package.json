@@ -120,6 +120,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@lottiefiles/lottie-player": "^1.7.1",
     "@mapbox/mapbox-gl-draw": "^1.3.0",
     "@turf/bbox": "^6.0.1",
     "@turf/buffer": "^5.0.4",
@@ -157,9 +158,5 @@
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
-  },
-  "volta": {
-    "node": "14.17.0",
-    "yarn": "1.22.10"
   }
 }
