@@ -3,19 +3,19 @@ command = "yarn build --environment=staging"
 
 [context.develop]
   command = "yarn build --environment=development"
-  environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api-develop.herokuapp.com" }
+  environment = { API_URL = "https://factfinder-api-develop.herokuapp.com" }
 
 [context.staging]
   command = "yarn build --environment=staging"
-  environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api-staging.herokuapp.com" }
+  environment = { API_URL = "https://factfinder-api-staging.herokuapp.com" }
 
 [context.carto-staging]
   command = "yarn build --environment=carto-staging"
-  environment = { CARTO_USERNAME = "dcpadmin", NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api-carto-staging.herokuapp.com" }
+  environment = { CARTO_USERNAME = "dcpadmin" API_URL = "https://factfinder-api-carto-staging.herokuapp.com" }
 
 [context.deploy-preview]
-  environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api-staging.herokuapp.com" }
+  environment = { API_URL = "https://factfinder-api-staging.herokuapp.com" }
 
 [context.master]
-  environment = { NODE_VERSION = "12.18.4", API_URL = "https://factfinder-api.herokuapp.com" }
+  environment = { API_URL = "https://factfinder-api.herokuapp.com" }
   command = "yarn build --environment=production" 
