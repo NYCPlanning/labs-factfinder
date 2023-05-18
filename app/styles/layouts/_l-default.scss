@@ -2,6 +2,11 @@
 // Default Layout
 // --------------------------------------------------
 
+@mixin set-grid-styles {
+  display: grid;
+  place-items: center;
+}
+
 body {
   max-width: 100vw;
   overflow-x: hidden;
@@ -198,19 +203,26 @@ body {
   }
 
   .map-utility-box-body {
+    @include set-grid-styles;
     color: black;
     font-size: 1rem;
     font-weight: 400;
     min-height: 3.75rem;
     max-height: 6.25rem;
-    display: flex;
-    align-items: center;
     justify-content: center;
     padding: .5rem 1rem 0 1rem;
 
     strong {
       font-weight: 700;
     }
+
+    p {
+      margin-bottom: .25rem;
+    }
+  }
+
+  .selection-summary-count-wrapper {
+    margin-bottom: .25rem;
   }
 
   .map-utility-box-selection-error {
@@ -218,88 +230,92 @@ body {
       font-size: 1rem;
       margin-bottom: 1.5rem;
     }
+  }
 
-    .map-utility-box-error-body {
-      font-size: 0.875rem;
-      color: $red;
+  .map-utility-box-warning-copy {
+    font-size: 0.875rem;
+    color: $red;
+  }
 
+  .selection-count-warning {
+    margin-bottom: 1.5rem;
+  }
+
+  .map-utility-box-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 1.5rem;
+
+    > div > span {
+      font-size: 1.5em;
+    }
+    .map-utility-box-data-text {
+      font-size: 1rem;
+
+      > span {
+        font-size: 0.8125rem;
+        font-style: italic;
+        color: $gray-600;
+      }
     }
   }
-}
-.map-utility-box-data {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 1.5rem;
 
-  > div > span {
-    font-size: 1.5em;
-  }
-  .map-utility-box-data-text {
-    font-size: 1rem;
+  .map-utility-box-buttons {
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 40px;
+    margin-bottom: .75rem;
 
-    > span {
-      font-size: 0.8125rem;
-      font-style: italic;
-      color: $gray-600;
+    > :last-child {
+      align-self: flex-end;
     }
   }
-}
 
-.map-utility-box-buttons {
-  padding: 0;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 40px;
-  margin-bottom: .75rem;
-
-  > :last-child {
-    align-self: flex-end;
-  }
-}
-
-.map-utility-box-body-null {
-  padding: 1.5rem 2rem;
-  font-size: rem-calc(14);
-  p {
-    line-height: 1;
-  }
-  > :last-child {
-    margin-bottom: 0;
-  }
-}
-
-#clear-selection {
-  background-color: $off-white;
-  font-family: $body-font-family;
-  color: $dark-teal;
-  text-decoration: underline;
-  font-size: 0.875rem;
-  padding: .75rem 1.5rem;
-}
-
-#see-more-data {
-  display: flex;
-  align-items: center;
-  background-color: $dark-teal;
-  font-family: $body-font-family;
-  color: $off-white;
-  font-size: 0.875rem;
-  padding: .75rem 1.5rem;
-  border-radius: .75rem;
-  margin: 0;
-  width: 9.3125rem;
-  height: 2.75rem;
-
-  .see-more-data-button-left-carat {
-    margin-top: 0.2rem;
-    padding-left: 0.5rem;
+  .map-utility-box-body-null {
+    padding: 1.5rem 2rem;
+    font-size: rem-calc(14);
+    p {
+      line-height: 1;
+    }
+    > :last-child {
+      margin-bottom: 0;
+    }
   }
 
-  .see-more-data-text-wrapper {
-    padding-left: 0.5rem;
+  #clear-selection {
+    background-color: $off-white;
+    font-family: $body-font-family;
+    color: $dark-teal;
+    text-decoration: underline;
+    font-size: 0.875rem;
+    padding: .75rem 1.5rem;
+  }
+
+  #see-more-data {
+    display: flex;
+    align-items: center;
+    background-color: $dark-teal;
+    font-family: $body-font-family;
+    color: $off-white;
+    font-size: 0.875rem;
+    padding: .75rem 1.5rem;
+    border-radius: .75rem;
+    margin: 0;
+    width: 9.3125rem;
+    height: 2.75rem;
+
+    .see-more-data-button-left-carat {
+      margin-top: 0.2rem;
+      padding-left: 0.5rem;
+    }
+
+    .see-more-data-text-wrapper {
+      padding-left: 0.5rem;
+    }
   }
 }
 
@@ -405,3 +421,12 @@ body {
     margin-bottom: $global-margin*2;
   }
 }
+
+//
+// loading screen
+//
+.loading-wrapper {
+  @include set-grid-styles;
+}
+
+

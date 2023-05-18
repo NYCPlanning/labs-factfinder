@@ -26,6 +26,8 @@ import highlightedFeature from '../layers/highlighted-feature';
 import choroplethsSource from '../sources/choropleths';
 import subduedNtaLabels from '../layers/subdued-nta-labels';
 
+import "@lottiefiles/lottie-player";
+
 const selectedFillLayer = selectedFeatures.fill;
 const combine = turfCombine;
 

@@ -2,7 +2,7 @@ import Environment from '../config/environment';
 
 const { SupportServiceHost } = Environment;
 
-const SELECTION_SUMMARY_API_URL = (survey = 'decennial', summaryVars = 'pop1,hunits', geoid = '0') => `${SupportServiceHost}/summary/${survey}/${summaryVars}/${geoid}`;
+const SELECTION_SUMMARY_API_URL = (survey = 'decennial', summaryVars = 'pop1,hunits') => `${SupportServiceHost}/summary/${survey}/${summaryVars}`;
 
 const maxGeoidLength = 500;
 
@@ -18,8 +18,16 @@ export default async function fetchSelectionSummary(survey, summaryVars, geoid) 
 
     } else if (geoid.length) {
       let selectionResponse = null;
-      selectionResponse = await fetch(SELECTION_SUMMARY_API_URL(survey, summaryVars, geoid));
-      selectionResponse = await selectionResponse.json();
+
+      const response = await fetch(SELECTION_SUMMARY_API_URL(survey, summaryVars), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(geoid),
+      });
+
+      selectionResponse = await response.json();
 
       return selectionResponse;
     }

@@ -17,11 +17,7 @@
  {{!--  TURN THIS OFF TO GET RID OF THE MAP  --}}
 <div class="map-container">
   {{#if this.selection.getEntireGeoTask.isRunning}}
-    <div class="spinner">
-      <div class="bounce"></div>
-      <div class="bounce"></div>
-      <div class="bounce"></div>
-    </div>
+    <PageLoadSpinner />
   {{/if}}
   <LabsMap 
     @id="map"
