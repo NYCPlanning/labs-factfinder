@@ -156,8 +156,6 @@ export default Service.extend({
           return 'factfinder--boroughs';
         case 'cities':
           return 'factfinder--cities';
-        case 'pumas':
-          return 'factfinder--pumas';
         default:
           return null;
       }
