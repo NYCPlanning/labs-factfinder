@@ -17,11 +17,11 @@
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
+    "start:local-api": "ember serve --environment=local-api",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
     "screenshot": "touch config/environment.js",
-    "prepare": "husky install",
-    "local-api": "ember serve --environment=local-api"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@csstools/postcss-sass": "^4.0.0",
