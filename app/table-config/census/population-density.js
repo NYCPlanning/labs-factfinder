@@ -5,7 +5,7 @@ export default [
     highlight: true,
   },
   {
-    data: 'popinhh',
+    data: 'popinhh_1',
     title: 'In households',
     tooltip: 'This 2020 statistic is derived from published data. See About page for more information.',
   },
@@ -25,7 +25,7 @@ export default [
     decimal: 2,
   },
   {
-    data: 'popperacre',
+    data: 'popacre',
     title: 'Population per acre',
     tooltip: 'Total population divided by land area (in acres)',
     decimal: 1,

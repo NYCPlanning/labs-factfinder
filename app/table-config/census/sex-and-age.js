@@ -5,7 +5,7 @@ export default [
     highlight: true,
   },
   {
-    data: 'popu18_1',
+    data: 'popu18',
     title: 'Under 18 years',
     tooltip: 'This 2020 statistic is derived from published data. See About page for more information.',
   }
