@@ -12,11 +12,12 @@ export default [
   {
     data: 'ingrpqtrs',
     title: 'In group quarters',
+    indent: 1,
   },
   {
     data: 'institlzd',
     title: 'Institutionalized',
-    indent: 1,
+    indent: 2,
   },
   {
     data: 'avghhsz',

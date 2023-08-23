@@ -75,7 +75,7 @@ export default [
     title: 'Average household size',
     tooltip: 'Household population divided by number of households',
     data: 'avghhsz',
-    special: true,
+    special: true, // Is this a state of the application or a characteristic of the data?
     decimal: 2,
   },
   {
