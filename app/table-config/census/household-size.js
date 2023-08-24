@@ -2,7 +2,13 @@ export default [
   {
     highlight: true,
     title: 'Total occupied housing units',
-    data: 'ochu_4',
+    data: 'ochu_3',
+  },
+  {
+    data: 'avghhsz',
+    title: 'Average household size',
+    tooltip: 'Household population divided by number of households. This 2020 statistic is derived from published data. See About page for more information.',
+    decimal: 2,
   },
   {
     title: '1-person household',
@@ -19,17 +25,5 @@ export default [
   {
     title: '4-person household',
     data: 'hh4ppl',
-  },
-  {
-    title: '5-person household',
-    data: 'hh5ppl',
-  },
-  {
-    title: '6-person household',
-    data: 'hh6ppl',
-  },
-  {
-    title: '7-or-more person household',
-    data: 'hh7plppl',
   },
 ];
