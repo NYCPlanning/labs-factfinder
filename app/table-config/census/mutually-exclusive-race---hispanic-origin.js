@@ -1,31 +1,30 @@
 export default [
   {
-    data: 'pop3',
+    data: 'pop2',
     title: 'Total population',
-    highlight: true,
   },
   {
     data: 'hsp1',
-    title: 'Hispanic/Latino (of any race)',
+    title: 'Hispanic',
   },
   {
     data: 'wnh',
-    title: 'White nonhispanic',
+    title: 'White non-Hispanic',
   },
   {
     data: 'bnh',
-    title: 'Black/African American nonhispanic',
+    title: 'Black non-Hispanic',
   },
   {
     data: 'anh',
-    title: 'Asian nonhispanic',
+    title: 'Asian non-Hispanic',
   },
   {
     data: 'onh',
-    title: 'Some other race nonhispanic',
+    title: 'Some other race non-Hispanic',
   },
   {
     data: 'twoplnh',
-    title: 'Nonhispanic of two or more races ',
+    title: 'Non-Hispanic of two or more races',
   },
 ];
