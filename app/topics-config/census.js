@@ -41,7 +41,12 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.householdType,
-    charts: null,
+    charts: [
+      {
+        chartConfig: censusChartConfig.householdType,
+        chartLabel: 'Percent Distribution of Household Types',
+      },
+    ],
     children: [],
   },
   {
@@ -59,7 +64,12 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.housingTenure,
-    charts: null,
+    charts: [
+      {
+        chartConfig: censusChartConfig.housingTenure,
+        chartLabel: 'Percent Distribution of Housing Tenure',
+      },
+    ],
     children: [],
   },
   {
@@ -68,7 +78,12 @@ export default [
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.householdSize,
-    charts: null,
+    charts: [
+      {
+        chartConfig: censusChartConfig.householdSize,
+        chartLabel: 'Percent Distribution of Household Size',
+      },
+    ],
     children: [],
-  }
+  },
 ];
