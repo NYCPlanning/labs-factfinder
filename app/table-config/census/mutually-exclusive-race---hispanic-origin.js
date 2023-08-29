@@ -2,6 +2,7 @@ export default [
   {
     data: 'pop2',
     title: 'Total population',
+    highlight: true,
   },
   {
     data: 'hsp1',
