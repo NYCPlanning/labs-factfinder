@@ -5,7 +5,7 @@ export default [
     highlight: true,
   },
   {
-    data: 'male ',
+    data: 'male',
     title: 'Male',
   },
   {
