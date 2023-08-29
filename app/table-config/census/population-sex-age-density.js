@@ -93,6 +93,8 @@ export default [
   {
     data: 'mdage',
     title: 'Median age (years)',
+    tooltip:
+      'Medians are calculated using linear interpolation, which may result in top-coded values.',
   },
   {
     data: null,
@@ -111,14 +113,20 @@ export default [
   {
     data: 'agdpdrt',
     title: 'Age dependency ratio',
+    tooltip:
+      'Derived by dividing the combined under-18 and 65-and-over populations by the 18-to-64 population and multiplying by 100',
   },
   {
     data: 'odagdpdrt',
     title: 'Old-age dependency ratio',
+    tooltip:
+      'Derived by dividing the population 65 and over by the 18-to-64 population and multiplying by 100.',
   },
   {
     data: 'chlddpdrt',
     title: 'Child dependency ratio',
+    tooltip:
+      'Derived by dividing the population under 18 by the 18-to-64 population and multiplying by 100.',
   },
   {
     data: null,

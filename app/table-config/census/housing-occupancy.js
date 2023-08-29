@@ -16,6 +16,18 @@ export default [
   {
     data: null,
   },
-  { data: 'hmownvcrt', title: 'Homeowner vacancy rate (percent)', decimal: 1 },
-  { data: 'rntvcrt', title: 'Rental vacancy rate (percent)', decimal: 1 },
+  {
+    data: 'hmownvcrt',
+    title: 'Homeowner vacancy rate (percent)',
+    decimal: 1,
+    tooltip:
+      'Number of vacant units "for sale only," divided by sum of owner-occupied units, vacant units that are "for sale only," and vacant units that have been sold but not yet occupied. Quotient is multiplied by 100.',
+  },
+  {
+    data: 'rntvcrt',
+    title: 'Rental vacancy rate (percent)',
+    decimal: 1,
+    tooltip:
+      'Number of vacant units "for rent only" divided by sum of renter-occupied units, vacant units that are "for rent only," and vacant units that have been rented by not yet occupied. Quotient is multiplied by 100.',
+  },
 ];
