@@ -23,7 +23,7 @@ export default Component.extend({
   mode: 'direct-select',
   advanced: false,
 
-  choroplethMode: 'popperacre',
+  choroplethMode: 'popacre',
 
   summaryLevel: alias('selection.summaryLevel'),
 
