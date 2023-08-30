@@ -78,6 +78,15 @@
         {{ember-tooltip side='bottom' delay=500 text='Only decennial census data are available. Avoid using data for an individual block, best used in aggregate.'}}
       </button>
       <button
+        style="text-align: left;"
+        class="button {{if (eq this.selection.summaryLevel 'ccds') 'active'}} explode-ccd"
+        data-test-toggle-ccds
+        {{action this.handleSummaryLevelToggle 'ccds'}}
+      >
+        City Council District (CCD)
+        {{ember-tooltip side='bottom' delay=500 text='NYC City Council Districts (2023 boundaries).'}}
+      </button>
+      <button
         class="button {{if (eq this.selection.summaryLevel 'boroughs') 'active'}} explode-borough"
         data-test-toggle-boroughs {{action this.handleSummaryLevelToggle 'boroughs'}}
       >

@@ -25,6 +25,14 @@ export default {
     FROM pff_2020_census_tracts_21c
   `,
 
+  ccds: (webmercator = true) => `
+    SELECT
+      ${webmercator ? 'the_geom_webmercator' : 'the_geom'},
+      coundist as geolabel,
+      CONCAT('CCD', coundist) AS geoid
+    FROM dcp_city_council_districts
+  `,
+
   cdtas: (webmercator = true) => `
     SELECT
       ${webmercator ? 'the_geom_webmercator' : 'the_geom'},

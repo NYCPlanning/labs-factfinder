@@ -16,6 +16,7 @@ const SUM_LEVEL_DICT = {
   tracts: { sql: summaryLevelQueries.tracts(false), id: 'boroct2020', ntas: 'ntacode', blocks: 'boroct2020' },
   cdtas: { sql: summaryLevelQueries.cdtas(false), id: 'cdta2020', cdtas: 'cdta2020', ntas: 'nta2020', blocks: 'boroct2020' },
   districts: { sql: summaryLevelQueries.districts(false), districts: 'borocd' },
+  ccds: { sql: summaryLevelQueries.ccds(false), id: 'coundist' },
   boroughs: { sql: summaryLevelQueries.boroughs(false),  id: 'borocode', boroughs: 'borocode' },
   cities: { sql: summaryLevelQueries.cities(false), cities: 'id' },
   ntas: { sql: summaryLevelQueries.ntas(false), id: 'nta2020', tracts: 'ntacode' },
@@ -148,6 +149,8 @@ export default Service.extend({
           return 'factfinder--census-blocks';
         case 'cdtas':
           return 'factfinder--cdtas';
+        case 'ccds':
+          return 'factfinder--ccds';
         case 'districts':
           return 'factfinder--districts';
         case 'ntas':
@@ -299,7 +302,8 @@ export default Service.extend({
 
       if (inSelection === undefined) {
 
-      if (['boroughs', 'cdtas', 'districts', 'cities'].includes(this.get('summaryLevel'))) {
+      if (['boroughs', 'ccds', 'cdtas', 'districts', 'cities'].includes(this.get('summaryLevel'))) {
+
           const currentGeographyTable = SUM_LEVEL_DICT[this.get('summaryLevel')].sql;
           // Temporary patch: ensure entire geography geojson is used, not just the geometry within clicked tile. 
           const sqlQuery = `
