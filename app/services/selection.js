@@ -193,6 +193,11 @@ export default Service.extend({
       } else if ((fromLevel === 'districts') || (toLevel === 'districts')) {
         // District transitions should clear selection
         this.clearSelection();
+      } else if ((fromLevel === 'ccds') && (toLevel === 'ccds')) {
+        // This is to maintain the selection of ccds when switching back to the map page from the data explorer page
+      } else if ((fromLevel === 'ccds') || (toLevel === 'ccds')) {
+        // CCD transitions should clear selection
+        this.clearSelection();
       } else if ((toLevel === 'blocks') && (['cdtas', 'ntas'].includes(fromLevel))) {
         this.explodeToBlocks(fromLevel);
       } else if ((fromLevel === 'blocks') && (['cdtas', 'ntas'].includes(toLevel)) ) {
