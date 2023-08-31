@@ -111,6 +111,15 @@ if (environment === 'local-api') {
   };
 }
 
+if (environment === 'epic-13898') {
+  ENV.SupportServiceHost = 'https://factfinder-api-epic-13898-pff-4741ee44a2e3.herokuapp.com';
+  ENV['mapbox-gl'].map.style = 'http://localhost:3000/v1/base/style.json';
+  ENV['ember-mapbox-composer'].host = 'http://localhost:3000';
+  ENV['ember-cli-mirage'] = {
+    enabled: false,
+  };
+}
+
   if (environment === 'development') {
     // ENV.DEFAULT_SELECTION = SAMPLE_SELECTION;
     ENV.SupportServiceHost = 'https://factfinder-api-develop.herokuapp.com';
