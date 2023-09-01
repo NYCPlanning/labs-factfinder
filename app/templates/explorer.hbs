@@ -42,6 +42,10 @@
         <SelectGeographyListDistricts
           @sortedLabels={{this.sortedLabels}}
         />
+      {{else if (eq this.model.selection.type 'ccds')}}
+        <SelectGeographyListCcds
+          @sortedLabels={{this.sortedLabels}}
+        />  
       {{else}}
         <SelectGeographyList
           @sortedLabels={{this.sortedLabels}}

@@ -210,7 +210,9 @@ export default class ExplorerController extends Controller {
           features[i].properties.district = features[i].properties.geoid % 100;
         }
       }
-    } 
+    } else if (this.model.selection.type === 'ccds') {
+      return features.map((ccd) => ccd.properties.geolabel).sort((a, b) => a - b);
+    }
     
     const bronx = features.filter(d => d.properties.borocode === '2');
     const brooklyn = features.filter(d => d.properties.borocode === '3');
