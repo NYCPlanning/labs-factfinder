@@ -29,7 +29,7 @@ export default class ExplorerController extends Controller {
 
   @tracked sourceId = 'decennial-current';
 
-  @tracked censusTopics = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,housingOccupancy';
+  @tracked censusTopics = 'populationSexAgeDensity,mutuallyExclusiveRaceHispanicOrigin,relationHeadHousehold,householdType,housingOccupancy,housingTenure,householdSize';
 
   @tracked acsTopics = 'demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
 
