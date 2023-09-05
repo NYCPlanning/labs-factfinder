@@ -95,6 +95,7 @@ export default [
     title: 'Median age (years)',
     tooltip:
       'Medians are calculated using linear interpolation, which may result in top-coded values.',
+    decimal: 1,
   },
   {
     data: null,
@@ -115,18 +116,21 @@ export default [
     title: 'Age dependency ratio',
     tooltip:
       'Derived by dividing the combined under-18 and 65-and-over populations by the 18-to-64 population and multiplying by 100',
+    decimal: 1,
   },
   {
     data: 'odagdpdrt',
     title: 'Old-age dependency ratio',
     tooltip:
       'Derived by dividing the population 65 and over by the 18-to-64 population and multiplying by 100.',
+    decimal: 1,
   },
   {
     data: 'chlddpdrt',
     title: 'Child dependency ratio',
     tooltip:
       'Derived by dividing the population under 18 by the 18-to-64 population and multiplying by 100.',
+    decimal: 1,
   },
   {
     data: null,
@@ -136,6 +140,5 @@ export default [
     title: 'Population per acre',
     tooltip: 'Total population divided by land area (acres)',
     decimal: 1,
-    special: true,
   },
 ];
