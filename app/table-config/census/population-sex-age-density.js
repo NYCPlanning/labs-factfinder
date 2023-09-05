@@ -12,9 +12,7 @@ export default [
     data: 'fem',
     title: 'Female',
   },
-  {
-    data: null,
-  },
+  { divider: true,},
   {
     data: 'popu5',
     title: 'Under 5 years',
@@ -87,9 +85,7 @@ export default [
     data: 'pop85pl',
     title: '85 years and over',
   },
-  {
-    data: null,
-  },
+  { divider: true,},
   {
     data: 'mdage',
     title: 'Median age (years)',
@@ -97,9 +93,7 @@ export default [
       'Medians are calculated using linear interpolation, which may result in top-coded values.',
     decimal: 1,
   },
-  {
-    data: null,
-  },
+  { divider: true,},
   {
     data: 'popu18',
     title: 'Under 18 years',
@@ -108,9 +102,7 @@ export default [
     data: 'pop65pl',
     title: '65 years and over',
   },
-  {
-    data: null,
-  },
+  { divider: true,},
   {
     data: 'agdpdrt',
     title: 'Age dependency ratio',
@@ -132,9 +124,7 @@ export default [
       'Derived by dividing the population under 18 by the 18-to-64 population and multiplying by 100.',
     decimal: 1,
   },
-  {
-    data: null,
-  },
+  { divider: true,},
   {
     data: 'popacre',
     title: 'Population per acre',
