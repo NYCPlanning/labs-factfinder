@@ -146,6 +146,11 @@ export default Component.extend({
           })
     }
 
+    // Reset the source for geotypes that do not have ACS data
+    if ((['ccds', 'districts'].includes(type)) && (['acs-current', 'acs-previous', 'acs-change'].includes(queryParams['source']))) {
+      queryParams['source'] = 'decennial-current';
+    }
+
     if (geoids.length > 1) {
       this.get('generateExplorerPageTask').perform(type, geoids, queryParams);
     } else if (geoids.length === 1){
