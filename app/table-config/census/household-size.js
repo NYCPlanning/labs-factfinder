@@ -10,6 +10,7 @@ export default [
     data: 'avghhsz',
     title: 'Average household size',
     decimal: 2,
+    special: true,
     tooltip:
       'Household population divided by number of households. This 2020 statistic is derived from published data. See About page for more information.',
   },
