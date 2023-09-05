@@ -13,9 +13,7 @@ export default [
   },
   { data: 'vhumigwrk', title: 'For migrant workers', indent: 1 },
   { data: 'vhuothvc', title: 'Other vacant', indent: 1 },
-  {
-    data: null,
-  },
+  { divider: true,},
   {
     data: 'hmownvcrt',
     title: 'Homeowner vacancy rate (percent)',
