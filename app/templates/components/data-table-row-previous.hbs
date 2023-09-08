@@ -84,7 +84,7 @@
 
     <td
       class="{{unless this.data.previous.differencePercentIsReliable 'insignificant'}} difference-percent">
-      {{unless (eq this.data.previous.differencePercent null)
+      {{unless (or @data.isSpecial (eq this.data.previous.differencePercent null))
           (format-number
             this.data.previous.differencePercent
             precision=1)}}
