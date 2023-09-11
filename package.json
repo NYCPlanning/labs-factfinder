@@ -18,7 +18,6 @@
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
     "start:local-api": "ember serve --environment=local-api",
-    "start:epic-13898": "ember serve --environment=epic-13898",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
     "screenshot": "touch config/environment.js",
