@@ -13,7 +13,7 @@ export default {
         source: 'choropleths',
         paint: {
           'fill-opacity': 0.6,
-          'fill-color': choroplethConfigs.find(d => d.id === 'popperacre').paintFill['fill-color'],
+          'fill-color': choroplethConfigs.find(d => d.id === 'popacre').paintFill['fill-color'],
         },
       },
     },
@@ -36,7 +36,7 @@ export default {
             ],
           },
           'line-opacity': 0.6,
-          'line-color': choroplethConfigs.find(d => d.id === 'popperacre').paintLine['line-color'],
+          'line-color': choroplethConfigs.find(d => d.id === 'popacre').paintLine['line-color'],
           'line-translate-anchor': 'map',
         },
       },

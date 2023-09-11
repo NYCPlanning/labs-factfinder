@@ -57,7 +57,7 @@ export default class SourceSelectDropdownComponent extends Component {
   }
 
   get showACS() {
-    if(['districts', 'blocks'].includes(this.args.geotype)) {
+    if(['districts', 'blocks', 'ccds'].includes(this.args.geotype)) {
       return false;
     }
     return true;
@@ -65,5 +65,9 @@ export default class SourceSelectDropdownComponent extends Component {
 
   get showDistrictACSWarning() {
       return this.args.geotype === 'districts';
-    }
   }
+
+  get showCCDACSWarning() {
+    return this.args.geotype === 'ccds';
+  }
+}

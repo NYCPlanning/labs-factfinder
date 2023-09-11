@@ -24,6 +24,7 @@
 <td class="{{unless this.model.isReliable 'insignificant'}}">
   {{unless
     (or
+      this.data.isSpecial
       (eq this.model.percent null)
       (eq this.model.sum 0))
       (concat
@@ -36,6 +37,7 @@
   <td class="{{unless this.model.isReliable 'insignificant'}}">
     {{unless
       (or
+        this.rowConfig.special
         (eq this.model.percent null)
         (eq this.model.percent 1)
         (eq this.model.sum 0))

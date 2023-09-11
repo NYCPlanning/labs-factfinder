@@ -1,0 +1,6 @@
+<span class="comma-separated-list">
+  {{#each @sortedLabels as |ccd|}}
+      {{ccd}}
+      {{~unless (eq @sortedLabels.lastObject ccd) ','}}
+  {{/each}}
+</span>

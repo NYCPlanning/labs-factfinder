@@ -1,7 +1,7 @@
 const choroplethConfigs = [
   {
     group: 'Census',
-    id: 'popperacre',
+    id: 'popacre',
     label: 'Population Density',
     tooltip: 'Persons per acre',
     legendTitle: 'Persons per Acre',
@@ -172,7 +172,7 @@ const choroplethConfigs = [
   },
   {
     group: 'Census',
-    id: 'popu18_1',
+    id: 'popu18',
     label: 'Under 18',
     tooltip: 'Population under 18 years, 2020',
     legendTitle: 'Under 18',
@@ -271,7 +271,7 @@ const choroplethConfigs = [
   // Percent
   {
     group: 'Census',
-    id: 'popu18_1p',
+    id: 'popu18p',
     label: 'Under 18 (percent)',
     tooltip: 'Percent of the population under 18 years, 2020',
     legendTitle: 'Under 18 (percent)',
