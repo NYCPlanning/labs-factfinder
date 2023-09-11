@@ -90,11 +90,11 @@ $sides: top right bottom left;
   }
 
   .tiny-margin-#{$side} {
-    margin-#{$side}: $global-margin/4 !important;
+    margin-#{$side}: $global-margin*0.25 !important;
   }
 
   .small-margin-#{$side} {
-    margin-#{$side}: $global-margin/2 !important;
+    margin-#{$side}: $global-margin*0.5 !important;
   }
 
   .medium-margin-#{$side} {
@@ -266,7 +266,7 @@ button {
 
 .profile-geographies {
   overflow: auto;
-  margin-bottom: $global-margin/2;
+  margin-bottom: $global-margin*0.5;
   max-height: 7.5rem;
 
   .profile-geographies-header {
@@ -282,8 +282,8 @@ button {
 
 .profile-comparison-controls {
   font-size: rem-calc(14);
-  margin-top: $global-margin/2;
-  margin-bottom: $global-margin/2;
+  margin-top: $global-margin*0.5;
+  margin-bottom: $global-margin*0.5;
 }
 
 .profile-checkbox-controls {

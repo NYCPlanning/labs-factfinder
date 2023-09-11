@@ -69,7 +69,7 @@ export default DS.Model.extend({
   isSpecial: computed('base', function() {
     const base = this.get('base');
     // base = mean, median, or rate indicates variable is special
-    return ['mean', 'median', 'rate'].includes(base);
+    return ['mean', 'median', 'rate', 'ratio'].includes(base);
   }),
 
   /* =====  End of Row Metadata  ====== */

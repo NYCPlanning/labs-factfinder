@@ -29,7 +29,7 @@ export default class ExplorerController extends Controller {
 
   @tracked sourceId = 'decennial-current';
 
-  @tracked censusTopics = 'populationDensity,sexAndAge,mutuallyExclusiveRaceHispanicOrigin,housingOccupancy';
+  @tracked censusTopics = 'populationSexAgeDensity,mutuallyExclusiveRaceHispanicOrigin,relationHeadHousehold,householdType,housingOccupancy,housingTenure,householdSize';
 
   @tracked acsTopics = 'demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
 
@@ -210,7 +210,9 @@ export default class ExplorerController extends Controller {
           features[i].properties.district = features[i].properties.geoid % 100;
         }
       }
-    } 
+    } else if (this.model.selection.type === 'ccds') {
+      return features.map((ccd) => ccd.properties.geolabel).sort((a, b) => a - b);
+    }
     
     const bronx = features.filter(d => d.properties.borocode === '2');
     const brooklyn = features.filter(d => d.properties.borocode === '3');

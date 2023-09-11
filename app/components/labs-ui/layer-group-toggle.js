@@ -52,7 +52,7 @@ export default Component.extend({
         eventAction: 'Toggle Thematic Map',
         eventLabel: this.get('active'),
       });
-    } else if (["Subways", "ZIP Codes", "Neighborhood Tabulation Areas (NTAs)", "Community Districts (CDs)", "Community District Tabulation Areas (CDTAs)", "NYC Council Districts"].includes(this.get('label'))){
+    } else if (["Subways", "ZIP Codes", "Neighborhood Tabulation Areas (NTAs)", "Community Districts (CDs)", "Community District Tabulation Areas (CDTAs)", "City Council Districts (CCDs)"].includes(this.get('label'))){
       // Only count toggle on, not toggle off
       if (this.get('active')) {
         window.dataLayer.push({

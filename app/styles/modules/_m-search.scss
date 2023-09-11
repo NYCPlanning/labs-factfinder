@@ -103,7 +103,7 @@
 
 .search-results--loading {
   z-index: 5;
-  padding: $global-margin/2;
+  padding: $global-margin*0.5;
   color: $dark-gray;
   background-color: rgba($white,0.94);
   font-size: rem-calc(12);

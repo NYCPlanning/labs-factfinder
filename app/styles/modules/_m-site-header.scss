@@ -112,7 +112,7 @@ $logo-height-medium: rem-calc(36);
     font-weight: $global-weight-bold;
     line-height: $logo-height-small;
     cursor: pointer;
-    margin: $global-margin/2 0;
+    margin: $global-margin*0.5 0;
     padding: rem-calc(10) rem-calc(16);
 
     @include breakpoint(medium) {

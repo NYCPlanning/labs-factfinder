@@ -1,35 +1,31 @@
 export default [
+  { data: 'ochu_3', title: 'Total occupied housing units', highlight: true },
+  { data: 'hh1person', title: '1-person household' },
+  { data: 'hh2ppl', title: '2-person household' },
+  { data: 'hh3ppl', title: '3-person household' },
+  { data: 'hh4ppl', title: '4-person household' },
+  { data: 'hh5plppl', title: '5-or-more person household' },
+  { divider: true,},
   {
-    highlight: true,
-    title: 'Total occupied housing units',
-    data: 'ochu_4',
+    data: 'avghhsz',
+    title: 'Average household size',
+    decimal: 2,
+    special: true,
+    tooltip:
+      'Household population divided by number of households. This 2020 statistic is derived from published data. See About page for more information.',
   },
-  {
-    title: '1-person household',
-    data: 'hh1person',
-  },
-  {
-    title: '2-person household',
-    data: 'hh2ppl',
-  },
-  {
-    title: '3-person household',
-    data: 'hh3ppl',
-  },
-  {
-    title: '4-person household',
-    data: 'hh4ppl',
-  },
-  {
-    title: '5-person household',
-    data: 'hh5ppl',
-  },
-  {
-    title: '6-person household',
-    data: 'hh6ppl',
-  },
-  {
-    title: '7-or-more person household',
-    data: 'hh7plppl',
-  },
+  { divider: true,},
+  { data: 'oochu_2', title: 'Owner-occupied housing units', highlight: true },
+  { data: 'oochh1', title: '1-person household' },
+  { data: 'oochh2', title: '2-person household' },
+  { data: 'oochh3', title: '3-person household' },
+  { data: 'oochh4', title: '4-person household' },
+  { data: 'oochh5pl', title: '5-or-more person household' },
+  { divider: true,},
+  { data: 'rochu_2', title: 'Renter-occupied housing units', highlight: true },
+  { data: 'rochh1', title: '1-person household' },
+  { data: 'rochh2', title: '2-person household' },
+  { data: 'rochh3', title: '3-person household' },
+  { data: 'rochh4', title: '4-person household' },
+  { data: 'rochh5pl', title: '5-or-more person household' },
 ];

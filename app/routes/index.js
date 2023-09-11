@@ -48,6 +48,7 @@ export default Route.extend({
         // Census selection groups
         { id: 'factfinder--census-blocks', visible: false },
         { id: 'factfinder--census-tracts-2020', visible: false },
+        { id: 'factfinder--ccds', visible: false },
         { id: 'factfinder--districts', visible: false },
         { id: 'factfinder--boroughs', visible: false },
         { id: 'factfinder--cities', visible: false },
