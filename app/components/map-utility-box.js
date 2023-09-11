@@ -23,7 +23,7 @@ export default Component.extend({
   mode: 'direct-select',
   advanced: false,
 
-  choroplethMode: 'popperacre',
+  choroplethMode: 'popacre',
 
   summaryLevel: alias('selection.summaryLevel'),
 
@@ -144,6 +144,11 @@ export default Component.extend({
         queryKeys.forEach((key) => {
             if(sessionStorage[key]) queryParams[key] = sessionStorage[key]
           })
+    }
+
+    // Reset the source for geotypes that do not have ACS data
+    if ((['ccds', 'districts'].includes(type)) && (['acs-current', 'acs-previous', 'acs-change'].includes(queryParams['source']))) {
+      queryParams['source'] = 'decennial-current';
     }
 
     if (geoids.length > 1) {

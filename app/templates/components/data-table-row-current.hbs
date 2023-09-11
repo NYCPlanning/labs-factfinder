@@ -75,7 +75,8 @@
           (not this.data.differenceIsReliable)
           (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
         'insignificant'}}">
-      {{unless (eq this.data.differenceMarginOfError null)
+      {{unless 
+      (eq this.data.differenceMarginOfError null)
           (format-number
             this.data.differenceMarginOfError
             precision=this.rowConfig.decimal)}}
@@ -83,7 +84,7 @@
   {{/if}}
     <td
       class="{{unless this.data.differencePercentIsReliable 'insignificant'}} difference-percent">
-      {{unless (eq this.data.differencePercent null)
+      {{unless (or @data.isSpecial (eq this.data.differencePercent null))
           (format-number
             this.data.differencePercent
             precision=1)}}

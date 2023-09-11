@@ -23,6 +23,11 @@ export default {
     },
 
     {
+      id: 'ccds',
+      sql: 'SELECT the_geom_webmercator, coundist AS geolabel, CONCAT("CCD", coundist) AS geoid FROM dcp_city_council_districts',
+    },
+
+    {
       id: 'tracts',
       sql: 'SELECT the_geom_webmercator, ctlabel as geolabel, boroct2020 AS geoid FROM pff_2020_census_tracts_21c',
     },

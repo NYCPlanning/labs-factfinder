@@ -42,6 +42,10 @@
         <SelectGeographyListDistricts
           @sortedLabels={{this.sortedLabels}}
         />
+      {{else if (eq this.model.selection.type 'ccds')}}
+        <SelectGeographyListCcds
+          @sortedLabels={{this.sortedLabels}}
+        />  
       {{else}}
         <SelectGeographyList
           @sortedLabels={{this.sortedLabels}}
@@ -85,6 +89,23 @@
                 isModelLoading=this.reloadExplorerModel.isRunning
               }}
             </div>
+
+            {{#if (and
+              (or
+                (eq this.source.id 'decennial-current')
+                (eq this.source.id 'decennial-previous')
+              )
+              (eq subtopic.id 'populationSexAgeDensity')
+              this.showCharts
+            )}}
+              <div class="cell large-4 xxlarge-3">
+                {{population-pyramid-decennial
+                  title="Age/Sex Distribution"
+                  data=this.agePopDist
+                  mode=this.mode
+                }}
+              </div>
+            {{/if}}
 
             {{#if (and
               (or

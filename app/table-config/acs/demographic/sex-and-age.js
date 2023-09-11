@@ -113,7 +113,7 @@ export default [
   {
     title: 'Under 18 years',
     classNames: '',
-    data: 'popu181',
+    data: 'popu18',
   },
   {
     title: '65 years and over',

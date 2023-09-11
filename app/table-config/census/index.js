@@ -1,13 +1,19 @@
 // @create-index
 
 import housingOccupancy from './housing-occupancy';
+import housingTenure from './housing-tenure';
+import householdType from './household-type';
+import householdSize from './household-size';
 import mutuallyExclusiveRaceHispanicOrigin from './mutually-exclusive-race---hispanic-origin';
-import populationDensity from './population-density';
-import sexAndAge from './sex-and-age';
+import relationshipToHeadOfHouseholdHouseholder from './relationship-to-head-of-household--householder';
+import populationSexAgeDensity from './population-sex-age-density';
 
 export default {
+  householdType,
   housingOccupancy,
+  housingTenure,
+  householdSize,
   mutuallyExclusiveRaceHispanicOrigin,
-  populationDensity,
-  sexAndAge,
+  relationshipToHeadOfHouseholdHouseholder,
+  populationSexAgeDensity,
 };
