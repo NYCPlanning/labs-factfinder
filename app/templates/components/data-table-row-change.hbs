@@ -30,7 +30,7 @@
   {{!-- Estimate --}}
   {{#with (format-number (abs @data.changeSum) precision=@rowConfig.decimal) as |roundedChangeSum|}}
     {{#with (format-number (abs @data.changeMarginOfError) precision=@rowConfig.decimal) as |roundedChangeMarginOfError|}}
-      <td class="cell-border-left change-estimate {{unless @data.changeIsReliable 'insignificant'}}">
+      <td class="cell-border-left change-estimate {{unless (or @data.changeIsReliable this.decennial) 'insignificant'}}">
         {{#unless (or
           (eq @data.changeSum null)
           (eq @data.changeSum undefined)
@@ -81,7 +81,7 @@
   {{#with (format-number (mult (abs @data.changePercent) 100) precision=1) as |roundedChangePercentage|}}
     {{#with (format-number (mult (abs @data.changePercentMarginOfError) 100) precision=1) as |roundedChangePercentageMarginOfError|}}
 
-      <td class="{{unless @data.changePercentIsReliable 'insignificant'}} change-percent">
+      <td class="{{unless (or @data.changePercentIsReliable this.decennial) 'insignificant'}} change-percent">
         {{#unless (or
           @data.isSpecial
           (eq @data.changePercent null)
