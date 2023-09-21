@@ -38,9 +38,13 @@
   <td
     class="cell-border-left
     {{if
+      (and
       (or
         (not this.data.differenceIsReliable)
-        (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
+          (and (eq this.data.sum 0) (eq this.data.comparisonSum 0))
+        )
+        (not this.decennial)
+      )
       'insignificant'}}">
     {{unless (eq this.data.differenceSum null)
       (format-number
@@ -83,7 +87,7 @@
     </td>
   {{/if}}
     <td
-      class="{{unless this.data.differencePercentIsReliable 'insignificant'}} difference-percent">
+      class="{{unless (or this.data.differencePercentIsReliable this.decennial) 'insignificant'}} difference-percent">
       {{unless (or @data.isSpecial (eq this.data.differencePercent null))
           (format-number
             this.data.differencePercent
