@@ -115,18 +115,27 @@
               subtopic.charts
               this.showCharts
             )}}
-              <div class="cell large-4 xxlarge-3">
                 {{#each subtopic.charts as |chart|}}
-                  {{acs-bar
-                    title=chart.chartLabel
-                    config=chart.chartConfig
-                    survey=this.source.type
-                    mode=this.source.mode
-                    data=this.surveyData
-                    height=204
-                  }}
+                {{!-- HACK: literally prevent the rendering of 2010 census household type
+                because data are not available. If more charts are configured for years that
+                do not have data, then a generalized solution is needed --}}
+                  {{#unless (and 
+                    (eq chart.chartLabel "Percent Distribution of Household Types")
+                    (eq this.source.type "census")
+                    (eq this.source.mode "previous")
+                  )}}
+                    <div class="cell large-4 xxlarge-3">
+                        {{acs-bar
+                          title=chart.chartLabel
+                          config=chart.chartConfig
+                          survey=this.source.type
+                          mode=this.source.mode
+                          data=this.surveyData
+                          height=204
+                        }}
+                    </div>
+                  {{/unless}}
                 {{/each}}
-              </div>
             {{/if}}
           </div>
 
