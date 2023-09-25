@@ -196,7 +196,7 @@ export default HorizontalBar.extend({
       .data(data, d => get(d, 'group'));
 
     const handleBars = (selection, type) => {
-      const widthFunction = d => xScale(get(d, `${type}.percent`));
+      const widthFunction = d => xScale(getByMode(d, type, 'percent'));
 
       selection.enter()
         .append('rect')
