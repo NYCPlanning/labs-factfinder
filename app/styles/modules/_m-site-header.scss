@@ -17,7 +17,6 @@ $logo-height-medium: rem-calc(36);
   justify-content: center;
   font-family: $body-font-family;
   flex-direction: column;
-  margin-top: rem-calc(32);
   padding: 1rem;
 
   @include breakpoint(large) {
