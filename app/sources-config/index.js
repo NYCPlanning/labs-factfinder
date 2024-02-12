@@ -25,9 +25,9 @@ export default [
   },
   {
     id: 'acs-current',
-    label: '2017 - 2021',
+    label: '2018 - 2022',
     type: 'acs',
-    year: '2017-2021',
+    year: '2018-2022',
     mode: 'current',
     selected: false,
   },
@@ -41,7 +41,7 @@ export default [
   },
   {
     id: 'acs-change',
-    label: 'Change Over Time (2006-2010 to 2017-2021)',
+    label: 'Change Over Time (2006-2010 to 2018-2022)',
     type: 'acs',
     year: null,
     mode: 'change',
