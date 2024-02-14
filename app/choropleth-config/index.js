@@ -84,7 +84,7 @@ const choroplethConfigs = [
     legendTitle: 'Percent foreign-born population',
     stops: [
       '#f2f2a2',
-      25,
+      20,
       '#efc68a',
       35,
       '#e99963',
@@ -139,7 +139,7 @@ const choroplethConfigs = [
     label: 'Below Poverty (percent)',
     tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
-    stops: ['#f2f2a2', 12, '#efc68a', 20, '#e56d44', 40, '#e54444'],
+    stops: ['#f2f2a2', 15, '#efc68a', 30, '#e56d44', 40, '#e54444'],
   },
   {
     group: 'Housing (ACS)',
@@ -645,7 +645,6 @@ const MINIMUM_RACIAL_COUNT = 5000;
 // For all other variables, or for racial group percent change when the count is above the minimum,
 // fill color is simply determined by the "steps" array
 const buildPaintFill = (id, minimum, stops) => {
-
   const racialPercentChangeIds = ['wnh_pc', 'bnh_pc', 'anh_pc', 'hsp1_pc'];
 
   return racialPercentChangeIds.includes(id)
