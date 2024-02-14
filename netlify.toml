@@ -11,7 +11,7 @@ command = "yarn build --environment=staging"
 
 [context.carto-staging]
   command = "yarn build --environment=carto-staging"
-  environment = { CARTO_USERNAME = "dcpadmin" API_URL = "https://factfinder-api-carto-staging.herokuapp.com" }
+  environment = { CARTO_USERNAME = "dcpadmin", API_URL = "https://factfinder-api-carto-staging.herokuapp.com" }
 
 [context.deploy-preview]
   environment = { API_URL = "https://factfinder-api-staging.herokuapp.com" }
