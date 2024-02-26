@@ -27,6 +27,15 @@ export default [
     children: [],
   },
   {
+    id: 'detailedRaceAndEthnicity',
+    label: 'Detailed Race and Ethnicity',
+    selected: 'unselected',
+    type: 'subtopic',
+    tableConfig: censusTableConfig.detailedRaceAndEthnicity,
+    charts: null,
+    children: [],
+  },
+  {
     id: 'relationHeadHousehold',
     label: 'Relationship to Head of Household (Householder)',
     selected: 'unselected',
