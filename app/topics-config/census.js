@@ -29,6 +29,8 @@ export default [
   {
     id: 'detailedRaceAndEthnicity',
     label: 'Detailed Race and Ethnicity',
+    labelText:
+      'Detailed race and ethnicity data represent the group alone or in any combination. The Census Bureau only publishes detailed race and ethnicity data for NYC at a tract, county, and city level. All other geographies are calculated by the Department of City Planning. Because of suppression, aggregate counts incorporate nonsampling error.',
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.detailedRaceAndEthnicity,
