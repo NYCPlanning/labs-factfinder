@@ -63,8 +63,16 @@ export default HorizontalBar.extend({
     const svg = this.get('svg');
     const data = this.get('data');
     const isPrevious = this.get('mode') === 'previous';
-
+    console.log(`data (in population pyramid)`, data);
     function getByMode(row, maleFemale, variable) {
+    console.log(
+      `row (in population pyramid): `,
+      row,
+      `maleFemale (in population pyramid): `,
+      maleFemale,
+      `variable (in population pyramid):`,
+      variable
+    );
       const variableAsSuffix = variable[0].toUpperCase() + variable.slice(1,variable.length);
       const variableFullname = isPrevious ? 'previous' + variableAsSuffix : variable;
 

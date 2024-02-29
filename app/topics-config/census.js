@@ -2,6 +2,7 @@
 import censusTableConfig from '../table-config/census';
 import censusChartConfig from '../chart-config/census';
 
+console.log('censusTableConfig', censusTableConfig);
 export default [
   {
     id: 'populationSexAgeDensity',
