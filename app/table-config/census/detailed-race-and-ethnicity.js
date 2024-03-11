@@ -376,7 +376,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'weurtrksh',
+    data: 'WEurTrksh',
     title: 'Turkish',
     indent: 3,
   },
@@ -411,7 +411,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'wmenairn',
+    data: 'WMENAIrn',
     title: 'Iranian',
     indent: 3,
   },
