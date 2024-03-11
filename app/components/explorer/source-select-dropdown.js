@@ -57,7 +57,7 @@ export default class SourceSelectDropdownComponent extends Component {
   }
 
   get showACS() {
-    if(['districts', 'blocks', 'ccds'].includes(this.args.geotype)) {
+    if(['districts', 'blocks'].includes(this.args.geotype)) {
       return false;
     }
     return true;

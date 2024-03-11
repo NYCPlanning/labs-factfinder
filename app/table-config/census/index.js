@@ -7,6 +7,7 @@ import householdSize from './household-size';
 import mutuallyExclusiveRaceHispanicOrigin from './mutually-exclusive-race---hispanic-origin';
 import relationshipToHeadOfHouseholdHouseholder from './relationship-to-head-of-household--householder';
 import populationSexAgeDensity from './population-sex-age-density';
+import detailedRaceAndEthnicity from './detailed-race-and-ethnicity';
 
 export default {
   householdType,
@@ -16,4 +17,5 @@ export default {
   mutuallyExclusiveRaceHispanicOrigin,
   relationshipToHeadOfHouseholdHouseholder,
   populationSexAgeDensity,
+  detailedRaceAndEthnicity,
 };
