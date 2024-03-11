@@ -22,16 +22,18 @@ export default class ExplorerController extends Controller {
     'acsTopics',
     'compareTo',
     'showReliability',
-    'showCharts'
+    'showCharts',
   ];
 
   @tracked showCharts = true;
 
   @tracked sourceId = 'decennial-current';
 
-  @tracked censusTopics = 'populationSexAgeDensity,mutuallyExclusiveRaceHispanicOrigin,relationHeadHousehold,householdType,housingOccupancy,housingTenure,householdSize';
+  @tracked censusTopics =
+    'populationSexAgeDensity,mutuallyExclusiveRaceHispanicOrigin,detailedRaceAndEthnicity,relationHeadHousehold,householdType,housingOccupancy,housingTenure,householdSize';
 
-  @tracked acsTopics = 'demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
+  @tracked acsTopics =
+    'demo-sexAndAge,demo-mutuallyExclusiveRaceHispanicOrigin,demo-hispanicSubgroup,demo-asianSubgroup';
 
   @tracked showReliability = false;
 
@@ -40,10 +42,10 @@ export default class ExplorerController extends Controller {
   // The comparison geography ID.
   // Must match ID of one option in comparisonGeoOptions.
   // Default "0" maps to NYC.
-  @tracked compareTo = "0";
+  @tracked compareTo = '0';
 
   pauseToRerender(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
+    return new Promise((resolve) => setTimeout(resolve, time));
   }
 
   toggleSourceInList(sourceId) {
@@ -58,51 +60,51 @@ export default class ExplorerController extends Controller {
       return {
         ...source,
         selected: false,
-      }
+      };
     });
   }
 
   toggleChildren = (children, selectedValue) => {
-    return children.map(child => {
+    return children.map((child) => {
       return {
         ...child,
         selected: selectedValue,
         children: this.toggleChildren(child.children, selectedValue),
-      }
+      };
     });
-  }
+  };
 
   toggleTopicInList = (topics, itemId) => {
     return topics.map((topic) => {
       if (topic.id === itemId) {
         return {
           ...topic,
-          selected: "selected",
-          children: this.toggleChildren(topic.children, "selected"),
+          selected: 'selected',
+          children: this.toggleChildren(topic.children, 'selected'),
         };
       }
 
       if (topic.children && topic.children.length > 0) {
         const newChildren = this.toggleTopicInList(topic.children, itemId);
-        let newSelectedValue = "indeterminate";
+        let newSelectedValue = 'indeterminate';
 
-        if (newChildren.every(child => child.selected === "selected")) {
-          newSelectedValue = "selected";
+        if (newChildren.every((child) => child.selected === 'selected')) {
+          newSelectedValue = 'selected';
         }
-        if (newChildren.every(child => child.selected === "unselected")) {
-          newSelectedValue = "unselected";
+        if (newChildren.every((child) => child.selected === 'unselected')) {
+          newSelectedValue = 'unselected';
         }
 
         return {
           ...topic,
           selected: newSelectedValue,
-          children: newChildren
-        }
+          children: newChildren,
+        };
       }
 
       return topic;
     });
-  }
+  };
 
   get comparisonGeo() {
     if (this.model.comparisonGeoOptions) {
@@ -121,15 +123,15 @@ export default class ExplorerController extends Controller {
   }
 
   get source() {
-    return this.sources.find(source => source.selected);
+    return this.sources.find((source) => source.selected);
   }
 
   set source(newSource) {
     const { id } = newSource;
 
-    sessionStorage.setItem('source', id)
+    sessionStorage.setItem('source', id);
 
-    this.transitionToRoute('explorer', { queryParams: { source: id }});
+    this.transitionToRoute('explorer', { queryParams: { source: id } });
   }
 
   // returns either 'current', 'previous' or 'change'
@@ -142,15 +144,18 @@ export default class ExplorerController extends Controller {
   }
 
   get topicsIdList() {
-    const rawTopicsList = this.source.type === 'census' ? this.censusTopics : this.acsTopics;
+    const rawTopicsList =
+      this.source.type === 'census' ? this.censusTopics : this.acsTopics;
 
-    if (rawTopicsList === 'all'){
+    if (rawTopicsList === 'all') {
       if (this.source.type === 'census') {
-        return censusTopicsDefault.map(topic => topic.id);
+        return censusTopicsDefault.map((topic) => topic.id);
       }
 
       return acsTopicsDefault.reduce((topicsIdList, curTopic) => {
-        return topicsIdList.concat(curTopic.children.map(subtopic => subtopic.id));
+        return topicsIdList.concat(
+          curTopic.children.map((subtopic) => subtopic.id)
+        );
       }, []);
     } else if (rawTopicsList === 'none') {
       return [];
@@ -166,7 +171,7 @@ export default class ExplorerController extends Controller {
           return this.toggleTopicInList(topicsIdList, curTopicId);
         }, censusTopicsDefault);
       }
-  
+
       return this.topicsIdList.reduce((topicsIdList, curTopicId) => {
         return this.toggleTopicInList(topicsIdList, curTopicId);
       }, acsTopicsDefault);
@@ -178,23 +183,23 @@ export default class ExplorerController extends Controller {
   set topics(newTopics) {
     const qpKey = this.source.type === 'census' ? 'censusTopics' : 'acsTopics';
 
-    sessionStorage.setItem([qpKey], newTopics)
+    sessionStorage.setItem([qpKey], newTopics);
 
-    this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics }});
+    this.transitionToRoute('explorer', { queryParams: { [qpKey]: newTopics } });
   }
 
   get isAllTopicsSelected() {
     const { topics } = this;
 
-    if (topics.every(topic => topic.selected === "selected")) {
-      return "selected";
+    if (topics.every((topic) => topic.selected === 'selected')) {
+      return 'selected';
     }
 
-    if (topics.every(topic => topic.selected === "unselected")) {
-      return "unselected";
+    if (topics.every((topic) => topic.selected === 'unselected')) {
+      return 'unselected';
     }
 
-    return "indeterminate";
+    return 'indeterminate';
   }
 
   get selectedCount() {
@@ -204,21 +209,25 @@ export default class ExplorerController extends Controller {
   get sortedLabels() {
     var { features } = this.model.selection;
     if (['districts', 'boroughs'].includes(this.model.selection.type)) {
-      for(var i = 0; i < features.length; i++) {
-        features[i].properties.borocode = features[i].properties.geoid.toString().slice(0,1);
+      for (var i = 0; i < features.length; i++) {
+        features[i].properties.borocode = features[i].properties.geoid
+          .toString()
+          .slice(0, 1);
         if (this.model.selection.type === 'districts') {
           features[i].properties.district = features[i].properties.geoid % 100;
         }
       }
     } else if (this.model.selection.type === 'ccds') {
-      return features.map((ccd) => ccd.properties.geolabel).sort((a, b) => a - b);
+      return features
+        .map((ccd) => ccd.properties.geolabel)
+        .sort((a, b) => a - b);
     }
-    
-    const bronx = features.filter(d => d.properties.borocode === '2');
-    const brooklyn = features.filter(d => d.properties.borocode === '3');
-    const manhattan = features.filter(d => d.properties.borocode === '1');
-    const queens = features.filter(d => d.properties.borocode === '4');
-    const statenisland = features.filter(d => d.properties.borocode === '5');
+
+    const bronx = features.filter((d) => d.properties.borocode === '2');
+    const brooklyn = features.filter((d) => d.properties.borocode === '3');
+    const manhattan = features.filter((d) => d.properties.borocode === '1');
+    const queens = features.filter((d) => d.properties.borocode === '4');
+    const statenisland = features.filter((d) => d.properties.borocode === '5');
 
     return [
       {
@@ -241,7 +250,7 @@ export default class ExplorerController extends Controller {
         label: 'Staten Island',
         features: statenisland,
       },
-    ].filter(d => d.features.length > 0);
+    ].filter((d) => d.features.length > 0);
   }
 
   get agePopDist() {
@@ -286,8 +295,8 @@ export default class ExplorerController extends Controller {
     this.source = newSource;
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      'event' : 'select_data_source',
-      'select_data_source' : newSource.label,
+      event: 'select_data_source',
+      select_data_source: newSource.label,
     });
     this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Data Source',
@@ -301,18 +310,22 @@ export default class ExplorerController extends Controller {
     await this.pauseToRerender(1);
 
     if (topic.type === 'subtopic') {
-        if (this.topicsIdList.includes(topic.id)) {
-          this.topics = this.topicsIdList.filter(topicId => topicId !== topic.id);
-        } else {
-          this.topics = this.topicsIdList.concat([topic.id]);
-        }
+      if (this.topicsIdList.includes(topic.id)) {
+        this.topics = this.topicsIdList.filter(
+          (topicId) => topicId !== topic.id
+        );
+      } else {
+        this.topics = this.topicsIdList.concat([topic.id]);
+      }
     }
 
     if (topic.type === 'topic') {
-      const topicChildrenIds = topic.children.map(subtopic => subtopic.id);
+      const topicChildrenIds = topic.children.map((subtopic) => subtopic.id);
 
-      if (topic.selected === "selected" || topic.selected === "indeterminate") {
-        this.topics = this.topicsIdList.filter(topicId => !topicChildrenIds.includes(topicId));
+      if (topic.selected === 'selected' || topic.selected === 'indeterminate') {
+        this.topics = this.topicsIdList.filter(
+          (topicId) => !topicChildrenIds.includes(topicId)
+        );
       } else {
         this.topics = this.topicsIdList.concat(topicChildrenIds);
       }
@@ -325,19 +338,19 @@ export default class ExplorerController extends Controller {
     this.isLoading = true;
     await this.pauseToRerender(1);
 
-    this.topics = this.isAllTopicsSelected === "unselected" ? "all" : "none";
+    this.topics = this.isAllTopicsSelected === 'unselected' ? 'all' : 'none';
 
     this.isLoading = false;
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      'event' : 'select_all_topics',
-      'toggle' : this.isAllTopicsSelected === "unselected" ? "none" : "all",
+      event: 'select_all_topics',
+      toggle: this.isAllTopicsSelected === 'unselected' ? 'none' : 'all',
     });
     this.metrics.trackEvent('GoogleAnalytics', {
       eventCategory: 'Select Topics',
       eventAction: 'Select All Topics Toggle',
-      eventLabel: this.isAllTopicsSelected === "unselected" ? "none" : "all",
+      eventLabel: this.isAllTopicsSelected === 'unselected' ? 'none' : 'all',
     });
   }
 
@@ -347,8 +360,8 @@ export default class ExplorerController extends Controller {
     if (controlId === 'showReliability') {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        'event' : 'toggle_show_reliability_data',
-        'show_reliability_data' : !currentControlValue,
+        event: 'toggle_show_reliability_data',
+        show_reliability_data: !currentControlValue,
       });
       this.metrics.trackEvent('GoogleAnalytics', {
         eventCategory: 'Show Reliability Data',
@@ -358,8 +371,8 @@ export default class ExplorerController extends Controller {
     } else if (controlId === 'showCharts') {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        'event' : 'toggle_show_charts',
-        'show_charts' : !currentControlValue,
+        event: 'toggle_show_charts',
+        show_charts: !currentControlValue,
       });
       this.metrics.trackEvent('GoogleAnalytics', {
         eventCategory: 'Show Charts',
@@ -368,23 +381,32 @@ export default class ExplorerController extends Controller {
       });
     }
 
-    sessionStorage.setItem([controlId], !currentControlValue)
+    sessionStorage.setItem([controlId], !currentControlValue);
 
-    this.transitionToRoute('explorer', { queryParams: {
-      [controlId]: !currentControlValue,
-    }});
+    this.transitionToRoute('explorer', {
+      queryParams: {
+        [controlId]: !currentControlValue,
+      },
+    });
   }
 
   @task({ restartable: true }) *reloadExplorerModel(newGeoid) {
     yield this.store.unloadAll('row');
 
-    const newExplorerModel = yield fetchExplorerModel(this.store, this.model.geotype, this.model.geoid, newGeoid);
+    const newExplorerModel = yield fetchExplorerModel(
+      this.store,
+      this.model.geotype,
+      this.model.geoid,
+      newGeoid
+    );
 
     this.model = newExplorerModel;
 
-    sessionStorage.setItem('compareTo', newGeoid)
+    sessionStorage.setItem('compareTo', newGeoid);
 
-    yield this.transitionToRoute('explorer', { queryParams: { compareTo: newGeoid }});
+    yield this.transitionToRoute('explorer', {
+      queryParams: { compareTo: newGeoid },
+    });
   }
 
   @action updateCompareTo(geoid) {
@@ -396,10 +418,10 @@ export default class ExplorerController extends Controller {
   @action toggleReliability() {
     this.showReliability = !this.showReliability;
     /*global Promise*/
-    return new Promise(resolve => {
-      setTimeout(function() {
-        resolve("slow")
-      }, 1)
-    })
+    return new Promise((resolve) => {
+      setTimeout(function () {
+        resolve('slow');
+      }, 1);
+    });
   }
 }

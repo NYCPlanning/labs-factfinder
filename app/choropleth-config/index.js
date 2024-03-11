@@ -18,24 +18,6 @@ const choroplethConfigs = [
     ],
   },
   {
-    group: 'Demographic (ACS)',
-    id: 'pop65pl1',
-    label: '65 Years and Over',
-    tooltip: 'Population 65 years and over',
-    legendTitle: 'Population 65 years and over',
-    stops: [
-      '#f2f2a2',
-      4000,
-      '#efc68a',
-      8000,
-      '#e99963',
-      12000,
-      '#e56d44',
-      15000,
-      '#e54444',
-    ],
-  },
-  {
     group: 'Social (ACS)',
     id: 'ea_bchdh',
     label: "Bachelor's Degree or Higher",
@@ -84,7 +66,7 @@ const choroplethConfigs = [
     legendTitle: 'Percent foreign-born population',
     stops: [
       '#f2f2a2',
-      25,
+      20,
       '#efc68a',
       35,
       '#e99963',
@@ -139,13 +121,13 @@ const choroplethConfigs = [
     label: 'Below Poverty (percent)',
     tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
-    stops: ['#f2f2a2', 12, '#efc68a', 20, '#e56d44', 40, '#e54444'],
+    stops: ['#f2f2a2', 15, '#efc68a', 30, '#e56d44', 40, '#e54444'],
   },
   {
     group: 'Housing (ACS)',
     id: 'mdgr',
     label: 'Median Gross Rent',
-    tooltip: 'Median gross rent (in 2020 inflation-adjusted dollars)',
+    tooltip: 'Median gross rent (in 2022 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
     stops: ['#f2f2a2', 1500, '#efc68a', 2000, '#e56d44', 2500, '#e54444'],
   },
@@ -185,6 +167,24 @@ const choroplethConfigs = [
       20000,
       '#e56d44',
       25000,
+      '#e54444',
+    ],
+  },
+  {
+    group: 'Census',
+    id: 'pop65pl',
+    label: '65 Years and Over',
+    tooltip: 'Population 65 years and over',
+    legendTitle: 'Population 65 years and over',
+    stops: [
+      '#f2f2a2',
+      4000,
+      '#efc68a',
+      6000,
+      '#e99963',
+      8000,
+      '#e56d44',
+      10000,
       '#e54444',
     ],
   },
@@ -645,7 +645,6 @@ const MINIMUM_RACIAL_COUNT = 5000;
 // For all other variables, or for racial group percent change when the count is above the minimum,
 // fill color is simply determined by the "steps" array
 const buildPaintFill = (id, minimum, stops) => {
-
   const racialPercentChangeIds = ['wnh_pc', 'bnh_pc', 'anh_pc', 'hsp1_pc'];
 
   return racialPercentChangeIds.includes(id)

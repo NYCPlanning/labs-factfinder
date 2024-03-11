@@ -25,7 +25,8 @@ export default [
   },
   {
     indent: 1,
-    title: 'Born in Puerto Rico, U.S. Island areas, or born abroad to American parent(s)',
+    title:
+      'Born in Puerto Rico, U.S. Island areas, or born abroad to American parent(s)',
     data: 'ntvprusab',
   },
   {
@@ -153,6 +154,11 @@ export default [
     indent: 2,
     title: 'Portugal',
     data: 'portugal',
+  },
+  {
+    indent: 3,
+    title: 'Azores Islands',
+    data: 'azores',
   },
   {
     indent: 2,
@@ -320,6 +326,11 @@ export default [
   },
   {
     indent: 2,
+    title: 'Bhutan',
+    data: 'bhutan',
+  },
+  {
+    indent: 2,
     title: 'India',
     data: 'india',
   },
@@ -420,6 +431,21 @@ export default [
   },
   {
     indent: 2,
+    title: 'Armenia',
+    data: 'armenia',
+  },
+  {
+    indent: 2,
+    title: 'Azerbaijan',
+    data: 'azerbjn',
+  },
+  {
+    indent: 2,
+    title: 'Georgia',
+    data: 'georgia',
+  },
+  {
+    indent: 2,
     title: 'Iraq',
     data: 'iraq',
   },
@@ -455,18 +481,18 @@ export default [
   },
   {
     indent: 2,
-    title: 'Yemen',
-    data: 'yemen',
-  },
-  {
-    indent: 2,
     title: 'Turkey',
     data: 'turkey',
   },
   {
     indent: 2,
-    title: 'Armenia',
-    data: 'armenia',
+    title: 'United Arab Emirates',
+    data: 'uaremir',
+  },
+  {
+    indent: 2,
+    title: 'Yemen',
+    data: 'yemen',
   },
   {
     indent: 2,
@@ -504,6 +530,26 @@ export default [
   },
   {
     indent: 2,
+    title: 'Somalia',
+    data: 'somalia',
+  },
+  {
+    indent: 2,
+    title: 'Tanzania',
+    data: 'tanzania',
+  },
+  {
+    indent: 2,
+    title: 'Uganda',
+    data: 'uganda',
+  },
+  {
+    indent: 2,
+    title: 'Zimbabwe',
+    data: 'zimbabwe',
+  },
+  {
+    indent: 2,
     title: 'Other Eastern Africa',
     data: 'oeafr',
   },
@@ -519,6 +565,16 @@ export default [
   },
   {
     indent: 2,
+    title: 'Congo',
+    data: 'congo',
+  },
+  {
+    indent: 2,
+    title: 'Democratic Republic of Congo (Zaire)',
+    data: 'drcongo',
+  },
+  {
+    indent: 2,
     title: 'Other Middle Africa',
     data: 'omafr',
   },
@@ -526,6 +582,11 @@ export default [
     indent: 1,
     title: 'Northern Africa',
     data: 'nafr',
+  },
+  {
+    indent: 2,
+    title: 'Algeria',
+    data: 'algeria',
   },
   {
     indent: 2,
@@ -579,6 +640,11 @@ export default [
   },
   {
     indent: 2,
+    title: 'Ivory Coast ',
+    data: 'ivorycst',
+  },
+  {
+    indent: 2,
     title: 'Liberia',
     data: 'liberia',
   },
@@ -589,8 +655,18 @@ export default [
   },
   {
     indent: 2,
+    title: 'Senegal',
+    data: 'senegal',
+  },
+  {
+    indent: 2,
     title: 'Sierra Leone',
     data: 'sierral',
+  },
+  {
+    indent: 2,
+    title: 'Togo',
+    data: 'togo',
   },
   {
     indent: 2,
@@ -625,6 +701,16 @@ export default [
     indent: 1,
     title: 'Fiji',
     data: 'fiji',
+  },
+  {
+    indent: 1,
+    title: 'Marshall Islands',
+    data: 'mrshlisl',
+  },
+  {
+    indent: 1,
+    title: 'Micronesia',
+    data: 'microns',
   },
   {
     indent: 1,
@@ -684,6 +770,11 @@ export default [
     indent: 3,
     title: 'Jamaica',
     data: 'jamaica',
+  },
+  {
+    indent: 3,
+    title: 'St. Lucia',
+    data: 'stlucia',
   },
   {
     indent: 3,

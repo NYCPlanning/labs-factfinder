@@ -15,6 +15,11 @@ export default [
   },
   {
     indent: 1,
+    title: 'Hmong',
+    data: 'asnhmng',
+  },
+  {
+    indent: 1,
     title: 'Japanese',
     data: 'asnjpn',
   },
@@ -37,6 +42,70 @@ export default [
     indent: 1,
     title: 'Taiwanese',
     data: 'asntwn',
+  },
+  {
+    indent: 1,
+    title: 'Other East Asian',
+    data: 'asnoeast',
+  },
+  {
+    title: 'Southeast Asian',
+    data: 'asnseast',
+  },
+  {
+    indent: 1,
+    title: 'Burmese',
+    data: 'asnburm',
+  },
+  {
+    indent: 1,
+    title: 'Cambodian',
+    data: 'asncmb',
+  },
+  {
+    indent: 1,
+    title: 'Filipino',
+    data: 'asnflp',
+  },
+  {
+    indent: 1,
+    title: 'Indonesian',
+    data: 'asnindnsn',
+  },
+  {
+    indent: 1,
+    title: 'Laotian',
+    data: 'asnlao',
+  },
+  {
+    indent: 1,
+    title: 'Malaysian',
+    data: 'asnmalsn',
+  },
+  {
+    indent: 1,
+    title: 'Mien',
+    data: 'asnmien',
+  },
+  {
+    indent: 1,
+    title: 'Singaporean',
+    data: 'asnsingpr',
+  },
+  {
+    indent: 1,
+    title: 'Thai',
+    data: 'asnthai',
+  },
+  {
+    indent: 1,
+    title: 'Vietnamese',
+    data: 'asnvtn',
+  },
+  {
+    indent: 1,
+    title: 'Other Southeast Asian',
+    data: 'asnoseast',
   },
   {
     title: 'South Asian',
@@ -69,57 +138,37 @@ export default [
   },
   {
     indent: 1,
+    title: 'Sikh',
+    data: 'asnsikh',
+  },
+  {
+    indent: 1,
     title: 'Sri Lankan',
     data: 'asnsril',
   },
   {
-    title: 'Southeast Asian',
-    data: 'asnseast',
+    indent: 1,
+    title: 'Other South Asian',
+    data: 'asnosouth',
+  },
+  {
+    title: 'Central Asian',
+    data: 'asncntrl',
   },
   {
     indent: 1,
-    title: 'Burmese',
-    data: 'asnburm',
+    title: 'Kazakh',
+    data: 'asnkazakh',
   },
   {
     indent: 1,
-    title: 'Cambodian',
-    data: 'asncmb',
+    title: 'Uzbek',
+    data: 'asnuzbek',
   },
   {
     indent: 1,
-    title: 'Filipino',
-    data: 'asnflp',
-  },
-  {
-    indent: 1,
-    title: 'Hmong',
-    data: 'asnhmng',
-  },
-  {
-    indent: 1,
-    title: 'Indonesian',
-    data: 'asnindnsn',
-  },
-  {
-    indent: 1,
-    title: 'Laotian',
-    data: 'asnlao',
-  },
-  {
-    indent: 1,
-    title: 'Malaysian',
-    data: 'asnmalsn',
-  },
-  {
-    indent: 1,
-    title: 'Thai',
-    data: 'asnthai',
-  },
-  {
-    indent: 1,
-    title: 'Vietnamese',
-    data: 'asnvtn',
+    title: 'Other Central Asian',
+    data: 'asnocntrl',
   },
   {
     title: 'Other Asian',
