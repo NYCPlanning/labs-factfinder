@@ -184,6 +184,12 @@ export default Component.extend({
         this.fitBounds(result.feature, 3);
       }
 
+      if (result.type === 'cdta') {
+        selection.set('searchResultFeature', result.feature);
+        this.set('searchTerms', result.feature.properties.cdta2020);
+        this.fitBounds(result.feature, 3);
+      }
+
       if (result.type === 'address') {
         const center = result.coordinates;
         selection.set('currentAddress', center);
