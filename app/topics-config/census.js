@@ -30,7 +30,7 @@ export default [
     id: 'detailedRaceAndEthnicity',
     label: 'Detailed Race and Ethnicity',
     labelText:
-      'Detailed race and ethnicity data represent the group alone or in any combination. The Census Bureau only publishes detailed race and ethnicity data for NYC at a tract, county, and city level. All other geographies are calculated by the Department of City Planning. Because of suppression, aggregate counts incorporate nonsampling error.',
+      "Detailed race & ethnicity data represent the count of people identifying with each group. This count includes people identifying solely with a particular group and people identifying with multiple groups. Tract-level noise & suppression can result in compounded NTA-level error. See 'About' page for more.",
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.detailedRaceAndEthnicity,
