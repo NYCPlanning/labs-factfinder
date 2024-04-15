@@ -52,6 +52,26 @@ export default [
   },
   {
     indent: 2,
+    title: 'Denmark',
+    data: 'denmark',
+  },
+  {
+    indent: 2,
+    title: 'Ireland',
+    data: 'ireland',
+  },
+  {
+    indent: 2,
+    title: 'Norway',
+    data: 'norway',
+  },
+  {
+    indent: 2,
+    title: 'Sweden',
+    data: 'sweden',
+  },
+  {
+    indent: 2,
     title: 'United Kingdom (inc. Crown Dependencies)',
     data: 'untdkgdm',
   },
@@ -69,26 +89,6 @@ export default [
     indent: 3,
     title: 'Scotland',
     data: 'scot',
-  },
-  {
-    indent: 2,
-    title: 'Ireland',
-    data: 'ireland',
-  },
-  {
-    indent: 2,
-    title: 'Denmark',
-    data: 'denmark',
-  },
-  {
-    indent: 2,
-    title: 'Norway',
-    data: 'norway',
-  },
-  {
-    indent: 2,
-    title: 'Sweden',
-    data: 'sweden',
   },
   {
     indent: 2,
@@ -187,6 +187,11 @@ export default [
   },
   {
     indent: 2,
+    title: 'Bosnia and Herzegovina',
+    data: 'bosniah',
+  },
+  {
+    indent: 2,
     title: 'Bulgaria',
     data: 'bulgaria',
   },
@@ -217,13 +222,13 @@ export default [
   },
   {
     indent: 2,
-    title: 'North Macedonia (Macedonia)',
-    data: 'mcdonia',
+    title: 'Moldova',
+    data: 'moldova',
   },
   {
     indent: 2,
-    title: 'Moldova',
-    data: 'moldova',
+    title: 'North Macedonia (Macedonia)',
+    data: 'mcdonia',
   },
   {
     indent: 2,
@@ -244,11 +249,6 @@ export default [
     indent: 2,
     title: 'Ukraine',
     data: 'ukraine',
-  },
-  {
-    indent: 2,
-    title: 'Bosnia and Herzegovina',
-    data: 'bosniah',
   },
   {
     indent: 2,
@@ -376,6 +376,11 @@ export default [
   },
   {
     indent: 2,
+    title: 'Burma (Myanmar)',
+    data: 'burma',
+  },
+  {
+    indent: 2,
     title: 'Cambodia',
     data: 'cambodia',
   },
@@ -393,11 +398,6 @@ export default [
     indent: 2,
     title: 'Malaysia',
     data: 'malaysia',
-  },
-  {
-    indent: 2,
-    title: 'Burma',
-    data: 'burma',
   },
   {
     indent: 2,
@@ -803,11 +803,6 @@ export default [
   },
   {
     indent: 3,
-    title: 'Mexico',
-    data: 'mexico',
-  },
-  {
-    indent: 3,
     title: 'Belize',
     data: 'belize',
   },
@@ -830,6 +825,11 @@ export default [
     indent: 3,
     title: 'Honduras',
     data: 'honduras',
+  },
+  {
+    indent: 3,
+    title: 'Mexico',
+    data: 'mexico',
   },
   {
     indent: 3,
