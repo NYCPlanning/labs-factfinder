@@ -656,7 +656,7 @@ export default [
   {
     data: 'both',
     title: 'Other Black or African American',
-    indent: 3,
+    indent: 2,
   },
   {
     title: 'American Indian and Alaska Native',
@@ -742,7 +742,7 @@ export default [
   {
     data: 'aea',
     title: 'East Asian',
-    indent: 3,
+    indent: 2,
   },
   {
     data: 'aeachnsnot',
