@@ -113,7 +113,7 @@ export default [
   {
     title: 'Under 18 years',
     classNames: '',
-    data: 'popu18',
+    data: 'popu181',
   },
   {
     title: '65 years and over',
@@ -125,7 +125,8 @@ export default [
   },
   {
     title: 'Median age (years)',
-    tooltip: 'Medians are calculated using linear interpolation, which may result in top-coded values',
+    tooltip:
+      'Medians are calculated using linear interpolation, which may result in top-coded values',
     classNames: '',
     data: 'mdage',
     special: true,
