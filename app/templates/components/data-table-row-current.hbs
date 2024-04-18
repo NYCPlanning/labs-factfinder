@@ -1,4 +1,4 @@
-{{#unless this.rowConfig.divider}}
+{{#unless (or this.rowConfig.divider (not this.rowConfig.data))}}
   <td class='title-column' {{action 'showData'}}>
     <span>
       {{this.rowConfig.title}}
@@ -126,13 +126,22 @@
 
 {{else}}
 
-  <td>&nbsp;</td>
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if this.reliability}}
+  {{#if (not this.rowConfig.data)}}
+  {{!-- If a row header, display title --}}
+    <td class='title-column'>
+    <span>
+      {{this.rowConfig.title}}
+    </span>
+  </td>
+  {{else}}
     <td>&nbsp;</td>
+    <td class="cell-border-left">&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
+      {{#if this.reliability}}
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      {{/if}}
   {{/if}}
 
   <td class="cell-border-left">&nbsp;</td>
@@ -147,6 +156,11 @@
   <td>&nbsp;</td>
   {{#if this.reliability}}
     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+  {{#if (not this.rowConfig.data)}}
+    <td class="cell-border-left">&nbsp;</td>
     <td>&nbsp;</td>
   {{/if}}
 
