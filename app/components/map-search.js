@@ -134,6 +134,7 @@ export default Component.extend({
 
       const selection = this.get('selection');
       selection.set('searchResultFeature', null);
+      selection.set('currentAddress', []);
     },
 
     goTo(result) {
