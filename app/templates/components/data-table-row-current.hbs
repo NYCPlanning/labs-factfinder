@@ -149,28 +149,31 @@
     <td>&nbsp;</td>
     <td class="cell-border-left">&nbsp;</td>
   {{/if}}
-      
-    <td>&nbsp;</td>
-    {{#if this.reliability}}
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    {{/if}}
-    
-    <td class="cell-border-left">&nbsp;</td>
-    <td>&nbsp;</td>
-    {{#if this.reliability}}
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    {{/if}}
-    
-    <td class="cell-border-left">&nbsp;</td>
-    <td>&nbsp;</td>
-    {{#if this.reliability}}
+
+  {{#if this.displayEmptyCell}}
+    <td class=>&nbsp;</td>
+  {{/if}}
+
+  {{#if this.reliability}}
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    {{/if}}
+    <td>&nbsp;</td>
+  {{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if this.reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if this.reliability}}
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  {{/if}}
 
 {{/unless}}
 {{yield}}

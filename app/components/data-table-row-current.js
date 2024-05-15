@@ -8,6 +8,7 @@ export default Component.extend({
   isSelected: false,
   data: {}, // model object with specific properties
   rowConfig: {}, // model's row configuration object
+  rowConfigKeysFound: [],
 
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
@@ -41,6 +42,21 @@ export default Component.extend({
       return true;
     }
     return false;
+  }),
+
+  displayEmptyCell: computed('rowConfig', 'pop', function () {
+    const rowConfig = this.get('rowConfig');
+
+    for (const key in rowConfig) {
+      if (rowConfig[key] === 'pop') {
+        this.rowConfigKeysFound.push(rowConfig[key]);
+      }
+    }
+
+    if (this.rowConfigKeysFound.length) {
+      console.log(`this.rowConfigKeysFound`, this.rowConfigKeysFound);
+      return true;
+    }
   }),
 
   actions: {
