@@ -30,7 +30,7 @@ export default [
     id: 'detailedRaceAndEthnicity',
     label: 'Detailed Race and Ethnicity',
     labelText:
-      "Detailed race & ethnicity data represent the count of people identifying with each group. This count includes people identifying solely with a particular group and people identifying with multiple groups. Tract-level noise & suppression can result in compounded NTA-level error. See 'About' page for more.",
+      "Detailed race and ethnicity data represent the count of people identifying with each group. This count includes people identifying solely with a particular group and people identifying with multiple groups. Tract-level noise & suppression can result in compounded error for aggregate geographies. See 'About' page for more information. (Also note that detailed race and ethnicity data are unavailable for census block and Community District geographies and will display as 0.)",
     selected: 'unselected',
     type: 'subtopic',
     tableConfig: censusTableConfig.detailedRaceAndEthnicity,
