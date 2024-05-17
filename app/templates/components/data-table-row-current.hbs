@@ -1,5 +1,54 @@
-{{#unless (or this.rowConfig.divider this.noPriorData)}}
-  <td class='title-column' {{action 'showData'}}>
+{{!-- 
+Options
+1) Divider row
+2) Row has a variable name but no data
+3) Data for this row are not comparable or are unavailable
+4) There's data
+ --}}
+
+{{!-- 1) Divider Row --}}
+{{#if this.rowConfig.divider}}
+  <td>&nbsp;</td>
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+<!---->
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+<!---->
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+
+{{!-- 2) Row has a variable name but no data --}}
+{{else if (not this.rowConfig.data)}}
+  {{!-- If a row header, display title --}}
+    <td class='title-column'>
+    <span>
+      {{this.rowConfig.title}}
+    </span>
+  </td>
+  <td class="cell-border-left">&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if this.reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  {{#if this.reliability}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  {{/if}}
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+
+{{!-- 3) Data for this row are not comparable or are unavailable
+  and 4) There's data --}}
+{{else}}
+
+  {{!-- VARIABLE NAME (The same regardless of whether there's data) --}}
+  <td class='title-column' {{action 'showData'}} >
     <span>
       {{this.rowConfig.title}}
       {{#if this.rowConfig.tooltip}}
@@ -13,79 +62,96 @@
     </span>
   </td>
 
-  {{!-- SELECTED AREA --}}
+  {{!-- 3) Data for this row are not comparable or are unavailable --}}
   {{#if (eq this.data.selection.sum null)}}
     <td
       class="cell-border-left no-compare-message"
-      colspan={{if this.reliability "5" "2"}}
     >
       Data for this row are not comparable or are unavailable
     </td>
+    <td>&nbsp;</td>
+    {{#if this.reliability}}
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    {{/if}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    {{#if this.reliability}}
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    {{/if}}
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+
+
+  {{!-- 4) There's data --}}
   {{else}}
+    {{!-- SELECTED AREA --}}
     {{data-table-column-group
       model=this.data.selection
       rowConfig=this.rowConfig
       reliabilityMode=this.reliability}}
-  {{/if}}
 
-  {{!-- COMPARISON AREA --}}
-  {{data-table-column-group
-    model=this.data.comparison
-    rowConfig=this.rowConfig
-    reliabilityMode=this.reliability}}
 
-  {{!-- DIFFERENCE --}}
-  <td
-    class="cell-border-left
-    {{if
-      (and
-      (or
-        (not this.data.differenceIsReliable)
-          (and (eq this.data.sum 0) (eq this.data.comparisonSum 0))
-        )
-        (not this.decennial)
-      )
-      'insignificant'}}">
-    {{unless (eq this.data.differenceSum null)
-      (format-number
-          this.data.differenceSum
-          precision=this.rowConfig.decimal)}}
-    {{#if (and
-      (lte @this.data.differenceMarginOfError (abs @this.data.differenceSum))
-      (not (or
-        (eq @this.data.sum 0)
-        (eq @this.data.comparisonSum 0)
-        (eq @this.data.sum undefined)
-        (eq @this.data.comparisonSum undefined)
-      ))
-      (not (eq
-        (format-number (abs this.data.differenceSum) precision=@rowConfig.decimal)
-        (format-number (abs this.data.differenceMarginOfError) precision=@rowConfig.decimal)
-      ))
-    )}}
-      {{#if (gt @this.data.differenceSum 0)}}
-        {{fa-icon icon="arrow-up" class="green"}}
-      {{else if (lt @this.data.differenceSum 0)}}
-        {{fa-icon icon="arrow-down" class="red"}}
-      {{else}}
-        {{fa-icon icon=""}}
-      {{/if}}
-    {{/if}}
-  </td>
-  {{#if this.reliability}}
-    <td class="
+    {{!-- COMPARISON AREA --}}
+    {{data-table-column-group
+      model=this.data.comparison
+      rowConfig=this.rowConfig
+      reliabilityMode=this.reliability}}
+
+    {{!-- DIFFERENCE --}}
+    <td
+      class="cell-border-left
       {{if
+        (and
         (or
           (not this.data.differenceIsReliable)
-          (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
+            (and (eq this.data.sum 0) (eq this.data.comparisonSum 0))
+          )
+          (not this.decennial)
+        )
         'insignificant'}}">
-      {{unless 
-      (eq this.data.differenceMarginOfError null)
-          (format-number
-            this.data.differenceMarginOfError
+      {{unless (eq this.data.differenceSum null)
+        (format-number
+            this.data.differenceSum
             precision=this.rowConfig.decimal)}}
+      {{#if (and
+        (lte @this.data.differenceMarginOfError (abs @this.data.differenceSum))
+        (not (or
+          (eq @this.data.sum 0)
+          (eq @this.data.comparisonSum 0)
+          (eq @this.data.sum undefined)
+          (eq @this.data.comparisonSum undefined)
+        ))
+        (not (eq
+          (format-number (abs this.data.differenceSum) precision=@rowConfig.decimal)
+          (format-number (abs this.data.differenceMarginOfError) precision=@rowConfig.decimal)
+        ))
+      )}}
+        {{#if (gt @this.data.differenceSum 0)}}
+          {{fa-icon icon="arrow-up" class="green"}}
+        {{else if (lt @this.data.differenceSum 0)}}
+          {{fa-icon icon="arrow-down" class="red"}}
+        {{else}}
+          {{fa-icon icon=""}}
+        {{/if}}
+      {{/if}}
     </td>
-  {{/if}}
+    {{#if this.reliability}}
+      <td class="
+        {{if
+          (or
+            (not this.data.differenceIsReliable)
+            (and (eq this.data.sum 0) (eq this.data.comparisonSum 0)))
+          'insignificant'}}">
+        {{unless 
+        (eq this.data.differenceMarginOfError null)
+            (format-number
+              this.data.differenceMarginOfError
+              precision=this.rowConfig.decimal)}}
+      </td>
+    {{/if}}
     <td
       class="{{unless (or this.data.differencePercentIsReliable this.decennial) 'insignificant'}} difference-percent">
       {{unless (or @data.isSpecial (eq this.data.differencePercent null))
@@ -123,57 +189,6 @@
             precision=1)}}
       </td>
     {{/if}}
-
-{{else}}
-  {{#if this.noPriorData}}
-    <td class='title-column' {{action 'showData' }}>
-      <span>
-        {{@rowConfig.title}}
-        {{#if @rowConfig.tooltip}}
-        {{fa-icon icon='question-circle' transform='shrink-2'}}
-        {{ember-tooltip text=@rowConfig.tooltip side='right'}}
-        {{/if}}
-      </span>
-    </td>
-    <td
-      class="cell-border-left no-compare-message"
-      colspan="2"
-      >
-      {{#unless (not this.rowConfig.data)}}
-        Data for this row are not comparable or are unavailable
-      {{else}}
-        &nbsp;
-      {{/unless}}
-    </td>
-  {{else}}
-    <td>&nbsp;</td>
-    <td class="cell-border-left">&nbsp;</td>
   {{/if}}
-
-  {{#if this.displayEmptyCell}}
-    <td class=>&nbsp;</td>
-  {{/if}}
-
-  {{#if this.reliability}}
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  {{/if}}
-
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if this.reliability}}
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  {{/if}}
-
-  <td class="cell-border-left">&nbsp;</td>
-  <td>&nbsp;</td>
-  {{#if this.reliability}}
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  {{/if}}
-
-{{/unless}}
+{{/if}}
 {{yield}}
