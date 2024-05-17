@@ -19,7 +19,7 @@
       class="cell-border-left no-compare-message"
       colspan={{if this.reliability "5" "2"}}
     >
-      Data for this row are not comparable or are unavailable
+      Data are suppressed for selected area
     </td>
   {{else}}
     {{data-table-column-group
@@ -140,9 +140,9 @@
       class="cell-border-left no-compare-message"
     >
       {{#unless (not this.rowConfig.data)}}
-        Data for this row are not comparable or are unavailable
+      Data for this row are not comparable or are unavailable
       {{else}}
-        &nbsp;
+      &nbsp;
       {{/unless}}
     </td>
   {{else}}

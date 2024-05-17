@@ -12,7 +12,7 @@ export default Component.extend({
   tagName: 'tr',
   classNameBindings: ['getClassNames'],
 
-  getClassNames: computed('rowConfig', 'isSelected', function () {
+  getClassNames: computed('rowConfig', 'isSelected', function() {
     const rowConfig = this.get('rowConfig');
     const classes = [];
 
@@ -29,18 +29,6 @@ export default Component.extend({
     }
 
     return classes.join(' ');
-  }),
-
-  noPriorData: computed('data.previous.sum', function () {
-    const { 'data.previous': previous } = this.getProperties('data.previous');
-    if (
-      (previous &&
-        (typeof previous.sum === 'undefined' || previous.sum === null)) ||
-      typeof previous === 'undefined'
-    ) {
-      return true;
-    }
-    return false;
   }),
 
   actions: {
