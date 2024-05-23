@@ -146,8 +146,8 @@ export default Component.extend({
           })
     }
 
-    // Reset the source for geotypes that do not have ACS data
-    if ((['ccds', 'districts'].includes(type)) && (['acs-current', 'acs-previous', 'acs-change'].includes(queryParams['source']))) {
+    // Reset the source for geotypes that do not have ACS data.
+    if ((['districts'].includes(type)) && (['acs-current', 'acs-previous', 'acs-change'].includes(queryParams['source']))) {
       queryParams['source'] = 'decennial-current';
     }
 

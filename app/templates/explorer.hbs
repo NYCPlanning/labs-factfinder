@@ -78,6 +78,10 @@
               <h3 class="header-small">
                 {{subtopic.label}}
               </h3>
+              {{#if subtopic.labelText}}
+                <p class="text-small">
+                  {{subtopic.labelText}}</p>
+              {{/if}}
               {{data-table
                 mode=this.mode
                 decennial=true

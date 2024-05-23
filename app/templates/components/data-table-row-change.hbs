@@ -1,4 +1,8 @@
-{{#unless (or @rowConfig.divider this.noPriorData)}}
+{{#unless (or 
+  @rowConfig.divider 
+  this.noPriorData 
+  (eq @data.category 'detailed_race_and_ethnicity')
+)}}
   <td class='title-column' {{action 'showData'}}>
     <span>
       {{@rowConfig.title}}
@@ -194,7 +198,17 @@
     {{/with}}
   {{/with}}
 {{else}}
-  {{#if this.noPriorData}}
+  {{#if (eq @data.category 'detailed_race_and_ethnicity')}}
+    {{!-- disable change over time for subregions in detailed_race_and_ethnicity chart --}}
+    <td class='title-column' {{action 'showData' }}>
+      <span>
+        {{@rowConfig.title}}
+      </span>
+    </td>
+    <td class="cell-border-left no-compare-message">
+      Data for this row are not comparable or are unavailable
+    </td>
+  {{else if this.noPriorData}}
     {{!-- if 2006-2010 sum is null, just return empty cells --}}
     <td class='title-column' {{action 'showData'}}>
       <span>
@@ -208,7 +222,11 @@
     <td
       class="cell-border-left no-compare-message"
     >
+      {{#unless (not this.rowConfig.data)}}
       Data for this row are not comparable or are unavailable
+      {{else}}
+      &nbsp;
+      {{/unless}}
     </td>
   {{else}}
     <td>&nbsp;</td>

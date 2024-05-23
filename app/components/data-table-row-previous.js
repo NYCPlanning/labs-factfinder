@@ -33,7 +33,7 @@ export default Component.extend({
 
   noPriorData: computed('data.previous.sum', function() {
     const { 'data.previous': previous } = this.getProperties('data.previous');
-    if (previous && (typeof previous.sum === 'undefined' || previous.sum === null)) {
+    if ((previous && (typeof previous.sum === 'undefined' || previous.sum === null)) || typeof previous === 'undefined') {
       return true
     }
     return false
@@ -46,6 +46,7 @@ export default Component.extend({
   },
 
   click() {
+    console.log('click - data table', this);
     this.set('isSelected', !this.isSelected);
   },
 });
