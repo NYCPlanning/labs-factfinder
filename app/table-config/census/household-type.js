@@ -9,7 +9,7 @@ export default [
   { data: 'hh_2', title: 'Total households', highlight: true },
   { data: 'mrdcplhh', title: 'Married couple household' },
   { data: 'mrdch18', title: 'With own children under 18', indent: 1 },
-  { data: 'cocplhh', title: 'Cohabitng couple household' },
+  { data: 'cocplhh', title: 'Cohabiting couple household' },
   { data: 'cocplch18', title: 'With own children under 18', indent: 1 },
   { data: 'malehhns', title: 'Male householder, no spouse or partner present' },
   { data: 'mnspchu18', title: 'With own children under 18', indent: 1 },

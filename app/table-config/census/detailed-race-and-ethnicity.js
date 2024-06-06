@@ -166,7 +166,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'weurazrbn',
+    data: 'weurazrbjn',
     title: 'Azerbaijani',
     indent: 3,
   },
@@ -221,7 +221,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'weurengsh',
+    data: 'weurenglsh',
     title: 'English',
     indent: 3,
   },
@@ -301,7 +301,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'weurmtgrn',
+    data: 'weurmntgrn',
     title: 'Montenegrin',
     indent: 3,
   },
@@ -331,12 +331,12 @@ export default [
     indent: 3,
   },
   {
-    data: 'weurscdvn',
+    data: 'weurscndvn',
     title: 'Scandinavian',
     indent: 3,
   },
   {
-    data: 'weursirsh',
+    data: 'weurstirsh',
     title: 'Scots-Irish',
     indent: 3,
   },
@@ -396,7 +396,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'wmenaagrn',
+    data: 'wmenaalgrn',
     title: 'Algerian',
     indent: 3,
   },
@@ -406,7 +406,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'wmenaegtn',
+    data: 'wmenaegptn',
     title: 'Egyptian',
     indent: 3,
   },
@@ -441,7 +441,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'wmenapstn',
+    data: 'wmenaplstn',
     title: 'Palestinian',
     indent: 3,
   },
@@ -466,7 +466,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'wothastrn',
+    data: 'wothastrln',
     title: 'Australian',
     indent: 3,
   },
@@ -476,12 +476,12 @@ export default [
     indent: 3,
   },
   {
-    data: 'wothfrcdn',
+    data: 'wothfrcndn',
     title: 'French Canadian',
     indent: 3,
   },
   {
-    data: 'wothnzldr',
+    data: 'wothnzlndr',
     title: 'New Zealander',
     indent: 3,
   },
@@ -499,7 +499,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'bssafbrkb',
+    data: 'bssafbrknb',
     title: 'Burkinabe',
     indent: 3,
   },
@@ -509,12 +509,12 @@ export default [
     indent: 3,
   },
   {
-    data: 'bssafcgls',
+    data: 'bssafcngls',
     title: 'Congolese',
     indent: 3,
   },
   {
-    data: 'bssafethn',
+    data: 'bssafethpn',
     title: 'Ethiopian',
     indent: 3,
   },
@@ -559,7 +559,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'bssafsgls',
+    data: 'bssafsngls',
     title: 'Senegalese',
     indent: 3,
   },
@@ -589,7 +589,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'bcrbatbrb',
+    data: 'bcrbantbrb',
     title: 'Antiguan and Barbudan',
     indent: 3,
   },
@@ -604,7 +604,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'bcrbdmis',
+    data: 'bcrbdmncis',
     title: 'Dominica Islander',
     indent: 3,
   },
@@ -624,7 +624,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'bcrbktnv',
+    data: 'bcrbktnnev',
     title: 'Kittian and Nevisian',
     indent: 3,
   },
@@ -639,12 +639,12 @@ export default [
     indent: 3,
   },
   {
-    data: 'bcrbusvis',
+    data: 'bcrbusvgis',
     title: 'U.S. Virgin Islander',
     indent: 3,
   },
   {
-    data: 'bcrbvnctn',
+    data: 'bcrbvncntn',
     title: 'Vincentian',
     indent: 3,
   },
@@ -656,7 +656,7 @@ export default [
   {
     data: 'both',
     title: 'Other Black or African American',
-    indent: 3,
+    indent: 2,
   },
   {
     title: 'American Indian and Alaska Native',
@@ -672,17 +672,17 @@ export default [
     indent: 2,
   },
   {
-    data: 'aianainbf',
+    data: 'aianainbft',
     title: 'Blackfeet Tribe of the Blackfeet Indian Reservation of Montana',
     indent: 4,
   },
   {
-    data: 'aianainch',
+    data: 'aianainchr',
     title: 'Cherokee',
     indent: 4,
   },
   {
-    data: 'aiancnain',
+    data: 'aiancnamin',
     title: 'Central American Indian (all tribes)',
     indent: 2,
   },
@@ -692,7 +692,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'aianmxina',
+    data: 'aianmxinaz',
     title: 'Aztec',
     indent: 3,
   },
@@ -702,7 +702,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'aiansaiei',
+    data: 'aiansaieci',
     title: 'Ecuadorian Indian',
     indent: 3,
   },
@@ -712,7 +712,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'aiansaiic',
+    data: 'aiansaiinc',
     title: 'Inca',
     indent: 3,
   },
@@ -722,7 +722,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'aiancrbt',
+    data: 'aiancrbtno',
     title: 'Taino',
     indent: 3,
   },
@@ -732,7 +732,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'aianmsinm',
+    data: 'aianmsinmy',
     title: 'Maya',
     indent: 3,
   },
@@ -742,10 +742,10 @@ export default [
   {
     data: 'aea',
     title: 'East Asian',
-    indent: 3,
+    indent: 2,
   },
   {
-    data: 'aeachnsnt',
+    data: 'aeachnsnot',
     title: 'Chinese, except Taiwanese',
     indent: 3,
   },
@@ -805,7 +805,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'asabngdsh',
+    data: 'asabngldsh',
     title: 'Bangladeshi',
     indent: 3,
   },
@@ -850,7 +850,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'aseaindsn',
+    data: 'aseaindnsn',
     title: 'Indonesian',
     indent: 3,
   },
@@ -860,7 +860,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'aseasgprn',
+    data: 'aseasngprn',
     title: 'Singaporean',
     indent: 3,
   },
@@ -893,7 +893,7 @@ export default [
     indent: 3,
   },
   {
-    data: 'nhpiplysm',
+    data: 'nhpiplysmn',
     title: 'Samoan',
     indent: 3,
   },
@@ -903,7 +903,7 @@ export default [
     indent: 2,
   },
   {
-    data: 'nhpimcchr',
+    data: 'nhpimcchmr',
     title: 'Chamorro',
     indent: 3,
   },

@@ -46,6 +46,7 @@ export default Component.extend({
   },
 
   click() {
+    console.log('click - data table', this);
     this.set('isSelected', !this.isSelected);
   },
 });
