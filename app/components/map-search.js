@@ -134,6 +134,7 @@ export default Component.extend({
 
       const selection = this.get('selection');
       selection.set('searchResultFeature', null);
+      selection.set('currentAddress', []);
     },
 
     goTo(result) {
@@ -181,6 +182,12 @@ export default Component.extend({
       if (result.type === 'puma') {
         selection.set('searchResultFeature', result.feature);
         this.set('searchTerms', result.feature.properties.puma);
+        this.fitBounds(result.feature, 3);
+      }
+
+      if (result.type === 'cdta') {
+        selection.set('searchResultFeature', result.feature);
+        this.set('searchTerms', result.feature.properties.cdta2020);
         this.fitBounds(result.feature, 3);
       }
 
