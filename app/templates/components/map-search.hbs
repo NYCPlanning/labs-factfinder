@@ -24,6 +24,8 @@
         <h4 class="header-small">Neighborhoods</h4>
       {{else if (eq type 'district')}}
         <h4 class="header-small">Community Districts</h4>
+      {{else if (eq type 'cdta')}}
+        <h4 class="header-small">2020 Community District Tabulation Areas</h4>
       {{else}}
         <h4 class="header-small">Add Map Pin</h4>
       {{/if}}
@@ -37,6 +39,8 @@
         {{else if (eq type 'nta')}}
           <span class="icon polygon large"></span>
         {{else if (eq type 'district')}}
+          <span class="icon polygon large"></span>
+        {{else if (eq type 'cdta')}}
           <span class="icon polygon large"></span>
         {{else}}
           {{fa-icon icon="map-pin"}}

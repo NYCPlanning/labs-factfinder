@@ -8,6 +8,8 @@ export default Component.extend({
     this.get('didInit')(this);
 
     this.set('icon', []);
+
+    this.set('active', false);
   },
 
   metrics: service('metrics'),
