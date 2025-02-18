@@ -37,7 +37,7 @@ export default [
     data: 'vl1milpl',
   },
   {
-    title: 'Median (dollars)',
+    title: 'Median gross rent (dollars)',
     tooltip: 'Medians are calculated using linear interpolation, which may result in top-coded values',
     data: 'mdvl',
     special: true,

@@ -33,7 +33,7 @@ export default [
     data: 'gr3kpl',
   },
   {
-    title: 'Median (dollars)',
+    title: 'Median gross rent (dollars)',
     tooltip: 'Medians are calculated using linear interpolation, which may result in top-coded values',
     data: 'mdgr',
     special: true,
