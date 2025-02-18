@@ -127,7 +127,7 @@ const choroplethConfigs = [
     group: 'Housing (ACS)',
     id: 'mdgr',
     label: 'Median Gross Rent',
-    tooltip: 'Median gross rent (in 2022 inflation-adjusted dollars)',
+    tooltip: 'Median gross rent (in 2023 inflation-adjusted dollars)',
     legendTitle: 'Median Gross Rent',
     stops: ['#f2f2a2', 1500, '#efc68a', 2000, '#e56d44', 2500, '#e54444'],
   },
