@@ -110,8 +110,6 @@ const choroplethConfigs = [
       '#e99963',
       15000,
       '#e56d44',
-      20000,
-      '#e54444',
     ],
   },
   {
@@ -121,7 +119,7 @@ const choroplethConfigs = [
     label: 'Below Poverty (percent)',
     tooltip: 'Percent of population whose income is below the poverty level',
     legendTitle: 'Percent of population below poverty level',
-    stops: ['#f2f2a2', 15, '#efc68a', 30, '#e56d44', 40, '#e54444'],
+    stops: ['#f2f2a2', 15, '#efc68a', 30, '#e56d44',],
   },
   {
     group: 'Housing (ACS)',
