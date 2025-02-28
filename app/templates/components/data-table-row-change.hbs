@@ -86,8 +86,9 @@
     {{#with (format-number (mult (abs @data.changePercentMarginOfError) 100) precision=1) as |roundedChangePercentageMarginOfError|}}
 
       <td class="{{unless (or @data.changePercentIsReliable this.decennial) 'insignificant'}} change-percent">
+        <p>{{@data.changePercent}}</p>
         {{#unless (or
-          @data.isSpecial
+          
           (eq @data.changePercent null)
           (eq @data.changePercent undefined)
         )}}
