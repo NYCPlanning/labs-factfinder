@@ -39,6 +39,12 @@ export default [
     special: true,
   },
   {
+    title: 'Mean gross rent (dollars)',
+    tooltip: 'Aggregate gross rent, divided by total occupied units paying rent',
+    data: 'mngr',
+    special: true,
+  },
+  {
     divider: true,
   },
   {
