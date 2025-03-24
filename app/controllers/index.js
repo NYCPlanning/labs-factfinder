@@ -240,8 +240,8 @@ export default Controller.extend({
 
   addedFile(file) {
     const reader = new FileReader();
-    // const selection = this.get('selection');
-    // const { summaryLevel } = selection;
+    const selection = this.get('selection');
+    const { summaryLevel } = selection;
     let buffer;
     reader.onload = (event) => {
       buffer = event.target.result;
@@ -263,15 +263,16 @@ export default Controller.extend({
           this.set('customVisualOverlayPoints', true);
         }
 
-        // const SQL = generateIntersectionSQL(summaryLevel, combined);
-        // carto.SQL(SQL, 'geojson', 'post')
-        //   .then((FC) => {
-        //     selection.handleSelectedFeatures(FC.features);
-        //     this.fitBounds();
-        //   })
-        //   .catch(() => {
-        //     alert('Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
-        //   });
+        const SQL = generateIntersectionSQL(summaryLevel, combined);        
+        carto.SQL(SQL, 'geojson', 'post')
+          .then((FC) => {
+            console.log("got to the FC maybe");
+            selection.handleSelectedFeatures.perform(FC.features);
+            this.fitBounds();
+          })
+          .catch(() => {
+            alert('CATCHING IN SQL INTERSECT Something went wrong with this Shapefile. Try to simplify the geometries.'); // eslint-disable-line
+          });
       }).catch(() => {
         file._removeLink.click();
         alert('Something went wrong with this Shapefile. Check that it is valid'); // eslint-disable-line

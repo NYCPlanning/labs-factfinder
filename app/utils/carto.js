@@ -21,10 +21,11 @@ const buildSqlUrl = (cleanedQuery, format = 'json', method) => { // eslint-disab
 };
 
 const carto = {
-  SQL(query, format = 'json', method = 'get') {
+   SQL(query, format = 'json', method = 'get') {
+    console.log("in carto sql");
     const cleanedQuery = query.replace('\n', '');
     const url = buildSqlUrl(cleanedQuery, format, method);
-
+    console.log("carto: url", url);
     let fetchOptions = {};
 
     if (method === 'post') {
@@ -39,6 +40,7 @@ const carto = {
 
     return fetch(url, fetchOptions)
       .then((response) => {
+        console.log("carto: response", response);
         if (response.ok) {
           return response.json();
         }

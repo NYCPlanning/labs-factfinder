@@ -298,6 +298,8 @@ export default Service.extend({
   }).restartable(),
 
   handleSelectedFeatures: task(function* (features = []) {
+    console.log("in handle selected features");
+    console.log("features / FC", features);
     let getGeoTasks = [];
 
     features.forEach((feature) => {
