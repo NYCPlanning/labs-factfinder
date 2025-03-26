@@ -41,6 +41,8 @@ export default Service.extend({
   comparator: '0',
   reliability: false,
   metrics: service('metrics'),
+  quickFactVariables: 'pop1,hunits',
+
 
   store: service(),
 
@@ -118,7 +120,7 @@ export default Service.extend({
   }),
 
   handleSelectedSummaryDataExplode: task(function* ()  {
-    yield fetchSelectionSummary('decennial', 'pop1,hunits', this.selectedSummary)
+    yield fetchSelectionSummary('decennial', this.quickFactVariables, this.selectedSummary)
       .then((selectionSummary) => this.set('current', { ...this.get('current'), selectionSummary: selectionSummary }))
   }).restartable(),
 
@@ -334,7 +336,7 @@ export default Service.extend({
 
     yield all(getGeoTasks);
 
-    yield fetchSelectionSummary('decennial', 'pop1,hunits', this.selectedSummary)
+    yield fetchSelectionSummary('decennial', this.quickFactVariables, this.selectedSummary)
       .then((selectionSummary) => this.set(
         'current',
         { type: 'FeatureCollection', features: this.get('current').features, selectionSummary: selectionSummary },
