@@ -87,7 +87,6 @@
 
       <td class="{{unless (or @data.changePercentIsReliable this.decennial) 'insignificant'}} change-percent">
         {{#unless (or
-          @data.isSpecial
           (eq @data.changePercent null)
           (eq @data.changePercent undefined)
         )}}
