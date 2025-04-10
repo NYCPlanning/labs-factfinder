@@ -170,7 +170,7 @@ const choroplethConfigs = [
   },
   {
     group: 'Census',
-    id: 'pop65pl1',
+    id: 'pop65pl',
     label: '65 Years and Over',
     tooltip: 'Population 65 years and over',
     legendTitle: 'Population 65 years and over',
