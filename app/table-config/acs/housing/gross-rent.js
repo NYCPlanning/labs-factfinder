@@ -33,9 +33,15 @@ export default [
     data: 'gr3kpl',
   },
   {
-    title: 'Median (dollars)',
+    title: 'Median gross rent (dollars)',
     tooltip: 'Medians are calculated using linear interpolation, which may result in top-coded values',
     data: 'mdgr',
+    special: true,
+  },
+  {
+    title: 'Mean gross rent (dollars)',
+    tooltip: 'Aggregate gross rent, divided by total occupied units paying rent',
+    data: 'mngr',
     special: true,
   },
   {
