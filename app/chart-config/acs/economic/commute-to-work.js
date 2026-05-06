@@ -21,7 +21,7 @@ export default [
   },
   {
     property: 'cw_wrkdhm',
-    label: 'Worked at home',
+    label: 'Worked from home',
   },
 
 ];

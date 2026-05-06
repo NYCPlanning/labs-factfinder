@@ -9,7 +9,7 @@ export default [
   },
   {
     property: 'gr1kt14k',
-    label: '$1,000 to $1499',
+    label: '$1,000 to $1,499',
   },
   {
     property: 'gr15kt19k',
