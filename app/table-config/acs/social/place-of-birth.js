@@ -376,7 +376,7 @@ export default [
   },
   {
     indent: 2,
-    title: 'Burma (Myanmar)',
+    title: '“Burma (Myanmar)',
     data: 'burma',
   },
   {
@@ -501,7 +501,7 @@ export default [
   },
   {
     indent: 1,
-    title: 'Asia,n.e.c.',
+    title: 'Asia, n.e.c.',
     data: 'asianec',
   },
   {
