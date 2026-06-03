@@ -26,19 +26,19 @@ export default [
     divider: true,
   },
   {
-    title: 'Civilian noninstitutionalized population under 18 years',
+    title: 'Civilian noninstitutionalized population under 19 years',
     highlight: true,
-    data: 'cvniu18_2',
+    data: 'CvNIU19_2',
   },
   {
     title: 'No health insurance coverage',
-    data: 'u18nhins',
+    data: 'U19NHIns',
   },
   {
     divider: true,
   },
   {
-    title: 'Civilian noninstitutionalized population 18 to 64 years',
+    title: 'Civilian noninstitutionalized population 19 to 64 years',
     data: 'cni1864_2',
     special: true,
   },

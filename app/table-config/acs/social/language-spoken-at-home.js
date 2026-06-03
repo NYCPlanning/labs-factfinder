@@ -94,7 +94,7 @@ export default [
     data: 'lgvielep1',
   },
   {
-    title: 'Tagalog',
+    title: 'Tagalog (incl. Filipino)',
     data: 'lgtag1',
     highlight: true,
   },
@@ -186,7 +186,7 @@ export default [
     indent: 1,
   },
   {
-    title: 'Tagalog',
+    title: 'Tagalog (incl. Filipino)',
     data: 'lgtag2',
     indent: 1,
   },
@@ -246,7 +246,7 @@ export default [
     data: 'lgvielep2',
   },
   {
-    title: 'Tagalog',
+    title: 'Tagalog (incl. Filipino)',
     data: 'lgtaglep2',
   },
   {
