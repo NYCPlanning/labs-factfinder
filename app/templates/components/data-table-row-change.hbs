@@ -1,6 +1,6 @@
-{{#unless (or 
-  @rowConfig.divider 
-  this.noPriorData 
+{{#unless (or
+  @rowConfig.divider
+  this.noPriorData
   (eq @data.category 'detailed_race_and_ethnicity')
 )}}
   <td class='title-column' {{action 'showData'}}>
@@ -143,7 +143,7 @@
       (mult (abs @data.changePercentagePointMarginOfError) 100)
       precision=1) as |roundedChangePercentagePointMarginOfError|}}
 
-      <td class="{{unless @data.changePercentagePointIsReliable 'insignificant'}} change-percentage-point">
+      <td class="{{unless (or @data.changePercentagePointIsReliable this.decennial) 'insignificant'}} change-percentage-point">
         {{#unless
           (or
             @data.isSpecial
