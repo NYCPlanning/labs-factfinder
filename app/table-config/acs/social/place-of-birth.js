@@ -376,7 +376,7 @@ export default [
   },
   {
     indent: 2,
-    title: 'Burma (Myanmar)',
+    title: '“Burma (Myanmar)',
     data: 'burma',
   },
   {
