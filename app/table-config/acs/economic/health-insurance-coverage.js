@@ -39,7 +39,7 @@ export default [
   },
   {
     title: 'Civilian noninstitutionalized population 19 to 64 years',
-    data: 'cni1864_2',
+    data: 'cni1964_2',
     special: true,
   },
   {

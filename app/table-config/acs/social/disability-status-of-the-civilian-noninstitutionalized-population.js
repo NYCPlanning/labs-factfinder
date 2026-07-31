@@ -81,7 +81,7 @@ export default [
   {
     title: '18 to 64 years',
     highlight: true,
-    data: 'cni1864_2',
+    data: 'cni1864_1',
   },
   {
     title: 'With a disability',
