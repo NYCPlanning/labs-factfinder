@@ -29,6 +29,10 @@ export default Component.extend({
 
   selectionSummaryData: alias('selection.current.selectionSummary.totals'),
 
+  selectionSummaryDataString: computed('selectionSummaryData', function() {
+    return JSON.stringify(this.selectionSummaryData);
+  }),
+
   choroplethPaintFill: computed('choroplethMode', function() {
     const { choroplethMode: mode } = this.getProperties('choroplethMode');
 
@@ -168,5 +172,9 @@ export default Component.extend({
     });
     this.set('choroplethMode', mode);
   },
+
+  updateQuickFactOptions(event) {
+    this.get('selection').set('quickFactVariables', event.target.value)
+  }
 
 });
