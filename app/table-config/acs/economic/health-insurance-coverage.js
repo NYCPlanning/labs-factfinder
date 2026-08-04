@@ -28,11 +28,11 @@ export default [
   {
     title: 'Civilian noninstitutionalized population under 19 years',
     highlight: true,
-    data: 'CvNIU19_2',
+    data: 'cvniu19_2',
   },
   {
     title: 'No health insurance coverage',
-    data: 'U19NHIns',
+    data: 'u19nhins',
   },
   {
     divider: true,
