@@ -24,7 +24,7 @@
 {{/if}}
 
 {{!-- Percent Estimate --}}
-<td class="{{unless this.model.isReliable 'insignificant'}}">
+<td class="{{if this.shouldApplyInsignificantClass "insignificant"}}">
   {{unless
     (or
       this.data.isSpecial
