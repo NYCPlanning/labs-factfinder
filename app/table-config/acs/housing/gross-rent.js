@@ -13,7 +13,7 @@ export default [
     data: 'gr500t999',
   },
   {
-    title: '$1,000 to $1499',
+    title: '$1,000 to $1,499',
     data: 'gr1kt14k',
   },
   {
