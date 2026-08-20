@@ -1,5 +1,8 @@
 {{!-- Estimate --}}
-<td class="cell-border-left {{unless this.model.isReliable 'insignificant'}}" {{action 'logModel'}}>
+<td class="cell-border-left
+  {{if this.shouldApplyInsignificantClass "insignificant"}}"
+  {{action 'logModel'}}
+>
   {{format-number
       this.model.sum
       precision=this.rowConfig.decimal}}{{render-top-bottom-coding-suffix this.model.direction}}
@@ -21,7 +24,7 @@
 {{/if}}
 
 {{!-- Percent Estimate --}}
-<td class="{{unless this.model.isReliable 'insignificant'}}">
+<td class="{{if this.shouldApplyInsignificantClass "insignificant"}}">
   {{unless
     (or
       this.data.isSpecial

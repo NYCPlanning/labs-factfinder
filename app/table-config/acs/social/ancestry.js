@@ -222,7 +222,7 @@ export default [
     data: 'lthian',
   },
   {
-    title: 'Luxemburger',
+    title: 'Luxembourger',
     data: 'luxmbgr',
   },
   {
@@ -298,7 +298,7 @@ export default [
     data: 'svtunion',
   },
   {
-    title: 'Subsaharan African',
+    title: 'Sub-Saharan African',
     data: 'subsaf',
   },
   {
@@ -373,7 +373,7 @@ export default [
   },
   {
     indent: 1,
-    title: 'Other Subsaharan African',
+    title: 'Other Sub-Saharan African',
     data: 'osubsafr',
   },
   {

@@ -25,7 +25,7 @@ export default [
     data: 'cw_oth',
   },
   {
-    title: 'Worked at home',
+    title: 'Worked from home',
     data: 'cw_wrkdhm',
   },
   {
